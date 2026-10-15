@@ -16,6 +16,8 @@
 - **Resolution:** The automated BFS solver caught these deadlocks immediately during `bun test`, allowing us to calibrate layouts and verify exact optimal move counts for 3-star ratings across all 12 levels.
 - **Preventive Rule:** Never ship a puzzle level without automated test validation confirming its solvability.
 
-## [2026-10-15] Portal Bundle Optimization with Code-Splitting
-- **What happened:** Phaser 3 is ~1.4MB minified. Including it in the initial portal bundle would hurt SEO and mobile homepage load time.
-- **Resolution:** Implemented `React.lazy` on `GamePage` with manual chunk splitting in `vite.config.ts`. The homepage bundle dropped to only 29.18 kB (gzip: 8.75 kB), loading in milliseconds, while the Phaser engine only loads when entering `/games/dog-parking/`.
+## [2026-10-15] Phaser 3 Direct Scene Initialization & Procedural Textures
+- **What happened:** Splitting procedural texture creation into a `BootScene` that immediately starts `GameScene` caused a race condition where `GameScene.create()` executed with uninitialized level data or unbound WebGL textures, resulting in a blank white canvas inside the game border.
+- **Root cause:** Unlinked asynchronous scene transition in React wrapper before data was bound.
+- **Resolution:** Consolidated procedural canvas textures into a synchronous `ensureDogTextures(scene)` function called at the start of `GameScene.create()` and configured `scene: [GameScene]` directly.
+- **Preventive Rule:** When using procedural canvas textures in Phaser with React wrappers, generate textures directly in the active game scene to guarantee immediate, atomic rendering on the first frame.
