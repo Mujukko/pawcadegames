@@ -59,3 +59,13 @@
 - **Consequences:** Maximum dopamine reward upon yard completion with zero asset download penalty.
 - **Reversibility:** High.
 
+## [2026-10-15] DEC-009: Cat Parking Multi-Game Release & Poki-Inspired Pure Game Homepage
+- **Decision:**
+  1. Built and launched **Cat Parking** (`/games/cat-parking/`), an independent title featuring Luna the Star Calico, 8 feline breeds (Siamese, Tabby, Black Cat, Persian, Russian Blue, Maine Coon, Bengal), obstacles (yarn ball, cardboard box, scratching post), procedural feline audio (organic meows, purrs, bell chimes), and 12 mathematically proven solvable levels.
+  2. Redesigned the homepage into a Poki-inspired pure game portal (`poki.com` model): removed marketing text essays and fluff, replaced with a vibrant responsive Bento game grid, category filter tabs (Tümü, Popüler, Yeni, Kediler, Köpekler, Bulmaca), and instant one-click play.
+  3. Extended localStorage progress persistence with game-scoped keys (`pawcade_cat-parking_progress`).
+- **Reason:** Users visiting web game portals prioritize instant visual immersion and immediate gameplay over long marketing text. Cat Parking fulfills the feline counterpart theme while validating the multi-game architectural registry.
+- **Consequences:** Near-zero initial cognitive load; high replayability across both canine and feline puzzle domains.
+- **Reversibility:** High.
+
+

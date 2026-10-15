@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react';
 import { DogParkingContainer } from '../games/dog-parking/DogParkingContainer';
+import { CatParkingContainer } from '../games/cat-parking/CatParkingContainer';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
 import { ChevronRight, Star, Sparkles, Keyboard, Smartphone, CheckCircle2, Shield, Heart } from 'lucide-react';
 
 interface GamePageProps {
   navigate: (path: string) => void;
+  gameId?: string;
 }
 
-export const GamePage: React.FC<GamePageProps> = ({ navigate }) => {
-  const game = GAMES_REGISTRY.find(g => g.id === 'dog-parking')!;
+export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isCat = gameId === 'cat-parking';
+  const game = GAMES_REGISTRY.find(g => g.id === gameId) || GAMES_REGISTRY[0]!;
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [gameId]);
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50/60 pb-16">
@@ -27,7 +30,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate }) => {
             Puzzle Games
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-900 font-bold">Dog Parking</span>
+          <span className="text-slate-900 font-bold">{game.title}</span>
         </div>
       </div>
 
@@ -36,26 +39,28 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate }) => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-[11px] font-extrabold uppercase tracking-wider bg-amber-100 text-amber-800 px-2 py-0.5 rounded-md">
-                Featured Puzzle
+              <span className={`text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md ${
+                isCat ? 'bg-pink-100 text-pink-800' : 'bg-amber-100 text-amber-800'
+              }`}>
+                {isCat ? '🐱 New Feline Puzzle' : '🐶 Featured Puzzle'}
               </span>
               <div className="flex items-center text-amber-500 text-xs font-bold">
                 <Star className="w-3.5 h-3.5 fill-amber-500 mr-1" />
-                <span>4.9 / 5.0 (US Casual)</span>
+                <span>{game.rating} / 5.0 (Instant Play)</span>
               </div>
             </div>
             <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              Dog Parking
+              {game.title}
             </h1>
             <p className="text-slate-600 text-sm sm:text-base mt-1 max-w-2xl">
-              Slide adorable pups and long hounds through crowded yard bays to guide Sunny the Star Corgi to safety!
+              {game.tagline}
             </p>
           </div>
         </div>
 
         {/* The Playable Game Frame */}
         <div className="bg-slate-900/5 rounded-3xl p-3 sm:p-6 border border-slate-200/80 mb-12 shadow-inner flex justify-center">
-          <DogParkingContainer />
+          {isCat ? <CatParkingContainer /> : <DogParkingContainer />}
         </div>
 
         {/* Instructions & Controls Guide */}
@@ -72,11 +77,11 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate }) => {
             <div className="space-y-3 text-sm text-slate-600">
               <div className="flex items-start gap-2">
                 <span className="font-bold text-slate-900 min-w-24">Desktop:</span>
-                <span>Click and drag dogs along their natural lane (horizontal or vertical). Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">R</kbd> to restart or <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">Z</kbd> to undo.</span>
+                <span>Click and drag {isCat ? 'cats' : 'dogs'} along their natural lane (horizontal or vertical). Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">R</kbd> to restart or <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">Z</kbd> to undo.</span>
               </div>
               <div className="flex items-start gap-2">
                 <span className="font-bold text-slate-900 min-w-24">Mobile:</span>
-                <span>Swipe with your finger along the dog's axis. Large touch-friendly control buttons at the top of the board.</span>
+                <span>Swipe with your finger along the animal's axis. Large touch-friendly control buttons at the top of the board.</span>
               </div>
             </div>
           </div>
@@ -93,77 +98,19 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate }) => {
             <ul className="space-y-2.5 text-sm text-slate-600">
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <span><strong>Sunny the Star Corgi</strong> must reach the green <strong>EXIT ➔</strong> gate on the right.</span>
+                <span><strong>{isCat ? 'Luna the Star Cat' : 'Sunny the Star Corgi'}</strong> must reach the green <strong>EXIT ➔</strong> gate on the right.</span>
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <span>Dogs cannot turn corners or jump over each other.</span>
+                <span>Pets cannot turn corners or jump over each other.</span>
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <span>Match or beat the target move count to earn a <strong>3-Star Rating</strong>!</span>
+                <span>Earn up to 3 stars by completing each puzzle in the minimum possible moves!</span>
               </li>
             </ul>
           </div>
         </div>
-
-        {/* Meet the Dogs Breed Guide */}
-        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs mb-12">
-          <h2 className="text-2xl font-black text-slate-900 mb-2">Meet the Yard Pack</h2>
-          <p className="text-slate-600 text-sm mb-6">
-            Each dog breed has a distinct size, personality, and movement style:
-          </p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="bg-amber-50/60 border border-amber-100 p-4 rounded-2xl text-center">
-              <div className="text-3xl mb-1">⭐</div>
-              <h3 className="font-extrabold text-slate-900 text-sm">Sunny (Hero Corgi)</h3>
-              <p className="text-xs text-slate-500 mt-1">2 tiles • Wears a golden star collar. Needs to escape to the gate!</p>
-            </div>
-
-            <div className="bg-orange-50/60 border border-orange-100 p-4 rounded-2xl text-center">
-              <div className="text-3xl mb-1">🐶</div>
-              <h3 className="font-extrabold text-slate-900 text-sm">Slinky (Dachshund)</h3>
-              <p className="text-xs text-slate-500 mt-1">3 tiles • Super long sausage dog! Requires 3 clear squares to slide.</p>
-            </div>
-
-            <div className="bg-stone-50/80 border border-stone-200 p-4 rounded-2xl text-center">
-              <div className="text-3xl mb-1">🐾</div>
-              <h3 className="font-extrabold text-slate-900 text-sm">Barnaby (Pug)</h3>
-              <p className="text-xs text-slate-500 mt-1">2 tiles • Cute wrinkled face, loves snoozing right in the middle aisle.</p>
-            </div>
-
-            <div className="bg-yellow-50/60 border border-yellow-100 p-4 rounded-2xl text-center">
-              <div className="text-3xl mb-1">🐕</div>
-              <h3 className="font-extrabold text-slate-900 text-sm">Apollo (Retriever)</h3>
-              <p className="text-xs text-slate-500 mt-1">3 tiles • Big friendly hound that often acts as a gatekeeper.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Structured Technical SEO Article */}
-        <article className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs prose max-w-none text-slate-600 text-sm leading-relaxed space-y-4">
-          <h2 className="text-2xl font-black text-slate-900">
-            About Dog Parking — Free Unblock Puzzle Game
-          </h2>
-          <p>
-            <strong>Dog Parking</strong> is an original, family-friendly casual puzzle game inspired by the legendary spatial sliding mechanics of classic traffic jam games (such as Rush Hour and Parking Jam). Created specifically for web browsers, Dog Parking delivers high-framerate 60 FPS gameplay with zero downloads or account creation.
-          </p>
-
-          <h3 className="text-lg font-bold text-slate-800">
-            Why Dog Parking is Perfect for Casual Brain Training
-          </h3>
-          <p>
-            Spatial puzzle games have been shown in cognitive research to enhance forward-planning, working memory, and spatial reasoning skills. In Dog Parking, each level presents a compact 6×6 yard with limited lanes of movement. Finding the solution requires breaking complex gridlocks down into a sequence of sub-goals—such as sliding a vertical hound downward to make room for a horizontal puppy.
-          </p>
-
-          <h3 className="text-lg font-bold text-slate-800">
-            Playable On Any Device in the United States & Globally
-          </h3>
-          <p>
-            Whether you are on an iPhone, Android smartphone, iPad, Chromebook, or Windows/Mac desktop, Dog Parking loads instantaneously in your favorite web browser. Enjoy unlimited restarts, undo moves, and explore 12 increasingly challenging handcrafted levels today on Pawcade!
-          </p>
-        </article>
       </div>
     </div>
   );

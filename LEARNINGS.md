@@ -51,3 +51,12 @@
   2. Corrected Level 4 coordinates to eliminate the cell (4, 3) collision while preserving the 4-move puzzle depth.
   3. Added an automated test in `engine.test.ts` verifying that every dog and obstacle in all levels has strictly disjoint grid bounds (`778` assertion checks).
 - **Preventive Rule:** In grid puzzle design, always enforce automated initial collision/disjointness validation tests across all handcrafted levels alongside the BFS solvability test.
+
+## [2026-10-15] Poki-Style Game Portal Architecture & Zero-Fluff UX
+- **What happened:** When users visit casual game portals like Poki (`poki.com`), having lengthy marketing descriptions and text sections above or around the game tiles increases bounce rates and dilutes engagement.
+- **Resolution:**
+  1. Converted the homepage into a pure game grid (Bento/Mosaic layout) where 100% of the visible surface is dedicated to playable and upcoming games.
+  2. Implemented quick-switch category filter pills (`🎮 Tüm Oyunlar`, `🔥 Popüler`, `✨ Yeni`, `🐱 Kediler`, `🐶 Köpekler`, `🧩 Bulmaca`) with instant client-side filtering.
+  3. Integrated large interactive hero tiles featuring vibrant background art, mascots, ratings, and immediate "HEMEN OYNA" hover actions.
+- **Preventive Rule:** For browser game portals, prioritize visual game cards and 1-click playability over traditional text-heavy landing page structures.
+

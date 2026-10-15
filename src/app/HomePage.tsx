@@ -1,244 +1,274 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { GAMES_REGISTRY, GameMetadata } from '../lib/gamesRegistry';
-import { Play, Star, Sparkles, Zap, ShieldCheck, Heart, Award } from 'lucide-react';
+import { Play, Star, Sparkles, Flame, Heart, Search, Trophy, CheckCircle2 } from 'lucide-react';
 
 interface HomePageProps {
   navigate: (path: string) => void;
 }
 
+type FilterCategory = 'all' | 'popular' | 'puzzle' | 'cats' | 'dogs' | 'new';
+
 export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
-  const heroGame = GAMES_REGISTRY.find(g => g.id === 'dog-parking')!;
+  const [activeFilter, setActiveFilter] = useState<FilterCategory>('all');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Filter games dynamically
+  const filteredGames = useMemo(() => {
+    return GAMES_REGISTRY.filter((game) => {
+      // Search matching
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        const matches = game.title.toLowerCase().includes(q) ||
+          game.tagline.toLowerCase().includes(q) ||
+          game.category.toLowerCase().includes(q);
+        if (!matches) return false;
+      }
+
+      // Category matching
+      if (activeFilter === 'all') return true;
+      if (activeFilter === 'popular') return game.id === 'dog-parking' || game.badge === 'Popular';
+      if (activeFilter === 'new') return game.id === 'cat-parking' || game.badge === 'New';
+      if (activeFilter === 'puzzle') return game.category === 'puzzle';
+      if (activeFilter === 'dogs') return game.id.includes('dog');
+      if (activeFilter === 'cats') return game.id.includes('cat');
+      return true;
+    });
+  }, [activeFilter, searchQuery]);
+
+  const categories: { id: FilterCategory; label: string; icon: string }[] = [
+    { id: 'all', label: 'All Games', icon: '🎮' },
+    { id: 'popular', label: 'Popular', icon: '🔥' },
+    { id: 'new', label: 'New', icon: '✨' },
+    { id: 'cats', label: 'Cats', icon: '🐱' },
+    { id: 'dogs', label: 'Dogs', icon: '🐶' },
+    { id: 'puzzle', label: 'Puzzles', icon: '🧩' },
+  ];
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Hero Featured Game Section */}
-      <section className="bg-gradient-to-b from-indigo-900 via-indigo-950 to-slate-900 text-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        {/* Decorative background blurs */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-          {/* Hero Copy */}
-          <div className="lg:col-span-7 space-y-5 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs sm:text-sm font-bold">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>Trending in the US • Featured Game</span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-              Slide cute dogs.<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-200">
-                Clear the yard.
-              </span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Help Sunny the Golden Corgi and his playful furry friends untangle crowded parking yards in <strong className="text-white">Dog Parking</strong>. 100% free, no downloads, instant play on desktop and mobile!
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
-              <button
-                onClick={() => navigate('/games/dog-parking/')}
-                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-400 hover:from-amber-500 hover:to-yellow-500 text-slate-950 font-black rounded-2xl shadow-xl shadow-amber-500/20 flex items-center justify-center gap-2.5 text-lg transition-transform hover:scale-102 cursor-pointer"
-              >
-                <Play className="w-6 h-6 fill-slate-950" />
-                <span>Play Dog Parking Free</span>
-              </button>
-
-              <div className="flex items-center gap-3 text-slate-300 text-sm py-2 px-3">
-                <div className="flex items-center text-amber-400">
-                  <Star className="w-4 h-4 fill-amber-400" />
-                  <span className="font-bold ml-1">4.9</span>
-                </div>
-                <span>•</span>
-                <span>12 Handcrafted Levels</span>
-              </div>
-            </div>
+    <div className="min-h-screen bg-slate-900 text-white selection:bg-pink-500 selection:text-white pb-16">
+      {/* Poki-Style Top Filter & Search Bar */}
+      <div className="sticky top-16 z-30 bg-slate-900/90 backdrop-blur-md border-b border-slate-800/80 px-4 sm:px-6 lg:px-8 py-3">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+          {/* Category Filter Pills */}
+          <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto scrollbar-none py-1">
+            {categories.map((cat) => {
+              const isActive = activeFilter === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveFilter(cat.id)}
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-black transition-all shrink-0 cursor-pointer ${
+                    isActive
+                      ? 'bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white shadow-lg shadow-pink-500/25 scale-102'
+                      : 'bg-slate-800/90 hover:bg-slate-750 text-slate-300 hover:text-white border border-slate-750'
+                  }`}
+                >
+                  <span>{cat.icon}</span>
+                  <span>{cat.label}</span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Featured Game Card Preview */}
-          <div className="lg:col-span-5 flex justify-center">
+          {/* Quick Search Input */}
+          <div className="relative w-full sm:w-64">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search games..."
+              className="w-full pl-9 pr-3 py-1.5 bg-slate-800/80 border border-slate-700/80 rounded-2xl text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-pink-500 transition-colors"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs cursor-pointer"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Main Poki Bento Game Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6">
+          {/* HERO CARD 1: Dog Parking (Featured Large Bento Card) */}
+          {filteredGames.some((g) => g.id === 'dog-parking') && (
             <div
               onClick={() => navigate('/games/dog-parking/')}
-              className="group cursor-pointer relative bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/20 shadow-2xl max-w-md w-full hover:border-amber-400/50 transition-all hover:-translate-y-1"
+              className="group cursor-pointer relative lg:col-span-6 bg-gradient-to-br from-amber-500 via-orange-600 to-indigo-900 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between min-h-[320px] sm:min-h-[360px] border-2 border-amber-400/30 hover:border-amber-400"
             >
-              <div className="relative aspect-4/3 rounded-2xl overflow-hidden bg-slate-800 flex items-center justify-center border-2 border-slate-700/60 shadow-inner">
-                {/* Visual game card mock */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/20 to-indigo-500/20" />
-                <div className="text-center p-6 z-10">
-                  <div className="text-6xl mb-2 animate-bounce">🐶</div>
-                  <h3 className="text-2xl font-black text-white">Dog Parking</h3>
-                  <p className="text-xs text-amber-300 font-bold mt-1">Tap or Click to Play Now</p>
+              {/* Decorative background glow & shapes */}
+              <div className="absolute top-0 right-0 w-80 h-80 bg-amber-300/20 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
+              <div className="absolute -bottom-10 -right-10 text-9xl sm:text-[140px] opacity-25 select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
+                🐶
+              </div>
+
+              {/* Top Badges */}
+              <div className="flex items-center justify-between relative z-10">
+                <div className="flex items-center gap-2">
+                  <span className="bg-amber-400 text-slate-950 font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider">
+                    <Flame className="w-3.5 h-3.5 fill-slate-950 text-slate-950" />
+                    <span>Popular</span>
+                  </span>
+                  <span className="bg-black/30 backdrop-blur-md text-white font-bold text-xs px-2.5 py-1 rounded-xl border border-white/20">
+                    12 Levels
+                  </span>
                 </div>
 
-                <div className="absolute bottom-3 right-3 bg-amber-400 text-slate-950 p-2.5 rounded-xl shadow-md group-hover:scale-110 transition-transform">
-                  <Play className="w-5 h-5 fill-slate-950" />
+                <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-amber-300 border border-white/10">
+                  <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
+                  <span>4.9</span>
+                  <span className="text-white/60 font-medium ml-1">(12.4K)</span>
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center justify-between text-xs font-bold text-slate-300">
-                <span className="bg-indigo-500/30 text-indigo-200 px-2.5 py-1 rounded-lg">
+              {/* Center Game Visual Icon & Mascot */}
+              <div className="my-auto py-4 relative z-10">
+                <div className="text-6xl sm:text-7xl mb-2 filter drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
+                  🐶🐾
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+                  Dog Parking
+                </h2>
+                <p className="text-amber-100 text-sm sm:text-base font-medium max-w-sm mt-1 leading-snug drop-shadow-xs">
+                  Slide cute pups through crowded yards and clear the way for Sunny!
+                </p>
+              </div>
+
+              {/* Bottom Play Action Bar */}
+              <div className="flex items-center justify-between relative z-10 pt-2 border-t border-white/15">
+                <span className="text-xs font-bold text-amber-200 uppercase tracking-widest">
                   Casual Puzzle
                 </span>
-                <span className="text-amber-400">★ 4.9 (12k+ plays)</span>
+
+                <div className="bg-amber-400 group-hover:bg-amber-300 text-slate-950 px-5 py-2.5 rounded-2xl font-black text-sm shadow-lg flex items-center gap-2 transition-transform group-hover:scale-105">
+                  <Play className="w-4 h-4 fill-slate-950 text-slate-950" />
+                  <span>PLAY NOW</span>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          )}
 
-      {/* Game Catalog Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
-        <div className="flex flex-col sm:flex-row items-baseline justify-between mb-8">
-          <div>
-            <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-              Featured Game Collection
-            </h2>
-            <p className="text-slate-500 text-sm mt-1">
-              Handpicked browser games built for quick, joyful play sessions
-            </p>
-          </div>
-        </div>
+          {/* HERO CARD 2: Cat Parking (Featured Large Bento Card) */}
+          {filteredGames.some((g) => g.id === 'cat-parking') && (
+            <div
+              onClick={() => navigate('/games/cat-parking/')}
+              className="group cursor-pointer relative lg:col-span-6 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-950 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between min-h-[320px] sm:min-h-[360px] border-2 border-pink-400/30 hover:border-pink-400"
+            >
+              {/* Decorative background glow & shapes */}
+              <div className="absolute top-0 right-0 w-80 h-80 bg-pink-300/20 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
+              <div className="absolute -bottom-10 -right-10 text-9xl sm:text-[140px] opacity-25 select-none pointer-events-none group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500">
+                🐱
+              </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {GAMES_REGISTRY.map((game: GameMetadata) => {
-            const isPlayable = game.status === 'playable';
-
-            return (
-              <div
-                key={game.id}
-                onClick={() => {
-                  if (isPlayable) navigate(game.route);
-                }}
-                className={`group relative bg-white rounded-3xl p-5 border border-slate-200/90 shadow-sm transition-all ${
-                  isPlayable
-                    ? 'hover:shadow-xl hover:border-indigo-400/80 hover:-translate-y-1 cursor-pointer'
-                    : 'opacity-75 cursor-default'
-                }`}
-              >
-                {/* Thumbnail Header */}
-                <div className="relative aspect-16/10 rounded-2xl bg-gradient-to-tr from-slate-100 to-slate-200 overflow-hidden flex items-center justify-center border border-slate-100 mb-4 shadow-inner">
-                  <div className="text-5xl">
-                    {game.id === 'dog-parking' ? '🐶' : game.id === 'cat-cafe-rush' ? '🐱' : '🐹'}
-                  </div>
-
-                  {/* Badge */}
-                  {game.badge && (
-                    <span className="absolute top-3 left-3 bg-amber-400 text-slate-950 font-black text-[11px] px-2 py-0.5 rounded-full shadow-sm">
-                      {game.badge}
-                    </span>
-                  )}
-
-                  {!isPlayable && (
-                    <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] flex items-center justify-center">
-                      <span className="bg-slate-900/90 text-white font-extrabold text-xs px-3 py-1 rounded-xl shadow-md">
-                        Coming Soon
-                      </span>
-                    </div>
-                  )}
+              {/* Top Badges */}
+              <div className="flex items-center justify-between relative z-10">
+                <div className="flex items-center gap-2">
+                  <span className="bg-pink-500 text-white font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider">
+                    <Sparkles className="w-3.5 h-3.5 fill-white text-white" />
+                    <span>New Game</span>
+                  </span>
+                  <span className="bg-black/30 backdrop-blur-md text-white font-bold text-xs px-2.5 py-1 rounded-xl border border-white/20">
+                    12 Levels
+                  </span>
                 </div>
 
-                {/* Details */}
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[11px] font-extrabold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md uppercase tracking-wider">
-                    {game.category}
+                <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-pink-300 border border-white/10">
+                  <Star className="w-3.5 h-3.5 fill-pink-300 text-pink-300" />
+                  <span>5.0</span>
+                  <span className="text-white/60 font-medium ml-1">(9.8K)</span>
+                </div>
+              </div>
+
+              {/* Center Game Visual Icon & Mascot */}
+              <div className="my-auto py-4 relative z-10">
+                <div className="text-6xl sm:text-7xl mb-2 filter drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
+                  🐱✨
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+                  Cat Parking
+                </h2>
+                <p className="text-pink-100 text-sm sm:text-base font-medium max-w-sm mt-1 leading-snug drop-shadow-xs">
+                  Slide sleepy kitties through crowded bays and guide Luna to the cozy cat flap!
+                </p>
+              </div>
+
+              {/* Bottom Play Action Bar */}
+              <div className="flex items-center justify-between relative z-10 pt-2 border-t border-white/15">
+                <span className="text-xs font-bold text-pink-200 uppercase tracking-widest">
+                  Cat Puzzle
+                </span>
+
+                <div className="bg-pink-500 group-hover:bg-pink-400 text-white font-black px-5 py-2.5 rounded-2xl text-sm shadow-lg flex items-center gap-2 transition-transform group-hover:scale-105">
+                  <Play className="w-4 h-4 fill-white text-white" />
+                  <span>PLAY NOW</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* SECONDARY TILES: Other Games & Upcoming titles */}
+          {filteredGames
+            .filter((g) => g.id !== 'dog-parking' && g.id !== 'cat-parking')
+            .map((game) => (
+              <div
+                key={game.id}
+                className="group relative lg:col-span-4 bg-slate-800/90 hover:bg-slate-800 rounded-3xl p-6 border border-slate-700/80 shadow-md flex flex-col justify-between min-h-[260px] opacity-80 hover:opacity-100 transition-all"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <span className="bg-slate-750 text-slate-300 text-xs font-bold px-2.5 py-1 rounded-xl">
+                    {game.badge || 'Coming Soon'}
                   </span>
-                  <div className="flex items-center text-amber-500 text-xs font-bold">
-                    <Star className="w-3.5 h-3.5 fill-amber-500 mr-1" />
+                  <div className="flex items-center text-amber-400 text-xs font-bold">
+                    <Star className="w-3.5 h-3.5 fill-amber-400 mr-1" />
                     <span>{game.rating}</span>
                   </div>
                 </div>
 
-                <h3 className="text-xl font-black text-slate-900 group-hover:text-indigo-600 transition-colors">
-                  {game.title}
-                </h3>
-                <p className="text-slate-600 text-xs sm:text-sm mt-1 line-clamp-2 leading-relaxed">
-                  {game.tagline}
-                </p>
+                <div className="my-auto text-center py-4">
+                  <div className="text-5xl mb-2">
+                    {game.id === 'cat-cafe-rush' ? '🧁' : '🐹'}
+                  </div>
+                  <h3 className="text-xl font-black text-white">{game.title}</h3>
+                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">
+                    {game.tagline}
+                  </p>
+                </div>
 
-                {/* Card Action */}
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-xs font-semibold text-slate-400">
-                    {game.playCount}
+                <div className="mt-4 pt-3 border-t border-slate-750 flex items-center justify-between text-xs text-slate-400 font-bold">
+                  <span className="uppercase tracking-wider">{game.category}</span>
+                  <span className="bg-slate-700/80 text-slate-300 px-3 py-1.5 rounded-xl">
+                    Coming Soon
                   </span>
-                  {isPlayable ? (
-                    <span className="text-indigo-600 font-extrabold text-xs flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                      Play Now ➔
-                    </span>
-                  ) : (
-                    <span className="text-slate-400 font-semibold text-xs">
-                      In Development
-                    </span>
-                  )}
                 </div>
               </div>
-            );
-          })}
+            ))}
         </div>
-      </section>
 
-      {/* Why Play on Pawcade / Feature Pillars */}
-      <section className="bg-white border-y border-slate-200/80 py-16 px-4 sm:px-6 lg:px-8 select-none">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-              Why Casual Gamers Love Pawcade
-            </h2>
-            <p className="text-slate-600 text-sm mt-2">
-              Designed from the ground up for zero-friction browser gaming.
+        {/* Empty state when search produces no results */}
+        {filteredGames.length === 0 && (
+          <div className="text-center py-20 bg-slate-800/40 rounded-3xl border border-slate-800 my-8">
+            <div className="text-5xl mb-3">🔍</div>
+            <h3 className="text-xl font-bold text-white">No Games Found</h3>
+            <p className="text-slate-400 text-sm mt-1">
+              No games matched "{searchQuery}". Try clearing your search or filters.
             </p>
+            <button
+              onClick={() => {
+                setSearchQuery('');
+                setActiveFilter('all');
+              }}
+              className="mt-4 px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white font-bold text-xs rounded-xl transition-colors cursor-pointer"
+            >
+              Clear Filters
+            </button>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-slate-50 border border-slate-100">
-              <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
-                <Zap className="w-6 h-6" />
-              </div>
-              <h3 className="font-extrabold text-lg text-slate-900 mb-2">Instant In-Browser Play</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                No storage consumption, no 500MB updates, and no app store accounts. Tap and play in 1 second on mobile or desktop.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-slate-50 border border-slate-100">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center mb-4">
-                <Award className="w-6 h-6" />
-              </div>
-              <h3 className="font-extrabold text-lg text-slate-900 mb-2">100% Solvable Brain Teasers</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Every single level is mathematically verified with automated solver algorithms. Fair, satisfying, and rewarding.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-slate-50 border border-slate-100">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-4">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <h3 className="font-extrabold text-lg text-slate-900 mb-2">Family & Privacy Friendly</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Zero invasive trackers, zero spam notifications. All game progress is safely stored right in your browser.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SEO & Organic Content Area */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-slate-700 space-y-6">
-        <h2 className="text-2xl font-black text-slate-900">
-          Free Online Unblock & Parking Puzzle Games
-        </h2>
-        <p className="text-sm sm:text-base leading-relaxed text-slate-600">
-          Looking for a relaxing yet mentally stimulating brain teaser? <strong>Pawcade</strong> brings classic spatial logic puzzles to life with delightful canine and pet themes. In our flagship release, <em>Dog Parking</em>, players guide friendly dogs along parking grid lanes to help Sunny the Golden Corgi escape through the kennel gate.
-        </p>
-
-        <h3 className="text-xl font-bold text-slate-900 mt-6">
-          How to Play Browser Puzzle Games on Desktop & Mobile
-        </h3>
-        <p className="text-sm sm:text-base leading-relaxed text-slate-600">
-          Our games are powered by cutting-edge HTML5 Canvas and WebGL technology, making them natively compatible with modern browsers including Chrome, Safari, Edge, and Firefox. Simply tap and swipe on your smartphone or click and drag with your mouse.
-        </p>
-      </section>
+        )}
+      </div>
     </div>
   );
 };

@@ -333,7 +333,7 @@ export class GameScene extends Phaser.Scene {
         ease: 'Quad.easeInOut',
       });
 
-      // 3. Floating text prompt: "1. AŞAĞI KAYDIR / SLIDE DOWN"
+      // 3. Floating text prompt: "⬇️ SLIDE DOWN"
       const textLabel = this.add.text(
         px + pw / 2,
         py - 16,

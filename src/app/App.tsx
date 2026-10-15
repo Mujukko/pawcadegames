@@ -36,11 +36,14 @@ export const App: React.FC = () => {
   // Update SEO document title on route changes
   useEffect(() => {
     const dogParkingGame = GAMES_REGISTRY.find(g => g.id === 'dog-parking');
+    const catParkingGame = GAMES_REGISTRY.find(g => g.id === 'cat-parking');
 
     if (currentRoute.startsWith('/games/dog-parking')) {
       document.title = dogParkingGame?.metaTitle || 'Dog Parking — Free Casual Puzzle Game | Pawcade';
+    } else if (currentRoute.startsWith('/games/cat-parking')) {
+      document.title = catParkingGame?.metaTitle || 'Cat Parking — Free Casual Cat Puzzle Game | Pawcade';
     } else if (currentRoute === '/' || currentRoute === '') {
-      document.title = 'Pawcade — Free Casual Pet & Dog Browser Games Online';
+      document.title = 'Pawcade — Poki-Style Free Browser Games Online';
     } else {
       document.title = 'Page Not Found (404) | Pawcade Games';
     }
@@ -63,7 +66,10 @@ export const App: React.FC = () => {
       return <HomePage navigate={navigate} />;
     }
     if (currentRoute.startsWith('/games/dog-parking')) {
-      return <GamePage navigate={navigate} />;
+      return <GamePage navigate={navigate} gameId="dog-parking" />;
+    }
+    if (currentRoute.startsWith('/games/cat-parking')) {
+      return <GamePage navigate={navigate} gameId="cat-parking" />;
     }
     return <NotFoundPage navigate={navigate} />;
   };

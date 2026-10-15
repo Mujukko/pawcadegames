@@ -68,10 +68,21 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
             }`}
           >
-            <Sparkles className="w-4 h-4 text-amber-500" />
-            <span>Dog Parking</span>
-            <span className="bg-amber-400 text-slate-950 font-black text-[10px] px-1.5 py-0.2 rounded-full">
-              HOT
+            <span>🐶 Dog Parking</span>
+          </button>
+
+          <button
+            onClick={() => navigate('/games/cat-parking/')}
+            className={`px-3.5 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5 transition-colors cursor-pointer ${
+              currentRoute.startsWith('/games/cat-parking')
+                ? 'bg-pink-100 text-pink-900'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
+            }`}
+          >
+            <Sparkles className="w-4 h-4 text-pink-500" />
+            <span>Cat Parking</span>
+            <span className="bg-pink-500 text-white font-black text-[10px] px-1.5 py-0.2 rounded-full">
+              NEW
             </span>
           </button>
         </nav>
@@ -123,11 +134,27 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
             }`}
           >
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-amber-500" />
-              <span>Dog Parking</span>
+              <span>🐶 Dog Parking</span>
             </div>
             <span className="bg-amber-400 text-slate-950 font-black text-[10px] px-1.5 py-0.5 rounded-full">
-              HOT
+              POPULAR
+            </span>
+          </button>
+          <button
+            onClick={() => {
+              navigate('/games/cat-parking/');
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between ${
+              currentRoute.startsWith('/games/cat-parking') ? 'bg-pink-100 text-pink-900' : 'text-slate-700'
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-pink-500" />
+              <span>🐱 Cat Parking</span>
+            </div>
+            <span className="bg-pink-500 text-white font-black text-[10px] px-1.5 py-0.5 rounded-full">
+              NEW
             </span>
           </button>
         </div>

@@ -35,7 +35,15 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                   onClick={() => navigate('/games/dog-parking/')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Dog Parking (Play Now)
+                  🐶 Dog Parking (Play Now)
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigate('/games/cat-parking/')}
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  🐱 Cat Parking (Play Now)
                 </button>
               </li>
               <li>

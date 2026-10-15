@@ -16,7 +16,10 @@
 | TASK-010 | P1 | DONE | Analytics Abstraction & Ad Placement Points | Provider-agnostic event dispatcher (`game_loaded`, `level_completed`, etc.) & ad slot hooks. |
 | TASK-011 | P0 | DONE | Automated Tests & Production Verification | Bun test suite passes (5/5 tests, 40 assertions), `vite build` succeeds, typecheck passes. |
 | TASK-012 | P0 | DONE | Level 1 Intro Tutorial & Visual Affordances | Pulsing blocker highlight, bouncing guide arrow, enlarged hero star medallion, dog-themed kennel exit gate. |
+| TASK-013 | P0 | DONE | Cat Parking Game Development & BFS Verification | Feline sprites, audio engine, 12 handcrafted solvable levels, Phaser scene, container. |
+| TASK-014 | P0 | DONE | Poki-Style Pure Game Portal Homepage Redesign | Zero text fluff, dynamic bento game cards, category filter pills (Tümü, Popüler, Yeni, Kediler, Köpekler). |
 
 ## Completed Sprint Summary
-- All 12 core backlog tasks completed.
-- Definition of Done met: 12 levels verified, interactive intro tutorial, responsive layout, SEO tags, production build ready.
+- All 14 core backlog tasks completed.
+- Definition of Done met: 2 complete playable games (Dog Parking & Cat Parking) with 24 verified solvable levels, Poki-style pure game homepage, 100% test pass rate, clean production build.
+
