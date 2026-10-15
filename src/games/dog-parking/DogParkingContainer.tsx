@@ -90,17 +90,26 @@ export const DogParkingContainer: React.FC = () => {
     gameRef.current = game;
 
     // Attach callbacks once GameScene is ready
+    let attempts = 0;
     const checkScene = setInterval(() => {
-      const scene = game.scene.getScene('GameScene') as GameScene;
-      if (scene && scene.scene.isActive()) {
-        activeSceneRef.current = scene;
-        scene.init({
-          level: currentLevel,
-          callbacks: {
+      attempts++;
+      if (!gameRef.current) {
+        clearInterval(checkScene);
+        return;
+      }
+      try {
+        const scene = gameRef.current.scene.getScene('GameScene') as GameScene;
+        if (scene && scene.scene && scene.scene.isActive()) {
+          activeSceneRef.current = scene;
+          scene.setCallbacks({
             onMove: (m) => setMoves(m),
             onLevelComplete: handleLevelComplete,
-          },
-        });
+          });
+          clearInterval(checkScene);
+        } else if (attempts > 60) {
+          clearInterval(checkScene);
+        }
+      } catch {
         clearInterval(checkScene);
       }
     }, 50);
@@ -108,7 +117,9 @@ export const DogParkingContainer: React.FC = () => {
     return () => {
       clearInterval(checkScene);
       if (gameRef.current) {
-        gameRef.current.destroy(true);
+        try {
+          gameRef.current.destroy(true);
+        } catch {}
         gameRef.current = null;
       }
     };
@@ -283,8 +294,15 @@ export const DogParkingContainer: React.FC = () => {
       </div>
 
       {/* Phaser Canvas Container */}
-      <div className="relative w-full aspect-square max-w-[530px] bg-slate-100 rounded-3xl overflow-hidden shadow-xl border-4 border-slate-800 touch-none flex items-center justify-center">
-        <div ref={containerRef} className="w-full h-full flex items-center justify-center" />
+      <div 
+        className="relative w-full max-w-[530px] bg-slate-100 rounded-3xl overflow-hidden shadow-xl border-4 border-slate-800 touch-none flex items-center justify-center"
+        style={{ aspectRatio: '1 / 1', minHeight: '340px' }}
+      >
+        <div 
+          ref={containerRef} 
+          className="w-full h-full flex items-center justify-center" 
+          style={{ width: '100%', height: '100%', minHeight: '340px' }}
+        />
       </div>
 
       {/* Hint Banner */}

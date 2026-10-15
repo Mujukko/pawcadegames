@@ -1,8 +1,49 @@
 import Phaser from 'phaser';
+import { LevelConfig } from '../logic/types';
+import { LEVELS } from '../levels/levelsData';
+import { GameSceneEvents } from './GameScene';
+
+function drawRoundRect(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  r: number
+) {
+  if (typeof ctx.roundRect === 'function') {
+    ctx.roundRect(x, y, w, h, r);
+  } else {
+    // Safe fallback for browsers without native ctx.roundRect
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
+}
 
 export class BootScene extends Phaser.Scene {
+  private initialLevel: LevelConfig = LEVELS[0]!;
+  private callbacks?: GameSceneEvents;
+
   constructor() {
     super('BootScene');
+  }
+
+  init(data?: { level?: LevelConfig; callbacks?: GameSceneEvents }) {
+    if (data?.level) {
+      this.initialLevel = data.level;
+    }
+    if (data?.callbacks) {
+      this.callbacks = data.callbacks;
+    }
   }
 
   preload() {
@@ -13,11 +54,13 @@ export class BootScene extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start('GameScene');
+    this.scene.start('GameScene', {
+      level: this.initialLevel,
+      callbacks: this.callbacks,
+    });
   }
 
   private createDogTextures() {
-    // Breeds color themes and details
     const breeds: {
       key: string;
       bodyColor: string;
@@ -37,18 +80,13 @@ export class BootScene extends Phaser.Scene {
       { key: 'poodle', bodyColor: '#fed7aa', accentColor: '#ffedd5', earColor: '#fdba74', eyeColor: '#1e293b', hasPuffs: true },
     ];
 
-    // For both horizontal and vertical orientations and lengths 2 and 3
     const TILE = 80;
     const PADDING = 6;
 
     breeds.forEach(b => {
-      // Horizontal length 2 (160x80)
       this.drawDogSprite(`dog_${b.key}_h2`, 2 * TILE, TILE, 'h', 2, b, PADDING);
-      // Horizontal length 3 (240x80)
       this.drawDogSprite(`dog_${b.key}_h3`, 3 * TILE, TILE, 'h', 3, b, PADDING);
-      // Vertical length 2 (80x160)
       this.drawDogSprite(`dog_${b.key}_v2`, TILE, 2 * TILE, 'v', 2, b, PADDING);
-      // Vertical length 3 (80x240)
       this.drawDogSprite(`dog_${b.key}_v3`, TILE, 3 * TILE, 'v', 3, b, PADDING);
     });
   }
@@ -90,7 +128,7 @@ export class BootScene extends Phaser.Scene {
     // Main rounded body
     ctx.fillStyle = breed.bodyColor;
     ctx.beginPath();
-    ctx.roundRect(rx, ry, rw, rh, radius);
+    drawRoundRect(ctx, rx, ry, rw, rh, radius);
     ctx.fill();
 
     // Reset shadow
@@ -102,14 +140,14 @@ export class BootScene extends Phaser.Scene {
     grad.addColorStop(1, 'rgba(0, 0, 0, 0.08)');
     ctx.fillStyle = grad;
     ctx.beginPath();
-    ctx.roundRect(rx, ry, rw, rh, radius);
+    drawRoundRect(ctx, rx, ry, rw, rh, radius);
     ctx.fill();
 
     // Border outline
     ctx.lineWidth = 3.5;
     ctx.strokeStyle = breed.key === 'hero' ? '#b45309' : 'rgba(0, 0, 0, 0.15)';
     ctx.beginPath();
-    ctx.roundRect(rx, ry, rw, rh, radius);
+    drawRoundRect(ctx, rx, ry, rw, rh, radius);
     ctx.stroke();
 
     // Spots if Dalmatian
@@ -125,24 +163,21 @@ export class BootScene extends Phaser.Scene {
       });
     }
 
-    // Directional features (Head, Eyes, Nose, Ears, Tail)
+    // Directional features
     if (dir === 'h') {
-      // Facing right
       const headX = w - pad - 26;
       const headY = h / 2;
 
       // Ears
       ctx.fillStyle = breed.earColor;
-      // Top ear
       ctx.beginPath();
       ctx.ellipse(headX - 10, headY - 22, 9, 15, Math.PI / 4, 0, Math.PI * 2);
       ctx.fill();
-      // Bottom ear
       ctx.beginPath();
       ctx.ellipse(headX - 10, headY + 22, 9, 15, -Math.PI / 4, 0, Math.PI * 2);
       ctx.fill();
 
-      // Muzzle / Snout accent
+      // Muzzle
       ctx.fillStyle = breed.accentColor;
       ctx.beginPath();
       ctx.ellipse(headX + 8, headY, 14, 18, 0, 0, Math.PI * 2);
@@ -161,26 +196,24 @@ export class BootScene extends Phaser.Scene {
       ctx.arc(headX - 2, headY + 11, 4.5, 0, Math.PI * 2);
       ctx.fill();
 
-      // Eye catchlights (sparkle)
+      // Catchlights
       ctx.fillStyle = '#ffffff';
       ctx.beginPath();
       ctx.arc(headX - 3.5, headY - 12.5, 1.8, 0, Math.PI * 2);
       ctx.arc(headX - 3.5, headY + 9.5, 1.8, 0, Math.PI * 2);
       ctx.fill();
 
-      // Tail on left
+      // Tail
       ctx.fillStyle = breed.earColor;
       ctx.beginPath();
       ctx.ellipse(rx + 8, headY, 7, 12, -Math.PI / 6, 0, Math.PI * 2);
       ctx.fill();
 
-      // Hero Collar with Star Badge
+      // Star Corgi Collar
       if (breed.key === 'hero') {
-        // Red collar band
         ctx.fillStyle = '#ef4444';
         ctx.fillRect(headX - 18, headY - 24, 7, 48);
 
-        // Gold Star medal
         ctx.fillStyle = '#fef08a';
         ctx.strokeStyle = '#ca8a04';
         ctx.lineWidth = 2;
@@ -196,22 +229,19 @@ export class BootScene extends Phaser.Scene {
         ctx.fillText('★', headX - 15, headY);
       }
     } else {
-      // Facing Downward
       const headX = w / 2;
       const headY = h - pad - 26;
 
       // Ears
       ctx.fillStyle = breed.earColor;
-      // Left ear
       ctx.beginPath();
       ctx.ellipse(headX - 22, headY - 10, 15, 9, -Math.PI / 4, 0, Math.PI * 2);
       ctx.fill();
-      // Right ear
       ctx.beginPath();
       ctx.ellipse(headX + 22, headY - 10, 15, 9, Math.PI / 4, 0, Math.PI * 2);
       ctx.fill();
 
-      // Muzzle / Snout accent
+      // Muzzle
       ctx.fillStyle = breed.accentColor;
       ctx.beginPath();
       ctx.ellipse(headX, headY + 8, 18, 14, 0, 0, Math.PI * 2);
@@ -230,14 +260,14 @@ export class BootScene extends Phaser.Scene {
       ctx.arc(headX + 11, headY - 2, 4.5, 0, Math.PI * 2);
       ctx.fill();
 
-      // Eye catchlights
+      // Catchlights
       ctx.fillStyle = '#ffffff';
       ctx.beginPath();
       ctx.arc(headX - 12.5, headY - 3.5, 1.8, 0, Math.PI * 2);
       ctx.arc(headX + 9.5, headY - 3.5, 1.8, 0, Math.PI * 2);
       ctx.fill();
 
-      // Tail on top
+      // Tail
       ctx.fillStyle = breed.earColor;
       ctx.beginPath();
       ctx.ellipse(headX, ry + 8, 12, 7, Math.PI / 6, 0, Math.PI * 2);
@@ -250,21 +280,17 @@ export class BootScene extends Phaser.Scene {
   private createEnvironmentTextures() {
     const TILE = 80;
 
-    // 1. Grid cell background
     if (!this.textures.exists('yard-cell')) {
       const c = this.textures.createCanvas('yard-cell', TILE, TILE);
       if (c) {
         const ctx = c.getContext();
-        // Warm driveway/pavement tone
         ctx.fillStyle = '#f1f5f9';
         ctx.fillRect(0, 0, TILE, TILE);
 
-        // Subtle inner border
         ctx.strokeStyle = '#e2e8f0';
         ctx.lineWidth = 2;
         ctx.strokeRect(1, 1, TILE - 2, TILE - 2);
 
-        // Center cute parking spot dot/mark
         ctx.fillStyle = '#cbd5e1';
         ctx.beginPath();
         ctx.arc(TILE / 2, TILE / 2, 3, 0, Math.PI * 2);
@@ -274,7 +300,6 @@ export class BootScene extends Phaser.Scene {
       }
     }
 
-    // 2. Yard border / fence
     if (!this.textures.exists('yard-border')) {
       const c = this.textures.createCanvas('yard-border', 16, 16);
       if (c) {
@@ -287,19 +312,16 @@ export class BootScene extends Phaser.Scene {
       }
     }
 
-    // 3. Exit Gate Banner
     if (!this.textures.exists('exit-gate')) {
       const c = this.textures.createCanvas('exit-gate', 36, TILE);
       if (c) {
         const ctx = c.getContext();
-        // Glowing vibrant green exit strip
         const grad = ctx.createLinearGradient(0, 0, 36, 0);
         grad.addColorStop(0, '#22c55e');
         grad.addColorStop(1, '#15803d');
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, 36, TILE);
 
-        // Chevrons pointing outward
         ctx.fillStyle = '#ffffff';
         for (let y = 16; y <= TILE - 16; y += 24) {
           ctx.beginPath();
@@ -315,7 +337,6 @@ export class BootScene extends Phaser.Scene {
       }
     }
 
-    // 4. Hydrant Obstacle
     if (!this.textures.exists('obstacle-hydrant')) {
       const c = this.textures.createCanvas('obstacle-hydrant', TILE, TILE);
       if (c) {
@@ -323,29 +344,24 @@ export class BootScene extends Phaser.Scene {
         const cx = TILE / 2;
         const cy = TILE / 2;
 
-        // Shadow
         ctx.fillStyle = 'rgba(0,0,0,0.18)';
         ctx.beginPath();
         ctx.ellipse(cx, cy + 22, 22, 9, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // Hydrant Red Base
         ctx.fillStyle = '#dc2626';
         ctx.beginPath();
-        ctx.roundRect(cx - 18, cy - 20, 36, 40, 8);
+        drawRoundRect(ctx, cx - 18, cy - 20, 36, 40, 8);
         ctx.fill();
 
-        // Hydrant Dome Top
         ctx.fillStyle = '#ef4444';
         ctx.beginPath();
         ctx.arc(cx, cy - 18, 16, Math.PI, 0);
         ctx.fill();
 
-        // Top Nut
         ctx.fillStyle = '#f59e0b';
         ctx.fillRect(cx - 5, cy - 26, 10, 7);
 
-        // Side nozzle caps
         ctx.fillStyle = '#f59e0b';
         ctx.beginPath();
         ctx.arc(cx - 19, cy - 2, 6, 0, Math.PI * 2);
@@ -358,19 +374,16 @@ export class BootScene extends Phaser.Scene {
   }
 
   private createEffectTextures() {
-    // 1. Paw print particle
     if (!this.textures.exists('particle-paw')) {
       const c = this.textures.createCanvas('particle-paw', 32, 32);
       if (c) {
         const ctx = c.getContext();
         ctx.fillStyle = '#f59e0b';
 
-        // Main pad
         ctx.beginPath();
         ctx.ellipse(16, 20, 8, 6.5, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // 4 toe beans
         const toes = [
           [8, 11, 2.8],
           [13, 8, 3.2],
@@ -387,7 +400,6 @@ export class BootScene extends Phaser.Scene {
       }
     }
 
-    // 2. Star particle
     if (!this.textures.exists('particle-star')) {
       const c = this.textures.createCanvas('particle-star', 24, 24);
       if (c) {

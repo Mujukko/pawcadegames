@@ -1,23 +1,10 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { HomePage } from './HomePage';
+import { GamePage } from './GamePage';
 import { NotFoundPage } from './NotFoundPage';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
-
-// Lazy load GamePage so the initial portal homepage bundle is ultra-lightweight
-const GamePage = lazy(() => import('./GamePage').then(m => ({ default: m.GamePage })));
-
-const LoadingSpinner: React.FC = () => (
-  <div className="min-h-[60vh] flex flex-col items-center justify-center gap-3">
-    <div className="w-14 h-14 rounded-2xl bg-amber-100 flex items-center justify-center text-3xl animate-bounce shadow-md">
-      🐶
-    </div>
-    <span className="text-slate-600 font-extrabold text-sm tracking-wide">
-      Loading Dog Parking...
-    </span>
-  </div>
-);
 
 export const App: React.FC = () => {
   // Normalize current path from browser URL or hash
@@ -76,11 +63,7 @@ export const App: React.FC = () => {
       return <HomePage navigate={navigate} />;
     }
     if (currentRoute.startsWith('/games/dog-parking')) {
-      return (
-        <Suspense fallback={<LoadingSpinner />}>
-          <GamePage navigate={navigate} />
-        </Suspense>
-      );
+      return <GamePage navigate={navigate} />;
     }
     return <NotFoundPage navigate={navigate} />;
   };

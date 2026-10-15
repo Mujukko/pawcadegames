@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { GameState, LevelConfig, Dog, ExitGate, Obstacle } from '../logic/types';
 import { createGameState, getDogMoveRange, moveDog, isWinningState } from '../logic/engine';
+import { LEVELS } from '../levels/levelsData';
 import { soundManager } from '../systems/sound';
 
 export interface GameSceneEvents {
@@ -40,14 +41,23 @@ export class GameScene extends Phaser.Scene {
     super('GameScene');
   }
 
-  public init(data: { level: LevelConfig; callbacks?: GameSceneEvents }) {
-    this.currentLevel = data.level;
-    if (data.callbacks) {
+  public init(data?: { level?: LevelConfig; callbacks?: GameSceneEvents }) {
+    if (data?.level) {
+      this.currentLevel = data.level;
+    } else if (!this.currentLevel) {
+      this.currentLevel = LEVELS[0]!;
+    }
+
+    if (data?.callbacks) {
       this.eventsCallback = data.callbacks;
     }
   }
 
   create() {
+    if (!this.currentLevel) {
+      this.currentLevel = LEVELS[0]!;
+    }
+
     // Clean state
     this.gameState = createGameState(this.currentLevel);
     this.isAnimating = false;
