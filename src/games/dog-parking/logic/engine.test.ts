@@ -54,6 +54,44 @@ describe('Dog Parking Core Engine', () => {
     expect(state.obstacles.length).toBe(2);
   });
 
+  test('No initial overlaps or out-of-bounds in any level', () => {
+    for (const level of LEVELS) {
+      const occupied = new Map<string, string>();
+
+      // Check obstacles
+      for (const obs of (level.obstacles || [])) {
+        expect(obs.x).toBeGreaterThanOrEqual(0);
+        expect(obs.x).toBeLessThan(level.width);
+        expect(obs.y).toBeGreaterThanOrEqual(0);
+        expect(obs.y).toBeLessThan(level.height);
+
+        const key = `${obs.x},${obs.y}`;
+        expect(occupied.has(key)).toBe(false);
+        occupied.set(key, `obstacle_${obs.id}`);
+      }
+
+      // Check dogs
+      for (const dog of level.dogs) {
+        for (let i = 0; i < dog.length; i++) {
+          const x = dog.orientation === 'horizontal' ? dog.x + i : dog.x;
+          const y = dog.orientation === 'vertical' ? dog.y + i : dog.y;
+
+          expect(x).toBeGreaterThanOrEqual(0);
+          expect(x).toBeLessThan(level.width);
+          expect(y).toBeGreaterThanOrEqual(0);
+          expect(y).toBeLessThan(level.height);
+
+          const key = `${x},${y}`;
+          const existing = occupied.get(key);
+          if (existing) {
+            throw new Error(`Level ${level.id} (${level.name}): Dog "${dog.id}" overlaps with "${existing}" at cell (${key})`);
+          }
+          occupied.set(key, dog.id);
+        }
+      }
+    }
+  });
+
   // Automated solvability verification of all 12 levels!
   test('All 12 handcrafted levels are 100% solvable', () => {
     expect(LEVELS.length).toBeGreaterThanOrEqual(10);

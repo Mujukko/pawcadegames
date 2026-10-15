@@ -42,3 +42,12 @@
   2. In `restartLevel()`, unconditionally call `this.tweens.killAll()`, reset `this.isAnimating = false;`, and delegate to `loadLevel(this.currentLevel)`.
   3. Static property `GameScene.initialLevel` and `checkScene` level check guarantee Phaser always initializes and syncs to React's active `currentLevel` from `localStorage`.
 - **Preventive Rule:** Never let an animation lock flag persist beyond its tween, and always make restart/load functions cancel in-flight tweens and force-clear animation flags.
+
+## [2026-10-15] Grid Overlap Collision Validation in Level Data
+- **What happened:** On Level 10 ("The Great Dogscape"), the vertical poodle (`c4` Chloe at x=2, y=3) and horizontal corgi (`c6` Benny at x=1, y=4) were overlapping at cell (2, 4). On Level 4 ("Poodle Crossing"), `corgi1` and `poodle1` were overlapping at cell (4, 3).
+- **Root cause:** Initial level handcrafted configs had overlapping coordinate definitions. The BFS solver previously only simulated legal moves from the initial state without validating whether the initial placement itself had intersecting tiles.
+- **Resolution:**
+  1. Corrected Level 10 `c6` to `x=0, y=4` (eliminating the overlap while preserving the exact 6-move puzzle depth).
+  2. Corrected Level 4 coordinates to eliminate the cell (4, 3) collision while preserving the 4-move puzzle depth.
+  3. Added an automated test in `engine.test.ts` verifying that every dog and obstacle in all levels has strictly disjoint grid bounds (`778` assertion checks).
+- **Preventive Rule:** In grid puzzle design, always enforce automated initial collision/disjointness validation tests across all handcrafted levels alongside the BFS solvability test.
