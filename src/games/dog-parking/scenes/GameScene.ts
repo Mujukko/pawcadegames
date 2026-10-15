@@ -98,8 +98,42 @@ export class GameScene extends Phaser.Scene {
   public restartLevel() {
     this.tweens.killAll();
     this.isAnimating = false;
-    this.loadLevel(this.currentLevel);
-    soundManager.playTap();
+    this.activeDragDogId = null;
+    this.hideDragGuide();
+
+    // Reset game state to clean level config
+    this.gameState = createGameState(this.currentLevel);
+
+    // If dogs already exist on the board, smoothly slide them back to start
+    if (this.dogSprites.size === this.gameState.dogs.length) {
+      for (const dog of this.gameState.dogs) {
+        const sprite = this.dogSprites.get(dog.id);
+        if (sprite) {
+          this.tweens.add({
+            targets: sprite,
+            x: dog.x * this.TILE,
+            y: dog.y * this.TILE,
+            alpha: 1,
+            scaleX: 1,
+            scaleY: 1,
+            duration: 180,
+            ease: 'Cubic.easeOut',
+          });
+        }
+      }
+      this.checkExitGateStatus();
+      this.setupIntroTutorial();
+      soundManager.playTap();
+      if (this.eventsCallback.onMove) {
+        this.eventsCallback.onMove(0);
+      }
+      if (this.eventsCallback.onStateUpdate) {
+        this.eventsCallback.onStateUpdate(this.gameState);
+      }
+    } else {
+      this.loadLevel(this.currentLevel);
+      soundManager.playTap();
+    }
   }
 
   public loadLevel(level: LevelConfig) {

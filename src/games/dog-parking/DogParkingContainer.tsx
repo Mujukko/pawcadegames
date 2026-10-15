@@ -38,6 +38,7 @@ export const DogParkingContainer: React.FC = () => {
   const [isHelpOpen, setIsHelpOpen] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(() => soundManager.isMuted());
   const [progress, setProgress] = useState(() => getCompletedLevels());
+  const [isRestarting, setIsRestarting] = useState<boolean>(false);
 
   const currentLevel: LevelConfig = LEVELS[levelIndex] || LEVELS[0]!;
 
@@ -129,40 +130,43 @@ export const DogParkingContainer: React.FC = () => {
     };
   }, []);
 
-  // Keyboard shortcuts (R = restart, Z = undo)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+  const getActiveScene = useCallback((): GameScene | null => {
+    if (activeSceneRef.current && activeSceneRef.current.scene?.isActive()) {
+      return activeSceneRef.current;
+    }
+    if (gameRef.current) {
+      try {
+        const scene = gameRef.current.scene.getScene('GameScene') as GameScene;
+        if (scene && scene.scene?.isActive()) {
+          activeSceneRef.current = scene;
+          return scene;
+        }
+      } catch {}
+    }
+    return null;
+  }, []);
 
-      if (e.key === 'r' || e.key === 'R') {
-        handleRestart();
-      } else if (e.key === 'z' || e.key === 'Z') {
-        handleUndo();
-      }
-    };
+  const handleRestart = useCallback(() => {
+    setIsRestarting(true);
+    setTimeout(() => setIsRestarting(false), 300);
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentLevel]);
-
-  const handleRestart = () => {
-    const scene = activeSceneRef.current || (gameRef.current?.scene.getScene('GameScene') as GameScene);
+    const scene = getActiveScene();
     if (scene) {
-      scene.loadLevel(currentLevel);
+      scene.restartLevel();
       setMoves(0);
       setIsCompleted(false);
       analytics.track('game_restarted', { gameId: 'dog-parking', levelId: currentLevel.id });
     }
-  };
+  }, [getActiveScene, currentLevel]);
 
-  const handleUndo = () => {
-    const scene = activeSceneRef.current || (gameRef.current?.scene.getScene('GameScene') as GameScene);
+  const handleUndo = useCallback(() => {
+    const scene = getActiveScene();
     if (scene) {
       scene.undoMove();
     }
-  };
+  }, [getActiveScene]);
 
-  const switchLevel = (index: number) => {
+  const switchLevel = useCallback((index: number) => {
     const target = LEVELS[index];
     if (!target) return;
 
@@ -172,7 +176,7 @@ export const DogParkingContainer: React.FC = () => {
     setIsCompleted(false);
     setIsLevelSelectOpen(false);
 
-    const scene = activeSceneRef.current || (gameRef.current?.scene.getScene('GameScene') as GameScene);
+    const scene = getActiveScene();
     if (scene) {
       scene.loadLevel(target);
       scene.setCallbacks({
@@ -182,7 +186,28 @@ export const DogParkingContainer: React.FC = () => {
     }
 
     analytics.track('level_started', { gameId: 'dog-parking', levelId: target.id });
-  };
+  }, [getActiveScene, handleLevelComplete]);
+
+  // Keyboard shortcuts (R = restart, Z = undo)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+
+      // Prevent collision with browser reload (Cmd+R or Ctrl+R)
+      if (e.metaKey || e.ctrlKey) return;
+
+      if (e.key === 'r' || e.key === 'R') {
+        e.preventDefault();
+        handleRestart();
+      } else if (e.key === 'z' || e.key === 'Z') {
+        e.preventDefault();
+        handleUndo();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleRestart, handleUndo]);
 
   const handleNextLevel = () => {
     if (levelIndex < LEVELS.length - 1) {
@@ -254,12 +279,13 @@ export const DogParkingContainer: React.FC = () => {
             </button>
 
             <button
+              type="button"
               onClick={handleRestart}
               title="Restart Level (R)"
               aria-label="Restart current level"
-              className="p-2 sm:px-3 sm:py-2 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 rounded-xl font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="p-2 sm:px-3 sm:py-2 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 active:bg-slate-200 rounded-xl font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition-all cursor-pointer select-none active:scale-95"
             >
-              <RotateCcw className="w-4 h-4" />
+              <RotateCcw className={`w-4 h-4 transition-transform duration-300 ${isRestarting ? '-rotate-180' : ''}`} />
               <span className="hidden sm:inline">Restart</span>
             </button>
 
@@ -368,8 +394,9 @@ export const DogParkingContainer: React.FC = () => {
               </button>
 
               <button
+                type="button"
                 onClick={handleRestart}
-                className="w-full py-2.5 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition-colors cursor-pointer"
+                className="w-full py-2.5 px-4 bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-700 font-bold rounded-xl text-sm transition-all cursor-pointer active:scale-95"
               >
                 Replay Level
               </button>
