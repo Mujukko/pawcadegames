@@ -25,6 +25,8 @@ export class GameScene extends Phaser.Scene {
   private boardContainer!: Phaser.GameObjects.Container;
   private dogsContainer!: Phaser.GameObjects.Container;
   private obstaclesContainer!: Phaser.GameObjects.Container;
+  private tutorialContainer!: Phaser.GameObjects.Container;
+  private guideGraphics!: Phaser.GameObjects.Graphics;
   private exitGateSprite!: Phaser.GameObjects.Sprite;
   private exitPulseTween?: Phaser.Tweens.Tween;
 
@@ -66,13 +68,17 @@ export class GameScene extends Phaser.Scene {
     this.gameState = createGameState(this.currentLevel);
     this.isAnimating = false;
 
-    // Create scene layout
+    // 3. Create scene layout & containers
     this.createBoardLayout();
     this.createObstacles();
     this.createDogs();
+    this.createTutorialLayer();
     this.checkExitGateStatus();
 
-    // Notify React
+    // 4. Setup Intro Tutorial if on Level 1
+    this.setupIntroTutorial();
+
+    // 5. Notify React
     if (this.eventsCallback.onStateUpdate) {
       this.eventsCallback.onStateUpdate(this.gameState);
     }
@@ -87,6 +93,7 @@ export class GameScene extends Phaser.Scene {
     this.gameState = createGameState(this.currentLevel);
     this.renderDogsFromState();
     this.checkExitGateStatus();
+    this.setupIntroTutorial();
     if (this.eventsCallback.onMove) {
       this.eventsCallback.onMove(0);
     }
@@ -103,7 +110,9 @@ export class GameScene extends Phaser.Scene {
     this.createBoardLayout();
     this.createObstacles();
     this.createDogs();
+    this.createTutorialLayer();
     this.checkExitGateStatus();
+    this.setupIntroTutorial();
     if (this.eventsCallback.onMove) {
       this.eventsCallback.onMove(0);
     }
@@ -127,6 +136,8 @@ export class GameScene extends Phaser.Scene {
 
     this.renderDogsFromState();
     this.checkExitGateStatus();
+    this.setupIntroTutorial();
+
     if (this.eventsCallback.onMove) {
       this.eventsCallback.onMove(this.gameState.movesCount);
     }
@@ -154,13 +165,20 @@ export class GameScene extends Phaser.Scene {
       }
     }
 
-    // Outer border frame
+    // Outer fence border frame
     const frameGraphics = this.add.graphics();
     frameGraphics.lineStyle(6, 0x334155, 1);
     frameGraphics.strokeRoundedRect(-3, -3, w * this.TILE + 6, h * this.TILE + 6, 12);
     this.boardContainer.add(frameGraphics);
 
-    // Exit Gate
+    // Guide graphics for drag tracks
+    if (this.guideGraphics) {
+      this.guideGraphics.destroy();
+    }
+    this.guideGraphics = this.add.graphics();
+    this.boardContainer.add(this.guideGraphics);
+
+    // Golden Kennel Exit Gate
     if (this.exitGateSprite) {
       this.exitGateSprite.destroy();
     }
@@ -173,7 +191,7 @@ export class GameScene extends Phaser.Scene {
       'exit-gate'
     );
     this.exitGateSprite.setOrigin(0, 0);
-    this.exitGateSprite.setAlpha(0.65);
+    this.exitGateSprite.setAlpha(0.85);
   }
 
   private createObstacles() {
@@ -209,16 +227,168 @@ export class GameScene extends Phaser.Scene {
       );
       sprite.setOrigin(0, 0);
       sprite.setInteractive({ useHandCursor: true });
-
-      // Attach dog model data
       sprite.setData('dogId', dog.id);
 
       this.input.setDraggable(sprite);
       this.dogsContainer.add(sprite);
       this.dogSprites.set(dog.id, sprite);
 
-      // Setup drag events
       this.setupDogInteractions(sprite, dog);
+    }
+  }
+
+  private createTutorialLayer() {
+    if (this.tutorialContainer) {
+      this.tutorialContainer.destroy();
+    }
+    this.tutorialContainer = this.add.container(this.boardOffsetX, this.boardOffsetY);
+  }
+
+  /**
+   * INTRO TUTORIAL: Pulsing highlight and bouncing arrow on the dog to move!
+   */
+  private setupIntroTutorial() {
+    if (!this.tutorialContainer) return;
+    this.tutorialContainer.removeAll(true);
+
+    // Only active on Level 1 when not yet completed
+    if (this.currentLevel.id !== 1 || this.gameState.isCompleted) return;
+
+    const barnaby = this.gameState.dogs.find(d => d.id === 'pug1');
+    const hero = this.gameState.dogs.find(d => d.isHero);
+
+    if (barnaby && barnaby.y <= 1) {
+      // Step 1: Barnaby is blocking! Highlight Barnaby with a pulsing ring & arrow
+      const px = barnaby.x * this.TILE;
+      const py = barnaby.y * this.TILE;
+      const pw = this.TILE;
+      const ph = barnaby.length * this.TILE;
+
+      // 1. Pulsing highlight rectangle around Barnaby
+      const pulseRect = this.add.graphics();
+      pulseRect.lineStyle(4, 0x38bdf8, 1);
+      pulseRect.fillStyle(0x38bdf8, 0.2);
+      pulseRect.fillRoundedRect(px - 4, py - 4, pw + 8, ph + 8, 16);
+      pulseRect.strokeRoundedRect(px - 4, py - 4, pw + 8, ph + 8, 16);
+      this.tutorialContainer.add(pulseRect);
+
+      this.tweens.add({
+        targets: pulseRect,
+        alpha: { from: 0.35, to: 1.0 },
+        scaleX: { from: 1.0, to: 1.04 },
+        scaleY: { from: 1.0, to: 1.04 },
+        yoyo: true,
+        repeat: -1,
+        duration: 500,
+        ease: 'Sine.easeInOut',
+      });
+
+      // 2. Bouncing tutorial arrow pointing DOWN
+      const arrow = this.add.image(px + pw / 2, py + ph + 24, 'tutorial-arrow');
+      arrow.setOrigin(0.5, 0.5);
+      this.tutorialContainer.add(arrow);
+
+      this.tweens.add({
+        targets: arrow,
+        y: py + ph + 34,
+        yoyo: true,
+        repeat: -1,
+        duration: 400,
+        ease: 'Quad.easeInOut',
+      });
+
+      // 3. Floating text prompt: "1. AŞAĞI KAYDIR / SLIDE DOWN"
+      const textLabel = this.add.text(
+        px + pw / 2,
+        py - 16,
+        '⬇️ SLIDE DOWN',
+        {
+          fontFamily: 'Fredoka, Nunito, sans-serif',
+          fontSize: '13px',
+          fontStyle: 'bold',
+          color: '#ffffff',
+          backgroundColor: '#0284c7',
+          padding: { left: 8, right: 8, top: 4, bottom: 4 },
+        }
+      );
+      textLabel.setOrigin(0.5, 1);
+      this.tutorialContainer.add(textLabel);
+    } else if (hero && !this.gameState.isCompleted) {
+      // Step 2: Barnaby was moved down! Highlight Sunny and the exit runway!
+      const hx = hero.x * this.TILE;
+      const hy = hero.y * this.TILE;
+      const hw = hero.length * this.TILE;
+      const hh = this.TILE;
+
+      // Golden pulsing aura around Sunny
+      const heroPulse = this.add.graphics();
+      heroPulse.lineStyle(4, 0xf59e0b, 1);
+      heroPulse.fillStyle(0xf59e0b, 0.25);
+      heroPulse.fillRoundedRect(hx - 4, hy - 4, hw + 8, hh + 8, 16);
+      heroPulse.strokeRoundedRect(hx - 4, hy - 4, hw + 8, hh + 8, 16);
+      this.tutorialContainer.add(heroPulse);
+
+      this.tweens.add({
+        targets: heroPulse,
+        alpha: { from: 0.4, to: 1.0 },
+        yoyo: true,
+        repeat: -1,
+        duration: 450,
+        ease: 'Sine.easeInOut',
+      });
+
+      // Floating text prompt on Sunny: "⭐ TO THE EXIT ➔"
+      const heroLabel = this.add.text(
+        hx + hw / 2,
+        hy - 16,
+        '⭐ 2. SLIDE TO EXIT ➔',
+        {
+          fontFamily: 'Fredoka, Nunito, sans-serif',
+          fontSize: '13px',
+          fontStyle: 'bold',
+          color: '#ffffff',
+          backgroundColor: '#ea580c',
+          padding: { left: 8, right: 8, top: 4, bottom: 4 },
+        }
+      );
+      heroLabel.setOrigin(0.5, 1);
+      this.tutorialContainer.add(heroLabel);
+    }
+  }
+
+  private showDragGuide(dog: Dog, range: { min: number; max: number; canExit: boolean }) {
+    if (!this.guideGraphics) return;
+    this.guideGraphics.clear();
+
+    const color = dog.isHero ? 0xf59e0b : 0x6366f1;
+    this.guideGraphics.fillStyle(color, 0.15);
+    this.guideGraphics.lineStyle(2.5, color, 0.6);
+
+    if (dog.orientation === 'horizontal') {
+      const minX = range.min * this.TILE;
+      let maxX = (range.max + dog.length) * this.TILE;
+      if (dog.isHero && range.canExit) {
+        maxX = (this.gameState.width + 1) * this.TILE;
+      }
+      const y = dog.y * this.TILE + 4;
+      const h = this.TILE - 8;
+
+      this.guideGraphics.fillRoundedRect(minX + 4, y, maxX - minX - 8, h, 12);
+      this.guideGraphics.strokeRoundedRect(minX + 4, y, maxX - minX - 8, h, 12);
+    } else {
+      const minY = range.min * this.TILE;
+      const maxY = (range.max + dog.length) * this.TILE;
+      const x = dog.x * this.TILE + 4;
+      const w = this.TILE - 8;
+
+      this.guideGraphics.fillRoundedRect(x, minY + 4, w, maxY - minY - 8, 12);
+      this.guideGraphics.strokeRoundedRect(x, minY + 4, w, maxY - minY - 8, 12);
+    }
+  }
+
+  private hideDragGuide() {
+    if (this.guideGraphics) {
+      this.guideGraphics.clear();
     }
   }
 
@@ -233,6 +403,9 @@ export class GameScene extends Phaser.Scene {
 
       // Bring to front inside dogsContainer
       this.dogsContainer.bringToTop(sprite);
+
+      // Show allowed slide track guide
+      this.showDragGuide(dog, this.allowedRange);
 
       // Micro bounce feedback
       this.tweens.add({
@@ -280,6 +453,7 @@ export class GameScene extends Phaser.Scene {
     sprite.on('dragend', () => {
       if (this.isAnimating || this.gameState.isCompleted || this.activeDragDogId !== dog.id) return;
       this.activeDragDogId = null;
+      this.hideDragGuide();
 
       const currentLiveDog = this.gameState.dogs.find(d => d.id === dog.id)!;
 
@@ -289,6 +463,7 @@ export class GameScene extends Phaser.Scene {
 
         // Check if Hero completed exit
         if (currentLiveDog.isHero && this.allowedRange.canExit && snappedCoord >= this.gameState.width - currentLiveDog.length) {
+          if (this.tutorialContainer) this.tutorialContainer.removeAll(true);
           this.executeHeroExit(sprite, currentLiveDog);
           return;
         }
@@ -297,7 +472,6 @@ export class GameScene extends Phaser.Scene {
         const legalCoord = Phaser.Math.Clamp(snappedCoord, this.allowedRange.min, this.allowedRange.max);
 
         if (legalCoord !== this.dogInitialCoord) {
-          // Valid move
           const result = moveDog(this.gameState, dog.id, legalCoord);
           if (result.success) {
             this.gameState = result.state;
@@ -311,11 +485,11 @@ export class GameScene extends Phaser.Scene {
               this.eventsCallback.onStateUpdate(this.gameState);
             }
             this.checkExitGateStatus();
+            this.setupIntroTutorial();
           } else {
             this.animateBumpBack(sprite, this.dogInitialCoord * this.TILE, sprite.y);
           }
         } else {
-          // Snapped back to same spot
           this.animateSnap(sprite, this.dogInitialCoord * this.TILE, sprite.y);
         }
       } else {
@@ -338,6 +512,7 @@ export class GameScene extends Phaser.Scene {
               this.eventsCallback.onStateUpdate(this.gameState);
             }
             this.checkExitGateStatus();
+            this.setupIntroTutorial();
           } else {
             this.animateBumpBack(sprite, sprite.x, this.dogInitialCoord * this.TILE);
           }
@@ -383,15 +558,14 @@ export class GameScene extends Phaser.Scene {
 
     const range = getDogMoveRange(this.gameState, hero.id);
     if (range.canExit) {
-      // Clear path to exit gate!
       if (!this.exitPulseTween) {
         this.exitPulseTween = this.tweens.add({
           targets: this.exitGateSprite,
-          alpha: { from: 0.5, to: 1.0 },
-          scaleX: { from: 1.0, to: 1.15 },
+          alpha: { from: 0.6, to: 1.0 },
+          scaleX: { from: 1.0, to: 1.12 },
           yoyo: true,
           repeat: -1,
-          duration: 400,
+          duration: 350,
           ease: 'Sine.easeInOut',
         });
       }
@@ -399,7 +573,7 @@ export class GameScene extends Phaser.Scene {
       if (this.exitPulseTween) {
         this.exitPulseTween.stop();
         this.exitPulseTween = undefined;
-        this.exitGateSprite.setAlpha(0.65);
+        this.exitGateSprite.setAlpha(0.85);
         this.exitGateSprite.setScale(1.0);
       }
     }
@@ -430,13 +604,13 @@ export class GameScene extends Phaser.Scene {
     const centerX = this.boardOffsetX + (this.gameState.width * this.TILE) / 2;
     const centerY = this.boardOffsetY + (this.gameState.height * this.TILE) / 2;
 
-    for (let i = 0; i < 28; i++) {
+    for (let i = 0; i < 32; i++) {
       const tex = i % 2 === 0 ? 'particle-star' : 'particle-paw';
       const p = this.add.image(centerX, centerY, tex);
-      p.setScale(Phaser.Math.FloatBetween(0.8, 1.4));
+      p.setScale(Phaser.Math.FloatBetween(0.8, 1.5));
 
       const angle = Phaser.Math.FloatBetween(0, Math.PI * 2);
-      const speed = Phaser.Math.FloatBetween(120, 320);
+      const speed = Phaser.Math.FloatBetween(140, 360);
       const destX = centerX + Math.cos(angle) * speed;
       const destY = centerY + Math.sin(angle) * speed;
 
@@ -452,7 +626,6 @@ export class GameScene extends Phaser.Scene {
       });
     }
 
-    // Notify React layer
     if (this.eventsCallback.onLevelComplete) {
       this.eventsCallback.onLevelComplete(
         this.currentLevel.id,

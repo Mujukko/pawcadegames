@@ -15,7 +15,8 @@
 | TASK-009 | P0 | DONE | Technical SEO & Performance | Code-split bundles, OpenGraph, Twitter Cards, robots.txt, sitemap.xml, semantic markup. |
 | TASK-010 | P1 | DONE | Analytics Abstraction & Ad Placement Points | Provider-agnostic event dispatcher (`game_loaded`, `level_completed`, etc.) & ad slot hooks. |
 | TASK-011 | P0 | DONE | Automated Tests & Production Verification | Bun test suite passes (5/5 tests, 40 assertions), `vite build` succeeds, typecheck passes. |
+| TASK-012 | P0 | DONE | Level 1 Intro Tutorial & Visual Affordances | Pulsing blocker highlight, bouncing guide arrow, enlarged hero star medallion, dog-themed kennel exit gate. |
 
 ## Completed Sprint Summary
-- All 11 core backlog tasks completed.
-- Definition of Done met: 12 levels verified, responsive layout, SEO tags, production build ready.
+- All 12 core backlog tasks completed.
+- Definition of Done met: 12 levels verified, interactive intro tutorial, responsive layout, SEO tags, production build ready.

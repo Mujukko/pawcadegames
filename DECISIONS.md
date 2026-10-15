@@ -35,3 +35,15 @@
 - **Alternatives Considered:** Bundling everything in a single index.js. Would force homepage visitors to download 1.5MB upfront.
 - **Consequences:** Near-instant initial page render; game chunk streams in parallel with smooth loading spinner.
 - **Reversibility:** High.
+
+## [2026-10-15] DEC-006: First-Time User Experience (FTUE) & Visual Affordances
+- **Decision:** Implement zero-friction visual tutorial overlays directly inside Level 1:
+  1. A pulsating neon-yellow border and bouncing animated arrow over Barnaby the Pug with clear text `"⬇️ SLIDE DOWN"`.
+  2. Once the blocker clears row 2, the guide automatically transitions to Sunny with a glowing golden halo and `"⭐ 2. SLIDE TO EXIT ➔"`.
+  3. Sunny's star badge was enlarged from a 9px circle to an 18px golden hero medallion with a royal red collar.
+  4. The exit gate was redesigned with a golden-amber kennel aesthetic, wooden roof gables, bone emblem, and animated runway arrows matching Sunny's palette.
+  5. Dynamic track guides appear during dragging showing allowable movement slots.
+- **Reason:** In casual puzzle games, high bounce rates happen in the first 5 seconds if the objective or primary move isn't crystal clear without reading blocks of text.
+- **Alternatives Considered:** Modal pop-up dialogues (interruptive, players skip without reading) or full text overlays.
+- **Consequences:** Near-zero cognitive load on first launch; intuitive learning-by-doing mechanic.
+- **Reversibility:** High.

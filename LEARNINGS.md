@@ -21,3 +21,13 @@
 - **Root cause:** Unlinked asynchronous scene transition in React wrapper before data was bound.
 - **Resolution:** Consolidated procedural canvas textures into a synchronous `ensureDogTextures(scene)` function called at the start of `GameScene.create()` and configured `scene: [GameScene]` directly.
 - **Preventive Rule:** When using procedural canvas textures in Phaser with React wrappers, generate textures directly in the active game scene to guarantee immediate, atomic rendering on the first frame.
+
+## [2026-10-15] Casual Puzzle First-Time User Experience (FTUE) Affordances
+- **What happened:** Initial playtesters were briefly hesitant on Level 1 about which dog was movable and what the objective was because the star badge on the hero dog was too subtle (9px) and the exit gate looked generic.
+- **Root cause:** Without an active pulsing guide on the first move, players expected to move the hero dog first, but the hero dog was blocked by Barnaby.
+- **Resolution:** Introduced a two-stage animated intro on Level 1:
+  1. Highlight the blocking dog with an animated bouncing arrow and `"⬇️ SLIDE DOWN"`.
+  2. As soon as the blocker moves, highlight Sunny with a golden runway arrow pointing directly to the golden kennel exit gate.
+  3. Redesigned Sunny's badge into an 18px golden medallion with a red hero cape and bright star symbol (`★`).
+  4. Redesigned the exit gate with warm kennel wood, bone icon, and emerald directional arrows matching the dog park theme.
+- **Preventive Rule:** The first level must always guide the player's eyes and first finger stroke within 1 second using animations rather than text dialogs.

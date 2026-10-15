@@ -26,8 +26,8 @@ export function drawRoundRect(
 }
 
 export function ensureDogTextures(scene: Phaser.Scene): void {
-  // Check if already created
-  if (scene.textures.exists('yard-cell') && scene.textures.exists('dog_hero_h2')) {
+  // If already created, don't recreate unless forced
+  if (scene.textures.exists('yard-cell') && scene.textures.exists('dog_hero_h2_v2')) {
     return;
   }
 
@@ -39,7 +39,6 @@ export function ensureDogTextures(scene: Phaser.Scene): void {
     const c = scene.textures.createCanvas('yard-cell', TILE, TILE);
     if (c) {
       const ctx = c.getContext();
-      // Pavement background
       ctx.fillStyle = '#f8fafc';
       ctx.fillRect(0, 0, TILE, TILE);
 
@@ -48,44 +47,70 @@ export function ensureDogTextures(scene: Phaser.Scene): void {
       ctx.lineWidth = 1.5;
       ctx.strokeRect(1, 1, TILE - 2, TILE - 2);
 
-      // Dashed lane guideline
+      // Center parking marker
       ctx.fillStyle = '#cbd5e1';
       ctx.beginPath();
-      ctx.arc(TILE / 2, TILE / 2, 3, 0, Math.PI * 2);
+      ctx.arc(TILE / 2, TILE / 2, 3.5, 0, Math.PI * 2);
       ctx.fill();
 
       c.refresh();
     }
   }
 
-  // 2. Exit Gate Banner (40x80)
+  // 2. Sunny Golden Kennel Exit Gate (44x80) - matches Sunny's golden-amber fur & red hero collar
   if (!scene.textures.exists('exit-gate')) {
-    const c = scene.textures.createCanvas('exit-gate', 40, TILE);
+    const c = scene.textures.createCanvas('exit-gate', 44, TILE);
     if (c) {
       const ctx = c.getContext();
-      // Glowing green exit strip
-      const grad = ctx.createLinearGradient(0, 0, 40, 0);
-      grad.addColorStop(0, '#22c55e');
-      grad.addColorStop(1, '#15803d');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, 40, TILE);
 
-      // Border
-      ctx.strokeStyle = '#166534';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(0, 0, 40, TILE);
+      // Dog house warm golden-amber wood background
+      const woodGrad = ctx.createLinearGradient(0, 0, 44, 0);
+      woodGrad.addColorStop(0, '#f59e0b'); // Sunny's golden tone
+      woodGrad.addColorStop(0.5, '#d97706');
+      woodGrad.addColorStop(1, '#b45309');
+      ctx.fillStyle = woodGrad;
+      ctx.fillRect(0, 0, 44, TILE);
 
-      // Chevrons pointing outward
+      // Red roof trim (matching hero collar)
+      ctx.fillStyle = '#ef4444';
+      ctx.fillRect(0, 0, 6, TILE);
+      ctx.fillRect(38, 0, 6, TILE);
+
+      // Inner glowing exit portal
+      const portalGrad = ctx.createLinearGradient(6, 0, 38, 0);
+      portalGrad.addColorStop(0, '#22c55e');
+      portalGrad.addColorStop(1, '#16a34a');
+      ctx.fillStyle = portalGrad;
+      ctx.fillRect(6, 4, 32, TILE - 8);
+
+      // Golden bone icon at top
+      ctx.fillStyle = '#fef08a';
+      // Bone ends
+      ctx.beginPath();
+      ctx.arc(14, 14, 3, 0, Math.PI * 2);
+      ctx.arc(14, 20, 3, 0, Math.PI * 2);
+      ctx.arc(30, 14, 3, 0, Math.PI * 2);
+      ctx.arc(30, 20, 3, 0, Math.PI * 2);
+      ctx.fill();
+      // Bone bar
+      ctx.fillRect(14, 15, 16, 4);
+
+      // Bright white chevrons pointing outward ➔
       ctx.fillStyle = '#ffffff';
-      for (let y = 16; y <= TILE - 16; y += 24) {
+      for (let y = 38; y <= TILE - 14; y += 18) {
         ctx.beginPath();
-        ctx.moveTo(10, y - 8);
-        ctx.lineTo(28, y);
-        ctx.lineTo(10, y + 8);
-        ctx.lineTo(18, y);
+        ctx.moveTo(13, y - 7);
+        ctx.lineTo(29, y);
+        ctx.lineTo(13, y + 7);
+        ctx.lineTo(19, y);
         ctx.closePath();
         ctx.fill();
       }
+
+      // Border outline
+      ctx.strokeStyle = '#78350f';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(0, 0, 44, TILE);
 
       c.refresh();
     }
@@ -99,29 +124,24 @@ export function ensureDogTextures(scene: Phaser.Scene): void {
       const cx = TILE / 2;
       const cy = TILE / 2;
 
-      // Shadow
       ctx.fillStyle = 'rgba(0,0,0,0.18)';
       ctx.beginPath();
       ctx.ellipse(cx, cy + 22, 22, 9, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Hydrant Body
       ctx.fillStyle = '#dc2626';
       ctx.beginPath();
       drawRoundRect(ctx, cx - 18, cy - 20, 36, 40, 8);
       ctx.fill();
 
-      // Dome Top
       ctx.fillStyle = '#ef4444';
       ctx.beginPath();
       ctx.arc(cx, cy - 18, 16, Math.PI, 0);
       ctx.fill();
 
-      // Top Nut
       ctx.fillStyle = '#f59e0b';
       ctx.fillRect(cx - 5, cy - 26, 10, 7);
 
-      // Side caps
       ctx.beginPath();
       ctx.arc(cx - 19, cy - 2, 6, 0, Math.PI * 2);
       ctx.arc(cx + 19, cy - 2, 6, 0, Math.PI * 2);
@@ -131,7 +151,38 @@ export function ensureDogTextures(scene: Phaser.Scene): void {
     }
   }
 
-  // 4. Particles
+  // 4. Tutorial Arrow & Hand Textures
+  if (!scene.textures.exists('tutorial-arrow')) {
+    const c = scene.textures.createCanvas('tutorial-arrow', 64, 64);
+    if (c) {
+      const ctx = c.getContext();
+      // Bouncing tutorial arrow with golden yellow fill and dark outline
+      ctx.shadowColor = 'rgba(0,0,0,0.35)';
+      ctx.shadowBlur = 6;
+      ctx.shadowOffsetY = 3;
+
+      ctx.fillStyle = '#fbbf24';
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 3;
+
+      // Draw downward pointing arrow
+      ctx.beginPath();
+      ctx.moveTo(32, 54);
+      ctx.lineTo(12, 30);
+      ctx.lineTo(24, 30);
+      ctx.lineTo(24, 10);
+      ctx.lineTo(40, 10);
+      ctx.lineTo(40, 30);
+      ctx.lineTo(52, 30);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      c.refresh();
+    }
+  }
+
+  // 5. Particles
   if (!scene.textures.exists('particle-paw')) {
     const c = scene.textures.createCanvas('particle-paw', 32, 32);
     if (c) {
@@ -150,21 +201,21 @@ export function ensureDogTextures(scene: Phaser.Scene): void {
   }
 
   if (!scene.textures.exists('particle-star')) {
-    const c = scene.textures.createCanvas('particle-star', 24, 24);
+    const c = scene.textures.createCanvas('particle-star', 32, 32);
     if (c) {
       const ctx = c.getContext();
       ctx.fillStyle = '#fbbf24';
-      ctx.font = '20px sans-serif';
+      ctx.font = '26px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText('★', 12, 12);
+      ctx.fillText('★', 16, 16);
       c.refresh();
     }
   }
 
-  // 5. Dog Sprites (8 Breeds × 2 Orientations × 2 Lengths)
+  // 6. Dog Sprites (8 Breeds × 2 Orientations × 2 Lengths)
   const breeds = [
-    { key: 'hero', bodyColor: '#f59e0b', accentColor: '#fbbf24', earColor: '#d97706', eyeColor: '#1e293b' },
+    { key: 'hero', bodyColor: '#f59e0b', accentColor: '#fed7aa', earColor: '#d97706', eyeColor: '#1e293b' },
     { key: 'corgi', bodyColor: '#ea580c', accentColor: '#fed7aa', earColor: '#c2410c', eyeColor: '#1e293b' },
     { key: 'pug', bodyColor: '#d6d3d1', accentColor: '#44403c', earColor: '#292524', eyeColor: '#0f172a' },
     { key: 'shiba', bodyColor: '#d97706', accentColor: '#fef3c7', earColor: '#b45309', eyeColor: '#1e293b' },
@@ -180,6 +231,12 @@ export function ensureDogTextures(scene: Phaser.Scene): void {
     drawSingleDog(scene, `dog_${b.key}_v2`, TILE, 2 * TILE, 'v', b, PADDING);
     drawSingleDog(scene, `dog_${b.key}_v3`, TILE, 3 * TILE, 'v', b, PADDING);
   });
+
+  // Mark version 2 initialized
+  if (!scene.textures.exists('dog_hero_h2_v2')) {
+    const mark = scene.textures.createCanvas('dog_hero_h2_v2', 1, 1);
+    mark?.refresh();
+  }
 }
 
 function drawSingleDog(
@@ -198,7 +255,9 @@ function drawSingleDog(
   },
   pad: number
 ) {
-  if (scene.textures.exists(key)) return;
+  if (scene.textures.exists(key)) {
+    scene.textures.remove(key);
+  }
 
   const canvas = scene.textures.createCanvas(key, w, h);
   if (!canvas) return;
@@ -211,7 +270,7 @@ function drawSingleDog(
   const radius = 22;
 
   // Drop shadow
-  ctx.shadowColor = 'rgba(15, 23, 42, 0.22)';
+  ctx.shadowColor = 'rgba(15, 23, 42, 0.25)';
   ctx.shadowBlur = 8;
   ctx.shadowOffsetY = 4;
 
@@ -223,18 +282,18 @@ function drawSingleDog(
 
   ctx.shadowColor = 'transparent';
 
-  // Inner highlight
+  // Inner highlight gradient
   const grad = ctx.createLinearGradient(rx, ry, rx, ry + rh);
-  grad.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
-  grad.addColorStop(1, 'rgba(0, 0, 0, 0.1)');
+  grad.addColorStop(0, 'rgba(255, 255, 255, 0.35)');
+  grad.addColorStop(1, 'rgba(0, 0, 0, 0.12)');
   ctx.fillStyle = grad;
   ctx.beginPath();
   drawRoundRect(ctx, rx, ry, rw, rh, radius);
   ctx.fill();
 
   // Outline
-  ctx.lineWidth = 3.5;
-  ctx.strokeStyle = breed.key === 'hero' ? '#b45309' : 'rgba(0, 0, 0, 0.15)';
+  ctx.lineWidth = breed.key === 'hero' ? 4.5 : 3.5;
+  ctx.strokeStyle = breed.key === 'hero' ? '#b45309' : 'rgba(0, 0, 0, 0.18)';
   ctx.beginPath();
   drawRoundRect(ctx, rx, ry, rw, rh, radius);
   ctx.stroke();
@@ -266,7 +325,7 @@ function drawSingleDog(
     ctx.ellipse(headX - 10, headY + 22, 9, 15, -Math.PI / 4, 0, Math.PI * 2);
     ctx.fill();
 
-    // Muzzle
+    // Muzzle / snout
     ctx.fillStyle = breed.accentColor;
     ctx.beginPath();
     ctx.ellipse(headX + 8, headY, 14, 18, 0, 0, Math.PI * 2);
@@ -298,24 +357,47 @@ function drawSingleDog(
     ctx.ellipse(rx + 8, headY, 7, 12, -Math.PI / 6, 0, Math.PI * 2);
     ctx.fill();
 
-    // Hero Golden Star Medal
+    // ⭐ HERO DOG: PROMINENT LARGE GOLDEN STAR MEDALLION & RED CAPE HARNESS ⭐
     if (breed.key === 'hero') {
-      ctx.fillStyle = '#ef4444';
-      ctx.fillRect(headX - 18, headY - 24, 7, 48);
+      const centerX = (rx + headX - 15) / 2;
 
-      ctx.fillStyle = '#fef08a';
-      ctx.strokeStyle = '#ca8a04';
-      ctx.lineWidth = 2;
+      // Bright red cape / harness across the back
+      ctx.fillStyle = '#dc2626';
       ctx.beginPath();
-      ctx.arc(headX - 15, headY, 9, 0, Math.PI * 2);
+      drawRoundRect(ctx, rx + 14, headY - 26, 44, 52, 10);
       ctx.fill();
+
+      // Golden harness trim
+      ctx.strokeStyle = '#fef08a';
+      ctx.lineWidth = 2.5;
       ctx.stroke();
 
-      ctx.fillStyle = '#854d0e';
-      ctx.font = 'bold 11px sans-serif';
+      // Large golden medallion disc (radius 18px!)
+      const medalGrad = ctx.createRadialGradient(centerX, headY, 2, centerX, headY, 18);
+      medalGrad.addColorStop(0, '#fef08a');
+      medalGrad.addColorStop(0.7, '#f59e0b');
+      medalGrad.addColorStop(1, '#b45309');
+      ctx.fillStyle = medalGrad;
+
+      ctx.beginPath();
+      ctx.arc(centerX, headY, 18, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Outer gold rim
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Inner bold shiny star
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 22px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText('★', headX - 15, headY);
+      ctx.fillText('★', centerX, headY);
+
+      // Hero ribbon collar
+      ctx.fillStyle = '#ef4444';
+      ctx.fillRect(headX - 14, headY - 24, 6, 48);
     }
   } else {
     // Vertical: Head facing bottom
