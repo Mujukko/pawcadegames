@@ -6,6 +6,7 @@ import { LevelConfig } from './logic/types';
 import { soundManager } from './systems/sound';
 import { analytics } from '../../lib/analytics';
 import { getCompletedLevels, saveLevelProgress, getSavedCurrentLevel, saveCurrentLevel } from '../../lib/storage';
+import { ConfettiOverlay } from '../../components/ConfettiOverlay';
 import { 
   RotateCcw, 
   Volume2, 
@@ -34,6 +35,7 @@ export const DogParkingContainer: React.FC = () => {
   const [moves, setMoves] = useState<number>(0);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [completedStars, setCompletedStars] = useState<number>(3);
+  const [revealedStars, setRevealedStars] = useState<number>(0);
   const [isLevelSelectOpen, setIsLevelSelectOpen] = useState<boolean>(false);
   const [isHelpOpen, setIsHelpOpen] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(() => soundManager.isMuted());
@@ -41,6 +43,39 @@ export const DogParkingContainer: React.FC = () => {
   const [isRestarting, setIsRestarting] = useState<boolean>(false);
 
   const currentLevel: LevelConfig = LEVELS[levelIndex] || LEVELS[0]!;
+
+  // Staggered star reveal chimes on victory
+  useEffect(() => {
+    if (isCompleted) {
+      setRevealedStars(0);
+      const t1 = setTimeout(() => {
+        setRevealedStars(1);
+        soundManager.playStarPop(1);
+      }, 350);
+
+      const t2 = setTimeout(() => {
+        if (completedStars >= 2) {
+          setRevealedStars(2);
+          soundManager.playStarPop(2);
+        }
+      }, 750);
+
+      const t3 = setTimeout(() => {
+        if (completedStars >= 3) {
+          setRevealedStars(3);
+          soundManager.playStarPop(3);
+        }
+      }, 1150);
+
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+        clearTimeout(t3);
+      };
+    } else {
+      setRevealedStars(0);
+    }
+  }, [isCompleted, completedStars]);
 
   // Handle level completion
   const handleLevelComplete = useCallback((lvlId: number, movesCount: number, optimalMoves: number) => {
@@ -343,29 +378,53 @@ export const DogParkingContainer: React.FC = () => {
         </div>
       )}
 
+      {/* Full-Screen Confetti & Star Shower */}
+      <ConfettiOverlay active={isCompleted} />
+
       {/* Level Complete Modal */}
       {isCompleted && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
           <div className="bg-white rounded-3xl shadow-2xl border-4 border-amber-400 p-6 sm:p-8 max-w-sm w-full text-center transform scale-100 transition-transform">
-            <div className="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-inner">
-              <Trophy className="w-10 h-10 text-amber-600 animate-bounce" />
+            {/* Joyful Celebrating Sunny Avatar */}
+            <div className="relative mx-auto mb-3 w-20 h-20 bg-gradient-to-tr from-amber-200 via-amber-100 to-yellow-100 rounded-3xl flex items-center justify-center shadow-lg border-2 border-amber-300">
+              <span className="text-4xl animate-bounce select-none">🐕</span>
+              <span className="absolute -top-2 -right-2 text-2xl animate-spin select-none" style={{ animationDuration: '4s' }}>✨</span>
+              <span className="absolute -bottom-1 -left-2 text-xl select-none">🎉</span>
             </div>
 
             <h3 className="text-2xl font-black text-slate-900">Yard Cleared!</h3>
-            <p className="text-slate-600 text-sm mt-1">Sunny made it safely through the gate!</p>
+            <p className="text-amber-800 font-bold text-sm mt-1 flex items-center justify-center gap-1.5">
+              <span>{completedStars === 3 ? 'Pawsome! Sunny is overjoyed!' : completedStars === 2 ? 'Great job! Happy wagging tail!' : 'Good boy Sunny made it!'}</span>
+              <span className="text-base">🐾🎉</span>
+            </p>
 
-            {/* Stars */}
-            <div className="flex items-center justify-center gap-2 my-4">
-              {[1, 2, 3].map((starIdx) => (
-                <Star
-                  key={starIdx}
-                  className={`w-9 h-9 ${
-                    starIdx <= completedStars
-                      ? 'text-amber-400 fill-amber-400 drop-shadow-sm'
-                      : 'text-slate-200 fill-slate-100'
-                  }`}
-                />
-              ))}
+            {/* Stars Cluster with Staggered Reveal */}
+            <div className="relative flex items-center justify-center gap-3 my-4 py-2">
+              <div className="absolute inset-0 bg-amber-400/15 rounded-full blur-xl pointer-events-none" />
+              {[1, 2, 3].map((starIdx) => {
+                const isEarned = starIdx <= completedStars;
+                const isPopped = starIdx <= revealedStars;
+                return (
+                  <div
+                    key={starIdx}
+                    className={`transition-all duration-300 transform ${
+                      isPopped && isEarned
+                        ? 'scale-110 drop-shadow-[0_4px_16px_rgba(245,158,11,0.6)]'
+                        : isEarned
+                        ? 'scale-75 opacity-30'
+                        : 'scale-90 opacity-20'
+                    }`}
+                  >
+                    <Star
+                      className={`w-11 h-11 ${
+                        isPopped && isEarned
+                          ? 'text-amber-400 fill-amber-400'
+                          : 'text-slate-200 fill-slate-100'
+                      }`}
+                    />
+                  </div>
+                );
+              })}
             </div>
 
             {/* Score Stats */}

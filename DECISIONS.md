@@ -47,3 +47,15 @@
 - **Alternatives Considered:** Modal pop-up dialogues (interruptive, players skip without reading) or full text overlays.
 - **Consequences:** Near-zero cognitive load on first launch; intuitive learning-by-doing mechanic.
 - **Reversibility:** High.
+
+## [2026-10-15] DEC-008: Celebratory Audio-Visual Overhaul & Organic Sound Synthesis
+- **Decision:** Replace robotic raw synth tones with an organic formant-filtered dog vocalization model, dual-cannon full-screen confetti canvas particle system, and staggered star reveal sequence:
+  1. Pink-noise aspiration + dual formant filters (750Hz and 1750Hz bandpass) simulate real canine vocal tract resonance for natural joyful puppy yips, happy barks, and excited whimpers.
+  2. Multi-harmonic glockenspiel fanfare replaces raw sine arpeggio.
+  3. High-performance 60fps canvas Confetti & Star shower launches on level victory with 3D fluttering ribbons and golden stars.
+  4. Animated celebratory Sunny avatar (`🐕✨🎉`) and sequential star slam reveals with music box chimes.
+- **Reason:** In casual puzzle games, the victory moment is the primary emotional reward driving session length, replayability, and viral satisfaction. Robotic raw oscillators feel cold and synthetic.
+- **Alternatives Considered:** External MP3 audio files (adds network overhead, licensing ambiguity, and CORS issues). Procedural synthesis keeps asset footprint at 0 KB while achieving warm organic character.
+- **Consequences:** Maximum dopamine reward upon yard completion with zero asset download penalty.
+- **Reversibility:** High.
+

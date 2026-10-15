@@ -620,7 +620,7 @@ export class GameScene extends Phaser.Scene {
     this.gameState.movesCount += 1;
     this.gameState.isCompleted = true;
 
-    // Slide out through gate
+    // Slide out through gate with happy celebratory hops
     const exitPixelX = (this.gameState.width + 1) * this.TILE;
     this.tweens.add({
       targets: heroSprite,
@@ -633,21 +633,57 @@ export class GameScene extends Phaser.Scene {
       },
     });
 
+    // Joyful hopping bounce
+    this.tweens.add({
+      targets: heroSprite,
+      y: heroSprite.y - 12,
+      duration: 130,
+      yoyo: true,
+      repeat: 2,
+      ease: 'Quad.easeInOut',
+    });
+
+    // Gate sparkle burst
+    const gateX = this.boardOffsetX + (this.gameState.width * this.TILE);
+    const gateY = this.boardOffsetY + (this.gameState.exit.coordinate * this.TILE) + this.TILE / 2;
+
+    for (let i = 0; i < 20; i++) {
+      const tex = i % 2 === 0 ? 'particle-star' : 'particle-paw';
+      const p = this.add.image(gateX, gateY, tex);
+      p.setScale(Phaser.Math.FloatBetween(0.7, 1.4));
+
+      const angle = Phaser.Math.FloatBetween(-Math.PI * 0.4, Math.PI * 0.4);
+      const speed = Phaser.Math.FloatBetween(100, 280);
+      const destX = gateX + Math.cos(angle) * speed;
+      const destY = gateY + Math.sin(angle) * speed;
+
+      this.tweens.add({
+        targets: p,
+        x: destX,
+        y: destY,
+        alpha: { from: 1, to: 0 },
+        angle: Phaser.Math.Between(-180, 180),
+        duration: Phaser.Math.Between(450, 850),
+        ease: 'Quad.easeOut',
+        onComplete: () => p.destroy(),
+      });
+    }
+
     soundManager.playWin();
   }
 
   private triggerVictoryCelebration() {
-    // Spawn celebratory particles (stars and paws)
+    // Spawn celebratory particles across the yard
     const centerX = this.boardOffsetX + (this.gameState.width * this.TILE) / 2;
     const centerY = this.boardOffsetY + (this.gameState.height * this.TILE) / 2;
 
-    for (let i = 0; i < 32; i++) {
+    for (let i = 0; i < 48; i++) {
       const tex = i % 2 === 0 ? 'particle-star' : 'particle-paw';
       const p = this.add.image(centerX, centerY, tex);
-      p.setScale(Phaser.Math.FloatBetween(0.8, 1.5));
+      p.setScale(Phaser.Math.FloatBetween(0.8, 1.6));
 
       const angle = Phaser.Math.FloatBetween(0, Math.PI * 2);
-      const speed = Phaser.Math.FloatBetween(140, 360);
+      const speed = Phaser.Math.FloatBetween(120, 380);
       const destX = centerX + Math.cos(angle) * speed;
       const destY = centerY + Math.sin(angle) * speed;
 
@@ -657,7 +693,7 @@ export class GameScene extends Phaser.Scene {
         y: destY,
         alpha: { from: 1, to: 0 },
         angle: Phaser.Math.Between(-180, 180),
-        duration: Phaser.Math.Between(700, 1100),
+        duration: Phaser.Math.Between(600, 1200),
         ease: 'Quad.easeOut',
         onComplete: () => p.destroy(),
       });

@@ -4,12 +4,15 @@ export interface LevelProgress {
   bestMoves: number;
 }
 
-const STORAGE_KEY_PROGRESS = 'pawcade_dog_parking_progress';
-const STORAGE_KEY_CURRENT_LEVEL = 'pawcade_dog_parking_current_level';
+const getProgressKey = (gameId: string) => 
+  gameId === 'dog-parking' ? 'pawcade_dog_parking_progress' : `pawcade_${gameId}_progress`;
 
-export function getCompletedLevels(): Record<number, LevelProgress> {
+const getCurrentLevelKey = (gameId: string) => 
+  gameId === 'dog-parking' ? 'pawcade_dog_parking_current_level' : `pawcade_${gameId}_current_level`;
+
+export function getCompletedLevels(gameId: string = 'dog-parking'): Record<number, LevelProgress> {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY_PROGRESS);
+    const raw = localStorage.getItem(getProgressKey(gameId));
     if (raw) {
       return JSON.parse(raw);
     }
@@ -17,9 +20,9 @@ export function getCompletedLevels(): Record<number, LevelProgress> {
   return {};
 }
 
-export function saveLevelProgress(levelId: number, moves: number, stars: number): void {
+export function saveLevelProgress(levelId: number, moves: number, stars: number, gameId: string = 'dog-parking'): void {
   try {
-    const existing = getCompletedLevels();
+    const existing = getCompletedLevels(gameId);
     const prev = existing[levelId];
 
     const bestMoves = prev ? Math.min(prev.bestMoves, moves) : moves;
@@ -31,13 +34,13 @@ export function saveLevelProgress(levelId: number, moves: number, stars: number)
       bestMoves,
     };
 
-    localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify(existing));
+    localStorage.setItem(getProgressKey(gameId), JSON.stringify(existing));
   } catch {}
 }
 
-export function getSavedCurrentLevel(): number {
+export function getSavedCurrentLevel(gameId: string = 'dog-parking'): number {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY_CURRENT_LEVEL);
+    const raw = localStorage.getItem(getCurrentLevelKey(gameId));
     if (raw) {
       const parsed = parseInt(raw, 10);
       if (!isNaN(parsed) && parsed >= 1 && parsed <= 12) {
@@ -48,8 +51,9 @@ export function getSavedCurrentLevel(): number {
   return 1;
 }
 
-export function saveCurrentLevel(levelId: number): void {
+export function saveCurrentLevel(levelId: number, gameId: string = 'dog-parking'): void {
   try {
-    localStorage.setItem(STORAGE_KEY_CURRENT_LEVEL, String(levelId));
+    localStorage.setItem(getCurrentLevelKey(gameId), String(levelId));
   } catch {}
 }
+
