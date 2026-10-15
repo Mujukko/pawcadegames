@@ -3,6 +3,7 @@ import { GameState, LevelConfig, Dog, ExitGate, Obstacle } from '../logic/types'
 import { createGameState, getDogMoveRange, moveDog, isWinningState } from '../logic/engine';
 import { LEVELS } from '../levels/levelsData';
 import { soundManager } from '../systems/sound';
+import { ensureDogTextures } from './textures';
 
 export interface GameSceneEvents {
   onMove?: (movesCount: number) => void;
@@ -17,8 +18,8 @@ export class GameScene extends Phaser.Scene {
 
   // Display metrics
   private readonly TILE = 80;
-  private boardOffsetX = 25;
-  private boardOffsetY = 25;
+  private boardOffsetX = 14;
+  private boardOffsetY = 30;
 
   // Visual containers
   private boardContainer!: Phaser.GameObjects.Container;
@@ -54,11 +55,14 @@ export class GameScene extends Phaser.Scene {
   }
 
   create() {
+    // 1. Ensure all procedural canvas textures exist
+    ensureDogTextures(this);
+
     if (!this.currentLevel) {
       this.currentLevel = LEVELS[0]!;
     }
 
-    // Clean state
+    // 2. Clean state
     this.gameState = createGameState(this.currentLevel);
     this.isAnimating = false;
 

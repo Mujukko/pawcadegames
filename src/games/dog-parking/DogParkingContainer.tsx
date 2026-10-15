@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Phaser from 'phaser';
-import { BootScene } from './scenes/BootScene';
 import { GameScene } from './scenes/GameScene';
 import { LEVELS } from './levels/levelsData';
 import { LevelConfig } from './logic/types';
@@ -76,14 +75,14 @@ export const DogParkingContainer: React.FC = () => {
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
       parent: containerRef.current,
-      width: 530,
-      height: 530,
+      width: 540,
+      height: 540,
       backgroundColor: '#f8fafc',
       scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
       },
-      scene: [BootScene, GameScene],
+      scene: [GameScene],
     };
 
     const game = new Phaser.Game(config);
