@@ -39,6 +39,7 @@ export class GameScene extends Phaser.Scene {
   private dogInitialCoord: number = 0;
   private allowedRange: { min: number; max: number; canExit: boolean } = { min: 0, max: 0, canExit: false };
   private isAnimating = false;
+  public static initialLevel?: LevelConfig;
 
   constructor() {
     super('GameScene');
@@ -47,6 +48,8 @@ export class GameScene extends Phaser.Scene {
   public init(data?: { level?: LevelConfig; callbacks?: GameSceneEvents }) {
     if (data?.level) {
       this.currentLevel = data.level;
+    } else if (GameScene.initialLevel) {
+      this.currentLevel = GameScene.initialLevel;
     } else if (!this.currentLevel) {
       this.currentLevel = LEVELS[0]!;
     }
@@ -56,12 +59,16 @@ export class GameScene extends Phaser.Scene {
     }
   }
 
+  public getCurrentLevel(): LevelConfig {
+    return this.currentLevel;
+  }
+
   create() {
     // 1. Ensure all procedural canvas textures exist
     ensureDogTextures(this);
 
     if (!this.currentLevel) {
-      this.currentLevel = LEVELS[0]!;
+      this.currentLevel = GameScene.initialLevel || LEVELS[0]!;
     }
 
     // 2. Clean state
@@ -89,24 +96,19 @@ export class GameScene extends Phaser.Scene {
   }
 
   public restartLevel() {
-    if (this.isAnimating) return;
-    this.gameState = createGameState(this.currentLevel);
-    this.renderDogsFromState();
-    this.checkExitGateStatus();
-    this.setupIntroTutorial();
-    if (this.eventsCallback.onMove) {
-      this.eventsCallback.onMove(0);
-    }
-    if (this.eventsCallback.onStateUpdate) {
-      this.eventsCallback.onStateUpdate(this.gameState);
-    }
+    this.tweens.killAll();
+    this.isAnimating = false;
+    this.loadLevel(this.currentLevel);
     soundManager.playTap();
   }
 
   public loadLevel(level: LevelConfig) {
+    this.tweens.killAll();
+    this.isAnimating = false;
+    this.activeDragDogId = null;
+    this.hideDragGuide();
     this.currentLevel = level;
     this.gameState = createGameState(level);
-    this.isAnimating = false;
     this.createBoardLayout();
     this.createObstacles();
     this.createDogs();
@@ -592,6 +594,7 @@ export class GameScene extends Phaser.Scene {
       duration: 550,
       ease: 'Cubic.easeIn',
       onComplete: () => {
+        this.isAnimating = false;
         this.triggerVictoryCelebration();
       },
     });

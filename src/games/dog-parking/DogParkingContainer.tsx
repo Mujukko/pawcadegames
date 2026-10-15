@@ -72,6 +72,8 @@ export const DogParkingContainer: React.FC = () => {
     analytics.track('game_loaded', { gameId: 'dog-parking' });
     analytics.track('level_started', { gameId: 'dog-parking', levelId: currentLevel.id });
 
+    GameScene.initialLevel = currentLevel;
+
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
       parent: containerRef.current,
@@ -104,6 +106,9 @@ export const DogParkingContainer: React.FC = () => {
             onMove: (m) => setMoves(m),
             onLevelComplete: handleLevelComplete,
           });
+          if (scene.getCurrentLevel()?.id !== currentLevel.id) {
+            scene.loadLevel(currentLevel);
+          }
           clearInterval(checkScene);
         } else if (attempts > 60) {
           clearInterval(checkScene);
@@ -138,12 +143,12 @@ export const DogParkingContainer: React.FC = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [currentLevel]);
 
   const handleRestart = () => {
-    const scene = gameRef.current?.scene.getScene('GameScene') as GameScene;
+    const scene = activeSceneRef.current || (gameRef.current?.scene.getScene('GameScene') as GameScene);
     if (scene) {
-      scene.restartLevel();
+      scene.loadLevel(currentLevel);
       setMoves(0);
       setIsCompleted(false);
       analytics.track('game_restarted', { gameId: 'dog-parking', levelId: currentLevel.id });
@@ -151,7 +156,7 @@ export const DogParkingContainer: React.FC = () => {
   };
 
   const handleUndo = () => {
-    const scene = gameRef.current?.scene.getScene('GameScene') as GameScene;
+    const scene = activeSceneRef.current || (gameRef.current?.scene.getScene('GameScene') as GameScene);
     if (scene) {
       scene.undoMove();
     }
@@ -167,7 +172,7 @@ export const DogParkingContainer: React.FC = () => {
     setIsCompleted(false);
     setIsLevelSelectOpen(false);
 
-    const scene = gameRef.current?.scene.getScene('GameScene') as GameScene;
+    const scene = activeSceneRef.current || (gameRef.current?.scene.getScene('GameScene') as GameScene);
     if (scene) {
       scene.loadLevel(target);
       scene.setCallbacks({

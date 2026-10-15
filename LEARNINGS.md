@@ -31,3 +31,14 @@
   3. Redesigned Sunny's badge into an 18px golden medallion with a red hero cape and bright star symbol (`★`).
   4. Redesigned the exit gate with warm kennel wood, bone icon, and emerald directional arrows matching the dog park theme.
 - **Preventive Rule:** The first level must always guide the player's eyes and first finger stroke within 1 second using animations rather than text dialogs.
+
+## [2026-10-15] Phaser Animation Flags & React Level Sync
+- **What happened:** Clicking "Replay Level" from the victory modal froze the board and stayed stuck. On page reload, React displayed Level 3/4 but Phaser rendered Level 1 with the Level 1 intro guide.
+- **Root cause:**
+  1. `executeHeroExit` set `this.isAnimating = true;` during the exit slide, but never reset it back to `false` in `onComplete`. This caused all subsequent pointer and drag handlers as well as `restartLevel()` (which guarded with `if (this.isAnimating) return;`) to permanently abort.
+  2. On page reload with saved progress, `levelIndex` loaded from `localStorage`, but Phaser's `scene: [GameScene]` constructor initialized with empty `data`, falling back to `LEVELS[0]`. The check loop attached callbacks without loading `currentLevel`.
+- **Resolution:**
+  1. Reset `this.isAnimating = false;` in `executeHeroExit.onComplete`.
+  2. In `restartLevel()`, unconditionally call `this.tweens.killAll()`, reset `this.isAnimating = false;`, and delegate to `loadLevel(this.currentLevel)`.
+  3. Static property `GameScene.initialLevel` and `checkScene` level check guarantee Phaser always initializes and syncs to React's active `currentLevel` from `localStorage`.
+- **Preventive Rule:** Never let an animation lock flag persist beyond its tween, and always make restart/load functions cancel in-flight tweens and force-clear animation flags.
