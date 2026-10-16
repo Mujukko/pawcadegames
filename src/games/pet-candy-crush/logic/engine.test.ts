@@ -191,9 +191,9 @@ describe('Farm Animal Match: Match-3 Core Engine', () => {
       const state = createInitialGameState();
       const initialMoves = state.movesRemaining;
 
-      // Populate a 3x3 corner with checkerboard pattern of diverse animals to prevent accidental matches
-      for (let r = 0; r < 3; r++) {
-        for (let c = 0; c < 3; c++) {
+      // Populate top 4 rows with checkerboard pattern of duck and horse to prevent accidental random matches
+      for (let r = 0; r < 4; r++) {
+        for (let c = 0; c < 8; c++) {
           state.board[r]![c] = createTile(r, c, (r + c) % 2 === 0 ? 'duck' : 'horse');
         }
       }

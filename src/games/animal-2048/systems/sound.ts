@@ -1,4 +1,5 @@
 import { ANIMAL_TIERS } from '../logic/types';
+import { getSharedAudioContext } from '../../../lib/audio/webAudioUnlocker';
 
 class Animal2048SoundManager {
   private ctx: AudioContext | null = null;
@@ -17,17 +18,7 @@ class Animal2048SoundManager {
   }
 
   private initCtx() {
-    if (!this.ctx) {
-      const AudioCtx =
-        window.AudioContext ||
-        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (AudioCtx) {
-        this.ctx = new AudioCtx();
-      }
-    }
-    if (this.ctx && this.ctx.state === 'suspended') {
-      this.ctx.resume().catch(() => {});
-    }
+    this.ctx = getSharedAudioContext();
   }
 
   public isMuted(): boolean {

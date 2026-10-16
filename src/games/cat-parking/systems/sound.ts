@@ -1,3 +1,5 @@
+import { getSharedAudioContext } from '../../../lib/audio/webAudioUnlocker';
+
 class CatSoundManager {
   private ctx: AudioContext | null = null;
   private muted: boolean = false;
@@ -15,15 +17,9 @@ class CatSoundManager {
   }
 
   private initCtx() {
-    if (!this.ctx) {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (AudioCtx) {
-        this.ctx = new AudioCtx();
-        this.noiseBuffer = this.generatePinkNoiseBuffer(this.ctx);
-      }
-    }
-    if (this.ctx && this.ctx.state === 'suspended') {
-      this.ctx.resume().catch(() => {});
+    this.ctx = getSharedAudioContext();
+    if (this.ctx && !this.noiseBuffer) {
+      this.noiseBuffer = this.generatePinkNoiseBuffer(this.ctx);
     }
   }
 
