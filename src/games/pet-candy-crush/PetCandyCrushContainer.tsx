@@ -102,6 +102,7 @@ export const PetCandyCrushContainer: React.FC = () => {
   const [shuffleCount, setShuffleCount] = useState<number>(1);
 
   const touchStartRef = useRef<{ row: number; col: number; x: number; y: number } | null>(null);
+  const lastTouchTimeRef = useRef<number>(0);
   const timeoutsRef = useRef<number[]>([]);
 
   const clearScheduledTimeouts = () => {
@@ -383,8 +384,13 @@ export const PetCandyCrushContainer: React.FC = () => {
   );
 
   const handleTileClick = useCallback(
-    (row: number, col: number) => {
+    (row: number, col: number, isFromClick: boolean = false) => {
       if (isAnimating || gameState.isGameOver || gameState.hasWon) return;
+
+      // Suppress synthetic click fired ~300ms after a touch event on mobile
+      if (isFromClick && performance.now() - lastTouchTimeRef.current < 450) {
+        return;
+      }
 
       // If Hammer Booster is active, smash this tile/lock/swirl immediately!
       if (isHammerActive && hammerCount > 0) {
@@ -499,6 +505,7 @@ export const PetCandyCrushContainer: React.FC = () => {
 
   const handleTouchStart = (row: number, col: number, e: React.TouchEvent) => {
     if (e.touches.length > 0) {
+      lastTouchTimeRef.current = performance.now();
       touchStartRef.current = {
         row,
         col,
@@ -508,37 +515,59 @@ export const PetCandyCrushContainer: React.FC = () => {
     }
   };
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!touchStartRef.current || e.changedTouches.length === 0) return;
-    const start = touchStartRef.current;
-    const endX = e.changedTouches[0]!.clientX;
-    const endY = e.changedTouches[0]!.clientY;
-    const dx = endX - start.x;
-    const dy = endY - start.y;
-    touchStartRef.current = null;
-
-    if (Math.abs(dx) < 24 && Math.abs(dy) < 24) {
-      handleTileClick(start.row, start.col);
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (
+      !touchStartRef.current ||
+      e.touches.length === 0 ||
+      isAnimating ||
+      gameState.isGameOver ||
+      gameState.hasWon
+    ) {
       return;
     }
 
-    let targetRow = start.row;
-    let targetCol = start.col;
-
-    if (Math.abs(dx) > Math.abs(dy)) {
-      targetCol += dx > 0 ? 1 : -1;
-    } else {
-      targetRow += dy > 0 ? 1 : -1;
+    if (e.cancelable) {
+      e.preventDefault();
     }
 
-    if (
-      targetRow >= 0 &&
-      targetRow < BOARD_ROWS &&
-      targetCol >= 0 &&
-      targetCol < BOARD_COLS
-    ) {
-      executePlayerSwap(start.row, start.col, targetRow, targetCol);
+    const curX = e.touches[0]!.clientX;
+    const curY = e.touches[0]!.clientY;
+    const dx = curX - touchStartRef.current.x;
+    const dy = curY - touchStartRef.current.y;
+
+    // Fast tactile threshold: swipe triggers immediately upon moving >= 14px!
+    if (Math.abs(dx) >= 14 || Math.abs(dy) >= 14) {
+      const fromRow = touchStartRef.current.row;
+      const fromCol = touchStartRef.current.col;
+      // Mark touch consumed so it does not trigger again during the same gesture or on touchEnd
+      touchStartRef.current = null;
+      lastTouchTimeRef.current = performance.now();
+
+      let targetRow = fromRow;
+      let targetCol = fromCol;
+      if (Math.abs(dx) > Math.abs(dy)) {
+        targetCol += dx > 0 ? 1 : -1;
+      } else {
+        targetRow += dy > 0 ? 1 : -1;
+      }
+
+      if (
+        targetRow >= 0 &&
+        targetRow < BOARD_ROWS &&
+        targetCol >= 0 &&
+        targetCol < BOARD_COLS
+      ) {
+        executePlayerSwap(fromRow, fromCol, targetRow, targetCol);
+      }
     }
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartRef.current) return;
+    const { row, col } = touchStartRef.current;
+    touchStartRef.current = null;
+    lastTouchTimeRef.current = performance.now();
+    handleTileClick(row, col, false);
   };
 
   const handleShuffle = () => {
@@ -700,7 +729,7 @@ export const PetCandyCrushContainer: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-2 py-1 select-none">
+    <div className="w-full max-w-4xl mx-auto px-1 sm:px-2 py-1 select-none">
       {/* Keyframe Animations */}
       <style>{`
         @keyframes bubble-shockwave {
@@ -783,7 +812,7 @@ export const PetCandyCrushContainer: React.FC = () => {
         style={{
           boxShadow: '0 14px 36px rgba(15, 23, 42, 0.32)',
         }}
-        className="relative w-full rounded-[32px] p-3 sm:p-5 border-4 border-amber-700/80 overflow-hidden bg-amber-950"
+        className="relative w-full rounded-[20px] sm:rounded-[32px] p-2 sm:p-5 border-2 sm:border-4 border-amber-700/80 overflow-hidden bg-amber-950"
       >
         {/* BLURRED SCENIC FARM ILLUSTRATION BACKDROP */}
         <div
@@ -943,8 +972,8 @@ export const PetCandyCrushContainer: React.FC = () => {
         {/* Subtle Warm Sunlight Vignette Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-amber-950/35 pointer-events-none z-0" />
 
-        {/* Top Bar: Level Selector & Farm Utility Buttons */}
-        <div className="relative z-20 flex flex-wrap items-center justify-between gap-2 mb-3">
+        {/* Desktop Top Bar: Level Selector & Farm Utility Buttons */}
+        <div className="hidden md:flex relative z-20 flex-wrap items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2">
             <div className="farm-wood-frame p-1 rounded-2xl">
               <div className="bg-amber-50 px-3 py-1 rounded-xl flex items-center gap-1.5 border border-amber-300 shadow-inner">
@@ -1022,13 +1051,176 @@ export const PetCandyCrushContainer: React.FC = () => {
           </div>
         </div>
 
+        {/* =========================================================================
+            MOBILE MASTER HUD (compact single-screen HUD for < md phones)
+            ========================================================================= */}
+        <div className="flex md:hidden flex-col gap-1.5 w-full max-w-[430px] mx-auto mb-2 z-20 relative">
+          {/* Row 1: Level Pill, Target Pills, Moves Highlight, Mini Actions */}
+          <div className="flex items-center justify-between gap-1 bg-amber-950/90 backdrop-blur-md border border-amber-400/60 rounded-xl px-2 py-1 shadow-md">
+            {/* Level Selector */}
+            <div className="flex items-center gap-0.5 bg-amber-900/90 border border-amber-300/40 rounded-lg px-1 py-0.5 shrink-0">
+              <button
+                onClick={() => startLevel(currentLevel - 1)}
+                disabled={currentLevel <= 1}
+                className="p-0.5 text-amber-200 hover:text-white disabled:opacity-30 cursor-pointer"
+                title="Previous Level"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+              </button>
+              <span className="text-[11px] font-black text-amber-100 whitespace-nowrap px-0.5">
+                Lvl {currentLevel}
+              </span>
+              <button
+                onClick={() => startLevel(currentLevel + 1)}
+                disabled={currentLevel >= unlockedMaxLevel || currentLevel >= LEVEL_CONFIGS.length}
+                className="p-0.5 text-amber-200 hover:text-white disabled:opacity-30 cursor-pointer"
+                title="Next Level"
+              >
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* Rescue Target Badges */}
+            <div className="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5">
+              {cagedSpeciesTargets.length > 0 ? (
+                cagedSpeciesTargets.map(({ animal, total, rescued }) => {
+                  const cfg = TREAT_CONFIGS[animal];
+                  const isDone = rescued >= total;
+                  return (
+                    <div
+                      key={animal}
+                      className={`flex items-center gap-0.5 px-1.5 py-0.5 rounded-lg border text-[11px] font-black shrink-0 ${
+                        isDone
+                          ? 'bg-emerald-900/80 border-emerald-400 text-emerald-200'
+                          : 'bg-amber-900/80 border-amber-400/60 text-amber-100'
+                      }`}
+                    >
+                      <span className="text-xs leading-none">{cfg.emoji}</span>
+                      <span>
+                        {rescued}/{total}
+                      </span>
+                      {isDone && <CheckCircle2 className="w-3 h-3 text-emerald-400 inline" />}
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="flex items-center gap-1 text-[11px] font-black text-yellow-300 px-1.5 py-0.5 bg-amber-900/70 border border-amber-400/40 rounded-lg">
+                  <span>🌾 Goal: {gameState.goal.targetScore}</span>
+                </div>
+              )}
+            </div>
+
+            {/* Prominent Moves Pill */}
+            <div
+              style={{
+                boxShadow: gameState.movesRemaining <= 5 ? '0 0 10px #ef4444' : undefined,
+              }}
+              className={`flex items-center gap-1 px-2 py-0.5 rounded-lg font-black text-xs shrink-0 border ${
+                gameState.movesRemaining <= 5
+                  ? 'bg-red-600 text-white border-red-300 animate-pulse'
+                  : 'bg-gradient-to-b from-amber-400 to-amber-600 text-amber-950 border-amber-200'
+              }`}
+            >
+              <span className="text-[10px] uppercase tracking-tighter opacity-80">Moves</span>
+              <span className="text-sm font-black leading-none">{gameState.movesRemaining}</span>
+            </div>
+
+            {/* Mini Actions: Mute & Restart */}
+            <div className="flex items-center gap-1 shrink-0">
+              <button
+                onClick={toggleSound}
+                className="p-1 rounded-lg bg-amber-900/80 border border-amber-400/50 text-amber-200 cursor-pointer"
+                title={isMuted ? 'Unmute' : 'Mute'}
+              >
+                {isMuted ? <VolumeX className="w-3.5 h-3.5 text-red-400" /> : <Volume2 className="w-3.5 h-3.5 text-emerald-400" />}
+              </button>
+              <button
+                onClick={handleRestart}
+                className="p-1 rounded-lg bg-emerald-700 border border-emerald-300 text-white cursor-pointer"
+                title="Restart"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Row 2: 3 Booster Pills + Help Button */}
+          <div className="flex items-center justify-between gap-1.5">
+            <div className="flex items-center gap-1.5">
+              {/* 1. Hammer Smash */}
+              <button
+                onClick={() => {
+                  if (hammerCount > 0) {
+                    petCrushSound.playSelect();
+                    setIsHammerActive((v) => !v);
+                  }
+                }}
+                disabled={hammerCount <= 0}
+                className={`flex items-center gap-1 px-2 py-1 rounded-xl font-black text-[11px] border cursor-pointer transition-all ${
+                  isHammerActive
+                    ? 'bg-yellow-400 text-amber-950 border-white ring-2 ring-yellow-300 scale-105'
+                    : 'bg-gradient-to-b from-lime-500 to-emerald-700 text-white border-lime-300'
+                } disabled:opacity-40 disabled:cursor-not-allowed`}
+              >
+                <Hammer className="w-3.5 h-3.5" />
+                <span>Smash</span>
+                <span className="w-4 h-4 rounded-full bg-red-600 text-white text-[9px] flex items-center justify-center font-black">
+                  {hammerCount}
+                </span>
+              </button>
+
+              {/* 2. +5 Moves */}
+              <button
+                onClick={handleAddExtraMoves}
+                disabled={extraMovesCount <= 0}
+                className="flex items-center gap-1 px-2 py-1 rounded-xl bg-gradient-to-b from-lime-500 to-emerald-700 text-white font-black text-[11px] border border-lime-300 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                <span className="text-amber-200">+5</span>
+                <span>Moves</span>
+                <span className="w-4 h-4 rounded-full bg-red-600 text-white text-[9px] flex items-center justify-center font-black">
+                  {extraMovesCount}
+                </span>
+              </button>
+
+              {/* 3. Shuffle */}
+              <button
+                onClick={handleShuffle}
+                disabled={shuffleCount <= 0}
+                className="flex items-center gap-1 px-2 py-1 rounded-xl bg-gradient-to-b from-lime-500 to-emerald-700 text-white font-black text-[11px] border border-lime-300 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                <Shuffle className="w-3.5 h-3.5" />
+                <span>Mix</span>
+                <span className="w-4 h-4 rounded-full bg-red-600 text-white text-[9px] flex items-center justify-center font-black">
+                  {shuffleCount}
+                </span>
+              </button>
+            </div>
+
+            {/* Help Button */}
+            <button
+              onClick={() => setIsHelpOpen(true)}
+              className="p-1 px-2 rounded-xl bg-amber-900/80 border border-amber-400/50 text-amber-200 text-xs font-black flex items-center gap-1 cursor-pointer"
+            >
+              <HelpCircle className="w-3.5 h-3.5" />
+              <span>Help</span>
+            </button>
+          </div>
+
+          {/* Active Hammer Prompt Banner */}
+          {isHammerActive && (
+            <div className="px-2 py-1 rounded-lg bg-yellow-400 text-amber-950 font-black text-xs text-center border-2 border-white shadow-md animate-bounce">
+              🔨 Tap any Cage or Animal to Smash!
+            </div>
+          )}
+        </div>
+
         {/* 3-COLUMN FARM CRUSH LAYOUT:
-            Left: Rustic Timber Boosters + Harvest Targets + Moves/Hay
+            Left: Rustic Timber Boosters + Harvest Targets + Moves/Hay (Desktop)
             Center: Frosted Pasture Glass 8x8 Grid
-            Right: Authentic 3D Farm Grain & Hay Silo with Dome, Ladder & 3 Stars */}
+            Right: Authentic 3D Farm Grain & Hay Silo with Dome, Ladder & 3 Stars (Desktop) */}
         <div className="relative z-10 flex flex-col md:flex-row items-center md:items-stretch justify-center gap-3 sm:gap-4">
-          {/* LEFT PANEL: Farm Timber Frame with Boosters, Level Targets & Moves */}
-          <div className="w-full md:w-48 flex flex-row md:flex-col justify-between gap-2.5 shrink-0">
+          {/* LEFT PANEL: Farm Timber Frame with Boosters, Level Targets & Moves (Desktop only) */}
+          <div className="hidden md:flex w-full md:w-48 flex-col justify-between gap-2.5 shrink-0">
             {/* Top-Left 3 Glossy Green 3D Booster Buttons + Target Box */}
             <div className="farm-wood-frame p-2 rounded-2xl flex-1 md:flex-none">
               {/* 3 Glossy Green Farm Booster Buttons (Hammer: 1, +5 Moves: 1, Shuffle: 1) */}
@@ -1258,8 +1450,9 @@ export const PetCandyCrushContainer: React.FC = () => {
                   return (
                     <div
                       key={tile.id || cellKey}
-                      onClick={() => handleTileClick(r, c)}
+                      onClick={() => handleTileClick(r, c, true)}
                       onTouchStart={(e) => handleTouchStart(r, c, e)}
+                      onTouchMove={handleTouchMove}
                       onTouchEnd={handleTouchEnd}
                       style={{
                         backgroundColor: isTutorialCell
@@ -1570,7 +1763,7 @@ export const PetCandyCrushContainer: React.FC = () => {
 
             {/* LEVEL 1 PRE-START INTERACTIVE FINGER INTRO OVERLAY */}
             {currentLevel === 1 && isLevel1IntroOpen && !gameState.hasWon && (
-              <div className="absolute inset-0 bg-amber-950/92 backdrop-blur-md rounded-[24px] flex flex-col items-center justify-between p-4 sm:p-5 text-center z-45 animate-in fade-in duration-200">
+              <div className="absolute inset-0 bg-amber-950/95 backdrop-blur-md rounded-[24px] flex flex-col items-center justify-between p-3 sm:p-5 text-center z-45 animate-in fade-in duration-200 overflow-y-auto max-h-full">
                 {/* Header */}
                 <div>
                   <span className="inline-block px-3 py-0.5 rounded-full bg-amber-400/20 border border-amber-300/50 text-amber-200 text-[10px] font-black uppercase tracking-widest mb-1">
@@ -1694,7 +1887,7 @@ export const PetCandyCrushContainer: React.FC = () => {
                   style={{
                     boxShadow: '0 5px 0 #14532d, 0 10px 24px rgba(0, 0, 0, 0.5)',
                   }}
-                  className="w-full max-w-xs py-3 px-6 rounded-2xl bg-gradient-to-b from-lime-400 via-emerald-500 to-green-700 hover:from-lime-500 hover:to-green-800 text-white font-black text-base sm:text-lg border-2 border-lime-200 cursor-pointer active:translate-y-0.5 transition-all flex items-center justify-center gap-2"
+                  className="w-full max-w-xs shrink-0 py-2.5 sm:py-3 px-4 sm:px-6 rounded-2xl bg-gradient-to-b from-lime-400 via-emerald-500 to-green-700 hover:from-lime-500 hover:to-green-800 text-white font-black text-sm sm:text-lg border-2 border-lime-200 cursor-pointer active:translate-y-0.5 transition-all flex items-center justify-center gap-2 mt-2"
                 >
                   <span>👆</span>
                   <span>Start Level 1!</span>
@@ -1798,8 +1991,8 @@ export const PetCandyCrushContainer: React.FC = () => {
             )}
           </div>
 
-          {/* RIGHT PANEL: AUTHENTIC 3D FARM GRAIN & HAY SILO TOWER */}
-          <div className="w-full md:w-28 flex flex-col items-center justify-between shrink-0 select-none">
+          {/* RIGHT PANEL: AUTHENTIC 3D FARM GRAIN & HAY SILO TOWER (Desktop only) */}
+          <div className="hidden md:flex w-full md:w-28 flex-col items-center justify-between shrink-0 select-none">
             {/* 1. Silo Top Ventilator Cap & Ribbed Galvanized Metal Dome Roof */}
             <div className="w-full flex flex-col items-center">
               {/* Top Weather Cupola Cap */}
@@ -1929,8 +2122,78 @@ export const PetCandyCrushContainer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Farm Booster Recipe Legend */}
-        <div className="relative z-10 mt-3 grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+        {/* =========================================================================
+            MOBILE HORIZONTAL GOLDEN HAY SILO PROGRESS BAR
+            ========================================================================= */}
+        <div className="flex md:hidden flex-col gap-1 w-full max-w-[430px] mx-auto mt-2 z-20 relative">
+          <div className="relative w-full h-7 bg-stone-950/90 rounded-full border-2 border-amber-300 p-0.5 shadow-inner overflow-hidden flex items-center">
+            {/* Rising Golden Hay Bar */}
+            <div
+              style={{
+                width: `${hayPercent}%`,
+                background:
+                  'repeating-linear-gradient(-30deg, #d97706 0px, #f59e0b 6px, #fde047 12px, #ca8a04 18px)',
+                boxShadow: '0 0 10px rgba(250, 204, 21, 0.75)',
+              }}
+              className="h-full rounded-full transition-all duration-300 relative"
+            />
+
+            {/* Star 1 Marker */}
+            <div
+              style={{ left: `${star1Pct}%` }}
+              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 pointer-events-none"
+            >
+              <div
+                className={`w-5 h-5 rounded-full border border-amber-100 flex items-center justify-center ${
+                  gameState.stars >= 1 ? 'bg-amber-500 scale-110 shadow-xs' : 'bg-stone-800 opacity-60'
+                }`}
+              >
+                <Star className="w-3 h-3 fill-amber-200 text-amber-200" />
+              </div>
+            </div>
+
+            {/* Star 2 Marker */}
+            <div
+              style={{ left: `${star2Pct}%` }}
+              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 pointer-events-none"
+            >
+              <div
+                className={`w-5 h-5 rounded-full border border-amber-100 flex items-center justify-center ${
+                  gameState.stars >= 2 ? 'bg-emerald-600 scale-110 shadow-xs' : 'bg-stone-800 opacity-60'
+                }`}
+              >
+                <Star className="w-3 h-3 fill-amber-200 text-amber-200" />
+              </div>
+            </div>
+
+            {/* Star 3 Marker */}
+            <div
+              style={{ left: `${star3Pct}%` }}
+              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 pointer-events-none"
+            >
+              <div
+                className={`w-5 h-5 rounded-full border border-amber-100 flex items-center justify-center ${
+                  gameState.stars >= 3 ? 'bg-yellow-500 scale-115 shadow-xs' : 'bg-stone-800 opacity-60'
+                }`}
+              >
+                <Star className="w-3 h-3 fill-yellow-100 text-yellow-100" />
+              </div>
+            </div>
+
+            {/* Centered Hay Text */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <span
+                style={{ textShadow: '0 1px 3px rgba(0,0,0,0.9), 0 0 2px #000' }}
+                className="text-[11px] font-black text-amber-200 tracking-wide"
+              >
+                🌾 Hay Silo: {gameState.score} / {gameState.goal.targetScore} ({hayPercent}%)
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Farm Booster Recipe Legend (Desktop only) */}
+        <div className="hidden md:grid relative z-10 mt-3 grid-cols-2 sm:grid-cols-4 gap-1.5">
           <div className="flex items-center gap-1.5 bg-amber-950/85 backdrop-blur-xs border border-amber-400/50 rounded-xl px-2.5 py-1.5 text-amber-50 shadow-sm">
             <span className="text-base">🧨</span>
             <div className="leading-tight">
