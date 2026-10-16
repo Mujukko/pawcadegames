@@ -713,7 +713,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                 setSearchQuery('');
                 setActiveFilter('all');
               }}
-              className="mt-4 px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white font-bold text-xs rounded-xl transition-colors cursor-pointer"
+              className="mt-4 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-slate-950 font-bold text-xs rounded-xl transition-colors cursor-pointer"
             >
               Clear Filters
             </button>

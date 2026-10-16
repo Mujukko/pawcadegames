@@ -64,7 +64,7 @@ export const DuckRunnerContainer: React.FC = () => {
     { x: 650, y: 70, speed: 22, scale: 1.3 },
   ]);
 
-  const groundPebblesRef = useRef<Array<{ x: number; y: number; size: number }>>(() => {
+  const groundPebblesRef = useRef<Array<{ x: number; y: number; size: number }>>((() => {
     const list = [];
     for (let i = 0; i < 35; i++) {
       list.push({
@@ -74,7 +74,7 @@ export const DuckRunnerContainer: React.FC = () => {
       });
     }
     return list;
-  });
+  })());
 
   // Handle jump action
   const handleJump = useCallback(() => {
@@ -327,7 +327,7 @@ export const DuckRunnerContainer: React.FC = () => {
       ctx.fillRect(0, groundY, width, 5);
 
       // Moving ground pebbles / grass tufts
-      groundPebblesRef.current().forEach((p) => {
+      groundPebblesRef.current.forEach((p) => {
         if (nextState.isStarted && !nextState.isGameOver) {
           p.x -= nextState.speed * dt;
           if (p.x < -10) p.x = width + Math.random() * 40;
@@ -887,14 +887,14 @@ export const DuckRunnerContainer: React.FC = () => {
             <button
               onClick={() => setIsHelpOpen(true)}
               title="How to Play"
-              className="p-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-amber-300 border border-amber-400/50 shadow-sm cursor-pointer min-h-[40px] min-w-[40px] flex items-center justify-center"
+              className="p-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-amber-300 border border-amber-400/50 shadow-sm cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
             >
               <HelpCircle className="w-4 h-4" />
             </button>
             <button
               onClick={toggleSound}
               title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
-              className="p-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-100 border border-slate-600 shadow-sm cursor-pointer min-h-[40px] min-w-[40px] flex items-center justify-center"
+              className="p-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-100 border border-slate-600 shadow-sm cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
             >
               {isMuted ? (
                 <VolumeX className="w-4 h-4 text-red-400" />
@@ -905,7 +905,7 @@ export const DuckRunnerContainer: React.FC = () => {
             <button
               onClick={handleRestart}
               title="Restart Game"
-              className="p-2 px-3 rounded-xl bg-gradient-to-b from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black text-xs border border-amber-300 flex items-center gap-1 cursor-pointer min-h-[40px]"
+              className="p-2 px-3 rounded-xl bg-gradient-to-b from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black text-xs border border-amber-300 flex items-center gap-1 cursor-pointer min-h-[44px]"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Restart</span>
