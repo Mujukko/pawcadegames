@@ -75,4 +75,6 @@ Build a high-retention, delightful browser puzzle game called **Dog Parking** an
 - **Flappy Chicken: Wheat Run:** Complete (Pure TypeScript physics engine, 11 automated unit tests, animated Clucky sprite with falling feathers, procedural cartoon chicken clucking synth, 15-gate wheat goal with progress meter, grand wheat field victory celebration).
 - **Farm Animal Match: Barnyard Crush:** Complete (Pure TypeScript 8x8 match-3 engine, 6 farm animals [cow, pig, sheep, chicken, duck, horse], procedural vocal synths, striped runner/party animal/golden barn star boosters, cascading gravity, combo multipliers, touch swipe & click swap, 11 automated unit tests).
 - **Portal Shell:** Poki-inspired pure game grid homepage, instant search & category filters (All Games, Popular, New, Farm, Cats, Dogs, Puzzles), 100% English across the platform.
-- **Test Suite:** 77 automated unit tests passing (2754 assertions), production build verified.
+- **Test Suite:** 86 automated unit tests passing across 7 files (2920 assertions), production build verified.
+- **Repository:** `https://github.com/Mujukko/pawcadegames` (Continuous Deployment active via Cloudflare Workers / Pages).
+- **Live Deployment:** `https://pawcadegames.aras-sayin.workers.dev/` (Global edge CDN, native SPA routing, HTTP/2).
