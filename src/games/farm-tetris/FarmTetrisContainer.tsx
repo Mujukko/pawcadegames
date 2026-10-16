@@ -224,7 +224,7 @@ export const FarmTetrisContainer: React.FC = () => {
               onClick={handleRestart}
               title="Restart Game (R)"
               aria-label="Restart game"
-              className="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl transition-all cursor-pointer active:scale-90"
+              className="min-h-[44px] min-w-[44px] p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl transition-all cursor-pointer active:scale-90 flex items-center justify-center"
             >
               <RotateCcw className="w-4 h-4" />
             </button>
@@ -233,7 +233,7 @@ export const FarmTetrisContainer: React.FC = () => {
               onClick={togglePause}
               title={isPaused ? 'Resume (P)' : 'Pause (P)'}
               aria-label="Toggle pause"
-              className="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl transition-all cursor-pointer active:scale-90"
+              className="min-h-[44px] min-w-[44px] p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl transition-all cursor-pointer active:scale-90 flex items-center justify-center"
             >
               {isPaused ? <Play className="w-4 h-4 text-emerald-400" /> : <Pause className="w-4 h-4 text-amber-400" />}
             </button>
@@ -242,7 +242,7 @@ export const FarmTetrisContainer: React.FC = () => {
               onClick={toggleSound}
               title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
               aria-label="Toggle sound"
-              className="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl transition-all cursor-pointer active:scale-90"
+              className="min-h-[44px] min-w-[44px] p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl transition-all cursor-pointer active:scale-90 flex items-center justify-center"
             >
               {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
             </button>
@@ -251,7 +251,7 @@ export const FarmTetrisContainer: React.FC = () => {
               onClick={() => setIsHelpOpen(true)}
               title="How to Play"
               aria-label="How to play instructions"
-              className="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl transition-all cursor-pointer active:scale-90"
+              className="min-h-[44px] min-w-[44px] p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl transition-all cursor-pointer active:scale-90 flex items-center justify-center"
             >
               <HelpCircle className="w-4 h-4 text-indigo-400" />
             </button>
@@ -365,7 +365,7 @@ export const FarmTetrisContainer: React.FC = () => {
       {/* Game Over Modal */}
       {isGameOver && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-xs p-4 animate-in fade-in duration-200">
-          <div className="bg-slate-900 border-2 border-amber-600/40 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl relative overflow-hidden animate-in zoom-in-95 duration-300 text-white">
+          <div className="bg-slate-900 border-2 border-amber-600/40 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl relative overflow-y-auto max-h-[90vh] animate-in zoom-in-95 duration-300 text-white">
             <div className="w-16 h-16 bg-amber-500/20 border border-amber-500/40 rounded-2xl flex items-center justify-center mx-auto mb-3 text-3xl shadow-lg shadow-amber-500/20">
               🌾
             </div>
@@ -411,7 +411,7 @@ export const FarmTetrisContainer: React.FC = () => {
       {/* Help / Instructions Modal */}
       {isHelpOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-xs p-4 animate-in fade-in duration-200">
-          <div className="bg-slate-900 border border-slate-700 rounded-3xl p-6 sm:p-7 max-w-md w-full shadow-2xl text-white">
+          <div className="bg-slate-900 border border-slate-700 rounded-3xl p-6 sm:p-7 max-w-md w-full shadow-2xl text-white max-h-[90vh] overflow-y-auto flex flex-col">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-amber-400" />

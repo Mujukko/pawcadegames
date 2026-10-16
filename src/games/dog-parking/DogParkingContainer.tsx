@@ -307,7 +307,7 @@ export const DogParkingContainer: React.FC = () => {
               disabled={moves === 0 || isCompleted}
               title="Undo Move (Z)"
               aria-label="Undo previous move"
-              className="p-2 sm:px-3 sm:py-2 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 disabled:opacity-40 disabled:hover:bg-slate-100 rounded-xl font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="min-h-[44px] min-w-[44px] p-2 sm:px-3 sm:py-2 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 disabled:opacity-40 disabled:hover:bg-slate-100 rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
             >
               <Undo2 className="w-4 h-4" />
               <span className="hidden sm:inline">Undo</span>
@@ -318,7 +318,7 @@ export const DogParkingContainer: React.FC = () => {
               onClick={handleRestart}
               title="Restart Level (R)"
               aria-label="Restart current level"
-              className="p-2 sm:px-3 sm:py-2 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 active:bg-slate-200 rounded-xl font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition-all cursor-pointer select-none active:scale-95"
+              className="min-h-[44px] min-w-[44px] p-2 sm:px-3 sm:py-2 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 active:bg-slate-200 rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer select-none active:scale-95"
             >
               <RotateCcw className={`w-4 h-4 transition-transform duration-300 ${isRestarting ? '-rotate-180' : ''}`} />
               <span className="hidden sm:inline">Restart</span>
@@ -328,7 +328,7 @@ export const DogParkingContainer: React.FC = () => {
               onClick={toggleSound}
               title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
               aria-label={isMuted ? 'Unmute Sound' : 'Mute Sound'}
-              className="p-2 sm:px-3 sm:py-2 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 rounded-xl font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="min-h-[44px] min-w-[44px] p-2 sm:px-3 sm:py-2 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
             >
               {isMuted ? <VolumeX className="w-4 h-4 text-rose-500" /> : <Volume2 className="w-4 h-4 text-emerald-600" />}
             </button>
@@ -339,7 +339,7 @@ export const DogParkingContainer: React.FC = () => {
               onClick={() => setIsHelpOpen(true)}
               title="How to Play"
               aria-label="How to play instructions"
-              className="p-2 sm:px-3 sm:py-2 text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="min-h-[44px] min-w-[44px] p-2 sm:px-3 sm:py-2 text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
             >
               <HelpCircle className="w-4 h-4" />
               <span className="hidden sm:inline">How to Play</span>
@@ -349,7 +349,7 @@ export const DogParkingContainer: React.FC = () => {
               onClick={() => setIsLevelSelectOpen(true)}
               title="Select Level"
               aria-label="Open level select modal"
-              className="p-2 sm:px-3 sm:py-2 text-amber-700 bg-amber-100/70 hover:bg-amber-100 rounded-xl font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="min-h-[44px] min-w-[44px] p-2 sm:px-3 sm:py-2 text-amber-700 bg-amber-100/70 hover:bg-amber-100 rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
             >
               <Grid className="w-4 h-4" />
               <span className="hidden sm:inline">Levels</span>
@@ -382,7 +382,7 @@ export const DogParkingContainer: React.FC = () => {
       {/* Level Complete Modal */}
       {isCompleted && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
-          <div className="bg-white rounded-3xl shadow-2xl border-4 border-amber-400 p-6 sm:p-8 max-w-sm w-full text-center transform scale-100 transition-transform">
+          <div className="bg-white rounded-3xl shadow-2xl border-4 border-amber-400 p-6 sm:p-8 max-w-sm w-full text-center transform scale-100 transition-transform max-h-[90vh] overflow-y-auto">
             {/* Joyful Celebrating Sunny Avatar */}
             <div className="relative mx-auto mb-3 w-20 h-20 bg-gradient-to-tr from-amber-200 via-amber-100 to-yellow-100 rounded-3xl flex items-center justify-center shadow-lg border-2 border-amber-300">
               <span className="text-4xl animate-bounce select-none">🐕</span>
@@ -540,7 +540,7 @@ export const DogParkingContainer: React.FC = () => {
       {/* How to Play Modal */}
       {isHelpOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-          <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 p-6 max-w-md w-full">
+          <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 p-6 max-w-md w-full max-h-[90vh] overflow-y-auto flex flex-col">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-indigo-600" />

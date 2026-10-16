@@ -208,28 +208,28 @@ export const FlappyChickenContainer: React.FC = () => {
           <button
             onClick={() => setIsHelpOpen(true)}
             title="How to Play"
-            className="p-2 rounded-xl bg-white hover:bg-stone-100 text-amber-900 border border-stone-200 shadow-2xs transition-colors cursor-pointer"
+            className="min-h-[44px] min-w-[44px] p-2 rounded-xl bg-white hover:bg-stone-100 text-amber-900 border border-stone-200 shadow-2xs transition-colors cursor-pointer flex items-center justify-center"
           >
             <HelpCircle className="w-4 h-4" />
           </button>
           <button
             onClick={togglePause}
             title={isPaused ? 'Resume Game' : 'Pause Game'}
-            className="p-2 rounded-xl bg-white hover:bg-stone-100 text-amber-900 border border-stone-200 shadow-2xs transition-colors cursor-pointer"
+            className="min-h-[44px] min-w-[44px] p-2 rounded-xl bg-white hover:bg-stone-100 text-amber-900 border border-stone-200 shadow-2xs transition-colors cursor-pointer flex items-center justify-center"
           >
             {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
           </button>
           <button
             onClick={toggleSound}
             title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
-            className="p-2 rounded-xl bg-white hover:bg-stone-100 text-amber-900 border border-stone-200 shadow-2xs transition-colors cursor-pointer"
+            className="min-h-[44px] min-w-[44px] p-2 rounded-xl bg-white hover:bg-stone-100 text-amber-900 border border-stone-200 shadow-2xs transition-colors cursor-pointer flex items-center justify-center"
           >
             {isMuted ? <VolumeX className="w-4 h-4 text-red-500" /> : <Volume2 className="w-4 h-4 text-emerald-600" />}
           </button>
           <button
             onClick={handleRestart}
             title="Restart Run"
-            className="p-2 px-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-md transition-all active:scale-95 flex items-center gap-1 cursor-pointer"
+            className="min-h-[44px] min-w-[44px] p-2 px-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-md transition-all active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
           >
             <RotateCcw className="w-4 h-4" />
             <span>Restart</span>
@@ -243,7 +243,7 @@ export const FlappyChickenContainer: React.FC = () => {
 
         {/* Golden Wheat Victory Celebration Modal Overlay */}
         {hasWon && (
-          <div className="absolute inset-0 bg-amber-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-30 animate-in fade-in duration-300">
+          <div className="absolute inset-0 bg-amber-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-30 animate-in fade-in duration-300 max-h-[90vh] overflow-y-auto">
             <div className="text-5xl mb-2 animate-bounce">🌾🐔🌾</div>
             <h2 className="text-2xl sm:text-3xl font-black text-amber-200 tracking-tight mb-1">
               Golden Wheat Reached!
@@ -276,7 +276,7 @@ export const FlappyChickenContainer: React.FC = () => {
 
         {/* Game Over Modal Overlay */}
         {isGameOver && !hasWon && (
-          <div className="absolute inset-0 bg-stone-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-30 animate-in fade-in duration-300">
+          <div className="absolute inset-0 bg-stone-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-30 animate-in fade-in duration-300 max-h-[90vh] overflow-y-auto">
             <div className="text-4xl mb-2">🐾</div>
             <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-1">
               Coop Crash!
@@ -338,7 +338,7 @@ export const FlappyChickenContainer: React.FC = () => {
       {/* How to Play Help Modal */}
       {isHelpOpen && (
         <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="relative w-full max-w-md bg-stone-900 border border-amber-900/50 rounded-3xl p-6 shadow-2xl">
+          <div className="relative w-full max-w-md bg-stone-900 border border-amber-900/50 rounded-3xl p-6 shadow-2xl max-h-[90vh] overflow-y-auto flex flex-col">
             <div className="flex items-center justify-between mb-4 border-b border-stone-800 pb-3">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">🌾</span>

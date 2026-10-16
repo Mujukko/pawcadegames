@@ -26,7 +26,7 @@ import { Direction, GameState2048, ANIMAL_TIERS } from './logic/types';
 import { animal2048Sound } from './systems/sound';
 
 const STORAGE_KEY_BEST = 'pawcade_animal_2048_best';
-const SWIPE_THRESHOLD = 30;
+const SWIPE_THRESHOLD = 14;
 
 export const Animal2048Container: React.FC = () => {
   const [gameState, setGameState] = useState<GameState2048>(() => {
@@ -311,7 +311,7 @@ export const Animal2048Container: React.FC = () => {
           <button
             onClick={() => setIsLadderOpen(true)}
             title="Animal Evolution Ladder"
-            className="p-2 rounded-lg bg-stone-800/80 hover:bg-stone-700/80 text-amber-300 border border-amber-900/30 transition-colors"
+            className="min-h-[44px] min-w-[44px] p-2 rounded-lg bg-stone-800/80 hover:bg-stone-700/80 text-amber-300 border border-amber-900/30 transition-colors flex items-center justify-center cursor-pointer"
           >
             <HelpCircle className="w-4 h-4" />
           </button>
@@ -319,9 +319,9 @@ export const Animal2048Container: React.FC = () => {
             onClick={handleUndo}
             disabled={!gameState.history}
             title={gameState.history ? 'Undo Last Move (Ctrl+Z)' : 'No moves to undo'}
-            className={`p-2 rounded-lg border transition-all ${
+            className={`min-h-[44px] min-w-[44px] p-2 rounded-lg border transition-all flex items-center justify-center ${
               gameState.history
-                ? 'bg-amber-600/30 hover:bg-amber-600/50 text-amber-200 border-amber-500/40 cursor-pointer active:scale-95'
+                 ? 'bg-amber-600/30 hover:bg-amber-600/50 text-amber-200 border-amber-500/40 cursor-pointer active:scale-95'
                 : 'bg-stone-800/40 text-stone-600 border-stone-800 cursor-not-allowed'
             }`}
           >
@@ -330,14 +330,14 @@ export const Animal2048Container: React.FC = () => {
           <button
             onClick={toggleSound}
             title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
-            className="p-2 rounded-lg bg-stone-800/80 hover:bg-stone-700/80 text-stone-300 border border-amber-900/30 transition-colors"
+            className="min-h-[44px] min-w-[44px] p-2 rounded-lg bg-stone-800/80 hover:bg-stone-700/80 text-stone-300 border border-amber-900/30 transition-colors flex items-center justify-center cursor-pointer"
           >
             {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-amber-400" />}
           </button>
           <button
             onClick={handleRestart}
             title="Restart Game"
-            className="p-2 rounded-lg bg-amber-600/80 hover:bg-amber-500 text-white font-bold transition-all active:scale-95 shadow-md flex items-center gap-1 text-xs"
+            className="min-h-[44px] min-w-[44px] p-2 px-3 rounded-lg bg-amber-600/80 hover:bg-amber-500 text-white font-bold transition-all active:scale-95 shadow-md flex items-center justify-center gap-1 text-xs cursor-pointer"
           >
             <RefreshCw className="w-4 h-4" />
             <span className="hidden sm:inline">Restart</span>
@@ -408,7 +408,7 @@ export const Animal2048Container: React.FC = () => {
 
         {/* Victory Celebration Modal Overlay (Elephant Reached!) */}
         {gameState.hasWon && !gameState.keepPlayingAfterWin && (
-          <div className="absolute inset-0 bg-stone-950/85 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center p-6 text-center z-30 animate-in fade-in duration-300">
+          <div className="absolute inset-0 bg-stone-950/85 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center p-6 text-center z-30 animate-in fade-in duration-300 max-h-[90vh] overflow-y-auto">
             <div className="w-16 h-16 rounded-full bg-purple-600/30 border-2 border-purple-400 flex items-center justify-center text-4xl mb-3 shadow-lg animate-bounce">
               🐘
             </div>
@@ -434,14 +434,14 @@ export const Animal2048Container: React.FC = () => {
             <div className="flex gap-2 w-full max-w-xs">
               <button
                 onClick={handleKeepPlaying}
-                className="flex-1 py-2.5 px-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-1.5"
+                className="flex-1 py-2.5 px-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <span>Keep Playing</span>
                 <span className="text-xs">🐋</span>
               </button>
               <button
                 onClick={handleRestart}
-                className="py-2.5 px-4 rounded-xl bg-stone-800 hover:bg-stone-700 text-amber-300 font-bold text-sm border border-amber-900/40 transition-colors"
+                className="py-2.5 px-4 rounded-xl bg-stone-800 hover:bg-stone-700 text-amber-300 font-bold text-sm border border-amber-900/40 transition-colors cursor-pointer"
               >
                 Play Again
               </button>
@@ -451,7 +451,7 @@ export const Animal2048Container: React.FC = () => {
 
         {/* Game Over Modal Overlay */}
         {gameState.isGameOver && !gameState.hasWon && (
-          <div className="absolute inset-0 bg-stone-950/90 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center p-6 text-center z-30 animate-in fade-in duration-300">
+          <div className="absolute inset-0 bg-stone-950/90 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center p-6 text-center z-30 animate-in fade-in duration-300 max-h-[90vh] overflow-y-auto">
             <div className="text-4xl mb-2">🐾</div>
             <h2 className="text-2xl sm:text-3xl font-black text-stone-200 tracking-tight mb-1">
               No More Moves!

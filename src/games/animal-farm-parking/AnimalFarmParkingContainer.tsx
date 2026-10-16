@@ -329,7 +329,7 @@ export const AnimalFarmParkingContainer: React.FC = () => {
               onClick={handleRestart}
               title="Restart Level (R)"
               aria-label="Restart level"
-              className={`p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer active:scale-90 ${
+              className={`min-h-[44px] min-w-[44px] p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer active:scale-90 flex items-center justify-center ${
                 isRestarting ? 'rotate-180 transition-transform duration-300' : ''
               }`}
             >
@@ -340,7 +340,7 @@ export const AnimalFarmParkingContainer: React.FC = () => {
               onClick={toggleSound}
               title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
               aria-label="Toggle sound"
-              className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer active:scale-90"
+              className="min-h-[44px] min-w-[44px] p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer active:scale-90 flex items-center justify-center"
             >
               {isMuted ? <VolumeX className="w-4 h-4 text-rose-500" /> : <Volume2 className="w-4 h-4 text-emerald-600" />}
             </button>
@@ -349,7 +349,7 @@ export const AnimalFarmParkingContainer: React.FC = () => {
               onClick={() => setIsHelpOpen(true)}
               title="How to Play"
               aria-label="How to play instructions"
-              className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer active:scale-90"
+              className="min-h-[44px] min-w-[44px] p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer active:scale-90 flex items-center justify-center"
             >
               <HelpCircle className="w-4 h-4 text-indigo-500" />
             </button>
@@ -461,7 +461,7 @@ export const AnimalFarmParkingContainer: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-in fade-in duration-200">
           <ConfettiOverlay active={true} />
 
-          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-emerald-100 relative overflow-hidden animate-in zoom-in-95 duration-300">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-emerald-100 relative overflow-y-auto max-h-[90vh] animate-in zoom-in-95 duration-300">
             <div className="w-16 h-16 bg-gradient-to-tr from-emerald-400 to-amber-300 rounded-2xl flex items-center justify-center mx-auto mb-3 text-3xl shadow-lg shadow-emerald-500/20">
               🐮
             </div>
@@ -551,7 +551,7 @@ export const AnimalFarmParkingContainer: React.FC = () => {
       {/* Game Over Modal (Health reached 0%) */}
       {isGameOver && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-in fade-in duration-200">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-rose-100 relative overflow-hidden animate-in zoom-in-95 duration-300">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-rose-100 relative overflow-y-auto max-h-[90vh] animate-in zoom-in-95 duration-300">
             <div className="w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center mx-auto mb-3 text-3xl shadow-lg shadow-rose-500/20">
               💫
             </div>
@@ -644,7 +644,7 @@ export const AnimalFarmParkingContainer: React.FC = () => {
       {/* Help / Instructions Modal */}
       {isHelpOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-in fade-in duration-200">
-          <div className="bg-white rounded-3xl p-6 sm:p-7 max-w-md w-full shadow-2xl border border-slate-100">
+          <div className="bg-white rounded-3xl p-6 sm:p-7 max-w-md w-full shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto flex flex-col">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-emerald-600" />

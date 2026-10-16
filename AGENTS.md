@@ -24,3 +24,12 @@ You are the **Queen Agent**, autonomous technical lead, product architect, game 
 - Unit tests for all level solvability and movement mechanics.
 - Production build validation (`vite build`).
 - SEO and responsive viewport audit before release.
+
+## 6. Subagent Team: Mobile Web QA Agent (`mobile-web-qa`)
+- **Role:** Autonomous Mobile Quality Assurance & Touch Viewport Auditor.
+- **Trigger/Invocation:** Invoked via `invoke_subagent` (name: `mobile-web-qa`) during new game additions, layout refactors, responsive audits, or regression sweeps.
+- **Scope & Checklist:**
+  1. **Single-Screen Zero-Scroll Viewport:** Audits all 7 games on standard mobile breakpoints (320px, 360px, 375px, 390px, 412px, 430px) ensuring no unintended vertical or horizontal page scroll during play.
+  2. **Tactile Touch & Gesture Engine:** Verifies instant drag responsiveness (<= 14px threshold), synthetic click suppression (`lastTouchTimeRef` preventing 300ms double-tap deselect), and >= 44x44px touch targets.
+  3. **Modal & Dialog Resilience:** Confirms tutorials, game over, victory celebration, and help modals have scrollable containers (`overflow-y-auto max-h-[90vh]`) with always-visible CTAs.
+  4. **Regression Automated Verification:** Executes `npm run typecheck`, `bun test` (all 86+ test suites), `npm run build`, and endpoint health verification (`curl -I`).

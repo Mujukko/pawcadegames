@@ -203,7 +203,7 @@ export const CatParkingContainer: React.FC = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsLevelSelectOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200/80 active:scale-95 text-slate-800 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer"
+            className="min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200/80 active:scale-95 text-slate-800 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer"
             title="Level Select"
           >
             <Grid className="w-4 h-4 text-pink-600" />
@@ -235,7 +235,7 @@ export const CatParkingContainer: React.FC = () => {
             disabled={moves === 0 || isCompleted}
             title="Undo Move (Z)"
             aria-label="Undo move"
-            className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-40 disabled:hover:bg-transparent rounded-xl transition-all cursor-pointer active:scale-90"
+            className="min-h-[44px] min-w-[44px] p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-40 disabled:hover:bg-transparent rounded-xl transition-all cursor-pointer active:scale-90 flex items-center justify-center"
           >
             <Undo2 className="w-4 h-4" />
           </button>
@@ -244,7 +244,7 @@ export const CatParkingContainer: React.FC = () => {
             onClick={handleRestart}
             title="Restart Level (R)"
             aria-label="Restart level"
-            className={`p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer active:scale-90 ${
+            className={`min-h-[44px] min-w-[44px] p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer active:scale-90 flex items-center justify-center ${
               isRestarting ? 'rotate-180 transition-transform duration-300' : ''
             }`}
           >
@@ -255,7 +255,7 @@ export const CatParkingContainer: React.FC = () => {
             onClick={toggleSound}
             title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
             aria-label="Toggle sound"
-            className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer active:scale-90"
+            className="min-h-[44px] min-w-[44px] p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer active:scale-90 flex items-center justify-center"
           >
             {isMuted ? <VolumeX className="w-4 h-4 text-rose-500" /> : <Volume2 className="w-4 h-4 text-emerald-600" />}
           </button>
@@ -264,7 +264,7 @@ export const CatParkingContainer: React.FC = () => {
             onClick={() => setIsHelpOpen(true)}
             title="Help / Instructions"
             aria-label="Help and rules"
-            className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer active:scale-90"
+            className="min-h-[44px] min-w-[44px] p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all cursor-pointer active:scale-90 flex items-center justify-center"
           >
             <HelpCircle className="w-4 h-4 text-indigo-500" />
           </button>
@@ -288,7 +288,7 @@ export const CatParkingContainer: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-in fade-in duration-200">
           <ConfettiOverlay active={true} />
 
-          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-pink-100 relative overflow-hidden animate-in zoom-in-95 duration-300">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-pink-100 relative overflow-y-auto max-h-[90vh] animate-in zoom-in-95 duration-300">
             {/* Header visual */}
             <div className="w-16 h-16 bg-gradient-to-tr from-pink-400 to-amber-300 rounded-2xl flex items-center justify-center mx-auto mb-3 text-3xl shadow-lg shadow-pink-500/20">
               🐱
@@ -442,7 +442,7 @@ export const CatParkingContainer: React.FC = () => {
       {/* Help / Instructions Modal */}
       {isHelpOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-in fade-in duration-200">
-          <div className="bg-white rounded-3xl p-6 sm:p-7 max-w-md w-full shadow-2xl border border-slate-100">
+          <div className="bg-white rounded-3xl p-6 sm:p-7 max-w-md w-full shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto flex flex-col">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-pink-500" />

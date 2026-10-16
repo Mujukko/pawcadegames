@@ -1898,7 +1898,7 @@ export const PetCandyCrushContainer: React.FC = () => {
 
             {/* Victory Celebration Modal Overlay */}
             {gameState.hasWon && (
-              <div className="absolute inset-0 bg-amber-950/90 backdrop-blur-md rounded-[24px] flex flex-col items-center justify-center p-6 text-center z-40 animate-in fade-in duration-300">
+              <div className="absolute inset-0 bg-amber-950/90 backdrop-blur-md rounded-[24px] flex flex-col items-center justify-center p-6 text-center z-40 animate-in fade-in duration-300 max-h-[90vh] overflow-y-auto">
                 <div className="text-5xl mb-2 animate-bounce">🏆🌾🐮✨</div>
                 <h2 className="text-2xl sm:text-3xl font-black text-amber-300 tracking-tight mb-1">
                   Level {currentLevel} Complete!
@@ -1951,7 +1951,7 @@ export const PetCandyCrushContainer: React.FC = () => {
 
             {/* Game Over Modal Overlay */}
             {gameState.isGameOver && !gameState.hasWon && (
-              <div className="absolute inset-0 bg-amber-950/90 backdrop-blur-md rounded-[24px] flex flex-col items-center justify-center p-6 text-center z-40 animate-in fade-in duration-300">
+              <div className="absolute inset-0 bg-amber-950/90 backdrop-blur-md rounded-[24px] flex flex-col items-center justify-center p-6 text-center z-40 animate-in fade-in duration-300 max-h-[90vh] overflow-y-auto">
                 <div className="text-4xl mb-2">🚜🌙</div>
                 <h2 className="text-2xl sm:text-3xl font-black text-amber-100 tracking-tight mb-1">
                   Out of Moves!
@@ -2228,7 +2228,7 @@ export const PetCandyCrushContainer: React.FC = () => {
       {/* How to Play Help Modal (Warm Farm Timber Theme) */}
       {isHelpOpen && (
         <div className="fixed inset-0 bg-amber-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="relative w-full max-w-md bg-amber-950 border-2 border-amber-400/70 rounded-3xl p-6 shadow-2xl">
+          <div className="relative w-full max-w-md bg-amber-950 border-2 border-amber-400/70 rounded-3xl p-6 shadow-2xl max-h-[90vh] overflow-y-auto flex flex-col">
             <div className="flex items-center justify-between mb-4 border-b border-amber-800 pb-3">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">🐮</span>

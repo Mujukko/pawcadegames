@@ -47,7 +47,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white selection:bg-pink-500 selection:text-white pb-16">
+    <div className="min-h-screen bg-slate-900 text-white selection:bg-pink-500 selection:text-white pb-16 pb-safe">
       {/* Poki-Style Top Filter & Search Bar */}
       <div className="sticky top-16 z-30 bg-slate-900/90 backdrop-blur-md border-b border-slate-800/80 px-4 sm:px-6 lg:px-8 py-3">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">

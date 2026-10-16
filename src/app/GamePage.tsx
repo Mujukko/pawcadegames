@@ -28,7 +28,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   }, [gameId]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50/60 pb-16">
+    <div className="flex flex-col min-h-screen bg-slate-50/60 pb-16 pb-safe">
       {/* Breadcrumb Header */}
       <div className="bg-white border-b border-slate-200/80 py-2 sm:py-3 px-3 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-center text-xs font-semibold text-slate-500 gap-1.5 overflow-x-auto scrollbar-none">
