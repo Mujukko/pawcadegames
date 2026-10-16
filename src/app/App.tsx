@@ -45,23 +45,23 @@ export const App: React.FC = () => {
     const farmTetrisGame = GAMES_REGISTRY.find(g => g.id === 'farm-tetris');
 
     if (currentRoute.startsWith('/games/duck-runner')) {
-      document.title = duckRunnerGame?.metaTitle || 'Duck Runner: T-Rex Quack — Free Online Duck Jumping Game | Pawcade';
+      document.title = duckRunnerGame?.metaTitle || 'Duck Runner: Vampire Quack 🎃 — Free Online Spooky Game | Pawcade';
     } else if (currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) {
-      document.title = petCrushGame?.metaTitle || 'Farm Animal Match: Barnyard Crush — Free Online Match-3 Game | Pawcade';
+      document.title = petCrushGame?.metaTitle || 'Farm Animal Match: Spooky Trick-or-Treat Crush 🍬 | Pawcade';
     } else if (currentRoute.startsWith('/games/flappy-chicken')) {
-      document.title = flappyChickenGame?.metaTitle || 'Flappy Chicken: Wheat Run — Free Online Farm Flying Game | Pawcade';
+      document.title = flappyChickenGame?.metaTitle || 'Flappy Chicken: Spooky Night Flight 👻 | Pawcade';
     } else if (currentRoute.startsWith('/games/animal-2048')) {
-      document.title = animal2048Game?.metaTitle || 'Animal 2048: Mouse to Elephant — Free Online Puzzle Game | Pawcade';
+      document.title = animal2048Game?.metaTitle || 'Animal 2048: Spooky Evolution 🦇 | Pawcade';
     } else if (currentRoute.startsWith('/games/farm-tetris')) {
-      document.title = farmTetrisGame?.metaTitle || 'Farm Tetris — Free Online Harvest Block Puzzle Game | Pawcade';
+      document.title = farmTetrisGame?.metaTitle || 'Farm Tetris: Haunted Pumpkin Harvest 🎃 | Pawcade';
     } else if (currentRoute.startsWith('/games/dog-parking')) {
-      document.title = dogParkingGame?.metaTitle || 'Dog Parking — Free Casual Puzzle Game | Pawcade';
+      document.title = dogParkingGame?.metaTitle || 'Dog Parking: Haunted Kennel Unblock 🦴 | Pawcade';
     } else if (currentRoute.startsWith('/games/cat-parking')) {
-      document.title = catParkingGame?.metaTitle || 'Cat Parking — Free Casual Cat Puzzle Game | Pawcade';
+      document.title = catParkingGame?.metaTitle || 'Cat Parking: Black Cat Witch Mystery 🐈‍⬛ | Pawcade';
     } else if (currentRoute.startsWith('/games/animal-farm-parking')) {
-      document.title = farmParkingGame?.metaTitle || 'Animal Farm Parking — Free Online Cow Parking Game | Pawcade';
+      document.title = farmParkingGame?.metaTitle || 'Animal Farm Parking: Haunted Pasture 🎃 | Pawcade';
     } else if (currentRoute === '/' || currentRoute === '') {
-      document.title = 'Pawcade — Poki-Style Free Browser Games Online';
+      document.title = 'Pawcade Spooktacular 🎃 — Free Halloween Browser Games Online';
     } else {
       document.title = 'Page Not Found (404) | Pawcade Games';
     }
@@ -111,7 +111,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 text-slate-900 selection:bg-amber-300 selection:text-slate-900">
+    <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100 selection:bg-orange-500 selection:text-slate-950">
       <Header currentRoute={currentRoute} navigate={navigate} />
       <main className="grow">
         {renderCurrentView()}

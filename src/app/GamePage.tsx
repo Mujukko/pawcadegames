@@ -30,62 +30,87 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   }, [gameId]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50/60 pb-16 pb-safe">
+    <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100 pb-16 pb-safe">
       {/* Breadcrumb Header */}
-      <div className="bg-white border-b border-slate-200/80 py-2 sm:py-3 px-3 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex items-center text-xs font-semibold text-slate-500 gap-1.5 overflow-x-auto scrollbar-none">
-          <button onClick={() => navigate('/')} className="hover:text-slate-900 transition-colors cursor-pointer shrink-0">
-            Home
+      <div className="bg-slate-900/90 border-b border-orange-500/20 py-2 sm:py-3 px-3 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center text-xs font-semibold text-slate-400 gap-1.5 overflow-x-auto scrollbar-none">
+          <button onClick={() => navigate('/')} className="hover:text-orange-300 transition-colors cursor-pointer shrink-0 flex items-center gap-1">
+            <span>🎃 Home</span>
           </button>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-          <button onClick={() => navigate('/')} className="hover:text-slate-900 transition-colors cursor-pointer shrink-0">
-            {isDuckRunner ? 'Runner Games' : isPetCrush ? 'Match-3 Mania' : isFlappy ? 'Farm Flight' : is2048 ? 'Animal Puzzle' : isFarmTetris ? 'Harvest Puzzle' : isFarm ? 'Casual Driving' : 'Puzzle Games'}
+          <ChevronRight className="w-3.5 h-3.5 text-orange-500/60 shrink-0" />
+          <button onClick={() => navigate('/')} className="hover:text-orange-300 transition-colors cursor-pointer shrink-0">
+            {isDuckRunner ? 'Vampire Runner' : isPetCrush ? 'Trick-or-Treat' : isFlappy ? 'Haunted Flight' : is2048 ? 'Spooky Evolution' : isFarmTetris ? 'Pumpkin Harvest' : isFarm ? 'Haunted Pasture' : 'Spooky Puzzles'}
           </button>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-          <span className="text-slate-900 font-bold truncate">{game.title}</span>
+          <ChevronRight className="w-3.5 h-3.5 text-orange-500/60 shrink-0" />
+          <span className="text-orange-400 font-bold truncate">{game.title}</span>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 pt-3 sm:pt-8 w-full">
+        {/* Halloween Live Event Banner */}
+        <div className="mb-4 sm:mb-6 bg-gradient-to-r from-orange-600 via-purple-700 to-amber-600 rounded-2xl p-3 sm:p-4 text-white flex items-center justify-between shadow-lg shadow-orange-950/40 border border-orange-400/40">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl sm:text-3xl animate-spooky-float select-none">🎃</span>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider bg-black/40 px-2 py-0.5 rounded-full border border-orange-300/40">
+                  Halloween Spooktacular Special 🦇
+                </span>
+                <span className="text-xs font-bold text-orange-200 hidden sm:inline">
+                  Limited Festive Season Mode
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm font-bold text-orange-100 mt-0.5">
+                Trick or Treat! High scores earn bonus sweet candy ribbons & festive harvest stars! 🍬✨
+              </p>
+            </div>
+          </div>
+          <div className="hidden sm:flex items-center gap-2 text-2xl select-none">
+            <span>👻</span>
+            <span>🍬</span>
+            <span>🦇</span>
+          </div>
+        </div>
+
         {/* Game Title Bar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-3 sm:mb-6 px-1">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md ${
+              <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
                 isDuckRunner
-                  ? 'bg-amber-100 text-amber-900'
+                  ? 'bg-orange-500/20 text-orange-400 border-orange-500/30'
                   : isPetCrush
-                  ? 'bg-amber-100 text-amber-900'
+                  ? 'bg-orange-500/20 text-orange-400 border-orange-500/30'
                   : isFlappy
-                  ? 'bg-amber-100 text-amber-900'
+                  ? 'bg-orange-500/20 text-orange-400 border-orange-500/30'
                   : is2048
-                  ? 'bg-purple-100 text-purple-900'
+                  ? 'bg-purple-500/20 text-purple-300 border-purple-500/30'
                   : isFarmTetris
-                  ? 'bg-amber-100 text-amber-900'
+                  ? 'bg-orange-500/20 text-orange-400 border-orange-500/30'
                   : isFarm
-                  ? 'bg-emerald-100 text-emerald-800'
+                  ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
                   : isCat
-                  ? 'bg-pink-100 text-pink-800'
-                  : 'bg-amber-100 text-amber-800'
+                  ? 'bg-purple-500/20 text-purple-300 border-purple-500/30'
+                  : 'bg-orange-500/20 text-orange-400 border-orange-500/30'
               }`}>
-                {isDuckRunner ? '🦆 New T-Rex Duck Runner' : isPetCrush ? '🌾 Farm Match-3 Crush' : isFlappy ? '🐔 New Flappy Chicken' : is2048 ? '🐘 New Animal 2048' : isFarmTetris ? '🌾 New Harvest Tetris' : isFarm ? '🐮 New Farm Driving' : isCat ? '🐱 New Feline Puzzle' : '🐶 Featured Puzzle'}
+                {isDuckRunner ? '🦆🎃 Vampire Duck Runner' : isPetCrush ? '🍬 Spooky Animal Match' : isFlappy ? '👻 Ghost Chicken Flight' : is2048 ? '🦇 Spooky Animal 2048' : isFarmTetris ? '🎃 Haunted Harvest Tetris' : isFarm ? '🐮 Haunted Cow Driving' : isCat ? '🐈‍⬛ Witch Cat Puzzle' : '🦴 Ghost Pup Puzzle'}
               </span>
-              <div className="flex items-center text-amber-500 text-xs font-bold">
-                <Star className="w-3.5 h-3.5 fill-amber-500 mr-1" />
+              <div className="flex items-center text-amber-400 text-xs font-bold">
+                <Star className="w-3.5 h-3.5 fill-amber-400 mr-1" />
                 <span>{game.rating} / 5.0 (Instant Play)</span>
               </div>
             </div>
-            <h1 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
               {game.title}
             </h1>
-            <p className="text-slate-600 text-xs sm:text-base mt-0.5 sm:mt-1 max-w-2xl line-clamp-2 sm:line-clamp-none">
+            <p className="text-slate-300 text-xs sm:text-base mt-0.5 sm:mt-1 max-w-2xl line-clamp-2 sm:line-clamp-none">
               {game.tagline}
             </p>
           </div>
         </div>
 
         {/* The Playable Game Frame */}
-        <div className="bg-slate-900/5 rounded-2xl sm:rounded-3xl p-1 sm:p-6 border border-slate-200/80 mb-8 sm:mb-12 shadow-inner flex justify-center overflow-hidden">
+        <div className="bg-slate-900/90 rounded-2xl sm:rounded-3xl p-1 sm:p-6 border border-orange-500/30 mb-8 sm:mb-12 shadow-2xl shadow-orange-950/20 flex justify-center overflow-hidden">
           {isDuckRunner ? (
             <DuckRunnerContainer />
           ) : isPetCrush ? (
@@ -108,89 +133,89 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
         {/* Instructions & Controls Guide */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {/* Controls */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs">
+          <div className="bg-slate-900/90 rounded-3xl p-6 border border-orange-500/20 shadow-lg text-slate-300">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center border border-orange-500/30">
                 <Keyboard className="w-4 h-4" />
               </div>
-              <h2 className="text-xl font-black text-slate-900">Controls & Shortcuts</h2>
+              <h2 className="text-xl font-black text-white">Controls & Shortcuts</h2>
             </div>
 
-            <div className="space-y-3 text-sm text-slate-600">
+            <div className="space-y-3 text-sm text-slate-300">
               {isDuckRunner ? (
                 <>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Desktop:</span>
-                    <span>Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">Spacebar</kbd> or <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">↑</kbd> to jump over hay bales and fences. Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">↓</kbd> to duck/crouch under flying crows, or tap <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">↓</kbd> in mid-air for a fast-fall slam. Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">R</kbd> to restart.</span>
+                    <span className="font-bold text-orange-400 min-w-24">Desktop:</span>
+                    <span>Press <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">Spacebar</kbd> or <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">↑</kbd> to jump over carved jack-o'-lanterns and fences. Press <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">↓</kbd> to duck/crouch under midnight bats, or tap <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">↓</kbd> in mid-air for a fast-fall slam. Press <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">R</kbd> to restart.</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Mobile:</span>
+                    <span className="font-bold text-orange-400 min-w-24">Mobile:</span>
                     <span>Tap anywhere on the upper screen to jump, or use the on-screen bottom dual thumb buttons: <strong>DUCK ⬇️</strong> on the left thumb and <strong>JUMP ⬆️</strong> on the right thumb.</span>
                   </div>
                 </>
               ) : isPetCrush ? (
                 <>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Desktop:</span>
+                    <span className="font-bold text-orange-400 min-w-24">Desktop:</span>
                     <span>Click on any animal to select it, then click an adjacent neighbor to swap them (or click and drag in any direction). Match 3 or more identical farm animals to clear them!</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Mobile:</span>
+                    <span className="font-bold text-orange-400 min-w-24">Mobile:</span>
                     <span>Tap a farm animal and tap its neighbor, or swipe your thumb across the grid to swap animals instantly.</span>
                   </div>
                 </>
               ) : isFlappy ? (
                 <>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Desktop:</span>
-                    <span>Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">Spacebar</kbd>, <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">↑</kbd>, or <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">W</kbd> to flap Clucky's wings and cluck. You can also click your mouse anywhere on the game screen. Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">P</kbd> to pause and <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">R</kbd> to restart.</span>
+                    <span className="font-bold text-orange-400 min-w-24">Desktop:</span>
+                    <span>Press <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">Spacebar</kbd>, <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">↑</kbd>, or <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">W</kbd> to flap wings and cluck. Press <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">P</kbd> to pause and <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">R</kbd> to restart.</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Mobile:</span>
+                    <span className="font-bold text-orange-400 min-w-24">Mobile:</span>
                     <span>Tap anywhere directly on the flight canvas, or use the large yellow <strong>TAP TO FLAP</strong> button at the bottom for easy thumb control.</span>
                   </div>
                 </>
               ) : is2048 ? (
                 <>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Desktop:</span>
-                    <span>Use <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">Arrow Keys</kbd> or <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">W</kbd><kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">A</kbd><kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">S</kbd><kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">D</kbd> to slide tiles across the 4x4 grid. Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">Ctrl + Z</kbd> or click the <strong>Undo</strong> button to step back one move.</span>
+                    <span className="font-bold text-orange-400 min-w-24">Desktop:</span>
+                    <span>Use <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">Arrow Keys</kbd> or <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">W</kbd><kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">A</kbd><kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">S</kbd><kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">D</kbd> to slide tiles across the 4x4 grid. Press <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">Ctrl + Z</kbd> or click <strong>Undo</strong>.</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Mobile:</span>
-                    <span>Swipe in any of the 4 directions (Up, Down, Left, Right) anywhere across the board, or use the on-screen touch D-Pad buttons at the bottom.</span>
+                    <span className="font-bold text-orange-400 min-w-24">Mobile:</span>
+                    <span>Swipe in any of the 4 directions anywhere across the board, or use the on-screen touch D-Pad buttons at the bottom.</span>
                   </div>
                 </>
               ) : isFarmTetris ? (
                 <>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Desktop:</span>
-                    <span>Use <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">A</kbd><kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">D</kbd> or <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">←</kbd><kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">→</kbd> to move pieces left/right. Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">W</kbd> / <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">↑</kbd> to rotate, <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">S</kbd> / <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">↓</kbd> for soft drop, <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">Space</kbd> for Hard Drop slam, <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">C</kbd> / <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">Shift</kbd> to hold, and <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">R</kbd> to restart.</span>
+                    <span className="font-bold text-orange-400 min-w-24">Desktop:</span>
+                    <span>Use <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">A</kbd><kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">D</kbd> to move left/right, <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">W</kbd> to rotate, <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">Space</kbd> for Hard Drop slam.</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Mobile:</span>
-                    <span>Use the bottom touch D-Pad to steer, tap the Rotate button to turn crops, tap SLAM to instantly drop, and tap HOLD to reserve pieces.</span>
+                    <span className="font-bold text-orange-400 min-w-24">Mobile:</span>
+                    <span>Use the bottom touch D-Pad to steer, tap Rotate to turn blocks, and tap SLAM to drop.</span>
                   </div>
                 </>
               ) : isFarm ? (
                 <>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Desktop:</span>
-                    <span>Use <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">W</kbd><kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">A</kbd><kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">S</kbd><kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">D</kbd> or <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">Arrow Keys</kbd> to move freely in all 4 directions (Up, Down, Left, Right). Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">Space</kbd> to brake and <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">R</kbd> to restart.</span>
+                    <span className="font-bold text-orange-400 min-w-24">Desktop:</span>
+                    <span>Use <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">W</kbd><kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">A</kbd><kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">S</kbd><kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">D</kbd> or <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">Arrow Keys</kbd> to steer Bessie. Press <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">Space</kbd> to brake.</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Mobile:</span>
-                    <span>Use the on-screen 4-way D-Pad (Up, Down, Left, Right) and center STOP button for smooth touch steering.</span>
+                    <span className="font-bold text-orange-400 min-w-24">Mobile:</span>
+                    <span>Use the on-screen 4-way D-Pad and center STOP button for smooth touch steering.</span>
                   </div>
                 </>
               ) : (
                 <>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Desktop:</span>
-                    <span>Click and drag {isCat ? 'cats' : 'dogs'} along their natural lane (horizontal or vertical). Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">R</kbd> to restart or <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">Z</kbd> to undo.</span>
+                    <span className="font-bold text-orange-400 min-w-24">Desktop:</span>
+                    <span>Click and drag {isCat ? 'cats' : 'dogs'} along their lane. Press <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">R</kbd> to restart or <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">Z</kbd> to undo.</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span className="font-bold text-slate-900 min-w-24">Mobile:</span>
+                    <span className="font-bold text-orange-400 min-w-24">Mobile:</span>
                     <span>Swipe with your finger along the animal's axis. Large touch-friendly control buttons at the top of the board.</span>
                   </div>
                 </>
@@ -199,15 +224,15 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           </div>
 
           {/* Game Rules */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs">
+          <div className="bg-slate-900/90 rounded-3xl p-6 border border-orange-500/20 shadow-lg text-slate-300">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center border border-orange-500/30">
                 <Sparkles className="w-4 h-4" />
               </div>
-              <h2 className="text-xl font-black text-slate-900">How to Win</h2>
+              <h2 className="text-xl font-black text-white">How to Win</h2>
             </div>
 
-            <ul className="space-y-2.5 text-sm text-slate-600">
+            <ul className="space-y-2.5 text-sm text-slate-300">
               {isDuckRunner ? (
                 <>
                   <li className="flex items-start gap-2">

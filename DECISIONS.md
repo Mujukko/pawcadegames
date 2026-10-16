@@ -464,3 +464,31 @@
      - Left `🔓 Harvest Targets` panel displays each caged animal species (`🐮🔒 0/1`, `🐷🔒 0/1`, etc.) and updates live as cages are broken. Rescuing all caged animals completes the level and converts remaining moves into a Harvest Silo Bonus (`movesRemaining * 60` Hay).
 - **Consequences:** 85 unit tests (2,916 assertions) pass across all 7 games; production build verified clean.
 - **Reversibility:** High.
+
+## DEC-029: Platform-Wide Halloween Spooktacular Overhaul
+- **Status:** APPROVED
+- **Context:** User requested: "Tüm siteyi halloween şeklinde günceller misin?" (Can you update the whole site to a Halloween theme?)
+- **Decision:**
+  1. **Atmospheric Dark Spooky Palette & Typography:**
+     - Platform base transitioned to midnight void `bg-slate-950` with spooky accents: Glowing Pumpkin Orange (`#f97316`), Witch Cauldron Purple (`#7e22ce`), and Eerie Ghost White.
+     - Custom CSS utility classes added in `globals.css`: `.animate-spooky-float`, `.animate-spooky-pulse`, `.glow-pumpkin`, and `.glow-witch`.
+  2. **Portal Identity & Branding:**
+     - Favicon set to SVG 🎃 Jack-o'-Lantern with glowing eyes.
+     - Document title updated to `Pawcade Spooktacular 🎃 — Free Halloween Browser Games Online`.
+     - Header transformed with glowing pumpkin mascot, `PAWCADE HALLOWEEN 🦇` badge, and `Spooky Free Pet Games • Trick or Treat 🍬` tagline.
+     - Spooky mobile navigation drawer featuring all 8 games with orange/purple badges.
+  3. **Poki-Style Bento Homepage Grand Event Transformation:**
+     - Added dedicated `🎃 Spooky (Halloween)` category filter pill.
+     - Grand Halloween Event Hero Banner with interactive CTA.
+     - Bento game cards restyled with dark midnight slate, glowing pumpkin borders, and Halloween badges for all 8 games.
+  4. **Universal In-Game Shell Ribbon:**
+     - In `GamePage.tsx`, every playable game displays the `🎃 HALLOWEEN SPECIAL EVENT: Spooky Mode Active!` ribbon above the game canvas with dark themed Controls & How-to-Play cards.
+  5. **In-Game Halloween Visuals (Duck Runner):**
+     - Quacky the Duck wears an animated pointed Witch Hat (wide purple brim, curved tip, orange band, gold buckle) in standing, running, jumping, and crouching modes.
+     - Hay bales procedurally replaced with single and double carved Jack-o'-Lanterns (🎃) featuring glowing yellow/orange eyes and toothy grins.
+     - Rustic wooden fence posts decorated with haunted white cobwebs (🕸️) and hanging spiders.
+     - Flying crows procedurally replaced with midnight vampire bats (🦇) with pointy ears, sharp fangs, and scalloped wings.
+     - Starry midnight twilight sky with craters on a glowing Harvest Full Moon.
+- **Consequences:** 101 unit tests (2,960 assertions) pass across 8 test suites; production build verified clean (`vite build`).
+- **Reversibility:** High.
+

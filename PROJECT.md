@@ -49,6 +49,11 @@ Build a high-retention, delightful browser puzzle game called **Dog Parking** an
      - Match 5 (Line): Golden Barn Star (gathers all of target animal from the pasture, or triggers a 64-tile Mega Barn Harvest when swapped with another star).
    - **Dynamic Cascade & Combo System:** Gravity tile drops, combo multiplier announcements ("Nice!", "Sweet Harvest!", "Farmtastic!", "Barnyard Bonanza!"), procedural animal vocal synthesizers (Moo, Oink, Baa, Bawk, Quack, Whinny), confetti celebrations, 25-move limit, 3-star rating gauge, and collectible animal rescue goals.
 
+8. **Duck Runner: Vampire Quack (`/games/duck-runner/`):**
+   - Offline T-Rex infinite runner reimagined with Quacky the Duck in a festive Halloween witch hat.
+   - Jump over carved Jack-o'-Lanterns and haunted cobweb fence posts; duck flat to slide under midnight vampire bats.
+   - In-air fast fall physics, progressive running speed, day-to-night starry sky transitions, retro 100-point milestone chimes, and dual mobile thumb controls (Duck & Jump).
+
 ## 4. Technology Stack
 - **Language:** TypeScript 5.x (`strict: true`)
 - **Runtime & Tooling:** Bun 1.4+ (runtime, package manager, test runner), Vite 5.x (fast bundling, HMR)

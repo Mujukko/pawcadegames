@@ -197,25 +197,46 @@ export const DuckRunnerContainer: React.FC = () => {
       const groundY = nextState.groundY;
       const nightAlpha = nextState.nightTransitionAlpha;
 
-      // Sky Background (Interpolate between sunny daylight and twilight night)
+      // Sky Background (Interpolate between Halloween sunset amber and deep midnight purple)
       if (nightAlpha <= 0.02) {
-        ctx.fillStyle = '#bae6fd'; // Day sky
+        // Sunset orange/amber twilight
+        const skyGrad = ctx.createLinearGradient(0, 0, 0, height);
+        skyGrad.addColorStop(0, '#c2410c');
+        skyGrad.addColorStop(0.6, '#ea580c');
+        skyGrad.addColorStop(1, '#fde047');
+        ctx.fillStyle = skyGrad;
       } else if (nightAlpha >= 0.98) {
-        ctx.fillStyle = '#0f172a'; // Deep night sky
+        // Deep spooky midnight purple
+        const skyGrad = ctx.createLinearGradient(0, 0, 0, height);
+        skyGrad.addColorStop(0, '#09071b');
+        skyGrad.addColorStop(0.6, '#1e1035');
+        skyGrad.addColorStop(1, '#3b0764');
+        ctx.fillStyle = skyGrad;
       } else {
         // Blend colors
-        ctx.fillStyle = '#bae6fd';
+        const skyGrad1 = ctx.createLinearGradient(0, 0, 0, height);
+        skyGrad1.addColorStop(0, '#c2410c');
+        skyGrad1.addColorStop(1, '#fde047');
+        ctx.fillStyle = skyGrad1;
         ctx.fillRect(0, 0, width, height);
-        ctx.fillStyle = `rgba(15, 23, 42, ${nightAlpha})`;
+
+        const skyGrad2 = ctx.createLinearGradient(0, 0, 0, height);
+        skyGrad2.addColorStop(0, '#09071b');
+        skyGrad2.addColorStop(1, '#3b0764');
+        ctx.save();
+        ctx.globalAlpha = nightAlpha;
+        ctx.fillStyle = skyGrad2;
+        ctx.fillRect(0, 0, width, height);
+        ctx.restore();
       }
       ctx.fillRect(0, 0, width, height);
 
-      // Celestial: Sun or Moon
+      // Celestial: Harvest Sun or Glowing Halloween Full Moon
       if (nightAlpha < 0.9) {
-        // Glowing Day Sun
+        // Glowing Autumn Twilight Sun
         ctx.save();
         ctx.globalAlpha = 1 - nightAlpha;
-        ctx.fillStyle = '#fef08a';
+        ctx.fillStyle = '#f97316';
         ctx.beginPath();
         ctx.arc(690, 68, 38, 0, Math.PI * 2);
         ctx.fill();
@@ -227,17 +248,25 @@ export const DuckRunnerContainer: React.FC = () => {
       }
 
       if (nightAlpha > 0.1) {
-        // Crescent Night Moon & Stars
+        // Glowing Halloween Harvest Full Moon & Twinkling Stars
         ctx.save();
         ctx.globalAlpha = nightAlpha;
-        // Crescent Moon
-        ctx.fillStyle = '#fef08a';
+        // Outer Moon Glow
+        ctx.fillStyle = 'rgba(251, 191, 36, 0.25)';
+        ctx.beginPath();
+        ctx.arc(690, 68, 34, 0, Math.PI * 2);
+        ctx.fill();
+        // Golden Full Moon
+        ctx.fillStyle = '#fde047';
         ctx.beginPath();
         ctx.arc(690, 68, 24, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = '#0f172a';
+        // Moon Craters
+        ctx.fillStyle = 'rgba(217, 119, 6, 0.35)';
         ctx.beginPath();
-        ctx.arc(680, 62, 20, 0, Math.PI * 2);
+        ctx.arc(684, 62, 5, 0, Math.PI * 2);
+        ctx.arc(696, 73, 4, 0, Math.PI * 2);
+        ctx.arc(694, 61, 3, 0, Math.PI * 2);
         ctx.fill();
 
         // Twinkling Stars
@@ -330,119 +359,246 @@ export const DuckRunnerContainer: React.FC = () => {
     };
   }, [highScore, hudState.isNightMode]);
 
-  // Procedural Drawing: Obstacles (Hay Bales, Fences, Flying Crows)
+  // Procedural Drawing: Spooky Halloween Obstacles (Jack-o'-Lanterns, Cobweb Fences, Midnight Vampire Bats)
   const drawObstacle = (ctx: CanvasRenderingContext2D, obs: Obstacle, nightAlpha: number) => {
     ctx.save();
 
     if (obs.type === 'hay_bale_single') {
-      // Golden Cylindrical Hay Bale
-      ctx.fillStyle = '#facc15';
-      ctx.strokeStyle = '#ca8a04';
-      ctx.lineWidth = 2.5;
+      // 🎃 Carved Jack-o'-Lantern Pumpkin (Single)
+      const cx = obs.x + obs.width / 2;
+      const cy = obs.y + obs.height / 2 + 2;
 
-      // Rounded bale body
+      // Green Vine Stem
+      ctx.fillStyle = '#166534';
+      ctx.strokeStyle = '#14532d';
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.roundRect(obs.x, obs.y, obs.width, obs.height, 8);
+      ctx.moveTo(cx - 2, obs.y + 4);
+      ctx.quadraticCurveTo(cx + 4, obs.y - 4, cx + 6, obs.y - 2);
+      ctx.lineTo(cx + 2, obs.y + 4);
+      ctx.closePath();
       ctx.fill();
       ctx.stroke();
 
-      // Bound twine straps
-      ctx.strokeStyle = '#854d0e';
+      // Pumpkin Body (Layered ribbed orange lobes)
+      ctx.fillStyle = '#ea580c';
+      ctx.strokeStyle = '#9a3412';
       ctx.lineWidth = 2;
+
+      // Outer wide lobes
       ctx.beginPath();
-      ctx.moveTo(obs.x, obs.y + obs.height * 0.35);
-      ctx.lineTo(obs.x + obs.width, obs.y + obs.height * 0.35);
-      ctx.moveTo(obs.x, obs.y + obs.height * 0.68);
-      ctx.lineTo(obs.x + obs.width, obs.y + obs.height * 0.68);
+      ctx.ellipse(cx, cy, obs.width * 0.48, obs.height * 0.44, 0, 0, Math.PI * 2);
+      ctx.fill();
       ctx.stroke();
 
-      // Straw tuft strands
+      // Inner vertical rib highlights
+      ctx.strokeStyle = '#c2410c';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, obs.width * 0.26, obs.height * 0.44, 0, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Glowing Carved Jack-o'-Lantern Face (Luminous Yellow-Orange)
       ctx.fillStyle = '#fef08a';
-      ctx.fillRect(obs.x + 4, obs.y + 4, 3, 3);
-      ctx.fillRect(obs.x + obs.width - 8, obs.y + 7, 3, 3);
-    } else if (obs.type === 'hay_bale_double') {
-      // Double Hay Bale Bundle
-      ctx.fillStyle = '#eab308';
-      ctx.strokeStyle = '#a16207';
-      ctx.lineWidth = 2.5;
+      ctx.shadowColor = '#f59e0b';
+      ctx.shadowBlur = 6;
 
+      // Left triangular eye
       ctx.beginPath();
-      ctx.roundRect(obs.x, obs.y, obs.width, obs.height, 9);
+      ctx.moveTo(cx - 8, cy - 3);
+      ctx.lineTo(cx - 3, cy - 3);
+      ctx.lineTo(cx - 5.5, cy - 8);
+      ctx.closePath();
       ctx.fill();
-      ctx.stroke();
 
-      // Center separator
+      // Right triangular eye
       ctx.beginPath();
-      ctx.moveTo(obs.x + obs.width * 0.5, obs.y);
-      ctx.lineTo(obs.x + obs.width * 0.5, obs.y + obs.height);
-      ctx.stroke();
+      ctx.moveTo(cx + 3, cy - 3);
+      ctx.lineTo(cx + 8, cy - 3);
+      ctx.lineTo(cx + 5.5, cy - 8);
+      ctx.closePath();
+      ctx.fill();
 
-      // Twin twine straps
-      ctx.strokeStyle = '#713f12';
-      ctx.lineWidth = 2;
+      // Jagged Carved Grin with teeth
       ctx.beginPath();
-      ctx.moveTo(obs.x, obs.y + obs.height * 0.5);
-      ctx.lineTo(obs.x + obs.width, obs.y + obs.height * 0.5);
-      ctx.stroke();
+      ctx.moveTo(cx - 10, cy + 3);
+      ctx.lineTo(cx - 6, cy + 7);
+      ctx.lineTo(cx - 3, cy + 4);
+      ctx.lineTo(cx, cy + 8);
+      ctx.lineTo(cx + 3, cy + 4);
+      ctx.lineTo(cx + 6, cy + 7);
+      ctx.lineTo(cx + 10, cy + 3);
+      ctx.lineTo(cx + 6, cy + 9);
+      ctx.lineTo(cx - 6, cy + 9);
+      ctx.closePath();
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    } else if (obs.type === 'hay_bale_double') {
+      // 🎃🎃 Twin Jack-o'-Lanterns Side-by-Side Bundle
+      const pWidth = obs.width * 0.52;
+      const pumpkins = [
+        { cx: obs.x + pWidth * 0.5, cy: obs.y + obs.height * 0.52 },
+        { cx: obs.x + obs.width - pWidth * 0.5, cy: obs.y + obs.height * 0.52 },
+      ];
+
+      for (let i = 0; i < pumpkins.length; i++) {
+        const { cx, cy } = pumpkins[i]!;
+        // Stem
+        ctx.fillStyle = '#166534';
+        ctx.beginPath();
+        ctx.moveTo(cx - 1, obs.y + 4);
+        ctx.lineTo(cx + 3, obs.y - 2);
+        ctx.lineTo(cx + 1, obs.y + 4);
+        ctx.fill();
+
+        // Body
+        ctx.fillStyle = i === 0 ? '#ea580c' : '#f97316';
+        ctx.strokeStyle = '#9a3412';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, pWidth * 0.46, obs.height * 0.44, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Ribs
+        ctx.strokeStyle = '#c2410c';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, pWidth * 0.22, obs.height * 0.44, 0, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Glowing carved face
+        ctx.fillStyle = '#fef08a';
+        ctx.shadowColor = '#f59e0b';
+        ctx.shadowBlur = 5;
+
+        // Eyes
+        ctx.beginPath();
+        ctx.arc(cx - 4, cy - 4, 1.8, 0, Math.PI * 2);
+        ctx.arc(cx + 4, cy - 4, 1.8, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Grin
+        ctx.beginPath();
+        ctx.moveTo(cx - 6, cy + 3);
+        ctx.lineTo(cx - 3, cy + 6);
+        ctx.lineTo(cx, cy + 4);
+        ctx.lineTo(cx + 3, cy + 6);
+        ctx.lineTo(cx + 6, cy + 3);
+        ctx.lineTo(cx, cy + 7);
+        ctx.closePath();
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
     } else if (obs.type === 'fence_post') {
-      // Rustic Farm Wooden Fence Post
-      ctx.fillStyle = '#78350f';
-      ctx.strokeStyle = '#451a03';
-      ctx.lineWidth = 2.5;
+      // 🕸️ Haunted Wooden Fence with Spooky Cobwebs
+      ctx.fillStyle = '#582b13';
+      ctx.strokeStyle = '#291104';
+      ctx.lineWidth = 2;
 
       // Vertical post
       ctx.beginPath();
-      ctx.roundRect(obs.x + 4, obs.y, obs.width - 8, obs.height, 4);
+      ctx.roundRect(obs.x + 4, obs.y, obs.width - 8, obs.height, 3);
       ctx.fill();
       ctx.stroke();
 
       // Crossbars
-      ctx.fillStyle = '#92400e';
+      ctx.fillStyle = '#713617';
       ctx.fillRect(obs.x, obs.y + 12, obs.width, 8);
       ctx.strokeRect(obs.x, obs.y + 12, obs.width, 8);
       ctx.fillRect(obs.x, obs.y + 28, obs.width, 8);
       ctx.strokeRect(obs.x, obs.y + 28, obs.width, 8);
+
+      // Cobweb draped between top post and crossbar
+      ctx.strokeStyle = 'rgba(241, 245, 249, 0.75)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(obs.x + 2, obs.y + 2);
+      ctx.lineTo(obs.x + obs.width - 2, obs.y + 14);
+      ctx.moveTo(obs.x + obs.width - 2, obs.y + 2);
+      ctx.lineTo(obs.x + 2, obs.y + 14);
+      ctx.moveTo(obs.x + obs.width * 0.5, obs.y);
+      ctx.lineTo(obs.x + obs.width * 0.5, obs.y + 14);
+      ctx.stroke();
+
+      // Little hanging spider drop
+      ctx.fillStyle = '#f1f5f9';
+      ctx.beginPath();
+      ctx.arc(obs.x + obs.width * 0.5, obs.y + 18, 1.8, 0, Math.PI * 2);
+      ctx.fill();
     } else if (obs.type.startsWith('flying_crow')) {
-      // Flying Barn Crow / Raven
+      // 🦇 Midnight Vampire Bat!
       const isWingsUp = (obs.frame || 0) < 1;
-      ctx.fillStyle = nightAlpha > 0.5 ? '#e2e8f0' : '#1e293b';
+      const bx = obs.x + 20;
+      const by = obs.y + 14;
 
-      // Crow Body
+      // Pointed Bat Ears
+      ctx.fillStyle = '#1e1b4b';
       ctx.beginPath();
-      ctx.ellipse(obs.x + 22, obs.y + 14, 14, 8, 0, 0, Math.PI * 2);
+      ctx.moveTo(obs.x + 6, by - 4);
+      ctx.lineTo(obs.x + 3, by - 12);
+      ctx.lineTo(obs.x + 10, by - 6);
+      ctx.moveTo(obs.x + 12, by - 6);
+      ctx.lineTo(obs.x + 15, by - 12);
+      ctx.lineTo(obs.x + 16, by - 4);
       ctx.fill();
 
-      // Head & sharp beak
+      // Furry Bat Body
+      ctx.fillStyle = '#0f172a';
+      ctx.strokeStyle = '#312e81';
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.arc(obs.x + 8, obs.y + 11, 6, 0, Math.PI * 2);
+      ctx.ellipse(bx, by, 13, 8, 0, 0, Math.PI * 2);
       ctx.fill();
-      // Orange beak
-      ctx.fillStyle = '#f97316';
+      ctx.stroke();
+
+      // Bat Head
+      ctx.fillStyle = '#1e1b4b';
       ctx.beginPath();
-      ctx.moveTo(obs.x + 4, obs.y + 10);
-      ctx.lineTo(obs.x - 5, obs.y + 12);
-      ctx.lineTo(obs.x + 4, obs.y + 14);
+      ctx.arc(obs.x + 9, by, 6, 0, Math.PI * 2);
       ctx.fill();
 
-      // Eye
+      // Glowing Vampire Red Eyes
+      ctx.fillStyle = '#ef4444';
+      ctx.shadowColor = '#dc2626';
+      ctx.shadowBlur = 4;
+      ctx.beginPath();
+      ctx.arc(obs.x + 7, by - 1, 2, 0, Math.PI * 2);
+      ctx.arc(obs.x + 11, by - 1, 2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // White Vampire Fangs
       ctx.fillStyle = '#ffffff';
       ctx.beginPath();
-      ctx.arc(obs.x + 7, obs.y + 10, 1.8, 0, Math.PI * 2);
+      ctx.moveTo(obs.x + 7, by + 3);
+      ctx.lineTo(obs.x + 8, by + 6);
+      ctx.lineTo(obs.x + 9, by + 3);
+      ctx.moveTo(obs.x + 10, by + 3);
+      ctx.lineTo(obs.x + 11, by + 6);
+      ctx.lineTo(obs.x + 12, by + 3);
       ctx.fill();
 
-      // Animated Wings
-      ctx.fillStyle = nightAlpha > 0.5 ? '#cbd5e1' : '#0f172a';
+      // Scalloped Vampire Bat Wings (Animated)
+      ctx.fillStyle = '#312e81';
+      ctx.strokeStyle = '#1e1b4b';
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
       if (isWingsUp) {
-        ctx.moveTo(obs.x + 18, obs.y + 12);
-        ctx.lineTo(obs.x + 24, obs.y - 8);
-        ctx.lineTo(obs.x + 32, obs.y + 12);
+        // Wings arched upward
+        ctx.moveTo(bx - 3, by);
+        ctx.quadraticCurveTo(bx + 6, by - 22, bx + 16, by - 20);
+        ctx.quadraticCurveTo(bx + 11, by - 8, bx + 14, by);
+        ctx.quadraticCurveTo(bx + 4, by - 4, bx - 3, by);
       } else {
-        ctx.moveTo(obs.x + 18, obs.y + 12);
-        ctx.lineTo(obs.x + 24, obs.y + 28);
-        ctx.lineTo(obs.x + 32, obs.y + 12);
+        // Wings arched downward
+        ctx.moveTo(bx - 3, by);
+        ctx.quadraticCurveTo(bx + 6, by + 22, bx + 16, by + 20);
+        ctx.quadraticCurveTo(bx + 11, by + 8, bx + 14, by);
+        ctx.quadraticCurveTo(bx + 4, by + 4, bx - 3, by);
       }
       ctx.fill();
+      ctx.stroke();
     }
 
     ctx.restore();
@@ -496,6 +652,33 @@ export const DuckRunnerContainer: React.FC = () => {
       ctx.beginPath();
       ctx.arc(x + 45, y + 8, 2, 0, Math.PI * 2);
       ctx.fill();
+
+      // 🧙‍♀️ Witch Hat (Crouched)
+      // Wide purple brim tilted forward
+      ctx.fillStyle = '#1e1b4b';
+      ctx.strokeStyle = '#0f172a';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.ellipse(x + 44, y + 2, 14, 4, 0.25, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Pointed cone trailing slightly backward
+      ctx.beginPath();
+      ctx.moveTo(x + 36, y + 2);
+      ctx.quadraticCurveTo(x + 34, y - 6, x + 26, y - 10);
+      ctx.quadraticCurveTo(x + 42, y - 4, x + 48, y + 3);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Orange ribbon band & gold buckle
+      ctx.fillStyle = '#f97316';
+      ctx.beginPath();
+      ctx.ellipse(x + 43, y + 1, 9, 2.5, 0.25, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#facc15';
+      ctx.fillRect(x + 42, y - 1, 3, 3);
 
       // Speed lines behind crouching duck
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
@@ -569,6 +752,36 @@ export const DuckRunnerContainer: React.FC = () => {
       ctx.lineTo(x + 48, y + 14);
       ctx.lineTo(x + 37, y + 18);
       ctx.fill();
+
+      // 🧙‍♀️ Quacky's Festive Halloween Witch Hat!
+      // Wide curved dark purple brim
+      ctx.fillStyle = '#1e1b4b';
+      ctx.strokeStyle = '#0f172a';
+      ctx.lineWidth = 1.5;
+
+      ctx.beginPath();
+      ctx.ellipse(x + 30, y + 2, 16, 5, -0.05, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Pointed Witch Cone with charming bent tip
+      ctx.beginPath();
+      ctx.moveTo(x + 20, y + 1);
+      ctx.quadraticCurveTo(x + 24, y - 12, x + 16, y - 18);
+      ctx.quadraticCurveTo(x + 32, y - 10, x + 38, y + 1);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Glowing Orange Ribbon Band
+      ctx.fillStyle = '#f97316';
+      ctx.beginPath();
+      ctx.ellipse(x + 29, y, 10, 3, -0.05, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Gold Witch Buckle
+      ctx.fillStyle = '#facc15';
+      ctx.fillRect(x + 27, y - 2, 4, 4);
 
       // Eye (Sparkle eye or X eye if game over)
       if (isGameOver) {
