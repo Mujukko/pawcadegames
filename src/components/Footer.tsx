@@ -47,6 +47,14 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                 </button>
               </li>
               <li>
+                <button
+                  onClick={() => navigate('/games/animal-farm-parking/')}
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  🐮 Animal Farm Parking (Play Now)
+                </button>
+              </li>
+              <li>
                 <span className="text-slate-500">Cat Cafe Rush (Coming Soon)</span>
               </li>
               <li>

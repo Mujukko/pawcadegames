@@ -56,7 +56,75 @@
 - **What happened:** When users visit casual game portals like Poki (`poki.com`), having lengthy marketing descriptions and text sections above or around the game tiles increases bounce rates and dilutes engagement.
 - **Resolution:**
   1. Converted the homepage into a pure game grid (Bento/Mosaic layout) where 100% of the visible surface is dedicated to playable and upcoming games.
-  2. Implemented quick-switch category filter pills (`🎮 Tüm Oyunlar`, `🔥 Popüler`, `✨ Yeni`, `🐱 Kediler`, `🐶 Köpekler`, `🧩 Bulmaca`) with instant client-side filtering.
-  3. Integrated large interactive hero tiles featuring vibrant background art, mascots, ratings, and immediate "HEMEN OYNA" hover actions.
-- **Preventive Rule:** For browser game portals, prioritize visual game cards and 1-click playability over traditional text-heavy landing page structures.
+  2. Implemented quick-switch category filter pills (`🎮 All Games`, `🔥 Popular`, `✨ New`, `🐮 Farm`, `🐱 Cats`, `🐶 Dogs`, `🧩 Puzzles`) with instant client-side filtering.
+  3. Integrated large interactive hero tiles featuring vibrant background art, mascots, ratings, and immediate "PLAY NOW" hover actions.
 
+## [2026-10-15] Top-Down Continuous Vehicle Physics & Multi-Circle Collision Detection
+- **What happened:** Top-down driving games with non-axial rotation often suffer from corner snagging or rotational tunneling when colliding with static rectangular obstacles.
+- **Root cause:** Standard AABB bounding boxes rotate into excessively large or ill-fitting collision envelopes, while single-circle approximation leaves front/rear extremities clipping through fences and tractors.
+- **Resolution:**
+  1. Implemented a 3-point collinear circle model along the cow's spine ($r = 18\text{px}$, spaced $\pm 18\text{px}$ from center).
+  2. Detected collision by clamping circle centers to obstacle AABBs. If any circle intersects, continuous health damage is applied proportionally to frame delta (`rate * dt`).
+  3. Calibrated damage rate to $28\%$ per second: glancing taps drain only $3-5\%$, while sustained contact or entrapment drains health rapidly and triggers game over.
+  4. Accuracy calculation evaluates slot containment ($50\%$), center proximity ($20\%$), and bidirectional angle alignment ($30\%$) so that both forward and reverse parking are rewarded.
+- **Preventive Rule:** Use multi-sphere bounding volumes for non-axis-aligned elongated vehicles, and scale damage by true elapsed time rather than fixed frame decrements.
+
+## [2026-10-15] Platform-Wide Single-Language Discipline
+- **What happened:** Introducing a new game or translating portions of UI can lead to awkward mixed-language interfaces (e.g. English game instructions alongside Turkish filter tabs).
+- **Resolution:** Harmonized 100% of the portal's navigation, filter pills, game instructions, badges, victory modals, and metadata to clean, consistent English.
+- **Preventive Rule:** Always verify UI strings across all entry points, headers, footers, and modals to maintain strict single-language consistency.
+
+## [2026-10-15] 60 FPS Game Loop Decoupling from React UI & Axis-Separated Wall Sliding
+- **What happened:** Bessie the Cow exhibited noticeable micro-stutters and frame jitter ("takılarak gidiyor") when steering, particularly near walls and fences.
+- **Root cause:**
+  1. **60 FPS React Re-Render Choking:** `FarmGameScene.update()` was invoking `onStateUpdate(this.gameState)` every single frame, forcing `setGameState({ ...s })` 60 times/sec. This flooded React with virtual DOM diffing, triggering periodic garbage collection spikes and thread contention.
+  2. **Speed Oscillation Loop:** When hitting an obstacle, `cow.speed = -cow.speed * 0.35` inverted speed every frame. Because `cow.x` was clamped, next frame moved backward, then accelerated forward, oscillating violently at 60Hz.
+  3. **Coupled Axis Collision:** Testing diagonal movement `(dx, dy)` as a single combined vector caused both axes to fail if either was obstructed, stopping diagonal wall sliding dead.
+  4. **Diagonal Snout Rotation Collision:** Rotating diagonally toward a wall tilted Bessie's front circle into the obstacle, causing the rotation itself to register as an immediate collision.
+- **Resolution:**
+  1. **React State Throttling:** Throttled `onStateUpdate` callbacks in the React container to ~12 FPS (75ms window) while immediately flushing on discrete events (milk collected, level completed, game over). Canvas maintains a rock-solid 60 FPS while React rendering load dropped by $>80\%$.
+  2. **Axis-Separated Wall Sliding:** Resolved X and Y movement independently. If Y is blocked by a fence, X continues sliding smoothly with subtle wall friction (`speed *= 0.88`), clamping speed to zero only on true head-on collisions.
+  3. **Obstacle-Aware Snout Rotation:** If auto-orienting toward a diagonal vector would embed Bessie's nose/horns into a wall, rotation locks parallel to the open axis (e.g. facing horizontally along a fence), enabling butter-smooth wall hugging.
+- **Preventive Rule:** Never bind high-frequency (60Hz) game simulation ticks directly to top-level React state. Separate collision axes for wall sliding, and ensure elongated character rotation does not penetrate static geometry.
+
+## [2026-10-15] Perpendicular Parking Rejection & Rotated Stall Aspect Ratio Alignment
+- **What happened:** A user screenshot showed a visual crosshair (+) glitch where the stall perimeter was horizontal and the emblem inside was vertical, and the cow could sit sideways in the stall while receiving high accuracy.
+- **Root cause:**
+  1. **Double-Inversion of Stall Dimensions:** In Levels 3 & 5, `parkingSlot` was configured with `width: 60, height: 100` alongside `rotation: Math.PI / 2`. Because `slot.width` represents the longitudinal axis, rotating 90 degrees turned it horizontal ($100\text{px}\times 60\text{px}$) on screen, while the emblem ($80\text{px}\times 52\text{px}$) became vertical ($52\text{px}\times 80\text{px}$), intersecting at $90^\circ$.
+  2. **Competing Outer Emblem Border:** The texture generator for `parking_cow_emblem` drew a hardcoded $76\text{px}\times 48\text{px}$ rounded dashed orange box.
+  3. **Permissive Angular Tolerance:** Accuracy was computed additively ($50\%$ containment, $20\%$ distance, $30\%$ angle). A completely sideways cow ($90^\circ$ perpendicular) in the center of the stall scored $1.0\times 0.5 + 1.0\times 0.2 + 0 = 0.70$ ($65\%$ accuracy), triggering green/amber glow.
+- **Resolution:**
+  1. Normalized all stall dimensions so `width` always denotes longitudinal length ($100$) and `height` denotes transverse width ($60$), with orientation governed solely by `rotation` (`-Math.PI / 2` for up, `Math.PI / 2` for down, `0` for right).
+  2. Stripped the outer dashed rectangle from the emblem texture, turning it into a clean stencil floor decal.
+  3. Implemented a strict angular threshold in `calculateParkingAccuracy()`: if $\Delta\theta > 35^\circ$ ($0.61\text{ rad}$), accuracy returns strictly $0\%$.
+- **Preventive Rule:** In top-down directional parking games, never allow additive score accumulation to grant passing grades when vehicle orientation exceeds strict docking thresholds ($\le 35^\circ$). Keep slot dimension conventions uniform and decouple floor decals from rigid outer frames.
+
+## [2026-10-15] Deterministic Dynamic Obstacle Patrol & Sprite Rendering Decoupling
+- **What happened:** Introducing moving obstacles (patrolling sheep) in Level 6+ required maintaining 100% testable game logic in pure TypeScript without depending on Phaser ticks or React render state.
+- **Root cause:** Incremental position updates `pos += speed * dt` can accumulate floating-point drift over long play sessions, fall out of sync on tab switches or browser frame drops, and complicate solvability and clearance unit testing.
+- **Resolution:**
+  1. **Deterministic Function of Elapsed Time:** Implemented `updateObstacles(obstacles, elapsedTime)` using a triangular wave cycle `cycleTime = 2 * (max - min) / speed`. Position and rotation are calculated closed-form from `elapsedTime + phaseOffset`, ensuring zero drift and bit-exact reproducibility.
+  2. **Decoupled Visual Presentation:** The pure engine outputs coordinates and orientation; Phaser handles sprite position, subtle walking trot bobbing (`Math.sin(time * 0.012) * 1.5`), and horizontal flip (`setFlipX`) so that leftward-walking sheep are not rendered upside down.
+  3. **Automated Patrol Route Clearance Validation:** Unit tests sample 20 discrete time steps across the full patrol period of every moving sheep in the game, guaranteeing $\ge 15\text{px}$ clearance from all static obstacles and $\ge 20\text{px}$ from all collectible milk bottles.
+- **Preventive Rule:** Model dynamic game obstacles as closed-form functions of elapsed simulation time rather than stateful frame accumulation. Always write multi-timestep interval clearance tests to prevent moving hazards from colliding with static layout elements.
+
+## [2026-10-15] Dynamic Obstacle Offset Drift & Subpixel Shimmer Elimination
+- **What happened:** The moving sheep exhibited rapid vibration / trembling ("titriyor") while patrolling.
+- **Root cause:**
+  1. **Feedback Loop on Moving Position:** `updateGamePhysics` passed `state.obstacles || level.obstacles` into `updateObstacles`. In each frame, `obs.x` was already updated to the new position, causing `startOffset = (obs.x - min) / speed` to re-evaluate from the live coordinate rather than the static origin. This added live position into the time phase calculation, creating double acceleration and violent flip-flop oscillation around turnaround boundaries.
+  2. **1 Decimal Quantization:** Rounding coordinates to 0.1px prevented smooth subpixel canvas interpolation.
+  3. **High-Frequency Top-Down Bobbing:** Adding a vertical sine wave `\sin(time * 0.012) * 1.5` onto a top-down horizontal movement caused the 32px sprite to shimmer across sub-pixel boundaries 2 times per second, appearing as vibration/tremor.
+- **Resolution:**
+  1. Base input to `updateObstacles` is strictly pinned to immutable `level.obstacles`, keeping `startOffset` 100% constant and stable.
+  2. Floating-point coordinates are passed directly to Phaser without quantization.
+  3. Removed vertical bobbing; sprite position directly follows `(obs.x, obs.y)`.
+- **Preventive Rule:** When evaluating time-based trigonometric or triangular wave motion, always evaluate against the immutable initial level coordinates, never against previously mutated state objects. Avoid cross-axis subpixel bobbing in 2D top-down orthogonal movement.
+
+## [2026-10-15] Procedural Formant Voice Synthesis & Silo Fill Gauge Tweening
+- **What happened:** The user requested adding a Tetris game where clearing blocks fills a rustic hay silo on the right, and a cute farmer sitting on top does hand gestures and shouts "WOW!".
+- **Root cause:** Pre-recorded audio files for speech or character reactions introduce download bloat, licensing headaches, latency, and CORS constraints on web games.
+- **Resolution:**
+  1. **Dual-Bandpass Formant Voice Synthesis (`sound.ts`):** Created a procedural human vocal formant synth in Web Audio using two harmonic oscillators (sawtooth + triangle) routed through a resonant bandpass filter ($Q = 4.2$). Swept filter cutoff dynamically from $450\text{Hz}$ (/w/) up to $950\text{Hz}$ (/o/) and back down to $600\text{Hz}$ (/w/), generating a cheerful cartoon "WOOOW!" voice exclamation with zero asset bytes.
+  2. **Smooth Fill Level Tweening:** The pure engine handles exact silo percentage ($+10\%$ per line, $100\%$ capacity resets with level up). To avoid jarring jumps in the Phaser canvas, `visualSiloPercent` uses linear interpolation (`Phaser.Math.Linear(current, target, 0.14)`) with golden wheat grain stripes and glowing top crest.
+  3. **Multi-Stage Farmer Emotion Animation:** When lines pop, the cute farmer transitions from idle to cheerful waving pose (`farmer_cheer`), executes an easing bounce tween (`Back.easeOut`), pops up an animated speech bubble, and returns to resting idle after 1.4 seconds.
+- **Preventive Rule:** Use procedural formant filter sweeps to give characters expressive cartoon voices with zero download overhead. Combine decoupled pure game logic metrics with client-side visual interpolation for buttery smooth resource gauge transitions.

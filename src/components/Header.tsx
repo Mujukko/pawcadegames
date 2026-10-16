@@ -85,6 +85,20 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
               NEW
             </span>
           </button>
+
+          <button
+            onClick={() => navigate('/games/animal-farm-parking/')}
+            className={`px-3.5 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5 transition-colors cursor-pointer ${
+              currentRoute.startsWith('/games/animal-farm-parking')
+                ? 'bg-emerald-100 text-emerald-900'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
+            }`}
+          >
+            <span>🐮 Farm Parking</span>
+            <span className="bg-emerald-600 text-white font-black text-[10px] px-1.5 py-0.2 rounded-full">
+              HOT
+            </span>
+          </button>
         </nav>
 
         {/* Global Controls */}
@@ -155,6 +169,22 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
             </div>
             <span className="bg-pink-500 text-white font-black text-[10px] px-1.5 py-0.5 rounded-full">
               NEW
+            </span>
+          </button>
+          <button
+            onClick={() => {
+              navigate('/games/animal-farm-parking/');
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between ${
+              currentRoute.startsWith('/games/animal-farm-parking') ? 'bg-emerald-100 text-emerald-900' : 'text-slate-700'
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <span>🐮 Animal Farm Parking</span>
+            </div>
+            <span className="bg-emerald-600 text-white font-black text-[10px] px-1.5 py-0.5 rounded-full">
+              HOT
             </span>
           </button>
         </div>

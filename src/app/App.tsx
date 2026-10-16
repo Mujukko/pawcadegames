@@ -35,13 +35,28 @@ export const App: React.FC = () => {
 
   // Update SEO document title on route changes
   useEffect(() => {
+    const petCrushGame = GAMES_REGISTRY.find(g => g.id === 'pet-candy-crush');
+    const flappyChickenGame = GAMES_REGISTRY.find(g => g.id === 'flappy-chicken');
+    const animal2048Game = GAMES_REGISTRY.find(g => g.id === 'animal-2048');
     const dogParkingGame = GAMES_REGISTRY.find(g => g.id === 'dog-parking');
     const catParkingGame = GAMES_REGISTRY.find(g => g.id === 'cat-parking');
+    const farmParkingGame = GAMES_REGISTRY.find(g => g.id === 'animal-farm-parking');
+    const farmTetrisGame = GAMES_REGISTRY.find(g => g.id === 'farm-tetris');
 
-    if (currentRoute.startsWith('/games/dog-parking')) {
+    if (currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) {
+      document.title = petCrushGame?.metaTitle || 'Farm Animal Match: Barnyard Crush — Free Online Match-3 Game | Pawcade';
+    } else if (currentRoute.startsWith('/games/flappy-chicken')) {
+      document.title = flappyChickenGame?.metaTitle || 'Flappy Chicken: Wheat Run — Free Online Farm Flying Game | Pawcade';
+    } else if (currentRoute.startsWith('/games/animal-2048')) {
+      document.title = animal2048Game?.metaTitle || 'Animal 2048: Mouse to Elephant — Free Online Puzzle Game | Pawcade';
+    } else if (currentRoute.startsWith('/games/farm-tetris')) {
+      document.title = farmTetrisGame?.metaTitle || 'Farm Tetris — Free Online Harvest Block Puzzle Game | Pawcade';
+    } else if (currentRoute.startsWith('/games/dog-parking')) {
       document.title = dogParkingGame?.metaTitle || 'Dog Parking — Free Casual Puzzle Game | Pawcade';
     } else if (currentRoute.startsWith('/games/cat-parking')) {
       document.title = catParkingGame?.metaTitle || 'Cat Parking — Free Casual Cat Puzzle Game | Pawcade';
+    } else if (currentRoute.startsWith('/games/animal-farm-parking')) {
+      document.title = farmParkingGame?.metaTitle || 'Animal Farm Parking — Free Online Cow Parking Game | Pawcade';
     } else if (currentRoute === '/' || currentRoute === '') {
       document.title = 'Pawcade — Poki-Style Free Browser Games Online';
     } else {
@@ -65,11 +80,26 @@ export const App: React.FC = () => {
     if (currentRoute === '/' || currentRoute === '' || currentRoute === '/index.html') {
       return <HomePage navigate={navigate} />;
     }
+    if (currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) {
+      return <GamePage navigate={navigate} gameId="pet-candy-crush" />;
+    }
+    if (currentRoute.startsWith('/games/flappy-chicken')) {
+      return <GamePage navigate={navigate} gameId="flappy-chicken" />;
+    }
+    if (currentRoute.startsWith('/games/animal-2048')) {
+      return <GamePage navigate={navigate} gameId="animal-2048" />;
+    }
+    if (currentRoute.startsWith('/games/farm-tetris')) {
+      return <GamePage navigate={navigate} gameId="farm-tetris" />;
+    }
     if (currentRoute.startsWith('/games/dog-parking')) {
       return <GamePage navigate={navigate} gameId="dog-parking" />;
     }
     if (currentRoute.startsWith('/games/cat-parking')) {
       return <GamePage navigate={navigate} gameId="cat-parking" />;
+    }
+    if (currentRoute.startsWith('/games/animal-farm-parking')) {
+      return <GamePage navigate={navigate} gameId="animal-farm-parking" />;
     }
     return <NotFoundPage navigate={navigate} />;
   };
