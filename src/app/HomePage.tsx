@@ -26,9 +26,9 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
 
       // Category matching
       if (activeFilter === 'all') return true;
-      if (activeFilter === 'popular') return game.id === 'pet-candy-crush' || game.id === 'flappy-chicken' || game.id === 'animal-2048' || game.id === 'farm-tetris' || game.id === 'dog-parking' || game.id === 'animal-farm-parking' || game.badge === 'Popular';
-      if (activeFilter === 'new') return game.id === 'pet-candy-crush' || game.id === 'flappy-chicken' || game.id === 'animal-2048' || game.id === 'farm-tetris' || game.id === 'animal-farm-parking' || game.id === 'cat-parking' || game.badge === 'New';
-      if (activeFilter === 'farm') return game.id.includes('farm') || game.id.includes('animal') || game.id.includes('tetris') || game.id.includes('chicken');
+      if (activeFilter === 'popular') return game.id === 'duck-runner' || game.id === 'pet-candy-crush' || game.id === 'flappy-chicken' || game.id === 'animal-2048' || game.id === 'farm-tetris' || game.id === 'dog-parking' || game.id === 'animal-farm-parking' || game.badge === 'Popular';
+      if (activeFilter === 'new') return game.id === 'duck-runner' || game.id === 'pet-candy-crush' || game.id === 'flappy-chicken' || game.id === 'animal-2048' || game.id === 'farm-tetris' || game.id === 'animal-farm-parking' || game.id === 'cat-parking' || game.badge === 'New';
+      if (activeFilter === 'farm') return game.id.includes('farm') || game.id.includes('animal') || game.id.includes('tetris') || game.id.includes('chicken') || game.id.includes('duck');
       if (activeFilter === 'puzzle') return game.category === 'puzzle' || game.category === 'casual';
       if (activeFilter === 'dogs') return game.id.includes('dog') || game.id.includes('pet');
       if (activeFilter === 'cats') return game.id.includes('cat') || game.id.includes('pet');
@@ -97,6 +97,73 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
       {/* Main Poki Bento Game Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6">
+          {/* HERO BANNER: Duck Runner: T-Rex Quack (Brand New T-Rex Offline Style Runner) */}
+          {filteredGames.some((g) => g.id === 'duck-runner') && (
+            <div
+              onClick={() => navigate('/games/duck-runner/')}
+              className="group cursor-pointer relative lg:col-span-12 bg-gradient-to-r from-amber-600 via-yellow-600 to-emerald-900 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-amber-500/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col md:flex-row items-center justify-between min-h-[300px] border-2 border-amber-400/40 hover:border-amber-300"
+            >
+              {/* Decorative background glow & shapes */}
+              <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/15 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
+              <div className="absolute -bottom-10 right-20 text-9xl sm:text-[140px] opacity-20 select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
+                🦆
+              </div>
+
+              {/* Left Column: Info & Action */}
+              <div className="relative z-10 flex flex-col justify-between h-full max-w-xl">
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="bg-amber-400 text-slate-950 font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider">
+                      <Sparkles className="w-3.5 h-3.5 fill-slate-950 text-slate-950" />
+                      <span>Brand New</span>
+                    </span>
+                    <span className="bg-black/40 backdrop-blur-md text-amber-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-amber-500/30">
+                      🦆 T-Rex Runner Quack
+                    </span>
+                    <span className="bg-black/40 backdrop-blur-md text-yellow-200 font-bold text-xs px-2.5 py-1 rounded-xl border border-yellow-500/30">
+                      🌙 Day & Night Cycle
+                    </span>
+                    <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-amber-300 border border-white/10">
+                      <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
+                      <span>5.0</span>
+                      <span className="text-white/60 font-medium ml-1">(Instant Play)</span>
+                    </div>
+                  </div>
+
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+                    Duck Runner: T-Rex Quack
+                  </h2>
+                  <p className="text-amber-100 text-sm sm:text-base font-medium mt-2 leading-relaxed max-w-lg drop-shadow-xs">
+                    The beloved offline Chrome T-Rex runner reimagined with a cute duck! Jump over hay bales and fences, duck under flying crows, and survive the retro day-to-night speed rush!
+                  </p>
+                </div>
+
+                <div className="mt-6 flex flex-wrap items-center gap-4">
+                  <div className="bg-amber-400 group-hover:bg-amber-300 text-slate-950 px-6 py-3 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2.5 transition-transform group-hover:scale-105">
+                    <Play className="w-4 h-4 fill-slate-950 text-slate-950" />
+                    <span>PLAY NOW FREE</span>
+                  </div>
+                  <span className="text-xs font-bold text-amber-200/90 uppercase tracking-widest hidden sm:inline">
+                    Jump & Duck Controls • Day/Night Sky • Milestone Chimes • 60 FPS
+                  </span>
+                </div>
+              </div>
+
+              {/* Right Column: Visual Mascot & Theme Art */}
+              <div className="relative z-10 my-4 md:my-0 flex flex-col items-center justify-center">
+                <div className="flex items-center gap-3 text-5xl sm:text-6xl lg:text-7xl filter drop-shadow-2xl group-hover:scale-105 transition-transform duration-300 select-none">
+                  <span className="animate-bounce">🦆</span>
+                  <span className="text-3xl text-amber-300">➔</span>
+                  <span className="text-5xl sm:text-6xl">🌾</span>
+                  <span className="text-4xl sm:text-5xl">🦅</span>
+                </div>
+                <div className="mt-3 px-3.5 py-1 rounded-full bg-amber-950/70 border border-amber-400/40 text-amber-200 text-xs font-bold shadow-md">
+                  Controls: [Space/Up] Jump • [Down] Duck
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* HERO BANNER: Farm Animal Match: Barnyard Crush (Featured Brand New Game) */}
           {filteredGames.some((g) => g.id === 'pet-candy-crush') && (
             <div
@@ -542,7 +609,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
 
           {/* SECONDARY TILES: Other Games & Upcoming titles */}
           {filteredGames
-            .filter((g) => g.id !== 'dog-parking' && g.id !== 'cat-parking' && g.id !== 'animal-farm-parking' && g.id !== 'farm-tetris' && g.id !== 'animal-2048' && g.id !== 'flappy-chicken' && g.id !== 'pet-candy-crush')
+            .filter((g) => g.id !== 'dog-parking' && g.id !== 'cat-parking' && g.id !== 'animal-farm-parking' && g.id !== 'farm-tetris' && g.id !== 'animal-2048' && g.id !== 'flappy-chicken' && g.id !== 'pet-candy-crush' && g.id !== 'duck-runner')
             .map((game) => (
               <div
                 key={game.id}

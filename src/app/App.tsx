@@ -35,6 +35,7 @@ export const App: React.FC = () => {
 
   // Update SEO document title on route changes
   useEffect(() => {
+    const duckRunnerGame = GAMES_REGISTRY.find(g => g.id === 'duck-runner');
     const petCrushGame = GAMES_REGISTRY.find(g => g.id === 'pet-candy-crush');
     const flappyChickenGame = GAMES_REGISTRY.find(g => g.id === 'flappy-chicken');
     const animal2048Game = GAMES_REGISTRY.find(g => g.id === 'animal-2048');
@@ -43,7 +44,9 @@ export const App: React.FC = () => {
     const farmParkingGame = GAMES_REGISTRY.find(g => g.id === 'animal-farm-parking');
     const farmTetrisGame = GAMES_REGISTRY.find(g => g.id === 'farm-tetris');
 
-    if (currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) {
+    if (currentRoute.startsWith('/games/duck-runner')) {
+      document.title = duckRunnerGame?.metaTitle || 'Duck Runner: T-Rex Quack — Free Online Duck Jumping Game | Pawcade';
+    } else if (currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) {
       document.title = petCrushGame?.metaTitle || 'Farm Animal Match: Barnyard Crush — Free Online Match-3 Game | Pawcade';
     } else if (currentRoute.startsWith('/games/flappy-chicken')) {
       document.title = flappyChickenGame?.metaTitle || 'Flappy Chicken: Wheat Run — Free Online Farm Flying Game | Pawcade';
@@ -79,6 +82,9 @@ export const App: React.FC = () => {
   const renderCurrentView = () => {
     if (currentRoute === '/' || currentRoute === '' || currentRoute === '/index.html') {
       return <HomePage navigate={navigate} />;
+    }
+    if (currentRoute.startsWith('/games/duck-runner')) {
+      return <GamePage navigate={navigate} gameId="duck-runner" />;
     }
     if (currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) {
       return <GamePage navigate={navigate} gameId="pet-candy-crush" />;

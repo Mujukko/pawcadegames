@@ -21,6 +21,42 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'duck-runner',
+    slug: 'duck-runner',
+    title: 'Duck Runner: T-Rex Quack',
+    tagline: 'Google T-Rex offline runner reimagined with a jumping and ducking farm duck!',
+    description: "Play Duck Runner free online! Inspired by Google Chrome's iconic offline T-Rex Dino runner, guide Quacky the Duck across the countryside. Jump over golden hay bales, leap rustic fence posts, and crouch low to slide under high-flying crows! Experience progressive speeds, Day-to-Night transitions, and retro milestone chimes.",
+    category: 'arcade',
+    route: '/games/duck-runner/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '19.4K',
+    badge: 'Brand New',
+    controls: {
+      desktop: [
+        'Space / ↑ / W: Jump over hay bales and fences',
+        '↓ / S: Duck / Crouch under flying crows (Fast fall in air)',
+        'Click: Tap screen to jump',
+        'R: Quick restart game',
+      ],
+      mobile: [
+        'Tap Screen / JUMP ⬆️: Jump over low obstacles',
+        'DUCK ⬇️: Hold to slide flat under high flying crows',
+      ],
+    },
+    features: [
+      'Classic Google T-Rex Offline Runner Mechanics with Cute Quacky the Duck',
+      'Jump Over Hay Bales (🌾) & Rustic Fence Posts (🪵)',
+      'Duck / Slide Under High Flying Crows (🦅) with Fast-Fall In-Air Physics',
+      'Dynamic Day & Night Cycle: Shifts to starry moonlit twilight every 600 points',
+      'Retro 100-Point Milestone Chimes & High Score Tracking',
+      'Dual Mobile Thumb Controls (Left Duck / Right Jump) & 60 FPS HTML5 Canvas',
+      '100% Free Browser Play with Zero Installs or Ads',
+    ],
+    metaTitle: 'Duck Runner: T-Rex Quack — Free Online Duck Jumping Game | Pawcade',
+    metaDescription: 'Play Duck Runner free in your browser! Jump over hay bales, duck under flying crows, and survive the day/night cycle in this cute duck T-Rex runner game.',
+  },
+  {
     id: 'pet-candy-crush',
     slug: 'pet-candy-crush',
     title: 'Farm Animal Match: Barnyard Crush',

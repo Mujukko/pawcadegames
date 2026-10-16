@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { DuckRunnerContainer } from '../games/duck-runner/DuckRunnerContainer';
 import { PetCandyCrushContainer } from '../games/pet-candy-crush/PetCandyCrushContainer';
 import { FlappyChickenContainer } from '../games/flappy-chicken/FlappyChickenContainer';
 import { Animal2048Container } from '../games/animal-2048/Animal2048Container';
@@ -15,6 +16,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isDuckRunner = gameId === 'duck-runner';
   const isPetCrush = gameId === 'pet-candy-crush';
   const isFlappy = gameId === 'flappy-chicken';
   const is2048 = gameId === 'animal-2048';
@@ -37,7 +39,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
           <button onClick={() => navigate('/')} className="hover:text-slate-900 transition-colors cursor-pointer shrink-0">
-            {isPetCrush ? 'Match-3 Mania' : isFlappy ? 'Farm Flight' : is2048 ? 'Animal Puzzle' : isFarmTetris ? 'Harvest Puzzle' : isFarm ? 'Casual Driving' : 'Puzzle Games'}
+            {isDuckRunner ? 'Runner Games' : isPetCrush ? 'Match-3 Mania' : isFlappy ? 'Farm Flight' : is2048 ? 'Animal Puzzle' : isFarmTetris ? 'Harvest Puzzle' : isFarm ? 'Casual Driving' : 'Puzzle Games'}
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
           <span className="text-slate-900 font-bold truncate">{game.title}</span>
@@ -50,7 +52,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md ${
-                isPetCrush
+                isDuckRunner
+                  ? 'bg-amber-100 text-amber-900'
+                  : isPetCrush
                   ? 'bg-amber-100 text-amber-900'
                   : isFlappy
                   ? 'bg-amber-100 text-amber-900'
@@ -64,7 +68,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   ? 'bg-pink-100 text-pink-800'
                   : 'bg-amber-100 text-amber-800'
               }`}>
-                {isPetCrush ? '🌾 Farm Match-3 Crush' : isFlappy ? '🐔 New Flappy Chicken' : is2048 ? '🐘 New Animal 2048' : isFarmTetris ? '🌾 New Harvest Tetris' : isFarm ? '🐮 New Farm Driving' : isCat ? '🐱 New Feline Puzzle' : '🐶 Featured Puzzle'}
+                {isDuckRunner ? '🦆 New T-Rex Duck Runner' : isPetCrush ? '🌾 Farm Match-3 Crush' : isFlappy ? '🐔 New Flappy Chicken' : is2048 ? '🐘 New Animal 2048' : isFarmTetris ? '🌾 New Harvest Tetris' : isFarm ? '🐮 New Farm Driving' : isCat ? '🐱 New Feline Puzzle' : '🐶 Featured Puzzle'}
               </span>
               <div className="flex items-center text-amber-500 text-xs font-bold">
                 <Star className="w-3.5 h-3.5 fill-amber-500 mr-1" />
@@ -82,7 +86,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
 
         {/* The Playable Game Frame */}
         <div className="bg-slate-900/5 rounded-2xl sm:rounded-3xl p-1 sm:p-6 border border-slate-200/80 mb-8 sm:mb-12 shadow-inner flex justify-center overflow-hidden">
-          {isPetCrush ? (
+          {isDuckRunner ? (
+            <DuckRunnerContainer />
+          ) : isPetCrush ? (
             <PetCandyCrushContainer />
           ) : isFlappy ? (
             <FlappyChickenContainer />
@@ -111,7 +117,18 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
 
             <div className="space-y-3 text-sm text-slate-600">
-              {isPetCrush ? (
+              {isDuckRunner ? (
+                <>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-slate-900 min-w-24">Desktop:</span>
+                    <span>Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">Spacebar</kbd> or <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">↑</kbd> to jump over hay bales and fences. Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">↓</kbd> to duck/crouch under flying crows, or tap <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">↓</kbd> in mid-air for a fast-fall slam. Press <kbd className="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono border">R</kbd> to restart.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-slate-900 min-w-24">Mobile:</span>
+                    <span>Tap anywhere on the upper screen to jump, or use the on-screen bottom dual thumb buttons: <strong>DUCK ⬇️</strong> on the left thumb and <strong>JUMP ⬆️</strong> on the right thumb.</span>
+                  </div>
+                </>
+              ) : isPetCrush ? (
                 <>
                   <div className="flex items-start gap-2">
                     <span className="font-bold text-slate-900 min-w-24">Desktop:</span>
@@ -191,7 +208,26 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
 
             <ul className="space-y-2.5 text-sm text-slate-600">
-              {isPetCrush ? (
+              {isDuckRunner ? (
+                <>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <span>Run as far as you can across the rustic barnyard meadow! Speed ramps up progressively as your distance increases.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <span>Jump over low farm obstacles: rustic wooden fences, small hay bales, and stacked double hay rolls.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <span>Duck/crouch under high flying crows and seagulls. Low-flying crows require a well-timed jump to leap over!</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <span>Celebrate retro milestone chimes every <strong>100 points</strong> and watch the sky transition smoothly through the <strong>day-to-night cycle</strong> every 600 points!</span>
+                  </li>
+                </>
+              ) : isPetCrush ? (
                 <>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />

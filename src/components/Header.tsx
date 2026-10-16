@@ -61,6 +61,20 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
           </button>
 
           <button
+            onClick={() => navigate('/games/duck-runner/')}
+            className={`px-3.5 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5 transition-colors cursor-pointer ${
+              currentRoute.startsWith('/games/duck-runner')
+                ? 'bg-amber-100 text-amber-900'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
+            }`}
+          >
+            <span>🦆 Duck Runner</span>
+            <span className="bg-amber-500 text-slate-950 font-black text-[10px] px-1.5 py-0.2 rounded-full">
+              NEW
+            </span>
+          </button>
+
+          <button
             onClick={() => navigate('/games/dog-parking/')}
             className={`px-3.5 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5 transition-colors cursor-pointer ${
               currentRoute.startsWith('/games/dog-parking')
@@ -138,6 +152,23 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
           >
             <span>🎮 All Games (Portal)</span>
             <span className="text-xs text-slate-400">Home</span>
+          </button>
+
+          <button
+            onClick={() => {
+              navigate('/games/duck-runner/');
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
+              currentRoute.startsWith('/games/duck-runner') ? 'bg-amber-100 text-amber-900' : 'text-slate-700 hover:bg-slate-50'
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <span>🦆 Duck Runner</span>
+            </div>
+            <span className="bg-amber-400 text-slate-950 font-black text-[10px] px-2 py-0.5 rounded-full">
+              NEW
+            </span>
           </button>
 
           <button
