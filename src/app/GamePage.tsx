@@ -30,26 +30,26 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   return (
     <div className="flex flex-col min-h-screen bg-slate-50/60 pb-16">
       {/* Breadcrumb Header */}
-      <div className="bg-white border-b border-slate-200/80 py-3 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex items-center text-xs font-semibold text-slate-500 gap-1.5">
-          <button onClick={() => navigate('/')} className="hover:text-slate-900 transition-colors cursor-pointer">
+      <div className="bg-white border-b border-slate-200/80 py-2 sm:py-3 px-3 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center text-xs font-semibold text-slate-500 gap-1.5 overflow-x-auto scrollbar-none">
+          <button onClick={() => navigate('/')} className="hover:text-slate-900 transition-colors cursor-pointer shrink-0">
             Home
           </button>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <button onClick={() => navigate('/')} className="hover:text-slate-900 transition-colors cursor-pointer">
+          <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+          <button onClick={() => navigate('/')} className="hover:text-slate-900 transition-colors cursor-pointer shrink-0">
             {isPetCrush ? 'Match-3 Mania' : isFlappy ? 'Farm Flight' : is2048 ? 'Animal Puzzle' : isFarmTetris ? 'Harvest Puzzle' : isFarm ? 'Casual Driving' : 'Puzzle Games'}
           </button>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-900 font-bold">{game.title}</span>
+          <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+          <span className="text-slate-900 font-bold truncate">{game.title}</span>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 w-full">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 pt-3 sm:pt-8 w-full">
         {/* Game Title Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-3 sm:mb-6 px-1">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className={`text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md ${
+              <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md ${
                 isPetCrush
                   ? 'bg-amber-100 text-amber-900'
                   : isFlappy
@@ -71,17 +71,17 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                 <span>{game.rating} / 5.0 (Instant Play)</span>
               </div>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
               {game.title}
             </h1>
-            <p className="text-slate-600 text-sm sm:text-base mt-1 max-w-2xl">
+            <p className="text-slate-600 text-xs sm:text-base mt-0.5 sm:mt-1 max-w-2xl line-clamp-2 sm:line-clamp-none">
               {game.tagline}
             </p>
           </div>
         </div>
 
         {/* The Playable Game Frame */}
-        <div className="bg-slate-900/5 rounded-3xl p-3 sm:p-6 border border-slate-200/80 mb-12 shadow-inner flex justify-center">
+        <div className="bg-slate-900/5 rounded-2xl sm:rounded-3xl p-1 sm:p-6 border border-slate-200/80 mb-8 sm:mb-12 shadow-inner flex justify-center overflow-hidden">
           {isPetCrush ? (
             <PetCandyCrushContainer />
           ) : isFlappy ? (

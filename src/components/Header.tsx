@@ -126,65 +126,137 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-slate-200 px-4 py-3 flex flex-col gap-2">
+        <div className="md:hidden bg-white/98 backdrop-blur-lg border-b border-slate-200/90 px-3 py-3 flex flex-col gap-1.5 shadow-xl max-h-[80vh] overflow-y-auto">
           <button
             onClick={() => {
               navigate('/');
               setMobileMenuOpen(false);
             }}
-            className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold ${
-              currentRoute === '/' ? 'bg-indigo-50 text-indigo-700' : 'text-slate-700'
+            className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
+              currentRoute === '/' ? 'bg-indigo-50 text-indigo-700' : 'text-slate-700 hover:bg-slate-50'
             }`}
           >
-            All Games
+            <span>🎮 All Games (Portal)</span>
+            <span className="text-xs text-slate-400">Home</span>
           </button>
+
+          <button
+            onClick={() => {
+              navigate('/games/pet-candy-crush/');
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
+              currentRoute.startsWith('/games/pet-candy-crush') ? 'bg-amber-100 text-amber-900' : 'text-slate-700 hover:bg-slate-50'
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <span>🌾 Farm Animal Match</span>
+            </div>
+            <span className="bg-amber-400 text-slate-950 font-black text-[10px] px-2 py-0.5 rounded-full">
+              POPULAR
+            </span>
+          </button>
+
+          <button
+            onClick={() => {
+              navigate('/games/flappy-chicken/');
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
+              currentRoute.startsWith('/games/flappy-chicken') ? 'bg-amber-100 text-amber-900' : 'text-slate-700 hover:bg-slate-50'
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <span>🐔 Flappy Chicken</span>
+            </div>
+            <span className="bg-orange-500 text-white font-black text-[10px] px-2 py-0.5 rounded-full">
+              NEW
+            </span>
+          </button>
+
+          <button
+            onClick={() => {
+              navigate('/games/animal-2048/');
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
+              currentRoute.startsWith('/games/animal-2048') ? 'bg-purple-100 text-purple-900' : 'text-slate-700 hover:bg-slate-50'
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <span>🐘 Animal 2048</span>
+            </div>
+            <span className="bg-purple-500 text-white font-black text-[10px] px-2 py-0.5 rounded-full">
+              HOT
+            </span>
+          </button>
+
+          <button
+            onClick={() => {
+              navigate('/games/farm-tetris/');
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
+              currentRoute.startsWith('/games/farm-tetris') ? 'bg-amber-100 text-amber-900' : 'text-slate-700 hover:bg-slate-50'
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <span>🚜 Farm Tetris</span>
+            </div>
+            <span className="bg-amber-500 text-slate-950 font-black text-[10px] px-2 py-0.5 rounded-full">
+              HARVEST
+            </span>
+          </button>
+
           <button
             onClick={() => {
               navigate('/games/dog-parking/');
               setMobileMenuOpen(false);
             }}
-            className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between ${
-              currentRoute.startsWith('/games/dog-parking') ? 'bg-amber-100 text-amber-900' : 'text-slate-700'
+            className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
+              currentRoute.startsWith('/games/dog-parking') ? 'bg-amber-100 text-amber-900' : 'text-slate-700 hover:bg-slate-50'
             }`}
           >
             <div className="flex items-center gap-2">
               <span>🐶 Dog Parking</span>
             </div>
-            <span className="bg-amber-400 text-slate-950 font-black text-[10px] px-1.5 py-0.5 rounded-full">
-              POPULAR
+            <span className="bg-amber-400 text-slate-950 font-black text-[10px] px-2 py-0.5 rounded-full">
+              FEATURED
             </span>
           </button>
+
           <button
             onClick={() => {
               navigate('/games/cat-parking/');
               setMobileMenuOpen(false);
             }}
-            className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between ${
-              currentRoute.startsWith('/games/cat-parking') ? 'bg-pink-100 text-pink-900' : 'text-slate-700'
+            className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
+              currentRoute.startsWith('/games/cat-parking') ? 'bg-pink-100 text-pink-900' : 'text-slate-700 hover:bg-slate-50'
             }`}
           >
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-pink-500" />
               <span>🐱 Cat Parking</span>
             </div>
-            <span className="bg-pink-500 text-white font-black text-[10px] px-1.5 py-0.5 rounded-full">
-              NEW
+            <span className="bg-pink-500 text-white font-black text-[10px] px-2 py-0.5 rounded-full">
+              COZY
             </span>
           </button>
+
           <button
             onClick={() => {
               navigate('/games/animal-farm-parking/');
               setMobileMenuOpen(false);
             }}
-            className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between ${
-              currentRoute.startsWith('/games/animal-farm-parking') ? 'bg-emerald-100 text-emerald-900' : 'text-slate-700'
+            className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
+              currentRoute.startsWith('/games/animal-farm-parking') ? 'bg-emerald-100 text-emerald-900' : 'text-slate-700 hover:bg-slate-50'
             }`}
           >
             <div className="flex items-center gap-2">
-              <span>🐮 Animal Farm Parking</span>
+              <span>🐮 Farm Parking (Cow Drive)</span>
             </div>
-            <span className="bg-emerald-600 text-white font-black text-[10px] px-1.5 py-0.5 rounded-full">
-              HOT
+            <span className="bg-emerald-600 text-white font-black text-[10px] px-2 py-0.5 rounded-full">
+              ACTION
             </span>
           </button>
         </div>

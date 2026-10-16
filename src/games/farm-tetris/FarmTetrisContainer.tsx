@@ -112,6 +112,48 @@ export const FarmTetrisContainer: React.FC = () => {
   const handleTouchHardDrop = () => activeSceneRef.current?.handleHardDrop();
   const handleTouchHold = () => activeSceneRef.current?.handleHold();
 
+  // Canvas Swipe Gestures for Mobile
+  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
+
+  const handleCanvasTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length > 0) {
+      touchStartRef.current = {
+        x: e.touches[0]!.clientX,
+        y: e.touches[0]!.clientY,
+        time: performance.now(),
+      };
+    }
+  };
+
+  const handleCanvasTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current || e.changedTouches.length === 0) return;
+    const endX = e.changedTouches[0]!.clientX;
+    const endY = e.changedTouches[0]!.clientY;
+    const dx = endX - touchStartRef.current.x;
+    const dy = endY - touchStartRef.current.y;
+    const dt = performance.now() - touchStartRef.current.time;
+    touchStartRef.current = null;
+
+    // Quick tap = rotate piece
+    if (Math.abs(dx) < 18 && Math.abs(dy) < 18 && dt < 280) {
+      handleTouchRotate();
+      return;
+    }
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (dx > 22) handleTouchRight();
+      else if (dx < -22) handleTouchLeft();
+    } else {
+      if (dy > 70 && dt < 300) {
+        handleTouchHardDrop();
+      } else if (dy > 20) {
+        handleTouchSoftDrop();
+      } else if (dy < -20) {
+        handleTouchRotate();
+      }
+    }
+  };
+
   const score = gameState?.score ?? 0;
   const highScore = gameState?.highScore ?? 0;
   const lines = gameState?.linesCleared ?? 0;
@@ -217,11 +259,15 @@ export const FarmTetrisContainer: React.FC = () => {
         </div>
       </div>
 
-      {/* Phaser Canvas Frame */}
-      <div className="relative w-full aspect-square max-w-[580px] bg-slate-950 rounded-3xl p-1 sm:p-2 border-2 border-amber-900/60 shadow-2xl flex items-center justify-center overflow-hidden">
+      {/* Phaser Canvas Frame with Touch Gestures */}
+      <div 
+        onTouchStart={handleCanvasTouchStart}
+        onTouchEnd={handleCanvasTouchEnd}
+        className="relative w-full aspect-square max-w-[580px] bg-slate-950 rounded-2xl sm:rounded-3xl p-1 sm:p-2 border-2 border-amber-900/60 shadow-2xl flex items-center justify-center overflow-hidden touch-none"
+      >
         <div
           ref={containerRef}
-          className="w-full h-full flex items-center justify-center rounded-2xl overflow-hidden"
+          className="w-full h-full flex items-center justify-center rounded-2xl overflow-hidden touch-none"
         />
 
         {/* Pause Overlay */}
@@ -243,12 +289,11 @@ export const FarmTetrisContainer: React.FC = () => {
       {/* Mobile Touch Controls Bar */}
       <div className="w-full mt-3 flex flex-col sm:flex-row items-center justify-between gap-3 px-2">
         {/* On-Screen Mobile Controls */}
-        <div className="flex md:hidden items-center justify-between w-full bg-slate-900/95 backdrop-blur-md p-2.5 rounded-2xl border border-slate-800 shadow-lg text-white">
+        <div className="flex lg:hidden items-center justify-between w-full bg-slate-900/95 backdrop-blur-md p-2.5 rounded-2xl border border-slate-800 shadow-lg text-white touch-none">
           {/* Movement & Drop controls */}
           <div className="flex items-center gap-1.5">
             <button
-              onTouchStart={handleTouchLeft}
-              onClick={handleTouchLeft}
+              onPointerDown={(e) => { e.preventDefault(); handleTouchLeft(); }}
               className="w-11 h-11 bg-slate-800 active:bg-slate-700 text-amber-300 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 border border-slate-700 cursor-pointer"
               aria-label="Move Left"
             >
@@ -256,8 +301,7 @@ export const FarmTetrisContainer: React.FC = () => {
             </button>
 
             <button
-              onTouchStart={handleTouchSoftDrop}
-              onClick={handleTouchSoftDrop}
+              onPointerDown={(e) => { e.preventDefault(); handleTouchSoftDrop(); }}
               className="w-11 h-11 bg-slate-800 active:bg-slate-700 text-amber-300 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 border border-slate-700 cursor-pointer"
               aria-label="Soft Drop"
             >
@@ -265,8 +309,7 @@ export const FarmTetrisContainer: React.FC = () => {
             </button>
 
             <button
-              onTouchStart={handleTouchRight}
-              onClick={handleTouchRight}
+              onPointerDown={(e) => { e.preventDefault(); handleTouchRight(); }}
               className="w-11 h-11 bg-slate-800 active:bg-slate-700 text-amber-300 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 border border-slate-700 cursor-pointer"
               aria-label="Move Right"
             >
@@ -277,8 +320,7 @@ export const FarmTetrisContainer: React.FC = () => {
           {/* Action buttons (Rotate, Hold, Hard Drop) */}
           <div className="flex items-center gap-1.5">
             <button
-              onTouchStart={handleTouchHold}
-              onClick={handleTouchHold}
+              onPointerDown={(e) => { e.preventDefault(); handleTouchHold(); }}
               className="w-11 h-11 bg-indigo-900/70 active:bg-indigo-800 text-indigo-300 rounded-xl flex flex-col items-center justify-center font-black text-[9px] shadow-xs active:scale-95 border border-indigo-700 cursor-pointer"
               aria-label="Hold Piece"
             >
@@ -287,8 +329,7 @@ export const FarmTetrisContainer: React.FC = () => {
             </button>
 
             <button
-              onTouchStart={handleTouchRotate}
-              onClick={handleTouchRotate}
+              onPointerDown={(e) => { e.preventDefault(); handleTouchRotate(); }}
               className="w-11 h-11 bg-amber-500 active:bg-amber-400 text-slate-950 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 cursor-pointer"
               aria-label="Rotate Piece"
             >
@@ -296,8 +337,7 @@ export const FarmTetrisContainer: React.FC = () => {
             </button>
 
             <button
-              onTouchStart={handleTouchHardDrop}
-              onClick={handleTouchHardDrop}
+              onPointerDown={(e) => { e.preventDefault(); handleTouchHardDrop(); }}
               className="w-12 h-11 bg-rose-600 active:bg-rose-500 text-white rounded-xl flex flex-col items-center justify-center font-black text-[9px] uppercase shadow-xs active:scale-95 cursor-pointer"
               aria-label="Hard Drop"
             >

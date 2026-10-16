@@ -497,32 +497,32 @@ export const Animal2048Container: React.FC = () => {
       </div>
 
       {/* Virtual Directional D-Pad for Mobile & Desktop quick controls */}
-      <div className="mt-4 flex flex-col items-center gap-1.5 sm:hidden">
+      <div className="mt-4 flex flex-col items-center gap-1.5 sm:hidden touch-none">
         <button
-          onClick={() => handleMove('up')}
-          className="w-14 h-12 rounded-xl bg-stone-900/80 active:bg-amber-600 border border-amber-900/40 text-amber-300 flex items-center justify-center shadow-md active:scale-95"
+          onPointerDown={(e) => { e.preventDefault(); handleMove('up'); }}
+          className="w-14 h-12 rounded-xl bg-stone-900/80 active:bg-amber-600 border border-amber-900/40 text-amber-300 flex items-center justify-center shadow-md active:scale-95 cursor-pointer"
           aria-label="Slide Up"
         >
           <ArrowUp className="w-5 h-5" />
         </button>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => handleMove('left')}
-            className="w-14 h-12 rounded-xl bg-stone-900/80 active:bg-amber-600 border border-amber-900/40 text-amber-300 flex items-center justify-center shadow-md active:scale-95"
+            onPointerDown={(e) => { e.preventDefault(); handleMove('left'); }}
+            className="w-14 h-12 rounded-xl bg-stone-900/80 active:bg-amber-600 border border-amber-900/40 text-amber-300 flex items-center justify-center shadow-md active:scale-95 cursor-pointer"
             aria-label="Slide Left"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
           <button
-            onClick={() => handleMove('down')}
-            className="w-14 h-12 rounded-xl bg-stone-900/80 active:bg-amber-600 border border-amber-900/40 text-amber-300 flex items-center justify-center shadow-md active:scale-95"
+            onPointerDown={(e) => { e.preventDefault(); handleMove('down'); }}
+            className="w-14 h-12 rounded-xl bg-stone-900/80 active:bg-amber-600 border border-amber-900/40 text-amber-300 flex items-center justify-center shadow-md active:scale-95 cursor-pointer"
             aria-label="Slide Down"
           >
             <ArrowDown className="w-5 h-5" />
           </button>
           <button
-            onClick={() => handleMove('right')}
-            className="w-14 h-12 rounded-xl bg-stone-900/80 active:bg-amber-600 border border-amber-900/40 text-amber-300 flex items-center justify-center shadow-md active:scale-95"
+            onPointerDown={(e) => { e.preventDefault(); handleMove('right'); }}
+            className="w-14 h-12 rounded-xl bg-stone-900/80 active:bg-amber-600 border border-amber-900/40 text-amber-300 flex items-center justify-center shadow-md active:scale-95 cursor-pointer"
             aria-label="Slide Right"
           >
             <ArrowRight className="w-5 h-5" />

@@ -136,7 +136,66 @@ export class FarmGameScene extends Phaser.Scene {
       };
     }
 
+    // 9. Direct Mobile Canvas Touch Steering
+    this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
+      this.handlePointerSteer(pointer);
+    });
+    this.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
+      if (pointer.isDown) {
+        this.handlePointerSteer(pointer);
+      }
+    });
+    this.input.on('pointerup', () => {
+      this.virtualInput = {
+        ...this.virtualInput,
+        up: false,
+        down: false,
+        left: false,
+        right: false,
+      };
+    });
+
     farmSoundManager.playMoo('alert');
+  }
+
+  private handlePointerSteer(pointer: Phaser.Input.Pointer) {
+    if (!this.cowSprite) return;
+    const dx = pointer.x - this.cowSprite.x;
+    const dy = pointer.y - this.cowSprite.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    // If tapped very close to Bessie, act as STOP brake
+    if (dist < 22) {
+      this.virtualInput = {
+        ...this.virtualInput,
+        up: false,
+        down: false,
+        left: false,
+        right: false,
+        brake: true,
+      };
+      return;
+    }
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+      this.virtualInput = {
+        ...this.virtualInput,
+        right: dx > 0,
+        left: dx < 0,
+        up: false,
+        down: false,
+        brake: false,
+      };
+    } else {
+      this.virtualInput = {
+        ...this.virtualInput,
+        down: dy > 0,
+        up: dy < 0,
+        left: false,
+        right: false,
+        brake: false,
+      };
+    }
   }
 
   public setCallbacks(callbacks: FarmGameSceneEvents) {

@@ -312,8 +312,11 @@ export const FlappyChickenContainer: React.FC = () => {
       {/* Mobile Big Tap Button & Desktop Hint */}
       <div className="w-full max-w-[440px] mt-3 flex flex-col items-center gap-2">
         <button
-          onClick={handleFlapAction}
-          className="w-full py-3.5 bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-slate-950 font-black text-base rounded-2xl shadow-lg border-2 border-amber-600 flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer sm:hidden"
+          onPointerDown={(e) => {
+            e.preventDefault();
+            handleFlapAction();
+          }}
+          className="w-full py-3.5 bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-slate-950 font-black text-base rounded-2xl shadow-lg border-2 border-amber-600 flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer sm:hidden touch-none"
         >
           <ArrowUp className="w-5 h-5 stroke-[3]" />
           <span>TAP TO FLAP & CLUCK! 🐔</span>

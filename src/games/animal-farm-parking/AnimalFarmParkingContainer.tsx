@@ -377,17 +377,19 @@ export const AnimalFarmParkingContainer: React.FC = () => {
           💡 <span className="font-bold text-slate-800">Hint:</span> {currentLevel.hint}
         </div>
 
-        {/* Virtual On-Screen 4-Directional Controls for Mobile */}
-        <div className="flex md:hidden items-center justify-between w-full bg-white/90 backdrop-blur-md p-2 rounded-2xl border border-slate-200 shadow-xs">
+        {/* Virtual On-Screen 4-Directional Controls for Mobile / Tablets */}
+        <div className="flex lg:hidden items-center justify-between w-full bg-white/95 backdrop-blur-md p-2.5 rounded-2xl border border-slate-200 shadow-sm touch-none">
           {/* 4-Direction D-Pad with central STOP brake */}
-          <div className="grid grid-cols-3 gap-1 w-32 items-center justify-items-center">
+          <div className="grid grid-cols-3 gap-1.5 w-36 items-center justify-items-center">
             <div />
             <button
-              onTouchStart={() => handleVirtualInput('up', true)}
-              onTouchEnd={() => handleVirtualInput('up', false)}
-              onMouseDown={() => handleVirtualInput('up', true)}
-              onMouseUp={() => handleVirtualInput('up', false)}
-              className="w-10 h-10 bg-emerald-500 active:bg-emerald-600 text-white rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95"
+              onTouchStart={(e) => { e.preventDefault(); handleVirtualInput('up', true); }}
+              onTouchEnd={(e) => { e.preventDefault(); handleVirtualInput('up', false); }}
+              onTouchCancel={() => handleVirtualInput('up', false)}
+              onPointerDown={() => handleVirtualInput('up', true)}
+              onPointerUp={() => handleVirtualInput('up', false)}
+              onPointerLeave={() => handleVirtualInput('up', false)}
+              className="w-11 h-11 bg-emerald-500 active:bg-emerald-600 text-white rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 cursor-pointer"
               aria-label="Move Up"
             >
               <ArrowUp className="w-5 h-5" />
@@ -395,31 +397,37 @@ export const AnimalFarmParkingContainer: React.FC = () => {
             <div />
 
             <button
-              onTouchStart={() => handleVirtualInput('left', true)}
-              onTouchEnd={() => handleVirtualInput('left', false)}
-              onMouseDown={() => handleVirtualInput('left', true)}
-              onMouseUp={() => handleVirtualInput('left', false)}
-              className="w-10 h-10 bg-slate-100 active:bg-slate-300 text-slate-800 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95"
+              onTouchStart={(e) => { e.preventDefault(); handleVirtualInput('left', true); }}
+              onTouchEnd={(e) => { e.preventDefault(); handleVirtualInput('left', false); }}
+              onTouchCancel={() => handleVirtualInput('left', false)}
+              onPointerDown={() => handleVirtualInput('left', true)}
+              onPointerUp={() => handleVirtualInput('left', false)}
+              onPointerLeave={() => handleVirtualInput('left', false)}
+              className="w-11 h-11 bg-slate-100 active:bg-slate-300 text-slate-800 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 cursor-pointer"
               aria-label="Move Left"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <button
-              onTouchStart={() => handleVirtualInput('brake', true)}
-              onTouchEnd={() => handleVirtualInput('brake', false)}
-              onMouseDown={() => handleVirtualInput('brake', true)}
-              onMouseUp={() => handleVirtualInput('brake', false)}
-              className="w-10 h-10 bg-rose-500 active:bg-rose-600 text-white rounded-xl flex items-center justify-center font-black text-[9px] uppercase shadow-xs active:scale-95"
+              onTouchStart={(e) => { e.preventDefault(); handleVirtualInput('brake', true); }}
+              onTouchEnd={(e) => { e.preventDefault(); handleVirtualInput('brake', false); }}
+              onTouchCancel={() => handleVirtualInput('brake', false)}
+              onPointerDown={() => handleVirtualInput('brake', true)}
+              onPointerUp={() => handleVirtualInput('brake', false)}
+              onPointerLeave={() => handleVirtualInput('brake', false)}
+              className="w-11 h-11 bg-rose-500 active:bg-rose-600 text-white rounded-xl flex items-center justify-center font-black text-[10px] uppercase shadow-xs active:scale-95 cursor-pointer"
               aria-label="Brake / Stop"
             >
               STOP
             </button>
             <button
-              onTouchStart={() => handleVirtualInput('right', true)}
-              onTouchEnd={() => handleVirtualInput('right', false)}
-              onMouseDown={() => handleVirtualInput('right', true)}
-              onMouseUp={() => handleVirtualInput('right', false)}
-              className="w-10 h-10 bg-slate-100 active:bg-slate-300 text-slate-800 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95"
+              onTouchStart={(e) => { e.preventDefault(); handleVirtualInput('right', true); }}
+              onTouchEnd={(e) => { e.preventDefault(); handleVirtualInput('right', false); }}
+              onTouchCancel={() => handleVirtualInput('right', false)}
+              onPointerDown={() => handleVirtualInput('right', true)}
+              onPointerUp={() => handleVirtualInput('right', false)}
+              onPointerLeave={() => handleVirtualInput('right', false)}
+              className="w-11 h-11 bg-slate-100 active:bg-slate-300 text-slate-800 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 cursor-pointer"
               aria-label="Move Right"
             >
               <ArrowRight className="w-5 h-5" />
@@ -427,11 +435,13 @@ export const AnimalFarmParkingContainer: React.FC = () => {
 
             <div />
             <button
-              onTouchStart={() => handleVirtualInput('down', true)}
-              onTouchEnd={() => handleVirtualInput('down', false)}
-              onMouseDown={() => handleVirtualInput('down', true)}
-              onMouseUp={() => handleVirtualInput('down', false)}
-              className="w-10 h-10 bg-emerald-500 active:bg-emerald-600 text-white rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95"
+              onTouchStart={(e) => { e.preventDefault(); handleVirtualInput('down', true); }}
+              onTouchEnd={(e) => { e.preventDefault(); handleVirtualInput('down', false); }}
+              onTouchCancel={() => handleVirtualInput('down', false)}
+              onPointerDown={() => handleVirtualInput('down', true)}
+              onPointerUp={() => handleVirtualInput('down', false)}
+              onPointerLeave={() => handleVirtualInput('down', false)}
+              className="w-11 h-11 bg-emerald-500 active:bg-emerald-600 text-white rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 cursor-pointer"
               aria-label="Move Down"
             >
               <ArrowDown className="w-5 h-5" />
@@ -440,8 +450,8 @@ export const AnimalFarmParkingContainer: React.FC = () => {
           </div>
 
           <div className="flex flex-col items-end gap-1 text-right text-xs pr-2">
-            <span className="font-black text-slate-800">4-Way Steering</span>
-            <span className="text-[11px] text-slate-500">Tap arrows to move, tap STOP to brake</span>
+            <span className="font-black text-slate-800">Touch Controls</span>
+            <span className="text-[11px] text-slate-500">👆 Drag on pasture or use D-Pad</span>
           </div>
         </div>
       </div>

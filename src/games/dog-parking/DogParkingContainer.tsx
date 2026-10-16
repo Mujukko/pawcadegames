@@ -360,13 +360,11 @@ export const DogParkingContainer: React.FC = () => {
 
       {/* Phaser Canvas Container */}
       <div 
-        className="relative w-full max-w-[530px] bg-slate-100 rounded-3xl overflow-hidden shadow-xl border-4 border-slate-800 touch-none flex items-center justify-center"
-        style={{ aspectRatio: '1 / 1', minHeight: '340px' }}
+        className="relative w-full max-w-[530px] aspect-square bg-slate-100 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-3 sm:border-4 border-slate-800 touch-none flex items-center justify-center"
       >
         <div 
           ref={containerRef} 
-          className="w-full h-full flex items-center justify-center" 
-          style={{ width: '100%', height: '100%', minHeight: '340px' }}
+          className="w-full h-full flex items-center justify-center touch-none" 
         />
       </div>
 

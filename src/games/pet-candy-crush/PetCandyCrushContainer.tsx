@@ -1185,7 +1185,10 @@ export const PetCandyCrushContainer: React.FC = () => {
               boxShadow:
                 '0 10px 28px rgba(15, 23, 42, 0.45), 0 0 0 4px #b45309, inset 0 2px 6px rgba(254, 243, 199, 0.4)',
             }}
-            className="relative w-full aspect-square max-w-[460px] backdrop-blur-md border-[3px] border-amber-200/80 rounded-[26px] p-2 sm:p-3 touch-none select-none"
+            onTouchMove={(e) => {
+              if (e.cancelable) e.preventDefault();
+            }}
+            className="relative w-full aspect-square max-w-[460px] backdrop-blur-md border-[3px] border-amber-200/80 rounded-[26px] p-1.5 sm:p-3 touch-none select-none"
           >
             {/* Celebratory Praise Banner */}
             {comboBanner && (
