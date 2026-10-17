@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { GAMES_REGISTRY, GameMetadata } from '../lib/gamesRegistry';
-import { TownMapSection } from '../components/TownMap/TownMapSection';
+import { FarmWindingMap } from '../components/TownMap/FarmWindingMap';
 import { Play, Star, Sparkles, Flame, Heart, Search, Trophy, CheckCircle2, Map } from 'lucide-react';
 
 interface HomePageProps {
@@ -10,7 +10,7 @@ interface HomePageProps {
 
 type FilterCategory = 'all' | 'spooky' | 'popular' | 'puzzle' | 'farm' | 'cats' | 'dogs' | 'new';
 
-export const HomePage: React.FC<HomePageProps> = ({ navigate, initialView = 'games' }) => {
+export const HomePage: React.FC<HomePageProps> = ({ navigate, initialView = 'map' }) => {
   const [viewMode, setViewMode] = useState<'games' | 'map'>(initialView);
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -139,9 +139,12 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, initialView = 'gam
         </div>
       </div>
 
-      {/* Conditionally render Town Map or Poki Games Grid */}
+      {/* Conditionally render Farm Winding Map or Poki Games Grid */}
       {viewMode === 'map' ? (
-        <TownMapSection navigate={navigate} />
+        <FarmWindingMap
+          navigate={navigate}
+          onSwitchToGrid={() => setViewMode('games')}
+        />
       ) : (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6">

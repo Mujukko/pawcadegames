@@ -51,27 +51,27 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
         <nav className="hidden md:flex items-center gap-1.5">
           <button
             onClick={() => navigate('/')}
-            className={`px-3.5 py-2 rounded-xl text-sm font-bold transition-colors cursor-pointer ${
-              currentRoute === '/'
+            className={`px-3.5 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5 transition-colors cursor-pointer ${
+              currentRoute === '/' || currentRoute.startsWith('/map')
+                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-extrabold'
+                : 'text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent'
+            }`}
+          >
+            <span>🌾 Çiftlik Haritası</span>
+            <span className="bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-black text-[10px] px-1.5 py-0.2 rounded-full">
+              MAP
+            </span>
+          </button>
+
+          <button
+            onClick={() => navigate('/games')}
+            className={`px-3.5 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5 transition-colors cursor-pointer ${
+              currentRoute === '/games'
                 ? 'bg-orange-500/20 text-orange-400 border border-orange-500/40'
                 : 'text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent'
             }`}
           >
-            🎃 All Games
-          </button>
-
-          <button
-            onClick={() => navigate('/map')}
-            className={`px-3.5 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5 transition-colors cursor-pointer ${
-              currentRoute.startsWith('/map')
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                : 'text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent'
-            }`}
-          >
-            <span>🗺️ Harita</span>
-            <span className="bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-black text-[10px] px-1.5 py-0.2 rounded-full">
-              0/1
-            </span>
+            <span>🎮 Oyunlar</span>
           </button>
 
           <button
@@ -175,28 +175,30 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
               setMobileMenuOpen(false);
             }}
             className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
-              currentRoute === '/' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' : 'text-slate-200 hover:bg-slate-900'
+              currentRoute === '/' || currentRoute.startsWith('/map') ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'text-slate-200 hover:bg-slate-900'
             }`}
           >
-            <span>🎃 All Games (Halloween Portal)</span>
-            <span className="text-xs text-orange-400">Home</span>
+            <div className="flex items-center gap-2">
+              <span>🌾 Çiftlik Haritası (Candy Crush Stili)</span>
+            </div>
+            <span className="bg-emerald-500 text-slate-950 font-black text-[10px] px-2 py-0.5 rounded-full">
+              ANA SAYFA
+            </span>
           </button>
 
           <button
             onClick={() => {
-              navigate('/map');
+              navigate('/games');
               setMobileMenuOpen(false);
             }}
             className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
-              currentRoute.startsWith('/map') ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'text-slate-200 hover:bg-slate-900'
+              currentRoute === '/games' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' : 'text-slate-200 hover:bg-slate-900'
             }`}
           >
             <div className="flex items-center gap-2">
-              <span>🗺️ Çiftlik Haritası (Town Map)</span>
+              <span>🎮 Tüm Oyunlar (Liste Görünümü)</span>
             </div>
-            <span className="bg-emerald-500 text-slate-950 font-black text-[10px] px-2 py-0.5 rounded-full">
-              0/1 GELİŞİM
-            </span>
+            <span className="text-xs text-orange-400">9 Oyun</span>
           </button>
 
           <button
