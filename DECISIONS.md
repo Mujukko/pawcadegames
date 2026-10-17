@@ -545,3 +545,27 @@
      - Top view mode toggle on `HomePage` (`[🎮 Oyunlar Listesi]` vs `[🗺️ Çiftlik Haritası]`), direct `/map` route, and header button in desktop nav and mobile drawer.
 - **Consequences:** 131 automated unit tests (3,086 assertions) passing across 10 test suites; TypeScript clean with 0 errors; full mobile responsiveness verified.
 - **Reversibility:** High.
+
+## DEC-034: Candy Crush Style Farm Winding Map as Primary Homepage
+- **Status:** APPROVED
+- **Context:** The user provided a visual reference of a Candy Crush / Farm Heroes winding level progression map (S-curved candy/cobblestone track, 3D circular level discs with 3 hanging stars, landmarks, and roadside characters) and requested making the homepage a farm map with prominent Silo and countryside landmarks.
+- **Decision:**
+  1. **Visual Track & SVG Curve:** Created `FarmWindingMap.tsx` using a multi-layered SVG bezier curve (dirt base, candy/cobblestone striped road, center dashed guideline) winding through a 2200px vertical countryside canvas.
+  2. **Candy Crush Style 3D Level Nodes:**
+     - 9 glossy 3D circular button discs placed directly on the road curves, numbered 1 through 9.
+     - Arc of 3 Stars (`⭐ ⭐ ⭐`) hanging beneath each node, illuminated according to building stage.
+     - Mascot emojis jumping on the active nodes.
+     - Milestone golden skull/crown rings on key buildings.
+  3. **Prominent Farm Landmarks:**
+     - **Harvest Silo Summit (Node 9):** Towering 3D agricultural silo with steel dome, ladder, overflowing golden hay, and waving Farmer with animated speech bubble.
+     - **Bessie's Dairy Barn (Node 4):** Red gambrel barn with hay loft, white trim, and milk cans.
+     - **Farm Mini Mart (Node 6):** Country store with striped awning and produce crates.
+     - **Windmill Field (Node 7):** Prairie timber windmill with rotating sails.
+     - **Duck Pond (Node 3):** Lily pond with blue water ripples and Quacky.
+  4. **Homepage Integration:**
+     - Set `FarmWindingMap` as the default front page for root `/` and `/map`.
+     - Provided accessible toggle button `[🎮 Oyunlar]` to view the classic Bento games list.
+     - Sticky top Prosperity HUD displaying Farm Level, Stars, Title, Guide modal, and Sound controls.
+- **Consequences:** 131 automated unit tests (3,086 assertions) pass; zero TypeScript lint/type errors; responsive across 320px-430px mobile and desktop viewports.
+- **Reversibility:** High.
+
