@@ -96,43 +96,55 @@ export const FarmMiniMartContainer: React.FC = () => {
     };
   }, [toggleSound]);
 
-  // Touch Joystick Handlers
-  const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    const touch = e.touches[0];
-    if (!touch || !canvasRef.current) return;
+  // Pointer / Touch Joystick Handlers
+  const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!canvasRef.current) return;
     const rect = canvasRef.current.getBoundingClientRect();
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
+    const scaleX = 800 / rect.width;
+    const scaleY = 600 / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {}
 
     touchOriginRef.current = { x, y };
     touchCurrentRef.current = { x, y };
     setTouchActive(true);
   };
 
-  const handleTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    const touch = e.touches[0];
-    if (!touch || !canvasRef.current || !touchOriginRef.current) return;
+  const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!canvasRef.current || !touchOriginRef.current) return;
     const rect = canvasRef.current.getBoundingClientRect();
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
+    const scaleX = 800 / rect.width;
+    const scaleY = 600 / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
 
     touchCurrentRef.current = { x, y };
 
     const dx = x - touchOriginRef.current.x;
     const dy = y - touchOriginRef.current.y;
     const dist = Math.hypot(dx, dy);
+    const maxRadius = 50;
 
-    if (dist > 5) {
+    if (dist > 6) {
       inputRef.current = {
-        dx: dx / Math.max(dist, 40),
-        dy: dy / Math.max(dist, 40),
+        dx: dx / Math.max(dist, maxRadius),
+        dy: dy / Math.max(dist, maxRadius),
       };
     } else {
       inputRef.current = { dx: 0, dy: 0 };
     }
   };
 
-  const handleTouchEnd = () => {
+  const handlePointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    try {
+      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      }
+    } catch {}
     touchOriginRef.current = null;
     touchCurrentRef.current = null;
     setTouchActive(false);
@@ -227,13 +239,13 @@ export const FarmMiniMartContainer: React.FC = () => {
   return (
     <div className="relative w-full flex flex-col items-center select-none touch-none">
       {/* Top Farm Mart HUD */}
-      <div className="w-full max-w-4xl bg-slate-900/95 border-b border-orange-500/30 px-3 py-2 sm:px-4 sm:py-2.5 rounded-t-2xl flex items-center justify-between shadow-lg">
+      <div className="w-full max-w-4xl bg-slate-900/95 border-b border-orange-500/30 px-2 sm:px-4 py-2 sm:py-2.5 rounded-t-2xl flex items-center justify-between shadow-lg">
         {/* Left: Coins & Reputation */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 bg-amber-500/20 border border-amber-500/40 px-3 py-1.5 rounded-xl text-amber-300 font-black text-sm sm:text-base shadow-sm">
-            <Coins className="w-4 h-4 text-amber-400" />
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 bg-amber-500/20 border border-amber-500/40 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl text-amber-300 font-black text-xs sm:text-base shadow-sm min-h-[38px] sm:min-h-[44px]">
+            <Coins className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" />
             <span>{gameState.player.coins}</span>
-            <span className="text-xs text-amber-200/80">Coins</span>
+            <span className="text-[10px] sm:text-xs text-amber-200/80 hidden xs:inline">Coins</span>
           </div>
 
           <div className="hidden sm:flex items-center gap-1.5 bg-slate-800/80 border border-slate-700 px-2.5 py-1.5 rounded-xl text-xs font-bold text-slate-300">
@@ -243,7 +255,7 @@ export const FarmMiniMartContainer: React.FC = () => {
         </div>
 
         {/* Center: Market Status */}
-        <div className="flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2">
           <span className="inline-flex items-center gap-1 bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 px-2 py-0.5 rounded-full text-[11px] font-black uppercase tracking-wider animate-pulse">
             <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
             OPEN 🏪
@@ -251,14 +263,15 @@ export const FarmMiniMartContainer: React.FC = () => {
         </div>
 
         {/* Right: Quick Action Buttons */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
           <button
             onClick={() => setShowUpgradeModal(true)}
-            className="flex items-center gap-1 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-slate-950 font-black text-xs sm:text-sm px-3 py-1.5 rounded-xl shadow-md cursor-pointer transition-transform active:scale-95 min-h-[44px]"
+            className="flex items-center gap-1 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-slate-950 font-black text-xs sm:text-sm px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-xl shadow-md cursor-pointer transition-transform active:scale-95 min-h-[44px]"
             title="Open Upgrades Shop"
           >
-            <Sparkles className="w-4 h-4" />
-            <span>UPGRADES</span>
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+            <span className="hidden xs:inline">UPGRADES</span>
+            <span className="xs:hidden">UPG</span>
           </button>
 
           <button
@@ -296,9 +309,10 @@ export const FarmMiniMartContainer: React.FC = () => {
           ref={canvasRef}
           width={800}
           height={600}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
           className="w-full h-full block cursor-pointer touch-none"
         />
 
@@ -849,7 +863,7 @@ function renderMartScene(
     ctx.strokeStyle = 'rgba(249, 115, 22, 0.6)';
     ctx.lineWidth = 3;
     ctx.beginPath();
-    ctx.arc(touchOrigin.x, touchOrigin.y, 45, 0, Math.PI * 2);
+    ctx.arc(touchOrigin.x, touchOrigin.y, 50, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
 
@@ -857,7 +871,7 @@ function renderMartScene(
     const dx = touchCurrent.x - touchOrigin.x;
     const dy = touchCurrent.y - touchOrigin.y;
     const dist = Math.hypot(dx, dy);
-    const capDist = Math.min(dist, 40);
+    const capDist = Math.min(dist, 45);
     const angle = Math.atan2(dy, dx);
     const capX = touchOrigin.x + Math.cos(angle) * capDist;
     const capY = touchOrigin.y + Math.sin(angle) * capDist;
@@ -866,7 +880,7 @@ function renderMartScene(
     ctx.strokeStyle = '#ffffff';
     ctx.lineWidth = 2.5;
     ctx.beginPath();
-    ctx.arc(capX, capY, 20, 0, Math.PI * 2);
+    ctx.arc(capX, capY, 22, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
     ctx.restore();

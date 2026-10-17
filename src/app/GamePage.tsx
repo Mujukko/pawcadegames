@@ -79,7 +79,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isDuckRunner
+                isFarmMart
+                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+                  : isDuckRunner
                   ? 'bg-orange-500/20 text-orange-400 border-orange-500/30'
                   : isPetCrush
                   ? 'bg-orange-500/20 text-orange-400 border-orange-500/30'
@@ -95,7 +97,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   ? 'bg-purple-500/20 text-purple-300 border-purple-500/30'
                   : 'bg-orange-500/20 text-orange-400 border-orange-500/30'
               }`}>
-                {isDuckRunner ? '🦆🎃 Vampire Duck Runner' : isPetCrush ? '🍬 Spooky Animal Match' : isFlappy ? '👻 Ghost Chicken Flight' : is2048 ? '🦇 Spooky Animal 2048' : isFarmTetris ? '🎃 Haunted Harvest Tetris' : isFarm ? '🐮 Haunted Cow Driving' : isCat ? '🐈‍⬛ Witch Cat Puzzle' : '🦴 Ghost Pup Puzzle'}
+                {isFarmMart ? '🏪 Farm Mini Mart Tycoon' : isDuckRunner ? '🦆🎃 Vampire Duck Runner' : isPetCrush ? '🍬 Spooky Animal Match' : isFlappy ? '👻 Ghost Chicken Flight' : is2048 ? '🦇 Spooky Animal 2048' : isFarmTetris ? '🎃 Haunted Harvest Tetris' : isFarm ? '🐮 Haunted Cow Driving' : isCat ? '🐈‍⬛ Witch Cat Puzzle' : '🦴 Ghost Pup Puzzle'}
               </span>
               <div className="flex items-center text-amber-400 text-xs font-bold">
                 <Star className="w-3.5 h-3.5 fill-amber-400 mr-1" />
@@ -248,7 +250,30 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
 
             <ul className="space-y-2.5 text-sm text-slate-300">
-              {isDuckRunner ? (
+              {isFarmMart ? (
+                <>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span>Harvest ripe farm crops (🍅 Tomatoes, 🌽 Corn, 🥚 Eggs, 🥛 Milk, 🎃 Pumpkins) by walking near garden plots into your carried item stack.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span>Restock wooden display shelves around the mart so animal customers can browse and pick their desired produce.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span>Step up to the <strong>Cash Register</strong> counter to check out animal shoppers waiting in line and collect drops of golden coins!</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span>Step onto glowing floor <strong>Unlock Pads</strong> to invest your earnings and unlock new crops, shelves, <strong>Barnaby the Helper Dog 🐶</strong>, and an automated Cashier!</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span>Tap <strong>UPGRADES</strong> to level up your <strong>Walking Speed</strong> and <strong>Carry Stack Capacity</strong> to serve more shoppers faster!</span>
+                  </li>
+                </>
+              ) : isDuckRunner ? (
                 <>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />

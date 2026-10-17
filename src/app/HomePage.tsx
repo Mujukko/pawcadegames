@@ -116,7 +116,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                   🦇 Trick or Treat
                 </span>
                 <span className="bg-black/40 text-amber-300 border border-amber-500/30 font-bold text-xs px-2.5 py-1 rounded-xl">
-                  🍬 8 Spooky Games Online
+                  🍬 9 Spooky Games Online
                 </span>
               </div>
               <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight drop-shadow-md">

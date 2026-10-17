@@ -518,4 +518,23 @@
 - **Consequences:** 119 unit tests (3,016 assertions) pass across 9 test suites; production build verified clean (`vite build`).
 - **Reversibility:** High.
 
+## DEC-031: Farm Mini Mart & 9-Game Portal Responsive Mobile QA & Touch Joystick Optimization
+- **Status:** APPROVED
+- **Context:** Mobile Web QA audit covering responsive viewports (320px - 430px), single-screen zero-scroll HUDs, touch joystick ergonomics, and cross-game regression across all 9 portal titles.
+- **Decision:**
+  1. **Touch Joystick Coordinate Space Normalization:**
+     - Identified coordinate mismatch in `FarmMiniMartContainer.tsx`: touch client coordinates were stored in CSS pixels but rendered in internal 800x600 canvas coordinate space, displacing the floating joystick indicator from the user's thumb on mobile screens.
+     - Implemented dynamic canvas coordinate scaling (`scaleX = 800 / rect.width`, `scaleY = 600 / rect.height`).
+     - Upgraded touch handlers to HTML5 Pointer Events (`onPointerDown`, `onPointerMove`, `onPointerUp`, `onPointerCancel`) with `setPointerCapture`, ensuring zero-loss tracking even if the thumb slides outside the canvas edge and adding fluid mouse drag support on desktop.
+     - Calibrated base outer radius (50 canvas px) and cap radius (22 canvas px) with max distance 45 canvas px and 6px deadzone.
+  2. **Mobile Master HUD Micro-Optimization:**
+     - Refactored `FarmMiniMartContainer` top HUD for narrow mobile viewports (320px - 380px): hid non-essential "OPEN" indicator on small screens, made the "UPGRADES" button label compact (`UPG` on `< xs`), ensured all touch targets maintain `>= 44x44px` accessibility sizing, and eliminated unwanted wrapping/overflow.
+  3. **GamePage & Portal Consistency Polish:**
+     - Fixed `GamePage.tsx` category tag to properly identify `farm-mini-mart` as `🏪 Farm Mini Mart Tycoon` instead of falling through to `🦴 Ghost Pup Puzzle`.
+     - Added dedicated 5-point "How to Win" rules section for Farm Mini Mart in `GamePage.tsx`.
+     - Harmonized Homepage Grand Event Banner badge to reflect `🍬 9 Spooky Games Online`.
+- **Consequences:** 119 automated unit tests (3,016 assertions) pass across 9 test suites; TypeScript typecheck exits with 0 errors; production Vite build completes in ~2.6s.
+- **Reversibility:** High.
+
+
 
