@@ -1,16 +1,26 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { GAMES_REGISTRY, GameMetadata } from '../lib/gamesRegistry';
-import { Play, Star, Sparkles, Flame, Heart, Search, Trophy, CheckCircle2 } from 'lucide-react';
+import { TownMapSection } from '../components/TownMap/TownMapSection';
+import { Play, Star, Sparkles, Flame, Heart, Search, Trophy, CheckCircle2, Map } from 'lucide-react';
 
 interface HomePageProps {
   navigate: (path: string) => void;
+  initialView?: 'games' | 'map';
 }
 
 type FilterCategory = 'all' | 'spooky' | 'popular' | 'puzzle' | 'farm' | 'cats' | 'dogs' | 'new';
 
-export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
+export const HomePage: React.FC<HomePageProps> = ({ navigate, initialView = 'games' }) => {
+  const [viewMode, setViewMode] = useState<'games' | 'map'>(initialView);
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('all');
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Sync if initialView changes externally
+  useEffect(() => {
+    if (initialView) {
+      setViewMode(initialView);
+    }
+  }, [initialView]);
 
   // Filter games dynamically
   const filteredGames = useMemo(() => {
@@ -52,53 +62,89 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
     <div className="min-h-screen bg-slate-950 text-white selection:bg-orange-500 selection:text-slate-950 pb-16 pb-safe">
       {/* Poki-Style Top Filter & Search Bar */}
       <div className="sticky top-16 z-30 bg-slate-950/90 backdrop-blur-md border-b border-orange-500/25 px-4 sm:px-6 lg:px-8 py-3">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          {/* Category Filter Pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto scrollbar-none py-1">
-            {categories.map((cat) => {
-              const isActive = activeFilter === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveFilter(cat.id)}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-black transition-all shrink-0 cursor-pointer ${
-                    isActive
-                      ? 'bg-gradient-to-r from-orange-600 via-amber-500 to-purple-600 text-white shadow-lg shadow-orange-500/25 scale-102 border border-orange-400/40'
-                      : 'bg-slate-900/90 hover:bg-slate-850 text-slate-300 hover:text-white border border-slate-800'
-                  }`}
-                >
-                  <span>{cat.icon}</span>
-                  <span>{cat.label}</span>
-                </button>
-              );
-            })}
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+          {/* Main View Mode Selector (Games Grid vs Town Map) */}
+          <div className="flex items-center gap-1.5 bg-slate-900/90 p-1 rounded-2xl border border-orange-500/30 shrink-0 w-full md:w-auto justify-center sm:justify-start">
+            <button
+              onClick={() => setViewMode('games')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer ${
+                viewMode === 'games'
+                  ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 shadow-md font-extrabold'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              <span>🎮</span>
+              <span>Oyunlar Listesi</span>
+            </button>
+            <button
+              onClick={() => setViewMode('map')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer ${
+                viewMode === 'map'
+                  ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md font-extrabold'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              <span>🗺️</span>
+              <span>Çiftlik Haritası</span>
+              <span className="bg-orange-500 text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase animate-pulse">
+                0/1 GELİŞİM
+              </span>
+            </button>
           </div>
 
-          {/* Quick Search Input */}
-          <div className="relative w-full sm:w-64">
-            <Search className="w-4 h-4 text-orange-400 absolute left-3 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search spooky games..."
-              className="w-full pl-9 pr-3 py-1.5 bg-slate-900 border border-orange-500/30 rounded-2xl text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-orange-500 transition-colors"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs cursor-pointer"
-              >
-                ✕
-              </button>
-            )}
-          </div>
+          {viewMode === 'games' && (
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 w-full md:w-auto">
+              {/* Category Filter Pills */}
+              <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto scrollbar-none py-1">
+                {categories.map((cat) => {
+                  const isActive = activeFilter === cat.id;
+                  return (
+                    <button
+                      key={cat.id}
+                      onClick={() => setActiveFilter(cat.id)}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all shrink-0 cursor-pointer ${
+                        isActive
+                          ? 'bg-gradient-to-r from-orange-600 via-amber-500 to-purple-600 text-white shadow-lg shadow-orange-500/25 scale-102 border border-orange-400/40'
+                          : 'bg-slate-900/90 hover:bg-slate-850 text-slate-300 hover:text-white border border-slate-800'
+                      }`}
+                    >
+                      <span>{cat.icon}</span>
+                      <span>{cat.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Quick Search Input */}
+              <div className="relative w-full sm:w-56 shrink-0">
+                <Search className="w-4 h-4 text-orange-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Oyun ara..."
+                  className="w-full pl-9 pr-3 py-1.5 bg-slate-900 border border-orange-500/30 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-orange-500 transition-colors"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs cursor-pointer"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Main Poki Bento Game Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6">
+      {/* Conditionally render Town Map or Poki Games Grid */}
+      {viewMode === 'map' ? (
+        <TownMapSection navigate={navigate} />
+      ) : (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6">
           {/* GRAND HALLOWEEN SPOOKTACULAR EVENT HERO BANNER */}
           <div className="relative lg:col-span-12 bg-gradient-to-r from-orange-600 via-purple-900 to-amber-900 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl shadow-orange-950/50 border-2 border-orange-500/50 flex flex-col md:flex-row items-center justify-between min-h-[220px]">
             {/* Ambient spooky glow & bats */}
@@ -139,6 +185,13 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                 >
                   <Sparkles className="w-4 h-4 text-purple-300" />
                   <span>TRICK OR TREAT MATCH 🍬</span>
+                </button>
+                <button
+                  onClick={() => setViewMode('map')}
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2 transition-transform hover:scale-105 cursor-pointer border border-emerald-400/40"
+                >
+                  <Map className="w-4 h-4 text-emerald-200" />
+                  <span>ÇİFTLİK HARİTASI (0/1 GELİŞİM) 🗺️</span>
                 </button>
               </div>
             </div>
@@ -789,6 +842,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
           </div>
         )}
       </div>
+      )}
     </div>
   );
 };

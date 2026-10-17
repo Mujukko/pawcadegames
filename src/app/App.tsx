@@ -63,6 +63,8 @@ export const App: React.FC = () => {
       document.title = catParkingGame?.metaTitle || 'Cat Parking: Black Cat Witch Mystery 🐈‍⬛ | Pawcade';
     } else if (currentRoute.startsWith('/games/animal-farm-parking')) {
       document.title = farmParkingGame?.metaTitle || 'Animal Farm Parking: Haunted Pasture 🎃 | Pawcade';
+    } else if (currentRoute === '/map' || currentRoute.startsWith('/map')) {
+      document.title = 'Pawcade Kasaba & Çiftlik Haritası 🗺️ — 0/1 Bina Gelişim Sistemi | Pawcade';
     } else if (currentRoute === '/' || currentRoute === '') {
       document.title = 'Pawcade Spooktacular 🎃 — Free Halloween Browser Games Online';
     } else {
@@ -83,8 +85,11 @@ export const App: React.FC = () => {
   };
 
   const renderCurrentView = () => {
+    if (currentRoute === '/map' || currentRoute === '/map/' || currentRoute === '#map' || currentRoute.startsWith('/map')) {
+      return <HomePage navigate={navigate} initialView="map" />;
+    }
     if (currentRoute === '/' || currentRoute === '' || currentRoute === '/index.html') {
-      return <HomePage navigate={navigate} />;
+      return <HomePage navigate={navigate} initialView="games" />;
     }
     if (currentRoute.startsWith('/games/farm-mini-mart')) {
       return <GamePage navigate={navigate} gameId="farm-mini-mart" />;

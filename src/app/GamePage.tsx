@@ -1,15 +1,57 @@
-import React, { useEffect } from 'react';
-import { FarmMiniMartContainer } from '../games/farm-mini-mart/FarmMiniMartContainer';
-import { DuckRunnerContainer } from '../games/duck-runner/DuckRunnerContainer';
-import { PetCandyCrushContainer } from '../games/pet-candy-crush/PetCandyCrushContainer';
-import { FlappyChickenContainer } from '../games/flappy-chicken/FlappyChickenContainer';
-import { Animal2048Container } from '../games/animal-2048/Animal2048Container';
-import { DogParkingContainer } from '../games/dog-parking/DogParkingContainer';
-import { CatParkingContainer } from '../games/cat-parking/CatParkingContainer';
-import { AnimalFarmParkingContainer } from '../games/animal-farm-parking/AnimalFarmParkingContainer';
-import { FarmTetrisContainer } from '../games/farm-tetris/FarmTetrisContainer';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
 import { ChevronRight, Star, Sparkles, Keyboard, Smartphone, CheckCircle2, Shield, Heart } from 'lucide-react';
+
+// Dynamic lazy-loading for all 9 game containers for optimal initial bundle size
+const FarmMiniMartContainer = lazy(() =>
+  import('../games/farm-mini-mart/FarmMiniMartContainer').then((m) => ({ default: m.FarmMiniMartContainer }))
+);
+const DuckRunnerContainer = lazy(() =>
+  import('../games/duck-runner/DuckRunnerContainer').then((m) => ({ default: m.DuckRunnerContainer }))
+);
+const PetCandyCrushContainer = lazy(() =>
+  import('../games/pet-candy-crush/PetCandyCrushContainer').then((m) => ({ default: m.PetCandyCrushContainer }))
+);
+const FlappyChickenContainer = lazy(() =>
+  import('../games/flappy-chicken/FlappyChickenContainer').then((m) => ({ default: m.FlappyChickenContainer }))
+);
+const Animal2048Container = lazy(() =>
+  import('../games/animal-2048/Animal2048Container').then((m) => ({ default: m.Animal2048Container }))
+);
+const DogParkingContainer = lazy(() =>
+  import('../games/dog-parking/DogParkingContainer').then((m) => ({ default: m.DogParkingContainer }))
+);
+const CatParkingContainer = lazy(() =>
+  import('../games/cat-parking/CatParkingContainer').then((m) => ({ default: m.CatParkingContainer }))
+);
+const AnimalFarmParkingContainer = lazy(() =>
+  import('../games/animal-farm-parking/AnimalFarmParkingContainer').then((m) => ({ default: m.AnimalFarmParkingContainer }))
+);
+const FarmTetrisContainer = lazy(() =>
+  import('../games/farm-tetris/FarmTetrisContainer').then((m) => ({ default: m.FarmTetrisContainer }))
+);
+
+const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
+  <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
+    <div className="relative mb-6">
+      <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-orange-600 to-amber-500 animate-spin flex items-center justify-center p-1 shadow-xl shadow-orange-500/20">
+        <div className="w-full h-full bg-slate-900 rounded-full flex items-center justify-center text-3xl">
+          <span className="animate-bounce select-none">{mascot}</span>
+        </div>
+      </div>
+      <span className="absolute -bottom-1 -right-1 text-xl animate-spooky-float select-none">✨</span>
+    </div>
+    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-2">
+      Loading {title}...
+    </h3>
+    <p className="text-orange-200/80 text-xs sm:text-sm font-semibold max-w-xs">
+      Preparing game engine & spooky assets...
+    </p>
+    <div className="mt-4 w-48 h-2 bg-slate-800 rounded-full overflow-hidden border border-orange-500/30">
+      <div className="h-full bg-gradient-to-r from-orange-500 via-amber-400 to-purple-500 rounded-full animate-pulse w-3/4" />
+    </div>
+  </div>
+);
 
 interface GamePageProps {
   navigate: (path: string) => void;
@@ -115,25 +157,52 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
 
         {/* The Playable Game Frame */}
         <div className="bg-slate-900/90 rounded-2xl sm:rounded-3xl p-1 sm:p-6 border border-orange-500/30 mb-8 sm:mb-12 shadow-2xl shadow-orange-950/20 flex justify-center overflow-hidden">
-          {isFarmMart ? (
-            <FarmMiniMartContainer />
-          ) : isDuckRunner ? (
-            <DuckRunnerContainer />
-          ) : isPetCrush ? (
-            <PetCandyCrushContainer />
-          ) : isFlappy ? (
-            <FlappyChickenContainer />
-          ) : is2048 ? (
-            <Animal2048Container />
-          ) : isFarmTetris ? (
-            <FarmTetrisContainer />
-          ) : isFarm ? (
-            <AnimalFarmParkingContainer />
-          ) : isCat ? (
-            <CatParkingContainer />
-          ) : (
-            <DogParkingContainer />
-          )}
+          <Suspense
+            fallback={
+              <GameLoadingFallback
+                title={game.title}
+                mascot={
+                  isFarmMart
+                    ? '🏪'
+                    : isDuckRunner
+                    ? '🦆'
+                    : isPetCrush
+                    ? '🍬'
+                    : isFlappy
+                    ? '🐔'
+                    : is2048
+                    ? '🐘'
+                    : isFarmTetris
+                    ? '🌾'
+                    : isFarm
+                    ? '🐮'
+                    : isCat
+                    ? '🐱'
+                    : '🐶'
+                }
+              />
+            }
+          >
+            {isFarmMart ? (
+              <FarmMiniMartContainer />
+            ) : isDuckRunner ? (
+              <DuckRunnerContainer />
+            ) : isPetCrush ? (
+              <PetCandyCrushContainer />
+            ) : isFlappy ? (
+              <FlappyChickenContainer />
+            ) : is2048 ? (
+              <Animal2048Container />
+            ) : isFarmTetris ? (
+              <FarmTetrisContainer />
+            ) : isFarm ? (
+              <AnimalFarmParkingContainer />
+            ) : isCat ? (
+              <CatParkingContainer />
+            ) : (
+              <DogParkingContainer />
+            )}
+          </Suspense>
         </div>
 
         {/* Instructions & Controls Guide */}
