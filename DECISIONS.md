@@ -492,3 +492,30 @@
 - **Consequences:** 101 unit tests (2,960 assertions) pass across 8 test suites; production build verified clean (`vite build`).
 - **Reversibility:** High.
 
+## DEC-030: Farm Mini Mart: Animal Market Arcade Idle Tycoon Game
+- **Status:** APPROVED
+- **Context:** User requested: "Bir tane mall oyunu yapmy mini mart oyunu yap. Çitlik içinde geçsin." (Make a mall / mini mart game set on a farm.)
+- **Decision:**
+  1. **Core Loop & Mechanics:**
+     - Inspired by "My Mini Mart" and arcade idle tycoon games with 100% original farm/animal theming.
+     - 5 harvestable crops/produce: 🍅 Tomatoes, 🌽 Corn, 🥚 Fresh Eggs, 🥛 Dairy Milk, and 🎃 Halloween Pumpkins.
+     - Physical vertical item stack carried by the player farmer with capacity limits and physics sway.
+     - Wooden display stands / shelves stocked by walking near them.
+     - Animal customer AI (Bunnies 🐰, Cats 🐱, Dogs 🐶, Bears 🐻, Pigs 🐷, Ghosts 👻) with thought wishlists, picking items from shelves, and waiting in queue lines at the Cash Register.
+     - Cash Register counter checkout: Serving customers generates golden coin drops and "ka-ching! 🔔" register bell chimes.
+     - Floor unlock pads: Stepping onto pads rapidly deposits coins until the threshold is met, triggering celebration confetti and unlocking new plots, shelves, or workers.
+  2. **Automation & Upgrades:**
+     - Walking Speed & Carry Stack Capacity upgrades (Level 1..5) with exponential cost curve.
+     - Autonomous Farmhand Dog 🐶: Trots between ready plots and empty shelves, harvesting and restocking automatically.
+     - Automated Cashier 🧑‍💼: Automatically checks out customers at the register.
+  3. **Control Ergonomics:**
+     - Desktop: WASD / Arrow keys movement with auto-action upon proximity.
+     - Mobile: 360° dynamic floating virtual joystick appearing wherever the thumb touches, zero touch delay, 44x44px touch targets.
+  4. **Architecture & Audio:**
+     - Pure TypeScript simulation state (`engine.ts`) with 18 automated unit tests.
+     - Procedural Web Audio API sound engine (`sound.ts`) with harvest plops, shelf thumps, coin clicks, brass unlock fanfare, and cash register ka-ching.
+     - Canvas 2D 60 FPS rendering with layered shadows, customer bubbles, floating coin notifications, and festive Halloween witch hats.
+- **Consequences:** 119 unit tests (3,016 assertions) pass across 9 test suites; production build verified clean (`vite build`).
+- **Reversibility:** High.
+
+

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { FarmMiniMartContainer } from '../games/farm-mini-mart/FarmMiniMartContainer';
 import { DuckRunnerContainer } from '../games/duck-runner/DuckRunnerContainer';
 import { PetCandyCrushContainer } from '../games/pet-candy-crush/PetCandyCrushContainer';
 import { FlappyChickenContainer } from '../games/flappy-chicken/FlappyChickenContainer';
@@ -16,6 +17,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isFarmMart = gameId === 'farm-mini-mart';
   const isDuckRunner = gameId === 'duck-runner';
   const isPetCrush = gameId === 'pet-candy-crush';
   const isFlappy = gameId === 'flappy-chicken';
@@ -39,7 +41,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-orange-500/60 shrink-0" />
           <button onClick={() => navigate('/')} className="hover:text-orange-300 transition-colors cursor-pointer shrink-0">
-            {isDuckRunner ? 'Vampire Runner' : isPetCrush ? 'Trick-or-Treat' : isFlappy ? 'Haunted Flight' : is2048 ? 'Spooky Evolution' : isFarmTetris ? 'Pumpkin Harvest' : isFarm ? 'Haunted Pasture' : 'Spooky Puzzles'}
+            {isFarmMart ? 'Farm Tycoon' : isDuckRunner ? 'Vampire Runner' : isPetCrush ? 'Trick-or-Treat' : isFlappy ? 'Haunted Flight' : is2048 ? 'Spooky Evolution' : isFarmTetris ? 'Pumpkin Harvest' : isFarm ? 'Haunted Pasture' : 'Spooky Puzzles'}
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-orange-500/60 shrink-0" />
           <span className="text-orange-400 font-bold truncate">{game.title}</span>
@@ -111,7 +113,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
 
         {/* The Playable Game Frame */}
         <div className="bg-slate-900/90 rounded-2xl sm:rounded-3xl p-1 sm:p-6 border border-orange-500/30 mb-8 sm:mb-12 shadow-2xl shadow-orange-950/20 flex justify-center overflow-hidden">
-          {isDuckRunner ? (
+          {isFarmMart ? (
+            <FarmMiniMartContainer />
+          ) : isDuckRunner ? (
             <DuckRunnerContainer />
           ) : isPetCrush ? (
             <PetCandyCrushContainer />
@@ -142,7 +146,18 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
 
             <div className="space-y-3 text-sm text-slate-300">
-              {isDuckRunner ? (
+              {isFarmMart ? (
+                <>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-orange-400 min-w-24">Desktop:</span>
+                    <span>Use <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">W/A/S/D</kbd> or <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">Arrow Keys</kbd> to steer the farmer around the mart. Walk up to plots to harvest, shelves to restock, and the Cash Register counter to checkout customers and collect your coins. Press <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">U</kbd> to open the Upgrades shop!</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-orange-400 min-w-24">Mobile:</span>
+                    <span>Touch anywhere on the game canvas and drag your thumb to steer with the dynamic 360° virtual joystick. Actions trigger automatically when you stand near plots, shelves, pads, or the cash register. Tap the <strong>UPGRADES</strong> button to level up!</span>
+                  </div>
+                </>
+              ) : isDuckRunner ? (
                 <>
                   <div className="flex items-start gap-2">
                     <span className="font-bold text-orange-400 min-w-24">Desktop:</span>

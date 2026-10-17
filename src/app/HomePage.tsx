@@ -27,8 +27,8 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
       // Category matching
       if (activeFilter === 'all') return true;
       if (activeFilter === 'spooky') return true; // All games featured in Halloween event!
-      if (activeFilter === 'popular') return game.id === 'duck-runner' || game.id === 'pet-candy-crush' || game.id === 'flappy-chicken' || game.id === 'animal-2048' || game.id === 'farm-tetris' || game.id === 'dog-parking' || game.id === 'animal-farm-parking' || game.badge === 'Popular';
-      if (activeFilter === 'new') return game.id === 'duck-runner' || game.id === 'pet-candy-crush' || game.id === 'flappy-chicken' || game.id === 'animal-2048' || game.id === 'farm-tetris' || game.id === 'animal-farm-parking' || game.id === 'cat-parking' || game.badge === 'New';
+      if (activeFilter === 'popular') return game.id === 'farm-mini-mart' || game.id === 'duck-runner' || game.id === 'pet-candy-crush' || game.id === 'flappy-chicken' || game.id === 'animal-2048' || game.id === 'farm-tetris' || game.id === 'dog-parking' || game.id === 'animal-farm-parking' || game.badge === 'Popular';
+      if (activeFilter === 'new') return game.id === 'farm-mini-mart' || game.id === 'duck-runner' || game.id === 'pet-candy-crush' || game.id === 'flappy-chicken' || game.id === 'animal-2048' || game.id === 'farm-tetris' || game.id === 'animal-farm-parking' || game.id === 'cat-parking' || game.badge === 'New';
       if (activeFilter === 'farm') return game.id.includes('farm') || game.id.includes('animal') || game.id.includes('tetris') || game.id.includes('chicken') || game.id.includes('duck');
       if (activeFilter === 'puzzle') return game.category === 'puzzle' || game.category === 'casual';
       if (activeFilter === 'dogs') return game.id.includes('dog') || game.id.includes('pet');
@@ -150,6 +150,75 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               <span className="animate-bounce">🍬</span>
             </div>
           </div>
+
+          {/* HERO BANNER: Farm Mini Mart: Animal Market (Brand New Arcade Idle Tycoon) */}
+          {filteredGames.some((g) => g.id === 'farm-mini-mart') && (
+            <div
+              onClick={() => navigate('/games/farm-mini-mart/')}
+              className="group cursor-pointer relative lg:col-span-12 bg-gradient-to-r from-emerald-900 via-amber-800 to-orange-950 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-amber-500/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col md:flex-row items-center justify-between min-h-[300px] border-2 border-amber-500/40 hover:border-amber-400"
+            >
+              {/* Decorative background glow & shapes */}
+              <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
+              <div className="absolute -bottom-10 right-20 text-9xl sm:text-[140px] opacity-20 select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
+                🏪
+              </div>
+
+              {/* Left Column: Info & Action */}
+              <div className="relative z-10 flex flex-col justify-between h-full max-w-xl">
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider animate-pulse">
+                      <Sparkles className="w-3.5 h-3.5 fill-slate-950 text-slate-950" />
+                      <span>Brand New Game</span>
+                    </span>
+                    <span className="bg-black/40 backdrop-blur-md text-amber-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-amber-500/30">
+                      🏪 Farm Mini Mart
+                    </span>
+                    <span className="bg-black/40 backdrop-blur-md text-emerald-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-emerald-500/30">
+                      🍅 Arcade Idle Tycoon
+                    </span>
+                    <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-amber-300 border border-white/10">
+                      <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
+                      <span>5.0</span>
+                      <span className="text-white/60 font-medium ml-1">(16.8K)</span>
+                    </div>
+                  </div>
+
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+                    Farm Mini Mart: Animal Market 🏪🌾
+                  </h2>
+                  <p className="text-orange-100 text-sm sm:text-base font-medium mt-2 leading-relaxed max-w-lg drop-shadow-xs">
+                    Run your very own bustling countryside farm mini mart! Harvest sweet tomatoes, eggs, and milk, stack items high in your hands, stock market shelves, and serve adorable animal customers at the Cash Register!
+                  </p>
+                </div>
+
+                <div className="mt-6 flex flex-wrap items-center gap-4">
+                  <div className="bg-gradient-to-r from-amber-500 to-orange-500 group-hover:from-amber-400 group-hover:to-orange-400 text-slate-950 px-6 py-3 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2.5 transition-transform group-hover:scale-105">
+                    <Play className="w-4 h-4 fill-slate-950 text-slate-950" />
+                    <span>PLAY FARM MART 🏪</span>
+                  </div>
+                  <span className="text-xs font-bold text-amber-200/90 uppercase tracking-widest hidden sm:inline">
+                    Harvest Crops • Stock Shelves • Cash Register • Hire Workers • 60 FPS
+                  </span>
+                </div>
+              </div>
+
+              {/* Right Column: Visual Mascot & Theme Art */}
+              <div className="relative z-10 my-4 md:my-0 flex flex-col items-center justify-center">
+                <div className="flex items-center gap-2 text-4xl sm:text-5xl lg:text-6xl filter drop-shadow-2xl group-hover:scale-105 transition-transform duration-300 select-none">
+                  <span className="animate-bounce">🧑‍🌾</span>
+                  <span className="text-2xl text-amber-400">➔</span>
+                  <span className="animate-pulse">🍅</span>
+                  <span className="text-2xl text-amber-400">➔</span>
+                  <span className="animate-spooky-float">🐰</span>
+                  <span className="text-3xl sm:text-4xl animate-bounce" style={{ animationDelay: '0.5s' }}>💰</span>
+                </div>
+                <div className="mt-3 px-3.5 py-1 rounded-full bg-slate-950/80 border border-amber-400/40 text-amber-200 text-xs font-bold shadow-md">
+                  Controls: [WASD / Touch Joystick] Move • Auto-Action
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* HERO BANNER: Duck Runner: Vampire Quack (Brand New T-Rex Spooky Runner) */}
           {filteredGames.some((g) => g.id === 'duck-runner') && (

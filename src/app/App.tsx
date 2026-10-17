@@ -35,6 +35,7 @@ export const App: React.FC = () => {
 
   // Update SEO document title on route changes
   useEffect(() => {
+    const farmMartGame = GAMES_REGISTRY.find(g => g.id === 'farm-mini-mart');
     const duckRunnerGame = GAMES_REGISTRY.find(g => g.id === 'duck-runner');
     const petCrushGame = GAMES_REGISTRY.find(g => g.id === 'pet-candy-crush');
     const flappyChickenGame = GAMES_REGISTRY.find(g => g.id === 'flappy-chicken');
@@ -44,7 +45,9 @@ export const App: React.FC = () => {
     const farmParkingGame = GAMES_REGISTRY.find(g => g.id === 'animal-farm-parking');
     const farmTetrisGame = GAMES_REGISTRY.find(g => g.id === 'farm-tetris');
 
-    if (currentRoute.startsWith('/games/duck-runner')) {
+    if (currentRoute.startsWith('/games/farm-mini-mart')) {
+      document.title = farmMartGame?.metaTitle || 'Farm Mini Mart: Animal Market 🏪 — Free Online Idle Tycoon Game | Pawcade';
+    } else if (currentRoute.startsWith('/games/duck-runner')) {
       document.title = duckRunnerGame?.metaTitle || 'Duck Runner: Vampire Quack 🎃 — Free Online Spooky Game | Pawcade';
     } else if (currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) {
       document.title = petCrushGame?.metaTitle || 'Farm Animal Match: Spooky Trick-or-Treat Crush 🍬 | Pawcade';
@@ -82,6 +85,9 @@ export const App: React.FC = () => {
   const renderCurrentView = () => {
     if (currentRoute === '/' || currentRoute === '' || currentRoute === '/index.html') {
       return <HomePage navigate={navigate} />;
+    }
+    if (currentRoute.startsWith('/games/farm-mini-mart')) {
+      return <GamePage navigate={navigate} gameId="farm-mini-mart" />;
     }
     if (currentRoute.startsWith('/games/duck-runner')) {
       return <GamePage navigate={navigate} gameId="duck-runner" />;

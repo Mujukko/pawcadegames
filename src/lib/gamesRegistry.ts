@@ -21,6 +21,46 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'farm-mini-mart',
+    slug: 'farm-mini-mart',
+    title: 'Farm Mini Mart: Animal Market 🏪',
+    tagline: 'Harvest fresh crops, stock market shelves, and serve cute animal customers in your own farm mart!',
+    description: 'Welcome to Farm Mini Mart! Run your very own bustling countryside mini mart! Harvest sweet tomatoes, golden corn, fresh eggs, dairy milk, and Halloween pumpkins. Stack items in your hands, stock market shelves, and serve adorable animal customers lining up at your Cash Register. Reinvest profits to expand plots, hire Barnaby the Farmhand Dog, hire a Cashier, and upgrade your speed and carry capacity in this addictive arcade idle tycoon game!',
+    category: 'casual',
+    route: '/games/farm-mini-mart/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '16.8K',
+    badge: '🎃 New Tycoon',
+    controls: {
+      desktop: [
+        'WASD or Arrow Keys: Walk & steer the farmer around the mart',
+        'Walk near plots to harvest fresh crops into your stack',
+        'Walk near shelves to unload and restock produce',
+        'Walk to Cash Register to checkout customers and collect coins',
+        'Walk on unlock pads to deposit coins and expand stations',
+        'U Key: Open Shop Upgrades modal',
+        'M Key: Toggle sound mute',
+      ],
+      mobile: [
+        'Touch & Drag Joystick: 360° fluid thumb steering anywhere on screen',
+        'Automatic Action: Walk up to any plot, shelf, pad or register to trigger',
+        'UPGRADES Button: Upgrade speed, capacity, and hire workers',
+      ],
+    },
+    features: [
+      '5 Harvest Crops: 🍅 Tomatoes, 🌽 Corn, 🥚 Fresh Eggs, 🥛 Dairy Milk & 🎃 Pumpkins',
+      'Satisfying 3D Stack Mechanics with Physics Sway & Capacity Upgrades',
+      'Cute Animal Customer AI (Bunnies, Cats, Dogs, Bears, Pigs & Casper Ghost)',
+      'Cash Register Counter Checkout with Gold Coin Drops & "Ka-Ching!" Chimes',
+      'Autonomous Farmhand Helper Dog 🐶 & Automated Cashier Worker 🧑‍💼',
+      'Fluid Touch 360° Floating Joystick & Responsive 60 FPS Canvas 2D Engine',
+      'Local Progress Save & 100% Free Instant Play with Zero Ads',
+    ],
+    metaTitle: 'Farm Mini Mart: Animal Market 🏪 — Free Online Idle Tycoon Game | Pawcade',
+    metaDescription: 'Play Farm Mini Mart free in your browser! Harvest crops, stock shelves, serve cute animal customers, and expand your countryside mini mart in this fun arcade tycoon game.',
+  },
+  {
     id: 'duck-runner',
     slug: 'duck-runner',
     title: 'Duck Runner: Vampire Quack 🎃',

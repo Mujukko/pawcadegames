@@ -54,6 +54,12 @@ Build a high-retention, delightful browser puzzle game called **Dog Parking** an
    - Jump over carved Jack-o'-Lanterns and haunted cobweb fence posts; duck flat to slide under midnight vampire bats.
    - In-air fast fall physics, progressive running speed, day-to-night starry sky transitions, retro 100-point milestone chimes, and dual mobile thumb controls (Duck & Jump).
 
+9. **Farm Mini Mart: Animal Market (`/games/farm-mini-mart/`):**
+   - "My Mini Mart" style arcade idle tycoon set in a countryside farm.
+   - Grow & harvest 5 crops (Tomatoes, Corn, Eggs, Milk, Pumpkins), stack items in hands, stock wooden display stands.
+   - Animal customer AI (bunnies, cats, dogs, bears, pigs, ghosts) shopping and queuing at the Cash Register.
+   - Cash register checkout with gold coin drops, upgradeable walking speed, carry capacity, autonomous Farmhand Dog helper 🐶, and automated Cashier 🧑‍💼.
+
 ## 4. Technology Stack
 - **Language:** TypeScript 5.x (`strict: true`)
 - **Runtime & Tooling:** Bun 1.4+ (runtime, package manager, test runner), Vite 5.x (fast bundling, HMR)
