@@ -78,6 +78,7 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
 
     if (result.success) {
       recordLevelResult(building.id, levelNumber, 3, selectedLevel.bestScore || 1000);
+      setSelectedLevel((prev) => ({ ...prev, stars: 3, completed: true }));
       onStateChange();
       setAdMessage('⭐ Tebrikler! 3 Yıldız başarıyla eklendi!');
       setTimeout(() => setAdMessage(null), 3500);
@@ -96,17 +97,17 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border-2 border-amber-500/40 rounded-3xl p-4 sm:p-6 shadow-2xl shadow-amber-950/50 text-slate-100 overflow-hidden max-h-[92vh] flex flex-col"
+        className="relative w-full max-w-2xl bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border-2 border-amber-500/40 rounded-3xl p-4 sm:p-6 pb-safe shadow-2xl shadow-amber-950/50 text-slate-100 overflow-hidden max-h-[92vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Ambient Top Glow */}
         <div className="absolute top-0 right-0 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Close Button */}
+        {/* Close Button (>= 44x44px accessible touch target) */}
         <button
           onClick={onClose}
           aria-label="Kapat"
-          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 rounded-full transition-colors cursor-pointer z-10"
+          className="absolute top-4 right-4 w-11 h-11 flex items-center justify-center text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 rounded-full transition-colors cursor-pointer z-10"
         >
           <X className="w-5 h-5" />
         </button>
@@ -183,6 +184,21 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
                 <span>Onar & Yükselt</span>
               </button>
             </div>
+          ) : building.repairStage >= activeTier ? (
+            <div className="bg-emerald-950/40 border border-emerald-500/50 rounded-2xl p-2.5 sm:p-3 flex items-center justify-between gap-2 shadow-inner">
+              <div className="flex items-center gap-2">
+                <span className="text-base sm:text-lg">✨</span>
+                <span className="text-[11px] sm:text-xs text-emerald-200">
+                  <strong className="text-emerald-400">Aşama {activeTier} Tamamlandı:</strong> Bu aşamadaki tüm onarımlar yapıldı!
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5 bg-emerald-900/60 px-2.5 py-1 rounded-full border border-emerald-500/40 text-xs font-black text-emerald-300 shrink-0">
+                <Star className="w-3.5 h-3.5 fill-emerald-400 text-emerald-400" />
+                <span>
+                  {bracketStars.earned} / {bracketStars.max} ⭐
+                </span>
+              </div>
+            </div>
           ) : (
             <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-2.5 sm:p-3 flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
@@ -244,7 +260,7 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
         </div>
 
         {/* Level Track Grid / Path */}
-        <div className="flex-1 overflow-y-auto pr-1 mb-3 min-h-[160px]">
+        <div className="flex-1 overflow-y-auto pr-1 mb-3 min-h-[120px] sm:min-h-[160px]">
           <div className="grid grid-cols-5 gap-2.5 sm:gap-3 py-2">
             {tierLevels.map((lvl) => {
               const isSelected = selectedLevel.levelNumber === lvl.levelNumber;
@@ -353,7 +369,7 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
                 <button
                   onClick={() => handleWatchAdFor3Stars(selectedLevel.levelNumber)}
                   disabled={isAdLoading}
-                  className="px-3 py-2 bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/50 text-purple-300 font-bold text-xs rounded-xl flex items-center gap-1.5 cursor-pointer transition-all active:scale-95 disabled:opacity-50"
+                  className="min-h-[44px] px-3.5 py-2 bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/50 text-purple-300 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 cursor-pointer transition-all active:scale-95 disabled:opacity-50"
                   title="Kısa sponsorlu video izleyerek 3. yıldızı hemen kazan"
                 >
                   <Video className="w-3.5 h-3.5 text-purple-400" />
@@ -365,7 +381,7 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
               <button
                 onClick={() => handlePlayLevel(selectedLevel)}
                 disabled={!selectedLevel.unlocked}
-                className="flex-1 sm:flex-initial px-5 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-black text-sm rounded-xl shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer transition-transform active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                className="flex-1 sm:flex-initial min-h-[44px] px-5 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-black text-sm rounded-xl shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer transition-transform active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <Play className="w-4 h-4 fill-slate-950" />
                 <span>{selectedLevel.completed ? 'Tekrar Oyna' : 'Bölümü Başlat'}</span>

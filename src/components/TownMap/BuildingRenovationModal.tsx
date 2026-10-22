@@ -120,17 +120,17 @@ export const BuildingRenovationModal: React.FC<BuildingRenovationModalProps> = (
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border-2 border-amber-500/50 rounded-3xl p-5 sm:p-7 shadow-2xl shadow-amber-950/60 text-slate-100 overflow-hidden max-h-[92vh] overflow-y-auto"
+        className="relative w-full max-w-lg bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border-2 border-amber-500/50 rounded-3xl p-4 sm:p-7 pb-safe shadow-2xl shadow-amber-950/60 text-slate-100 max-h-[92vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Ambient Top Glow */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Close Button */}
+        {/* Close Button (>= 44x44px touch target) */}
         <button
           onClick={onClose}
           aria-label="Kapat"
-          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 rounded-full transition-colors cursor-pointer z-10"
+          className="absolute top-4 right-4 w-11 h-11 flex items-center justify-center text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 rounded-full transition-colors cursor-pointer z-10"
         >
           <X className="w-5 h-5" />
         </button>

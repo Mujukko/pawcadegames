@@ -103,7 +103,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🚜',
         description: 'Genişletilmiş bölmeler, süt güğümleri ve otomatik ahır lambaları!',
         requiredBracket: 'Seviye 11 - 20',
-        requiredStars: 48,
+        requiredStars: 24,
       },
       {
         stage: 3,
@@ -111,7 +111,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🏰',
         description: 'Altın rüzgar gülü, çiçek saksıları ve efsanevi ahır anıtı!',
         requiredBracket: 'Seviye 21 - 30',
-        requiredStars: 75,
+        requiredStars: 24,
       },
     ],
   },
@@ -142,7 +142,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🎪',
         description: 'Tahıl konveyörü ve altın mısır deposu eklenmiş modern silo.',
         requiredBracket: 'Seviye 11 - 20',
-        requiredStars: 48,
+        requiredStars: 24,
       },
       {
         stage: 3,
@@ -150,7 +150,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🏛️',
         description: 'Gümüş kubbeli, hasat çanları çalan zirve silosu!',
         requiredBracket: 'Seviye 21 - 30',
-        requiredStars: 75,
+        requiredStars: 24,
       },
     ],
   },
@@ -181,7 +181,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🪶',
         description: 'Taş mimarili, fenerlerle aydınlatılmış çiftlik değirmeni.',
         requiredBracket: 'Seviye 11 - 20',
-        requiredStars: 48,
+        requiredStars: 24,
       },
       {
         stage: 3,
@@ -189,7 +189,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '✨',
         description: 'Rengarenk festival flamaları ve altın buğday heykelli ulu değirmen!',
         requiredBracket: 'Seviye 21 - 30',
-        requiredStars: 75,
+        requiredStars: 24,
       },
     ],
   },
@@ -220,7 +220,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🏬',
         description: 'Süt soğutucusu, otomatik kasa ve yardımcı köpek personeli!',
         requiredBracket: 'Seviye 11 - 20',
-        requiredStars: 48,
+        requiredStars: 24,
       },
       {
         stage: 3,
@@ -228,7 +228,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🏛️',
         description: 'Neon ışıklı, altın yazarkasalı ve gurme fırınlı lüks market sarayı!',
         requiredBracket: 'Seviye 21 - 30',
-        requiredStars: 75,
+        requiredStars: 24,
       },
     ],
   },
@@ -259,7 +259,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🎃',
         description: 'Kemerli ahşap köprü, balıklar ve balkabağı fenerleriyle süslü gölet.',
         requiredBracket: 'Seviye 11 - 20',
-        requiredStars: 48,
+        requiredStars: 24,
       },
       {
         stage: 3,
@@ -267,7 +267,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '✨',
         description: 'Işıklı mermer fıskiyeler, kuğu sandalları ve havai fişekli su sarayı!',
         requiredBracket: 'Seviye 21 - 30',
-        requiredStars: 75,
+        requiredStars: 24,
       },
     ],
   },
@@ -298,7 +298,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🐕‍🦺',
         description: 'Çift çitli koşu bahçesi, rampa oyuncakları ve altın yangın musluğu süsü.',
         requiredBracket: 'Seviye 11 - 20',
-        requiredStars: 48,
+        requiredStars: 24,
       },
       {
         stage: 3,
@@ -306,7 +306,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🏰',
         description: '5 yıldızlı havuzlu köpek oteli ve efsanevi Belediye Başkanı Köpek büstü!',
         requiredBracket: 'Seviye 21 - 30',
-        requiredStars: 75,
+        requiredStars: 24,
       },
     ],
   },
@@ -337,7 +337,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🐈‍⬛',
         description: 'Kadife tırmanma kuleleri ve ay ışığı gözlem balkonu olan 2 katlı köşk!',
         requiredBracket: 'Seviye 11 - 20',
-        requiredStars: 48,
+        requiredStars: 24,
       },
       {
         stage: 3,
@@ -345,7 +345,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '👑',
         description: 'Altın kuleleri ve kadife tahtı olan büyüleyici kedi kalesi!',
         requiredBracket: 'Seviye 21 - 30',
-        requiredStars: 75,
+        requiredStars: 24,
       },
     ],
   },
@@ -376,7 +376,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🚜',
         description: 'Asfalt yollar, süt tankerleri ve koyun devriyesi kontrol kulesi!',
         requiredBracket: 'Seviye 11 - 20',
-        requiredStars: 48,
+        requiredStars: 24,
       },
       {
         stage: 3,
@@ -384,7 +384,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🥛',
         description: 'Ödüllü dondurma köşesi ve altın inek çanı anıtı!',
         requiredBracket: 'Seviye 21 - 30',
-        requiredStars: 75,
+        requiredStars: 24,
       },
     ],
   },
@@ -415,7 +415,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🎡',
         description: 'Dönen ahşap su çarkı ve dinamit şeker fıçılarıyla dolu üretim tesisi!',
         requiredBracket: 'Seviye 11 - 20',
-        requiredStars: 48,
+        requiredStars: 24,
       },
       {
         stage: 3,
@@ -423,7 +423,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
         emoji: '🌟',
         description: 'Gökkuşağı şurup şelaleleri ve yıldız şeker anıtı olan rüya imalathane!',
         requiredBracket: 'Seviye 21 - 30',
-        requiredStars: 75,
+        requiredStars: 24,
       },
     ],
   },
@@ -566,7 +566,7 @@ export function checkUpgradeEligibility(
 } {
   const startLevel = tier === 1 ? 1 : tier === 2 ? 11 : 21;
   const endLevel = tier === 1 ? 10 : tier === 2 ? 20 : 30;
-  const requiredStars = tier === 1 ? 24 : tier === 2 ? 48 : 70; // e.g. 24 stars for Tier 1
+  const requiredStars = 24; // 24 stars out of 30 in this 10-level bracket (80% threshold)
   const requiredLevels = 10;
 
   const bracket = getStarsInBracket(building.levels, startLevel, endLevel);

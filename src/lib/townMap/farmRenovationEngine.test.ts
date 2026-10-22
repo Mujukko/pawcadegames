@@ -141,6 +141,51 @@ describe('Farm Renovation Engine & 30-Level Progression', () => {
       // Now Tier 1 should no longer be eligible since it is already at stage 1
       const checkAfter = checkUpgradeEligibility(upgradedState.buildings.barn, 1);
       expect(checkAfter.eligible).toBe(false);
+
+      // Verify Tier 2 eligibility with 24 stars in levels 11-20
+      const barnAfter = upgradedState.buildings.barn;
+      expect(checkUpgradeEligibility(barnAfter, 2).eligible).toBe(false);
+
+      for (let i = 10; i < 18; i++) {
+        barnAfter.levels[i].completed = true;
+        barnAfter.levels[i].stars = 3; // 8 * 3 = 24 stars in bracket 11-20
+      }
+
+      const tier2Check = checkUpgradeEligibility(barnAfter, 2);
+      expect(tier2Check.eligible).toBe(true);
+      expect(tier2Check.starsEarned).toBe(24);
+      expect(tier2Check.requiredStars).toBe(24);
+
+      // Apply Tier 2 upgrade
+      const stage2State = applyBuildingUpgrade('barn', 2);
+      expect(stage2State.buildings.barn.repairStage).toBe(2);
+
+      // Verify Tier 3 eligibility with 24 stars in levels 21-30
+      const barnStage2 = stage2State.buildings.barn;
+      expect(checkUpgradeEligibility(barnStage2, 3).eligible).toBe(false);
+
+      for (let i = 20; i < 28; i++) {
+        barnStage2.levels[i].completed = true;
+        barnStage2.levels[i].stars = 3; // 8 * 3 = 24 stars in bracket 21-30
+      }
+
+      const tier3Check = checkUpgradeEligibility(barnStage2, 3);
+      expect(tier3Check.eligible).toBe(true);
+      expect(tier3Check.starsEarned).toBe(24);
+      expect(tier3Check.requiredStars).toBe(24);
+
+      // Apply Tier 3 upgrade
+      const stage3State = applyBuildingUpgrade('barn', 3);
+      expect(stage3State.buildings.barn.repairStage).toBe(3);
+    });
+
+    it('verifies all 9 building stages have consistent requiredStars (24) per bracket', () => {
+      for (const [id, config] of Object.entries(INITIAL_BUILDING_CONFIGS)) {
+        expect(config.stages.length).toBe(3);
+        expect(config.stages[0].requiredStars).toBe(24);
+        expect(config.stages[1].requiredStars).toBe(24);
+        expect(config.stages[2].requiredStars).toBe(24);
+      }
     });
 
     it('prevents downgrading building stage', () => {

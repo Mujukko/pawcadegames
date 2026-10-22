@@ -170,11 +170,11 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
               </div>
             </div>
 
-            {/* Sound Toggle */}
+            {/* Sound Toggle (>= 44x44px touch target) */}
             <button
               onClick={() => setSoundEnabled(!soundEnabled)}
               aria-label={soundEnabled ? 'Sesi Kapat' : 'Sesi Aç'}
-              className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-colors cursor-pointer"
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 flex items-center justify-center transition-colors cursor-pointer"
             >
               {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
             </button>
@@ -183,7 +183,7 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
             {onSwitchToGrid && (
               <button
                 onClick={onSwitchToGrid}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs font-bold transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-3 py-1.5 min-h-[40px] rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs font-bold transition-all cursor-pointer"
                 title="Klasik Oyun Listesi Görünümüne Geç"
               >
                 <LayoutGrid className="w-3.5 h-3.5" />
@@ -213,10 +213,10 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
           <ChevronRight className="w-6 h-6" />
         </button>
 
-        {/* Scrollable Viewport */}
+        {/* Scrollable Viewport with touch-pan-x */}
         <div
           ref={scrollContainerRef}
-          className="w-full overflow-x-auto overflow-y-hidden scroll-smooth py-6 px-12 sm:px-20 scrollbar-none"
+          className="w-full overflow-x-auto overflow-y-hidden scroll-smooth py-4 sm:py-6 px-12 sm:px-20 scrollbar-none touch-pan-x overscroll-x-contain"
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           {/* Panorama Track (Width: 3200px) */}
@@ -421,7 +421,7 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
       </div>
 
       {/* BOTTOM STICKY AD SAFE ZONE (Poki / CrazyGames / Google H5 Safe Banner Area) */}
-      <div className="sticky bottom-0 z-30 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 py-2 px-4 flex items-center justify-center">
+      <div className="sticky bottom-0 z-30 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] px-4 flex items-center justify-center">
         <div className="w-full max-w-[728px] h-[54px] sm:h-[60px] bg-slate-900/90 border border-amber-500/20 rounded-xl flex items-center justify-between px-4 text-xs shadow-inner">
           <div className="flex items-center gap-2">
             <span className="text-amber-400">📢</span>
