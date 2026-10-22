@@ -146,7 +146,7 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
             onClick={toggleSound}
             title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
             aria-label="Toggle sound"
-            className="p-2 sm:px-3 sm:py-2 text-slate-300 hover:text-white bg-slate-900 hover:bg-slate-800 border border-orange-500/20 rounded-xl font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="p-2 sm:px-3 sm:py-2 min-h-[44px] min-w-[44px] text-slate-300 hover:text-white bg-slate-900 hover:bg-slate-800 border border-orange-500/20 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
           >
             {isMuted ? <VolumeX className="w-4 h-4 text-rose-500" /> : <Volume2 className="w-4 h-4 text-orange-400" />}
             <span className="hidden sm:inline">{isMuted ? 'Muted' : 'Sound'}</span>
@@ -155,7 +155,7 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-slate-300 hover:text-white bg-slate-900 border border-orange-500/20 rounded-xl"
+            className="md:hidden p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-300 hover:text-white bg-slate-900 border border-orange-500/20 rounded-xl cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5 text-orange-400" /> : <Menu className="w-5 h-5 text-orange-400" />}
