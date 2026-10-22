@@ -5,6 +5,7 @@ import { HomePage } from './HomePage';
 import { GamePage } from './GamePage';
 import { NotFoundPage } from './NotFoundPage';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
+import { analytics } from '../lib/analytics';
 
 export const App: React.FC = () => {
   // Normalize current path from browser URL or hash
@@ -68,6 +69,8 @@ export const App: React.FC = () => {
     } else {
       document.title = 'Sayfa Bulunamadı (404) | Pawcade Games';
     }
+
+    analytics.trackPageView(currentRoute);
   }, [currentRoute]);
 
   const navigate = (path: string) => {

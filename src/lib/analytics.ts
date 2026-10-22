@@ -47,6 +47,20 @@ class AnalyticsService {
     }
   }
 
+  public trackPageView(path: string, title?: string): void {
+    if (import.meta.env.DEV) {
+      console.log(`[Analytics PageView]`, { path, title });
+    }
+    if (typeof window !== 'undefined' && (window as unknown as { gtag?: Function }).gtag) {
+      try {
+        (window as unknown as { gtag: Function }).gtag('config', 'G-6QENGPZ73F', {
+          page_path: path,
+          page_title: title || (typeof document !== 'undefined' ? document.title : ''),
+        });
+      } catch {}
+    }
+  }
+
   /**
    * Future Ad Placement Hook: Interstitial Ad
    * Safe stub that resolves immediately in MVP.

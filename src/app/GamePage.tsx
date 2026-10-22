@@ -1,5 +1,6 @@
 import React, { useEffect, Suspense, lazy } from 'react';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
+import { analytics } from '../lib/analytics';
 import { ChevronRight, Star, Sparkles, Keyboard, Smartphone, CheckCircle2, Shield, Heart } from 'lucide-react';
 
 // Dynamic lazy-loading for all 9 game containers for optimal initial bundle size
@@ -71,6 +72,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    analytics.track('game_loaded', { gameId });
   }, [gameId]);
 
   return (
