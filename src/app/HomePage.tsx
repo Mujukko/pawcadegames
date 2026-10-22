@@ -1,13 +1,11 @@
-import React, { useState, useMemo } from 'react';
-import { GAMES_REGISTRY, GameMetadata } from '../lib/gamesRegistry';
-import { Search, Play, Star, Sparkles, Flame, Trophy } from 'lucide-react';
+import React from 'react';
+import { GAMES_REGISTRY } from '../lib/gamesRegistry';
+import { Play, Star } from 'lucide-react';
 
 interface HomePageProps {
   navigate: (path: string) => void;
   initialView?: string;
 }
-
-type FilterCategory = 'all' | 'popular' | 'puzzle' | 'arcade' | 'farm' | 'pets';
 
 interface GameVisualConfig {
   iconEmoji: string;
@@ -98,132 +96,10 @@ const GAME_VISUAL_MAP: Record<string, GameVisualConfig> = {
 };
 
 export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
-  const [activeFilter, setActiveFilter] = useState<FilterCategory>('all');
-  const [searchQuery, setSearchQuery] = useState('');
-
-  // Filter games based on category and query
-  const filteredGames = useMemo(() => {
-    return GAMES_REGISTRY.filter((game) => {
-      // Search matching
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        const matches =
-          game.title.toLowerCase().includes(q) ||
-          game.tagline.toLowerCase().includes(q) ||
-          game.category.toLowerCase().includes(q) ||
-          game.id.toLowerCase().includes(q);
-        if (!matches) return false;
-      }
-
-      // Category matching
-      if (activeFilter === 'all') return true;
-      if (activeFilter === 'popular') {
-        return (
-          game.id === 'farm-mini-mart' ||
-          game.id === 'duck-runner' ||
-          game.id === 'pet-candy-crush' ||
-          game.id === 'flappy-chicken' ||
-          game.id === 'dog-parking'
-        );
-      }
-      if (activeFilter === 'puzzle') {
-        return (
-          game.category === 'puzzle' ||
-          game.id === 'pet-candy-crush' ||
-          game.id === 'farm-tetris' ||
-          game.id === 'animal-2048' ||
-          game.id === 'dog-parking' ||
-          game.id === 'cat-parking'
-        );
-      }
-      if (activeFilter === 'arcade') {
-        return (
-          game.category === 'arcade' ||
-          game.id === 'duck-runner' ||
-          game.id === 'flappy-chicken' ||
-          game.id === 'farm-mini-mart'
-        );
-      }
-      if (activeFilter === 'farm') {
-        return (
-          game.id.includes('farm') ||
-          game.id.includes('tetris') ||
-          game.id.includes('duck') ||
-          game.id.includes('chicken')
-        );
-      }
-      if (activeFilter === 'pets') {
-        return (
-          game.id.includes('dog') ||
-          game.id.includes('cat') ||
-          game.id.includes('animal') ||
-          game.id.includes('pet')
-        );
-      }
-      return true;
-    });
-  }, [activeFilter, searchQuery]);
-
-  const categories: { id: FilterCategory; label: string; icon: string }[] = [
-    { id: 'all', label: 'Tüm Oyunlar', icon: '🎮' },
-    { id: 'popular', label: 'Popüler', icon: '🔥' },
-    { id: 'puzzle', label: 'Bulmaca', icon: '🧩' },
-    { id: 'arcade', label: 'Arcade', icon: '⚡' },
-    { id: 'farm', label: 'Çiftlik', icon: '🌾' },
-    { id: 'pets', label: 'Hayvanlar', icon: '🐾' },
-  ];
-
   return (
     <main className="min-h-screen bg-slate-950 text-white selection:bg-orange-500 selection:text-slate-950 pb-20">
       {/* Hidden SEO Heading */}
       <h1 className="sr-only">Pawcade — Ücretsiz Çevrimiçi Tarayıcı Oyunları</h1>
-
-      {/* TOP COMPACT FILTER & SEARCH BAR */}
-      <div className="sticky top-16 z-30 bg-slate-950/90 backdrop-blur-md border-b border-orange-500/20 px-4 sm:px-6 lg:px-8 py-2.5">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5">
-          {/* Category Filter Pills (min 44px touch target) */}
-          <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto scrollbar-none py-1 overscroll-x-contain touch-pan-x">
-            {categories.map((cat) => {
-              const isActive = activeFilter === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveFilter(cat.id)}
-                  className={`flex items-center gap-1.5 px-3.5 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-black transition-all shrink-0 cursor-pointer ${
-                    isActive
-                      ? 'bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-slate-950 shadow-md scale-102 border border-amber-300'
-                      : 'bg-slate-900/90 hover:bg-slate-850 text-slate-300 hover:text-white border border-slate-800'
-                  }`}
-                >
-                  <span className="text-base sm:text-sm">{cat.icon}</span>
-                  <span>{cat.label}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Quick Search Input (min 44px touch target, text-base on mobile to avoid iOS Safari auto-zoom) */}
-          <div className="relative w-full sm:w-64 shrink-0">
-            <Search className="w-4 h-4 text-orange-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Oyun ara..."
-              className="w-full pl-9 pr-10 py-2.5 min-h-[44px] bg-slate-900 border border-orange-500/30 rounded-xl text-base sm:text-xs text-white placeholder-slate-400 focus:outline-none focus:border-orange-500 transition-colors"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                aria-label="Aramayı temizle"
-                className="absolute right-0 top-0 bottom-0 w-10 min-h-[44px] flex items-center justify-center text-slate-400 hover:text-white text-sm cursor-pointer"
-              >
-                ✕
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
 
       {/* PURE GAME ICON GRID */}
       <section
@@ -231,7 +107,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8"
       >
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3.5 sm:gap-5">
-          {filteredGames.map((game) => {
+          {GAMES_REGISTRY.map((game) => {
             const visual = GAME_VISUAL_MAP[game.id] || {
               iconEmoji: '🎮',
               secondaryEmoji: '✨',
@@ -320,27 +196,8 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             );
           })}
         </div>
-
-        {/* Empty state when search produces no results */}
-        {filteredGames.length === 0 && (
-          <div className="text-center py-20 bg-slate-900/40 rounded-3xl border border-slate-800 my-8">
-            <div className="text-5xl mb-3">🔍</div>
-            <h2 className="text-lg font-bold text-white">Oyun Bulunamadı</h2>
-            <p className="text-slate-400 text-xs mt-1">
-              "{searchQuery}" aramasına uygun oyun bulunamadı. Aramanızı temizlemeyi deneyin.
-            </p>
-            <button
-              onClick={() => {
-                setSearchQuery('');
-                setActiveFilter('all');
-              }}
-              className="mt-4 px-5 py-2.5 min-h-[44px] bg-orange-500 hover:bg-orange-600 text-slate-950 font-bold text-sm rounded-xl transition-colors cursor-pointer inline-flex items-center justify-center"
-            >
-              Filtreleri Temizle
-            </button>
-          </div>
-        )}
       </section>
     </main>
   );
 };
+
