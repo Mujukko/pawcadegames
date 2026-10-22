@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { GAMES_REGISTRY, GameMetadata } from '../lib/gamesRegistry';
+import { HorizontalLivingFarm } from '../components/TownMap/HorizontalLivingFarm';
 import { FarmWindingMap } from '../components/TownMap/FarmWindingMap';
 import { Play, Star, Sparkles, Flame, Heart, Search, Trophy, CheckCircle2, Map } from 'lucide-react';
 
@@ -80,14 +81,14 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, initialView = 'map
               onClick={() => setViewMode('map')}
               className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer ${
                 viewMode === 'map'
-                  ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md font-extrabold'
+                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 shadow-md font-extrabold'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
               }`}
             >
-              <span>🗺️</span>
-              <span>Çiftlik Haritası</span>
-              <span className="bg-orange-500 text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase animate-pulse">
-                0/1 GELİŞİM
+              <span>🌾</span>
+              <span>Yatay Çiftlik & Onarım</span>
+              <span className="bg-amber-400 text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase animate-pulse">
+                1-30 BÖLÜM
               </span>
             </button>
           </div>
@@ -139,9 +140,9 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, initialView = 'map
         </div>
       </div>
 
-      {/* Conditionally render Farm Winding Map or Poki Games Grid */}
+      {/* Conditionally render Horizontal Living Farm or Poki Games Grid */}
       {viewMode === 'map' ? (
-        <FarmWindingMap
+        <HorizontalLivingFarm
           navigate={navigate}
           onSwitchToGrid={() => setViewMode('games')}
         />
