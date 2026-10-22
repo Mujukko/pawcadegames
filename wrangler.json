@@ -4,5 +4,15 @@
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application"
-  }
+  },
+  "routes": [
+    {
+      "pattern": "pawcadegames.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.pawcadegames.com",
+      "custom_domain": true
+    }
+  ]
 }
