@@ -63,12 +63,10 @@ export const App: React.FC = () => {
       document.title = catParkingGame?.metaTitle || 'Cat Parking: Black Cat Witch Mystery 🐈‍⬛ | Pawcade';
     } else if (currentRoute.startsWith('/games/animal-farm-parking')) {
       document.title = farmParkingGame?.metaTitle || 'Animal Farm Parking: Haunted Pasture 🎃 | Pawcade';
-    } else if (currentRoute === '/' || currentRoute === '' || currentRoute === '/map' || currentRoute.startsWith('/map')) {
-      document.title = 'Pawcade Çiftlik Haritası 🌾 — 0/1 Çiftlik Dünyası ve Oyunlar | Pawcade';
-    } else if (currentRoute === '/games' || currentRoute === '/games/') {
-      document.title = 'Pawcade Spooktacular 🎃 — Free Halloween Browser Games Online';
+    } else if (currentRoute === '/' || currentRoute === '' || currentRoute === '/games' || currentRoute === '/games/') {
+      document.title = 'Pawcade — Ücretsiz Çevrimiçi Tarayıcı Oyunları | Free Online Games';
     } else {
-      document.title = 'Page Not Found (404) | Pawcade Games';
+      document.title = 'Sayfa Bulunamadı (404) | Pawcade Games';
     }
   }, [currentRoute]);
 
@@ -85,11 +83,16 @@ export const App: React.FC = () => {
   };
 
   const renderCurrentView = () => {
-    if (currentRoute === '/games' || currentRoute === '/games/' || currentRoute === '#games') {
-      return <HomePage navigate={navigate} initialView="games" />;
-    }
-    if (currentRoute === '/' || currentRoute === '' || currentRoute === '/index.html' || currentRoute === '/map' || currentRoute.startsWith('/map')) {
-      return <HomePage navigate={navigate} initialView="map" />;
+    if (
+      currentRoute === '/' ||
+      currentRoute === '' ||
+      currentRoute === '/index.html' ||
+      currentRoute === '/games' ||
+      currentRoute === '/games/' ||
+      currentRoute === '#games' ||
+      currentRoute === '/map'
+    ) {
+      return <HomePage navigate={navigate} />;
     }
     if (currentRoute.startsWith('/games/farm-mini-mart')) {
       return <GamePage navigate={navigate} gameId="farm-mini-mart" />;

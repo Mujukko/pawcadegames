@@ -52,15 +52,12 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
           <button
             onClick={() => navigate('/')}
             className={`px-3.5 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5 transition-colors cursor-pointer ${
-              currentRoute === '/' || currentRoute.startsWith('/map')
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-extrabold'
+              currentRoute === '/' || currentRoute === '/games'
+                ? 'bg-orange-500/20 text-orange-400 border border-orange-500/40 font-extrabold'
                 : 'text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent'
             }`}
           >
-            <span>🌾 Çiftlik Haritası</span>
-            <span className="bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-black text-[10px] px-1.5 py-0.2 rounded-full">
-              MAP
-            </span>
+            <span>🎮 Tüm Oyunlar</span>
           </button>
 
           <button
@@ -175,28 +172,11 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, navigate }) => {
               setMobileMenuOpen(false);
             }}
             className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
-              currentRoute === '/' || currentRoute.startsWith('/map') ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'text-slate-200 hover:bg-slate-900'
+              currentRoute === '/' || currentRoute === '/games' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' : 'text-slate-200 hover:bg-slate-900'
             }`}
           >
             <div className="flex items-center gap-2">
-              <span>🌾 Çiftlik Haritası (Candy Crush Stili)</span>
-            </div>
-            <span className="bg-emerald-500 text-slate-950 font-black text-[10px] px-2 py-0.5 rounded-full">
-              ANA SAYFA
-            </span>
-          </button>
-
-          <button
-            onClick={() => {
-              navigate('/games');
-              setMobileMenuOpen(false);
-            }}
-            className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between cursor-pointer min-h-[44px] ${
-              currentRoute === '/games' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' : 'text-slate-200 hover:bg-slate-900'
-            }`}
-          >
-            <div className="flex items-center gap-2">
-              <span>🎮 Tüm Oyunlar (Liste Görünümü)</span>
+              <span>🎮 Tüm Oyunlar (Ana Sayfa)</span>
             </div>
             <span className="text-xs text-orange-400">9 Oyun</span>
           </button>

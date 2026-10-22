@@ -1,838 +1,323 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { GAMES_REGISTRY, GameMetadata } from '../lib/gamesRegistry';
-import { HorizontalLivingFarm } from '../components/TownMap/HorizontalLivingFarm';
-import { FarmWindingMap } from '../components/TownMap/FarmWindingMap';
-import { Play, Star, Sparkles, Flame, Heart, Search, Trophy, CheckCircle2, Map } from 'lucide-react';
+import { Search, Play, Star, Sparkles, Flame, Trophy } from 'lucide-react';
 
 interface HomePageProps {
   navigate: (path: string) => void;
-  initialView?: 'games' | 'map';
+  initialView?: string;
 }
 
-type FilterCategory = 'all' | 'spooky' | 'popular' | 'puzzle' | 'farm' | 'cats' | 'dogs' | 'new';
+type FilterCategory = 'all' | 'popular' | 'puzzle' | 'arcade' | 'farm' | 'pets';
 
-export const HomePage: React.FC<HomePageProps> = ({ navigate, initialView = 'map' }) => {
-  const [viewMode, setViewMode] = useState<'games' | 'map'>(initialView);
+interface GameVisualConfig {
+  iconEmoji: string;
+  secondaryEmoji?: string;
+  gradient: string;
+  glowBorder: string;
+  shortTag: string;
+}
+
+const GAME_VISUAL_MAP: Record<string, GameVisualConfig> = {
+  'farm-mini-mart': {
+    iconEmoji: '🏪',
+    secondaryEmoji: '🍅',
+    gradient: 'from-emerald-700 via-teal-700 to-amber-700',
+    glowBorder: 'border-emerald-500/50 group-hover:border-emerald-400 group-hover:shadow-emerald-500/30',
+    shortTag: 'Arcade Tycoon • Köy Pazarı',
+  },
+  'duck-runner': {
+    iconEmoji: '🦆',
+    secondaryEmoji: '🌾',
+    gradient: 'from-amber-600 via-orange-600 to-yellow-600',
+    glowBorder: 'border-amber-500/50 group-hover:border-amber-400 group-hover:shadow-amber-500/30',
+    shortTag: 'T-Rex Zıplama • Sonsuz Koşu',
+  },
+  'pet-candy-crush': {
+    iconEmoji: '🍬',
+    secondaryEmoji: '🐮',
+    gradient: 'from-pink-600 via-purple-600 to-rose-700',
+    glowBorder: 'border-pink-500/50 group-hover:border-pink-400 group-hover:shadow-pink-500/30',
+    shortTag: 'Match-3 • Çiftlik Eşleştirme',
+  },
+  'flappy-chicken': {
+    iconEmoji: '🐔',
+    secondaryEmoji: '🌾',
+    gradient: 'from-yellow-600 via-amber-600 to-orange-700',
+    glowBorder: 'border-yellow-500/50 group-hover:border-yellow-400 group-hover:shadow-yellow-500/30',
+    shortTag: 'Gıdak Uçuşu • Engellerden Kaç',
+  },
+  'animal-2048': {
+    iconEmoji: '🐘',
+    secondaryEmoji: '🐭',
+    gradient: 'from-indigo-600 via-purple-700 to-violet-800',
+    glowBorder: 'border-indigo-500/50 group-hover:border-indigo-400 group-hover:shadow-indigo-500/30',
+    shortTag: '2048 Bulmaca • Hayvan Evrimi',
+  },
+  'farm-tetris': {
+    iconEmoji: '🧱',
+    secondaryEmoji: '👨‍🌾',
+    gradient: 'from-orange-700 via-red-700 to-amber-800',
+    glowBorder: 'border-orange-500/50 group-hover:border-orange-400 group-hover:shadow-orange-500/30',
+    shortTag: 'Blok Tetris • Silo Doldurma',
+  },
+  'dog-parking': {
+    iconEmoji: '🐕‍🦺',
+    secondaryEmoji: '🦴',
+    gradient: 'from-amber-600 via-orange-700 to-yellow-800',
+    glowBorder: 'border-amber-500/50 group-hover:border-amber-400 group-hover:shadow-amber-500/30',
+    shortTag: 'Trafik Bulmaca • Köpek Kurtarma',
+  },
+  'cat-parking': {
+    iconEmoji: '🐈‍⬛',
+    secondaryEmoji: '🌙',
+    gradient: 'from-purple-700 via-indigo-800 to-blue-900',
+    glowBorder: 'border-purple-500/50 group-hover:border-purple-400 group-hover:shadow-purple-500/30',
+    shortTag: 'Labirent Bulmaca • Kedi Kaçırma',
+  },
+  'animal-farm-parking': {
+    iconEmoji: '🐮',
+    secondaryEmoji: '🚜',
+    gradient: 'from-teal-700 via-emerald-800 to-green-900',
+    glowBorder: 'border-teal-500/50 group-hover:border-teal-400 group-hover:shadow-teal-500/30',
+    shortTag: 'Hassas Sürüş • İnek Park Etme',
+  },
+  'cat-cafe-rush': {
+    iconEmoji: '🧁',
+    secondaryEmoji: '🐱',
+    gradient: 'from-rose-700 via-pink-700 to-amber-800',
+    glowBorder: 'border-rose-500/40 group-hover:border-rose-300 group-hover:shadow-rose-500/20',
+    shortTag: 'Kafe Yönetimi • Yakında',
+  },
+  'hamster-ball-dash': {
+    iconEmoji: '🐹',
+    secondaryEmoji: '⚽',
+    gradient: 'from-cyan-700 via-blue-800 to-indigo-900',
+    glowBorder: 'border-cyan-500/40 group-hover:border-cyan-300 group-hover:shadow-cyan-500/20',
+    shortTag: 'Fizik Parkuru • Yakında',
+  },
+};
+
+export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Sync if initialView changes externally
-  useEffect(() => {
-    if (initialView) {
-      setViewMode(initialView);
-    }
-  }, [initialView]);
-
-  // Filter games dynamically
+  // Filter games based on category and query
   const filteredGames = useMemo(() => {
     return GAMES_REGISTRY.filter((game) => {
       // Search matching
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
-        const matches = game.title.toLowerCase().includes(q) ||
+        const matches =
+          game.title.toLowerCase().includes(q) ||
           game.tagline.toLowerCase().includes(q) ||
-          game.category.toLowerCase().includes(q);
+          game.category.toLowerCase().includes(q) ||
+          game.id.toLowerCase().includes(q);
         if (!matches) return false;
       }
 
       // Category matching
       if (activeFilter === 'all') return true;
-      if (activeFilter === 'spooky') return true; // All games featured in Halloween event!
-      if (activeFilter === 'popular') return game.id === 'farm-mini-mart' || game.id === 'duck-runner' || game.id === 'pet-candy-crush' || game.id === 'flappy-chicken' || game.id === 'animal-2048' || game.id === 'farm-tetris' || game.id === 'dog-parking' || game.id === 'animal-farm-parking' || game.badge === 'Popular';
-      if (activeFilter === 'new') return game.id === 'farm-mini-mart' || game.id === 'duck-runner' || game.id === 'pet-candy-crush' || game.id === 'flappy-chicken' || game.id === 'animal-2048' || game.id === 'farm-tetris' || game.id === 'animal-farm-parking' || game.id === 'cat-parking' || game.badge === 'New';
-      if (activeFilter === 'farm') return game.id.includes('farm') || game.id.includes('animal') || game.id.includes('tetris') || game.id.includes('chicken') || game.id.includes('duck');
-      if (activeFilter === 'puzzle') return game.category === 'puzzle' || game.category === 'casual';
-      if (activeFilter === 'dogs') return game.id.includes('dog') || game.id.includes('pet');
-      if (activeFilter === 'cats') return game.id.includes('cat') || game.id.includes('pet');
+      if (activeFilter === 'popular') {
+        return (
+          game.id === 'farm-mini-mart' ||
+          game.id === 'duck-runner' ||
+          game.id === 'pet-candy-crush' ||
+          game.id === 'flappy-chicken' ||
+          game.id === 'dog-parking'
+        );
+      }
+      if (activeFilter === 'puzzle') {
+        return (
+          game.category === 'puzzle' ||
+          game.id === 'pet-candy-crush' ||
+          game.id === 'farm-tetris' ||
+          game.id === 'animal-2048' ||
+          game.id === 'dog-parking' ||
+          game.id === 'cat-parking'
+        );
+      }
+      if (activeFilter === 'arcade') {
+        return (
+          game.category === 'arcade' ||
+          game.id === 'duck-runner' ||
+          game.id === 'flappy-chicken' ||
+          game.id === 'farm-mini-mart'
+        );
+      }
+      if (activeFilter === 'farm') {
+        return (
+          game.id.includes('farm') ||
+          game.id.includes('tetris') ||
+          game.id.includes('duck') ||
+          game.id.includes('chicken')
+        );
+      }
+      if (activeFilter === 'pets') {
+        return (
+          game.id.includes('dog') ||
+          game.id.includes('cat') ||
+          game.id.includes('animal') ||
+          game.id.includes('pet')
+        );
+      }
       return true;
     });
   }, [activeFilter, searchQuery]);
 
   const categories: { id: FilterCategory; label: string; icon: string }[] = [
-    { id: 'all', label: 'All Games', icon: '🎮' },
-    { id: 'spooky', label: 'Spooky (Halloween)', icon: '🎃' },
-    { id: 'popular', label: 'Popular', icon: '🔥' },
-    { id: 'new', label: 'New', icon: '✨' },
-    { id: 'farm', label: 'Farm', icon: '🌾' },
-    { id: 'puzzle', label: 'Puzzles', icon: '🧩' },
-    { id: 'cats', label: 'Cats', icon: '🐈‍⬛' },
-    { id: 'dogs', label: 'Dogs', icon: '🦴' },
+    { id: 'all', label: 'Tüm Oyunlar', icon: '🎮' },
+    { id: 'popular', label: 'Popüler', icon: '🔥' },
+    { id: 'puzzle', label: 'Bulmaca', icon: '🧩' },
+    { id: 'arcade', label: 'Arcade', icon: '⚡' },
+    { id: 'farm', label: 'Çiftlik', icon: '🌾' },
+    { id: 'pets', label: 'Hayvanlar', icon: '🐾' },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white selection:bg-orange-500 selection:text-slate-950 pb-16 pb-safe">
-      {/* Poki-Style Top Filter & Search Bar */}
-      <div className="sticky top-16 z-30 bg-slate-950/90 backdrop-blur-md border-b border-orange-500/25 px-4 sm:px-6 lg:px-8 py-3">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
-          {/* Main View Mode Selector (Games Grid vs Town Map) */}
-          <div className="flex items-center gap-1.5 bg-slate-900/90 p-1 rounded-2xl border border-orange-500/30 shrink-0 w-full md:w-auto justify-center sm:justify-start">
-            <button
-              onClick={() => setViewMode('games')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer ${
-                viewMode === 'games'
-                  ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 shadow-md font-extrabold'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <span>🎮</span>
-              <span>Oyunlar Listesi</span>
-            </button>
-            <button
-              onClick={() => setViewMode('map')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer ${
-                viewMode === 'map'
-                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 shadow-md font-extrabold'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <span>🌾</span>
-              <span>Yatay Çiftlik & Onarım</span>
-              <span className="bg-amber-400 text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase animate-pulse">
-                1-30 BÖLÜM
-              </span>
-            </button>
+    <main className="min-h-screen bg-slate-950 text-white selection:bg-orange-500 selection:text-slate-950 pb-20">
+      {/* Hidden SEO Heading */}
+      <h1 className="sr-only">Pawcade — Ücretsiz Çevrimiçi Tarayıcı Oyunları</h1>
+
+      {/* TOP COMPACT FILTER & SEARCH BAR */}
+      <div className="sticky top-16 z-30 bg-slate-950/90 backdrop-blur-md border-b border-orange-500/20 px-4 sm:px-6 lg:px-8 py-3">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+          {/* Category Filter Pills */}
+          <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto scrollbar-none py-1">
+            {categories.map((cat) => {
+              const isActive = activeFilter === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveFilter(cat.id)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all shrink-0 cursor-pointer ${
+                    isActive
+                      ? 'bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-slate-950 shadow-md scale-102 border border-amber-300'
+                      : 'bg-slate-900/90 hover:bg-slate-850 text-slate-300 hover:text-white border border-slate-800'
+                  }`}
+                >
+                  <span>{cat.icon}</span>
+                  <span>{cat.label}</span>
+                </button>
+              );
+            })}
           </div>
 
-          {viewMode === 'games' && (
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 w-full md:w-auto">
-              {/* Category Filter Pills */}
-              <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto scrollbar-none py-1">
-                {categories.map((cat) => {
-                  const isActive = activeFilter === cat.id;
-                  return (
-                    <button
-                      key={cat.id}
-                      onClick={() => setActiveFilter(cat.id)}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all shrink-0 cursor-pointer ${
-                        isActive
-                          ? 'bg-gradient-to-r from-orange-600 via-amber-500 to-purple-600 text-white shadow-lg shadow-orange-500/25 scale-102 border border-orange-400/40'
-                          : 'bg-slate-900/90 hover:bg-slate-850 text-slate-300 hover:text-white border border-slate-800'
-                      }`}
-                    >
-                      <span>{cat.icon}</span>
-                      <span>{cat.label}</span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Quick Search Input */}
-              <div className="relative w-full sm:w-56 shrink-0">
-                <Search className="w-4 h-4 text-orange-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Oyun ara..."
-                  className="w-full pl-9 pr-3 py-1.5 bg-slate-900 border border-orange-500/30 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-orange-500 transition-colors"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs cursor-pointer"
-                  >
-                    ✕
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
+          {/* Quick Search Input */}
+          <div className="relative w-full sm:w-64 shrink-0">
+            <Search className="w-4 h-4 text-orange-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Oyun ara..."
+              className="w-full pl-9 pr-8 py-1.5 bg-slate-900 border border-orange-500/30 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-orange-500 transition-colors"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs cursor-pointer"
+              >
+                ✕
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Conditionally render Horizontal Living Farm or Poki Games Grid */}
-      {viewMode === 'map' ? (
-        <HorizontalLivingFarm
-          navigate={navigate}
-          onSwitchToGrid={() => setViewMode('games')}
-        />
-      ) : (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6">
-          {/* GRAND HALLOWEEN SPOOKTACULAR EVENT HERO BANNER */}
-          <div className="relative lg:col-span-12 bg-gradient-to-r from-orange-600 via-purple-900 to-amber-900 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl shadow-orange-950/50 border-2 border-orange-500/50 flex flex-col md:flex-row items-center justify-between min-h-[220px]">
-            {/* Ambient spooky glow & bats */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-8 right-16 text-8xl sm:text-9xl opacity-20 select-none pointer-events-none animate-spooky-float">
-              🎃
-            </div>
+      {/* PURE GAME ICON GRID */}
+      <section
+        aria-label="Oyunlar Listesi"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8"
+      >
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3.5 sm:gap-5">
+          {filteredGames.map((game) => {
+            const visual = GAME_VISUAL_MAP[game.id] || {
+              iconEmoji: '🎮',
+              secondaryEmoji: '✨',
+              gradient: 'from-slate-700 to-slate-800',
+              glowBorder: 'border-slate-700 hover:border-orange-500',
+              shortTag: game.category,
+            };
 
-            <div className="relative z-10 max-w-2xl">
-              <div className="flex flex-wrap items-center gap-2 mb-2">
-                <span className="bg-orange-500 text-slate-950 font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider animate-bounce">
-                  <span>🎃 Spooktacular Season Active</span>
-                </span>
-                <span className="bg-purple-950/80 text-purple-200 border border-purple-500/40 font-bold text-xs px-2.5 py-1 rounded-xl">
-                  🦇 Trick or Treat
-                </span>
-                <span className="bg-black/40 text-amber-300 border border-amber-500/30 font-bold text-xs px-2.5 py-1 rounded-xl">
-                  🍬 9 Spooky Games Online
-                </span>
-              </div>
-              <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight drop-shadow-md">
-                Pawcade Halloween Spooktacular! 🎃
-              </h1>
-              <p className="text-orange-100 text-sm sm:text-base font-medium mt-2 leading-relaxed max-w-xl">
-                The pet sanctuary has been enchanted with Halloween magic! Leap over glowing jack-o'-lanterns in Duck Runner, match spooky barnyard beasts, fly through haunted moonlit skies, and solve eerie puzzles!
-              </p>
-              <div className="mt-4 flex flex-wrap items-center gap-3">
-                <button
-                  onClick={() => navigate('/games/duck-runner/')}
-                  className="bg-orange-500 hover:bg-orange-400 text-slate-950 px-5 py-2.5 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2 transition-transform hover:scale-105 cursor-pointer"
-                >
-                  <Play className="w-4 h-4 fill-slate-950 text-slate-950" />
-                  <span>PLAY VAMPIRE DUCK 🦆</span>
-                </button>
-                <button
-                  onClick={() => navigate('/games/pet-candy-crush/')}
-                  className="bg-purple-700 hover:bg-purple-600 text-white px-5 py-2.5 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2 transition-transform hover:scale-105 cursor-pointer border border-purple-400/30"
-                >
-                  <Sparkles className="w-4 h-4 text-purple-300" />
-                  <span>TRICK OR TREAT MATCH 🍬</span>
-                </button>
-                <button
-                  onClick={() => setViewMode('map')}
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2 transition-transform hover:scale-105 cursor-pointer border border-emerald-400/40"
-                >
-                  <Map className="w-4 h-4 text-emerald-200" />
-                  <span>ÇİFTLİK HARİTASI (0/1 GELİŞİM) 🗺️</span>
-                </button>
-              </div>
-            </div>
+            const isComingSoon = game.status === 'coming-soon';
+            const cleanTitle = game.title.split(':')[0] || game.title;
 
-            <div className="relative z-10 mt-4 md:mt-0 flex items-center gap-3 text-5xl sm:text-6xl select-none filter drop-shadow-2xl">
-              <span className="animate-spooky-float">🎃</span>
-              <span className="animate-pulse">👻</span>
-              <span className="animate-spooky-float" style={{ animationDelay: '1s' }}>🦇</span>
-              <span className="animate-bounce">🍬</span>
-            </div>
-          </div>
-
-          {/* HERO BANNER: Farm Mini Mart: Animal Market (Brand New Arcade Idle Tycoon) */}
-          {filteredGames.some((g) => g.id === 'farm-mini-mart') && (
-            <div
-              onClick={() => navigate('/games/farm-mini-mart/')}
-              className="group cursor-pointer relative lg:col-span-12 bg-gradient-to-r from-emerald-900 via-amber-800 to-orange-950 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-amber-500/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col md:flex-row items-center justify-between min-h-[300px] border-2 border-amber-500/40 hover:border-amber-400"
-            >
-              {/* Decorative background glow & shapes */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute -bottom-10 right-20 text-9xl sm:text-[140px] opacity-20 select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
-                🏪
-              </div>
-
-              {/* Left Column: Info & Action */}
-              <div className="relative z-10 flex flex-col justify-between h-full max-w-xl">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider animate-pulse">
-                      <Sparkles className="w-3.5 h-3.5 fill-slate-950 text-slate-950" />
-                      <span>Brand New Game</span>
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-amber-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-amber-500/30">
-                      🏪 Farm Mini Mart
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-emerald-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-emerald-500/30">
-                      🍅 Arcade Idle Tycoon
-                    </span>
-                    <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-amber-300 border border-white/10">
-                      <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
-                      <span>5.0</span>
-                      <span className="text-white/60 font-medium ml-1">(16.8K)</span>
-                    </div>
-                  </div>
-
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-                    Farm Mini Mart: Animal Market 🏪🌾
-                  </h2>
-                  <p className="text-orange-100 text-sm sm:text-base font-medium mt-2 leading-relaxed max-w-lg drop-shadow-xs">
-                    Run your very own bustling countryside farm mini mart! Harvest sweet tomatoes, eggs, and milk, stack items high in your hands, stock market shelves, and serve adorable animal customers at the Cash Register!
-                  </p>
-                </div>
-
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <div className="bg-gradient-to-r from-amber-500 to-orange-500 group-hover:from-amber-400 group-hover:to-orange-400 text-slate-950 px-6 py-3 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2.5 transition-transform group-hover:scale-105">
-                    <Play className="w-4 h-4 fill-slate-950 text-slate-950" />
-                    <span>PLAY FARM MART 🏪</span>
-                  </div>
-                  <span className="text-xs font-bold text-amber-200/90 uppercase tracking-widest hidden sm:inline">
-                    Harvest Crops • Stock Shelves • Cash Register • Hire Workers • 60 FPS
-                  </span>
-                </div>
-              </div>
-
-              {/* Right Column: Visual Mascot & Theme Art */}
-              <div className="relative z-10 my-4 md:my-0 flex flex-col items-center justify-center">
-                <div className="flex items-center gap-2 text-4xl sm:text-5xl lg:text-6xl filter drop-shadow-2xl group-hover:scale-105 transition-transform duration-300 select-none">
-                  <span className="animate-bounce">🧑‍🌾</span>
-                  <span className="text-2xl text-amber-400">➔</span>
-                  <span className="animate-pulse">🍅</span>
-                  <span className="text-2xl text-amber-400">➔</span>
-                  <span className="animate-spooky-float">🐰</span>
-                  <span className="text-3xl sm:text-4xl animate-bounce" style={{ animationDelay: '0.5s' }}>💰</span>
-                </div>
-                <div className="mt-3 px-3.5 py-1 rounded-full bg-slate-950/80 border border-amber-400/40 text-amber-200 text-xs font-bold shadow-md">
-                  Controls: [WASD / Touch Joystick] Move • Auto-Action
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* HERO BANNER: Duck Runner: Vampire Quack (Brand New T-Rex Spooky Runner) */}
-          {filteredGames.some((g) => g.id === 'duck-runner') && (
-            <div
-              onClick={() => navigate('/games/duck-runner/')}
-              className="group cursor-pointer relative lg:col-span-12 bg-gradient-to-r from-orange-700 via-amber-700 to-purple-950 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col md:flex-row items-center justify-between min-h-[300px] border-2 border-orange-500/40 hover:border-orange-400"
-            >
-              {/* Decorative background glow & shapes */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute -bottom-10 right-20 text-9xl sm:text-[140px] opacity-20 select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
-                🦆
-              </div>
-
-              {/* Left Column: Info & Action */}
-              <div className="relative z-10 flex flex-col justify-between h-full max-w-xl">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="bg-orange-500 text-slate-950 font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider">
-                      <Sparkles className="w-3.5 h-3.5 fill-slate-950 text-slate-950" />
-                      <span>Halloween Special</span>
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-orange-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-orange-500/30">
-                      🦆 Vampire Quack
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-purple-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-purple-500/30">
-                      🎃 Jack-o'-Lantern Hurdles
-                    </span>
-                    <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-amber-300 border border-white/10">
-                      <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
-                      <span>5.0</span>
-                      <span className="text-white/60 font-medium ml-1">(Instant Play)</span>
-                    </div>
-                  </div>
-
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-                    Duck Runner: Vampire Quack 🦆🎃
-                  </h2>
-                  <p className="text-orange-100 text-sm sm:text-base font-medium mt-2 leading-relaxed max-w-lg drop-shadow-xs">
-                    The beloved offline Chrome T-Rex runner reimagined for Halloween! Leap over glowing carved jack-o'-lanterns, duck under midnight bats, and survive the spooky night speed rush!
-                  </p>
-                </div>
-
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <div className="bg-orange-500 group-hover:bg-orange-400 text-slate-950 px-6 py-3 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2.5 transition-transform group-hover:scale-105">
-                    <Play className="w-4 h-4 fill-slate-950 text-slate-950" />
-                    <span>PLAY VAMPIRE DUCK</span>
-                  </div>
-                  <span className="text-xs font-bold text-orange-200/90 uppercase tracking-widest hidden sm:inline">
-                    Witch Hat Quacky • Glowing Pumpkins • Midnight Bats • 60 FPS
-                  </span>
-                </div>
-              </div>
-
-              {/* Right Column: Visual Mascot & Theme Art */}
-              <div className="relative z-10 my-4 md:my-0 flex flex-col items-center justify-center">
-                <div className="flex items-center gap-3 text-5xl sm:text-6xl lg:text-7xl filter drop-shadow-2xl group-hover:scale-105 transition-transform duration-300 select-none">
-                  <span className="animate-bounce">🦆</span>
-                  <span className="text-3xl text-orange-400">➔</span>
-                  <span className="text-5xl sm:text-6xl animate-spooky-float">🎃</span>
-                  <span className="text-4xl sm:text-5xl">🦇</span>
-                </div>
-                <div className="mt-3 px-3.5 py-1 rounded-full bg-purple-950/70 border border-orange-400/40 text-orange-200 text-xs font-bold shadow-md">
-                  Controls: [Space/Up] Jump • [Down] Duck Bats
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* HERO BANNER: Farm Animal Match: Spooky Barnyard Crush (Halloween Special) */}
-          {filteredGames.some((g) => g.id === 'pet-candy-crush') && (
-            <div
-              onClick={() => navigate('/games/pet-candy-crush/')}
-              className="group cursor-pointer relative lg:col-span-12 bg-gradient-to-r from-purple-900 via-purple-950 to-orange-950 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col md:flex-row items-center justify-between min-h-[300px] border-2 border-purple-500/40 hover:border-purple-400"
-            >
-              {/* Decorative background glow & shapes */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/15 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute -bottom-10 right-20 text-9xl sm:text-[140px] opacity-20 select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
-                🍬
-              </div>
-
-              {/* Left Column: Info & Action */}
-              <div className="relative z-10 flex flex-col justify-between h-full max-w-xl">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="bg-purple-500 text-white font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider">
-                      <Sparkles className="w-3.5 h-3.5 fill-white text-white" />
-                      <span>Trick or Treat</span>
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-orange-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-orange-500/30">
-                      🍬 Spooky Barnyard Match
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-amber-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-amber-500/30">
-                      🎃 Dynamite Pumpkin Bombs
-                    </span>
-                    <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-amber-300 border border-white/10">
-                      <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
-                      <span>5.0</span>
-                      <span className="text-white/60 font-medium ml-1">(24.8K)</span>
-                    </div>
-                  </div>
-
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-                    Farm Animal Match: Spooky Barnyard Crush 🍬
-                  </h2>
-                  <p className="text-purple-100 text-sm sm:text-base font-medium mt-2 leading-relaxed max-w-lg drop-shadow-xs">
-                    Trick or treat! Swap candy corn, spooky pumpkins, and festive farm beasts! Unleash dynamite pumpkin blasts and mega crater combos across the haunted farm!
-                  </p>
-                </div>
-
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <div className="bg-purple-500 group-hover:bg-purple-400 text-white px-6 py-3 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2.5 transition-transform group-hover:scale-105">
-                    <Play className="w-4 h-4 fill-white text-white" />
-                    <span>PLAY TRICK OR TREAT</span>
-                  </div>
-                  <span className="text-xs font-bold text-purple-200/90 uppercase tracking-widest hidden sm:inline">
-                    Halloween Boosters • Candy Combos • 3-Star Harvest Rewards
-                  </span>
-                </div>
-              </div>
-
-              {/* Right Column: Visual Mascot & Theme Art */}
-              <div className="relative z-10 my-4 md:my-0 flex flex-col items-center justify-center">
-                <div className="grid grid-cols-3 gap-2 text-4xl sm:text-5xl filter drop-shadow-2xl group-hover:scale-105 transition-transform duration-300 select-none bg-black/35 p-3 rounded-2xl border border-white/15">
-                  <span>🎃</span>
-                  <span>🍬</span>
-                  <span>🐮</span>
-                  <span>🦇</span>
-                  <span className="text-5xl sm:text-6xl animate-pulse">🌟</span>
-                  <span>🐱</span>
-                  <span>👻</span>
-                  <span>🐷</span>
-                  <span>🍭</span>
-                </div>
-                <div className="mt-3 px-3.5 py-1 rounded-full bg-purple-950/80 border border-purple-400/40 text-purple-200 text-xs font-bold shadow-md">
-                  Goal: Match 3 ➔ Spooky Halloween Harvest!
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* HERO BANNER: Flappy Chicken: Spooky Night Flight (Halloween Feathered Flight) */}
-          {filteredGames.some((g) => g.id === 'flappy-chicken') && (
-            <div
-              onClick={() => navigate('/games/flappy-chicken/')}
-              className="group cursor-pointer relative lg:col-span-12 bg-gradient-to-r from-orange-800 via-amber-900 to-purple-950 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col md:flex-row items-center justify-between min-h-[300px] border-2 border-orange-500/40 hover:border-orange-400"
-            >
-              {/* Decorative background glow & shapes */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-orange-400/15 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute -bottom-10 right-20 text-9xl sm:text-[140px] opacity-20 select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
-                👻
-              </div>
-
-              {/* Left Column: Info & Action */}
-              <div className="relative z-10 flex flex-col justify-between h-full max-w-xl">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="bg-orange-500 text-slate-950 font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider">
-                      <Sparkles className="w-3.5 h-3.5 fill-slate-950 text-slate-950" />
-                      <span>Haunted Flight</span>
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-orange-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-orange-500/30">
-                      👻 Ghost Cluck ("Gıdak!")
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-amber-200 font-bold text-xs px-2.5 py-1 rounded-xl border border-amber-500/30">
-                      🌕 Full Moon Harvest
-                    </span>
-                    <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-amber-300 border border-white/10">
-                      <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
-                      <span>5.0</span>
-                      <span className="text-white/60 font-medium ml-1">(21.4K)</span>
-                    </div>
-                  </div>
-
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-                    Flappy Chicken: Spooky Night Flight 👻
-                  </h2>
-                  <p className="text-orange-100 text-sm sm:text-base font-medium mt-2 leading-relaxed max-w-lg drop-shadow-xs">
-                    Help Ghost Clucky flap, cluck, and fly through spooky graveyard fence posts! Collect floating golden grain kernels and reach the grand Golden Wheat Granary under the full moon!
-                  </p>
-                </div>
-
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <div className="bg-orange-500 group-hover:bg-orange-400 text-slate-950 px-6 py-3 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2.5 transition-transform group-hover:scale-105">
-                    <Play className="w-4 h-4 fill-slate-950 text-slate-950" />
-                    <span>FLY GHOST CHICKEN</span>
-                  </div>
-                  <span className="text-xs font-bold text-orange-200/90 uppercase tracking-widest hidden sm:inline">
-                    Ghost Cluck Audio • Spooky Fence Posts • 60 FPS
-                  </span>
-                </div>
-              </div>
-
-              {/* Right Column: Visual Mascot & Theme Art */}
-              <div className="relative z-10 my-4 md:my-0 flex flex-col items-center justify-center">
-                <div className="flex items-center gap-3 text-5xl sm:text-6xl lg:text-7xl filter drop-shadow-2xl group-hover:scale-105 transition-transform duration-300 select-none">
-                  <span className="animate-spooky-float">👻🐔</span>
-                  <span className="text-3xl text-orange-400">➔</span>
-                  <span className="text-6xl sm:text-7xl lg:text-8xl">🌾</span>
-                </div>
-                <div className="mt-3 px-3.5 py-1 rounded-full bg-purple-950/70 border border-orange-400/40 text-orange-200 text-xs font-bold shadow-md">
-                  Goal: 15 Gates ➔ Full Moon Feast!
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* HERO BANNER: Animal 2048: Spooky Evolution (Halloween Special) */}
-          {filteredGames.some((g) => g.id === 'animal-2048') && (
-            <div
-              onClick={() => navigate('/games/animal-2048/')}
-              className="group cursor-pointer relative lg:col-span-12 bg-gradient-to-r from-purple-950 via-indigo-950 to-orange-950 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 hover:-translate-y-1.5 flex flex-col md:flex-row items-center justify-between min-h-[300px] border-2 border-purple-500/40 hover:border-purple-400"
-            >
-              {/* Decorative background glow & shapes */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/15 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute -bottom-10 right-20 text-9xl sm:text-[140px] opacity-20 select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
-                🦇
-              </div>
-
-              {/* Left Column: Info & Action */}
-              <div className="relative z-10 flex flex-col justify-between h-full max-w-xl">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="bg-purple-500 text-white font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider">
-                      <Sparkles className="w-3.5 h-3.5 fill-white text-white" />
-                      <span>Halloween Special</span>
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-purple-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-purple-500/30">
-                      🦇 Vampire Bat ➔ 🐘 Gargoyle
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-amber-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-amber-500/30">
-                      12 Spooky Tiers
-                    </span>
-                    <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-amber-300 border border-white/10">
-                      <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
-                      <span>5.0</span>
-                      <span className="text-white/60 font-medium ml-1">(18.2K)</span>
-                    </div>
-                  </div>
-
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-                    Animal 2048: Spooky Evolution 🦇
-                  </h2>
-                  <p className="text-purple-100 text-sm sm:text-base font-medium mt-2 leading-relaxed max-w-lg drop-shadow-xs">
-                    Slide matching creatures across the 4x4 haunted board! Start with a fluttering Vampire Bat and evolve along the spooky ladder all the way to the mighty Gargoyle Elephant!
-                  </p>
-                </div>
-
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <div className="bg-purple-500 group-hover:bg-purple-400 text-white px-6 py-3 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2.5 transition-transform group-hover:scale-105">
-                    <Play className="w-4 h-4 fill-white text-white" />
-                    <span>PLAY SPOOKY 2048</span>
-                  </div>
-                  <span className="text-xs font-bold text-purple-300/90 uppercase tracking-widest hidden sm:inline">
-                    Procedural Spooky Audio • 1-Step Undo • Endless Mode
-                  </span>
-                </div>
-              </div>
-
-              {/* Right Column: Visual Mascot & Theme Art */}
-              <div className="relative z-10 my-4 md:my-0 flex flex-col items-center justify-center">
-                <div className="flex items-center gap-2 text-4xl sm:text-5xl lg:text-6xl filter drop-shadow-2xl group-hover:scale-105 transition-transform duration-300 select-none">
-                  <span className="animate-spooky-float">🦇</span>
-                  <span className="text-2xl text-purple-400">➔</span>
-                  <span>🐈‍⬛</span>
-                  <span className="text-2xl text-purple-400">➔</span>
-                  <span className="text-6xl sm:text-7xl lg:text-8xl">🐘</span>
-                </div>
-                <div className="mt-3 px-3 py-1 rounded-full bg-purple-900/60 border border-purple-400/30 text-purple-200 text-xs font-bold">
-                  Target: 2048 Gargoyle Titan
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* HERO BANNER: Farm Tetris: Haunted Pumpkin Harvest */}
-          {filteredGames.some((g) => g.id === 'farm-tetris') && (
-            <div
-              onClick={() => navigate('/games/farm-tetris/')}
-              className="group cursor-pointer relative lg:col-span-12 bg-gradient-to-r from-orange-900 via-amber-950 to-purple-950 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1.5 flex flex-col md:flex-row items-center justify-between min-h-[300px] border-2 border-orange-500/40 hover:border-orange-400"
-            >
-              {/* Decorative background glow & shapes */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-orange-400/15 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute -bottom-10 right-20 text-9xl sm:text-[140px] opacity-20 select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
-                🎃
-              </div>
-
-              {/* Left Column: Info & Action */}
-              <div className="relative z-10 flex flex-col justify-between h-full max-w-xl">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="bg-orange-400 text-slate-950 font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider">
-                      <Sparkles className="w-3.5 h-3.5 fill-slate-950 text-slate-950" />
-                      <span>Halloween Harvest</span>
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-orange-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-orange-500/30">
-                      🎃 Pumpkin Silo Mechanics
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-yellow-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-yellow-500/30">
-                      👨‍🌾 "WOW!" Cheering Farmer
-                    </span>
-                    <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-amber-300 border border-white/10">
-                      <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
-                      <span>5.0</span>
-                      <span className="text-white/60 font-medium ml-1">(15.6K)</span>
-                    </div>
-                  </div>
-
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-                    Farm Tetris: Haunted Pumpkin Harvest 🎃
-                  </h2>
-                  <p className="text-orange-100 text-sm sm:text-base font-medium mt-2 leading-relaxed max-w-lg drop-shadow-xs">
-                    Stack glowing harvest crates, fill the enchanted pumpkin silo on the right, and hear the cute farmer cheer "WOW!" with joy when blocks pop!
-                  </p>
-                </div>
-
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <div className="bg-orange-500 group-hover:bg-orange-400 text-slate-950 px-6 py-3 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2.5 transition-transform group-hover:scale-105">
-                    <Play className="w-4 h-4 fill-slate-950 text-slate-950" />
-                    <span>PLAY PUMPKIN TETRIS</span>
-                  </div>
-                  <span className="text-xs font-bold text-orange-200/80 uppercase tracking-widest hidden sm:inline">
-                    Authentic Tetris Engine • Silo Mechanics • 60 FPS
-                  </span>
-                </div>
-              </div>
-
-              {/* Right Column: Visual Mascot & Theme Art */}
-              <div className="relative z-10 my-4 md:my-0 flex flex-col items-center justify-center">
-                <div className="text-7xl sm:text-8xl lg:text-9xl filter drop-shadow-2xl group-hover:scale-110 transition-transform duration-300 select-none">
-                  👨‍🌾🎃🌾
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* HERO BANNER: Animal Farm Parking (Featured New Game) */}
-          {filteredGames.some((g) => g.id === 'animal-farm-parking') && (
-            <div
-              onClick={() => navigate('/games/animal-farm-parking/')}
-              className="group cursor-pointer relative lg:col-span-12 bg-gradient-to-r from-emerald-950 via-teal-950 to-purple-950 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300 hover:-translate-y-1.5 flex flex-col md:flex-row items-center justify-between min-h-[280px] border-2 border-emerald-500/40 hover:border-emerald-400"
-            >
-              {/* Decorative background glow & shapes */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-400/15 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute -bottom-10 right-20 text-9xl sm:text-[140px] opacity-20 select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
-                🐮
-              </div>
-
-              {/* Left Column: Info & Action */}
-              <div className="relative z-10 flex flex-col justify-between h-full max-w-xl">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="bg-emerald-400 text-slate-950 font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider">
-                      <Sparkles className="w-3.5 h-3.5 fill-slate-950 text-slate-950" />
-                      <span>Halloween Night Drive</span>
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md text-emerald-300 font-bold text-xs px-2.5 py-1 rounded-xl border border-emerald-500/30">
-                      🎃 Haunted Farm Mist
-                    </span>
-                    <span className="bg-black/30 backdrop-blur-md text-white font-bold text-xs px-2.5 py-1 rounded-xl border border-white/20">
-                      8 Levels
-                    </span>
-                    <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-amber-300 border border-white/10">
-                      <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
-                      <span>4.9</span>
-                      <span className="text-white/60 font-medium ml-1">(8.2K)</span>
-                    </div>
-                  </div>
-
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-                    Animal Farm Parking: Haunted Pasture 🐮
-                  </h2>
-                  <p className="text-emerald-100 text-sm sm:text-base font-medium mt-2 leading-relaxed max-w-lg drop-shadow-xs">
-                    Steer Bessie the Cow into marked farm stalls through spooky mist! Watch your parking percentage accuracy and avoid wandering ghost sheep.
-                  </p>
-                </div>
-
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <div className="bg-emerald-400 group-hover:bg-emerald-300 text-slate-950 px-6 py-3 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2.5 transition-transform group-hover:scale-105">
-                    <Play className="w-4 h-4 fill-slate-950 text-slate-950" />
-                    <span>DRIVE BESSIE FREE</span>
-                  </div>
-                  <span className="text-xs font-bold text-emerald-200/80 uppercase tracking-widest hidden sm:inline">
-                    Ghost Sheep Hazards • Precision Parking • 8 Levels
-                  </span>
-                </div>
-              </div>
-
-              {/* Right Column: Visual Mascot & Theme Art */}
-              <div className="relative z-10 my-4 md:my-0 flex flex-col items-center justify-center">
-                <div className="text-7xl sm:text-8xl lg:text-9xl filter drop-shadow-2xl group-hover:scale-110 transition-transform duration-300 select-none">
-                  🐮🎃🚜
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* HERO CARD 1: Dog Parking (Featured Large Bento Card) */}
-          {filteredGames.some((g) => g.id === 'dog-parking') && (
-            <div
-              onClick={() => navigate('/games/dog-parking/')}
-              className="group cursor-pointer relative lg:col-span-6 bg-gradient-to-br from-orange-700 via-amber-800 to-purple-950 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between min-h-[320px] sm:min-h-[360px] border-2 border-orange-500/40 hover:border-orange-400"
-            >
-              {/* Decorative background glow & shapes */}
-              <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/20 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute -bottom-10 -right-10 text-9xl sm:text-[140px] opacity-25 select-none pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
-                🐶
-              </div>
-
-              {/* Top Badges */}
-              <div className="flex items-center justify-between relative z-10">
-                <div className="flex items-center gap-2">
-                  <span className="bg-orange-500 text-slate-950 font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider">
-                    <Flame className="w-3.5 h-3.5 fill-slate-950 text-slate-950" />
-                    <span>Ghost Pups</span>
-                  </span>
-                  <span className="bg-black/30 backdrop-blur-md text-white font-bold text-xs px-2.5 py-1 rounded-xl border border-white/20">
-                    12 Levels
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-amber-300 border border-white/10">
-                  <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
-                  <span>4.9</span>
-                  <span className="text-white/60 font-medium ml-1">(12.4K)</span>
-                </div>
-              </div>
-
-              {/* Center Game Visual Icon & Mascot */}
-              <div className="my-auto py-4 relative z-10">
-                <div className="text-6xl sm:text-7xl mb-2 filter drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
-                  👻🐶🐾
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-                  Dog Parking: Haunted Kennel 🦴
-                </h2>
-                <p className="text-orange-100 text-sm sm:text-base font-medium max-w-sm mt-1 leading-snug drop-shadow-xs">
-                  Slide playful ghost corgis and spooky hounds out of the haunted parking yard!
-                </p>
-              </div>
-
-              {/* Bottom Play Action Bar */}
-              <div className="flex items-center justify-between relative z-10 pt-2 border-t border-white/15">
-                <span className="text-xs font-bold text-orange-200 uppercase tracking-widest">
-                  Spooky Puzzle
-                </span>
-
-                <div className="bg-orange-500 group-hover:bg-orange-400 text-slate-950 px-5 py-2.5 rounded-2xl font-black text-sm shadow-lg flex items-center gap-2 transition-transform group-hover:scale-105">
-                  <Play className="w-4 h-4 fill-slate-950 text-slate-950" />
-                  <span>PLAY GHOST PUPS</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* HERO CARD 2: Cat Parking (Featured Large Bento Card) */}
-          {filteredGames.some((g) => g.id === 'cat-parking') && (
-            <div
-              onClick={() => navigate('/games/cat-parking/')}
-              className="group cursor-pointer relative lg:col-span-6 bg-gradient-to-br from-purple-900 via-pink-950 to-indigo-950 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between min-h-[320px] sm:min-h-[360px] border-2 border-purple-500/40 hover:border-purple-400"
-            >
-              {/* Decorative background glow & shapes */}
-              <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute -bottom-10 -right-10 text-9xl sm:text-[140px] opacity-25 select-none pointer-events-none group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500">
-                🐱
-              </div>
-
-              {/* Top Badges */}
-              <div className="flex items-center justify-between relative z-10">
-                <div className="flex items-center gap-2">
-                  <span className="bg-purple-500 text-white font-black text-xs px-3 py-1 rounded-xl shadow-md flex items-center gap-1 uppercase tracking-wider">
-                    <Sparkles className="w-3.5 h-3.5 fill-white text-white" />
-                    <span>Witch Cat</span>
-                  </span>
-                  <span className="bg-black/30 backdrop-blur-md text-white font-bold text-xs px-2.5 py-1 rounded-xl border border-white/20">
-                    12 Levels
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-black text-pink-300 border border-white/10">
-                  <Star className="w-3.5 h-3.5 fill-pink-300 text-pink-300" />
-                  <span>5.0</span>
-                  <span className="text-white/60 font-medium ml-1">(9.8K)</span>
-                </div>
-              </div>
-
-              {/* Center Game Visual Icon & Mascot */}
-              <div className="my-auto py-4 relative z-10">
-                <div className="text-6xl sm:text-7xl mb-2 filter drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
-                  🐈‍⬛✨🌙
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-                  Cat Parking: Witch Mystery 🐈‍⬛
-                </h2>
-                <p className="text-pink-100 text-sm sm:text-base font-medium max-w-sm mt-1 leading-snug drop-shadow-xs">
-                  Slide mystical black cats through moonlit bays and guide Luna to the enchanted cat flap!
-                </p>
-              </div>
-
-              {/* Bottom Play Action Bar */}
-              <div className="flex items-center justify-between relative z-10 pt-2 border-t border-white/15">
-                <span className="text-xs font-bold text-pink-200 uppercase tracking-widest">
-                  Witch Puzzle
-                </span>
-
-                <div className="bg-purple-500 group-hover:bg-purple-400 text-white font-black px-5 py-2.5 rounded-2xl text-sm shadow-lg flex items-center gap-2 transition-transform group-hover:scale-105">
-                  <Play className="w-4 h-4 fill-white text-white" />
-                  <span>PLAY WITCH CAT</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* SECONDARY TILES: Other Games & Upcoming titles */}
-          {filteredGames
-            .filter((g) => g.id !== 'dog-parking' && g.id !== 'cat-parking' && g.id !== 'animal-farm-parking' && g.id !== 'farm-tetris' && g.id !== 'animal-2048' && g.id !== 'flappy-chicken' && g.id !== 'pet-candy-crush' && g.id !== 'duck-runner')
-            .map((game) => (
+            return (
               <div
                 key={game.id}
-                className="group relative lg:col-span-6 bg-slate-800/90 hover:bg-slate-800 rounded-3xl p-6 border border-slate-700/80 shadow-md flex flex-col justify-between min-h-[260px] opacity-80 hover:opacity-100 transition-all"
+                className="relative group flex flex-col items-center select-none"
               >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="bg-slate-750 text-slate-300 text-xs font-bold px-2.5 py-1 rounded-xl">
-                    {game.badge || 'Coming Soon'}
-                  </span>
-                  <div className="flex items-center text-amber-400 text-xs font-bold">
-                    <Star className="w-3.5 h-3.5 fill-amber-400 mr-1" />
-                    <span>{game.rating}</span>
-                  </div>
-                </div>
+                {/* INTERACTIVE GAME ICON TILE */}
+                <button
+                  onClick={() => {
+                    if (!isComingSoon) {
+                      navigate(game.route);
+                    }
+                  }}
+                  disabled={isComingSoon}
+                  aria-label={`${cleanTitle} oyna`}
+                  className={`relative w-full aspect-square rounded-2xl sm:rounded-3xl p-3 sm:p-4 bg-gradient-to-br ${visual.gradient} border-2 ${visual.glowBorder} shadow-lg transition-all duration-200 transform group-hover:scale-105 group-hover:-translate-y-1 group-active:scale-95 cursor-pointer flex flex-col items-center justify-between overflow-hidden ${
+                    isComingSoon ? 'opacity-65 cursor-not-allowed' : ''
+                  }`}
+                >
+                  {/* Subtle Inner Glow */}
+                  <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none" />
 
-                <div className="my-auto text-center py-4">
-                  <div className="text-5xl mb-2">
-                    {game.id === 'cat-cafe-rush' ? '🧁' : '🐹'}
-                  </div>
-                  <h3 className="text-xl font-black text-white">{game.title}</h3>
-                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">
-                    {game.tagline}
-                  </p>
-                </div>
+                  {/* Top Meta Badges (Rating / Status) */}
+                  <div className="w-full flex items-center justify-between relative z-10">
+                    <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-950/70 backdrop-blur-md text-amber-300 border border-white/10 flex items-center gap-0.5">
+                      <Star className="w-2.5 h-2.5 fill-amber-300 text-amber-300" />
+                      <span>{game.rating}</span>
+                    </span>
 
-                <div className="mt-4 pt-3 border-t border-slate-750 flex items-center justify-between text-xs text-slate-400 font-bold">
-                  <span className="uppercase tracking-wider">{game.category}</span>
-                  <span className="bg-slate-700/80 text-slate-300 px-3 py-1.5 rounded-xl">
-                    Coming Soon
-                  </span>
+                    {game.badge && (
+                      <span className="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-orange-500 text-slate-950 shadow-sm">
+                        {game.badge.replace('🎃 ', '').split(' ')[0]}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* CENTER ICON ARTWORK */}
+                  <div className="relative my-auto flex flex-col items-center justify-center">
+                    <span className="text-5xl sm:text-6xl md:text-7xl filter drop-shadow-xl transition-transform duration-200 group-hover:scale-110">
+                      {visual.iconEmoji}
+                    </span>
+
+                    {visual.secondaryEmoji && (
+                      <span className="absolute -bottom-1 -right-2 text-xl sm:text-2xl filter drop-shadow-md animate-bounce">
+                        {visual.secondaryEmoji}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Quick Play Arrow / Action Indicator on Hover */}
+                  <div className="w-full flex items-center justify-center relative z-10">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-950/80 group-hover:bg-amber-400 group-hover:text-slate-950 text-white flex items-center justify-center transition-all shadow-md">
+                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                    </div>
+                  </div>
+                </button>
+
+                {/* ON HOVER: MINIK BİR YAZI GELIR (Sleek Floating Tooltip) */}
+                <div className="pointer-events-none absolute -bottom-11 left-1/2 -translate-x-1/2 z-40 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 whitespace-nowrap">
+                  <div className="bg-slate-900/95 text-white text-[11px] font-bold px-3 py-1.5 rounded-xl border border-amber-400/50 shadow-2xl shadow-slate-950/90 flex items-center gap-1.5 backdrop-blur-md">
+                    <span className="text-amber-300 font-black">{cleanTitle}</span>
+                    <span className="text-slate-500">•</span>
+                    <span className="text-slate-300">{visual.shortTag}</span>
+                  </div>
                 </div>
               </div>
-            ))}
+            );
+          })}
         </div>
 
         {/* Empty state when search produces no results */}
         {filteredGames.length === 0 && (
-          <div className="text-center py-20 bg-slate-800/40 rounded-3xl border border-slate-800 my-8">
+          <div className="text-center py-20 bg-slate-900/40 rounded-3xl border border-slate-800 my-8">
             <div className="text-5xl mb-3">🔍</div>
-            <h3 className="text-xl font-bold text-white">No Games Found</h3>
-            <p className="text-slate-400 text-sm mt-1">
-              No games matched "{searchQuery}". Try clearing your search or filters.
+            <h2 className="text-lg font-bold text-white">Oyun Bulunamadı</h2>
+            <p className="text-slate-400 text-xs mt-1">
+              "{searchQuery}" aramasına uygun oyun bulunamadı. Aramanızı temizlemeyi deneyin.
             </p>
             <button
               onClick={() => {
@@ -841,12 +326,11 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, initialView = 'map
               }}
               className="mt-4 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-slate-950 font-bold text-xs rounded-xl transition-colors cursor-pointer"
             >
-              Clear Filters
+              Filtreleri Temizle
             </button>
           </div>
         )}
-      </div>
-      )}
-    </div>
+      </section>
+    </main>
   );
 };
