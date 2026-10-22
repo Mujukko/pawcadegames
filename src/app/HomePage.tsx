@@ -290,17 +290,21 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                     )}
                   </div>
 
-                  {/* Quick Play Arrow / Action Indicator on Hover */}
-                  <div className="w-full flex items-center justify-center relative z-10">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-950/80 group-hover:bg-amber-400 group-hover:text-slate-950 text-white flex items-center justify-center transition-all shadow-md">
-                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                  {/* Bottom Title Bar & Play Indicator */}
+                  <div className="w-full flex items-center justify-between gap-1.5 relative z-10 pt-1">
+                    <span className="text-[11px] sm:text-xs font-black text-white/95 truncate drop-shadow-sm group-hover:text-amber-300 transition-colors">
+                      {cleanTitle}
+                    </span>
+
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-slate-950/80 group-hover:bg-amber-400 group-hover:text-slate-950 text-white flex items-center justify-center transition-all shadow-md shrink-0">
+                      <Play className="w-3 h-3 fill-current ml-0.5" />
                     </div>
                   </div>
                 </button>
 
-                {/* ON HOVER: MINIK BİR YAZI GELIR (Sleek Floating Tooltip) */}
-                <div className="pointer-events-none absolute -bottom-11 left-1/2 -translate-x-1/2 z-40 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 whitespace-nowrap">
-                  <div className="bg-slate-900/95 text-white text-[11px] font-bold px-3 py-1.5 rounded-xl border border-amber-400/50 shadow-2xl shadow-slate-950/90 flex items-center gap-1.5 backdrop-blur-md">
+                {/* ON HOVER: MINIK BİR YAZI GELIR (Sleek Floating Tooltip with Viewport Safety) */}
+                <div className="pointer-events-none absolute -bottom-9 left-1/2 -translate-x-1/2 z-40 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 hidden sm:flex">
+                  <div className="bg-slate-900/95 text-white text-[11px] font-bold px-3 py-1 rounded-xl border border-amber-400/50 shadow-2xl shadow-slate-950/90 flex items-center gap-1.5 backdrop-blur-md whitespace-nowrap">
                     <span className="text-amber-300 font-black">{cleanTitle}</span>
                     <span className="text-slate-500">•</span>
                     <span className="text-slate-300">{visual.shortTag}</span>
