@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <!-- Tile Base Gradient -->
+    <linearGradient id="catTileBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="60%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#c2410c" />
+    </linearGradient>
+    <linearGradient id="catBevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffedd5" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0.1" />
+    </linearGradient>
+    <!-- Cat Fur Gradient -->
+    <linearGradient id="catFur" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fed7aa" />
+      <stop offset="70%" stop-color="#fb923c" />
+      <stop offset="100%" stop-color="#f97316" />
+    </linearGradient>
+    <filter id="tileShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#7c2d12" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- 3D Glossy Tile Base -->
+  <rect x="4" y="4" width="120" height="120" rx="22" fill="url(#catTileBg)" stroke="#fdba74" stroke-width="2.5" filter="url(#tileShadow)" />
+  <rect x="7" y="7" width="114" height="40" rx="18" fill="url(#catBevel)" />
+
+  <!-- Cat Character -->
+  <g transform="translate(14, 16)">
+    <!-- Pointy Left Ear -->
+    <path d="M 16 38 L 24 8 L 44 26 Z" fill="#ea580c" stroke="#9a3412" stroke-width="2" />
+    <path d="M 22 34 L 27 15 L 38 27 Z" fill="#fbcfe8" />
+
+    <!-- Pointy Right Ear -->
+    <path d="M 84 38 L 76 8 L 56 26 Z" fill="#ea580c" stroke="#9a3412" stroke-width="2" />
+    <path d="M 78 34 L 73 15 L 62 27 Z" fill="#fbcfe8" />
+
+    <!-- Head Base -->
+    <ellipse cx="50" cy="48" rx="38" ry="32" fill="url(#catFur)" stroke="#9a3412" stroke-width="2" />
+
+    <!-- Tabby Forehead Stripes -->
+    <path d="M 50 20 L 50 30" stroke="#c2410c" stroke-width="3" stroke-linecap="round" />
+    <path d="M 42 22 L 44 32" stroke="#c2410c" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M 58 22 L 56 32" stroke="#c2410c" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Sparkly Emerald Green Eyes -->
+    <ellipse cx="33" cy="44" rx="8" ry="8" fill="#10b981" />
+    <ellipse cx="33" cy="44" rx="4" ry="7" fill="#064e3b" />
+    <circle cx="31" cy="41" r="2.8" fill="#ffffff" />
+    <circle cx="35" cy="46" r="1.2" fill="#ffffff" />
+
+    <ellipse cx="67" cy="44" rx="8" ry="8" fill="#10b981" />
+    <ellipse cx="67" cy="44" rx="4" ry="7" fill="#064e3b" />
+    <circle cx="65" cy="41" r="2.8" fill="#ffffff" />
+    <circle cx="69" cy="46" r="1.2" fill="#ffffff" />
+
+    <!-- White Cheeks / Muzzle -->
+    <ellipse cx="43" cy="58" rx="9" ry="7" fill="#ffffff" />
+    <ellipse cx="57" cy="58" rx="9" ry="7" fill="#ffffff" />
+
+    <!-- Tiny Pink Nose -->
+    <polygon points="46,52 54,52 50,56" fill="#f43f5e" />
+
+    <!-- Cute Smiling Cat Mouth -->
+    <path d="M 43 59 Q 47 64 50 59 Q 53 64 57 59" stroke="#1c1917" stroke-width="1.8" stroke-linecap="round" fill="none" />
+
+    <!-- Cheerful Whiskers -->
+    <path d="M 24 53 L 8 50" stroke="#fed7aa" stroke-width="2" stroke-linecap="round" />
+    <path d="M 23 58 L 7 59" stroke="#fed7aa" stroke-width="2" stroke-linecap="round" />
+    <path d="M 76 53 L 92 50" stroke="#fed7aa" stroke-width="2" stroke-linecap="round" />
+    <path d="M 77 58 L 93 59" stroke="#fed7aa" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Rosy Cheek Blushes -->
+    <ellipse cx="23" cy="52" rx="4" ry="2.5" fill="#f43f5e" opacity="0.3" />
+    <ellipse cx="77" cy="52" rx="4" ry="2.5" fill="#f43f5e" opacity="0.3" />
+  </g>
+</svg>

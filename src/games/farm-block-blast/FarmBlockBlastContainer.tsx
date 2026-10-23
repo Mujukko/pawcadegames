@@ -24,52 +24,78 @@ import { farmBlockAudio } from './systems/sound';
 
 const STORAGE_KEY_BEST = 'pawcade_farm_block_blast_best';
 
-// Block Visual Themes based on colorIndex (1 to 6)
-const BLOCK_STYLES: Record<
-  number,
-  { bg: string; border: string; icon: string; glow: string; text: string }
-> = {
+// Animal Block Themes based on colorIndex (1 to 6)
+export interface AnimalBlockTheme {
+  id: number;
+  name: string;
+  icon: string;
+  image: string;
+  bg: string;
+  border: string;
+  glow: string;
+  text: string;
+}
+
+const BLOCK_STYLES: Record<number, AnimalBlockTheme> = {
   1: {
-    bg: 'bg-amber-700',
-    border: 'border-amber-500',
-    icon: '🪵',
-    glow: 'shadow-amber-600/30',
-    text: 'text-amber-200',
+    id: 1,
+    name: 'Barnaby Dog',
+    icon: '🐶',
+    image: '/assets/tiles/farm-block-blast/tile-dog.svg',
+    bg: 'bg-amber-600',
+    border: 'border-amber-400',
+    glow: 'shadow-amber-500/40',
+    text: 'text-amber-100',
   },
   2: {
-    bg: 'bg-orange-600',
-    border: 'border-orange-400',
-    icon: '🎃',
-    glow: 'shadow-orange-500/30',
+    id: 2,
+    name: 'Ginger Cat',
+    icon: '🐱',
+    image: '/assets/tiles/farm-block-blast/tile-cat.svg',
+    bg: 'bg-orange-500',
+    border: 'border-orange-300',
+    glow: 'shadow-orange-500/40',
     text: 'text-orange-100',
   },
   3: {
-    bg: 'bg-yellow-500',
-    border: 'border-yellow-300',
-    icon: '🌽',
-    glow: 'shadow-yellow-400/30',
-    text: 'text-yellow-950',
-  },
-  4: {
-    bg: 'bg-rose-600',
-    border: 'border-rose-400',
-    icon: '🍎',
-    glow: 'shadow-rose-500/30',
+    id: 3,
+    name: 'Pink Piggy',
+    icon: '🐷',
+    image: '/assets/tiles/farm-block-blast/tile-pig.svg',
+    bg: 'bg-rose-500',
+    border: 'border-rose-300',
+    glow: 'shadow-rose-500/40',
     text: 'text-rose-100',
   },
+  4: {
+    id: 4,
+    name: 'Bessie Cow',
+    icon: '🐮',
+    image: '/assets/tiles/farm-block-blast/tile-cow.svg',
+    bg: 'bg-sky-600',
+    border: 'border-sky-300',
+    glow: 'shadow-sky-500/40',
+    text: 'text-sky-100',
+  },
   5: {
-    bg: 'bg-purple-600',
-    border: 'border-purple-400',
-    icon: '🫐',
-    glow: 'shadow-purple-500/30',
-    text: 'text-purple-100',
+    id: 5,
+    name: 'Woolly Sheep',
+    icon: '🐑',
+    image: '/assets/tiles/farm-block-blast/tile-sheep.svg',
+    bg: 'bg-emerald-600',
+    border: 'border-emerald-300',
+    glow: 'shadow-emerald-500/40',
+    text: 'text-emerald-100',
   },
   6: {
-    bg: 'bg-emerald-600',
-    border: 'border-emerald-400',
-    icon: '🥬',
-    glow: 'shadow-emerald-500/30',
-    text: 'text-emerald-100',
+    id: 6,
+    name: 'Sunny Chick',
+    icon: '🐥',
+    image: '/assets/tiles/farm-block-blast/tile-chick.svg',
+    bg: 'bg-yellow-500',
+    border: 'border-yellow-200',
+    glow: 'shadow-yellow-400/40',
+    text: 'text-yellow-950',
   },
 };
 
@@ -388,8 +414,12 @@ export const FarmBlockBlastContainer: React.FC = () => {
         <div className="flex items-center justify-between gap-2">
           {/* Barnaby the Dog Avatar */}
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-amber-600 to-amber-400 p-0.5 shadow-md flex items-center justify-center text-2xl">
-              🐶
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-amber-600 to-amber-400 p-0.5 shadow-md flex items-center justify-center overflow-hidden">
+              <img
+                src="/assets/tiles/farm-block-blast/tile-dog.svg"
+                alt="Barnaby Puppy"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
@@ -524,9 +554,24 @@ export const FarmBlockBlastContainer: React.FC = () => {
                 }`}
               >
                 {cellValue > 0 && style && (
-                  <span className="text-base sm:text-lg select-none transform transition-transform duration-100 leading-none">
-                    {style.icon}
-                  </span>
+                  <div className="relative w-full h-full p-0.5 flex items-center justify-center">
+                    <img
+                      src={style.image}
+                      alt={style.name}
+                      className="w-full h-full object-contain pointer-events-none select-none drop-shadow-sm"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLElement).style.display = 'none';
+                        const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                        if (fallback) fallback.style.display = 'inline';
+                      }}
+                    />
+                    <span
+                      style={{ display: 'none' }}
+                      className="text-base sm:text-lg select-none transform transition-transform duration-100 leading-none"
+                    >
+                      {style.icon}
+                    </span>
+                  </div>
                 )}
               </div>
             );
@@ -636,13 +681,29 @@ export const FarmBlockBlastContainer: React.FC = () => {
                     row.map((active, cIdx) => (
                       <div
                         key={`${rIdx}-${cIdx}`}
-                        className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-[4px] flex items-center justify-center text-[8px] ${
+                        className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-[4px] flex items-center justify-center p-0.5 overflow-hidden ${
                           active
-                            ? `${style.bg} border ${style.border}`
+                            ? `${style.bg} border ${style.border} shadow-sm`
                             : 'bg-transparent'
                         }`}
                       >
-                        {active && <span>{style.icon}</span>}
+                        {active && (
+                          <>
+                            <img
+                              src={style.image}
+                              alt={style.name}
+                              className="w-full h-full object-contain pointer-events-none select-none"
+                              onError={(e) => {
+                                (e.currentTarget as HTMLElement).style.display = 'none';
+                                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                                if (fallback) fallback.style.display = 'inline';
+                              }}
+                            />
+                            <span style={{ display: 'none' }} className="text-[8px] leading-none">
+                              {style.icon}
+                            </span>
+                          </>
+                        )}
                       </div>
                     ))
                   )}
@@ -681,13 +742,29 @@ export const FarmBlockBlastContainer: React.FC = () => {
                 return (
                   <div
                     key={`drag-${rIdx}-${cIdx}`}
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center text-sm ${
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center p-0.5 overflow-hidden ${
                       active
                         ? `${style.bg} border-2 ${style.border} ${style.glow} shadow-lg`
                         : 'bg-transparent'
                     }`}
                   >
-                    {active && <span>{style.icon}</span>}
+                    {active && (
+                      <>
+                        <img
+                          src={style.image}
+                          alt={style.name}
+                          className="w-full h-full object-contain pointer-events-none select-none drop-shadow-sm"
+                          onError={(e) => {
+                            (e.currentTarget as HTMLElement).style.display = 'none';
+                            const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                            if (fallback) fallback.style.display = 'inline';
+                          }}
+                        />
+                        <span style={{ display: 'none' }} className="text-sm leading-none">
+                          {style.icon}
+                        </span>
+                      </>
+                    )}
                   </div>
                 );
               })

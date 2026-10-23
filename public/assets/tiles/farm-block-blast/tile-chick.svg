@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <!-- Tile Base Gradient -->
+    <linearGradient id="chickTileBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#facc15" />
+      <stop offset="60%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+    <linearGradient id="chickBevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#facc15" stop-opacity="0.1" />
+    </linearGradient>
+    <!-- Chick Body Gradient -->
+    <linearGradient id="chickBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#fde047" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+    <filter id="tileShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#854d0e" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- 3D Glossy Tile Base -->
+  <rect x="4" y="4" width="120" height="120" rx="22" fill="url(#chickTileBg)" stroke="#fef08a" stroke-width="2.5" filter="url(#tileShadow)" />
+  <rect x="7" y="7" width="114" height="40" rx="18" fill="url(#chickBevel)" />
+
+  <!-- Chick Character (Clucky) -->
+  <g transform="translate(14, 16)">
+    <!-- Feather Tuft on Head -->
+    <path d="M 50 16 Q 44 4 38 10 Q 44 14 48 20" fill="#facc15" stroke="#ca8a04" stroke-width="1.8" />
+    <path d="M 50 16 Q 54 2 60 8 Q 54 13 50 20" fill="#facc15" stroke="#ca8a04" stroke-width="1.8" />
+
+    <!-- Cute Round Body/Head Base -->
+    <circle cx="50" cy="48" r="34" fill="url(#chickBody)" stroke="#ca8a04" stroke-width="2" />
+
+    <!-- Tiny Fluffy Wings on Sides -->
+    <path d="M 16 46 Q 8 52 14 62 Q 22 56 20 48" fill="#fde047" stroke="#ca8a04" stroke-width="1.8" />
+    <path d="M 84 46 Q 92 52 86 62 Q 78 56 80 48" fill="#fde047" stroke="#ca8a04" stroke-width="1.8" />
+
+    <!-- Huge Anime-Style Sparkly Black Eyes -->
+    <ellipse cx="34" cy="42" rx="7.5" ry="8.5" fill="#1c1917" />
+    <circle cx="32" cy="38" r="3.2" fill="#ffffff" />
+    <circle cx="36" cy="44" r="1.5" fill="#ffffff" />
+
+    <ellipse cx="66" cy="42" rx="7.5" ry="8.5" fill="#1c1917" />
+    <circle cx="64" cy="38" r="3.2" fill="#ffffff" />
+    <circle cx="68" cy="44" r="1.5" fill="#ffffff" />
+
+    <!-- Rosy Blushing Cheeks -->
+    <circle cx="24" cy="50" r="5" fill="#f97316" opacity="0.4" />
+    <circle cx="76" cy="50" r="5" fill="#f97316" opacity="0.4" />
+
+    <!-- Tiny Cute Orange Triangle Beak -->
+    <polygon points="44,46 56,46 50,56" fill="#f97316" stroke="#c2410c" stroke-width="1.5" />
+    <polygon points="46,47 54,47 50,51" fill="#fdba74" />
+  </g>
+</svg>

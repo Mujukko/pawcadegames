@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <!-- Tile Base Gradient -->
+    <linearGradient id="pigTileBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="60%" stop-color="#e11d48" />
+      <stop offset="100%" stop-color="#be123c" />
+    </linearGradient>
+    <linearGradient id="pigBevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffe4e6" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.1" />
+    </linearGradient>
+    <!-- Piglet Skin Gradient -->
+    <linearGradient id="pigSkin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fbcfe8" />
+      <stop offset="70%" stop-color="#f472b6" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+    <linearGradient id="pigSnout" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f9a8d4" />
+      <stop offset="100%" stop-color="#db2777" />
+    </linearGradient>
+    <filter id="tileShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#881337" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- 3D Glossy Tile Base -->
+  <rect x="4" y="4" width="120" height="120" rx="22" fill="url(#pigTileBg)" stroke="#fecdd3" stroke-width="2.5" filter="url(#tileShadow)" />
+  <rect x="7" y="7" width="114" height="40" rx="18" fill="url(#pigBevel)" />
+
+  <!-- Piglet Character -->
+  <g transform="translate(14, 16)">
+    <!-- Floppy Left Pig Ear -->
+    <path d="M 24 24 C 8 14 6 36 20 40 Z" fill="#db2777" stroke="#9d174d" stroke-width="2" />
+    <path d="M 22 26 C 12 18 10 34 20 37 Z" fill="#fbcfe8" />
+
+    <!-- Floppy Right Pig Ear -->
+    <path d="M 76 24 C 92 14 94 36 80 40 Z" fill="#db2777" stroke="#9d174d" stroke-width="2" />
+    <path d="M 78 26 C 88 18 90 34 80 37 Z" fill="#fbcfe8" />
+
+    <!-- Round Head Base -->
+    <ellipse cx="50" cy="48" rx="38" ry="34" fill="url(#pigSkin)" stroke="#9d174d" stroke-width="2" />
+
+    <!-- Big Shiny Black Eyes -->
+    <circle cx="33" cy="40" r="7.5" fill="#1c1917" />
+    <circle cx="31" cy="37.5" r="3" fill="#ffffff" />
+    <circle cx="36" cy="42" r="1.5" fill="#ffffff" />
+
+    <circle cx="67" cy="40" r="7.5" fill="#1c1917" />
+    <circle cx="65" cy="37.5" r="3" fill="#ffffff" />
+    <circle cx="70" cy="42" r="1.5" fill="#ffffff" />
+
+    <!-- Rosy Cheek Blushes -->
+    <ellipse cx="22" cy="52" rx="6" ry="4" fill="#e11d48" opacity="0.4" />
+    <ellipse cx="78" cy="52" rx="6" ry="4" fill="#e11d48" opacity="0.4" />
+
+    <!-- Iconic 3D Piggy Snout -->
+    <ellipse cx="50" cy="55" rx="18" ry="13" fill="url(#pigSnout)" stroke="#9d174d" stroke-width="2" />
+    <!-- Nostril Ovals -->
+    <ellipse cx="43" cy="55" rx="3.5" ry="5.5" fill="#881337" />
+    <ellipse cx="57" cy="55" rx="3.5" ry="5.5" fill="#881337" />
+
+    <!-- Cute Smiling Mouth -->
+    <path d="M 44 71 Q 50 76 56 71" stroke="#881337" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  </g>
+</svg>

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <!-- Tile Base Gradient -->
+    <linearGradient id="dogTileBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="60%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <!-- Tile Top Bevel Highlight -->
+    <linearGradient id="dogBevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef3c7" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.1" />
+    </linearGradient>
+    <!-- Dog Fur Gradient -->
+    <linearGradient id="dogFur" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fed7aa" />
+      <stop offset="70%" stop-color="#fdba74" />
+      <stop offset="100%" stop-color="#fb923c" />
+    </linearGradient>
+    <!-- Dog Ear Gradient -->
+    <linearGradient id="dogEar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#9a3412" />
+    </linearGradient>
+    <!-- Drop Shadow Filter -->
+    <filter id="tileShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#78350f" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- 3D Glossy Tile Base -->
+  <rect x="4" y="4" width="120" height="120" rx="22" fill="url(#dogTileBg)" stroke="#fef08a" stroke-width="2.5" filter="url(#tileShadow)" />
+  
+  <!-- Inner Bevel Highlight -->
+  <rect x="7" y="7" width="114" height="40" rx="18" fill="url(#dogBevel)" />
+  
+  <!-- Dog Character (Barnaby) -->
+  <g transform="translate(14, 18)">
+    <!-- Floppy Left Ear -->
+    <path d="M 12 28 C 4 38 2 64 16 68 C 24 70 28 54 26 38 Z" fill="url(#dogEar)" stroke="#7c2d12" stroke-width="2" />
+    <!-- Floppy Right Ear -->
+    <path d="M 88 28 C 96 38 98 64 84 68 C 76 70 72 54 74 38 Z" fill="url(#dogEar)" stroke="#7c2d12" stroke-width="2" />
+
+    <!-- Head Base -->
+    <ellipse cx="50" cy="46" rx="38" ry="32" fill="url(#dogFur)" stroke="#c2410c" stroke-width="2" />
+
+    <!-- Forehead Golden Patch & Eyebrows -->
+    <path d="M 40 18 Q 50 14 60 18 Q 55 30 45 30 Z" fill="#fff7ed" opacity="0.6" />
+    <path d="M 32 30 Q 36 26 42 29" stroke="#7c2d12" stroke-width="2.5" stroke-linecap="round" fill="none" />
+    <path d="M 68 30 Q 64 26 58 29" stroke="#7c2d12" stroke-width="2.5" stroke-linecap="round" fill="none" />
+
+    <!-- Big Sparkly Eyes -->
+    <circle cx="34" cy="40" r="7.5" fill="#1c1917" />
+    <circle cx="32" cy="37.5" r="3" fill="#ffffff" />
+    <circle cx="37" cy="42" r="1.5" fill="#ffffff" />
+
+    <circle cx="66" cy="40" r="7.5" fill="#1c1917" />
+    <circle cx="64" cy="37.5" r="3" fill="#ffffff" />
+    <circle cx="69" cy="42" r="1.5" fill="#ffffff" />
+
+    <!-- Rosy Cheeks -->
+    <ellipse cx="23" cy="50" rx="5" ry="3" fill="#f87171" opacity="0.4" />
+    <ellipse cx="77" cy="50" rx="5" ry="3" fill="#f87171" opacity="0.4" />
+
+    <!-- Cream Muzzle -->
+    <ellipse cx="50" cy="54" rx="16" ry="12" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5" />
+
+    <!-- Cute Black Nose -->
+    <path d="M 44 48 C 44 46 56 46 56 48 C 56 53 52 56 50 56 C 48 56 44 53 44 48 Z" fill="#0f172a" />
+    <circle cx="48" cy="48" r="1.5" fill="#ffffff" opacity="0.8" />
+
+    <!-- Happy Mouth & Tongue -->
+    <path d="M 50 56 L 50 61" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" />
+    <path d="M 44 60 Q 50 64 56 60" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" fill="none" />
+    <!-- Pink Tongue -->
+    <path d="M 47 62 C 47 68 53 68 53 62 Z" fill="#fb7185" stroke="#e11d48" stroke-width="1" />
+
+    <!-- Little Red Collar with Star -->
+    <rect x="36" y="74" width="28" height="6" rx="3" fill="#ef4444" stroke="#b91c1c" stroke-width="1" />
+    <circle cx="50" cy="77" r="2.5" fill="#facc15" stroke="#ca8a04" stroke-width="1" />
+  </g>
+</svg>
