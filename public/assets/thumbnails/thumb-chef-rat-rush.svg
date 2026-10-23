@@ -1,0 +1,270 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Bistro Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="45%" stop-color="#31102f"/>
+      <stop offset="85%" stop-color="#451a03"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+
+    <!-- Warm Bistro Ceiling Light Glow -->
+    <radialGradient id="lightGlow" cx="50%" cy="15%" r="65%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.45"/>
+      <stop offset="40%" stop-color="#f59e0b" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Wooden Counter Gradient -->
+    <linearGradient id="woodCounter" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="15%" stop-color="#92400e"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+
+    <!-- Copper Skillet Gradient -->
+    <linearGradient id="copperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdba74"/>
+      <stop offset="50%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </linearGradient>
+
+    <!-- Brass Bell Gradient -->
+    <linearGradient id="brassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#854d0e"/>
+    </linearGradient>
+
+    <!-- Chef Hat Gradient -->
+    <linearGradient id="hatGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+
+    <!-- Ratatouille Sauce Gradient -->
+    <radialGradient id="sauceGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="70%" stop-color="#b91c1c"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </radialGradient>
+
+    <!-- Mouse Fur Gradient -->
+    <radialGradient id="mouseFur" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="60%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </radialGradient>
+
+    <!-- Shadow Filter -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- 1. Background Scene -->
+  <rect width="512" height="512" rx="36" fill="url(#bgGrad)"/>
+  <rect width="512" height="512" rx="36" fill="url(#lightGlow)"/>
+
+  <!-- Hanging Bistro Copper Pans in Background -->
+  <g opacity="0.35" transform="translate(40, 20)">
+    <!-- Rack Bar -->
+    <line x1="20" y1="30" x2="420" y2="30" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+    <!-- Pan 1 -->
+    <line x1="60" y1="30" x2="60" y2="65" stroke="#cbd5e1" stroke-width="3"/>
+    <circle cx="60" cy="95" r="28" fill="#c2410c"/>
+    <circle cx="60" cy="95" r="22" fill="#7c2d12"/>
+    <!-- Pan 2 -->
+    <line x1="150" y1="30" x2="150" y2="75" stroke="#cbd5e1" stroke-width="3"/>
+    <circle cx="150" cy="115" r="36" fill="#ea580c"/>
+    <circle cx="150" cy="115" r="30" fill="#9a3412"/>
+    <!-- Whisk & Ladle -->
+    <line x1="360" y1="30" x2="360" y2="85" stroke="#cbd5e1" stroke-width="3"/>
+    <ellipse cx="360" cy="100" rx="14" ry="20" fill="none" stroke="#f1f5f9" stroke-width="3"/>
+  </g>
+
+  <!-- 2. Bistro Kitchen Counter -->
+  <path d="M 0 350 L 512 350 L 512 512 L 0 512 Z" fill="url(#woodCounter)"/>
+  <!-- Counter Top Edge Highlight -->
+  <line x1="0" y1="352" x2="512" y2="352" stroke="#fef08a" stroke-width="3" opacity="0.4"/>
+  <line x1="0" y1="356" x2="512" y2="356" stroke="#451a03" stroke-width="4" opacity="0.8"/>
+
+  <!-- 3. Gourmet Skillet of Layered Ratatouille (Center-Right) -->
+  <g filter="url(#shadow)" transform="translate(260, 290)">
+    <!-- Skillet Handle -->
+    <path d="M 120 40 L 195 65 Q 205 70 200 78 Q 192 84 180 80 L 110 55 Z" fill="#334155"/>
+    <circle cx="190" cy="74" r="5" fill="#64748b"/>
+    <!-- Skillet Outer Body -->
+    <ellipse cx="60" cy="45" rx="85" ry="50" fill="url(#copperGrad)"/>
+    <ellipse cx="60" cy="40" rx="78" ry="44" fill="#1e293b"/>
+    <ellipse cx="60" cy="42" rx="72" ry="38" fill="url(#sauceGrad)"/>
+
+    <!-- Layered Slices of Ratatouille (Concentric Spiral Pattern) -->
+    <!-- Outer Ring -->
+    <!-- Zucchini (Green) -->
+    <ellipse cx="10" cy="38" rx="16" ry="12" fill="#22c55e" stroke="#15803d" stroke-width="2"/>
+    <ellipse cx="10" cy="38" rx="12" ry="8" fill="#86efac"/>
+    <!-- Tomato (Red) -->
+    <ellipse cx="28" cy="46" rx="16" ry="12" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/>
+    <ellipse cx="28" cy="46" rx="12" ry="8" fill="#fca5a5"/>
+    <!-- Eggplant (Purple) -->
+    <ellipse cx="50" cy="52" rx="16" ry="12" fill="#7e22ce" stroke="#581c87" stroke-width="2"/>
+    <ellipse cx="50" cy="52" rx="12" ry="8" fill="#d8b4fe"/>
+    <!-- Yellow Squash -->
+    <ellipse cx="74" cy="52" rx="16" ry="12" fill="#eab308" stroke="#a16207" stroke-width="2"/>
+    <ellipse cx="74" cy="52" rx="12" ry="8" fill="#fef08a"/>
+    <!-- Zucchini -->
+    <ellipse cx="96" cy="46" rx="16" ry="12" fill="#22c55e" stroke="#15803d" stroke-width="2"/>
+    <ellipse cx="96" cy="46" rx="12" ry="8" fill="#86efac"/>
+    <!-- Tomato -->
+    <ellipse cx="112" cy="38" rx="16" ry="12" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/>
+    <ellipse cx="112" cy="38" rx="12" ry="8" fill="#fca5a5"/>
+
+    <!-- Inner Core Flower Swirl -->
+    <ellipse cx="60" cy="36" rx="14" ry="10" fill="#ef4444"/>
+    <ellipse cx="60" cy="36" rx="9" ry="6" fill="#fef08a"/>
+    <!-- Fresh Thyme / Basil Garnish Sprig -->
+    <path d="M 52 30 Q 60 22 68 28 Q 72 35 60 38 Z" fill="#15803d"/>
+    <circle cx="58" cy="28" r="3" fill="#86efac"/>
+
+    <!-- Rising Hot Steam Spirals -->
+    <path d="M 40 18 Q 30 5 45 -10 Q 55 -25 45 -40" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+    <path d="M 68 15 Q 80 0 70 -15 Q 60 -30 75 -45" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+    <path d="M 90 20 Q 100 8 92 -5 Q 85 -18 95 -32" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+  </g>
+
+  <!-- 4. Fresh French Baguette & Croissant (Bottom Right) -->
+  <g filter="url(#shadow)" transform="translate(340, 395)">
+    <!-- Golden Baguette -->
+    <path d="M 10 35 Q 70 -5 130 15 Q 140 25 130 35 Q 70 15 10 35 Z" fill="#d97706" stroke="#92400e" stroke-width="2"/>
+    <!-- Baguette Score Marks -->
+    <line x1="45" y1="20" x2="55" y2="28" stroke="#fef3c7" stroke-width="3" stroke-linecap="round"/>
+    <line x1="75" y1="18" x2="85" y2="26" stroke="#fef3c7" stroke-width="3" stroke-linecap="round"/>
+    <line x1="105" y1="18" x2="115" y2="26" stroke="#fef3c7" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Flaky Butter Croissant -->
+    <path d="M 5 60 Q 25 35 55 42 Q 65 52 45 70 Q 25 72 5 60 Z" fill="#f59e0b" stroke="#b45309" stroke-width="2"/>
+    <path d="M 22 45 Q 35 48 38 60" fill="none" stroke="#fef08a" stroke-width="3"/>
+  </g>
+
+  <!-- 5. Brass Service Bell 🛎️ (Center Foreground) -->
+  <g filter="url(#shadow)" transform="translate(210, 390)">
+    <!-- Base Plate -->
+    <ellipse cx="35" cy="42" rx="35" ry="12" fill="#1e293b"/>
+    <ellipse cx="35" cy="40" rx="32" ry="10" fill="#475569"/>
+    <!-- Dome Bell -->
+    <path d="M 10 38 Q 12 12 35 10 Q 58 12 60 38 Z" fill="url(#brassGrad)"/>
+    <!-- Bell Top Plunger Pin -->
+    <rect x="33" y="2" width="4" height="9" fill="#fef08a"/>
+    <circle cx="35" cy="2" r="5" fill="#fef08a"/>
+    <!-- Bell Rim Flare -->
+    <ellipse cx="35" cy="38" rx="25" ry="6" fill="#ca8a04"/>
+    <!-- Star Sparkle on Bell -->
+    <path d="M 50 15 L 53 22 L 60 25 L 53 28 L 50 35 L 47 28 L 40 25 L 47 22 Z" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- 6. PROTAGONIST: CHEF PIP THE MOUSE (Left-Center) -->
+  <g filter="url(#shadow)" transform="translate(65, 110)">
+    <!-- Mouse Tail -->
+    <path d="M 35 290 Q -25 280 -10 230 Q 5 190 -15 160" fill="none" stroke="#f472b6" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- Mouse Body in White Chef Jacket -->
+    <path d="M 45 200 Q 25 240 30 300 L 155 300 Q 160 240 140 200 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+    <!-- Double-Breasted Chef Buttons -->
+    <circle cx="75" cy="235" r="4.5" fill="#0f172a"/>
+    <circle cx="105" cy="235" r="4.5" fill="#0f172a"/>
+    <circle cx="75" cy="265" r="4.5" fill="#0f172a"/>
+    <circle cx="105" cy="265" r="4.5" fill="#0f172a"/>
+
+    <!-- Red Parisian Neckerchief / Bandana -->
+    <path d="M 50 195 Q 92 225 135 195 L 115 185 Q 92 200 70 185 Z" fill="#dc2626"/>
+    <polygon points="92,205 82,230 102,230" fill="#b91c1c"/>
+
+    <!-- Mouse Left Arm Holding Wooden Spoon -->
+    <path d="M 135 220 Q 170 210 185 190" fill="none" stroke="url(#mouseFur)" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="185" cy="190" r="11" fill="#f472b6"/>
+    <!-- Miniature Wooden Chef Tasting Spoon -->
+    <g transform="translate(180, 140) rotate(25)">
+      <rect x="0" y="0" width="8" height="90" rx="3" fill="#d97706"/>
+      <ellipse cx="4" cy="-5" rx="14" ry="18" fill="#b45309"/>
+      <ellipse cx="4" cy="-5" rx="10" ry="14" fill="#fef3c7"/>
+      <!-- Drop of red sauce on spoon tip -->
+      <circle cx="4" cy="-8" r="4" fill="#dc2626"/>
+    </g>
+
+    <!-- Mouse Right Arm Resting on Counter -->
+    <path d="M 45 220 Q 20 250 25 285" fill="none" stroke="url(#mouseFur)" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="25" cy="285" r="10" fill="#f472b6"/>
+
+    <!-- Mouse Ears (Big, Cute & Expressive!) -->
+    <!-- Left Ear -->
+    <circle cx="30" cy="80" r="38" fill="url(#mouseFur)"/>
+    <circle cx="30" cy="80" r="26" fill="#f472b6" opacity="0.85"/>
+    <!-- Right Ear -->
+    <circle cx="155" cy="80" r="38" fill="url(#mouseFur)"/>
+    <circle cx="155" cy="80" r="26" fill="#f472b6" opacity="0.85"/>
+
+    <!-- Mouse Head -->
+    <ellipse cx="92" cy="120" rx="52" ry="46" fill="url(#mouseFur)"/>
+    <!-- Chubby Cheeks -->
+    <circle cx="58" cy="138" r="18" fill="url(#mouseFur)"/>
+    <circle cx="126" cy="138" r="18" fill="url(#mouseFur)"/>
+
+    <!-- Big Expressive Cartoon Eyes -->
+    <!-- Left Eye -->
+    <ellipse cx="72" cy="115" rx="14" ry="18" fill="#ffffff"/>
+    <ellipse cx="75" cy="115" rx="8" ry="12" fill="#0f172a"/>
+    <circle cx="78" cy="110" r="4.5" fill="#ffffff"/>
+    <!-- Right Eye -->
+    <ellipse cx="112" cy="115" rx="14" ry="18" fill="#ffffff"/>
+    <ellipse cx="109" cy="115" rx="8" ry="12" fill="#0f172a"/>
+    <circle cx="112" cy="110" r="4.5" fill="#ffffff"/>
+
+    <!-- Cute Pink Mouse Nose -->
+    <polygon points="85,134 99,134 92,142" fill="#f472b6" stroke="#db2777" stroke-width="1.5"/>
+    <!-- Happy Confident Grin -->
+    <path d="M 80 144 Q 92 155 104 144" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+    <!-- Whiskers -->
+    <line x1="42" y1="136" x2="10" y2="132" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+    <line x1="42" y1="142" x2="14" y2="146" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+    <line x1="142" y1="136" x2="174" y2="132" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+    <line x1="142" y1="142" x2="170" y2="146" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- THE ICONIC TALL CHEF'S HAT (Toque Blanche) -->
+    <g transform="translate(92, 75)">
+      <!-- Hat Pleats & Puffs -->
+      <path d="M -44 -15 
+               C -58 -45 -50 -85 -25 -95 
+               C -15 -110 15 -110 25 -95 
+               C 50 -85 58 -45 44 -15 
+               Z" 
+            fill="url(#hatGrad)" stroke="#e2e8f0" stroke-width="2.5"/>
+      <!-- Inner Puffs Definition -->
+      <path d="M -22 -95 C -15 -60 -10 -30 -12 -15" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+      <path d="M 0 -102 C 0 -65 0 -30 0 -15" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+      <path d="M 22 -95 C 15 -60 10 -30 12 -15" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+      <!-- Hat Headband -->
+      <rect x="-42" y="-15" width="84" height="20" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+      <!-- French Tricolore Ribbon on Hat Band -->
+      <rect x="-12" y="-12" width="8" height="14" fill="#3b82f6"/>
+      <rect x="-4" y="-12" width="8" height="14" fill="#ffffff"/>
+      <rect x="4" y="-12" width="8" height="14" fill="#ef4444"/>
+    </g>
+  </g>
+
+  <!-- 7. Golden Coins & Star Sparkles Pop -->
+  <g transform="translate(435, 120)">
+    <circle cx="0" cy="0" r="16" fill="#facc15" stroke="#ca8a04" stroke-width="2" filter="url(#shadow)"/>
+    <text x="0" y="5" font-family="Arial, sans-serif" font-weight="900" font-size="16" fill="#713f12" text-anchor="middle">$</text>
+  </g>
+  <g transform="translate(460, 160)">
+    <circle cx="0" cy="0" r="12" fill="#facc15" stroke="#ca8a04" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="0" y="4" font-family="Arial, sans-serif" font-weight="900" font-size="12" fill="#713f12" text-anchor="middle">$</text>
+  </g>
+
+  <!-- Floating Star Sparkles -->
+  <path d="M 410 70 L 413 77 L 420 80 L 413 83 L 410 90 L 407 83 L 400 80 L 407 77 Z" fill="#fef08a"/>
+  <path d="M 195 95 L 197 101 L 203 103 L 197 105 L 195 111 L 193 105 L 187 103 L 193 101 Z" fill="#fef08a"/>
+  <path d="M 285 240 L 288 247 L 295 250 L 288 253 L 285 260 L 282 253 L 275 250 L 282 247 Z" fill="#ffffff"/>
+</svg>

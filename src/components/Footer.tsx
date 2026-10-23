@@ -69,6 +69,14 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
               </li>
               <li>
                 <button
+                  onClick={() => navigate('/games/chef-rat-rush/')}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-left flex items-center gap-1.5"
+                >
+                  <span>🐭 Chef Rat Rush (Bistro Cooking)</span>
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => navigate('/games/animal-2048/')}
                   className="hover:text-amber-300 transition-colors cursor-pointer text-left flex items-center gap-1.5"
                 >

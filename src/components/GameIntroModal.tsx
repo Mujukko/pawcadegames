@@ -281,6 +281,44 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Take turns wide and brake early! Maintaining 100% health and parking accuracy earns the highest star ranking.',
   },
+  'chef-rat-rush': {
+    title: 'Chef Rat Rush: Ratatouille Bistro',
+    subtitle: 'Bistro Cooking & Culinary Rush',
+    mascot: '🐭',
+    themeColor: 'from-amber-600 via-rose-600 to-slate-900',
+    goal: 'Chop fresh ingredients, simmer gourmet dishes on the stove, and ring the brass Service Bell before customer patience expires!',
+    steps: [
+      {
+        icon: '🪵',
+        title: '1. Chop Pantry Ingredients',
+        desc: 'Tap pantry produce (keys 1-8) to chop ingredients onto your wooden prep cutting board.',
+      },
+      {
+        icon: '🍳',
+        title: '2. Simmer on Copper Stove',
+        desc: 'Dishes like Gourmet Ratatouille and Berry Crepes must cook on the stove—ring the bell before they burn!',
+      },
+      {
+        icon: '🛎️',
+        title: '3. Ring Service Bell',
+        desc: 'Hit the big brass Service Bell (Spacebar) to deliver orders, earn big speed tips, and build combos!',
+      },
+    ],
+    controls: {
+      desktop: [
+        '1 - 8 Number Keys: Add ingredients to board',
+        'Spacebar: Ring Service Bell to serve dish',
+        'C Key: Cook / simmer on stove',
+        'X Key: Clear cutting board',
+      ],
+      mobile: [
+        'Tap 1-8 Ingredient buttons to prepare dish',
+        'Tap "Simmer on Stove" when recipe is ready to cook',
+        'Tap "SERVE DISH" brass bell to deliver orders',
+      ],
+    },
+    proTip: 'Cold dishes like Cheese Baguettes and Bistro Salads don\'t need cooking—serve them instantly to keep your combo alive while hot stews simmer on the stove!',
+  },
 };
 
 interface GameIntroModalProps {

@@ -80,6 +80,13 @@ const GAME_FALLBACKS: Record<string, GameVisualConfig> = {
     tagline: 'Steer Bessie the Cow & tractor into marked bays with precision!',
     badgeLabel: 'DRIVING',
   },
+  'chef-rat-rush': {
+    icon: '🐭🍲',
+    gradient: 'from-amber-600 via-rose-700 to-slate-900',
+    glow: 'group-hover:border-amber-400 group-hover:shadow-amber-500/30',
+    tagline: 'Chop fresh produce, simmer gourmet ratatouille on stove, and ring the service bell!',
+    badgeLabel: 'CHEF RUSH',
+  },
   'cat-cafe-rush': {
     icon: '🧁',
     gradient: 'from-rose-600 via-pink-700 to-slate-900',

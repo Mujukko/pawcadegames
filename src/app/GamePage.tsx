@@ -33,6 +33,9 @@ const AnimalFarmParkingContainer = lazy(() =>
 const FarmTetrisContainer = lazy(() =>
   import('../games/farm-tetris/FarmTetrisContainer').then((m) => ({ default: m.FarmTetrisContainer }))
 );
+const ChefRatRushContainer = lazy(() =>
+  import('../games/chef-rat-rush/ChefRatRushContainer').then((m) => ({ default: m.ChefRatRushContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -68,6 +71,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   const isFlappy = gameId === 'flappy-chicken';
   const is2048 = gameId === 'animal-2048';
   const isFarmTetris = gameId === 'farm-tetris';
+  const isChefRat = gameId === 'chef-rat-rush' || gameId === 'cat-cafe-rush';
   const isCat = gameId === 'cat-parking';
   const isFarm = gameId === 'animal-farm-parking';
   const game = GAMES_REGISTRY.find(g => g.id === gameId) || GAMES_REGISTRY[0]!;
@@ -141,7 +145,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-orange-500/60 shrink-0" />
           <button onClick={() => navigate('/')} className="hover:text-orange-300 transition-colors cursor-pointer shrink-0">
-            {isFarmMart ? 'Farm Tycoon' : isDuckRunner ? 'Vampire Runner' : isPetCrush ? 'Trick-or-Treat' : isFlappy ? 'Haunted Flight' : is2048 ? 'Spooky Evolution' : isFarmTetris ? 'Pumpkin Harvest' : isFarm ? 'Haunted Pasture' : 'Spooky Puzzles'}
+            {isChefRat ? 'French Bistro' : isFarmMart ? 'Farm Tycoon' : isDuckRunner ? 'Vampire Runner' : isPetCrush ? 'Trick-or-Treat' : isFlappy ? 'Haunted Flight' : is2048 ? 'Spooky Evolution' : isFarmTetris ? 'Pumpkin Harvest' : isFarm ? 'Haunted Pasture' : 'Spooky Puzzles'}
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-orange-500/60 shrink-0" />
           <span className="text-orange-400 font-bold truncate">{game.title}</span>
@@ -179,7 +183,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isFarmMart
+                isChefRat
+                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+                  : isFarmMart
                   ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
                   : isDuckRunner
                   ? 'bg-orange-500/20 text-orange-400 border-orange-500/30'
@@ -197,7 +203,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   ? 'bg-purple-500/20 text-purple-300 border-purple-500/30'
                   : 'bg-orange-500/20 text-orange-400 border-orange-500/30'
               }`}>
-                {isFarmMart ? '🏪 Farm Mini Mart Tycoon' : isDuckRunner ? '🦆🎃 Vampire Duck Runner' : isPetCrush ? '🍬 Spooky Animal Match' : isFlappy ? '👻 Ghost Chicken Flight' : is2048 ? '🦇 Spooky Animal 2048' : isFarmTetris ? '🎃 Haunted Harvest Tetris' : isFarm ? '🐮 Haunted Cow Driving' : isCat ? '🐈‍⬛ Witch Cat Puzzle' : '🦴 Ghost Pup Puzzle'}
+                {isChefRat ? '🐭 Chef Rat Rush: Ratatouille Bistro' : isFarmMart ? '🏪 Farm Mini Mart Tycoon' : isDuckRunner ? '🦆🎃 Vampire Duck Runner' : isPetCrush ? '🍬 Spooky Animal Match' : isFlappy ? '👻 Ghost Chicken Flight' : is2048 ? '🦇 Spooky Animal 2048' : isFarmTetris ? '🎃 Haunted Harvest Tetris' : isFarm ? '🐮 Haunted Cow Driving' : isCat ? '🐈‍⬛ Witch Cat Puzzle' : '🦴 Ghost Pup Puzzle'}
               </span>
               <div className="flex items-center text-amber-400 text-xs font-bold">
                 <Star className="w-3.5 h-3.5 fill-amber-400 mr-1" />
@@ -231,7 +237,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isFarmMart
+                  isChefRat
+                    ? '🐭'
+                    : isFarmMart
                     ? '🏪'
                     : isDuckRunner
                     ? '🦆'
@@ -252,7 +260,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isFarmMart ? (
+            {isChefRat ? (
+              <ChefRatRushContainer />
+            ) : isFarmMart ? (
               <FarmMiniMartContainer />
             ) : isDuckRunner ? (
               <DuckRunnerContainer />
@@ -286,7 +296,18 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
 
             <div className="space-y-3 text-sm text-slate-300">
-              {isFarmMart ? (
+              {isChefRat ? (
+                <>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-orange-400 min-w-24">Desktop:</span>
+                    <span>Use number keys <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">1</kbd> to <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">8</kbd> to rapidly chop pantry ingredients onto the wooden cutting board. Press <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">C</kbd> to cook hot stews on the stove, press <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">X</kbd> to clear the board, and press <kbd className="bg-slate-800 text-orange-300 px-1.5 py-0.5 rounded text-xs font-mono border border-orange-500/30">Spacebar</kbd> to ring the brass Service Bell!</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-orange-400 min-w-24">Mobile:</span>
+                    <span>Tap any pantry ingredient button (1-8) to chop on board. Tap <strong>Simmer on Stove</strong> for cookable recipes, and tap the large <strong>SERVE DISH</strong> brass bell to deliver orders before customer patience expires!</span>
+                  </div>
+                </>
+              ) : isFarmMart ? (
                 <>
                   <div className="flex items-start gap-2">
                     <span className="font-bold text-orange-400 min-w-24">Desktop:</span>
@@ -388,7 +409,30 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
 
             <ul className="space-y-2.5 text-sm text-slate-300">
-              {isFarmMart ? (
+              {isChefRat ? (
+                <>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span>Check incoming customer order tickets on the top brass rail to see what dish they desire and their patience timer!</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span>Chop required ingredients from the pantry: 🍆 Eggplants, 🍅 Tomatoes, 🥒 Zucchini, 🧀 Swiss Cheese, 🥖 Baguettes, 🍓 Fresh Berries, 🥐 Croissants, and 🥬 Lettuce.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span>Cold dishes (French Cheese Baguettes, Parisian Salads, Croissant Plates) are ready instantly—ring the <strong>Service Bell 🛎️</strong> immediately!</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span>Simmer hot dishes (Gourmet Ratatouille & Chef's Berry Crepes) on the copper stove. Watch the simmer gauge closely—ring the bell when ready before it burns!</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span>Deliver orders while customer patience is green for a <strong>+50% Speed Tip</strong> and build consecutive combos for 3-star shift mastery!</span>
+                  </li>
+                </>
+              ) : isFarmMart ? (
                 <>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />

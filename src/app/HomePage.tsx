@@ -47,7 +47,8 @@ export const HomePage: React.FC<HomePageProps> = ({
           g.category.toLowerCase().includes('farm') ||
           g.id.includes('farm') ||
           g.id.includes('mart') ||
-          g.id.includes('chicken')
+          g.id.includes('chicken') ||
+          g.id.includes('chef')
       );
     }
     if (activeCategory === 'arcade') {
@@ -55,7 +56,8 @@ export const HomePage: React.FC<HomePageProps> = ({
         (g) =>
           g.category.toLowerCase().includes('arcade') ||
           g.id.includes('runner') ||
-          g.id.includes('chicken')
+          g.id.includes('chicken') ||
+          g.id.includes('rush')
       );
     }
     if (activeCategory === 'pets') {
@@ -64,7 +66,8 @@ export const HomePage: React.FC<HomePageProps> = ({
           g.category.toLowerCase().includes('pet') ||
           g.id.includes('dog') ||
           g.id.includes('cat') ||
-          g.id.includes('animal')
+          g.id.includes('animal') ||
+          g.id.includes('rat')
       );
     }
 
