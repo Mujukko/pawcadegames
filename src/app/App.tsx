@@ -37,6 +37,11 @@ export const App: React.FC = () => {
 
   // Update SEO document title on route changes
   useEffect(() => {
+    const sheepStampedeGame = GAMES_REGISTRY.find(g => g.id === 'sheep-stampede');
+    const horseshoeTwistGame = GAMES_REGISTRY.find(g => g.id === 'horseshoe-twist');
+    const eggBusterGame = GAMES_REGISTRY.find(g => g.id === 'egg-buster');
+    const critterTapGame = GAMES_REGISTRY.find(g => g.id === 'critter-tap-away');
+    const pantrySortGame = GAMES_REGISTRY.find(g => g.id === 'farm-pantry-sort');
     const blockBlastGame = GAMES_REGISTRY.find(g => g.id === 'farm-block-blast');
     const sheepJamGame = GAMES_REGISTRY.find(g => g.id === 'sheep-cart-jam');
     const sandFallGame = GAMES_REGISTRY.find(g => g.id === 'grain-sand-fall');
@@ -54,7 +59,32 @@ export const App: React.FC = () => {
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/farm-block-blast') || currentRoute.startsWith('/games/block-blast')) {
+    if (currentRoute.startsWith('/games/sheep-stampede') || currentRoute.startsWith('/games/mob-control') || currentRoute.startsWith('/games/colony-flow')) {
+      if (sheepStampedeGame) {
+        activeTitle = sheepStampedeGame.metaTitle;
+        activeDesc = sheepStampedeGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/horseshoe-twist') || currentRoute.startsWith('/games/rotate-rings') || currentRoute.startsWith('/games/ring-unlock')) {
+      if (horseshoeTwistGame) {
+        activeTitle = horseshoeTwistGame.metaTitle;
+        activeDesc = horseshoeTwistGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/egg-buster') || currentRoute.startsWith('/games/royal-smash') || currentRoute.startsWith('/games/smash-fest')) {
+      if (eggBusterGame) {
+        activeTitle = eggBusterGame.metaTitle;
+        activeDesc = eggBusterGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/critter-tap-away') || currentRoute.startsWith('/games/tap-away')) {
+      if (critterTapGame) {
+        activeTitle = critterTapGame.metaTitle;
+        activeDesc = critterTapGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/farm-pantry-sort') || currentRoute.startsWith('/games/goods-sort')) {
+      if (pantrySortGame) {
+        activeTitle = pantrySortGame.metaTitle;
+        activeDesc = pantrySortGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/farm-block-blast') || currentRoute.startsWith('/games/block-blast')) {
       if (blockBlastGame) {
         activeTitle = blockBlastGame.metaTitle;
         activeDesc = blockBlastGame.metaDescription;
@@ -139,6 +169,21 @@ export const App: React.FC = () => {
       currentRoute === '/map'
     ) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />;
+    }
+    if (currentRoute.startsWith('/games/sheep-stampede') || currentRoute.startsWith('/games/mob-control') || currentRoute.startsWith('/games/colony-flow')) {
+      return <GamePage navigate={navigate} gameId="sheep-stampede" />;
+    }
+    if (currentRoute.startsWith('/games/horseshoe-twist') || currentRoute.startsWith('/games/rotate-rings') || currentRoute.startsWith('/games/ring-unlock')) {
+      return <GamePage navigate={navigate} gameId="horseshoe-twist" />;
+    }
+    if (currentRoute.startsWith('/games/egg-buster') || currentRoute.startsWith('/games/royal-smash') || currentRoute.startsWith('/games/smash-fest')) {
+      return <GamePage navigate={navigate} gameId="egg-buster" />;
+    }
+    if (currentRoute.startsWith('/games/critter-tap-away') || currentRoute.startsWith('/games/tap-away')) {
+      return <GamePage navigate={navigate} gameId="critter-tap-away" />;
+    }
+    if (currentRoute.startsWith('/games/farm-pantry-sort') || currentRoute.startsWith('/games/goods-sort')) {
+      return <GamePage navigate={navigate} gameId="farm-pantry-sort" />;
     }
     if (currentRoute.startsWith('/games/farm-block-blast') || currentRoute.startsWith('/games/block-blast')) {
       return <GamePage navigate={navigate} gameId="farm-block-blast" />;

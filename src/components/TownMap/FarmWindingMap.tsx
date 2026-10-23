@@ -190,7 +190,7 @@ export const FarmWindingMap: React.FC<FarmWindingMapProps> = ({
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="text-xs sm:text-sm font-black text-white tracking-tight">
-                  Çiftlik Seviyesi {prosperity.townLevel}:
+                  Farm Level {prosperity.townLevel}:
                 </span>
                 <span className="text-xs font-black text-amber-300 truncate max-w-[130px] sm:max-w-xs">
                   {prosperity.townTitle}
@@ -216,27 +216,27 @@ export const FarmWindingMap: React.FC<FarmWindingMapProps> = ({
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => setShowGuideModal(true)}
-              title="Harita Rehberi"
+              title="Map Guide"
               className="p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 flex items-center gap-1 transition-colors cursor-pointer"
             >
               <Info className="w-4 h-4 text-orange-400" />
-              <span className="hidden sm:inline">Rehber</span>
+              <span className="hidden sm:inline">Guide</span>
             </button>
 
             {onSwitchToGrid && (
               <button
                 onClick={onSwitchToGrid}
-                title="Klasik Liste Görünümü"
+                title="Switch to Arcade Grid"
                 className="p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 flex items-center gap-1 transition-colors cursor-pointer"
               >
                 <LayoutGrid className="w-4 h-4 text-teal-400" />
-                <span className="hidden sm:inline">Oyunlar</span>
+                <span className="hidden sm:inline">Games</span>
               </button>
             )}
 
             <button
               onClick={toggleSound}
-              title={isMuted ? 'Sesi Aç' : 'Sesi Kapat'}
+              title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
               className="p-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors cursor-pointer"
             >
               {isMuted ? (
@@ -479,7 +479,7 @@ export const FarmWindingMap: React.FC<FarmWindingMapProps> = ({
                     {/* Waving Farmer with "SUPER HARVEST!" Speech Bubble */}
                     <div className="mb-2 bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-black text-xs px-3 py-1 rounded-2xl shadow-lg border-2 border-white animate-bounce flex items-center gap-1">
                       <span>👨‍🌾</span>
-                      <span>"HARVEST SILO ZİRVESİ!"</span>
+                      <span>"HARVEST SILO SUMMIT!"</span>
                     </div>
 
                     {/* Massive 3D Silo Illustration */}
@@ -498,7 +498,7 @@ export const FarmWindingMap: React.FC<FarmWindingMapProps> = ({
                           {building.progressRatio}
                         </span>
                         <span className="text-[10px] font-bold text-slate-300">
-                          (Hasat Skoru: {building.currentMetric})
+                          (Harvest Score: {building.currentMetric})
                         </span>
                       </div>
                     </div>
@@ -576,9 +576,9 @@ export const FarmWindingMap: React.FC<FarmWindingMapProps> = ({
         {/* BOTTOM ROAD ENTRANCE WELCOME BANNER */}
         <div className="relative z-20 text-center pt-8 pb-4">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-600 to-amber-600 text-slate-950 px-5 py-2 rounded-2xl font-black text-xs sm:text-sm shadow-xl border-2 border-orange-300">
-            <span>🏁 ÇİFTLİK HARİTASI BAŞLANGICI</span>
+            <span>🏁 FARM TRAIL ENTRANCE</span>
             <span>➔</span>
-            <span>HASAT SİLOSU ZİRVESİ 🌾</span>
+            <span>HARVEST SILO SUMMIT 🌾</span>
           </div>
         </div>
       </div>
@@ -608,7 +608,7 @@ export const FarmWindingMap: React.FC<FarmWindingMapProps> = ({
               <div className="flex items-center gap-2">
                 <span className="text-2xl">🗺️</span>
                 <h3 className="text-xl font-black text-white">
-                  Çiftlik Haritası Rehberi
+                  Farm Map Guide
                 </h3>
               </div>
               <button
@@ -621,30 +621,30 @@ export const FarmWindingMap: React.FC<FarmWindingMapProps> = ({
 
             <div className="space-y-3.5 text-sm text-slate-300 leading-relaxed">
               <p>
-                <strong>Pawcade Çiftlik Haritası</strong>, tüm oyunları kıvrımlı bir macera yoluna bağlar! Yol boyunca 9 özel bina ve zirvede devasa <strong>Hasat Silosu</strong> yer alır.
+                <strong>The Pawcade Farm Trail</strong> links every browser game into an interconnected countryside trail! Journey across 9 unique estate landmarks leading to the grand <strong>Harvest Silo Summit</strong>.
               </p>
 
               <div className="bg-slate-950/90 p-4 rounded-2xl border border-slate-800 space-y-2.5">
                 <div className="flex items-center gap-2 text-xs font-bold text-sky-400">
                   <span className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-mono">1</span>
-                  <span><strong>0/1 Lot:</strong> Henüz tamamlanmamış temel parsel.</span>
+                  <span><strong>0/1 Lot:</strong> Unrestored plot awaiting level clears.</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
                   <span className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center font-mono">⭐</span>
-                  <span><strong>1/3 Starter:</strong> İlk hedef aşıldı, 1 yıldız kazanıldı!</span>
+                  <span><strong>1/3 Starter:</strong> First milestone achieved with 1 star!</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-bold text-purple-400">
                   <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center font-mono">⭐⭐</span>
-                  <span><strong>2/3 Tesis:</strong> Gelişmiş tesis ve 2 yıldız açıldı!</span>
+                  <span><strong>2/3 Facility:</strong> Upgraded facility with 2 stars unlocked!</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-bold text-amber-400">
                   <span className="w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center font-mono">⭐⭐⭐</span>
-                  <span><strong>3/3 MAX Landmark:</strong> Efsanevi altın anıt ve 3 yıldız tamamlandı!</span>
+                  <span><strong>3/3 MAX Landmark:</strong> Legendary golden monument with all 3 stars!</span>
                 </div>
               </div>
 
               <p className="text-xs text-orange-200">
-                💡 Yoldaki herhangi bir butona dokunarak binanın ayrıntılarını görebilir ve doğrudan <strong>"OYNA"</strong> diyerek hedefleri tamamlayabilirsiniz.
+                💡 Tap any node on the trail to view building status, or jump straight in with <strong>"PLAY"</strong> to beat level goals.
               </p>
             </div>
 
@@ -652,7 +652,7 @@ export const FarmWindingMap: React.FC<FarmWindingMapProps> = ({
               onClick={() => setShowGuideModal(false)}
               className="mt-5 w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-slate-950 font-black py-3 rounded-xl transition-transform hover:scale-102 cursor-pointer shadow-lg text-sm"
             >
-              Haritaya Dön ve Başla! 🚀
+              Back to Farm Trail! 🚀
             </button>
           </div>
         </div>

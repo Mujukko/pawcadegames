@@ -1,4 +1,20 @@
 User-agent: *
 Allow: /
 
+# OpenAI ChatGPT Search Discovery (Permit search indexing and citations)
+User-agent: OAI-SearchBot
+Allow: /
+
+# OpenAI AI Model Training (Separate from Search discovery)
+User-agent: GPTBot
+Disallow: /
+
+# Microsoft Bing & Copilot
+User-agent: Bingbot
+Allow: /
+
+# Google Search
+User-agent: Googlebot
+Allow: /
+
 Sitemap: https://pawcadegames.com/sitemap.xml

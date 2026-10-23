@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Sky & Meadow Gradients -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="60%" stop-color="#bae6fd"/>
+      <stop offset="100%" stop-color="#86efac"/>
+    </linearGradient>
+    <linearGradient id="meadowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="50%" stop-color="#16a34a"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </linearGradient>
+    <linearGradient id="pathGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#eab308"/>
+    </linearGradient>
+    <linearGradient id="blueGateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <linearGradient id="barnGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="512" height="512" fill="url(#skyGrad)"/>
+
+  <!-- Fluffy Cartoon Clouds -->
+  <circle cx="100" cy="80" r="35" fill="#ffffff" opacity="0.9"/>
+  <circle cx="140" cy="70" r="45" fill="#ffffff" opacity="0.9"/>
+  <circle cx="180" cy="80" r="30" fill="#ffffff" opacity="0.9"/>
+  <circle cx="400" cy="110" r="40" fill="#ffffff" opacity="0.85"/>
+  <circle cx="440" cy="100" r="45" fill="#ffffff" opacity="0.85"/>
+
+  <!-- Distant Rolling Hills -->
+  <path d="M-20 220 Q120 160 260 210 T530 190 L530 512 L-20 512 Z" fill="#4ade80" opacity="0.7"/>
+  <path d="M-20 260 Q150 200 320 250 T530 230 L530 512 L-20 512 Z" fill="url(#meadowGrad)"/>
+
+  <!-- Red Barn on the Horizon -->
+  <g transform="translate(200, 140)">
+    <polygon points="56,-40 112,0 0,0" fill="#991b1b"/>
+    <rect x="10" y="0" width="92" height="70" fill="url(#barnGrad)" rx="4"/>
+    <rect x="42" y="25" width="28" height="45" fill="#450a0a" rx="2"/>
+    <!-- Barn X beam -->
+    <line x1="16" y1="6" x2="96" y2="64" stroke="#ffffff" stroke-width="4" opacity="0.8"/>
+    <line x1="96" y1="6" x2="16" y2="64" stroke="#ffffff" stroke-width="4" opacity="0.8"/>
+  </g>
+
+  <!-- Perspective Pasture Racetrack -->
+  <polygon points="210,210 302,210 440,512 72,512" fill="url(#pathGrad)" filter="url(#dropShadow)"/>
+  <!-- Track dashed center lines -->
+  <line x1="256" y1="210" x2="256" y2="512" stroke="#ffffff" stroke-width="6" stroke-dasharray="16 14" opacity="0.8"/>
+
+  <!-- Glowing Blue Math Multiplier Gate (x3) -->
+  <g transform="translate(140, 240)" filter="url(#glow)">
+    <!-- Gate arch -->
+    <rect x="0" y="0" width="16" height="90" rx="6" fill="#0284c7"/>
+    <rect x="216" y="0" width="16" height="90" rx="6" fill="#0284c7"/>
+    <rect x="0" y="0" width="232" height="38" rx="8" fill="url(#blueGateGrad)"/>
+    <rect x="12" y="38" width="208" height="48" fill="#38bdf8" opacity="0.35"/>
+    <!-- Gate text -->
+    <text x="116" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="900" fill="#ffffff" text-anchor="middle">
+      MULTIPLY x3
+    </text>
+    <text x="116" y="72" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="900" fill="#ffffff" text-anchor="middle" filter="url(#glow)">
+      ✨ x3 ✨
+    </text>
+  </g>
+
+  <!-- The Stampede Flock! Multiple cute sheep in perspective -->
+  <!-- Background sheep -->
+  <g transform="translate(200, 320) scale(0.65)" filter="url(#dropShadow)">
+    <circle cx="20" cy="20" r="22" fill="#f8fafc"/>
+    <circle cx="35" cy="15" r="18" fill="#f8fafc"/>
+    <circle cx="10" cy="28" r="16" fill="#f8fafc"/>
+    <circle cx="38" cy="25" r="14" fill="#0f172a"/>
+  </g>
+  <g transform="translate(270, 315) scale(0.65)" filter="url(#dropShadow)">
+    <circle cx="20" cy="20" r="22" fill="#f8fafc"/>
+    <circle cx="35" cy="15" r="18" fill="#f8fafc"/>
+    <circle cx="38" cy="25" r="14" fill="#0f172a"/>
+  </g>
+
+  <!-- Midground sheep -->
+  <g transform="translate(150, 360) scale(0.85)" filter="url(#dropShadow)">
+    <!-- Cloud puff body -->
+    <circle cx="30" cy="30" r="28" fill="#ffffff"/>
+    <circle cx="50" cy="22" r="24" fill="#ffffff"/>
+    <circle cx="15" cy="25" r="20" fill="#ffffff"/>
+    <circle cx="45" cy="45" r="22" fill="#ffffff"/>
+    <!-- Face -->
+    <ellipse cx="65" cy="32" rx="14" ry="16" fill="#1e293b"/>
+    <circle cx="68" cy="30" r="3" fill="#ffffff"/>
+    <ellipse cx="62" cy="20" rx="4" ry="9" fill="#1e293b" transform="rotate(-20 62 20)"/>
+  </g>
+
+  <g transform="translate(290, 355) scale(0.85)" filter="url(#dropShadow)">
+    <circle cx="30" cy="30" r="28" fill="#ffffff"/>
+    <circle cx="50" cy="22" r="24" fill="#ffffff"/>
+    <circle cx="15" cy="25" r="20" fill="#ffffff"/>
+    <!-- Face -->
+    <ellipse cx="65" cy="32" rx="14" ry="16" fill="#1e293b"/>
+    <circle cx="68" cy="30" r="3" fill="#ffffff"/>
+  </g>
+
+  <!-- Foreground Huge Hero Sheep (Running excitedly) -->
+  <g transform="translate(220, 385)" filter="url(#dropShadow)">
+    <!-- Woolly cloud puffs -->
+    <circle cx="40" cy="40" r="34" fill="#f1f5f9"/>
+    <circle cx="65" cy="30" r="30" fill="#ffffff"/>
+    <circle cx="20" cy="35" r="26" fill="#ffffff"/>
+    <circle cx="55" cy="60" r="28" fill="#ffffff"/>
+    <circle cx="25" cy="55" r="24" fill="#f8fafc"/>
+    <circle cx="42" cy="20" r="26" fill="#ffffff"/>
+    <!-- Trotters -->
+    <rect x="25" y="75" width="8" height="18" rx="4" fill="#0f172a"/>
+    <rect x="52" y="75" width="8" height="18" rx="4" fill="#0f172a"/>
+    <!-- Head -->
+    <ellipse cx="80" cy="42" rx="18" ry="22" fill="#1e293b"/>
+    <ellipse cx="76" cy="24" rx="5" ry="12" fill="#1e293b" transform="rotate(-30 76 24)"/>
+    <ellipse cx="88" cy="25" rx="5" ry="12" fill="#1e293b" transform="rotate(25 88 25)"/>
+    <!-- Cute wide cartoon eyes -->
+    <circle cx="78" cy="38" r="6" fill="#ffffff"/>
+    <circle cx="80" cy="38" r="3.5" fill="#0f172a"/>
+    <circle cx="81.5" cy="36.5" r="1.5" fill="#ffffff"/>
+    <!-- Rosy cheek -->
+    <circle cx="84" cy="48" r="4" fill="#f43f5e" opacity="0.6"/>
+  </g>
+
+  <!-- Hero Shepherd Dog: Buster (Leading on the left) -->
+  <g transform="translate(90, 395)" filter="url(#dropShadow)">
+    <!-- Body -->
+    <ellipse cx="45" cy="55" rx="28" ry="20" fill="#1e293b"/>
+    <ellipse cx="38" cy="55" rx="18" ry="14" fill="#ffffff"/>
+    <!-- Red bandana -->
+    <polygon points="45,45 68,48 56,66" fill="#ef4444"/>
+    <!-- Head -->
+    <ellipse cx="64" cy="38" rx="20" ry="18" fill="#1e293b"/>
+    <ellipse cx="66" cy="42" rx="12" ry="10" fill="#ffffff"/>
+    <!-- Snout & Nose -->
+    <ellipse cx="74" cy="44" rx="8" ry="6" fill="#ffffff"/>
+    <polygon points="76,40 82,40 79,44" fill="#0f172a"/>
+    <!-- Open happy tongue -->
+    <path d="M74 46 Q77 52 80 46 Z" fill="#f43f5e"/>
+    <!-- Eyes -->
+    <circle cx="62" cy="32" r="5" fill="#ffffff"/>
+    <circle cx="63.5" cy="32" r="3" fill="#0f172a"/>
+    <circle cx="64.5" cy="31" r="1" fill="#ffffff"/>
+    <!-- Pointy floppy ear -->
+    <polygon points="52,24 60,12 66,26" fill="#0f172a"/>
+    <!-- Paws running -->
+    <rect x="25" y="65" width="8" height="16" rx="4" fill="#ffffff"/>
+    <rect x="55" y="65" width="8" height="16" rx="4" fill="#ffffff"/>
+  </g>
+
+  <!-- Speed motion wind lines -->
+  <line x1="40" y1="460" x2="110" y2="460" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <line x1="380" y1="475" x2="480" y2="475" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Golden Stars & Confetti Burst -->
+  <polygon points="256,50 262,64 276,64 265,74 269,88 256,79 243,88 247,74 236,64 250,64" fill="#facc15" filter="url(#glow)"/>
+  <polygon points="120,120 124,130 134,130 126,137 129,147 120,140 111,147 114,137 106,130 116,130" fill="#facc15" opacity="0.85"/>
+  <polygon points="380,80 384,90 394,90 386,97 389,107 380,100 371,107 374,97 366,90 376,90" fill="#facc15" opacity="0.85"/>
+</svg>

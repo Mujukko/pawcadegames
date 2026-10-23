@@ -73,15 +73,15 @@ export const TownMapSection: React.FC<TownMapSectionProps> = ({ navigate }) => {
                 className="text-orange-300 hover:text-white bg-slate-900/80 hover:bg-slate-850 px-2 py-1 rounded-lg text-xs font-bold flex items-center gap-1 border border-orange-500/30 transition-colors cursor-pointer"
               >
                 <Info className="w-3.5 h-3.5" />
-                <span>Harita Rehberi</span>
+                <span>Map Guide</span>
               </button>
             </div>
 
             <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight drop-shadow-md">
-              Pawcade Çiftlik & Kasaba Haritası 🗺️🌾
+              Pawcade Farm & Town Map 🗺️🌾
             </h2>
             <p className="text-orange-100 text-xs sm:text-sm font-medium mt-1 leading-relaxed">
-              Her oyun kasabada bir binaya bağlıdır! Oyunlarda seviyeleri tamamlayıp rekor kırdıkça binalar <strong>0/1 Arsa</strong>'dan <strong>3/3 MAX Efsanevi Yapı</strong>'ya dönüşür.
+              Every game is tied to an estate building! Progress through levels and break high scores to upgrade buildings from <strong>0/1 Lot</strong> to <strong>3/3 MAX Legendary Landmark</strong>.
             </p>
           </div>
 
@@ -90,7 +90,7 @@ export const TownMapSection: React.FC<TownMapSectionProps> = ({ navigate }) => {
             <div className="flex items-center justify-between gap-2 mb-1.5">
               <span className="text-xs font-bold text-slate-300 flex items-center gap-1">
                 <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                <span>Kasaba Refahı:</span>
+                <span>Town Prosperity:</span>
               </span>
               <span className="text-lg font-black font-mono text-amber-300">
                 {prosperity.totalStars} / {prosperity.maxStars} ⭐
@@ -108,11 +108,11 @@ export const TownMapSection: React.FC<TownMapSectionProps> = ({ navigate }) => {
             <div className="text-[11px] font-semibold text-slate-400 flex items-center justify-between">
               {prosperity.nextLevelStars ? (
                 <span>
-                  Sonraki Seviye: <strong className="text-white">{prosperity.nextLevelStars} Yıldız</strong> ({prosperity.nextLevelStars - prosperity.totalStars} kaldı)
+                  Next Level: <strong className="text-white">{prosperity.nextLevelStars} Stars</strong> ({prosperity.nextLevelStars - prosperity.totalStars} needed)
                 </span>
               ) : (
                 <span className="text-amber-300 font-bold flex items-center gap-1">
-                  <Sparkles className="w-3.5 h-3.5" /> En Yüksek Seviye (Utopia)!
+                  <Sparkles className="w-3.5 h-3.5" /> Maximum Rank (Utopia)!
                 </span>
               )}
             </div>
@@ -124,13 +124,13 @@ export const TownMapSection: React.FC<TownMapSectionProps> = ({ navigate }) => {
       <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
         <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-1">
           <span className="text-xs font-black text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline">
-            Bölgeler:
+            Districts:
           </span>
           {[
-            { id: 'all', label: 'Tüm Binalar (9)', icon: '🏛️' },
-            { id: 'pets', label: 'Evcil Hayvanlar (3)', icon: '🐾' },
-            { id: 'farm', label: 'Çiftlik & Tarım (4)', icon: '🌾' },
-            { id: 'arcade', label: 'Hava & Gölet (2)', icon: '🦆' },
+            { id: 'all', label: 'All Buildings (9)', icon: '🏛️' },
+            { id: 'pets', label: 'Pets (3)', icon: '🐾' },
+            { id: 'farm', label: 'Farm & Crops (4)', icon: '🌾' },
+            { id: 'arcade', label: 'Air & Pond (2)', icon: '🦆' },
           ].map((cat) => (
             <button
               key={cat.id}
@@ -151,7 +151,7 @@ export const TownMapSection: React.FC<TownMapSectionProps> = ({ navigate }) => {
         </div>
 
         <div className="text-xs text-orange-300 font-semibold flex items-center gap-1">
-          <span>İpucu: Detayları görmek ve oyuna girmek için bir binaya dokun!</span>
+          <span>Tip: Tap any building to inspect upgrades and launch game!</span>
         </div>
       </div>
 
@@ -275,10 +275,10 @@ export const TownMapSection: React.FC<TownMapSectionProps> = ({ navigate }) => {
                   <span className="text-[10px] font-bold text-slate-400 truncate">
                     {isMaxStage ? (
                       <span className="text-amber-300 font-extrabold flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3 text-amber-400" /> MAX Aşama
+                        <CheckCircle2 className="w-3 h-3 text-amber-400" /> MAX Stage
                       </span>
                     ) : (
-                      <span>Hedef: {building.nextStageRequirement} {building.metricLabel}</span>
+                      <span>Goal: {building.nextStageRequirement} {building.metricLabel}</span>
                     )}
                   </span>
 
@@ -290,7 +290,7 @@ export const TownMapSection: React.FC<TownMapSectionProps> = ({ navigate }) => {
                     className="shrink-0 bg-orange-500 hover:bg-orange-400 text-slate-950 text-xs font-black px-3 py-1.5 rounded-xl shadow-md flex items-center gap-1 transition-transform group-hover:scale-105 cursor-pointer"
                   >
                     <Play className="w-3 h-3 fill-slate-950 text-slate-950" />
-                    <span>OYNA</span>
+                    <span>PLAY</span>
                   </button>
                 </div>
               </div>
@@ -323,7 +323,7 @@ export const TownMapSection: React.FC<TownMapSectionProps> = ({ navigate }) => {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">🗺️</span>
-                <h3 className="text-xl font-black text-white">Kasaba Haritası Rehberi</h3>
+                <h3 className="text-xl font-black text-white">Town Map Guide</h3>
               </div>
               <button
                 onClick={() => setShowGuideModal(false)}
@@ -335,28 +335,28 @@ export const TownMapSection: React.FC<TownMapSectionProps> = ({ navigate }) => {
 
             <div className="space-y-3 text-sm text-slate-300">
               <p>
-                <strong>Pawcade Haritası</strong>, oynadığınız 9 oyunun tamamını tek bir yaşayan kasabaya ve çiftlik dünyasına bağlar!
+                <strong>The Pawcade Map</strong> unites all 9 browser games into a single living countryside estate!
               </p>
               <div className="bg-slate-950/80 p-3 rounded-2xl border border-slate-800 space-y-2">
                 <div className="flex items-center gap-2 text-xs font-bold text-slate-400">
                   <span className="bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono">0/1 Lot</span>
-                  <span>Oyun henüz oynanmadı veya ilk aşama tamamlanmadı.</span>
+                  <span>Unplayed game or preliminary tier.</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-bold text-sky-400">
-                  <span className="bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded font-mono">1/3 Aşama</span>
-                  <span>İlk seviye/skor hedefine ulaşıldı, bina temeli inşa edildi!</span>
+                  <span className="bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded font-mono">1/3 Stage</span>
+                  <span>First score goal reached, foundation laid!</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-bold text-purple-400">
-                  <span className="bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded font-mono">2/3 Tesis</span>
-                  <span>Orta hedefe ulaşıldı, tesis genişletildi ve süslendi!</span>
+                  <span className="bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded font-mono">2/3 Facility</span>
+                  <span>Mid-tier goal achieved, facility expanded and decorated!</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-bold text-amber-400">
                   <span className="bg-amber-400 text-slate-950 px-2 py-0.5 rounded font-mono">3/3 MAX</span>
-                  <span>Maksimum seviye/rekor tamamlandı! Efsanevi altın anıt açıldı!</span>
+                  <span>Maximum score mastered! Legendary golden monument unlocked!</span>
                 </div>
               </div>
               <p className="text-xs text-orange-200">
-                ⭐ Her aşama kasabanıza 1 yıldız kazandırır. Toplam 27 yıldız toplayarak kasabanızı <strong>Altın Hayvan Ütopyası (Golden Animal Utopia)</strong> seviyesine yükseltin!
+                ⭐ Each stage completed awards 1 star to your town. Collect all 27 stars to ascend your estate to the <strong>Golden Animal Utopia</strong> rank!
               </p>
             </div>
 
@@ -364,7 +364,7 @@ export const TownMapSection: React.FC<TownMapSectionProps> = ({ navigate }) => {
               onClick={() => setShowGuideModal(false)}
               className="mt-5 w-full bg-orange-500 hover:bg-orange-400 text-slate-950 font-black py-2.5 rounded-xl transition-colors"
             >
-              Anladım, Haritayı Keşfet! 🚀
+              Explore Town Map! 🚀
             </button>
           </div>
         </div>

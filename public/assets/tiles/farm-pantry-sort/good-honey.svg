@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="honeyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="30%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <filter id="honeyGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#78350f" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <g filter="url(#honeyGlow)">
+    <!-- Jar Glass Body -->
+    <rect x="25" y="32" width="50" height="52" rx="14" fill="#ffffff" fill-opacity="0.3" stroke="#d97706" stroke-width="2.5" />
+    <!-- Honey Fill Inside -->
+    <rect x="28" y="42" width="44" height="39" rx="10" fill="url(#honeyGrad)" />
+    <!-- Gloss Reflection -->
+    <path d="M 32 46 Q 32 72 34 76" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.7" />
+
+    <!-- Label with Honeycomb -->
+    <rect x="36" y="52" width="28" height="20" rx="4" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" />
+    <!-- Little Honey Bee / Comb Icon -->
+    <circle cx="50" cy="62" r="5" fill="#f59e0b" />
+    <path d="M 47 62 L 53 62" stroke="#78350f" stroke-width="1.5" />
+    <circle cx="47" cy="59" r="1.5" fill="#ffffff" opacity="0.8" />
+    <circle cx="53" cy="59" r="1.5" fill="#ffffff" opacity="0.8" />
+
+    <!-- Wooden Lid & Rim -->
+    <rect x="28" y="24" width="44" height="10" rx="4" fill="#92400e" stroke="#78350f" stroke-width="2" />
+    <rect x="32" y="20" width="36" height="6" rx="2" fill="#b45309" />
+    <!-- String Tie with Little Tag -->
+    <path d="M 28 32 C 40 34 60 34 72 32" stroke="#d97706" stroke-width="2" fill="none" />
+    <circle cx="68" cy="36" r="3" fill="#fef3c7" stroke="#b45309" stroke-width="1" />
+  </g>
+</svg>

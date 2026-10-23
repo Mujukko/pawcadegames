@@ -45,6 +45,21 @@ const SheepCartJamContainer = lazy(() =>
 const GrainSandFallContainer = lazy(() =>
   import('../games/grain-sand-fall/GrainSandFallContainer').then((m) => ({ default: m.GrainSandFallContainer }))
 );
+const FarmPantrySortContainer = lazy(() =>
+  import('../games/farm-pantry-sort/FarmPantrySortContainer').then((m) => ({ default: m.FarmPantrySortContainer }))
+);
+const CritterTapAwayContainer = lazy(() =>
+  import('../games/critter-tap-away/CritterTapAwayContainer').then((m) => ({ default: m.CritterTapAwayContainer }))
+);
+const EggBusterContainer = lazy(() =>
+  import('../games/egg-buster/EggBusterContainer').then((m) => ({ default: m.EggBusterContainer }))
+);
+const SheepStampedeContainer = lazy(() =>
+  import('../games/sheep-stampede/SheepStampedeContainer').then((m) => ({ default: m.SheepStampedeContainer }))
+);
+const HorseshoeTwistContainer = lazy(() =>
+  import('../games/horseshoe-twist/HorseshoeTwistContainer').then((m) => ({ default: m.HorseshoeTwistContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -74,6 +89,11 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isSheepStampede = gameId === 'sheep-stampede' || gameId === 'mob-control' || gameId === 'colony-flow';
+  const isHorseshoeTwist = gameId === 'horseshoe-twist' || gameId === 'rotate-rings' || gameId === 'ring-unlock';
+  const isEggBuster = gameId === 'egg-buster' || gameId === 'royal-smash' || gameId === 'smash-fest';
+  const isCritterTap = gameId === 'critter-tap-away' || gameId === 'tap-away';
+  const isPantrySort = gameId === 'farm-pantry-sort' || gameId === 'goods-sort';
   const isBlockBlast = gameId === 'farm-block-blast';
   const isSheepJam = gameId === 'sheep-cart-jam';
   const isSandFall = gameId === 'grain-sand-fall';
@@ -157,7 +177,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-orange-500/60 shrink-0" />
           <button onClick={() => navigate('/')} className="hover:text-orange-300 transition-colors cursor-pointer shrink-0">
-            {isChefRat ? 'French Bistro' : isFarmMart ? 'Farm Tycoon' : isDuckRunner ? 'Vampire Runner' : isPetCrush ? 'Trick-or-Treat' : isFlappy ? 'Haunted Flight' : is2048 ? 'Spooky Evolution' : isFarmTetris ? 'Pumpkin Harvest' : isFarm ? 'Haunted Pasture' : 'Spooky Puzzles'}
+            {isSheepStampede ? 'Pasture Rush' : isHorseshoeTwist ? 'Barn Vault' : isEggBuster ? 'Slingshot Smash' : isCritterTap ? 'Critter Tap' : isPantrySort ? 'Pantry Sort' : isChefRat ? 'French Bistro' : isFarmMart ? 'Farm Tycoon' : isDuckRunner ? 'Vampire Runner' : isPetCrush ? 'Trick-or-Treat' : isFlappy ? 'Haunted Flight' : is2048 ? 'Spooky Evolution' : isFarmTetris ? 'Pumpkin Harvest' : isFarm ? 'Haunted Pasture' : 'Spooky Puzzles'}
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-orange-500/60 shrink-0" />
           <span className="text-orange-400 font-bold truncate">{game.title}</span>
@@ -195,7 +215,13 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isBlockBlast
+                isSheepStampede
+                  ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                  : isHorseshoeTwist
+                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+                  : isEggBuster
+                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+                  : isBlockBlast
                   ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
                   : isSheepJam
                   ? 'bg-pink-500/20 text-pink-300 border-pink-500/30'
@@ -221,7 +247,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   ? 'bg-purple-500/20 text-purple-300 border-purple-500/30'
                   : 'bg-orange-500/20 text-orange-400 border-orange-500/30'
               }`}>
-                {isBlockBlast ? '🐶 Farm Block Blast 8x8' : isSheepJam ? '🐑 Sheep Cart Jam: Bus Jam' : isSandFall ? '⏳ Grain Sand Fall Physics' : isChefRat ? '🐭 Chef Rat Rush: Ratatouille Bistro' : isFarmMart ? '🏪 Farm Mini Mart Tycoon' : isDuckRunner ? '🦆🎃 Vampire Duck Runner' : isPetCrush ? '🍬 Spooky Animal Match' : isFlappy ? '👻 Ghost Chicken Flight' : is2048 ? '🦇 Spooky Animal 2048' : isFarmTetris ? '🎃 Haunted Harvest Tetris' : isFarm ? '🐮 Haunted Cow Driving' : isCat ? '🐈‍⬛ Witch Cat Puzzle' : '🦴 Ghost Pup Puzzle'}
+                {isSheepStampede ? '🐕 Sheep Stampede: Pasture Rush' : isHorseshoeTwist ? '🐴 Horseshoe Twist: Barn Unlock' : isEggBuster ? '🐥 Egg Buster Slingshot' : isBlockBlast ? '🐶 Farm Block Blast 8x8' : isSheepJam ? '🐑 Sheep Cart Jam: Bus Jam' : isSandFall ? '⏳ Grain Sand Fall Physics' : isChefRat ? '🐭 Chef Rat Rush: Ratatouille Bistro' : isFarmMart ? '🏪 Farm Mini Mart Tycoon' : isDuckRunner ? '🦆🎃 Vampire Duck Runner' : isPetCrush ? '🍬 Spooky Animal Match' : isFlappy ? '👻 Ghost Chicken Flight' : is2048 ? '🦇 Spooky Animal 2048' : isFarmTetris ? '🎃 Haunted Harvest Tetris' : isFarm ? '🐮 Haunted Cow Driving' : isCat ? '🐈‍⬛ Witch Cat Puzzle' : '🦴 Ghost Pup Puzzle'}
               </span>
               <div className="flex items-center text-amber-400 text-xs font-bold">
                 <Star className="w-3.5 h-3.5 fill-amber-400 mr-1" />
@@ -255,7 +281,17 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isBlockBlast
+                  isSheepStampede
+                    ? '🐕'
+                    : isHorseshoeTwist
+                    ? '🐴'
+                    : isEggBuster
+                    ? '🐥'
+                    : isCritterTap
+                    ? '🐮'
+                    : isPantrySort
+                    ? '🐿️'
+                    : isBlockBlast
                     ? '🐶'
                     : isSheepJam
                     ? '🐑'
@@ -284,7 +320,17 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isBlockBlast ? (
+            {isSheepStampede ? (
+              <SheepStampedeContainer />
+            ) : isHorseshoeTwist ? (
+              <HorseshoeTwistContainer />
+            ) : isEggBuster ? (
+              <EggBusterContainer />
+            ) : isCritterTap ? (
+              <CritterTapAwayContainer />
+            ) : isPantrySort ? (
+              <FarmPantrySortContainer />
+            ) : isBlockBlast ? (
               <FarmBlockBlastContainer />
             ) : isSheepJam ? (
               <SheepCartJamContainer />
@@ -326,7 +372,40 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
 
             <div className="space-y-3 text-sm text-slate-300">
-              {isBlockBlast ? (
+              {isSheepStampede ? (
+                <>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-emerald-400 min-w-24">Desktop:</span>
+                    <span>Use <kbd className="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded text-xs font-mono border border-emerald-500/30">Arrow Keys</kbd> or <kbd className="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded text-xs font-mono border border-emerald-500/30">A/D</kbd> to steer Buster and your flock left and right. Aim for blue math multiplier gates (x2, x3, +20) and steer clear of mud pits and shearers. Press <kbd className="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded text-xs font-mono border border-emerald-500/30">Spacebar</kbd> to start/rush, <kbd className="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded text-xs font-mono border border-emerald-500/30">R</kbd> to restart, and <kbd className="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded text-xs font-mono border border-emerald-500/30">M</kbd> to mute audio.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-emerald-400 min-w-24">Mobile:</span>
+                    <span>Drag your finger left and right across the meadow track to steer your herd! Or tap the on-screen <strong>STEER LEFT</strong> / <strong>STEER RIGHT</strong> buttons. Rescue your flock into the red barn corral!</span>
+                  </div>
+                </>
+              ) : isHorseshoeTwist ? (
+                <>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-amber-400 min-w-24">Desktop:</span>
+                    <span>Click and drag concentric rings around the vault dial to rotate. Or press <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">1</kbd> to <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">4</kbd> to select a ring and use <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">Left/Right Arrow Keys</kbd> or <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">A/D</kbd> to rotate it 30 degrees. Align all notches with the green exit ray to pop the lock! Press <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">R</kbd> to restart and <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">M</kbd> to mute.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-amber-400 min-w-24">Mobile:</span>
+                    <span>Touch and spin the circular rings around the vault center! Or tap the Ring tabs and use the large <strong>ROTATE CCW</strong> / <strong>ROTATE CW</strong> buttons to line up all notches.</span>
+                  </div>
+                </>
+              ) : isEggBuster ? (
+                <>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-amber-400 min-w-24">Desktop:</span>
+                    <span>Click and drag back on the wooden slingshot to aim and power your shot. Release mouse to launch the egg! Use bounces off walls and metal cans to demolish obstacles. Press <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">R</kbd> to restart the stage, and <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">M</kbd> to toggle physics audio.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-amber-400 min-w-24">Mobile:</span>
+                    <span>Touch and drag the slingshot pouch backwards with live dotted trajectory line. Release your finger to launch! Knock down all sneaky foxes to pass.</span>
+                  </div>
+                </>
+              ) : isBlockBlast ? (
                 <>
                   <div className="flex items-start gap-2">
                     <span className="font-bold text-amber-400 min-w-24">Desktop:</span>

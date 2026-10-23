@@ -67,11 +67,11 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
   // Rewarded Video: Boost to 3 Stars
   const handleWatchAdFor3Stars = async (levelNumber: number) => {
     setIsAdLoading(true);
-    setAdMessage('Sponsorlu video yükleniyor...');
+    setAdMessage('Loading sponsored video...');
 
     const result = await webAdManager.showRewardedVideo(
       'level_star_booster',
-      `Seviye ${levelNumber} için 3. yıldız bonusu`
+      `3-star bonus boost for Level ${levelNumber}`
     );
 
     setIsAdLoading(false);
@@ -80,10 +80,10 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
       recordLevelResult(building.id, levelNumber, 3, selectedLevel.bestScore || 1000);
       setSelectedLevel((prev) => ({ ...prev, stars: 3, completed: true }));
       onStateChange();
-      setAdMessage('⭐ Tebrikler! 3 Yıldız başarıyla eklendi!');
+      setAdMessage('⭐ Congratulations! 3 Stars awarded!');
       setTimeout(() => setAdMessage(null), 3500);
     } else {
-      setAdMessage('Video tamamlanamadı veya kapatıldı.');
+      setAdMessage('Video could not be completed.');
       setTimeout(() => setAdMessage(null), 3000);
     }
   };
@@ -139,7 +139,7 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
                     : 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
                 }`}
               >
-                {isBroken ? '⚠️ Onarım Gerekli' : `Aşama ${building.repairStage} / 3 Onarıldı`}
+                {isBroken ? '⚠️ Needs Repair' : `Stage ${building.repairStage} / 3 Restored`}
               </span>
             </div>
 
@@ -151,7 +151,7 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
             </h2>
 
             <p className="text-xs text-slate-400 line-clamp-2 mt-0.5">
-              {isBroken ? building.brokenVisual.description : '30 bölümlük çiftlik ilerleme rotası!'}
+              {isBroken ? building.brokenVisual.description : '30-level farm campaign progression!'}
             </p>
           </div>
         </div>
@@ -166,10 +166,10 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
                 </div>
                 <div>
                   <h4 className="text-xs sm:text-sm font-black text-amber-300">
-                    {building.name} Onarıma Hazır!
+                    {building.name} Ready for Renovation!
                   </h4>
                   <p className="text-[11px] sm:text-xs text-slate-300">
-                    Seviye {tierStart}-{tierEnd} başarıyla tamamlandı ({bracketStars.earned}/30 ⭐).
+                    Levels {tierStart}-{tierEnd} completed ({bracketStars.earned}/30 ⭐).
                   </p>
                 </div>
               </div>
@@ -181,7 +181,7 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
                 className="px-3 sm:px-4 py-2 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-md cursor-pointer transition-transform active:scale-95 shrink-0 flex items-center gap-1.5"
               >
                 <Hammer className="w-4 h-4" />
-                <span>Onar & Yükselt</span>
+                <span>Renovate & Upgrade</span>
               </button>
             </div>
           ) : building.repairStage >= activeTier ? (
@@ -189,7 +189,7 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
               <div className="flex items-center gap-2">
                 <span className="text-base sm:text-lg">✨</span>
                 <span className="text-[11px] sm:text-xs text-emerald-200">
-                  <strong className="text-emerald-400">Aşama {activeTier} Tamamlandı:</strong> Bu aşamadaki tüm onarımlar yapıldı!
+                  <strong className="text-emerald-400">Stage {activeTier} Complete:</strong> All renovations finished for this bracket!
                 </span>
               </div>
               <div className="flex items-center gap-1.5 bg-emerald-900/60 px-2.5 py-1 rounded-full border border-emerald-500/40 text-xs font-black text-emerald-300 shrink-0">
@@ -204,8 +204,8 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
               <div className="flex items-center gap-2">
                 <span className="text-base sm:text-lg">🎯</span>
                 <span className="text-[11px] sm:text-xs text-slate-300">
-                  <strong className="text-amber-400">Aşama {activeTier} Onarımı:</strong> Seviye{' '}
-                  {tierStart}-{tierEnd} arasını 3 yıldızla tamamla!
+                  <strong className="text-amber-400">Stage {activeTier} Goal:</strong> Beat Levels{' '}
+                  {tierStart}-{tierEnd} with 3 stars to unlock!
                 </span>
               </div>
               <div className="flex items-center gap-1.5 bg-slate-900/80 px-2.5 py-1 rounded-full border border-slate-700 text-xs font-bold text-amber-400 shrink-0">
@@ -222,9 +222,9 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
         <div className="flex gap-2 mb-3 shrink-0">
           {(
             [
-              { tier: 1, label: 'Bölüm 1 - 10', milestone: '🔨 Aşama 1: Temel Onarım' },
-              { tier: 2, label: 'Bölüm 11 - 20', milestone: '🚜 Aşama 2: Geliştirme' },
-              { tier: 3, label: 'Bölüm 21 - 30', milestone: '🏰 Aşama 3: Efsanevi' },
+              { tier: 1, label: 'Levels 1 - 10', milestone: '🔨 Stage 1: Basic Repair' },
+              { tier: 2, label: 'Levels 11 - 20', milestone: '🚜 Stage 2: Expansion' },
+              { tier: 3, label: 'Levels 21 - 30', milestone: '🏰 Stage 3: Legendary' },
             ] as const
           ).map((t) => {
             const isActive = activeTier === t.tier;
@@ -336,10 +336,10 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
               </div>
               <div>
                 <div className="text-xs sm:text-sm font-black text-slate-200 flex items-center gap-2">
-                  <span>Seviye {selectedLevel.levelNumber}</span>
+                  <span>Level {selectedLevel.levelNumber}</span>
                   {selectedLevel.completed && (
                     <span className="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 px-2 py-0.5 rounded-full font-bold">
-                      Tamamlandı
+                      Completed
                     </span>
                   )}
                 </div>
@@ -357,7 +357,7 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
                     ))}
                   </div>
                   {selectedLevel.bestScore ? (
-                    <span>• Skor: {selectedLevel.bestScore.toLocaleString('tr-TR')}</span>
+                    <span>• Score: {selectedLevel.bestScore.toLocaleString('en-US')}</span>
                   ) : null}
                 </div>
               </div>
@@ -370,10 +370,10 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
                   onClick={() => handleWatchAdFor3Stars(selectedLevel.levelNumber)}
                   disabled={isAdLoading}
                   className="min-h-[44px] px-3.5 py-2 bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/50 text-purple-300 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 cursor-pointer transition-all active:scale-95 disabled:opacity-50"
-                  title="Kısa sponsorlu video izleyerek 3. yıldızı hemen kazan"
+                  title="Watch short sponsored video to unlock 3 stars instantly"
                 >
                   <Video className="w-3.5 h-3.5 text-purple-400" />
-                  <span>3. Yıldızı Al 🎥</span>
+                  <span>Get 3 Stars 🎥</span>
                 </button>
               )}
 
@@ -384,7 +384,7 @@ export const BuildingLevelTrackModal: React.FC<BuildingLevelTrackModalProps> = (
                 className="flex-1 sm:flex-initial min-h-[44px] px-5 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-black text-sm rounded-xl shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer transition-transform active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <Play className="w-4 h-4 fill-slate-950" />
-                <span>{selectedLevel.completed ? 'Tekrar Oyna' : 'Bölümü Başlat'}</span>
+                <span>{selectedLevel.completed ? 'Replay' : 'Play Level'}</span>
               </button>
             </div>
           </div>

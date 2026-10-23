@@ -339,7 +339,7 @@ export function findMatches(board: TileData[][]): MatchGroup[] {
     }
   }
 
-  // 4. 2x2 Square Matches (4'lü Kare -> Square Dynamite Bomb 🧨)
+  // 4. 2x2 Square Matches (2x2 Square -> Square Dynamite Bomb 🧨)
   const squareUsedCoords = new Set<string>();
   for (let r = 0; r < rows - 1; r++) {
     for (let c = 0; c < cols - 1; c++) {

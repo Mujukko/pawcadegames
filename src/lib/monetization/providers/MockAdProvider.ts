@@ -15,8 +15,8 @@ export class MockAdProvider implements IAdProvider {
       }
 
       const modal = this.createMockModal(
-        '📺 Sponsor Reklam Molası',
-        `Geçiş Reklamı Gösteriliyor (${placement})...`,
+        '📺 Sponsored Ad Break',
+        `Showing Interstitial Ad (${placement})...`,
         () => {
           if (document.body.contains(modal)) document.body.removeChild(modal);
           resolve({ shown: true, rewardEarned: false, provider: 'mock' });
@@ -41,17 +41,17 @@ export class MockAdProvider implements IAdProvider {
         return;
       }
 
-      let desc = 'Kısa video izleniyor...';
+      let desc = 'Watching short video sponsor...';
       if (placement === 'renovation_fast_track') {
-        desc = '🔨 Hızlı Onarım & Malzeme Desteği için sponsor videosu izleniyor!';
+        desc = '🔨 Watching sponsored video for Quick Repair & Building Materials!';
       } else if (placement === 'level_star_booster') {
-        desc = '⭐ Bu bölümü 3 Yıldız yapmak için sponsor videosu izleniyor!';
+        desc = '⭐ Watching sponsored video to boost this level to 3 Stars!';
       } else if (placement === 'gameplay_lifeline') {
-        desc = '🎁 +3 Ek Hamle / Kurtarma Desteği için sponsor videosu izleniyor!';
+        desc = '🎁 Watching sponsored video for +3 Extra Moves / Rescue Lifeline!';
       }
 
       const modal = this.createMockModal(
-        '🎁 Ödüllü Sponsor Videosu (Rewarded Ad)',
+        '🎁 Rewarded Sponsored Video',
         desc,
         () => {
           if (document.body.contains(modal)) document.body.removeChild(modal);
@@ -70,10 +70,10 @@ export class MockAdProvider implements IAdProvider {
       el.innerHTML = `
         <div class="w-full max-w-2xl mx-auto py-2 px-4 bg-slate-900/90 border border-orange-500/30 rounded-xl flex items-center justify-between text-xs text-slate-300 shadow-md">
           <div class="flex items-center gap-2">
-            <span class="bg-orange-500/20 text-orange-400 font-bold px-1.5 py-0.5 rounded text-[10px] uppercase">Sponsor</span>
-            <span class="font-semibold text-slate-200">Pawcade Çiftlik Dünyası — Ücretsiz Çevrimiçi Tarayıcı Oyunları</span>
+            <span class="bg-orange-500/20 text-orange-400 font-bold px-1.5 py-0.5 rounded text-[10px] uppercase">Sponsored</span>
+            <span class="font-semibold text-slate-200">Pawcade Barnyard World — Free Online Browser Games</span>
           </div>
-          <span class="text-orange-400 font-bold hidden sm:inline">Reklam Alanı 🏷️</span>
+          <span class="text-orange-400 font-bold hidden sm:inline">Ad Space 🏷️</span>
         </div>`;
     }
   }
@@ -99,7 +99,7 @@ export class MockAdProvider implements IAdProvider {
         <h3 class="text-lg font-black text-white mb-1">${title}</h3>
         <p class="text-xs text-slate-300 mb-5 leading-relaxed">${desc}</p>
         <button id="mock-ad-action-btn" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-slate-950 font-black py-2.5 px-4 rounded-xl shadow-lg transition-transform hover:scale-102 cursor-pointer text-xs">
-          ${isRewarded ? 'Ödülü Al (Videoyu Tamamla) ➔' : 'Geç (Devam Et) ➔'}
+          ${isRewarded ? 'Claim Reward (Complete Video) ➔' : 'Skip & Continue ➔'}
         </button>
       </div>`;
 

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Pasture Gradient -->
+    <linearGradient id="skyMeadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#bae6fd" />
+      <stop offset="51%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+
+    <!-- 3D Cube Drop Shadow -->
+    <filter id="cubeGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#064e3b" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Sky & Meadow Background -->
+  <rect width="512" height="512" fill="url(#skyMeadow)" />
+
+  <!-- Wooden Barn Fence Gate in Background -->
+  <rect x="40" y="240" width="432" height="16" rx="4" fill="#92400e" stroke="#78350f" stroke-width="2" />
+  <rect x="40" y="300" width="432" height="16" rx="4" fill="#92400e" stroke="#78350f" stroke-width="2" />
+  <rect x="100" y="220" width="20" height="120" rx="4" fill="#b45309" stroke="#78350f" stroke-width="2" />
+  <rect x="400" y="220" width="20" height="120" rx="4" fill="#b45309" stroke="#78350f" stroke-width="2" />
+
+  <!-- Motion Zoom Lines radiating outward -->
+  <path d="M 256 256 L 120 100 M 256 256 L 392 100 M 256 256 L 440 340 M 256 256 L 80 340" stroke="#ffffff" stroke-width="3" stroke-dasharray="8 6" opacity="0.6" />
+
+  <!-- 1. Center Leaping Critter: Bessie the Cow (Escaping Upwards) -->
+  <g transform="translate(196, 70)" filter="url(#cubeGlow)">
+    <!-- 3D Rounded Cube Body -->
+    <rect x="0" y="0" width="120" height="120" rx="28" fill="#ffffff" stroke="#0f172a" stroke-width="4" />
+    <!-- Cow Spots -->
+    <ellipse cx="28" cy="28" rx="18" ry="14" fill="#0f172a" />
+    <ellipse cx="96" cy="74" rx="16" ry="20" fill="#0f172a" />
+    <!-- Ears -->
+    <ellipse cx="-4" cy="20" rx="14" ry="7" transform="rotate(-30 -4 20)" fill="#fed7aa" stroke="#0f172a" stroke-width="3" />
+    <ellipse cx="124" cy="20" rx="14" ry="7" transform="rotate(30 124 20)" fill="#fed7aa" stroke="#0f172a" stroke-width="3" />
+    <!-- Cute Eyes -->
+    <circle cx="42" cy="52" r="7" fill="#0f172a" />
+    <circle cx="40" cy="49" r="2.5" fill="#ffffff" />
+    <circle cx="78" cy="52" r="7" fill="#0f172a" />
+    <circle cx="76" cy="49" r="2.5" fill="#ffffff" />
+    <!-- Pink Muzzle -->
+    <rect x="32" y="72" width="56" height="34" rx="16" fill="#fbcfe8" stroke="#f43f5e" stroke-width="2.5" />
+    <circle cx="48" cy="88" r="3" fill="#e11d48" />
+    <circle cx="72" cy="88" r="3" fill="#e11d48" />
+
+    <!-- Big Neon Glowing Direction Arrow Pointing UP -->
+    <path d="M 60 -18 L 82 2 L 68 2 L 68 18 L 52 18 L 52 2 L 38 2 Z" fill="#22c55e" stroke="#ffffff" stroke-width="2.5" filter="url(#cubeGlow)" />
+  </g>
+
+  <!-- 2. Left Flying Critter: Barnaby Pig (Escaping Left) -->
+  <g transform="translate(60, 240)" filter="url(#cubeGlow)">
+    <rect x="0" y="0" width="105" height="105" rx="24" fill="#f472b6" stroke="#9d174d" stroke-width="4" />
+    <!-- Ears -->
+    <polygon points="15,-8 35,5 10,18" fill="#be185d" stroke="#9d174d" stroke-width="2" />
+    <polygon points="90,-8 70,5 95,18" fill="#be185d" stroke="#9d174d" stroke-width="2" />
+    <!-- Eyes -->
+    <circle cx="36" cy="46" r="6" fill="#1e293b" />
+    <circle cx="34" cy="44" r="2" fill="#ffffff" />
+    <circle cx="70" cy="46" r="6" fill="#1e293b" />
+    <circle cx="68" cy="44" r="2" fill="#ffffff" />
+    <!-- Snout -->
+    <ellipse cx="52.5" cy="68" rx="22" ry="16" fill="#fbcfe8" stroke="#db2777" stroke-width="2" />
+    <ellipse cx="44" cy="68" rx="3.5" ry="5.5" fill="#9d174d" />
+    <ellipse cx="61" cy="68" rx="3.5" ry="5.5" fill="#9d174d" />
+
+    <!-- Neon Arrow Left -->
+    <path d="M -16 52.5 L 4 32 L 4 44 L 20 44 L 20 61 L 4 61 L 4 73 Z" fill="#38bdf8" stroke="#ffffff" stroke-width="2" />
+  </g>
+
+  <!-- 3. Right Flying Critter: Woolly Sheep (Escaping Right) -->
+  <g transform="translate(340, 240)" filter="url(#cubeGlow)">
+    <rect x="0" y="0" width="105" height="105" rx="24" fill="#f0f9ff" stroke="#0284c7" stroke-width="4" />
+    <!-- Fluffy Wool Tuft -->
+    <circle cx="35" cy="12" r="14" fill="#e0f2fe" />
+    <circle cx="52" cy="8" r="16" fill="#e0f2fe" />
+    <circle cx="70" cy="12" r="14" fill="#e0f2fe" />
+    <!-- Peach Face -->
+    <ellipse cx="52.5" cy="60" rx="32" ry="26" fill="#ffedd5" stroke="#f97316" stroke-width="2" />
+    <!-- Sparkly Eyes -->
+    <circle cx="40" cy="56" r="5.5" fill="#1e293b" />
+    <circle cx="38" cy="54" r="2" fill="#ffffff" />
+    <circle cx="65" cy="56" r="5.5" fill="#1e293b" />
+    <circle cx="63" cy="54" r="2" fill="#ffffff" />
+    <!-- Smiling Mouth -->
+    <path d="M 46 72 Q 52.5 78 59 72" stroke="#ea580c" stroke-width="2" fill="none" stroke-linecap="round" />
+
+    <!-- Neon Arrow Right -->
+    <path d="M 121 52.5 L 101 32 L 101 44 L 85 44 L 85 61 L 101 61 L 101 73 Z" fill="#facc15" stroke="#ffffff" stroke-width="2" />
+  </g>
+
+  <!-- Title Badge Banner -->
+  <g transform="translate(256, 455)">
+    <rect x="-180" y="-32" width="360" height="54" rx="27" fill="#1e1b4b" stroke="#38bdf8" stroke-width="4" filter="url(#cubeGlow)" />
+    <text x="0" y="6" text-anchor="middle" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="24" letter-spacing="2">TAP TO ESCAPE!</text>
+  </g>
+</svg>

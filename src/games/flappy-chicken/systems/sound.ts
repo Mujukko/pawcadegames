@@ -38,7 +38,7 @@ class FlappyChickenSoundManager {
   }
 
   /**
-   * Procedural Cartoon Chicken Cluck ("Gıdak! / Bok-bawk!")
+   * Procedural Cartoon Chicken Cluck ("Cluck! / Bok-bawk!")
    */
   public playCluck(): void {
     if (this.muted) return;
@@ -74,7 +74,7 @@ class FlappyChickenSoundManager {
       noiseGain.connect(this.ctx.destination);
       noise.start(now);
 
-      // 2. Formant-modeled Chicken Vocalization ("Bok!" / "Gıdak!")
+      // 2. Formant-modeled Chicken Vocalization ("Bok!" / "Cluck!")
       const osc1 = this.ctx.createOscillator();
       const osc2 = this.ctx.createOscillator();
       const formantFilter = this.ctx.createBiquadFilter();
@@ -148,7 +148,7 @@ class FlappyChickenSoundManager {
         osc1.stop(now + part1 + part2);
         osc2.stop(now + part1 + part2);
       } else {
-        // High-pitched "Gı-dak!"
+        // High-pitched "Cluck-bawk!"
         const duration = 0.12;
         osc1.frequency.setValueAtTime(480, now);
         osc1.frequency.exponentialRampToValueAtTime(1250, now + 0.04);

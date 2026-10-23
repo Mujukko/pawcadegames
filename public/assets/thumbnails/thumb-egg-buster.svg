@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Sky & Farm Hill Background -->
+    <linearGradient id="eggSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="60%" stop-color="#bae6fd" />
+      <stop offset="61%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+
+    <!-- 3D Shadow Filter -->
+    <filter id="eggShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="512" height="512" fill="url(#eggSky)" />
+
+  <!-- Distant Barn Silo & Red Barn Roof -->
+  <polygon points="360,180 460,240 460,312 360,312" fill="#dc2626" stroke="#991b1b" stroke-width="3" />
+  <rect x="440" y="160" width="40" height="152" rx="10" fill="#cbd5e1" stroke="#64748b" stroke-width="3" />
+
+  <!-- Dotted Trajectory Arc -->
+  <path d="M 120 320 Q 240 120 380 280" fill="none" stroke="#ffffff" stroke-width="4" stroke-dasharray="10 8" opacity="0.8" />
+
+  <!-- Wooden Slingshot Fork -->
+  <g transform="translate(70, 270)" filter="url(#eggShadow)">
+    <!-- Slingshot Wooden Branch -->
+    <path d="M 40 120 L 40 70 L 15 20 M 40 70 L 65 20" fill="none" stroke="#92400e" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 40 120 L 40 70 L 15 20 M 40 70 L 65 20" fill="none" stroke="#d97706" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Stretched Rubber Bands -->
+    <line x1="15" y1="20" x2="-25" y2="50" stroke="#78350f" stroke-width="4" />
+    <line x1="65" y1="20" x2="-25" y2="50" stroke="#78350f" stroke-width="4" />
+
+    <!-- Leather Pouch with Golden Egg Loaded -->
+    <ellipse cx="-25" cy="50" rx="14" ry="10" fill="#451a03" />
+    <ellipse cx="-25" cy="50" rx="12" ry="16" fill="#facc15" stroke="#ca8a04" stroke-width="2.5" />
+    <circle cx="-28" cy="46" r="2.5" fill="#ffffff" />
+  </g>
+
+  <!-- Pippin the Chick Hero Character (Slingshot Shooter) -->
+  <g transform="translate(10, 270)" filter="url(#eggShadow)">
+    <!-- Round Chubby Yellow Chick Body -->
+    <ellipse cx="40" cy="55" rx="34" ry="32" fill="#facc15" stroke="#ca8a04" stroke-width="3" />
+    <!-- Red Headband / Bandana -->
+    <path d="M 12 36 Q 40 28 68 36" stroke="#ef4444" stroke-width="7" stroke-linecap="round" fill="none" />
+    <polygon points="10,38 -2,42 6,52" fill="#ef4444" />
+
+    <!-- Big Determined Eyes -->
+    <ellipse cx="38" cy="48" rx="7" ry="8" fill="#1e293b" />
+    <circle cx="36" cy="45" r="2.8" fill="#ffffff" />
+    <ellipse cx="58" cy="48" rx="7" ry="8" fill="#1e293b" />
+    <circle cx="56" cy="45" r="2.8" fill="#ffffff" />
+
+    <!-- Orange Beak -->
+    <polygon points="44,54 58,54 51,64" fill="#f97316" stroke="#ea580c" stroke-width="2" />
+    <!-- Wing Pulling Pouch -->
+    <ellipse cx="32" cy="62" rx="12" ry="8" fill="#f59e0b" stroke="#ca8a04" stroke-width="2" />
+  </g>
+
+  <!-- Target Stack on the Right (Wooden Crates & Sneaky Fox) -->
+  <g transform="translate(340, 220)" filter="url(#eggShadow)">
+    <!-- Wooden Crate 1 -->
+    <rect x="0" y="90" width="60" height="50" rx="4" fill="#92400e" stroke="#78350f" stroke-width="3" />
+    <line x1="0" y1="90" x2="60" y2="140" stroke="#78350f" stroke-width="2" />
+    <line x1="60" y1="90" x2="0" y2="140" stroke="#78350f" stroke-width="2" />
+
+    <!-- Wooden Crate 2 -->
+    <rect x="0" y="38" width="60" height="50" rx="4" fill="#92400e" stroke="#78350f" stroke-width="3" />
+    <line x1="0" y1="38" x2="60" y2="88" stroke="#78350f" stroke-width="2" />
+    <line x1="60" y1="38" x2="0" y2="88" stroke="#78350f" stroke-width="2" />
+
+    <!-- Sneaky Fox perched on top with swirling stars -->
+    <g transform="translate(5, -20)">
+      <!-- Fox Head -->
+      <polygon points="25,5 10,-15 15,20" fill="#ea580c" stroke="#9a3412" stroke-width="2" />
+      <polygon points="25,5 40,-15 35,20" fill="#ea580c" stroke="#9a3412" stroke-width="2" />
+      <polygon points="5,15 45,15 25,45" fill="#ea580c" stroke="#9a3412" stroke-width="2.5" />
+      <polygon points="12,18 38,18 25,38" fill="#ffedd5" />
+      <circle cx="25" cy="40" r="3" fill="#1e293b" />
+      <circle cx="18" cy="24" r="3" fill="#1e293b" />
+      <circle cx="32" cy="24" r="3" fill="#1e293b" />
+      <!-- Panic Exclamation Marks -->
+      <text x="38" y="0" fill="#facc15" font-family="system-ui" font-weight="900" font-size="20">!</text>
+    </g>
+  </g>
+
+  <!-- Big Gold Title Banner -->
+  <g transform="translate(256, 455)">
+    <rect x="-180" y="-32" width="360" height="54" rx="27" fill="#1e1b4b" stroke="#facc15" stroke-width="4" filter="url(#eggShadow)" />
+    <text x="0" y="6" text-anchor="middle" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="24" letter-spacing="2">SMASH FEST!</text>
+  </g>
+</svg>

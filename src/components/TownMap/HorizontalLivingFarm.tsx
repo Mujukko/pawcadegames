@@ -110,11 +110,11 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
   const farmPercent = Math.min(100, Math.floor((totalRepairs / maxRepairs) * 100));
 
   const getFarmRank = () => {
-    if (totalRepairs >= 24) return { title: 'Efsanevi Çiftlik Krallığı 🌟🏰', emoji: '🏰' };
-    if (totalRepairs >= 16) return { title: 'Modern Çiftlik Cenneti 🚜🌾', emoji: '🚜' };
-    if (totalRepairs >= 9) return { title: 'Gelişmiş Sevimli Köy 🏡✨', emoji: '🏡' };
-    if (totalRepairs >= 1) return { title: 'Onarılan Köy Arazisi 🪵🔨', emoji: '🪵' };
-    return { title: 'Harap & Kırık Çiftlik (Onarım Bekliyor) ⚠️🏚️', emoji: '🏚️' };
+    if (totalRepairs >= 24) return { title: 'Legendary Farm Kingdom 🌟🏰', emoji: '🏰' };
+    if (totalRepairs >= 16) return { title: 'Modern Farm Haven 🚜🌾', emoji: '🚜' };
+    if (totalRepairs >= 9) return { title: 'Charming Country Village 🏡✨', emoji: '🏡' };
+    if (totalRepairs >= 1) return { title: 'Restored Homestead 🪵🔨', emoji: '🪵' };
+    return { title: 'Rustic Broken Farm (Awaiting Repairs) ⚠️🏚️', emoji: '🏚️' };
   };
 
   const farmRank = getFarmRank();
@@ -134,16 +134,16 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-sm sm:text-base font-black text-amber-400 tracking-wide">
-                  Pawcade Yaşayan Çiftlik
+                  Pawcade Living Farm
                 </h1>
                 <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
-                  Yatay Panorama
+                  Panorama
                 </span>
               </div>
               <p className="text-xs text-slate-400 flex items-center gap-2 mt-0.5">
                 <span>{farmRank.title}</span>
                 <span className="text-slate-600">•</span>
-                <span className="text-amber-300 font-bold">%{farmPercent} İlerleme</span>
+                <span className="text-amber-300 font-bold">{farmPercent}% Progress</span>
               </p>
             </div>
           </div>
@@ -154,7 +154,7 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
             <div className="flex items-center gap-1.5 bg-slate-800/90 border border-amber-500/40 px-3 py-1.5 rounded-xl shadow-inner">
               <Star className="w-4 h-4 fill-amber-400 text-amber-400 animate-pulse" />
               <div className="text-xs">
-                <span className="text-slate-400 font-semibold hidden sm:inline">Yıldız: </span>
+                <span className="text-slate-400 font-semibold hidden sm:inline">Stars: </span>
                 <strong className="text-amber-300 font-black">{farmState.totalStars}</strong>
               </div>
             </div>
@@ -163,7 +163,7 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
             <div className="flex items-center gap-1.5 bg-slate-800/90 border border-emerald-500/40 px-3 py-1.5 rounded-xl shadow-inner">
               <Hammer className="w-4 h-4 text-emerald-400" />
               <div className="text-xs">
-                <span className="text-slate-400 font-semibold hidden sm:inline">Onarım: </span>
+                <span className="text-slate-400 font-semibold hidden sm:inline">Repairs: </span>
                 <strong className="text-emerald-300 font-black">
                   {buildings.filter((b) => b.repairStage > 0).length} / {buildings.length}
                 </strong>
@@ -173,7 +173,7 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
             {/* Sound Toggle (>= 44x44px touch target) */}
             <button
               onClick={() => setSoundEnabled(!soundEnabled)}
-              aria-label={soundEnabled ? 'Sesi Kapat' : 'Sesi Aç'}
+              aria-label={soundEnabled ? 'Mute Sound' : 'Unmute Sound'}
               className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 flex items-center justify-center transition-colors cursor-pointer"
             >
               {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
@@ -184,10 +184,10 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
               <button
                 onClick={onSwitchToGrid}
                 className="flex items-center gap-1.5 px-3 py-1.5 min-h-[40px] rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs font-bold transition-all cursor-pointer"
-                title="Klasik Oyun Listesi Görünümüne Geç"
+                title="Switch to Arcade Game Grid"
               >
                 <LayoutGrid className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Liste Görünümü</span>
+                <span className="hidden sm:inline">Game Grid</span>
               </button>
             )}
           </div>
@@ -199,7 +199,7 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
         {/* Left / Right Scroll Navigation Arrows */}
         <button
           onClick={() => handleScroll('left')}
-          aria-label="Sola Kaydır"
+          aria-label="Scroll Left"
           className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-slate-900/80 hover:bg-slate-800 text-amber-400 border border-amber-500/40 shadow-xl backdrop-blur-sm flex items-center justify-center transition-transform hover:scale-110 active:scale-95 cursor-pointer"
         >
           <ChevronLeft className="w-6 h-6" />
@@ -207,7 +207,7 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
 
         <button
           onClick={() => handleScroll('right')}
-          aria-label="Sağa Kaydır"
+          aria-label="Scroll Right"
           className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-slate-900/80 hover:bg-slate-800 text-amber-400 border border-amber-500/40 shadow-xl backdrop-blur-sm flex items-center justify-center transition-transform hover:scale-110 active:scale-95 cursor-pointer"
         >
           <ChevronRight className="w-6 h-6" />
@@ -333,14 +333,14 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
                       {/* Broken Visual Distressing Overlay */}
                       {isBroken && (
                         <div className="absolute top-2 right-2 bg-rose-500/20 text-rose-300 border border-rose-500/50 text-[10px] font-black uppercase px-2 py-0.5 rounded-full animate-pulse">
-                          ⚠️ HARAP
+                          ⚠️ DAMAGED
                         </div>
                       )}
 
                       {!isBroken && (
                         <div className="absolute top-2 right-2 bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 text-[10px] font-black uppercase px-2 py-0.5 rounded-full flex items-center gap-1">
                           <Sparkles className="w-2.5 h-2.5 text-emerald-400" />
-                          <span>Aşama {b.repairStage}/3</span>
+                          <span>Stage {b.repairStage}/3</span>
                         </div>
                       )}
 
@@ -380,7 +380,7 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
                       {/* Progress Bar (Stars / Bracket) */}
                       <div className="mt-3 pt-2.5 border-t border-slate-800">
                         <div className="flex items-center justify-between text-[11px] mb-1">
-                          <span className="text-slate-400 font-medium">Bölüm 1-10:</span>
+                          <span className="text-slate-400 font-medium">Levels 1-10:</span>
                           <span className="text-amber-400 font-bold flex items-center gap-1">
                             <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                             <span>
@@ -409,7 +409,7 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
                       {/* Tap to View 1-30 Track CTA */}
                       <div className="mt-3 flex items-center justify-center gap-1.5 py-1.5 bg-slate-800/80 group-hover:bg-amber-500 group-hover:text-slate-950 text-slate-300 rounded-xl text-xs font-black transition-colors">
                         <Play className="w-3.5 h-3.5 fill-current" />
-                        <span>1-30 Bölümleri Aç</span>
+                        <span>Open Levels 1-30</span>
                       </div>
                     </div>
                   </div>
@@ -426,8 +426,7 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
           <div className="flex items-center gap-2">
             <span className="text-amber-400">📢</span>
             <span className="text-slate-400 text-[11px] sm:text-xs">
-              <strong className="text-slate-200">Reklam Alanı:</strong> Oyun keyfinizi kesintiye
-              uğratmayan güvenli banner bölgesi.
+              <strong className="text-slate-200">Sponsored:</strong> Seamless arcade experience with zero intrusive popups.
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -435,7 +434,7 @@ export const HorizontalLivingFarm: React.FC<HorizontalLivingFarmProps> = ({
               728x90 Safe Zone
             </span>
             <span className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">
-              Poki / H5 Uyumlu
+              H5 Compliant
             </span>
           </div>
         </div>

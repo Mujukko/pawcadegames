@@ -20,6 +20,196 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'sheep-stampede': {
+    title: 'Sheep Stampede: Pasture Rush',
+    subtitle: 'Mob Multiplier & Meadow Runner',
+    mascot: '🐕🐑',
+    themeColor: 'from-emerald-500 via-teal-600 to-indigo-900',
+    goal: 'Steer Buster the Sheepdog and your herd through math multiplier gates, dodge hazards, and stampede into the big red barn corral!',
+    steps: [
+      {
+        icon: '↔️',
+        title: '1. Steer Across the Track',
+        desc: 'Drag your finger or press Arrow Keys / A & D to steer Buster and the flock left and right across the lush pasture.',
+      },
+      {
+        icon: '✖️',
+        title: '2. Hit Blue Math Gates',
+        desc: 'Pass through glowing blue multiplier gates (x2, x3, +10, +20) to rapidly grow your flock into an unstoppable herd!',
+      },
+      {
+        icon: '🏡',
+        title: '3. Stampede into the Barn',
+        desc: 'Dodge mud pits and shearing blades. Reach the finish line corral with as many sheep as possible for huge score bonuses!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Arrow Keys / A & D: Steer flock left and right',
+        'Spacebar / Enter: Start stampede / Next level',
+        'R Key: Quick restart level',
+        'M Key: Toggle sheep vocals and sound effects',
+      ],
+      mobile: [
+        'Touch & Drag: Swipe horizontally across track to steer',
+        'Tap Buttons: Use on-screen Steer Left and Right controls',
+        'Multiply Flock: Pass through blue gates to grow your herd',
+      ],
+    },
+    proTip: 'Look ahead down the track! Sometimes taking a small subtraction gate (-5) puts you in perfect position to hit a massive multiplier (x3) right behind it!',
+  },
+  'horseshoe-twist': {
+    title: 'Horseshoe Twist: Barn Unlock',
+    subtitle: 'Concentric Ring Unlock Puzzle',
+    mascot: '🐴🔓',
+    themeColor: 'from-amber-500 via-yellow-600 to-amber-900',
+    goal: 'Rotate concentric wooden and iron rings to align all open notches with the green exit path, releasing the Lucky Golden Horseshoe!',
+    steps: [
+      {
+        icon: '🔄',
+        title: '1. Rotate Concentric Rings',
+        desc: 'Drag around any ring dial or use CW / CCW buttons to spin the circular tumblers clockwise or counter-clockwise.',
+      },
+      {
+        icon: '⚙️',
+        title: '2. Master Geared Linkages',
+        desc: 'In higher levels, turning one gear wheel rotates linked rings! Plan your moves to line up all notches together.',
+      },
+      {
+        icon: '🧲',
+        title: '3. Pop the Lucky Horseshoe',
+        desc: 'When all ring notches line up with the green laser guide, the locking pins slide free and pop the vault open!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Drag: Drag around rings to rotate dial angle',
+        'Arrow Keys / A & D: Rotate selected ring CW / CCW',
+        '1-4 Keys: Select concentric Ring 1, 2, 3, or 4',
+        'R Key: Quick restart level',
+        'M Key: Toggle mechanical ratchet audio',
+      ],
+      mobile: [
+        'Touch Drag: Rotate concentric rings directly around the vault dial',
+        'Step Buttons: Tap Rotate CCW (-30°) or Rotate CW (+30°)',
+        'Ring Tabs: Tap Ring 1, 2, 3, 4 to switch active tumbler',
+      ],
+    },
+    proTip: 'Work from the geared linked rings first! Once the linked rings are aligned in harmony, adjust the independent free rings to finish the lock.',
+  },
+  'egg-buster': {
+    title: 'Egg Buster: Barnyard Smash',
+    subtitle: 'Slingshot Demolition & Physics Puzzle',
+    mascot: '🐥🥚',
+    themeColor: 'from-amber-500 via-orange-600 to-red-900',
+    goal: 'Help Pippin the Chick fire bouncy farm eggs from the slingshot to shatter wooden barricades and eliminate all invading foxes!',
+    steps: [
+      {
+        icon: '🏹',
+        title: '1. Pull Back & Aim',
+        desc: 'Drag back on the slingshot pouch to adjust launch angle and firing speed. Follow the real-time dotted trajectory arc to target obstacles.',
+      },
+      {
+        icon: '💥',
+        title: '2. Smash Wooden Barricades',
+        desc: 'Release to fling the egg! Smash through fragile wooden crates and bounce off elastic metal milk churns to reach hidden targets.',
+      },
+      {
+        icon: '🦊',
+        title: '3. Eliminate All Foxes',
+        desc: 'Knock every sneaky fox off their perches before your egg supply runs out to clear the stage and unlock the next challenge!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Drag: Pull back slingshot pouch to aim',
+        'Release: Launch bouncy egg projectile',
+        'R Key: Quick restart level',
+        'M Key: Toggle physics sound effects',
+      ],
+      mobile: [
+        'Touch Drag: Pull back on slingshot with dotted trajectory',
+        'Release: Launch projectile',
+        'Eliminate Foxes: Clear all targets to complete level',
+      ],
+    },
+    proTip: 'Target the foundation crates at the bottom of tall towers! Toppling the structure from below causes massive chain-reaction crush damage!',
+  },
+  'critter-tap-away': {
+    title: 'Critter Tap Away: Barn Escape',
+    subtitle: '3D Animal Cube Untangle & Escape',
+    mascot: '🐮🐷🐰',
+    themeColor: 'from-emerald-500 via-teal-600 to-indigo-900',
+    goal: 'Untangle the crowded barnyard pen by tapping farm animal cubes whose outward paths are clear to set them free!',
+    steps: [
+      {
+        icon: '👀',
+        title: '1. Check Direction Arrows',
+        desc: 'Each animal cube faces in a specific direction (Up, Down, Left, or Right). Look for animals with glowing green arrows pointing toward an open exit.',
+      },
+      {
+        icon: '👆',
+        title: '2. Tap Clear Animals',
+        desc: 'Tap any animal whose path is clear to launch them into the meadow! If blocked by another animal, they will bonk and stay in place.',
+      },
+      {
+        icon: '🚪',
+        title: '3. Unlock the Pen',
+        desc: 'Freeing perimeter animals opens up paths for the inner animals trapped deeper in the maze. Clear all critters to win!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Click Critter: Tap an animal to attempt escape',
+        'R Key: Quick restart level',
+        'M Key: Toggle animal sound effects',
+      ],
+      mobile: [
+        'Tap Critter: Tap any animal on the board',
+        'Watch Glowing Arrows: Indicates clear exit paths',
+        'Clear Pen: Free all animals to finish the level',
+      ],
+    },
+    proTip: 'Work from the outer edges inward! Clearing perimeter critters creates open escape corridors for the trapped animals in the center.',
+  },
+  'farm-pantry-sort': {
+    title: 'Farm Pantry Sort: Triple Pick',
+    subtitle: 'Triple Goods Match & Pantry Organizing',
+    mascot: '🐿️🍯',
+    themeColor: 'from-amber-500 via-yellow-600 to-amber-900',
+    goal: 'Help Sammy the Squirrel organize Grandma\'s pantry shelves by grouping 3 identical farm goods together to clear the cupboard!',
+    steps: [
+      {
+        icon: '🍯',
+        title: '1. Pick & Move Goods',
+        desc: 'Tap any jar, bottle, or pie on the shelves to select it, then tap an open slot on another shelf to transfer it.',
+      },
+      {
+        icon: '✨',
+        title: '2. Triple Match Clear',
+        desc: 'Group 3 matching goods (e.g. 3 Honey Jars or 3 Milk Bottles) on the same shelf to trigger an explosive triple-clear!',
+      },
+      {
+        icon: '📦',
+        title: '3. Reveal Hidden Reserves',
+        desc: 'Clearing front slots pulls forward reserve items stocked behind the shelf. Clear all items before time expires to win!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Click Item: Select jar or basket from shelf',
+        'Click Open Shelf: Move item to open slot',
+        'R Key: Quick restart level',
+        'M Key: Toggle pantry sound effects',
+      ],
+      mobile: [
+        'Tap to Select: Lift an item from its shelf',
+        'Tap Target Slot: Place into any open slot',
+        'Triple Match: Group 3 of the same goods to clear',
+      ],
+    },
+    proTip: 'Use empty shelves as temporary staging zones to group matching goods together before committing your final matches!',
+  },
   'farm-block-blast': {
     title: 'Farm Block Blast: Barnyard Grid',
     subtitle: 'Classic 8x8 Wooden Polyomino Blast',
@@ -507,7 +697,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
           <button
             onClick={onClose}
             aria-label="Close dialog"
-            className="w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 border border-white/20 flex items-center justify-center text-slate-200 hover:text-white transition-colors cursor-pointer shrink-0"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-black/40 hover:bg-black/60 border border-white/20 flex items-center justify-center text-slate-200 hover:text-white transition-colors cursor-pointer shrink-0"
           >
             <X className="w-5 h-5" />
           </button>

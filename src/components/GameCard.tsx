@@ -186,7 +186,7 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onClick }) => {
             </span>
           </div>
 
-          {/* HOVER / TAP OVERLAY: "Üzerine gelince minik bir yazı gelsin" (100% US English) */}
+          {/* HOVER / TAP OVERLAY: Responsive teaser card with tagline and Play CTA */}
           <div className="absolute inset-0 z-20 flex flex-col justify-between p-3.5 sm:p-4 bg-slate-950/92 backdrop-blur-md opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-all duration-200 pointer-events-none border border-amber-400/50 rounded-2xl sm:rounded-3xl">
             <div className="space-y-1.5">
               <div className="flex items-center gap-1.5">

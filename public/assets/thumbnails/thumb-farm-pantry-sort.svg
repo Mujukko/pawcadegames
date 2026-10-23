@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Pantry Room Gradient -->
+    <linearGradient id="pantryWall" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#451a03" />
+      <stop offset="50%" stop-color="#78350f" />
+      <stop offset="100%" stop-color="#291102" />
+    </linearGradient>
+
+    <!-- Shelf Wood Gradient -->
+    <linearGradient id="shelfWood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="40%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <filter id="pantryShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <!-- Background Wallpaper with Farm Gingham Accent -->
+  <rect width="512" height="512" fill="url(#pantryWall)" />
+  <rect x="0" y="0" width="512" height="512" fill="#f59e0b" opacity="0.05" />
+
+  <!-- Wooden Pantry Cabinet Frame -->
+  <rect x="24" y="24" width="464" height="464" rx="28" fill="#1c0d02" stroke="#92400e" stroke-width="8" filter="url(#pantryShadow)" />
+
+  <!-- 3 Grand Wooden Shelves -->
+  <!-- Top Shelf -->
+  <rect x="44" y="150" width="424" height="18" rx="6" fill="url(#shelfWood)" stroke="#78350f" stroke-width="2" />
+  <rect x="44" y="168" width="424" height="6" fill="#451a03" opacity="0.6" />
+
+  <!-- Middle Shelf -->
+  <rect x="44" y="290" width="424" height="18" rx="6" fill="url(#shelfWood)" stroke="#78350f" stroke-width="2" />
+  <rect x="44" y="308" width="424" height="6" fill="#451a03" opacity="0.6" />
+
+  <!-- Bottom Shelf -->
+  <rect x="44" y="430" width="424" height="18" rx="6" fill="url(#shelfWood)" stroke="#78350f" stroke-width="2" />
+  <rect x="44" y="448" width="424" height="6" fill="#451a03" opacity="0.6" />
+
+  <!-- Shelved Goods on Top Shelf -->
+  <!-- 3 Honey Jars Glowing in a Match -->
+  <g transform="translate(70, 70) scale(0.75)">
+    <rect x="25" y="32" width="50" height="52" rx="14" fill="#f59e0b" stroke="#d97706" stroke-width="3" />
+    <rect x="28" y="24" width="44" height="10" rx="4" fill="#92400e" />
+  </g>
+  <g transform="translate(150, 70) scale(0.75)">
+    <rect x="25" y="32" width="50" height="52" rx="14" fill="#f59e0b" stroke="#d97706" stroke-width="3" />
+    <rect x="28" y="24" width="44" height="10" rx="4" fill="#92400e" />
+  </g>
+  <g transform="translate(230, 70) scale(0.75)">
+    <rect x="25" y="32" width="50" height="52" rx="14" fill="#f59e0b" stroke="#d97706" stroke-width="3" />
+    <rect x="28" y="24" width="44" height="10" rx="4" fill="#92400e" />
+  </g>
+  <!-- Match Sparkle Ring around Top Shelf -->
+  <rect x="60" y="60" width="240" height="85" rx="16" fill="none" stroke="#fde047" stroke-width="3" stroke-dasharray="8 6" opacity="0.9" />
+
+  <!-- Milk Bottles on Middle Shelf -->
+  <g transform="translate(70, 210) scale(0.75)">
+    <rect x="30" y="38" width="40" height="48" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="3" />
+    <path d="M 36 38 L 40 22 L 60 22 L 64 38 Z" fill="#ffffff" stroke="#0284c7" stroke-width="3" />
+    <rect x="38" y="16" width="24" height="8" rx="3" fill="#0284c7" />
+  </g>
+  <g transform="translate(150, 210) scale(0.75)">
+    <rect x="30" y="38" width="40" height="48" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="3" />
+    <path d="M 36 38 L 40 22 L 60 22 L 64 38 Z" fill="#ffffff" stroke="#0284c7" stroke-width="3" />
+    <rect x="38" y="16" width="24" height="8" rx="3" fill="#0284c7" />
+  </g>
+
+  <!-- Strawberry Jam Jar -->
+  <g transform="translate(230, 210) scale(0.75)">
+    <rect x="25" y="34" width="50" height="50" rx="16" fill="#e11d48" stroke="#be123c" stroke-width="3" />
+    <ellipse cx="50" cy="28" rx="24" ry="10" fill="#f43f5e" stroke="#9f1239" stroke-width="2" />
+  </g>
+
+  <!-- Sammy the Squirrel Hero Character (Right Side) -->
+  <g transform="translate(300, 160)">
+    <!-- Giant Fluffy Tail -->
+    <path d="M 110 160 C 180 120 170 10 110 30 C 70 45 70 110 100 180 Z" fill="#b45309" stroke="#78350f" stroke-width="4" />
+    <path d="M 120 140 C 160 100 150 40 115 50" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.6" />
+
+    <!-- Squirrel Body -->
+    <ellipse cx="80" cy="180" rx="42" ry="50" fill="#d97706" stroke="#78350f" stroke-width="4" />
+    <ellipse cx="80" cy="190" rx="26" ry="34" fill="#fef3c7" />
+
+    <!-- Cute Red Chef Apron -->
+    <path d="M 64 165 L 96 165 L 102 215 L 58 215 Z" fill="#e11d48" stroke="#9f1239" stroke-width="2.5" />
+    <circle cx="80" cy="185" r="4" fill="#ffffff" />
+
+    <!-- Squirrel Head -->
+    <circle cx="75" cy="105" r="38" fill="#d97706" stroke="#78350f" stroke-width="4" />
+    <!-- Cheeks & Muzzle -->
+    <ellipse cx="75" cy="118" rx="24" ry="18" fill="#fef3c7" stroke="#b45309" stroke-width="2" />
+
+    <!-- Pointy Ears with Fluffy Tuft -->
+    <polygon points="50,85 62,50 72,80" fill="#b45309" stroke="#78350f" stroke-width="3" />
+    <polygon points="54,82 62,58 68,78" fill="#fed7aa" />
+    <polygon points="80,80 90,50 102,85" fill="#b45309" stroke="#78350f" stroke-width="3" />
+    <polygon points="84,78 90,58 98,82" fill="#fed7aa" />
+
+    <!-- Sparkly Eyes -->
+    <circle cx="64" cy="104" r="6.5" fill="#1e293b" />
+    <circle cx="62" cy="101" r="2.2" fill="#ffffff" />
+    <circle cx="86" cy="104" r="6.5" fill="#1e293b" />
+    <circle cx="84" cy="101" r="2.2" fill="#ffffff" />
+
+    <!-- Cute Black Nose & Smile -->
+    <polygon points="71,114 79,114 75,118" fill="#1e293b" />
+    <path d="M 75 118 L 75 122 M 71 122 Q 75 126 79 122" stroke="#78350f" stroke-width="2" fill="none" stroke-linecap="round" />
+
+    <!-- Paws Holding a Golden Acorn -->
+    <circle cx="60" cy="165" r="10" fill="#b45309" stroke="#78350f" stroke-width="2" />
+    <circle cx="95" cy="165" r="10" fill="#b45309" stroke="#78350f" stroke-width="2" />
+    <ellipse cx="78" cy="165" rx="14" ry="12" fill="#f59e0b" stroke="#78350f" stroke-width="2" />
+  </g>
+
+  <!-- Big Colorful 3D Starburst Banner -->
+  <g transform="translate(256, 460)">
+    <rect x="-170" y="-30" width="340" height="52" rx="26" fill="url(#shelfWood)" stroke="#fde047" stroke-width="4" filter="url(#pantryShadow)" />
+    <text x="0" y="6" text-anchor="middle" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="24" letter-spacing="2">TRIPLE PICK!</text>
+  </g>
+</svg>

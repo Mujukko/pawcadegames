@@ -167,8 +167,7 @@ export class FarmTetrisScene extends Phaser.Scene {
     }
     bg.setDepth(0);
 
-    // 2. Picturesque Semi-Transparent Farm Countryside Scenery
-    // Directly fulfills user request: "arka planda şeffaf bir çiftlik versek?"
+    // Picturesque semi-transparent countryside scenery overlay
     if (this.textures.exists('farm_background_scenery')) {
       this.backgroundScenery = this.add.image(290, 290, 'farm_background_scenery');
       this.backgroundScenery.setOrigin(0.5, 0.5);

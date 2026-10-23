@@ -49,13 +49,13 @@ export interface SheepCartJamState {
 
 export const SHEEP_COLOR_CONFIG: Record<
   SheepColor,
-  { name: string; hex: string; bgClass: string; borderClass: string; emoji: string }
+  { name: string; hex: string; bgClass: string; borderClass: string; emoji: string; assetPath: string }
 > = {
-  pink: { name: 'Berry Pink', hex: '#ec4899', bgClass: 'bg-pink-500', borderClass: 'border-pink-300', emoji: '🌸' },
-  blue: { name: 'Sky Blue', hex: '#0ea5e9', bgClass: 'bg-sky-500', borderClass: 'border-sky-300', emoji: '🌊' },
-  yellow: { name: 'Golden Sun', hex: '#eab308', bgClass: 'bg-yellow-500', borderClass: 'border-yellow-300', emoji: '☀️' },
-  green: { name: 'Clover Green', hex: '#22c55e', bgClass: 'bg-green-500', borderClass: 'border-green-300', emoji: '🍀' },
-  purple: { name: 'Lavender', hex: '#a855f7', bgClass: 'bg-purple-500', borderClass: 'border-purple-300', emoji: '🍇' },
+  pink: { name: 'Berry Pink', hex: '#ec4899', bgClass: 'bg-pink-500', borderClass: 'border-pink-300', emoji: '🌸', assetPath: '/assets/tiles/sheep-cart-jam/sheep-pink.svg' },
+  blue: { name: 'Sky Blue', hex: '#0ea5e9', bgClass: 'bg-sky-500', borderClass: 'border-sky-300', emoji: '🌊', assetPath: '/assets/tiles/sheep-cart-jam/sheep-blue.svg' },
+  yellow: { name: 'Golden Sun', hex: '#eab308', bgClass: 'bg-yellow-500', borderClass: 'border-yellow-300', emoji: '☀️', assetPath: '/assets/tiles/sheep-cart-jam/sheep-yellow.svg' },
+  green: { name: 'Clover Green', hex: '#22c55e', bgClass: 'bg-green-500', borderClass: 'border-green-300', emoji: '🍀', assetPath: '/assets/tiles/sheep-cart-jam/sheep-green.svg' },
+  purple: { name: 'Lavender', hex: '#a855f7', bgClass: 'bg-purple-500', borderClass: 'border-purple-300', emoji: '🍇', assetPath: '/assets/tiles/sheep-cart-jam/sheep-purple.svg' },
 };
 
 export const MAX_DOCK_BAYS = 3;
