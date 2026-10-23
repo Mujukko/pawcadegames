@@ -40,7 +40,16 @@ The supervisor evaluates any outreach target against three questions:
 
 ---
 
-## 4. UI Minimalism & "Games-Only" Protection
+## 4. Google Trends & Competitor Insight Guardrail
+
+When `us-traffic-seo` proposes keywords harvested from Google Trends or competitors (Poki, CrazyGames, Coolmath):
+1. **Brand Safety Veto:** Instantly veto violent themes, meme fads (e.g. Skibidi, FNAF, Squid Game), or copyright-infringing character names.
+2. **Mechanical Truthfulness:** Keywords borrowed from competitors must accurately reflect Pawcade's gameplay (e.g., approving "idle farm tycoon" for *Farm Mini Mart*, but vetoing "multiplayer 3D battle royale").
+3. **White-Hat Authenticity:** Never copy competitor descriptions verbatim; synthesize original, superior US English copy.
+
+---
+
+## 5. UI Minimalism & "Games-Only" Protection
 
 The supervisor strictly enforces the user constraint:
 > *"Sitede kullanıcıya görünür mümkünse bu içerikler, sitede sadece oyunlar olsun."*

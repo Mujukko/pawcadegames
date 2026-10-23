@@ -51,17 +51,33 @@ The US web gaming audience searches with specific high-intent clusters. The SEO 
 
 ---
 
-## 4. Continuous Self-Improvement Loop
+## 4. Continuous Self-Improvement Loop & Intelligence Engine
 
-At each iteration, the agent executes:
+The agent executes a continuous 4-stage optimization cycle:
+
+### A. Google Trends Monitoring Protocol (geo=US)
+1. **Query Inspection:** Monitor US search interest in category `Games` for seasonal and daily breakout queries (`unblocked games`, `games to play at school/work`, `free browser games no download`).
+2. **Temporal Alignment:** Align metadata and sitemap updates with US school-year cycles (surges Mon-Fri 8am-3pm EST) and holiday surges (Halloween, Thanksgiving, Winter breaks).
+3. **Execution Tool:** Run `bun run seo:intel` to extract live search trend clusters into `docs/seo/GOOGLE_TRENDS_LOG.md`.
+
+### B. Competitor Crawling & Taxonomy Scraping Protocol
+1. **Audited Competitors:**
+   - **Poki (`poki.com`):** Monitor category architecture (*Pets Park*, *Cat Puzzle*, *Shape Fold Animals*, *Pocket Zoo*).
+   - **CrazyGames (`crazygames.com`):** Track viral arcade idle and farm management trends (*Farm Merge Valley*, *Idle Farming Tycoon*).
+   - **Coolmath Games (`coolmathgames.com`):** Track spatial logic, clean block puzzles, and classroom-safe game tags.
+2. **Intelligence Extraction:** Identify high-ranking keyword modifiers (`free online`, `unblocked`, `instant play`, `browser puzzle`) and match them to Pawcade's 9 games.
+3. **Documentation:** Log competitor benchmarks in `docs/seo/COMPETITOR_INTELLIGENCE.md`.
+
+### C. Execution & Quality Review Cycle
 1. **Audit:** Run `bun run seo:audit` to measure meta tag health, schema validity, and keyword coverage.
-2. **Benchmark:** Inspect SERP competitor trends (Poki, CrazyGames, Coolmath) for keyword shifts.
-3. **Hypothesize:** Formulate 1-2 micro-optimizations (e.g., updating a title tag with trending US search queries).
-4. **Submit for Supervisor Review:** Hand over proposals to `seo-quality-supervisor` for relevance & safety clearance.
-5. **Log Learnings:** Document outcomes in `docs/seo/US_KEYWORD_STRATEGY.md` and `LEARNINGS.md`.
+2. **Benchmark & Synthesize:** Run `bun run seo:intel` to refresh Google Trends and competitor analysis.
+3. **Hypothesize:** Propose title/description enhancements that capture trending US demand without visual clutter.
+4. **Submit for Supervisor Review:** Submit proposals to `seo-quality-supervisor` for strict relevance & spam verification.
+5. **Log Learnings:** Document verified findings in `docs/seo/US_KEYWORD_STRATEGY.md` and `LEARNINGS.md`.
 
 ---
 
 ## 5. Subagent Collaboration Protocol
-- **Submit To:** All SEO content and backlink proposals must be reviewed and approved by `seo-quality-supervisor`.
-- **Rejection Handling:** If rejected for off-topic content or spam risk, refine according to the supervisor's feedback.
+- **Submit To:** All SEO content, keyword shifts, and backlink targets must be reviewed and approved by `seo-quality-supervisor`.
+- **Rejection Handling:** If rejected for off-topic drift or spam risk, refine according to the supervisor's feedback.
+
