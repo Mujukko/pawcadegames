@@ -73,7 +73,42 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   useEffect(() => {
     window.scrollTo(0, 0);
     analytics.track('game_loaded', { gameId });
-  }, [gameId]);
+
+    // Dynamic Schema.org VideoGame & WebApplication JSON-LD injection for US Search Crawlers
+    const existingScript = document.getElementById('game-schema-ld');
+    if (existingScript) existingScript.remove();
+
+    const script = document.createElement('script');
+    script.id = 'game-schema-ld';
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': ['WebApplication', 'VideoGame'],
+      name: game.title,
+      description: game.metaDescription,
+      applicationCategory: 'Game',
+      operatingSystem: 'Web Browser',
+      browserRequirements: 'Requires JavaScript. Requires HTML5.',
+      inLanguage: 'en-US',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: game.rating.toString(),
+        bestRating: '5.0',
+        ratingCount: '150',
+      },
+    });
+    document.head.appendChild(script);
+
+    return () => {
+      const el = document.getElementById('game-schema-ld');
+      if (el) el.remove();
+    };
+  }, [gameId, game]);
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100 pb-16 pb-safe">

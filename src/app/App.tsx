@@ -46,28 +46,46 @@ export const App: React.FC = () => {
     const farmParkingGame = GAMES_REGISTRY.find(g => g.id === 'animal-farm-parking');
     const farmTetrisGame = GAMES_REGISTRY.find(g => g.id === 'farm-tetris');
 
-    if (currentRoute.startsWith('/games/farm-mini-mart')) {
-      document.title = farmMartGame?.metaTitle || 'Farm Mini Mart: Animal Market 🏪 — Free Online Idle Tycoon Game | Pawcade';
-    } else if (currentRoute.startsWith('/games/duck-runner')) {
-      document.title = duckRunnerGame?.metaTitle || 'Duck Runner: Vampire Quack 🎃 — Free Online Spooky Game | Pawcade';
-    } else if (currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) {
-      document.title = petCrushGame?.metaTitle || 'Farm Animal Match: Spooky Trick-or-Treat Crush 🍬 | Pawcade';
-    } else if (currentRoute.startsWith('/games/flappy-chicken')) {
-      document.title = flappyChickenGame?.metaTitle || 'Flappy Chicken: Spooky Night Flight 👻 | Pawcade';
-    } else if (currentRoute.startsWith('/games/animal-2048')) {
-      document.title = animal2048Game?.metaTitle || 'Animal 2048: Spooky Evolution 🦇 | Pawcade';
-    } else if (currentRoute.startsWith('/games/farm-tetris')) {
-      document.title = farmTetrisGame?.metaTitle || 'Farm Tetris: Haunted Pumpkin Harvest 🎃 | Pawcade';
-    } else if (currentRoute.startsWith('/games/dog-parking')) {
-      document.title = dogParkingGame?.metaTitle || 'Dog Parking: Haunted Kennel Unblock 🦴 | Pawcade';
-    } else if (currentRoute.startsWith('/games/cat-parking')) {
-      document.title = catParkingGame?.metaTitle || 'Cat Parking: Black Cat Witch Mystery 🐈‍⬛ | Pawcade';
-    } else if (currentRoute.startsWith('/games/animal-farm-parking')) {
-      document.title = farmParkingGame?.metaTitle || 'Animal Farm Parking: Haunted Pasture 🎃 | Pawcade';
+    let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
+    let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
+
+    if (currentRoute.startsWith('/games/farm-mini-mart') && farmMartGame) {
+      activeTitle = farmMartGame.metaTitle;
+      activeDesc = farmMartGame.metaDescription;
+    } else if (currentRoute.startsWith('/games/duck-runner') && duckRunnerGame) {
+      activeTitle = duckRunnerGame.metaTitle;
+      activeDesc = duckRunnerGame.metaDescription;
+    } else if ((currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) && petCrushGame) {
+      activeTitle = petCrushGame.metaTitle;
+      activeDesc = petCrushGame.metaDescription;
+    } else if (currentRoute.startsWith('/games/flappy-chicken') && flappyChickenGame) {
+      activeTitle = flappyChickenGame.metaTitle;
+      activeDesc = flappyChickenGame.metaDescription;
+    } else if (currentRoute.startsWith('/games/animal-2048') && animal2048Game) {
+      activeTitle = animal2048Game.metaTitle;
+      activeDesc = animal2048Game.metaDescription;
+    } else if (currentRoute.startsWith('/games/farm-tetris') && farmTetrisGame) {
+      activeTitle = farmTetrisGame.metaTitle;
+      activeDesc = farmTetrisGame.metaDescription;
+    } else if (currentRoute.startsWith('/games/dog-parking') && dogParkingGame) {
+      activeTitle = dogParkingGame.metaTitle;
+      activeDesc = dogParkingGame.metaDescription;
+    } else if (currentRoute.startsWith('/games/cat-parking') && catParkingGame) {
+      activeTitle = catParkingGame.metaTitle;
+      activeDesc = catParkingGame.metaDescription;
+    } else if (currentRoute.startsWith('/games/animal-farm-parking') && farmParkingGame) {
+      activeTitle = farmParkingGame.metaTitle;
+      activeDesc = farmParkingGame.metaDescription;
     } else if (currentRoute === '/' || currentRoute === '' || currentRoute === '/games' || currentRoute === '/games/') {
-      document.title = 'Pawcade — Ücretsiz Çevrimiçi Tarayıcı Oyunları | Free Online Games';
+      activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     } else {
-      document.title = 'Sayfa Bulunamadı (404) | Pawcade Games';
+      activeTitle = 'Page Not Found (404) | Pawcade Games';
+    }
+
+    document.title = activeTitle;
+    const metaDescTag = document.querySelector('meta[name="description"]');
+    if (metaDescTag) {
+      metaDescTag.setAttribute('content', activeDesc);
     }
 
     analytics.trackPageView(currentRoute);

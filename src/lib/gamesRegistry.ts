@@ -57,7 +57,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       'Fluid Touch 360° Floating Joystick & Responsive 60 FPS Canvas 2D Engine',
       'Local Progress Save & 100% Free Instant Play with Zero Ads',
     ],
-    metaTitle: 'Farm Mini Mart: Animal Market 🏪 — Free Online Idle Tycoon Game | Pawcade',
+    metaTitle: 'Farm Mini Mart 🏪 — Free Online Idle Tycoon Game | Pawcade',
     metaDescription: 'Play Farm Mini Mart free in your browser! Harvest crops, stock shelves, serve cute animal customers, and expand your countryside mini mart in this fun arcade tycoon game.',
   },
   {
@@ -131,7 +131,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       'Barnyard Harvest Victory Celebration with 3-Star Rating Gauge',
       '100% Free Browser Play with Zero Ads or Downloads',
     ],
-    metaTitle: 'Farm Animal Match: Spooky Barnyard Crush 🍬 — Free Online Match-3 Game | Pawcade',
+    metaTitle: 'Farm Animal Match 🍬 — Free Online Match-3 Game | Pawcade',
     metaDescription: 'Play Farm Animal Match free in your browser! Craft 2x2 Square Dynamite Bombs, 4-in-a-row Striped Rockets, and L/T Barrel Bombs with cute farm animals.',
   },
   {
@@ -244,7 +244,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       'Desktop Keyboard DAS & Mobile Touch D-Pad Layout',
       'Local High Score Tracking & 100% Free Instant Play',
     ],
-    metaTitle: 'Farm Tetris: Haunted Harvest 🎃 — Free Online Block Puzzle Game | Pawcade',
+    metaTitle: 'Farm Tetris 🎃 — Free Online Harvest Block Puzzle | Pawcade',
     metaDescription: 'Play Farm Tetris free in your browser! Stack harvest crates, fill the golden hay silo, and delight the farmer. 100% free casual block puzzle game.',
   },
   {
@@ -278,7 +278,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       'Star Rating System & Local Progress Save',
       'Zero Downloads or Accounts Required',
     ],
-    metaTitle: 'Dog Parking: Spooky Yard Escape 🐕‍🦺 — Free Online Casual Puzzle Game | Pawcade',
+    metaTitle: 'Dog Parking 🐕‍🦺 — Free Online Dog Puzzle Game | Pawcade',
     metaDescription: 'Play Dog Parking free in your browser! Unblock the dogs and slide Sunny the Star Corgi to the exit gate. 100% free casual brain teaser game.',
   },
   {
@@ -312,7 +312,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       'Star Rating System & Independent Local Progress Save',
       'Zero Downloads or Accounts Required',
     ],
-    metaTitle: 'Cat Parking: Witch Cat Mystery 🐈‍⬛ — Free Online Casual Cat Puzzle Game | Pawcade',
+    metaTitle: 'Cat Parking 🐈‍⬛ — Free Online Cat Puzzle Game | Pawcade',
     metaDescription: 'Play Cat Parking free in your browser! Slide the sleepy cats and guide Luna the Star Cat to the cozy exit gate. 100% free casual puzzle game.',
   },
   {
