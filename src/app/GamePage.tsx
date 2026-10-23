@@ -176,8 +176,8 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             <span>🎃 Home</span>
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-orange-500/60 shrink-0" />
-          <button onClick={() => navigate('/')} className="hover:text-orange-300 transition-colors cursor-pointer shrink-0">
-            {isSheepStampede ? 'Pasture Rush' : isHorseshoeTwist ? 'Barn Vault' : isEggBuster ? 'Slingshot Smash' : isCritterTap ? 'Critter Tap' : isPantrySort ? 'Pantry Sort' : isChefRat ? 'French Bistro' : isFarmMart ? 'Farm Tycoon' : isDuckRunner ? 'Vampire Runner' : isPetCrush ? 'Trick-or-Treat' : isFlappy ? 'Haunted Flight' : is2048 ? 'Spooky Evolution' : isFarmTetris ? 'Pumpkin Harvest' : isFarm ? 'Haunted Pasture' : 'Spooky Puzzles'}
+          <button onClick={() => navigate(`/category/${game.category.toLowerCase()}/`)} className="hover:text-orange-300 transition-colors cursor-pointer shrink-0">
+            {game.category.toUpperCase()}
           </button>
           <ChevronRight className="w-3.5 h-3.5 text-orange-500/60 shrink-0" />
           <span className="text-orange-400 font-bold truncate">{game.title}</span>

@@ -7,6 +7,10 @@ const KEY_LOCATION = `https://${HOST}/${INDEXNOW_KEY}.txt`;
 async function submitIndexNow() {
   const urlList = [
     `https://${HOST}/`,
+    `https://${HOST}/category/puzzle/`,
+    `https://${HOST}/category/farm/`,
+    `https://${HOST}/category/arcade/`,
+    `https://${HOST}/category/pets/`,
     ...GAMES_REGISTRY.filter((g) => g.status === 'playable').map(
       (g) => `https://${HOST}${g.route}`
     ),

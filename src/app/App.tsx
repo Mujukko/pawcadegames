@@ -131,8 +131,21 @@ export const App: React.FC = () => {
     } else if (currentRoute.startsWith('/games/animal-farm-parking') && farmParkingGame) {
       activeTitle = farmParkingGame.metaTitle;
       activeDesc = farmParkingGame.metaDescription;
+    } else if (currentRoute.startsWith('/category/puzzle')) {
+      activeTitle = 'Free Online Puzzle Games 🧩 — Brain Teasers & Spatial Puzzles (No Download) | Pawcade';
+      activeDesc = 'Play free online puzzle games with zero downloads on Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, Critter Tap Away, and more.';
+    } else if (currentRoute.startsWith('/category/farm')) {
+      activeTitle = 'Free Online Farm Games 🚜 — Barnyard Puzzles & Farm Tycoons (No Download) | Pawcade';
+      activeDesc = 'Play free casual farm games online at Pawcade! Manage farm markets, drive tractors, herd sheep, and harvest crops directly in your browser.';
+    } else if (currentRoute.startsWith('/category/arcade')) {
+      activeTitle = 'Free Online Arcade Games 🕹️ — Retro Reflex & Tap Games (No Download) | Pawcade';
+      activeDesc = 'Enjoy free retro-style casual arcade web games on Pawcade! Tap, dodge, flap, and jump in Duck Runner, Flappy Chicken, Egg Buster, and more.';
+    } else if (currentRoute.startsWith('/category/pets')) {
+      activeTitle = 'Cute Pet Games Online 🐾 — Free Animal Puzzles & Care Games (No Download) | Pawcade';
+      activeDesc = 'Play free cute pet games in your browser on Pawcade! Slide corgis in Dog Parking, save cats in Cat Parking, feed cute critters, and solve cozy puzzles.';
     } else if (currentRoute === '/' || currentRoute === '' || currentRoute === '/games' || currentRoute === '/games/') {
-      activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
+      activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games | No Download';
+      activeDesc = 'Play free casual browser games online at Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, Duck Runner, Pet Candy Crush, and more. Zero downloads, mobile & desktop compatible.';
     } else {
       activeTitle = 'Page Not Found (404) | Pawcade Games';
     }
@@ -168,7 +181,19 @@ export const App: React.FC = () => {
       currentRoute === '#games' ||
       currentRoute === '/map'
     ) {
-      return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />;
+      return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="all" />;
+    }
+    if (currentRoute.startsWith('/category/puzzle')) {
+      return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="puzzle" />;
+    }
+    if (currentRoute.startsWith('/category/farm')) {
+      return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="farm" />;
+    }
+    if (currentRoute.startsWith('/category/arcade')) {
+      return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="arcade" />;
+    }
+    if (currentRoute.startsWith('/category/pets')) {
+      return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
     }
     if (currentRoute.startsWith('/games/sheep-stampede') || currentRoute.startsWith('/games/mob-control') || currentRoute.startsWith('/games/colony-flow')) {
       return <GamePage navigate={navigate} gameId="sheep-stampede" />;

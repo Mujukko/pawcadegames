@@ -220,7 +220,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     slug: 'farm-block-blast',
     title: 'Farm Block Blast: Barnyard Grid 🐶🧩',
     tagline: 'Place wooden crop blocks on an 8x8 grid, blast full lines, and build massive combo streaks with Barnaby the pup!',
-    description: 'Welcome to Farm Block Blast: Barnyard Grid! Inspired by America\'s #1 mobile puzzle hits Block Blast! and Meowdoku, this relaxing yet brain-teasing wooden grid challenge tasks you with placing polyomino crop pieces on an 8x8 rustic farm board. Clear full horizontal rows or vertical columns to trigger explosive crop blasts! Keep clearing lines on consecutive placements to unleash high-voltage Combo Streaks (2x, 3x, 4x, 5x+), hear ascending banjo arpeggios, and rack up huge high scores before the barn fills up!',
+    description: 'Welcome to Farm Block Blast: Barnyard Grid! Inspired by America\'s #1 mobile puzzle hits Block Blast! and Meowdoku, this relaxing yet brain-teasing wooden grid challenge tasks you with placing polyomino crop pieces on an 8x8 rustic farm board. Clear full horizontal rows or vertical columns to trigger explosive crop blasts! Keep clearing lines on consecutive placements to trigger high-voltage Combo Streaks (2x, 3x, 4x, 5x+), hear ascending banjo arpeggios, and rack up huge high scores before the barn fills up!',
     category: 'puzzle',
     route: '/games/farm-block-blast/',
     status: 'playable',

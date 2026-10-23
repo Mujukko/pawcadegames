@@ -215,7 +215,7 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     subtitle: 'Classic 8x8 Wooden Polyomino Blast',
     mascot: '🐶🧩',
     themeColor: 'from-amber-500 via-orange-600 to-indigo-800',
-    goal: 'Fit wooden crop polyominoes onto the 8x8 farm grid, blast full rows and columns, and unleash massive Combo Streaks!',
+    goal: 'Fit wooden crop polyominoes onto the 8x8 farm grid, blast full rows and columns, and build massive Combo Streaks!',
     steps: [
       {
         icon: '🧩',

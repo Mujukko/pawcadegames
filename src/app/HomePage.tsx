@@ -6,6 +6,7 @@ interface HomePageProps {
   navigate: (path: string) => void;
   searchQuery?: string;
   setSearchQuery?: (query: string) => void;
+  initialCategory?: CategoryTab;
 }
 
 type CategoryTab = 'all' | 'puzzle' | 'farm' | 'arcade' | 'pets';
@@ -14,8 +15,15 @@ export const HomePage: React.FC<HomePageProps> = ({
   navigate,
   searchQuery = '',
   setSearchQuery,
+  initialCategory = 'all',
 }) => {
-  const [activeCategory, setActiveCategory] = useState<CategoryTab>('all');
+  const [activeCategory, setActiveCategory] = useState<CategoryTab>(initialCategory);
+
+  React.useEffect(() => {
+    if (initialCategory) {
+      setActiveCategory(initialCategory);
+    }
+  }, [initialCategory]);
 
   // Filtered games based on active category tab or search query
   const displayedGames = useMemo(() => {
@@ -110,8 +118,14 @@ export const HomePage: React.FC<HomePageProps> = ({
               <button
                 key={tab.id}
                 onClick={() => {
-                  setActiveCategory(tab.id as CategoryTab);
+                  const targetCat = tab.id as CategoryTab;
+                  setActiveCategory(targetCat);
                   if (setSearchQuery) setSearchQuery('');
+                  if (targetCat === 'all') {
+                    navigate('/');
+                  } else {
+                    navigate(`/category/${targetCat}/`);
+                  }
                 }}
                 className={`px-4 py-2 min-h-[42px] rounded-2xl text-xs sm:text-sm font-extrabold flex items-center gap-2 shrink-0 transition-all cursor-pointer ${
                   isActive

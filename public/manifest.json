@@ -1,0 +1,25 @@
+{
+  "name": "Pawcade Games",
+  "short_name": "Pawcade",
+  "description": "Free Online Casual Browser Games — Instant play on mobile and desktop with zero download.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0f172a",
+  "theme_color": "#f97316",
+  "categories": ["games", "entertainment", "puzzle"],
+  "icons": [
+    {
+      "src": "/assets/thumbnails/thumb-dog-parking.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/branding/logo-pawcade.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    }
+  ]
+}
