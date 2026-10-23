@@ -238,8 +238,8 @@ export const FlappyChickenContainer: React.FC = () => {
       </div>
 
       {/* Phaser Canvas Frame with Aspect Ratio */}
-      <div className="relative w-full aspect-[480/640] max-w-[440px] bg-sky-300 rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-950">
-        <div ref={containerRef} className="w-full h-full flex items-center justify-center" />
+      <div className="relative w-full aspect-[480/640] max-w-[440px] bg-sky-300 rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-950 touch-none">
+        <div ref={containerRef} className="w-full h-full flex items-center justify-center touch-none" />
 
         {/* Golden Wheat Victory Celebration Modal Overlay */}
         {hasWon && (

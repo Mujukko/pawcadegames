@@ -358,10 +358,10 @@ export const AnimalFarmParkingContainer: React.FC = () => {
       </div>
 
       {/* Phaser Canvas Frame */}
-      <div className="relative w-full aspect-[640/540] max-w-[640px] bg-slate-900/10 rounded-3xl p-1 sm:p-2 border border-slate-200/90 shadow-inner flex items-center justify-center overflow-hidden">
+      <div className="relative w-full aspect-[640/540] max-w-[640px] bg-slate-900/10 rounded-3xl p-1 sm:p-2 border border-slate-200/90 shadow-inner flex items-center justify-center overflow-hidden touch-none">
         <div
           ref={containerRef}
-          className="w-full h-full flex items-center justify-center rounded-2xl overflow-hidden"
+          className="w-full h-full flex items-center justify-center rounded-2xl overflow-hidden touch-none"
         />
 
         {/* Live Collision Vignette */}

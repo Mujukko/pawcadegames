@@ -1129,24 +1129,26 @@ export const PetCandyCrushContainer: React.FC = () => {
             <div className="flex items-center gap-1 shrink-0">
               <button
                 onClick={toggleSound}
-                className="p-1 rounded-lg bg-amber-900/80 border border-amber-400/50 text-amber-200 cursor-pointer"
+                className="min-h-[44px] min-w-[44px] p-2 rounded-xl bg-amber-900/80 border border-amber-400/50 text-amber-200 cursor-pointer flex items-center justify-center"
                 title={isMuted ? 'Unmute' : 'Mute'}
+                aria-label={isMuted ? 'Unmute Sound' : 'Mute Sound'}
               >
-                {isMuted ? <VolumeX className="w-3.5 h-3.5 text-red-400" /> : <Volume2 className="w-3.5 h-3.5 text-emerald-400" />}
+                {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
               </button>
               <button
                 onClick={handleRestart}
-                className="p-1 rounded-lg bg-emerald-700 border border-emerald-300 text-white cursor-pointer"
+                className="min-h-[44px] min-w-[44px] p-2 rounded-xl bg-emerald-700 border border-emerald-300 text-white cursor-pointer flex items-center justify-center"
                 title="Restart"
+                aria-label="Restart Level"
               >
-                <RotateCcw className="w-3.5 h-3.5" />
+                <RotateCcw className="w-4 h-4" />
               </button>
             </div>
           </div>
 
           {/* Row 2: 3 Booster Pills + Help Button */}
           <div className="flex items-center justify-between gap-1.5">
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 flex-1">
               {/* 1. Hammer Smash */}
               <button
                 onClick={() => {
@@ -1156,7 +1158,7 @@ export const PetCandyCrushContainer: React.FC = () => {
                   }
                 }}
                 disabled={hammerCount <= 0}
-                className={`flex items-center gap-1 px-2 py-1 rounded-xl font-black text-[11px] border cursor-pointer transition-all ${
+                className={`min-h-[44px] flex-1 flex items-center justify-center gap-1 px-2 py-1.5 rounded-xl font-black text-[11px] border cursor-pointer transition-all ${
                   isHammerActive
                     ? 'bg-yellow-400 text-amber-950 border-white ring-2 ring-yellow-300 scale-105'
                     : 'bg-gradient-to-b from-lime-500 to-emerald-700 text-white border-lime-300'
@@ -1173,7 +1175,7 @@ export const PetCandyCrushContainer: React.FC = () => {
               <button
                 onClick={handleAddExtraMoves}
                 disabled={extraMovesCount <= 0}
-                className="flex items-center gap-1 px-2 py-1 rounded-xl bg-gradient-to-b from-lime-500 to-emerald-700 text-white font-black text-[11px] border border-lime-300 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                className="min-h-[44px] flex-1 flex items-center justify-center gap-1 px-2 py-1.5 rounded-xl bg-gradient-to-b from-lime-500 to-emerald-700 text-white font-black text-[11px] border border-lime-300 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <span className="text-amber-200">+5</span>
                 <span>Moves</span>
@@ -1186,7 +1188,7 @@ export const PetCandyCrushContainer: React.FC = () => {
               <button
                 onClick={handleShuffle}
                 disabled={shuffleCount <= 0}
-                className="flex items-center gap-1 px-2 py-1 rounded-xl bg-gradient-to-b from-lime-500 to-emerald-700 text-white font-black text-[11px] border border-lime-300 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                className="min-h-[44px] flex-1 flex items-center justify-center gap-1 px-2 py-1.5 rounded-xl bg-gradient-to-b from-lime-500 to-emerald-700 text-white font-black text-[11px] border border-lime-300 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <Shuffle className="w-3.5 h-3.5" />
                 <span>Mix</span>
@@ -1199,10 +1201,11 @@ export const PetCandyCrushContainer: React.FC = () => {
             {/* Help Button */}
             <button
               onClick={() => setIsHelpOpen(true)}
-              className="p-1 px-2 rounded-xl bg-amber-900/80 border border-amber-400/50 text-amber-200 text-xs font-black flex items-center gap-1 cursor-pointer"
+              className="min-h-[44px] min-w-[44px] px-2.5 rounded-xl bg-amber-900/80 border border-amber-400/50 text-amber-200 text-xs font-black flex items-center justify-center gap-1 cursor-pointer"
+              aria-label="How to play instructions"
             >
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>Help</span>
+              <HelpCircle className="w-4 h-4" />
+              <span className="hidden xs:inline">Help</span>
             </button>
           </div>
 

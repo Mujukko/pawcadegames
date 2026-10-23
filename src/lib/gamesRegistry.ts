@@ -17,6 +17,9 @@ export interface GameMetadata {
   features: string[];
   metaTitle: string;
   metaDescription: string;
+  thumbnailUrl?: string;
+  featured?: boolean;
+  tags?: string[];
 }
 
 export const GAMES_REGISTRY: GameMetadata[] = [
@@ -32,6 +35,9 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '16.8K',
     badge: '🎃 New Tycoon',
+    thumbnailUrl: '/assets/thumbnails/thumb-farm-mini-mart.jpg',
+    featured: true,
+    tags: ['Tycoon', 'Idle', 'Farm', 'Market', 'Animals'],
     controls: {
       desktop: [
         'WASD or Arrow Keys: Walk & steer the farmer around the mart',
@@ -72,6 +78,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '19.4K',
     badge: '🎃 Halloween Event',
+    tags: ['Runner', 'Arcade', 'Reflex', 'Animals'],
     controls: {
       desktop: [
         "Space / ↑ / W: Jump over Jack-o'-Lanterns and fences",
@@ -108,6 +115,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '24.8K',
     badge: '🎃 Halloween Event',
+    tags: ['Match-3', 'Puzzle', 'Farm', 'Animals'],
     controls: {
       desktop: [
         'Click & Click: Tap an animal and an adjacent neighbor to swap',
@@ -146,6 +154,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '21.4K',
     badge: '🎃 Spooky Flight',
+    tags: ['Arcade', 'Flight', 'Reflex', 'Farm', 'Animals'],
     controls: {
       desktop: [
         'Spacebar / Up Arrow / W: Flap wings and cluck',
@@ -182,6 +191,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '18.2K',
     badge: '🎃 Spooky Mode',
+    tags: ['Puzzle', 'Evolution', '2048', 'Animals', 'Brain'],
     controls: {
       desktop: [
         'Arrow Keys or W/A/S/D: Slide tiles in 4 directions',
@@ -218,6 +228,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '15.6K',
     badge: '🎃 Harvest Fest',
+    tags: ['Tetris', 'Puzzle', 'Blocks', 'Farm'],
     controls: {
       desktop: [
         'A / D or Left / Right Arrows: Move piece left / right',
@@ -259,6 +270,9 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 4.9,
     playCount: '12.4K',
     badge: '🎃 Costume Party',
+    thumbnailUrl: '/assets/thumbnails/thumb-dog-parking.jpg',
+    featured: true,
+    tags: ['Puzzle', 'Dogs', 'Unblock', 'Traffic', 'Animals'],
     controls: {
       desktop: [
         'Mouse Drag: Click and drag any dog forward/backward along its lane',
@@ -293,6 +307,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '9.8K',
     badge: '🎃 Witch Mystery',
+    tags: ['Puzzle', 'Cats', 'Unblock', 'Animals'],
     controls: {
       desktop: [
         'Mouse Drag: Click and drag any cat forward/backward along its lane',
@@ -327,6 +342,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 4.9,
     playCount: '8.2K',
     badge: '🎃 Spooky Drive',
+    tags: ['Driving', 'Farm', 'Casual', 'Cow', 'Animals'],
     controls: {
       desktop: [
         'W / Up Arrow: Move Up',
