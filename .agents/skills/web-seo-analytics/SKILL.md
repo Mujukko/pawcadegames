@@ -1,6 +1,7 @@
 ---
 name: web-seo-analytics
-description: Grow a static web product with search traffic and measurement. Use when working on SEO, Google Search Console analysis, GA4 event instrumentation, content/landing page strategy, keyword clusters, hreflang/multilingual URLs, Core Web Vitals, AdSense or ad-wrapper integration on a website. Türkçe: web sitesi SEO, arama trafiği, Search Console analizi, GA4 ölçüm, içerik sayfası stratejisi, çoklu dil, sayfa hızı.
+description: >-
+  Grow a static web product with search traffic and measurement. Use when working on SEO, Google Search Console analysis, GA4 event instrumentation, content/landing page strategy, keyword clusters, hreflang/multilingual URLs, Core Web Vitals, AdSense or ad-wrapper integration on a website. Türkçe: web sitesi SEO, arama trafiği, Search Console analizi, GA4 ölçüm, içerik sayfası stratejisi, çoklu dil, sayfa hızı.
 ---
 
 # Web SEO + ölçüm
