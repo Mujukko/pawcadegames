@@ -20,8 +20,9 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-const VIEW_HEIGHT = 560;
-const FLOCK_BASE_Y = 440; // Screen Y where flock is rendered
+const VIEW_HEIGHT = 620;
+const FLOCK_BASE_Y = 480; // Screen Y where flock is rendered
+const TRACK_CENTER = 180; // Center X of the 360px track pathway
 
 export const SheepStampedeContainer: React.FC = () => {
   const [levelNum, setLevelNum] = useState<number>(1);
@@ -67,7 +68,7 @@ export const SheepStampedeContainer: React.FC = () => {
     const rect = containerRef.current.getBoundingClientRect();
     const relativeX = clientX - rect.left;
     const normalized = (relativeX / rect.width) * TRACK_WIDTH - TRACK_WIDTH / 2;
-    targetXRef.current = Math.max(-120, Math.min(120, normalized));
+    targetXRef.current = Math.max(-140, Math.min(140, normalized));
   }, []);
 
   // Mouse / Touch Drag handlers
@@ -155,15 +156,15 @@ export const SheepStampedeContainer: React.FC = () => {
 
         // 1. Continuous button/key steering
         if (steeringDirRef.current !== 0) {
-          const steerSpeed = 260; // px / sec
+          const steerSpeed = 280; // px / sec
           currentFlockX += steeringDirRef.current * steerSpeed * dt;
-          currentFlockX = Math.max(-120, Math.min(120, currentFlockX));
+          currentFlockX = Math.max(-140, Math.min(140, currentFlockX));
           stateRef.current.flockX = currentFlockX;
         } else if (targetXRef.current !== null) {
           // 2. Smooth touch drag tracking (lerp for fluid natural movement)
           const diff = targetXRef.current - currentFlockX;
           currentFlockX += diff * Math.min(1, 18 * dt);
-          currentFlockX = Math.max(-120, Math.min(120, currentFlockX));
+          currentFlockX = Math.max(-140, Math.min(140, currentFlockX));
           stateRef.current.flockX = currentFlockX;
         }
 
@@ -210,19 +211,28 @@ export const SheepStampedeContainer: React.FC = () => {
     Math.round((gameState.trackProgress / gameState.trackLength) * 100)
   );
 
+  // Calculate upcoming gates for lookahead radar
+  const upcomingGates = gameState.gates
+    .filter((g) => !g.collected && g.distY > gameState.trackProgress)
+    .sort((a, b) => a.distY - b.distY);
+  const nextPairDist = upcomingGates.length > 0 ? upcomingGates[0].distY - gameState.trackProgress : 9999;
+  const showLookahead = gameState.status === 'running' && nextPairDist < 520 && upcomingGates.length >= 2;
+  const leftGateUpcoming = upcomingGates.find((g) => g.lane === 'left');
+  const rightGateUpcoming = upcomingGates.find((g) => g.lane === 'right');
+
   return (
-    <div className="flex flex-col items-center w-full max-w-md mx-auto select-none touch-none">
+    <div className="flex flex-col items-center w-full max-w-lg mx-auto select-none touch-none">
       {/* Top HUD */}
-      <div className="w-full bg-slate-900/90 border border-emerald-500/30 rounded-2xl p-3 mb-2 flex items-center justify-between shadow-lg">
+      <div className="w-full bg-slate-900/95 border border-emerald-500/30 rounded-2xl p-3 mb-2 flex items-center justify-between shadow-xl">
         <div className="flex items-center gap-2">
-          <span className="text-xl">🐕</span>
+          <span className="text-2xl">🐕</span>
           <div>
-            <div className="text-[10px] uppercase font-bold text-emerald-400">
+            <div className="text-[10px] uppercase font-black text-emerald-400 tracking-wider">
               Level {gameState.level} / {SHEEP_STAMPEDE_LEVELS.length}
             </div>
             <div className="text-xs font-black text-white flex items-center gap-1.5">
               <span>Flock:</span>
-              <span className="text-emerald-300 text-sm font-extrabold px-1.5 py-0.2 bg-emerald-950/60 rounded border border-emerald-500/40">
+              <span className="text-emerald-300 text-sm font-black font-mono px-2 py-0.5 bg-emerald-950/70 rounded-lg border border-emerald-500/50">
                 {gameState.flockCount} 🐑
               </span>
             </div>
@@ -230,7 +240,7 @@ export const SheepStampedeContainer: React.FC = () => {
         </div>
 
         {/* Progress Bar */}
-        <div className="flex-1 mx-3 max-w-[120px]">
+        <div className="flex-1 mx-3 max-w-[140px]">
           <div className="flex justify-between text-[10px] font-bold text-slate-300 mb-0.5">
             <span>Meadow</span>
             <span>Barn 🏡</span>
@@ -247,20 +257,20 @@ export const SheepStampedeContainer: React.FC = () => {
         <div className="flex items-center gap-2">
           <div className="text-right">
             <div className="text-[10px] uppercase font-bold text-slate-400">Score</div>
-            <div className="text-sm font-black text-amber-400">{gameState.score}</div>
+            <div className="text-sm font-black font-mono text-amber-400">{gameState.score}</div>
           </div>
 
           <button
             onClick={() => startLevel(levelNum)}
             title="Restart Level (R)"
-            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center justify-center cursor-pointer"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center justify-center cursor-pointer transition-colors active:scale-95"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
           <button
             onClick={handleToggleSound}
             title="Toggle Sound (M)"
-            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center justify-center cursor-pointer"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center justify-center cursor-pointer transition-colors active:scale-95"
           >
             {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
           </button>
@@ -273,58 +283,114 @@ export const SheepStampedeContainer: React.FC = () => {
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
-        className="relative w-full h-[460px] sm:h-[520px] max-h-[64vh] bg-gradient-to-b from-sky-400 via-emerald-600 to-emerald-800 rounded-3xl overflow-hidden border-2 border-emerald-500/40 shadow-2xl cursor-ew-resize"
+        className="relative w-full h-[560px] sm:h-[620px] max-h-[72vh] bg-gradient-to-b from-sky-400 via-emerald-600 to-emerald-800 rounded-3xl overflow-hidden border-2 border-emerald-500/40 shadow-2xl cursor-ew-resize"
       >
+        {/* Floating Lookahead Radar HUD */}
+        {showLookahead && leftGateUpcoming && rightGateUpcoming && (
+          <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3.5 py-1.5 bg-slate-950/90 backdrop-blur-md rounded-full border border-emerald-400/50 shadow-xl text-xs font-black animate-pulse">
+            <span className="text-amber-300 flex items-center gap-1 font-mono text-[10px] uppercase tracking-wider">
+              ⚡ NEXT
+            </span>
+            <div className="flex items-center gap-1.5">
+              <span
+                className={`px-2 py-0.5 rounded-lg border font-mono text-xs font-black ${
+                  leftGateUpcoming.isPositive
+                    ? 'bg-blue-600/70 text-cyan-200 border-cyan-400/60 shadow-[0_0_8px_rgba(34,211,238,0.4)]'
+                    : 'bg-rose-600/70 text-rose-200 border-rose-400/60 shadow-[0_0_8px_rgba(244,63,94,0.4)]'
+                }`}
+              >
+                ⬅️ {leftGateUpcoming.label}
+              </span>
+              <span className="text-slate-400 text-[10px] font-bold">vs</span>
+              <span
+                className={`px-2 py-0.5 rounded-lg border font-mono text-xs font-black ${
+                  rightGateUpcoming.isPositive
+                    ? 'bg-blue-600/70 text-cyan-200 border-cyan-400/60 shadow-[0_0_8px_rgba(34,211,238,0.4)]'
+                    : 'bg-rose-600/70 text-rose-200 border-rose-400/60 shadow-[0_0_8px_rgba(244,63,94,0.4)]'
+                }`}
+              >
+                {rightGateUpcoming.label} ➡️
+              </span>
+            </div>
+          </div>
+        )}
+
         {/* Track Pathway */}
         <div className="absolute inset-0 flex justify-center">
-          <div className="w-[300px] h-full bg-gradient-to-b from-amber-100 via-amber-200 to-amber-300 border-x-4 border-amber-600/30 relative overflow-hidden">
+          <div className="w-[360px] h-full bg-gradient-to-b from-amber-100 via-amber-200 to-amber-300 border-x-4 border-amber-600/30 relative overflow-hidden">
             {/* Dashed center lane lines moving downward */}
             <div
-              className="absolute left-1/2 -translate-x-1/2 w-1.5 h-[200%] border-r-2 border-dashed border-amber-600/40"
+              className="absolute left-1/2 -translate-x-1/2 w-2 h-[200%] border-r-2 border-dashed border-amber-600/40"
               style={{
                 transform: `translate(-50%, ${(gameState.trackProgress % 60) - 60}px)`,
               }}
             />
 
             {/* Finish Line (Barn corral at end of track) */}
-            {gameState.trackLength - gameState.trackProgress < 600 && (
+            {gameState.trackLength - gameState.trackProgress < 680 && (
               <div
-                className="absolute left-0 right-0 h-16 flex flex-col items-center justify-center bg-red-600 border-y-4 border-white shadow-lg text-white font-black text-sm z-10"
+                className="absolute left-0 right-0 h-20 flex flex-col items-center justify-center bg-red-600 border-y-4 border-white shadow-xl text-white font-black text-base z-10"
                 style={{
                   top: `${FLOCK_BASE_Y - (gameState.trackLength - gameState.trackProgress)}px`,
                 }}
               >
-                <span>🏡 BARN CORRAL 🏡</span>
-                <span className="text-[10px] text-amber-200">RESCUE FINISH LINE</span>
+                <span className="tracking-wide drop-shadow">🏡 BARN CORRAL 🏡</span>
+                <span className="text-xs text-amber-200 font-bold tracking-wider">RESCUE FINISH LINE</span>
               </div>
             )}
 
             {/* Gates */}
             {gameState.gates.map((gate) => {
               const relY = FLOCK_BASE_Y - (gate.distY - gameState.trackProgress);
-              if (relY < -80 || relY > VIEW_HEIGHT + 80) return null;
+              if (relY < -100 || relY > VIEW_HEIGHT + 100) return null;
+
+              const opIcon =
+                gate.op === 'multiply'
+                  ? '⚡'
+                  : gate.op === 'add'
+                  ? '➕'
+                  : gate.op === 'subtract'
+                  ? '🔻'
+                  : '✂️';
+              const opTitle =
+                gate.op === 'multiply'
+                  ? 'MULTIPLIER'
+                  : gate.op === 'add'
+                  ? 'BOOST'
+                  : gate.op === 'subtract'
+                  ? 'HAZARD'
+                  : 'CUT';
 
               return (
                 <div
                   key={gate.id}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-xl px-2 py-1.5 flex flex-col items-center justify-center font-black shadow-lg border-2 transition-transform ${
+                  className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-2xl px-2.5 py-2 flex flex-col items-center justify-center font-black shadow-2xl border-2 transition-transform ${
                     gate.collected
                       ? 'opacity-20 scale-90'
                       : gate.isPositive
-                      ? 'bg-gradient-to-b from-sky-500 to-blue-700 text-white border-sky-300 ring-2 ring-sky-400/50'
-                      : 'bg-gradient-to-b from-rose-500 to-red-700 text-white border-rose-300 ring-2 ring-rose-400/50'
+                      ? 'bg-gradient-to-b from-blue-500 via-indigo-600 to-blue-900 text-white border-cyan-300 ring-4 ring-cyan-400/50 shadow-[0_4px_24px_rgba(6,182,212,0.65)]'
+                      : 'bg-gradient-to-b from-rose-500 via-red-600 to-rose-950 text-white border-rose-300 ring-4 ring-rose-500/50 shadow-[0_4px_24px_rgba(244,63,94,0.65)]'
                   }`}
                   style={{
-                    left: `${150 + gate.x}px`,
+                    left: `${TRACK_CENTER + gate.x}px`,
                     top: `${relY}px`,
                     width: `${gate.width}px`,
                   }}
                 >
-                  <span className="text-base sm:text-lg leading-none tracking-tight">
-                    {gate.label}
-                  </span>
-                  <span className="text-[9px] uppercase tracking-wider opacity-90">
-                    {gate.op === 'multiply' ? 'Multi' : gate.op === 'add' ? 'Flock' : 'Loss'}
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-lg sm:text-xl filter drop-shadow">{opIcon}</span>
+                    <span className="text-2xl sm:text-3xl font-black font-mono leading-none tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
+                      {gate.label}
+                    </span>
+                  </div>
+                  <span
+                    className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full mt-1 ${
+                      gate.isPositive
+                        ? 'bg-blue-950/80 text-cyan-200 border border-cyan-400/40'
+                        : 'bg-rose-950/80 text-rose-200 border border-rose-400/40'
+                    }`}
+                  >
+                    {opTitle}
                   </span>
                 </div>
               );
@@ -338,22 +404,26 @@ export const SheepStampedeContainer: React.FC = () => {
               return (
                 <div
                   key={obs.id}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-lg flex items-center justify-center shadow-md font-bold text-xs ${
+                  className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-xl flex items-center justify-center shadow-lg font-black text-xs sm:text-sm px-2 ${
                     obs.type === 'mud'
-                      ? 'bg-amber-900/90 border-2 border-amber-950 text-amber-200'
+                      ? 'bg-amber-950/95 border-2 border-amber-500 text-amber-200 shadow-amber-950/60'
                       : obs.type === 'shearer'
-                      ? 'bg-slate-700 border-2 border-slate-500 text-white'
-                      : 'bg-yellow-600 border-2 border-yellow-700 text-yellow-100'
+                      ? 'bg-slate-900/95 border-2 border-red-400 text-red-200 shadow-red-950/60'
+                      : 'bg-yellow-900/95 border-2 border-yellow-400 text-yellow-100 shadow-yellow-950/60'
                   } ${obs.hit ? 'opacity-30' : ''}`}
                   style={{
-                    left: `${150 + obs.x}px`,
+                    left: `${TRACK_CENTER + obs.x}px`,
                     top: `${relY}px`,
                     width: `${obs.width}px`,
                     height: `${obs.height}px`,
                   }}
                 >
-                  <span>
-                    {obs.type === 'mud' ? '💩 Mud -4' : obs.type === 'shearer' ? '✂️ Clip' : '🌾 Hay'}
+                  <span className="drop-shadow">
+                    {obs.type === 'mud'
+                      ? `💩 Mud -${obs.sheepLoss}`
+                      : obs.type === 'shearer'
+                      ? `✂️ Clip -${obs.sheepLoss}`
+                      : `🌾 Hay -${obs.sheepLoss}`}
                   </span>
                 </div>
               );
@@ -363,12 +433,12 @@ export const SheepStampedeContainer: React.FC = () => {
             <div
               className="absolute -translate-x-1/2 -translate-y-1/2 transition-transform duration-75 pointer-events-none"
               style={{
-                left: `${150 + gameState.flockX}px`,
+                left: `${TRACK_CENTER + gameState.flockX}px`,
                 top: `${FLOCK_BASE_Y}px`,
               }}
             >
               {/* Shepherd Dog Buster (Runs ahead of the flock) */}
-              <div className="absolute -top-12 -left-4 text-2xl filter drop-shadow-md animate-bounce">
+              <div className="absolute -top-12 -left-4 text-3xl filter drop-shadow-lg animate-bounce">
                 🐕
               </div>
 
@@ -376,7 +446,7 @@ export const SheepStampedeContainer: React.FC = () => {
               {gameState.sheepList.map((s) => (
                 <div
                   key={s.id}
-                  className="absolute text-lg filter drop-shadow transform transition-transform"
+                  className="absolute text-xl filter drop-shadow transform transition-transform"
                   style={{
                     left: `${s.x}px`,
                     top: `${s.y}px`,

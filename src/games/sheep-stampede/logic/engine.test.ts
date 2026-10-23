@@ -19,13 +19,13 @@ describe('Sheep Stampede: Pasture Rush Core Engine', () => {
     expect(state.sheepList.length).toBe(10);
   });
 
-  it('clamps steering within lateral pasture boundary [-120, 120]', () => {
+  it('clamps steering within lateral pasture boundary [-140, 140]', () => {
     const state = initializeSheepStampedeLevel(1);
     const leftSteered = steerFlock(state, -250);
-    expect(leftSteered.flockX).toBe(-120);
+    expect(leftSteered.flockX).toBe(-140);
 
     const rightSteered = steerFlock(state, 300);
-    expect(rightSteered.flockX).toBe(120);
+    expect(rightSteered.flockX).toBe(140);
 
     const centerSteered = steerFlock(state, 45);
     expect(centerSteered.flockX).toBe(45);
@@ -89,12 +89,12 @@ describe('Sheep Stampede: Pasture Rush Core Engine', () => {
     let state = initializeSheepStampedeLevel(1);
     state = { ...state, status: 'running' };
 
-    // Steer left toward g1a (+10 at distY: 450, x: -60)
-    state = steerFlock(state, -60);
+    // Steer left toward g1a (+10 at distY: 450, x: -75)
+    state = steerFlock(state, -75);
 
     // Step forward past distY: 450
-    // speed is 240 px/s, in 2 seconds it travels 480px
-    const result = stepStampedeEngine(state, 2.0);
+    // speed is 195 px/s, in 2.5 seconds it travels 487.5px
+    const result = stepStampedeEngine(state, 2.5);
 
     expect(result.events.gateHit).toBeDefined();
     expect(result.events.gateHit?.id).toBe('g1a');

@@ -58,7 +58,7 @@ export interface SheepStampedeState {
   comboStreak: number;
 }
 
-export const TRACK_WIDTH = 320; // Internal lane width (-160 to +160)
+export const TRACK_WIDTH = 360; // Internal lane width (-180 to +180)
 export const MAX_FLOCK_VISUAL = 60; // Max visual sheep rendered for performance
 
 export const SHEEP_STAMPEDE_LEVELS: SheepStampedeLevelConfig[] = [
@@ -66,78 +66,78 @@ export const SHEEP_STAMPEDE_LEVELS: SheepStampedeLevelConfig[] = [
     level: 1,
     title: 'Sunny Pasture: Math Meadow',
     trackLength: 2000,
-    forwardSpeed: 240,
+    forwardSpeed: 195,
     initialSheep: 10,
     targetSheepGoal: 30,
     gates: [
-      { id: 'g1a', distY: 450, lane: 'left', x: -60, width: 90, op: 'add', value: 10, label: '+10', isPositive: true },
-      { id: 'g1b', distY: 450, lane: 'right', x: 60, width: 90, op: 'add', value: 5, label: '+5', isPositive: true },
+      { id: 'g1a', distY: 450, lane: 'left', x: -75, width: 120, op: 'add', value: 10, label: '+10', isPositive: true },
+      { id: 'g1b', distY: 450, lane: 'right', x: 75, width: 120, op: 'add', value: 5, label: '+5', isPositive: true },
 
-      { id: 'g2a', distY: 950, lane: 'left', x: -60, width: 90, op: 'multiply', value: 2, label: 'x2', isPositive: true },
-      { id: 'g2b', distY: 950, lane: 'right', x: 60, width: 90, op: 'subtract', value: 5, label: '-5', isPositive: false },
+      { id: 'g2a', distY: 950, lane: 'left', x: -75, width: 120, op: 'multiply', value: 2, label: 'x2', isPositive: true },
+      { id: 'g2b', distY: 950, lane: 'right', x: 75, width: 120, op: 'subtract', value: 5, label: '-5', isPositive: false },
 
-      { id: 'g3a', distY: 1450, lane: 'left', x: -60, width: 90, op: 'add', value: 15, label: '+15', isPositive: true },
-      { id: 'g3b', distY: 1450, lane: 'right', x: 60, width: 90, op: 'multiply', value: 2, label: 'x2', isPositive: true },
+      { id: 'g3a', distY: 1450, lane: 'left', x: -75, width: 120, op: 'add', value: 15, label: '+15', isPositive: true },
+      { id: 'g3b', distY: 1450, lane: 'right', x: 75, width: 120, op: 'multiply', value: 2, label: 'x2', isPositive: true },
     ],
     obstacles: [
-      { id: 'obs1', distY: 700, x: 0, width: 60, height: 40, type: 'mud', sheepLoss: 4 },
-      { id: 'obs2', distY: 1200, x: -70, width: 50, height: 40, type: 'hay', sheepLoss: 5 },
+      { id: 'obs1', distY: 700, x: 0, width: 70, height: 42, type: 'mud', sheepLoss: 4 },
+      { id: 'obs2', distY: 1200, x: -75, width: 60, height: 42, type: 'hay', sheepLoss: 5 },
     ],
   },
   {
     level: 2,
     title: 'Clover Trail: Gate Multiplier',
     trackLength: 2600,
-    forwardSpeed: 260,
+    forwardSpeed: 215,
     initialSheep: 12,
     targetSheepGoal: 50,
     gates: [
-      { id: 'l2_g1a', distY: 500, lane: 'left', x: -60, width: 90, op: 'multiply', value: 2, label: 'x2', isPositive: true },
-      { id: 'l2_g1b', distY: 500, lane: 'right', x: 60, width: 90, op: 'add', value: 15, label: '+15', isPositive: true },
+      { id: 'l2_g1a', distY: 500, lane: 'left', x: -75, width: 120, op: 'multiply', value: 2, label: 'x2', isPositive: true },
+      { id: 'l2_g1b', distY: 500, lane: 'right', x: 75, width: 120, op: 'add', value: 15, label: '+15', isPositive: true },
 
-      { id: 'l2_g2a', distY: 1000, lane: 'left', x: -60, width: 90, op: 'subtract', value: 8, label: '-8', isPositive: false },
-      { id: 'l2_g2b', distY: 1000, lane: 'right', x: 60, width: 90, op: 'multiply', value: 3, label: 'x3', isPositive: true },
+      { id: 'l2_g2a', distY: 1000, lane: 'left', x: -75, width: 120, op: 'subtract', value: 8, label: '-8', isPositive: false },
+      { id: 'l2_g2b', distY: 1000, lane: 'right', x: 75, width: 120, op: 'multiply', value: 3, label: 'x3', isPositive: true },
 
-      { id: 'l2_g3a', distY: 1600, lane: 'left', x: -60, width: 90, op: 'add', value: 25, label: '+25', isPositive: true },
-      { id: 'l2_g3b', distY: 1600, lane: 'right', x: 60, width: 90, op: 'divide', value: 2, label: '÷2', isPositive: false },
+      { id: 'l2_g3a', distY: 1600, lane: 'left', x: -75, width: 120, op: 'add', value: 25, label: '+25', isPositive: true },
+      { id: 'l2_g3b', distY: 1600, lane: 'right', x: 75, width: 120, op: 'divide', value: 2, label: '÷2', isPositive: false },
 
-      { id: 'l2_g4a', distY: 2100, lane: 'left', x: -60, width: 90, op: 'multiply', value: 2, label: 'x2', isPositive: true },
-      { id: 'l2_g4b', distY: 2100, lane: 'right', x: 60, width: 90, op: 'add', value: 20, label: '+20', isPositive: true },
+      { id: 'l2_g4a', distY: 2100, lane: 'left', x: -75, width: 120, op: 'multiply', value: 2, label: 'x2', isPositive: true },
+      { id: 'l2_g4b', distY: 2100, lane: 'right', x: 75, width: 120, op: 'add', value: 20, label: '+20', isPositive: true },
     ],
     obstacles: [
-      { id: 'l2_obs1', distY: 750, x: -50, width: 55, height: 45, type: 'shearer', sheepLoss: 6 },
-      { id: 'l2_obs2', distY: 1300, x: 50, width: 60, height: 40, type: 'mud', sheepLoss: 8 },
-      { id: 'l2_obs3', distY: 1850, x: 0, width: 70, height: 40, type: 'hay', sheepLoss: 10 },
+      { id: 'l2_obs1', distY: 750, x: -60, width: 65, height: 45, type: 'shearer', sheepLoss: 6 },
+      { id: 'l2_obs2', distY: 1300, x: 60, width: 70, height: 42, type: 'mud', sheepLoss: 8 },
+      { id: 'l2_obs3', distY: 1850, x: 0, width: 80, height: 42, type: 'hay', sheepLoss: 10 },
     ],
   },
   {
     level: 3,
     title: 'Barnyard Blitz: Herd Rush',
     trackLength: 3000,
-    forwardSpeed: 290,
+    forwardSpeed: 235,
     initialSheep: 15,
     targetSheepGoal: 80,
     gates: [
-      { id: 'l3_g1a', distY: 450, lane: 'left', x: -60, width: 90, op: 'multiply', value: 3, label: 'x3', isPositive: true },
-      { id: 'l3_g1b', distY: 450, lane: 'right', x: 60, width: 90, op: 'add', value: 10, label: '+10', isPositive: true },
+      { id: 'l3_g1a', distY: 450, lane: 'left', x: -75, width: 120, op: 'multiply', value: 3, label: 'x3', isPositive: true },
+      { id: 'l3_g1b', distY: 450, lane: 'right', x: 75, width: 120, op: 'add', value: 10, label: '+10', isPositive: true },
 
-      { id: 'l3_g2a', distY: 950, lane: 'left', x: -60, width: 90, op: 'divide', value: 2, label: '÷2', isPositive: false },
-      { id: 'l3_g2b', distY: 950, lane: 'right', x: 60, width: 90, op: 'multiply', value: 2, label: 'x2', isPositive: true },
+      { id: 'l3_g2a', distY: 950, lane: 'left', x: -75, width: 120, op: 'divide', value: 2, label: '÷2', isPositive: false },
+      { id: 'l3_g2b', distY: 950, lane: 'right', x: 75, width: 120, op: 'multiply', value: 2, label: 'x2', isPositive: true },
 
-      { id: 'l3_g3a', distY: 1500, lane: 'left', x: -60, width: 90, op: 'add', value: 30, label: '+30', isPositive: true },
-      { id: 'l3_g3b', distY: 1500, lane: 'right', x: 60, width: 90, op: 'subtract', value: 12, label: '-12', isPositive: false },
+      { id: 'l3_g3a', distY: 1500, lane: 'left', x: -75, width: 120, op: 'add', value: 30, label: '+30', isPositive: true },
+      { id: 'l3_g3b', distY: 1500, lane: 'right', x: 75, width: 120, op: 'subtract', value: 12, label: '-12', isPositive: false },
 
-      { id: 'l3_g4a', distY: 2050, lane: 'left', x: -60, width: 90, op: 'multiply', value: 2, label: 'x2', isPositive: true },
-      { id: 'l3_g4b', distY: 2050, lane: 'right', x: 60, width: 90, op: 'multiply', value: 3, label: 'x3', isPositive: true },
+      { id: 'l3_g4a', distY: 2050, lane: 'left', x: -75, width: 120, op: 'multiply', value: 2, label: 'x2', isPositive: true },
+      { id: 'l3_g4b', distY: 2050, lane: 'right', x: 75, width: 120, op: 'multiply', value: 3, label: 'x3', isPositive: true },
 
-      { id: 'l3_g5a', distY: 2550, lane: 'left', x: -60, width: 90, op: 'add', value: 40, label: '+40', isPositive: true },
-      { id: 'l3_g5b', distY: 2550, lane: 'right', x: 60, width: 90, op: 'divide', value: 2, label: '÷2', isPositive: false },
+      { id: 'l3_g5a', distY: 2550, lane: 'left', x: -75, width: 120, op: 'add', value: 40, label: '+40', isPositive: true },
+      { id: 'l3_g5b', distY: 2550, lane: 'right', x: 75, width: 120, op: 'divide', value: 2, label: '÷2', isPositive: false },
     ],
     obstacles: [
-      { id: 'l3_obs1', distY: 700, x: 0, width: 80, height: 40, type: 'mud', sheepLoss: 10 },
-      { id: 'l3_obs2', distY: 1200, x: -60, width: 50, height: 45, type: 'shearer', sheepLoss: 12 },
-      { id: 'l3_obs3', distY: 1800, x: 60, width: 60, height: 45, type: 'shearer', sheepLoss: 12 },
-      { id: 'l3_obs4', distY: 2300, x: 0, width: 70, height: 40, type: 'hay', sheepLoss: 15 },
+      { id: 'l3_obs1', distY: 700, x: 0, width: 85, height: 42, type: 'mud', sheepLoss: 10 },
+      { id: 'l3_obs2', distY: 1200, x: -65, width: 60, height: 45, type: 'shearer', sheepLoss: 12 },
+      { id: 'l3_obs3', distY: 1800, x: 65, width: 65, height: 45, type: 'shearer', sheepLoss: 12 },
+      { id: 'l3_obs4', distY: 2300, x: 0, width: 80, height: 42, type: 'hay', sheepLoss: 15 },
     ],
   },
 ];
@@ -186,8 +186,8 @@ export function initializeSheepStampedeLevel(levelNumber: number = 1): SheepStam
 }
 
 export function steerFlock(state: SheepStampedeState, targetX: number): SheepStampedeState {
-  // Clamp targetX within playable pasture boundaries [-120, 120]
-  const clampedX = Math.max(-120, Math.min(120, targetX));
+  // Clamp targetX within playable pasture boundaries [-140, 140]
+  const clampedX = Math.max(-140, Math.min(140, targetX));
   return {
     ...state,
     flockX: clampedX,
