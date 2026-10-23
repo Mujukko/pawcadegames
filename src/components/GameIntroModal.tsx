@@ -20,6 +20,121 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'farm-block-blast': {
+    title: 'Farm Block Blast: Barnyard Grid',
+    subtitle: 'Classic 8x8 Wooden Polyomino Blast',
+    mascot: '🐶🧩',
+    themeColor: 'from-amber-500 via-orange-600 to-indigo-800',
+    goal: 'Fit wooden crop polyominoes onto the 8x8 farm grid, blast full rows and columns, and unleash massive Combo Streaks!',
+    steps: [
+      {
+        icon: '🧩',
+        title: '1. Place Wooden Shapes',
+        desc: 'Pick from 3 polyomino crop pieces in the barn tray and fit them into any empty space on the 8x8 board.',
+      },
+      {
+        icon: '💥',
+        title: '2. Blast Rows & Columns',
+        desc: 'Fill any 8 horizontal or vertical cells to blast them clean with vibrant laser flashes and earn bonus points.',
+      },
+      {
+        icon: '⚡',
+        title: '3. Keep Combo Streaks Alive',
+        desc: 'Clear at least one line on consecutive moves to build high-voltage Combo Streaks (2x, 3x, 4x+) for exponential score leaps!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Click & Place: Click any piece in tray, then click target grid cell',
+        'Mouse Drag: Drag any piece directly onto the board',
+        'Spacebar / R: Quick restart game',
+        'M Key: Toggle banjo sound effects',
+      ],
+      mobile: [
+        'Tap to Select & Tap to Place: Tap a piece below, then tap cell on board',
+        'Touch Drag: Drag piece directly onto grid with live translucent ghost preview',
+        'Reset: Tap Restart button on game over or in header',
+      ],
+    },
+    proTip: 'Always leave open 3x3 square or 5-long line spaces in the center so giant pieces won\'t trap you into an early Game Over!',
+  },
+  'sheep-cart-jam': {
+    title: 'Sheep Cart Jam: Meadow Escape',
+    subtitle: 'Bus Jam & Car Jam Farm Puzzle',
+    mascot: '🐑🚜',
+    themeColor: 'from-pink-500 via-sky-600 to-emerald-700',
+    goal: 'Unblock tractor carts from the maze, dock matching colors, and board waiting sheep to escape to the meadow!',
+    steps: [
+      {
+        icon: '🚜',
+        title: '1. Tap Unblocked Carts',
+        desc: 'Find carts with a clear directional path along their orientation to exit the farmyard maze into the dock.',
+      },
+      {
+        icon: '🐑',
+        title: '2. Board Matching Sheep',
+        desc: 'Fluffy sheep at the front of the queue automatically hop into any docked cart that shares their wool color.',
+      },
+      {
+        icon: '🚀',
+        title: '3. Full Carts Depart (3/3)',
+        desc: 'When a cart holds 3 sheep, it zooms off to the meadow, opening its dock bay for the next cart.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Click Cart: Drive cart to loading bay',
+        'R Key: Quick restart level',
+        'M Key: Toggle sound effects',
+      ],
+      mobile: [
+        'Tap Cart: Drive cart to dock bay',
+        'Level Buttons: Switch between challenge levels L1-L3',
+        'Restart: Tap restart icon to try again',
+      ],
+    },
+    proTip: 'Watch the front of the sheep queue closely! Don\'t send carts to the dock if their color is trapped deep at the back of the queue, or your 3 bays will jam!',
+  },
+  'grain-sand-fall': {
+    title: 'Grain Sand Fall: Farm Physics',
+    subtitle: 'Sand Blocks & Sand Tetris Silo',
+    mascot: '⏳🌾',
+    themeColor: 'from-amber-500 via-yellow-600 to-stone-900',
+    goal: 'Steer falling crop blocks that dissolve into flowing sand dunes and connect colors wall-to-wall!',
+    steps: [
+      {
+        icon: '🧱',
+        title: '1. Steer & Rotate Blocks',
+        desc: 'Move falling tetromino shapes left, right, or rotate them to position over the best landing spot.',
+      },
+      {
+        icon: '⏳',
+        title: '2. Watch Sand Melt & Slide',
+        desc: 'The instant a shape hits bottom, it dissolves into thousands of sand grains that slide down slopes naturally.',
+      },
+      {
+        icon: '⚡',
+        title: '3. Connect Wall-to-Wall',
+        desc: 'Create an unbroken path of the same grain color from the left wall to the right wall to dissolve it for big points!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Arrow Keys / A-D: Move left and right',
+        'Arrow Up / W: Rotate block',
+        'Arrow Down / S: Soft drop downward',
+        'Spacebar: Instant hard drop',
+        'R Key: Quick restart',
+        'M Key: Toggle sound effects',
+      ],
+      mobile: [
+        'Left / Right Arrows: Steer block across silo',
+        'Rotate Button: Turn falling shape',
+        'Down Arrow: Instant hard drop to sand floor',
+      ],
+    },
+    proTip: 'Stack the same crop colors on one side so when they slide down slopes, they automatically bridge across to the other wall and clear entire dunes!',
+  },
   'farm-mini-mart': {
     title: 'Farm Mini Mart: Animal Market',
     subtitle: 'Idle Countryside Tycoon',

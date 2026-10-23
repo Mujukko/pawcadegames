@@ -17,6 +17,27 @@ interface GameVisualConfig {
 }
 
 const GAME_FALLBACKS: Record<string, GameVisualConfig> = {
+  'farm-block-blast': {
+    icon: '🐶🧩',
+    gradient: 'from-amber-600 via-orange-600 to-indigo-900',
+    glow: 'group-hover:border-amber-400 group-hover:shadow-amber-500/30',
+    tagline: 'Place wooden crop blocks, clear rows and columns, and trigger combo streaks!',
+    badgeLabel: '#1 HIT',
+  },
+  'sheep-cart-jam': {
+    icon: '🐑🚜',
+    gradient: 'from-pink-500 via-sky-600 to-emerald-800',
+    glow: 'group-hover:border-pink-400 group-hover:shadow-pink-500/30',
+    tagline: 'Untangle tractor carts, dock matching colors, and board waiting sheep!',
+    badgeLabel: 'BUS JAM',
+  },
+  'grain-sand-fall': {
+    icon: '⏳🌾',
+    gradient: 'from-amber-500 via-yellow-600 to-stone-900',
+    glow: 'group-hover:border-yellow-400 group-hover:shadow-yellow-500/30',
+    tagline: 'Melt falling crop blocks into flowing sand dunes and connect colors wall-to-wall!',
+    badgeLabel: 'SAND TETRIS',
+  },
   'farm-mini-mart': {
     icon: '🏪',
     gradient: 'from-emerald-600 via-teal-700 to-amber-700',

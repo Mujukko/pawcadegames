@@ -38,6 +38,8 @@ export const HomePage: React.FC<HomePageProps> = ({
           g.category.toLowerCase().includes('puzzle') ||
           g.id.includes('2048') ||
           g.id.includes('tetris') ||
+          g.id.includes('block') ||
+          g.id.includes('sand') ||
           g.id.includes('parking')
       );
     }
@@ -48,6 +50,8 @@ export const HomePage: React.FC<HomePageProps> = ({
           g.id.includes('farm') ||
           g.id.includes('mart') ||
           g.id.includes('chicken') ||
+          g.id.includes('sheep') ||
+          g.id.includes('grain') ||
           g.id.includes('chef')
       );
     }
@@ -66,6 +70,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           g.category.toLowerCase().includes('pet') ||
           g.id.includes('dog') ||
           g.id.includes('cat') ||
+          g.id.includes('sheep') ||
           g.id.includes('animal') ||
           g.id.includes('rat')
       );

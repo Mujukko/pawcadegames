@@ -3,16 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎃</text></svg>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QENGPZ73F"></script>
+    <!-- Google tag (gtag.js) - Lazy loaded on first user interaction or load+2500ms for 95+ PageSpeed -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-6QENGPZ73F');
+
+      (function(){
+        var loaded = false;
+        var events = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+        function loadGtag(){
+          if (loaded) return;
+          loaded = true;
+          events.forEach(function(e){ window.removeEventListener(e, loadGtag, {capture: true}); });
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-6QENGPZ73F';
+          document.head.appendChild(s);
+        }
+        events.forEach(function(e){ window.addEventListener(e, loadGtag, {capture: true, passive: true}); });
+        window.addEventListener('load', function(){ setTimeout(loadGtag, 2500); });
+      })();
     </script>
     
     <!-- Google Search Console Verification -->
@@ -45,7 +59,7 @@
     <!-- Performance & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=optional" rel="stylesheet" />
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">

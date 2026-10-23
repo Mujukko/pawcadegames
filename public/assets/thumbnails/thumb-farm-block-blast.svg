@@ -1,0 +1,339 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient (Sunny Barnyard Twilight to Golden Amber) -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="35%" stop-color="#312e81"/>
+      <stop offset="70%" stop-color="#7c2d12"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+
+    <!-- Sunburst Radial Glow -->
+    <radialGradient id="sunGlow" cx="50%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.6"/>
+      <stop offset="40%" stop-color="#f59e0b" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Wood Board Frame Gradient -->
+    <linearGradient id="woodFrame" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#92400e"/>
+      <stop offset="50%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+
+    <!-- Wood Board Surface Gradient -->
+    <linearGradient id="woodBoard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#292524"/>
+      <stop offset="50%" stop-color="#1c1917"/>
+      <stop offset="100%" stop-color="#0c0a09"/>
+    </linearGradient>
+
+    <!-- Crop Block Gradients -->
+    <!-- Corn (Yellow/Gold) -->
+    <linearGradient id="cornGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="40%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+
+    <!-- Apple (Vibrant Crimson) -->
+    <linearGradient id="appleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="40%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+
+    <!-- Pumpkin (Rich Orange) -->
+    <linearGradient id="pumpkinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdba74"/>
+      <stop offset="40%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+
+    <!-- Carrot (Emerald / Lime) -->
+    <linearGradient id="carrotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="40%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </linearGradient>
+
+    <!-- Eggplant (Neon Purple) -->
+    <linearGradient id="eggplantGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d8b4fe"/>
+      <stop offset="40%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#7e22ce"/>
+    </linearGradient>
+
+    <!-- Blueberry (Sky Cyan) -->
+    <linearGradient id="berryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="40%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+
+    <!-- Blast Laser Flash Glow -->
+    <linearGradient id="laserGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="25%" stop-color="#fef08a" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="75%" stop-color="#fef08a" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Barnaby Fur Gradient -->
+    <radialGradient id="dogFur" cx="45%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </radialGradient>
+
+    <!-- Bandana Gradient -->
+    <linearGradient id="bandanaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="50%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="shadowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+
+    <filter id="glowFilter" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- 1. Background Sky & Farm Ambiance -->
+  <rect width="512" height="512" fill="url(#bgGrad)"/>
+  <rect width="512" height="512" fill="url(#sunGlow)"/>
+
+  <!-- Starry Sparkles in the Sky -->
+  <g fill="#fef08a" opacity="0.75">
+    <path d="M 60 40 Q 60 55 45 55 Q 60 55 60 70 Q 60 55 75 55 Q 60 55 60 40 Z"/>
+    <path d="M 440 60 Q 440 75 425 75 Q 440 75 440 90 Q 440 75 455 75 Q 440 75 440 60 Z"/>
+    <path d="M 120 110 Q 120 120 110 120 Q 120 120 120 130 Q 120 120 130 120 Q 120 120 120 110 Z" opacity="0.6"/>
+    <path d="M 400 130 Q 400 140 390 140 Q 400 140 400 150 Q 400 140 410 140 Q 400 140 400 130 Z" opacity="0.6"/>
+  </g>
+
+  <!-- 2. Barn Roof Silhouettes in Background -->
+  <polygon points="20,220 90,160 160,220" fill="#7f1d1d" opacity="0.5"/>
+  <rect x="35" y="220" width="110" height="70" fill="#450a0a" opacity="0.4"/>
+  <polygon points="360,220 430,165 500,220" fill="#7f1d1d" opacity="0.5"/>
+  <rect x="375" y="220" width="110" height="70" fill="#450a0a" opacity="0.4"/>
+
+  <!-- 3. Isometric Wooden Grid Board (Block Blast Gameboard) -->
+  <g transform="translate(66, 175)" filter="url(#shadowFilter)">
+    <!-- Board Wooden Rim Outer Frame -->
+    <rect x="-10" y="-10" width="380" height="280" rx="20" fill="url(#woodFrame)" stroke="#d97706" stroke-width="3"/>
+    <!-- Board Recessed Grid Background -->
+    <rect x="6" y="6" width="348" height="248" rx="14" fill="url(#woodBoard)" stroke="#44403c" stroke-width="2"/>
+
+    <!-- Subtle Grid Lines (8x8 grid pattern preview) -->
+    <g stroke="#292524" stroke-width="1.5" opacity="0.7">
+      <!-- 7 vertical lines -->
+      <line x1="49.5" y1="6" x2="49.5" y2="254"/>
+      <line x1="93" y1="6" x2="93" y2="254"/>
+      <line x1="136.5" y1="6" x2="136.5" y2="254"/>
+      <line x1="180" y1="6" x2="180" y2="254"/>
+      <line x1="223.5" y1="6" x2="223.5" y2="254"/>
+      <line x1="267" y1="6" x2="267" y2="254"/>
+      <line x1="310.5" y1="6" x2="310.5" y2="254"/>
+
+      <!-- 7 horizontal lines -->
+      <line x1="6" y1="37" x2="354" y2="37"/>
+      <line x1="6" y1="68" x2="354" y2="68"/>
+      <line x1="6" y1="99" x2="354" y2="99"/>
+      <line x1="6" y1="130" x2="354" y2="130"/>
+      <line x1="6" y1="161" x2="354" y2="161"/>
+      <line x1="6" y1="192" x2="354" y2="192"/>
+      <line x1="6" y1="223" x2="354" y2="223"/>
+    </g>
+
+    <!-- Placed 3D Crop Blocks on the Grid -->
+    <!-- Column 1 & 2 Shapes -->
+    <!-- Orange Pumpkin 2x2 cluster -->
+    <g filter="url(#shadowFilter)">
+      <rect x="10" y="10" width="36" height="28" rx="6" fill="url(#pumpkinGrad)" stroke="#ffedd5" stroke-width="1.5"/>
+      <text x="28" y="30" font-size="16" text-anchor="middle">🎃</text>
+
+      <rect x="53" y="10" width="36" height="28" rx="6" fill="url(#pumpkinGrad)" stroke="#ffedd5" stroke-width="1.5"/>
+      <text x="71" y="30" font-size="16" text-anchor="middle">🎃</text>
+
+      <rect x="10" y="41" width="36" height="28" rx="6" fill="url(#pumpkinGrad)" stroke="#ffedd5" stroke-width="1.5"/>
+      <text x="28" y="61" font-size="16" text-anchor="middle">🎃</text>
+
+      <rect x="53" y="41" width="36" height="28" rx="6" fill="url(#pumpkinGrad)" stroke="#ffedd5" stroke-width="1.5"/>
+      <text x="71" y="61" font-size="16" text-anchor="middle">🎃</text>
+    </g>
+
+    <!-- Red Apple L-Piece -->
+    <g filter="url(#shadowFilter)">
+      <rect x="97" y="10" width="36" height="28" rx="6" fill="url(#appleGrad)" stroke="#fecaca" stroke-width="1.5"/>
+      <text x="115" y="30" font-size="16" text-anchor="middle">🍎</text>
+
+      <rect x="97" y="41" width="36" height="28" rx="6" fill="url(#appleGrad)" stroke="#fecaca" stroke-width="1.5"/>
+      <text x="115" y="61" font-size="16" text-anchor="middle">🍎</text>
+
+      <rect x="97" y="72" width="36" height="28" rx="6" fill="url(#appleGrad)" stroke="#fecaca" stroke-width="1.5"/>
+      <text x="115" y="92" font-size="16" text-anchor="middle">🍎</text>
+
+      <rect x="140" y="72" width="36" height="28" rx="6" fill="url(#appleGrad)" stroke="#fecaca" stroke-width="1.5"/>
+      <text x="158" y="92" font-size="16" text-anchor="middle">🍎</text>
+    </g>
+
+    <!-- Purple Eggplant 3-Bar -->
+    <g filter="url(#shadowFilter)">
+      <rect x="227" y="10" width="36" height="28" rx="6" fill="url(#eggplantGrad)" stroke="#f3e8ff" stroke-width="1.5"/>
+      <text x="245" y="30" font-size="16" text-anchor="middle">🍆</text>
+
+      <rect x="270" y="10" width="36" height="28" rx="6" fill="url(#eggplantGrad)" stroke="#f3e8ff" stroke-width="1.5"/>
+      <text x="288" y="30" font-size="16" text-anchor="middle">🍆</text>
+
+      <rect x="314" y="10" width="36" height="28" rx="6" fill="url(#eggplantGrad)" stroke="#f3e8ff" stroke-width="1.5"/>
+      <text x="332" y="30" font-size="16" text-anchor="middle">🍆</text>
+    </g>
+
+    <!-- Green Clover / Carrot Blocks -->
+    <g filter="url(#shadowFilter)">
+      <rect x="10" y="196" width="36" height="28" rx="6" fill="url(#carrotGrad)" stroke="#dcfce7" stroke-width="1.5"/>
+      <text x="28" y="216" font-size="16" text-anchor="middle">🥕</text>
+
+      <rect x="53" y="196" width="36" height="28" rx="6" fill="url(#carrotGrad)" stroke="#dcfce7" stroke-width="1.5"/>
+      <text x="71" y="216" font-size="16" text-anchor="middle">🥕</text>
+
+      <rect x="53" y="227" width="36" height="25" rx="6" fill="url(#carrotGrad)" stroke="#dcfce7" stroke-width="1.5"/>
+      <text x="71" y="246" font-size="16" text-anchor="middle">🥕</text>
+    </g>
+
+    <!-- Blue Berry Blocks -->
+    <g filter="url(#shadowFilter)">
+      <rect x="270" y="196" width="36" height="28" rx="6" fill="url(#berryGrad)" stroke="#e0f2fe" stroke-width="1.5"/>
+      <text x="288" y="216" font-size="16" text-anchor="middle">🫐</text>
+
+      <rect x="314" y="196" width="36" height="28" rx="6" fill="url(#berryGrad)" stroke="#e0f2fe" stroke-width="1.5"/>
+      <text x="332" y="216" font-size="16" text-anchor="middle">🫐</text>
+    </g>
+
+    <!-- EXPLODING FULL ROW (Row 4 Blast Effect!) -->
+    <!-- Golden Corn Blocks Exploding with Stars -->
+    <g id="explodingRow" filter="url(#glowFilter)">
+      <rect x="10" y="134" width="36" height="28" rx="6" fill="url(#cornGrad)" stroke="#fff" stroke-width="2"/>
+      <rect x="53" y="134" width="36" height="28" rx="6" fill="url(#cornGrad)" stroke="#fff" stroke-width="2"/>
+      <rect x="97" y="134" width="36" height="28" rx="6" fill="url(#cornGrad)" stroke="#fff" stroke-width="2"/>
+      <rect x="140" y="134" width="36" height="28" rx="6" fill="url(#cornGrad)" stroke="#fff" stroke-width="2"/>
+      <rect x="184" y="134" width="36" height="28" rx="6" fill="url(#cornGrad)" stroke="#fff" stroke-width="2"/>
+      <rect x="227" y="134" width="36" height="28" rx="6" fill="url(#cornGrad)" stroke="#fff" stroke-width="2"/>
+      <rect x="270" y="134" width="36" height="28" rx="6" fill="url(#cornGrad)" stroke="#fff" stroke-width="2"/>
+      <rect x="314" y="134" width="36" height="28" rx="6" fill="url(#cornGrad)" stroke="#fff" stroke-width="2"/>
+
+      <!-- Laser Beam Flash Across the Line -->
+      <rect x="0" y="142" width="360" height="12" fill="url(#laserGrad)"/>
+    </g>
+
+    <!-- Flying Gold Sparkles and Straw Debris -->
+    <g fill="#fef08a" filter="url(#glowFilter)">
+      <circle cx="40" cy="120" r="5"/>
+      <circle cx="85" cy="165" r="4"/>
+      <circle cx="160" cy="115" r="6"/>
+      <circle cx="210" cy="170" r="5"/>
+      <circle cx="290" cy="120" r="7"/>
+      <circle cx="330" cy="160" r="4"/>
+    </g>
+  </g>
+
+  <!-- 4. Barnaby The Golden Farm Pup (Mascot Hero at Top Center) -->
+  <g id="barnaby" transform="translate(196, 25)" filter="url(#shadowFilter)">
+    <!-- Floppy Left Ear -->
+    <path d="M 15 50 C -15 65 -10 110 20 95 C 30 90 25 65 20 50 Z" fill="#b45309"/>
+    <!-- Floppy Right Ear -->
+    <path d="M 105 50 C 135 65 130 110 100 95 C 90 90 95 65 100 50 Z" fill="#b45309"/>
+
+    <!-- Head -->
+    <ellipse cx="60" cy="65" rx="52" ry="46" fill="url(#dogFur)"/>
+
+    <!-- Muzzle -->
+    <ellipse cx="60" cy="78" rx="28" ry="22" fill="#fef3c7"/>
+
+    <!-- Nose -->
+    <ellipse cx="60" cy="68" rx="10" ry="7" fill="#1e1b4b"/>
+    <ellipse cx="58" cy="66" rx="3" ry="2" fill="#ffffff"/>
+
+    <!-- Cute Eyes -->
+    <ellipse cx="40" cy="54" rx="8" ry="10" fill="#0f172a"/>
+    <circle cx="42" cy="51" r="3.5" fill="#ffffff"/>
+    <circle cx="38" cy="57" r="1.5" fill="#ffffff"/>
+
+    <!-- Right Eye (Winking with Happy Arc) -->
+    <path d="M 72 56 Q 80 48 88 56" stroke="#0f172a" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+
+    <!-- Open Cheerful Smile & Tongue -->
+    <path d="M 50 82 Q 60 96 70 82" stroke="#78350f" stroke-width="3" fill="none"/>
+    <path d="M 54 86 C 54 98 66 98 66 86 Z" fill="#f43f5e"/>
+
+    <!-- Rosy Cheeks -->
+    <circle cx="28" cy="72" r="7" fill="#fb7185" opacity="0.6"/>
+    <circle cx="92" cy="72" r="7" fill="#fb7185" opacity="0.6"/>
+
+    <!-- Red Checkered Bandana -->
+    <polygon points="30,100 60,126 90,100" fill="url(#bandanaGrad)" stroke="#fca5a5" stroke-width="1.5"/>
+    <circle cx="60" cy="110" r="3" fill="#ffffff"/>
+
+    <!-- Paw Holding Floating Corn Block -->
+    <g transform="translate(90, 80)">
+      <ellipse cx="14" cy="14" rx="14" ry="12" fill="url(#dogFur)"/>
+      <!-- Glowing Held Block -->
+      <rect x="18" y="-12" width="28" height="24" rx="5" fill="url(#cornGrad)" stroke="#fff" stroke-width="2" filter="url(#glowFilter)"/>
+      <text x="32" y="5" font-size="14" text-anchor="middle">🌽</text>
+    </g>
+  </g>
+
+  <!-- 5. Big COMBO STREAK Badge (Floating Top Right) -->
+  <g transform="translate(330, 20)" filter="url(#shadowFilter)">
+    <!-- Golden Star Badge Background -->
+    <rect x="0" y="0" width="160" height="48" rx="24" fill="#ca8a04" stroke="#fef08a" stroke-width="3"/>
+    <rect x="3" y="3" width="154" height="42" rx="21" fill="#eab308"/>
+
+    <!-- Star Icon -->
+    <text x="24" y="32" font-size="22">⚡</text>
+
+    <!-- Combo Text -->
+    <text x="94" y="26" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="16" fill="#451a03" text-anchor="middle" letter-spacing="0.5">COMBO x5</text>
+    <text x="94" y="40" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="11" fill="#78350f" text-anchor="middle">+400 PTS</text>
+  </g>
+
+  <!-- 6. Floating Action Badges & Sparks -->
+  <g filter="url(#glowFilter)">
+    <text x="32" y="150" font-size="28">✨</text>
+    <text x="450" y="270" font-size="28">💥</text>
+  </g>
+
+  <!-- 7. Bottom Wooden Piece Tray (The 3 Pieces Ready to Place) -->
+  <g transform="translate(56, 455)" filter="url(#shadowFilter)">
+    <!-- Tray Background -->
+    <rect x="0" y="0" width="400" height="50" rx="14" fill="#1c1917" stroke="#78350f" stroke-width="2"/>
+
+    <!-- Piece Slot 1: Corn 2-Piece -->
+    <g transform="translate(45, 12)">
+      <rect x="0" y="0" width="22" height="22" rx="4" fill="url(#cornGrad)"/>
+      <rect x="25" y="0" width="22" height="22" rx="4" fill="url(#cornGrad)"/>
+    </g>
+
+    <!-- Piece Slot 2: Pumpkin Square -->
+    <g transform="translate(180, 5)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="url(#pumpkinGrad)"/>
+      <rect x="20" y="0" width="18" height="18" rx="3" fill="url(#pumpkinGrad)"/>
+      <rect x="0" y="20" width="18" height="18" rx="3" fill="url(#pumpkinGrad)"/>
+      <rect x="20" y="20" width="18" height="18" rx="3" fill="url(#pumpkinGrad)"/>
+    </g>
+
+    <!-- Piece Slot 3: Apple L-Piece -->
+    <g transform="translate(305, 5)">
+      <rect x="0" y="0" width="18" height="18" rx="3" fill="url(#appleGrad)"/>
+      <rect x="0" y="20" width="18" height="18" rx="3" fill="url(#appleGrad)"/>
+      <rect x="20" y="20" width="18" height="18" rx="3" fill="url(#appleGrad)"/>
+    </g>
+  </g>
+</svg>
