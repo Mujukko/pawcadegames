@@ -147,7 +147,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100 selection:bg-orange-500 selection:text-slate-950">
+    <div className="flex flex-col min-h-screen bg-slate-900 text-slate-100 selection:bg-orange-500 selection:text-slate-950">
       <Header
         currentRoute={currentRoute}
         navigate={navigate}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Play, Sparkles, HelpCircle, Check, Smartphone, Monitor } from 'lucide-react';
+import { X, Play, Sparkles, HelpCircle, Smartphone, Monitor } from 'lucide-react';
 
 export interface GameIntroContent {
   title: string;
@@ -22,264 +22,264 @@ export interface GameIntroContent {
 export const GAME_INTROS: Record<string, GameIntroContent> = {
   'farm-mini-mart': {
     title: 'Farm Mini Mart: Animal Market',
-    subtitle: 'Çiftlik Mini Market & Idle Tycoon',
+    subtitle: 'Idle Countryside Tycoon',
     mascot: '🏪',
     themeColor: 'from-emerald-500 via-teal-600 to-amber-600',
-    goal: 'Taze mahsulleri hasat et, reyonları doldur ve sevimli hayvan müşterilerine satış yaparak marketini büyüt!',
+    goal: 'Harvest sweet crops, stock market shelves, and cash out adorable animal customers to expand your farm mart!',
     steps: [
       {
         icon: '🍅',
-        title: '1. Mahsulleri Hasat Et',
-        desc: 'Domates, mısır, taze yumurta ve süt çiftliklerinin yanına yaklaş; ürünler otomatik olarak ellerine yığılır.',
+        title: '1. Harvest Fresh Crops',
+        desc: 'Walk near tomatoes, corn, eggs, and milk plots; fresh items automatically stack up in your hands.',
       },
       {
         icon: '📦',
-        title: '2. Reyonları Doldur',
-        desc: 'Boş pazar reyonlarının yanına git; taşıdığın ürünler anında raflara boşalır ve müşterilerin beğenisine sunulur.',
+        title: '2. Restock Store Shelves',
+        desc: 'Walk up to empty shelves to instantly unload produce and display it for hungry customers.',
       },
       {
         icon: '💰',
-        title: '3. Kasada Paraları Topla',
-        desc: 'Kasa tezgahına yaklaşarak kuyruktaki hayvanları ağırla, altın paraları topla ve yeni reyonların kilitlerini aç!',
+        title: '3. Cash Out & Expand',
+        desc: 'Stand at the Cash Register to checkout animals, collect shiny gold coins, and unlock new stations!',
       },
     ],
     controls: {
-      desktop: ['WASD / Yön Tuşları: Çiftçiyi yönlendir', 'U Tuşu: Yükseltme menüsünü aç', 'M Tuşu: Sesi aç/kapat'],
-      mobile: ['Ekranın herhangi bir yerine dokunup parmağını kaydırarak 360° joystick ile yönlendir', 'Geliştirmeler butonuna dokun'],
+      desktop: ['WASD or Arrow Keys: Walk & steer around the mart', 'U Key: Open Shop Upgrades menu', 'M Key: Toggle sound mute'],
+      mobile: ['Touch anywhere and drag to steer with 360° virtual joystick', 'Tap UPGRADES button to boost speed & capacity'],
     },
-    proTip: 'Erken aşamada Yardımcı Köpek Barnaby ve Otomatik Kasiyer işe alarak pasif gelirini 3 katına çıkarabilirsin!',
+    proTip: 'Hire Barnaby the helper dog and the Cashier worker early to automate harvesting and checkout for 3x passive earnings!',
   },
   'duck-runner': {
     title: 'Duck Runner: Vampire Quack',
-    subtitle: 'Cadılar Bayramı Sonsuz Koşu',
+    subtitle: 'Halloween Endless Runner',
     mascot: '🦆',
     themeColor: 'from-orange-500 via-amber-600 to-purple-800',
-    goal: 'Balkabaklarının üzerinden zıpla, gece yarasalarının altından kayarak rekor puana ulaş!',
+    goal: 'Leap over carved Jack-o\'-Lanterns and slide under midnight vampire bats to set a new high score!',
     steps: [
       {
         icon: '🎃',
-        title: '1. Engellerin Üzerinden Zıpla',
-        desc: 'Yerdeki oymalı balkabakları ve ahşap çitlerin üzerinden zıplayarak koşmaya devam et.',
+        title: '1. Jump Over Hurdles',
+        desc: 'Leap over glowing carved pumpkins and wooden fence posts to keep Quacky running forward.',
       },
       {
         icon: '🦇',
-        title: '2. Yarasaların Altından Kay',
-        desc: 'Yukarıdan hızla uçan vampir yarasalar yaklaştığında eğil (DUCK) ve altlarından düz kayarak geç.',
+        title: '2. Duck Under Flying Bats',
+        desc: 'When vampire bats swoop overhead, crouch low (DUCK) and slide flat under them.',
       },
       {
         icon: '⚡',
-        title: '3. Gece & Gündüz Döngüsü',
-        desc: 'Her 600 puanda bir gökyüzü dolunaylı büyüleyici geceye dönüşür ve koşu hızı artar.',
+        title: '3. Day-to-Night Progression',
+        desc: 'Every 600 points, the sky shifts into starry moonlit twilight and the running pace quickens!',
       },
     ],
     controls: {
-      desktop: ['Space / Yukarı Ok / W: Zıpla', 'Aşağı Ok / S: Eğil / Yere hızlı iniş', 'R: Yeniden Başlat'],
-      mobile: ['Sağ Başparmak (JUMP ⬆️): Zıpla', 'Sol Başparmak (DUCK ⬇️): Basılı tutarak kay'],
+      desktop: ['Space / Up Arrow / W: Jump', 'Down Arrow / S: Duck / Fast fall mid-air', 'R Key: Quick restart'],
+      mobile: ['Right Thumb (JUMP ⬆️): Jump over hurdles', 'Left Thumb (DUCK ⬇️): Hold to slide flat under bats'],
     },
-    proTip: 'Havadayken Eğil (DUCK) tuşuna basarsan ördek anında yere sert iniş yapar; bu teknik peş peşe gelen engellerde hayat kurtarır!',
+    proTip: 'Press DUCK while mid-air to trigger a quick slam fall back to the ground—essential for dodging back-to-back obstacles!',
   },
   'pet-candy-crush': {
     title: 'Farm Animal Match: Barnyard Blast',
-    subtitle: 'Çiftlik 3’lü Eşleştirme & Bomba Patlatma',
+    subtitle: 'Match-3 Puzzle & Explosive Bombs',
     mascot: '🍬',
     themeColor: 'from-pink-500 via-rose-600 to-purple-700',
-    goal: 'Sevimli çiftlik hayvanlarını eşleştir, dinamitler üret ve hamlelerin bitmeden 3 yıldızı kap!',
+    goal: 'Match cute farm animals, craft explosive boosters, and collect level targets before your moves run out!',
     steps: [
       {
         icon: '🐮',
-        title: '1. Yan Yana 3 Hayvanı Eşleştir',
-        desc: 'Komşu iki hayvanı birbiriyle takas ederek yatay veya dikey en az 3’lü gruplar oluştur.',
+        title: '1. Match 3 Animals in a Row',
+        desc: 'Swap adjacent friendly animals to make horizontal or vertical matches of 3 or more.',
       },
       {
         icon: '🧨',
-        title: '2. 2x2 Kare ile Dinamit Üret',
-        desc: '4 aynı hayvanı 2x2 kare şeklinde eşleştirerek devasa 3x3 patlama yapan Dinamit Bombası yarat!',
+        title: '2. Craft 2x2 Square Dynamite',
+        desc: 'Match 4 animals in a 2×2 square to forge a high-power Dynamite Bomb that blasts a 3×3 zone!',
       },
       {
         icon: '💥',
-        title: '3. Güçlendiricileri Birleştir',
-        desc: 'İki bombayı yan yana getirip birleştirirsen tüm ekranda 5x5 dev krater patlaması gerçekleşir.',
+        title: '3. Combine Boosters for Mega Blasts',
+        desc: 'Swap two adjacent bombs together to trigger a giant 5×5 crater explosion that clears the board.',
       },
     ],
     controls: {
-      desktop: ['Fare Tıklama & Sürükleme: Hayvanları takas et', 'Çift Tıklama: Bombayı olduğu yerde anında patlat'],
-      mobile: ['Dokun & Kaydır: Parmağınla hayvanları takas et', 'Çift Dokunma: Bombayı yerinde patlat'],
+      desktop: ['Mouse Click & Drag: Swap adjacent animals', 'Double Click: Detonate any bomb instantly in-place'],
+      mobile: ['Touch & Swipe: Drag finger between adjacent tiles', 'Double Tap: Detonate bomb immediately'],
     },
-    proTip: 'Tahtadaki bombaları başka bir taşla takas etmeden, üzerine çift dokunarak anında patlatabilirsin!',
+    proTip: 'Double-tap any bomb on the board to detonate it immediately without needing to swap it with another tile!',
   },
   'flappy-chicken': {
     title: 'Flappy Chicken: Golden Wheat',
-    subtitle: 'Komik Çiftlik Uçuş Macerası',
+    subtitle: 'Charming Farm Flight Arcade',
     mascot: '🐔',
     themeColor: 'from-yellow-500 via-amber-600 to-orange-600',
-    goal: 'Tombul tavuk Clucky ile ahşap çit kapılarının arasından uçarak 15 kapıyı geç ve Altın Buğday’a ulaş!',
+    goal: 'Guide Clucky the chubby chicken through 15 wooden fence gates to feast on the legendary Golden Wheat!',
     steps: [
       {
         icon: '🪽',
-        title: '1. Kanat Çırparak Yüksel',
-        desc: 'Ekrana dokunarak veya Space tuşuna basarak Clucky’nin kanat çırpmasını ve yükselmesini sağla.',
+        title: '1. Flap to Gain Altitude',
+        desc: 'Tap the screen or press Spacebar to flap Clucky\'s wings and rise gracefully into the air.',
       },
       {
         icon: '🚪',
-        title: '2. Ahşap Çitlerden Sakın',
-        desc: 'Her kapının açık aralığını dikkatle hesapla; çit direklerine çarpmadan dengeli süzül.',
+        title: '2. Squeeze Through Rustic Gates',
+        desc: 'Time your flaps carefully to glide through the openings between tall wooden fence pillars.',
       },
       {
         icon: '🌾',
-        title: '3. Altın Buğday Hedefine Ulaş',
-        desc: 'Havada süzülen altın tanelerini topla; mesafe göstergesi %100 olduğunda büyük hasat kutlaması başlar!',
+        title: '3. Reach the Golden Wheat',
+        desc: 'Collect floating golden grains; when the distance gauge reaches 100%, enjoy the harvest celebration!',
       },
     ],
     controls: {
-      desktop: ['Spacebar / W / Sol Tık: Kanat çırp', 'P: Duraklat', 'R: Hızlı yeniden başlat'],
-      mobile: ['Ekranda herhangi bir yere dokun: Kanat çırp', 'Alttaki büyük KANAT ÇIRP butonunu kullan'],
+      desktop: ['Spacebar / W / Left Click: Flap wings & cluck', 'P Key: Pause flight', 'R Key: Quick restart'],
+      mobile: ['Tap anywhere on screen to flap', 'Big bottom "TAP TO FLAP" button for comfortable one-thumb play'],
     },
-    proTip: 'Peş peşe hızlı basmak yerine ritmik ve hafif dokunuşlar Clucky’nin havada sabit yükseklikte süzülmesini kolaylaştırır!',
+    proTip: 'Gentle, rhythmic taps keep Clucky at a steady hover, making tight gate transitions much easier!',
   },
   'animal-2048': {
     title: 'Animal 2048: Spooky Evolution',
-    subtitle: 'Hayvan Birleştirme & Zeka Bulmacası',
+    subtitle: 'Creature Merge & Logic Puzzle',
     mascot: '🐘',
     themeColor: 'from-indigo-500 via-purple-600 to-violet-800',
-    goal: 'Izgarayı kaydırıp eşleşen hayvanları birleştirerek minik fareden görkemli File evril!',
+    goal: 'Slide the 4x4 grid to merge matching animals and evolve from a tiny Mouse all the way to the 2048 Elephant!',
     steps: [
       {
         icon: '➡️',
-        title: '1. Dört Yöne Kaydır',
-        desc: 'Tahtayı yukarı, aşağı, sola veya sağa kaydırarak tüm hayvan taşlarını aynı anda hareket ettir.',
+        title: '1. Slide All 4 Directions',
+        desc: 'Swipe up, down, left, or right to slide all animal tiles across the board simultaneously.',
       },
       {
         icon: '🐭',
-        title: '2. Eşit Hayvanları Birleştir',
-        desc: 'İki aynı hayvan çarpıştığında bir üst basamağa evrilir (Fare ➔ Hamster ➔ Tavşan ➔ Kedi ... ➔ Fil).',
+        title: '2. Collide Matching Animals',
+        desc: 'When two identical creatures touch, they merge into the next evolution tier (Mouse ➔ Hamster ➔ Bunny...).',
       },
       {
         icon: '👑',
-        title: '3. 2048 Fil Hedefi',
-        desc: 'Tahtanın dolup kilitlenmesini engelle; 11 evrim basamağını tırmanarak 2048 taçlı fili yarat!',
+        title: '3. Reach the Crowned Elephant',
+        desc: 'Climb through 11 animal evolution tiers without getting gridlocked to crown the majestic 2048 Elephant!',
       },
     ],
     controls: {
-      desktop: ['Ok Tuşları veya W/A/S/D: Dört yöne kaydır', 'Ctrl + Z / Geri Al Butonu: Son hamleyi geri al'],
-      mobile: ['Parmağınla ekranda kaydır (Swipe)', 'Alttaki 4 yönlü D-Pad oklarına dokun'],
+      desktop: ['Arrow Keys or W/A/S/D: Slide in 4 directions', 'Ctrl + Z / Undo Button: Revert last move'],
+      mobile: ['Touch Swipe across grid in 4 directions', 'Virtual 4-way D-Pad arrow buttons below board'],
     },
-    proTip: 'En güçlü hayvanını her zaman tek bir köşede (örneğin sağ altta) tut ve o köşeye doğru biriktirme yap!',
+    proTip: 'Lock your highest-tier animal into a single corner (like bottom-right) and build your merge chain toward it!',
   },
   'farm-tetris': {
     title: 'Farm Tetris: Haunted Harvest',
-    subtitle: 'Hasat Blokları & Silo Doldurma',
+    subtitle: 'Falling Blocks & Silo Fill',
     mascot: '🧱',
     themeColor: 'from-orange-600 via-red-600 to-amber-700',
-    goal: 'Hasat bloklarını döndürüp yerleştir, tam sıraları patlat ve altın siloyu doldur!',
+    goal: 'Rotate and drop falling crop crates, clear full horizontal lines, and fill the rustic golden silo!',
     steps: [
       {
         icon: '🔄',
-        title: '1. Blokları Yönlendir & Döndür',
-        desc: 'Düşen ahşap kasa ve balkabağı bloklarını sola-sağa kaydır ve boşluklara tam oturacak şekilde çevir.',
+        title: '1. Steer & Rotate Blocks',
+        desc: 'Move falling harvest pieces left and right, and rotate them 90° clockwise to fit into gaps.',
       },
       {
         icon: '⚡',
-        title: '2. Sıraları Temizle',
-        desc: 'Yatay bir sırayı tamamen doldurduğunda sıra altın saman parçacıklarıyla patlar ve siloyu besler.',
+        title: '2. Clear Full Lines',
+        desc: 'Complete horizontal rows to pop them with golden straw particles and feed hay into the silo.',
       },
       {
         icon: '🌾',
-        title: '3. 4 Sıralı Tetris Yap',
-        desc: 'Aynı anda 4 sırayı birden patlatarak Çiftçi’den 800+ puan ve "SÜPER HASAT!" coşkusu kazan!',
+        title: '3. Score 4-Line Tetris',
+        desc: 'Clear 4 rows simultaneously for 800+ points and a joyful cheering reaction from the farmer!',
       },
     ],
     controls: {
-      desktop: ['A / D: Sola / Sağa git', 'W / Yukarı Ok: 90° Döndür', 'Space: Anında aşağı kilitle', 'C / Shift: Parçayı yedekte tut'],
-      mobile: ['Sol / Sağ / Aşağı Dokunma Okları', 'DÖNDÜR Butonu', 'KİLİTLE (Slam) Butonu', 'YEDEKLE (Hold) Butonu'],
+      desktop: ['A / D: Move left & right', 'W / Up Arrow: Rotate 90°', 'Spacebar: Hard drop / slam', 'C / Shift: Hold piece'],
+      mobile: ['Touch Left/Right/Down arrows', 'ROTATE button', 'SLAM hard drop button', 'HOLD queue button'],
     },
-    proTip: 'Zor gelen parçaları sol üstteki YEDEK (Hold) alanına atarak uzun I çubuğunu 4’lü Tetris için saklayabilirsin!',
+    proTip: 'Save the straight I-bar piece in your HOLD queue (C key) until you can drop it for an instant 4-line Tetris!',
   },
   'dog-parking': {
     title: 'Dog Parking: Yard Escape',
-    subtitle: 'Köpek Park Etme & Çıkış Bulmacası',
+    subtitle: 'Traffic Jam & Dog Unblock Puzzle',
     mascot: '🐕‍🦺',
     themeColor: 'from-amber-500 via-orange-600 to-yellow-600',
-    goal: 'Kalabalık bahçedeki köpekleri kaydırarak Sunny Corgi’nin çıkış kapısına ulaşmasını sağla!',
+    goal: 'Untangle the crowded puppy yard and guide Sunny the Star Corgi straight through the open exit gate!',
     steps: [
       {
         icon: '🐕',
-        title: '1. Doğal Yönleri Gör',
-        desc: 'Köpekler sadece durdukları şerit boyunca ileri ve geri hareket edebilir (yanlara dönemezler).',
+        title: '1. Follow Natural Lanes',
+        desc: 'Horizontal dogs only slide left/right, and vertical dogs only slide up/down along their lanes.',
       },
       {
         icon: '↔️',
-        title: '2. Yolu Temizle',
-        desc: 'Pug, Shiba ve Dachshund’ları ileri-geri kaydırarak Sunny’nin çıkış kapısına giden koridoru boşalt.',
+        title: '2. Clear the Exit Runway',
+        desc: 'Slide Pugs, Shibas, and Dachshunds back and forth to open a direct pathway to the exit gate.',
       },
       {
         icon: '🏁',
-        title: '3. Sunny ile Kapıdan Çık',
-        desc: 'Önü açılan kahraman Sunny Corgi’yi doğrudan açık ahşap kapıdan dışarı kaydır ve bölümü tamamla!',
+        title: '3. Sunny Reaches the Exit',
+        desc: 'Once the lane is open, slide Sunny the hero Corgi through the wooden gate to earn 3 stars!',
       },
     ],
     controls: {
-      desktop: ['Fare ile köpeğe tıkla ve şeridi boyunca sürükle', 'Z: Hamleyi geri al', 'R: Bölümü yeniden başlat'],
-      mobile: ['Parmağınla köpeğe dokun ve ileri/geri kaydır', 'Alttaki Geri Al ve Yenile butonlarını kullan'],
+      desktop: ['Click and drag any dog along its natural lane', 'Z Key: Undo previous move', 'R Key: Restart level'],
+      mobile: ['Touch and drag dogs with your finger', 'Undo and Restart buttons at the top of the board'],
     },
-    proTip: 'Her zaman çıkış kapısından geriye doğru düşün: Kapıyı doğrudan kim kapatıyor, onun önünü kim tıkıyor?',
+    proTip: 'Work backwards from the exit gate: see which dog directly blocks the gate, then find out who blocks that dog!',
   },
   'cat-parking': {
     title: 'Cat Parking: Witch Cat Mystery',
-    subtitle: 'Uykucu Kediler & Çıkış Labirenti',
+    subtitle: 'Cozy Sleeping Kitties Slide Puzzle',
     mascot: '🐈‍⬛',
     themeColor: 'from-purple-600 via-indigo-700 to-slate-800',
-    goal: 'Uykucu kedileri halı üzerinde kaydırarak Cadı Kedi Luna’yı açık odaya ulaştır!',
+    goal: 'Slide sleepy kittens across cozy rugs and lead Luna the Witch Cat safely through the illuminated doorway!',
     steps: [
       {
         icon: '🐾',
-        title: '1. Halı Üzerinde Kaydır',
-        desc: 'Minderlerde uyuyan sevimli İran, Calico ve Tekir kedilerini çizgileri boyunca ileri-geri kaydır.',
+        title: '1. Slide Across Cozy Rugs',
+        desc: 'Click and drag sleeping Persian, Calico, and Tabby cats along their carpet lanes forward and back.',
       },
       {
         icon: '🛋️',
-        title: '2. Uzun Kedilere Alan Aç',
-        desc: '3 karelik uzun kediler dar odalarda daha çok yer kaplar; onları dikkatle diğer köşelere kaydır.',
+        title: '2. Maneuver Long Kitties',
+        desc: '3-tile long cats need more room to turn; slide them into corner spaces to free up room.',
       },
       {
         icon: '🌙',
-        title: '3. Luna’yı Kapıya Götür',
-        desc: 'Ay ışığı vuran açık kapının önü açıldığında mor şapkalı Luna’yı dışarı kaydır ve 3 yıldızı al!',
+        title: '3. Guide Luna to the Door',
+        desc: 'When the pathway to the moonlit door is open, slide Luna through the exit to complete the room!',
       },
     ],
     controls: {
-      desktop: ['Fareyle kediyi tut ve ileri/geri sürükle', 'Z: Geri al', 'R: Bölümü yeniden başlat'],
-      mobile: ['Parmağınla kediyi doğal şeridinde kaydır', 'Ekran altındaki Geri Al / Yenile butonları'],
+      desktop: ['Mouse click and drag forward/back', 'Z Key: Undo move', 'R Key: Restart level'],
+      mobile: ['Touch swipe cats along their natural orientation', 'Undo and Restart on-screen buttons'],
     },
-    proTip: 'Tıkandığında tereddüt etmeden Geri Al butonuna bas; hamle geri almanın hiçbir puan cezası yoktur!',
+    proTip: 'Never hesitate to use the Undo button—there is zero score penalty for taking a move back!',
   },
   'animal-farm-parking': {
-    title: 'Animal Farm Parking: Midnight Drive',
-    subtitle: 'Traktör Sürüşü & Hassas Park Etme',
+    title: 'Animal Farm Parking: Barn Drive',
+    subtitle: 'Precision Tractor Driving & Parking',
     mascot: '🐮',
     themeColor: 'from-teal-600 via-emerald-700 to-green-800',
-    goal: 'İnek Bessie ile traktörü ahşap çitlere ve koyunlara çarpmadan sarı damalı alana park et!',
+    goal: 'Steer Bessie the Cow in her green tractor into yellow checkered parking bays without crashing into obstacles!',
     steps: [
       {
         icon: '🚜',
-        title: '1. Traktörü Yönlendir',
-        desc: 'İleri, geri, sağa ve sola yön tuşlarıyla traktörün gaz ve direksiyonunu kontrol et.',
+        title: '1. Steer & Drive Smoothly',
+        desc: 'Use forward, reverse, and steering controls to navigate around fences, tractors, and hay bales.',
       },
       {
         icon: '🛑',
-        title: '2. Zamanında Fren Yap',
-        desc: 'Dönemeçlerde ve engellere yaklaşırken frene bas; çarpışmalar traktörün canını azaltır!',
+        title: '2. Brake Before Obstacles',
+        desc: 'Press the handbrake early before tight turns; collisions drain your tractor\'s health gauge!',
       },
       {
         icon: '🅿️',
-        title: '3. Sarı Damalı Alana Yerleş',
-        desc: 'Traktörü sarı damalı park çizgisinin içine düzgünce hizala; %80 ve üzeri doğrulukla parkı tamamla!',
+        title: '3. Park with High Precision',
+        desc: 'Align your tractor neatly inside the yellow checkered stall to score >= 80% accuracy for 3 stars!',
       },
     ],
     controls: {
-      desktop: ['WASD veya Yön Tuşları: Sürüş & Direksiyon', 'Spacebar: El Freni / Ani Duruş', 'R: Hızlı yeniden başlat'],
-      mobile: ['Dokunmatik D-Pad Okları (İleri, Geri, Sol, Sağ)', 'Ortadaki kırmızı FREN / DUR butonu'],
+      desktop: ['WASD or Arrow Keys: Drive & steer', 'Spacebar: Handbrake / emergency stop', 'R Key: Quick restart'],
+      mobile: ['4-Way Touch D-Pad arrows (Up, Down, Left, Right)', 'Center red STOP handbrake button'],
     },
-    proTip: 'Virajları geniş al ve hızlanmadan önce park yönünü önceden planla; ani gaz vermek savrulmaya sebep olabilir!',
+    proTip: 'Take turns wide and brake early! Maintaining 100% health and parking accuracy earns the highest star ranking.',
   },
 };
 
@@ -330,9 +330,9 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
       role="dialog"
       aria-modal="true"
       aria-labelledby="intro-modal-title"
-      className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 animate-fade-in"
+      className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 animate-fade-in"
     >
-      <div className="relative w-full max-w-xl bg-slate-900 border-2 border-amber-400/60 rounded-3xl shadow-2xl shadow-black/80 flex flex-col max-h-[92vh] overflow-hidden text-slate-100">
+      <div className="relative w-full max-w-xl bg-slate-900 border-2 border-amber-400/50 rounded-3xl shadow-2xl shadow-black/80 flex flex-col max-h-[92vh] overflow-hidden text-slate-100">
         {/* TOP GLOWING BANNER HEADER */}
         <div className={`p-4 sm:p-5 bg-gradient-to-r ${intro.themeColor} text-white flex items-center justify-between relative`}>
           <div className="flex items-center gap-3">
@@ -342,7 +342,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-black/40 text-amber-300 border border-amber-300/40">
-                  Nasıl Oynanır? • How to Play
+                  How to Play • Game Guide
                 </span>
               </div>
               <h2 id="intro-modal-title" className="text-lg sm:text-2xl font-black tracking-tight leading-tight mt-0.5">
@@ -353,7 +353,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
 
           <button
             onClick={onClose}
-            aria-label="Kapat"
+            aria-label="Close dialog"
             className="w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 border border-white/20 flex items-center justify-center text-slate-200 hover:text-white transition-colors cursor-pointer shrink-0"
           >
             <X className="w-5 h-5" />
@@ -371,7 +371,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
             }`}
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Oyun Rehberi & Adımlar</span>
+            <span>Gameplay Guide</span>
           </button>
 
           <button
@@ -383,7 +383,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
             }`}
           >
             <HelpCircle className="w-3.5 h-3.5" />
-            <span>Kontroller & İpuçları</span>
+            <span>Controls & Tips</span>
           </button>
         </div>
 
@@ -394,7 +394,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
             <span className="text-2xl select-none shrink-0">🎯</span>
             <div>
               <span className="text-[11px] font-black uppercase text-amber-300 tracking-wider block">
-                Bölüm Hedefi
+                Level Objective
               </span>
               <p className="text-xs sm:text-sm font-bold text-white mt-0.5 leading-snug">
                 {intro.goal}
@@ -408,7 +408,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
               {intro.steps.map((step, idx) => (
                 <div
                   key={idx}
-                  className="p-3.5 rounded-2xl bg-slate-800/70 border border-slate-700/80 flex items-start gap-3.5 hover:border-amber-400/40 transition-colors"
+                  className="p-3.5 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex items-start gap-3.5 hover:border-amber-400/40 transition-colors"
                 >
                   <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-xl shrink-0 select-none shadow">
                     {step.icon}
@@ -432,7 +432,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
                 <div className="p-3.5 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
                   <div className="flex items-center gap-2 text-xs font-black text-amber-300">
                     <Monitor className="w-4 h-4" />
-                    <span>Masaüstü (Klavye / Fare)</span>
+                    <span>Desktop (Keyboard & Mouse)</span>
                   </div>
                   <ul className="text-xs text-slate-300 space-y-1">
                     {intro.controls.desktop.map((ctrl, i) => (
@@ -448,7 +448,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
                 <div className="p-3.5 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
                   <div className="flex items-center gap-2 text-xs font-black text-amber-300">
                     <Smartphone className="w-4 h-4" />
-                    <span>Mobil (Dokunmatik Ekran)</span>
+                    <span>Mobile (Touch Screen)</span>
                   </div>
                   <ul className="text-xs text-slate-300 space-y-1">
                     {intro.controls.mobile.map((ctrl, i) => (
@@ -466,7 +466,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
                 <span className="text-xl select-none shrink-0">💡</span>
                 <div>
                   <span className="text-[11px] font-black uppercase text-purple-300 tracking-wider block">
-                    Usta Oyuncu İpucu (Pro Tip)
+                    Pro Gamer Tip
                   </span>
                   <p className="text-xs sm:text-sm text-slate-200 font-medium mt-0.5 leading-relaxed">
                     {intro.proTip}
@@ -478,7 +478,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
         </div>
 
         {/* BOTTOM ACTION BAR */}
-        <div className="p-4 sm:p-5 border-t border-slate-800 bg-slate-950 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+        <div className="p-4 sm:p-5 border-t border-slate-800 bg-slate-950/95 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
           <label className="flex items-center gap-2 text-xs text-slate-400 cursor-pointer select-none">
             <input
               type="checkbox"
@@ -486,7 +486,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
               onChange={(e) => setDontShowAgain(e.target.checked)}
               className="w-4 h-4 rounded border-slate-700 text-amber-400 focus:ring-amber-400 bg-slate-800"
             />
-            <span>Bu oyunda bir daha otomatik açma</span>
+            <span>Don't show again on start</span>
           </label>
 
           <button
@@ -494,7 +494,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
             className="w-full sm:w-auto px-7 py-3 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-slate-950 font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg shadow-amber-400/30 transform hover:scale-103 active:scale-98 transition-all cursor-pointer"
           >
             <Play className="w-5 h-5 fill-current" />
-            <span>HEMEN BAŞLA! • LET'S PLAY!</span>
+            <span>LET'S PLAY!</span>
           </button>
         </div>
       </div>

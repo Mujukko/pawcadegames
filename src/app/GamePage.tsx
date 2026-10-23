@@ -132,7 +132,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   }, [gameId, game]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100 pb-16 pb-safe">
+    <div className="flex flex-col min-h-screen bg-slate-900 text-slate-100 pb-16 pb-safe">
       {/* Breadcrumb Header */}
       <div className="bg-slate-900/90 border-b border-orange-500/20 py-2 sm:py-3 px-3 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-center text-xs font-semibold text-slate-400 gap-1.5 overflow-x-auto scrollbar-none">
@@ -215,11 +215,11 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => setIsIntroOpen(true)}
-              aria-label="Nasıl Oynanır rehberini aç"
+              aria-label="Open How to Play guide"
               className="px-4 py-2.5 min-h-[44px] rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-slate-950 font-black text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-amber-400/25 transform hover:scale-103 active:scale-97 transition-all cursor-pointer"
             >
               <HelpCircle className="w-4 h-4" />
-              <span>Nasıl Oynanır? • How to Play</span>
+              <span>How to Play</span>
             </button>
           </div>
         </div>
