@@ -78,6 +78,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '19.4K',
     badge: '🎃 Halloween Event',
+    thumbnailUrl: '/assets/thumbnails/thumb-duck-runner.jpg',
     tags: ['Runner', 'Arcade', 'Reflex', 'Animals'],
     controls: {
       desktop: [
@@ -115,6 +116,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '24.8K',
     badge: '🎃 Halloween Event',
+    thumbnailUrl: '/assets/thumbnails/thumb-pet-candy-crush.jpg',
     tags: ['Match-3', 'Puzzle', 'Farm', 'Animals'],
     controls: {
       desktop: [
@@ -154,6 +156,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '21.4K',
     badge: '🎃 Spooky Flight',
+    thumbnailUrl: '/assets/thumbnails/thumb-flappy-chicken.jpg',
     tags: ['Arcade', 'Flight', 'Reflex', 'Farm', 'Animals'],
     controls: {
       desktop: [
@@ -191,6 +194,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '18.2K',
     badge: '🎃 Spooky Mode',
+    thumbnailUrl: '/assets/thumbnails/thumb-animal-2048.jpg',
     tags: ['Puzzle', 'Evolution', '2048', 'Animals', 'Brain'],
     controls: {
       desktop: [
@@ -228,6 +232,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '15.6K',
     badge: '🎃 Harvest Fest',
+    thumbnailUrl: '/assets/thumbnails/thumb-farm-tetris.jpg',
     tags: ['Tetris', 'Puzzle', 'Blocks', 'Farm'],
     controls: {
       desktop: [
@@ -307,6 +312,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '9.8K',
     badge: '🎃 Witch Mystery',
+    thumbnailUrl: '/assets/thumbnails/thumb-cat-parking.jpg',
     tags: ['Puzzle', 'Cats', 'Unblock', 'Animals'],
     controls: {
       desktop: [
@@ -342,6 +348,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 4.9,
     playCount: '8.2K',
     badge: '🎃 Spooky Drive',
+    thumbnailUrl: '/assets/thumbnails/thumb-animal-farm-parking.jpg',
     tags: ['Driving', 'Farm', 'Casual', 'Cow', 'Animals'],
     controls: {
       desktop: [

@@ -1,5 +1,6 @@
 import React, { useEffect, Suspense, lazy } from 'react';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
+import { GameCard } from '../components/GameCard';
 import { analytics } from '../lib/analytics';
 import { ChevronRight, Star, Sparkles, Keyboard, Smartphone, CheckCircle2, Shield, Heart } from 'lucide-react';
 
@@ -69,6 +70,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   const isCat = gameId === 'cat-parking';
   const isFarm = gameId === 'animal-farm-parking';
   const game = GAMES_REGISTRY.find(g => g.id === gameId) || GAMES_REGISTRY[0]!;
+  const relatedGames = GAMES_REGISTRY.filter(g => g.id !== gameId && g.status === 'playable').slice(0, 4);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -512,6 +514,35 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </ul>
           </div>
         </div>
+
+        {/* RELATED GAMES SHELF */}
+        {relatedGames.length > 0 && (
+          <section aria-labelledby="related-games-heading" className="mt-8 border-t border-slate-800/80 pt-8 sm:pt-10">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/30">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <div>
+                  <h2 id="related-games-heading" className="text-xl sm:text-2xl font-black text-white">
+                    More Games You'll Love
+                  </h2>
+                  <p className="text-xs text-slate-400">Handcrafted instant casual games on Pawcade</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-5">
+              {relatedGames.map((relGame) => (
+                <GameCard
+                  key={relGame.id}
+                  game={relGame}
+                  onClick={() => navigate(relGame.route)}
+                />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );

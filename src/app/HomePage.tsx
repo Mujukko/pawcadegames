@@ -1,203 +1,287 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
-import { Play, Star } from 'lucide-react';
+import { FeaturedHero } from '../components/FeaturedHero';
+import { GameCard } from '../components/GameCard';
+import { Flame, Gamepad2, Puzzle, Tractor, Sparkles } from 'lucide-react';
 
 interface HomePageProps {
   navigate: (path: string) => void;
-  initialView?: string;
+  searchQuery?: string;
+  setSearchQuery?: (query: string) => void;
 }
 
-interface GameVisualConfig {
-  iconEmoji: string;
-  secondaryEmoji?: string;
-  gradient: string;
-  glowBorder: string;
-  shortTag: string;
-}
+type CategoryTab = 'all' | 'puzzle' | 'farm' | 'arcade' | 'pets';
 
-const GAME_VISUAL_MAP: Record<string, GameVisualConfig> = {
-  'farm-mini-mart': {
-    iconEmoji: '🏪',
-    secondaryEmoji: '🍅',
-    gradient: 'from-emerald-700 via-teal-700 to-amber-700',
-    glowBorder: 'border-emerald-500/50 group-hover:border-emerald-400 group-hover:shadow-emerald-500/30',
-    shortTag: 'Arcade Tycoon • Köy Pazarı',
-  },
-  'duck-runner': {
-    iconEmoji: '🦆',
-    secondaryEmoji: '🌾',
-    gradient: 'from-amber-600 via-orange-600 to-yellow-600',
-    glowBorder: 'border-amber-500/50 group-hover:border-amber-400 group-hover:shadow-amber-500/30',
-    shortTag: 'T-Rex Zıplama • Sonsuz Koşu',
-  },
-  'pet-candy-crush': {
-    iconEmoji: '🍬',
-    secondaryEmoji: '🐮',
-    gradient: 'from-pink-600 via-purple-600 to-rose-700',
-    glowBorder: 'border-pink-500/50 group-hover:border-pink-400 group-hover:shadow-pink-500/30',
-    shortTag: 'Match-3 • Çiftlik Eşleştirme',
-  },
-  'flappy-chicken': {
-    iconEmoji: '🐔',
-    secondaryEmoji: '🌾',
-    gradient: 'from-yellow-600 via-amber-600 to-orange-700',
-    glowBorder: 'border-yellow-500/50 group-hover:border-yellow-400 group-hover:shadow-yellow-500/30',
-    shortTag: 'Gıdak Uçuşu • Engellerden Kaç',
-  },
-  'animal-2048': {
-    iconEmoji: '🐘',
-    secondaryEmoji: '🐭',
-    gradient: 'from-indigo-600 via-purple-700 to-violet-800',
-    glowBorder: 'border-indigo-500/50 group-hover:border-indigo-400 group-hover:shadow-indigo-500/30',
-    shortTag: '2048 Bulmaca • Hayvan Evrimi',
-  },
-  'farm-tetris': {
-    iconEmoji: '🧱',
-    secondaryEmoji: '👨‍🌾',
-    gradient: 'from-orange-700 via-red-700 to-amber-800',
-    glowBorder: 'border-orange-500/50 group-hover:border-orange-400 group-hover:shadow-orange-500/30',
-    shortTag: 'Blok Tetris • Silo Doldurma',
-  },
-  'dog-parking': {
-    iconEmoji: '🐕‍🦺',
-    secondaryEmoji: '🦴',
-    gradient: 'from-amber-600 via-orange-700 to-yellow-800',
-    glowBorder: 'border-amber-500/50 group-hover:border-amber-400 group-hover:shadow-amber-500/30',
-    shortTag: 'Trafik Bulmaca • Köpek Kurtarma',
-  },
-  'cat-parking': {
-    iconEmoji: '🐈‍⬛',
-    secondaryEmoji: '🌙',
-    gradient: 'from-purple-700 via-indigo-800 to-blue-900',
-    glowBorder: 'border-purple-500/50 group-hover:border-purple-400 group-hover:shadow-purple-500/30',
-    shortTag: 'Labirent Bulmaca • Kedi Kaçırma',
-  },
-  'animal-farm-parking': {
-    iconEmoji: '🐮',
-    secondaryEmoji: '🚜',
-    gradient: 'from-teal-700 via-emerald-800 to-green-900',
-    glowBorder: 'border-teal-500/50 group-hover:border-teal-400 group-hover:shadow-teal-500/30',
-    shortTag: 'Hassas Sürüş • İnek Park Etme',
-  },
-  'cat-cafe-rush': {
-    iconEmoji: '🧁',
-    secondaryEmoji: '🐱',
-    gradient: 'from-rose-700 via-pink-700 to-amber-800',
-    glowBorder: 'border-rose-500/40 group-hover:border-rose-300 group-hover:shadow-rose-500/20',
-    shortTag: 'Kafe Yönetimi • Yakında',
-  },
-  'hamster-ball-dash': {
-    iconEmoji: '🐹',
-    secondaryEmoji: '⚽',
-    gradient: 'from-cyan-700 via-blue-800 to-indigo-900',
-    glowBorder: 'border-cyan-500/40 group-hover:border-cyan-300 group-hover:shadow-cyan-500/20',
-    shortTag: 'Fizik Parkuru • Yakında',
-  },
-};
+export const HomePage: React.FC<HomePageProps> = ({
+  navigate,
+  searchQuery = '',
+  setSearchQuery,
+}) => {
+  const [activeCategory, setActiveCategory] = useState<CategoryTab>('all');
 
-export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
+  // Featured flagship game (Dog Parking)
+  const featuredGame = useMemo(() => {
+    return GAMES_REGISTRY.find((g) => g.id === 'dog-parking') || GAMES_REGISTRY[0]!;
+  }, []);
+
+  // Popular in the US collection
+  const popularGames = useMemo(() => {
+    const popularIds = ['dog-parking', 'farm-mini-mart', 'pet-candy-crush', 'duck-runner'];
+    return GAMES_REGISTRY.filter((g) => popularIds.includes(g.id));
+  }, []);
+
+  // Brain Teasers & Spatial Puzzles
+  const puzzleGames = useMemo(() => {
+    const puzzleIds = ['dog-parking', 'cat-parking', 'farm-tetris', 'animal-2048'];
+    return GAMES_REGISTRY.filter((g) => puzzleIds.includes(g.id));
+  }, []);
+
+  // Farm & Countryside Fun
+  const farmGames = useMemo(() => {
+    const farmIds = ['farm-mini-mart', 'pet-candy-crush', 'duck-runner', 'flappy-chicken', 'animal-farm-parking'];
+    return GAMES_REGISTRY.filter((g) => farmIds.includes(g.id));
+  }, []);
+
+  // Filtered games based on active category tab
+  const categoryFilteredGames = useMemo(() => {
+    if (activeCategory === 'all') return GAMES_REGISTRY;
+    if (activeCategory === 'puzzle') return GAMES_REGISTRY.filter((g) => g.category.toLowerCase().includes('puzzle') || g.id.includes('2048') || g.id.includes('tetris'));
+    if (activeCategory === 'farm') return GAMES_REGISTRY.filter((g) => g.category.toLowerCase().includes('farm') || g.id.includes('farm') || g.id.includes('mart') || g.id.includes('chicken'));
+    if (activeCategory === 'arcade') return GAMES_REGISTRY.filter((g) => g.category.toLowerCase().includes('arcade') || g.id.includes('runner') || g.id.includes('chicken'));
+    if (activeCategory === 'pets') return GAMES_REGISTRY.filter((g) => g.category.toLowerCase().includes('pet') || g.id.includes('dog') || g.id.includes('cat') || g.id.includes('animal'));
+    return GAMES_REGISTRY;
+  }, [activeCategory]);
+
+  // Search filtered results
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    const q = searchQuery.toLowerCase().trim();
+    return GAMES_REGISTRY.filter(
+      (g) =>
+        g.title.toLowerCase().includes(q) ||
+        g.description.toLowerCase().includes(q) ||
+        g.category.toLowerCase().includes(q) ||
+        (g.tags && g.tags.some((t) => t.toLowerCase().includes(q)))
+    );
+  }, [searchQuery]);
+
+  const isSearching = searchQuery.trim().length > 0;
+
   return (
-    <main className="min-h-screen bg-slate-950 text-white selection:bg-orange-500 selection:text-slate-950 pb-20">
-      {/* Hidden SEO Heading */}
-      <h1 className="sr-only">Pawcade — Ücretsiz Çevrimiçi Tarayıcı Oyunları</h1>
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8 sm:space-y-12">
+      {/* CATEGORY FILTER PILLS ROW */}
+      <nav aria-label="Game Categories" className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none select-none">
+        {[
+          { id: 'all', label: 'All Games', icon: '🎮' },
+          { id: 'puzzle', label: 'Puzzles & Brain', icon: '🧩' },
+          { id: 'farm', label: 'Farm & Tycoon', icon: '🌾' },
+          { id: 'arcade', label: 'Arcade & Reflex', icon: '⚡' },
+          { id: 'pets', label: 'Pets & Animals', icon: '🐕‍🦺' },
+        ].map((tab) => {
+          const isActive = activeCategory === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => {
+                setActiveCategory(tab.id as CategoryTab);
+                if (setSearchQuery) setSearchQuery('');
+              }}
+              className={`px-4 py-2 min-h-[44px] rounded-2xl text-xs sm:text-sm font-extrabold flex items-center gap-2 shrink-0 transition-all cursor-pointer ${
+                isActive
+                  ? 'bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 shadow-md shadow-amber-400/20 scale-102 border border-amber-300'
+                  : 'bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800'
+              }`}
+            >
+              <span>{tab.icon}</span>
+              <span>{tab.label}</span>
+            </button>
+          );
+        })}
+      </nav>
 
-      {/* PURE GAME ICON GRID */}
-      <section
-        aria-label="Oyunlar Listesi"
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8"
-      >
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3.5 sm:gap-5">
-          {GAMES_REGISTRY.map((game) => {
-            const visual = GAME_VISUAL_MAP[game.id] || {
-              iconEmoji: '🎮',
-              secondaryEmoji: '✨',
-              gradient: 'from-slate-700 to-slate-800',
-              glowBorder: 'border-slate-700 hover:border-orange-500',
-              shortTag: game.category,
-            };
-
-            const isComingSoon = game.status === 'coming-soon';
-            const cleanTitle = game.title.split(':')[0] || game.title;
-
-            return (
-              <div
-                key={game.id}
-                className="relative group flex flex-col items-center select-none"
+      {/* CONDITIONAL DISPLAY: SEARCH RESULTS VS PORTAL SECTIONS */}
+      {isSearching ? (
+        <section aria-label="Search Results" className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+              <span>Results for "{searchQuery}"</span>
+              <span className="text-xs bg-amber-400/20 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-full">
+                {searchResults.length} games
+              </span>
+            </h2>
+            {setSearchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="text-xs font-bold text-amber-400 hover:text-amber-300 cursor-pointer"
               >
-                {/* INTERACTIVE GAME ICON TILE */}
-                <button
-                  onClick={() => {
-                    if (!isComingSoon) {
-                      navigate(game.route);
-                    }
-                  }}
-                  aria-disabled={isComingSoon}
-                  aria-describedby={`tooltip-${game.id}`}
-                  aria-label={`${cleanTitle} ${isComingSoon ? '(Yakında)' : 'oyna'}`}
-                  className={`relative w-full aspect-square rounded-2xl sm:rounded-3xl p-3 sm:p-4 bg-gradient-to-br ${visual.gradient} border-2 ${visual.glowBorder} shadow-lg transition-all duration-200 transform group-hover:scale-105 group-hover:-translate-y-1 group-active:scale-95 cursor-pointer flex flex-col items-center justify-between overflow-hidden ${
-                    isComingSoon ? 'opacity-65 cursor-not-allowed' : ''
-                  }`}
-                >
-                  {/* Subtle Inner Glow */}
-                  <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none" />
+                Clear Search
+              </button>
+            )}
+          </div>
 
-                  {/* Top Meta Badges (Rating / Status) */}
-                  <div className="w-full flex items-center justify-between relative z-10">
-                    <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-950/70 backdrop-blur-md text-amber-300 border border-white/10 flex items-center gap-0.5">
-                      <Star className="w-2.5 h-2.5 fill-amber-300 text-amber-300" />
-                      <span>{game.rating}</span>
-                    </span>
+          {searchResults.length > 0 ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3.5 sm:gap-5">
+              {searchResults.map((game) => (
+                <GameCard
+                  key={game.id}
+                  game={game}
+                  onClick={() => navigate(game.route)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16 bg-slate-900/50 rounded-3xl border border-slate-800">
+              <div className="text-5xl mb-3">🔍</div>
+              <h3 className="text-lg font-bold text-white">No games found</h3>
+              <p className="text-xs text-slate-400 mt-1">
+                Try searching for "dog", "tetris", "runner", or browse our categories.
+              </p>
+            </div>
+          )}
+        </section>
+      ) : activeCategory !== 'all' ? (
+        /* CATEGORY FILTERED VIEW */
+        <section aria-label="Category Games" className="space-y-4">
+          <h2 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+            <span>
+              {activeCategory === 'puzzle' && '🧩 Puzzles & Brain Games'}
+              {activeCategory === 'farm' && '🌾 Farm & Tycoon Games'}
+              {activeCategory === 'arcade' && '⚡ Arcade & Reflex Games'}
+              {activeCategory === 'pets' && '🐕‍🦺 Pets & Animal Games'}
+            </span>
+            <span className="text-xs bg-amber-400/20 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-full">
+              {categoryFilteredGames.length} games
+            </span>
+          </h2>
 
-                    {game.badge && (
-                      <span className="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-orange-500 text-slate-950 shadow-sm">
-                        {game.badge.replace('🎃 ', '').split(' ')[0]}
-                      </span>
-                    )}
-                  </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3.5 sm:gap-5">
+            {categoryFilteredGames.map((game) => (
+              <GameCard
+                key={game.id}
+                game={game}
+                onClick={() => navigate(game.route)}
+              />
+            ))}
+          </div>
+        </section>
+      ) : (
+        /* DEFAULT HOMEPAGE: BENTO HERO + CURATED SECTIONS */
+        <div className="space-y-10 sm:space-y-14">
+          {/* 1. BENTO SPOTLIGHT HERO (Dog Parking) */}
+          <FeaturedHero
+            game={featuredGame}
+            onClick={() => navigate(featuredGame.route)}
+          />
 
-                  {/* CENTER ICON ARTWORK */}
-                  <div className="relative my-auto flex flex-col items-center justify-center">
-                    <span className="text-5xl sm:text-6xl md:text-7xl filter drop-shadow-xl transition-transform duration-200 group-hover:scale-110">
-                      {visual.iconEmoji}
-                    </span>
-
-                    {visual.secondaryEmoji && (
-                      <span className="absolute -bottom-1 -right-2 text-xl sm:text-2xl filter drop-shadow-md animate-bounce">
-                        {visual.secondaryEmoji}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Quick Play Arrow / Action Indicator on Hover */}
-                  <div className="w-full flex items-center justify-center relative z-10 pt-1">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-950/80 group-hover:bg-amber-400 group-hover:text-slate-950 text-white flex items-center justify-center transition-all shadow-md">
-                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                    </div>
-                  </div>
-                </button>
-
-                {/* ON HOVER / TAP FOCUS: MINIK BİR YAZI GELIR (Sleek Floating Tooltip - Zero Mobile Overflow) */}
-                <div
-                  id={`tooltip-${game.id}`}
-                  role="tooltip"
-                  className="pointer-events-none absolute -bottom-10 sm:-bottom-11 left-1/2 -translate-x-1/2 z-40 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 group-active:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 w-max max-w-[140px] sm:max-w-[280px]"
-                >
-                  <div className="bg-slate-900/95 text-white text-[10px] sm:text-[11px] font-bold px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-xl border border-amber-400/50 shadow-2xl shadow-slate-950/90 flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 backdrop-blur-md text-center leading-tight">
-                    <span className="text-amber-300 font-black truncate max-w-[124px] sm:max-w-none">
-                      {cleanTitle}
-                    </span>
-                    <span className="hidden sm:inline text-slate-500">•</span>
-                    <span className="text-slate-300 text-[9px] sm:text-[10px] truncate max-w-[124px] sm:max-w-none">
-                      {visual.shortTag}
-                    </span>
-                  </div>
+          {/* 2. POPULAR IN THE US */}
+          <section aria-labelledby="section-popular" className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center border border-orange-500/30">
+                  <Flame className="w-4 h-4 fill-current" />
+                </div>
+                <div>
+                  <h2 id="section-popular" className="text-xl sm:text-2xl font-black text-white">
+                    Popular in the US
+                  </h2>
+                  <p className="text-xs text-slate-400">Most played casual games by our American community</p>
                 </div>
               </div>
-            );
-          })}
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
+              {popularGames.map((game) => (
+                <GameCard
+                  key={game.id}
+                  game={game}
+                  onClick={() => navigate(game.route)}
+                />
+              ))}
+            </div>
+          </section>
+
+          {/* 3. ALL PLAYABLE GAMES (COMPLETE ROSTER) */}
+          <section aria-labelledby="section-all" className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/30">
+                  <Gamepad2 className="w-4 h-4" />
+                </div>
+                <div>
+                  <h2 id="section-all" className="text-xl sm:text-2xl font-black text-white">
+                    All Instant Games
+                  </h2>
+                  <p className="text-xs text-slate-400">Handcrafted, 100% free casual titles with zero downloads</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3.5 sm:gap-5">
+              {GAMES_REGISTRY.map((game) => (
+                <GameCard
+                  key={game.id}
+                  game={game}
+                  onClick={() => navigate(game.route)}
+                />
+              ))}
+            </div>
+          </section>
+
+          {/* 4. BRAIN TEASERS & SPATIAL PUZZLES */}
+          <section aria-labelledby="section-puzzles" className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center border border-purple-500/30">
+                  <Puzzle className="w-4 h-4" />
+                </div>
+                <div>
+                  <h2 id="section-puzzles" className="text-xl sm:text-2xl font-black text-white">
+                    Brain Teasers & Spatial Puzzles
+                  </h2>
+                  <p className="text-xs text-slate-400">Sharpen your mind with relaxing logic, parking jams, and merge challenges</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5 sm:gap-5">
+              {puzzleGames.map((game) => (
+                <GameCard
+                  key={`puzzle-${game.id}`}
+                  game={game}
+                  onClick={() => navigate(game.route)}
+                />
+              ))}
+            </div>
+          </section>
+
+          {/* 5. FARM & COUNTRYSIDE ADVENTURES */}
+          <section aria-labelledby="section-farm" className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+                  <Tractor className="w-4 h-4" />
+                </div>
+                <div>
+                  <h2 id="section-farm" className="text-xl sm:text-2xl font-black text-white">
+                    Farm & Countryside Fun
+                  </h2>
+                  <p className="text-xs text-slate-400">Idle tycoons, harvest matches, flight runs, and barnyard driving</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5 sm:gap-5">
+              {farmGames.map((game) => (
+                <GameCard
+                  key={`farm-${game.id}`}
+                  game={game}
+                  onClick={() => navigate(game.route)}
+                />
+              ))}
+            </div>
+          </section>
         </div>
-      </section>
+      )}
     </main>
   );
 };
-

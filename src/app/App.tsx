@@ -19,6 +19,7 @@ export const App: React.FC = () => {
   };
 
   const [currentRoute, setCurrentRoute] = useState<string>(getInitialPath);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Sync state on back/forward browser button
   useEffect(() => {
@@ -113,7 +114,7 @@ export const App: React.FC = () => {
       currentRoute === '#games' ||
       currentRoute === '/map'
     ) {
-      return <HomePage navigate={navigate} />;
+      return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />;
     }
     if (currentRoute.startsWith('/games/farm-mini-mart')) {
       return <GamePage navigate={navigate} gameId="farm-mini-mart" />;
@@ -147,7 +148,12 @@ export const App: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100 selection:bg-orange-500 selection:text-slate-950">
-      <Header currentRoute={currentRoute} navigate={navigate} />
+      <Header
+        currentRoute={currentRoute}
+        navigate={navigate}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+      />
       <main className="grow">
         {renderCurrentView()}
       </main>
