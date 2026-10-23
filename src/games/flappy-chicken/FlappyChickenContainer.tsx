@@ -135,11 +135,11 @@ export const FlappyChickenContainer: React.FC = () => {
               ➔
             </span>
             <span className="text-2xl sm:text-3xl">🌾</span>
-            <h1 className="text-xl sm:text-2xl font-black text-amber-950 tracking-tight ml-1">
+            <h1 className="text-xl sm:text-2xl font-black text-amber-100 tracking-tight ml-1">
               Flappy Chicken
             </h1>
           </div>
-          <p className="text-xs text-stone-600 font-semibold">
+          <p className="text-xs text-amber-200/80 font-semibold">
             Flap, cluck, and fly through farm gates to reach the Golden Wheat!
           </p>
         </div>
@@ -322,13 +322,13 @@ export const FlappyChickenContainer: React.FC = () => {
           <span>TAP TO FLAP & CLUCK! 🐔</span>
         </button>
 
-        <p className="text-xs text-stone-500 hidden sm:flex items-center gap-1.5 font-medium">
+        <p className="text-xs text-stone-300 hidden sm:flex items-center gap-1.5 font-medium">
           <span>Press</span>
-          <kbd className="px-1.5 py-0.5 bg-stone-200 border border-stone-300 rounded font-mono text-[10px] text-stone-800">
+          <kbd className="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded font-mono text-[10px] text-amber-300">
             SPACE
           </kbd>
           <span>or</span>
-          <kbd className="px-1.5 py-0.5 bg-stone-200 border border-stone-300 rounded font-mono text-[10px] text-stone-800">
+          <kbd className="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded font-mono text-[10px] text-amber-300">
             UP / W
           </kbd>
           <span>to flap Clucky's wings • Click anywhere to fly!</span>

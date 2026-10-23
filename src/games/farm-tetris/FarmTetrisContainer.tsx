@@ -348,16 +348,16 @@ export const FarmTetrisContainer: React.FC = () => {
         </div>
 
         {/* Desktop Quick Hint */}
-        <div className="hidden md:flex items-center justify-between w-full text-xs text-slate-500 font-medium px-1">
+        <div className="hidden md:flex items-center justify-between w-full text-xs text-slate-300 font-medium px-1">
           <div>
-            💡 <span className="font-bold text-slate-700">Controls:</span>{' '}
-            <kbd className="bg-slate-200 text-slate-800 px-1 py-0.5 rounded text-[11px] font-mono">A</kbd>/<kbd className="bg-slate-200 text-slate-800 px-1 py-0.5 rounded text-[11px] font-mono">D</kbd> Move,{' '}
-            <kbd className="bg-slate-200 text-slate-800 px-1 py-0.5 rounded text-[11px] font-mono">W</kbd> Rotate,{' '}
-            <kbd className="bg-slate-200 text-slate-800 px-1 py-0.5 rounded text-[11px] font-mono">Space</kbd> Hard Drop,{' '}
-            <kbd className="bg-slate-200 text-slate-800 px-1 py-0.5 rounded text-[11px] font-mono">C</kbd> Hold
+            💡 <span className="font-bold text-amber-300">Controls:</span>{' '}
+            <kbd className="bg-slate-800 text-amber-300 border border-slate-700 px-1.5 py-0.5 rounded text-[11px] font-mono">A</kbd>/<kbd className="bg-slate-800 text-amber-300 border border-slate-700 px-1.5 py-0.5 rounded text-[11px] font-mono">D</kbd> Move,{' '}
+            <kbd className="bg-slate-800 text-amber-300 border border-slate-700 px-1.5 py-0.5 rounded text-[11px] font-mono">W</kbd> Rotate,{' '}
+            <kbd className="bg-slate-800 text-amber-300 border border-slate-700 px-1.5 py-0.5 rounded text-[11px] font-mono">Space</kbd> Hard Drop,{' '}
+            <kbd className="bg-slate-800 text-amber-300 border border-slate-700 px-1.5 py-0.5 rounded text-[11px] font-mono">C</kbd> Hold
           </div>
           <div>
-            🏆 High Score: <strong className="text-amber-600">{highScore.toLocaleString()}</strong>
+            🏆 High Score: <strong className="text-amber-400">{highScore.toLocaleString()}</strong>
           </div>
         </div>
       </div>

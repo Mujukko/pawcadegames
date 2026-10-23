@@ -1,8 +1,9 @@
-import React, { useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
 import { GameCard } from '../components/GameCard';
+import { GameIntroModal } from '../components/GameIntroModal';
 import { analytics } from '../lib/analytics';
-import { ChevronRight, Star, Sparkles, Keyboard, Smartphone, CheckCircle2, Shield, Heart } from 'lucide-react';
+import { ChevronRight, Star, Sparkles, Keyboard, Smartphone, CheckCircle2, Shield, Heart, HelpCircle } from 'lucide-react';
 
 // Dynamic lazy-loading for all 9 game containers for optimal initial bundle size
 const FarmMiniMartContainer = lazy(() =>
@@ -71,6 +72,24 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   const isFarm = gameId === 'animal-farm-parking';
   const game = GAMES_REGISTRY.find(g => g.id === gameId) || GAMES_REGISTRY[0]!;
   const relatedGames = GAMES_REGISTRY.filter(g => g.id !== gameId && g.status === 'playable').slice(0, 4);
+
+  // Pre-game Intro / How to Play modal state (always opens on first entry)
+  const [isIntroOpen, setIsIntroOpen] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem(`pawcade_intro_seen_${gameId}`) !== 'true';
+    } catch {
+      return true;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      const seen = localStorage.getItem(`pawcade_intro_seen_${gameId}`) === 'true';
+      setIsIntroOpen(!seen);
+    } catch {
+      setIsIntroOpen(true);
+    }
+  }, [gameId]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -191,6 +210,17 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             <p className="text-slate-300 text-xs sm:text-base mt-0.5 sm:mt-1 max-w-2xl line-clamp-2 sm:line-clamp-none">
               {game.tagline}
             </p>
+          </div>
+
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              onClick={() => setIsIntroOpen(true)}
+              aria-label="Nasıl Oynanır rehberini aç"
+              className="px-4 py-2.5 min-h-[44px] rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-slate-950 font-black text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-amber-400/25 transform hover:scale-103 active:scale-97 transition-all cursor-pointer"
+            >
+              <HelpCircle className="w-4 h-4" />
+              <span>Nasıl Oynanır? • How to Play</span>
+            </button>
           </div>
         </div>
 
@@ -543,6 +573,13 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
           </section>
         )}
+
+        {/* UNIVERSAL PRE-GAME INTRO / HOW TO PLAY MODAL */}
+        <GameIntroModal
+          gameId={gameId}
+          isOpen={isIntroOpen}
+          onClose={() => setIsIntroOpen(false)}
+        />
       </div>
     </div>
   );
