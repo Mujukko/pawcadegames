@@ -58,19 +58,25 @@ export const SheepStampedeContainer: React.FC = () => {
     }
   };
 
-  // Steer flock based on clientX pointer position
+  const steeringDirRef = useRef<-1 | 0 | 1>(0);
+  const targetXRef = useRef<number | null>(null);
+
+  // Steer flock based on clientX pointer position with target reference
   const updateSteeringFromClientX = useCallback((clientX: number) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const relativeX = clientX - rect.left;
     const normalized = (relativeX / rect.width) * TRACK_WIDTH - TRACK_WIDTH / 2;
-    setGameState((prev) => steerFlock(prev, normalized));
+    targetXRef.current = Math.max(-120, Math.min(120, normalized));
   }, []);
 
   // Mouse / Touch Drag handlers
   const handlePointerDown = (e: React.PointerEvent) => {
+    try {
+      (e.target as Element).setPointerCapture(e.pointerId);
+    } catch {}
     setIsDragging(true);
-    if (gameState.status === 'ready') {
+    if (stateRef.current.status === 'ready') {
       handleStartGame();
     }
     updateSteeringFromClientX(e.clientX);
@@ -81,21 +87,25 @@ export const SheepStampedeContainer: React.FC = () => {
     updateSteeringFromClientX(e.clientX);
   };
 
-  const handlePointerUp = () => {
+  const handlePointerUp = (e: React.PointerEvent) => {
+    try {
+      (e.target as Element).releasePointerCapture(e.pointerId);
+    } catch {}
     setIsDragging(false);
+    targetXRef.current = null;
   };
 
-  // Keyboard controls
+  // Keyboard controls with continuous hold-to-steer
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') {
         e.preventDefault();
         if (stateRef.current.status === 'ready') handleStartGame();
-        setGameState((prev) => steerFlock(prev, prev.flockX - 25));
+        steeringDirRef.current = -1;
       } else if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') {
         e.preventDefault();
         if (stateRef.current.status === 'ready') handleStartGame();
-        setGameState((prev) => steerFlock(prev, prev.flockX + 25));
+        steeringDirRef.current = 1;
       } else if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
         if (stateRef.current.status === 'ready') {
@@ -118,18 +128,47 @@ export const SheepStampedeContainer: React.FC = () => {
       }
     };
 
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') {
+        if (steeringDirRef.current === -1) steeringDirRef.current = 0;
+      } else if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') {
+        if (steeringDirRef.current === 1) steeringDirRef.current = 0;
+      }
+    };
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
   }, [levelNum, startLevel]);
 
-  // Main 60 FPS animation / physics loop
+  // Main 60 FPS animation / physics loop with continuous smooth steering
   useEffect(() => {
     const loop = (time: number) => {
       const dt = Math.min((time - lastTimeRef.current) / 1000, 0.1);
       lastTimeRef.current = time;
 
       if (stateRef.current.status === 'running') {
+        let currentFlockX = stateRef.current.flockX;
+
+        // 1. Continuous button/key steering
+        if (steeringDirRef.current !== 0) {
+          const steerSpeed = 260; // px / sec
+          currentFlockX += steeringDirRef.current * steerSpeed * dt;
+          currentFlockX = Math.max(-120, Math.min(120, currentFlockX));
+          stateRef.current.flockX = currentFlockX;
+        } else if (targetXRef.current !== null) {
+          // 2. Smooth touch drag tracking (lerp for fluid natural movement)
+          const diff = targetXRef.current - currentFlockX;
+          currentFlockX += diff * Math.min(1, 18 * dt);
+          currentFlockX = Math.max(-120, Math.min(120, currentFlockX));
+          stateRef.current.flockX = currentFlockX;
+        }
+
         const { nextState, events } = stepStampedeEngine(stateRef.current, dt);
+        nextState.flockX = currentFlockX;
 
         if (events.gateHit) {
           sound.playGateChime(events.gateHit.isPositive);
@@ -434,27 +473,45 @@ export const SheepStampedeContainer: React.FC = () => {
         )}
       </div>
 
-      {/* On-screen touch steering arrows for mobile */}
+      {/* On-screen continuous touch steering buttons for mobile */}
       <div className="w-full flex items-center justify-between gap-3 mt-2 px-1">
         <button
-          onClick={() => {
-            if (gameState.status === 'ready') handleStartGame();
-            setGameState((prev) => steerFlock(prev, prev.flockX - 35));
+          onPointerDown={(e) => {
+            e.preventDefault();
+            try { (e.target as Element).setPointerCapture(e.pointerId); } catch {}
+            if (stateRef.current.status === 'ready') handleStartGame();
+            steeringDirRef.current = -1;
           }}
-          className="flex-1 py-3 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 rounded-xl border border-emerald-500/30 flex items-center justify-center text-white font-black text-xs gap-1.5 min-h-[44px] cursor-pointer"
+          onPointerUp={(e) => {
+            try { (e.target as Element).releasePointerCapture(e.pointerId); } catch {}
+            steeringDirRef.current = 0;
+          }}
+          onPointerCancel={() => { steeringDirRef.current = 0; }}
+          onPointerLeave={() => { steeringDirRef.current = 0; }}
+          className="flex-1 py-3.5 bg-slate-800 hover:bg-slate-700 active:bg-emerald-600/30 rounded-xl border-2 border-emerald-500/40 flex items-center justify-center text-white font-black text-xs sm:text-sm gap-2 min-h-[48px] cursor-pointer touch-none select-none transition-all active:scale-97 shadow-lg"
+          aria-label="Hold to Steer Left"
         >
-          <ArrowLeft className="w-4 h-4 text-emerald-400" />
-          <span>STEER LEFT</span>
+          <ArrowLeft className="w-5 h-5 text-emerald-400" />
+          <span>HOLD TO STEER LEFT</span>
         </button>
         <button
-          onClick={() => {
-            if (gameState.status === 'ready') handleStartGame();
-            setGameState((prev) => steerFlock(prev, prev.flockX + 35));
+          onPointerDown={(e) => {
+            e.preventDefault();
+            try { (e.target as Element).setPointerCapture(e.pointerId); } catch {}
+            if (stateRef.current.status === 'ready') handleStartGame();
+            steeringDirRef.current = 1;
           }}
-          className="flex-1 py-3 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 rounded-xl border border-emerald-500/30 flex items-center justify-center text-white font-black text-xs gap-1.5 min-h-[44px] cursor-pointer"
+          onPointerUp={(e) => {
+            try { (e.target as Element).releasePointerCapture(e.pointerId); } catch {}
+            steeringDirRef.current = 0;
+          }}
+          onPointerCancel={() => { steeringDirRef.current = 0; }}
+          onPointerLeave={() => { steeringDirRef.current = 0; }}
+          className="flex-1 py-3.5 bg-slate-800 hover:bg-slate-700 active:bg-emerald-600/30 rounded-xl border-2 border-emerald-500/40 flex items-center justify-center text-white font-black text-xs sm:text-sm gap-2 min-h-[48px] cursor-pointer touch-none select-none transition-all active:scale-97 shadow-lg"
+          aria-label="Hold to Steer Right"
         >
-          <span>STEER RIGHT</span>
-          <ArrowRight className="w-4 h-4 text-emerald-400" />
+          <span>HOLD TO STEER RIGHT</span>
+          <ArrowRight className="w-5 h-5 text-emerald-400" />
         </button>
       </div>
     </div>

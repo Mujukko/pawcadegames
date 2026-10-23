@@ -46,6 +46,32 @@ export const HorseshoeTwistContainer: React.FC = () => {
     setIsMuted(muted);
   };
 
+  // Continuous hold-to-rotate for mobile buttons
+  const holdTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const holdIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startHoldAction = (action: () => void, initialDelay = 160, repeatInterval = 90) => {
+    action();
+    if (holdTimerRef.current) clearTimeout(holdTimerRef.current);
+    if (holdIntervalRef.current) clearInterval(holdIntervalRef.current);
+    holdTimerRef.current = setTimeout(() => {
+      holdIntervalRef.current = setInterval(action, repeatInterval);
+    }, initialDelay);
+  };
+
+  const stopHoldAction = () => {
+    if (holdTimerRef.current) clearTimeout(holdTimerRef.current);
+    if (holdIntervalRef.current) clearInterval(holdIntervalRef.current);
+    holdTimerRef.current = null;
+    holdIntervalRef.current = null;
+  };
+
+  useEffect(() => {
+    return () => {
+      stopHoldAction();
+    };
+  }, []);
+
   const handleRotate = useCallback(
     (ringId: number, deltaDeg: number) => {
       if (gameState.status === 'won') return;
@@ -387,20 +413,42 @@ export const HorseshoeTwistContainer: React.FC = () => {
         ))}
       </div>
 
-      {/* On-Screen Rotation Stepper Buttons for Mobile */}
+      {/* On-Screen Rotation Buttons with Hold-to-Rotate */}
       <div className="w-full flex items-center justify-between gap-3 mt-3 px-1">
         <button
-          onClick={() => handleRotate(selectedRingId, -30)}
-          className="flex-1 py-3 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 rounded-xl border border-amber-500/30 flex items-center justify-center text-white font-black text-xs gap-1.5 min-h-[44px] cursor-pointer"
+          onPointerDown={(e) => {
+            e.preventDefault();
+            try { (e.target as Element).setPointerCapture(e.pointerId); } catch {}
+            startHoldAction(() => handleRotate(selectedRingId, -30));
+          }}
+          onPointerUp={(e) => {
+            try { (e.target as Element).releasePointerCapture(e.pointerId); } catch {}
+            stopHoldAction();
+          }}
+          onPointerLeave={stopHoldAction}
+          onPointerCancel={stopHoldAction}
+          aria-label="Hold to Rotate Counter-Clockwise"
+          className="flex-1 py-3.5 bg-slate-800 hover:bg-slate-700 active:bg-amber-500/20 rounded-xl border border-amber-500/30 flex items-center justify-center text-white font-black text-xs sm:text-sm gap-2 min-h-[48px] cursor-pointer touch-none select-none transition-all active:scale-97 shadow-md"
         >
           <RotateCcw className="w-4 h-4 text-amber-400" />
-          <span>ROTATE CCW (-30°)</span>
+          <span>HOLD TO ROTATE CCW</span>
         </button>
         <button
-          onClick={() => handleRotate(selectedRingId, 30)}
-          className="flex-1 py-3 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 rounded-xl border border-amber-500/30 flex items-center justify-center text-white font-black text-xs gap-1.5 min-h-[44px] cursor-pointer"
+          onPointerDown={(e) => {
+            e.preventDefault();
+            try { (e.target as Element).setPointerCapture(e.pointerId); } catch {}
+            startHoldAction(() => handleRotate(selectedRingId, 30));
+          }}
+          onPointerUp={(e) => {
+            try { (e.target as Element).releasePointerCapture(e.pointerId); } catch {}
+            stopHoldAction();
+          }}
+          onPointerLeave={stopHoldAction}
+          onPointerCancel={stopHoldAction}
+          aria-label="Hold to Rotate Clockwise"
+          className="flex-1 py-3.5 bg-slate-800 hover:bg-slate-700 active:bg-amber-500/20 rounded-xl border border-amber-500/30 flex items-center justify-center text-white font-black text-xs sm:text-sm gap-2 min-h-[48px] cursor-pointer touch-none select-none transition-all active:scale-97 shadow-md"
         >
-          <span>ROTATE CW (+30°)</span>
+          <span>HOLD TO ROTATE CW</span>
           <RotateCw className="w-4 h-4 text-amber-400" />
         </button>
       </div>

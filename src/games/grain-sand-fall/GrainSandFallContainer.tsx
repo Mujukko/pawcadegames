@@ -63,6 +63,32 @@ export const GrainSandFallContainer: React.FC = () => {
   const isSoftDroppingRef = useRef<boolean>(false);
   const touchStartRef = useRef<{ x: number; y: number; shapeX: number } | null>(null);
 
+  // Hold-to-repeat (DAS) for mobile buttons
+  const holdTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const holdIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startHoldAction = useCallback((action: () => void, initialDelay = 150, repeatInterval = 60) => {
+    action();
+    if (holdTimerRef.current) clearTimeout(holdTimerRef.current);
+    if (holdIntervalRef.current) clearInterval(holdIntervalRef.current);
+    holdTimerRef.current = setTimeout(() => {
+      holdIntervalRef.current = setInterval(action, repeatInterval);
+    }, initialDelay);
+  }, []);
+
+  const stopHoldAction = useCallback(() => {
+    if (holdTimerRef.current) clearTimeout(holdTimerRef.current);
+    if (holdIntervalRef.current) clearInterval(holdIntervalRef.current);
+    holdTimerRef.current = null;
+    holdIntervalRef.current = null;
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      stopHoldAction();
+    };
+  }, [stopHoldAction]);
+
   // Sound toggle
   const handleToggleSound = () => {
     const muted = sound.toggleMute();
@@ -752,12 +778,22 @@ export const GrainSandFallContainer: React.FC = () => {
         )}
       </div>
 
-      {/* 3. TACTILE MOBILE TOUCH CONTROLLER (5 responsive action buttons) */}
+      {/* 3. TACTILE MOBILE TOUCH CONTROLLER (5 responsive action buttons with hold-to-slide DAS) */}
       <div className="w-full mt-2.5 grid grid-cols-5 gap-2">
         <button
-          onClick={() => moveHorizontal(-1)}
-          aria-label="Move Left"
-          className="h-13 sm:h-14 min-h-[48px] min-w-[44px] rounded-2xl bg-slate-800 active:bg-amber-400 border border-slate-700 flex items-center justify-center text-slate-200 active:text-slate-950 transition-colors cursor-pointer shadow-sm"
+          onPointerDown={(e) => {
+            e.preventDefault();
+            try { (e.target as Element).setPointerCapture(e.pointerId); } catch {}
+            startHoldAction(() => moveHorizontal(-1));
+          }}
+          onPointerUp={(e) => {
+            try { (e.target as Element).releasePointerCapture(e.pointerId); } catch {}
+            stopHoldAction();
+          }}
+          onPointerLeave={stopHoldAction}
+          onPointerCancel={stopHoldAction}
+          aria-label="Hold to Move Left"
+          className="h-13 sm:h-14 min-h-[48px] min-w-[44px] rounded-2xl bg-slate-800 active:bg-amber-400 border border-slate-700 flex items-center justify-center text-slate-200 active:text-slate-950 transition-colors cursor-pointer shadow-sm touch-none select-none"
         >
           <ArrowLeft className="w-6 h-6" />
         </button>
@@ -765,32 +801,51 @@ export const GrainSandFallContainer: React.FC = () => {
         <button
           onClick={rotateShape}
           aria-label="Rotate Shape"
-          className="h-13 sm:h-14 min-h-[48px] min-w-[44px] rounded-2xl bg-slate-800 active:bg-amber-400 border border-slate-700 flex items-center justify-center text-amber-400 active:text-slate-950 transition-colors cursor-pointer shadow-sm"
+          className="h-13 sm:h-14 min-h-[48px] min-w-[44px] rounded-2xl bg-slate-800 active:bg-amber-400 border border-slate-700 flex items-center justify-center text-amber-400 active:text-slate-950 transition-colors cursor-pointer shadow-sm touch-none select-none"
         >
           <RotateCw className="w-6 h-6" />
         </button>
 
         <button
-          onPointerDown={() => {
+          onPointerDown={(e) => {
+            e.preventDefault();
+            try { (e.target as Element).setPointerCapture(e.pointerId); } catch {}
             isSoftDroppingRef.current = true;
-            dropStep();
+            startHoldAction(() => dropStep(), 120, 45);
           }}
-          onPointerUp={() => {
+          onPointerUp={(e) => {
+            try { (e.target as Element).releasePointerCapture(e.pointerId); } catch {}
             isSoftDroppingRef.current = false;
+            stopHoldAction();
           }}
           onPointerLeave={() => {
             isSoftDroppingRef.current = false;
+            stopHoldAction();
           }}
-          aria-label="Soft Drop"
-          className="h-13 sm:h-14 min-h-[48px] min-w-[44px] rounded-2xl bg-slate-800 active:bg-amber-400 border border-slate-700 flex items-center justify-center text-slate-300 active:text-slate-950 transition-colors cursor-pointer shadow-sm"
+          onPointerCancel={() => {
+            isSoftDroppingRef.current = false;
+            stopHoldAction();
+          }}
+          aria-label="Hold to Soft Drop"
+          className="h-13 sm:h-14 min-h-[48px] min-w-[44px] rounded-2xl bg-slate-800 active:bg-amber-400 border border-slate-700 flex items-center justify-center text-slate-300 active:text-slate-950 transition-colors cursor-pointer shadow-sm touch-none select-none"
         >
           <ArrowDown className="w-6 h-6" />
         </button>
 
         <button
-          onClick={() => moveHorizontal(1)}
-          aria-label="Move Right"
-          className="h-13 sm:h-14 min-h-[48px] min-w-[44px] rounded-2xl bg-slate-800 active:bg-amber-400 border border-slate-700 flex items-center justify-center text-slate-200 active:text-slate-950 transition-colors cursor-pointer shadow-sm"
+          onPointerDown={(e) => {
+            e.preventDefault();
+            try { (e.target as Element).setPointerCapture(e.pointerId); } catch {}
+            startHoldAction(() => moveHorizontal(1));
+          }}
+          onPointerUp={(e) => {
+            try { (e.target as Element).releasePointerCapture(e.pointerId); } catch {}
+            stopHoldAction();
+          }}
+          onPointerLeave={stopHoldAction}
+          onPointerCancel={stopHoldAction}
+          aria-label="Hold to Move Right"
+          className="h-13 sm:h-14 min-h-[48px] min-w-[44px] rounded-2xl bg-slate-800 active:bg-amber-400 border border-slate-700 flex items-center justify-center text-slate-200 active:text-slate-950 transition-colors cursor-pointer shadow-sm touch-none select-none"
         >
           <ArrowRight className="w-6 h-6" />
         </button>
@@ -798,7 +853,7 @@ export const GrainSandFallContainer: React.FC = () => {
         <button
           onClick={hardDrop}
           aria-label="Hard Drop Slam"
-          className="h-13 sm:h-14 min-h-[48px] min-w-[44px] rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 text-slate-950 font-black flex items-center justify-center shadow-lg shadow-amber-400/25 active:scale-95 transition-all cursor-pointer"
+          className="h-13 sm:h-14 min-h-[48px] min-w-[44px] rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 text-slate-950 font-black flex items-center justify-center shadow-lg shadow-amber-400/25 active:scale-95 transition-all cursor-pointer touch-none select-none"
         >
           <Sparkles className="w-6 h-6 fill-slate-950" />
         </button>

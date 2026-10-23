@@ -112,6 +112,32 @@ export const FarmTetrisContainer: React.FC = () => {
   const handleTouchHardDrop = () => activeSceneRef.current?.handleHardDrop();
   const handleTouchHold = () => activeSceneRef.current?.handleHold();
 
+  // Hold-to-repeat (DAS) for continuous mobile button sliding
+  const holdTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const holdIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startHoldAction = (action: () => void, initialDelay = 150, repeatInterval = 60) => {
+    action();
+    if (holdTimerRef.current) clearTimeout(holdTimerRef.current);
+    if (holdIntervalRef.current) clearInterval(holdIntervalRef.current);
+    holdTimerRef.current = setTimeout(() => {
+      holdIntervalRef.current = setInterval(action, repeatInterval);
+    }, initialDelay);
+  };
+
+  const stopHoldAction = () => {
+    if (holdTimerRef.current) clearTimeout(holdTimerRef.current);
+    if (holdIntervalRef.current) clearInterval(holdIntervalRef.current);
+    holdTimerRef.current = null;
+    holdIntervalRef.current = null;
+  };
+
+  useEffect(() => {
+    return () => {
+      stopHoldAction();
+    };
+  }, []);
+
   // Canvas Swipe Gestures for Mobile
   const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
 
@@ -290,28 +316,58 @@ export const FarmTetrisContainer: React.FC = () => {
       <div className="w-full mt-3 flex flex-col sm:flex-row items-center justify-between gap-3 px-2">
         {/* On-Screen Mobile Controls */}
         <div className="flex lg:hidden items-center justify-between w-full bg-slate-900/95 backdrop-blur-md p-2.5 rounded-2xl border border-slate-800 shadow-lg text-white touch-none">
-          {/* Movement & Drop controls */}
+          {/* Movement & Drop controls with Hold-to-Repeat DAS */}
           <div className="flex items-center gap-1.5">
             <button
-              onPointerDown={(e) => { e.preventDefault(); handleTouchLeft(); }}
-              className="w-11 h-11 bg-slate-800 active:bg-slate-700 text-amber-300 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 border border-slate-700 cursor-pointer"
-              aria-label="Move Left"
+              onPointerDown={(e) => {
+                e.preventDefault();
+                try { (e.target as Element).setPointerCapture(e.pointerId); } catch {}
+                startHoldAction(handleTouchLeft);
+              }}
+              onPointerUp={(e) => {
+                try { (e.target as Element).releasePointerCapture(e.pointerId); } catch {}
+                stopHoldAction();
+              }}
+              onPointerLeave={stopHoldAction}
+              onPointerCancel={stopHoldAction}
+              className="w-11 h-11 bg-slate-800 active:bg-slate-700 text-amber-300 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 border border-slate-700 cursor-pointer touch-none select-none"
+              aria-label="Hold to Move Left"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
 
             <button
-              onPointerDown={(e) => { e.preventDefault(); handleTouchSoftDrop(); }}
-              className="w-11 h-11 bg-slate-800 active:bg-slate-700 text-amber-300 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 border border-slate-700 cursor-pointer"
-              aria-label="Soft Drop"
+              onPointerDown={(e) => {
+                e.preventDefault();
+                try { (e.target as Element).setPointerCapture(e.pointerId); } catch {}
+                startHoldAction(handleTouchSoftDrop, 120, 45);
+              }}
+              onPointerUp={(e) => {
+                try { (e.target as Element).releasePointerCapture(e.pointerId); } catch {}
+                stopHoldAction();
+              }}
+              onPointerLeave={stopHoldAction}
+              onPointerCancel={stopHoldAction}
+              className="w-11 h-11 bg-slate-800 active:bg-slate-700 text-amber-300 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 border border-slate-700 cursor-pointer touch-none select-none"
+              aria-label="Hold to Soft Drop"
             >
               <ArrowDown className="w-5 h-5" />
             </button>
 
             <button
-              onPointerDown={(e) => { e.preventDefault(); handleTouchRight(); }}
-              className="w-11 h-11 bg-slate-800 active:bg-slate-700 text-amber-300 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 border border-slate-700 cursor-pointer"
-              aria-label="Move Right"
+              onPointerDown={(e) => {
+                e.preventDefault();
+                try { (e.target as Element).setPointerCapture(e.pointerId); } catch {}
+                startHoldAction(handleTouchRight);
+              }}
+              onPointerUp={(e) => {
+                try { (e.target as Element).releasePointerCapture(e.pointerId); } catch {}
+                stopHoldAction();
+              }}
+              onPointerLeave={stopHoldAction}
+              onPointerCancel={stopHoldAction}
+              className="w-11 h-11 bg-slate-800 active:bg-slate-700 text-amber-300 rounded-xl flex items-center justify-center font-bold shadow-xs active:scale-95 border border-slate-700 cursor-pointer touch-none select-none"
+              aria-label="Hold to Move Right"
             >
               <ArrowRight className="w-5 h-5" />
             </button>
