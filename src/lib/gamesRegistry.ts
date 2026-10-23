@@ -407,6 +407,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     status: 'coming-soon',
     rating: 4.7,
     playCount: 'Coming Soon',
+    thumbnailUrl: '/assets/thumbnails/thumb-hamster-ball-dash.jpg',
     controls: {
       desktop: ['Arrow Keys / A-D to steer and balance'],
       mobile: ['Tilt or on-screen joystick to steer'],
