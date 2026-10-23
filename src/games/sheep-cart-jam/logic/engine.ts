@@ -286,7 +286,7 @@ export const LEVELS: LevelConfig[] = [
       { id: 'c4', color: 'yellow', x: 0, y: 5, width: 1, height: 2, orientation: 'vertical', exitDirection: 'down', capacity: 3, passengers: 0 },
       { id: 'c5', color: 'green', x: 2, y: 5, width: 1, height: 2, orientation: 'vertical', exitDirection: 'down', capacity: 3, passengers: 0 },
       { id: 'c6', color: 'purple', x: 4, y: 4, width: 1, height: 2, orientation: 'vertical', exitDirection: 'up', capacity: 3, passengers: 0 },
-      { id: 'c7', color: 'yellow', x: 2, y: 3, width: 2, height: 1, orientation: 'horizontal', exitDirection: 'right', capacity: 3, passengers: 0 },
+      { id: 'c7', color: 'yellow', x: 3, y: 3, width: 2, height: 1, orientation: 'horizontal', exitDirection: 'right', capacity: 3, passengers: 0 },
     ],
     sheepQueue: [
       'purple', 'purple', 'purple',
