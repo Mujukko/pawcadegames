@@ -37,10 +37,10 @@ describe('Egg Buster: Barnyard Smash Physics Engine', () => {
 
   it('steps physics and detects collision with targets', () => {
     const state = initializeEggBusterLevel(1);
-    // Artificially place an active egg right in front of crate c1 (x=340, y=350)
+    // Artificially place an active egg right in front of crate c1 (x=370, y=340)
     state.egg = {
-      x: 335,
-      y: 360,
+      x: 365,
+      y: 350,
       vx: 200,
       vy: 0,
       radius: 10,
@@ -51,6 +51,26 @@ describe('Egg Buster: Barnyard Smash Physics Engine', () => {
     const { nextState, hitTarget } = stepPhysics(state, 0.05);
     expect(hitTarget).not.toBeNull();
     expect(hitTarget!.id).toBe('c1');
+  });
+
+  it('drops stacked targets when lower supporting crate collapses', () => {
+    const state = initializeEggBusterLevel(1);
+    const crate2BeforeY = state.targets.find(t => t.id === 'c2')!.y;
+    // Hit bottom crate c1
+    state.egg = {
+      x: 365,
+      y: 350,
+      vx: 200,
+      vy: 0,
+      radius: 10,
+      isActive: true,
+      bouncesLeft: 3,
+    };
+    const { nextState, destroyedTarget } = stepPhysics(state, 0.05);
+    expect(destroyedTarget).not.toBeNull();
+    const crate2AfterY = nextState.targets.find(t => t.id === 'c2')!.y;
+    // Crate c2 should have settled downward
+    expect(crate2AfterY).toBeGreaterThan(crate2BeforeY);
   });
 
   it('triggers victory when all foxes are eliminated', () => {

@@ -66,54 +66,55 @@ export interface EggLevelConfig {
 export const GRAVITY = 750; // px / sec^2
 export const BOUNCE_RESTITUTION = 0.55;
 export const MAX_BOUNCES = 4;
-export const WORLD_WIDTH = 480;
-export const WORLD_HEIGHT = 440;
-export const FLOOR_Y = 400;
+export const WORLD_WIDTH = 500;
+export const WORLD_HEIGHT = 420;
+export const FLOOR_Y = 385;
+export const POWER_SCALE = 8.0; // Responsive slingshot launch power
 
 export const EGG_LEVELS: EggLevelConfig[] = [
   // Level 1: Beginner Target (1 Fox perched on 2 crates)
   {
     level: 1,
     eggsAllowed: 3,
-    slingshot: { x: 70, y: 320 },
+    slingshot: { x: 120, y: 295 },
     targets: [
-      { id: 'c1', type: 'crate', x: 340, y: 350, width: 44, height: 44, hp: 1 },
-      { id: 'c2', type: 'crate', x: 340, y: 300, width: 44, height: 44, hp: 1 },
-      { id: 'f1', type: 'fox', x: 342, y: 250, width: 40, height: 40, hp: 1 },
+      { id: 'c1', type: 'crate', x: 370, y: 340, width: 44, height: 44, hp: 1 },
+      { id: 'c2', type: 'crate', x: 370, y: 295, width: 44, height: 44, hp: 1 },
+      { id: 'f1', type: 'fox', x: 372, y: 250, width: 40, height: 40, hp: 1 },
     ],
   },
   // Level 2: Barricade & High Perch (2 Foxes)
   {
     level: 2,
     eggsAllowed: 3,
-    slingshot: { x: 70, y: 320 },
+    slingshot: { x: 120, y: 295 },
     targets: [
       // Metal guard milk can (bounces)
-      { id: 'm1', type: 'metal', x: 220, y: 350, width: 34, height: 46, hp: 99 },
+      { id: 'm1', type: 'metal', x: 260, y: 340, width: 34, height: 44, hp: 99 },
       // Wooden crate tower
-      { id: 'c1', type: 'crate', x: 350, y: 350, width: 44, height: 44, hp: 1 },
-      { id: 'f1', type: 'fox', x: 352, y: 300, width: 40, height: 40, hp: 1 },
+      { id: 'c1', type: 'crate', x: 360, y: 340, width: 44, height: 44, hp: 1 },
+      { id: 'f1', type: 'fox', x: 362, y: 295, width: 40, height: 40, hp: 1 },
       // High shelf fox
-      { id: 'c2', type: 'crate', x: 420, y: 350, width: 44, height: 44, hp: 1 },
-      { id: 'c3', type: 'crate', x: 420, y: 300, width: 44, height: 44, hp: 1 },
-      { id: 'c4', type: 'crate', x: 420, y: 250, width: 44, height: 44, hp: 1 },
-      { id: 'f2', type: 'fox', x: 422, y: 200, width: 40, height: 40, hp: 1 },
+      { id: 'c2', type: 'crate', x: 430, y: 340, width: 44, height: 44, hp: 1 },
+      { id: 'c3', type: 'crate', x: 430, y: 295, width: 44, height: 44, hp: 1 },
+      { id: 'c4', type: 'crate', x: 430, y: 250, width: 44, height: 44, hp: 1 },
+      { id: 'f2', type: 'fox', x: 432, y: 205, width: 40, height: 40, hp: 1 },
     ],
   },
   // Level 3: Bunker Defense (3 Foxes behind hay & crates)
   {
     level: 3,
     eggsAllowed: 4,
-    slingshot: { x: 70, y: 320 },
+    slingshot: { x: 120, y: 295 },
     targets: [
-      { id: 'h1', type: 'hay', x: 200, y: 350, width: 50, height: 44, hp: 2 },
-      { id: 'c1', type: 'crate', x: 300, y: 350, width: 44, height: 44, hp: 1 },
-      { id: 'f1', type: 'fox', x: 302, y: 300, width: 40, height: 40, hp: 1 },
-      { id: 'm1', type: 'metal', x: 360, y: 350, width: 34, height: 46, hp: 99 },
-      { id: 'c2', type: 'crate', x: 410, y: 350, width: 44, height: 44, hp: 1 },
-      { id: 'f2', type: 'fox', x: 412, y: 300, width: 40, height: 40, hp: 1 },
-      { id: 'c3', type: 'crate', x: 410, y: 250, width: 44, height: 44, hp: 1 },
-      { id: 'f3', type: 'fox', x: 412, y: 200, width: 40, height: 40, hp: 1 },
+      { id: 'h1', type: 'hay', x: 230, y: 340, width: 50, height: 44, hp: 2 },
+      { id: 'c1', type: 'crate', x: 320, y: 340, width: 44, height: 44, hp: 1 },
+      { id: 'f1', type: 'fox', x: 322, y: 295, width: 40, height: 40, hp: 1 },
+      { id: 'm1', type: 'metal', x: 375, y: 340, width: 34, height: 44, hp: 99 },
+      { id: 'c2', type: 'crate', x: 435, y: 340, width: 44, height: 44, hp: 1 },
+      { id: 'f2', type: 'fox', x: 437, y: 295, width: 40, height: 40, hp: 1 },
+      { id: 'c3', type: 'crate', x: 435, y: 250, width: 44, height: 44, hp: 1 },
+      { id: 'f3', type: 'fox', x: 437, y: 205, width: 40, height: 40, hp: 1 },
     ],
   },
 ];
@@ -148,7 +149,7 @@ export function calculateTrajectory(
   const dy = anchor.y - pullY;
 
   // Power multiplier
-  const powerScale = 6.5;
+  const powerScale = POWER_SCALE;
   let vx = dx * powerScale;
   let vy = dy * powerScale;
 
@@ -186,7 +187,7 @@ export function launchEgg(
 
   const dx = state.slingshotAnchor.x - pullX;
   const dy = state.slingshotAnchor.y - pullY;
-  const powerScale = 6.5;
+  const powerScale = POWER_SCALE;
 
   const vx = dx * powerScale;
   const vy = dy * powerScale;
@@ -268,6 +269,19 @@ export function stepPhysics(
     }
     return t;
   });
+
+  // 1.5. Tower Gravity Collapse: If a supporting crate was destroyed, drop stacked targets directly above it
+  if (destroyedTarget && (destroyedTarget.type === 'crate' || destroyedTarget.type === 'hay')) {
+    const destX = destroyedTarget.x;
+    const destY = destroyedTarget.y;
+    const destH = destroyedTarget.height;
+    for (let i = 0; i < updatedTargets.length; i++) {
+      const obj = updatedTargets[i];
+      if (!obj.isDestroyed && Math.abs(obj.x - destX) < 24 && obj.y < destY) {
+        obj.y = Math.min(obj.y + destH, FLOOR_Y - obj.height);
+      }
+    }
+  }
 
   // 2. Collision with Floor
   if (newY >= FLOOR_Y - egg.radius) {
