@@ -19,14 +19,53 @@ export interface GrainColorMeta {
   name: string;
   hex: string;
   glow: string;
+  lightHex: string;
+  darkHex: string;
+  sparkleHex: string;
   emoji: string;
 }
 
 export const GRAIN_COLORS: Record<GrainColor, GrainColorMeta> = {
-  1: { id: 1, name: 'Golden Corn', hex: '#eab308', glow: '#fef08a', emoji: '🌽' },
-  2: { id: 2, name: 'Ruby Cranberry', hex: '#ef4444', glow: '#fca5a5', emoji: '🍓' },
-  3: { id: 3, name: 'Sky Berry', hex: '#0ea5e9', glow: '#7dd3fc', emoji: '🫐' },
-  4: { id: 4, name: 'Clover Green', hex: '#22c55e', glow: '#86efac', emoji: '🍀' },
+  1: {
+    id: 1,
+    name: 'Golden Corn',
+    hex: '#f59e0b',
+    glow: '#fef08a',
+    lightHex: '#fde047',
+    darkHex: '#d97706',
+    sparkleHex: '#ffffff',
+    emoji: '🌽',
+  },
+  2: {
+    id: 2,
+    name: 'Ruby Cranberry',
+    hex: '#ef4444',
+    glow: '#fca5a5',
+    lightHex: '#f87171',
+    darkHex: '#dc2626',
+    sparkleHex: '#ffffff',
+    emoji: '🍓',
+  },
+  3: {
+    id: 3,
+    name: 'Sky Berry',
+    hex: '#0ea5e9',
+    glow: '#7dd3fc',
+    lightHex: '#38bdf8',
+    darkHex: '#0284c7',
+    sparkleHex: '#ffffff',
+    emoji: '🫐',
+  },
+  4: {
+    id: 4,
+    name: 'Clover Green',
+    hex: '#22c55e',
+    glow: '#86efac',
+    lightHex: '#4ade80',
+    darkHex: '#16a34a',
+    sparkleHex: '#ffffff',
+    emoji: '🍀',
+  },
 };
 
 export interface FallingShape {
@@ -38,8 +77,8 @@ export interface FallingShape {
 }
 
 export interface SandSimulationState {
-  cols: number; // default 40
-  rows: number; // default 50
+  cols: number; // default 36
+  rows: number; // default 48
   grid: number[][]; // 0 = empty, 1-4 = grain color
   activeShape: FallingShape | null;
   nextColor: GrainColor;
@@ -251,59 +290,111 @@ export function stepSandPhysics(grid: number[][], cols: number, rows: number): {
 }
 
 /**
- * Finds and clears all contiguous same-color sand strands that stretch from the left wall (x=0) to the right wall (x=cols-1).
- * Uses BFS/flood-fill.
+ * Wall contact detection for dynamic UI sensor rail illumination.
+ * Returns sets of grain colors touching left border, right border, and both.
+ */
+export interface WallContacts {
+  leftColors: Set<GrainColor>;
+  rightColors: Set<GrainColor>;
+  connectedColors: Set<GrainColor>;
+}
+
+export function getWallContacts(grid: number[][], cols: number, rows: number): WallContacts {
+  const leftColors = new Set<GrainColor>();
+  const rightColors = new Set<GrainColor>();
+  const connectedColors = new Set<GrainColor>();
+
+  for (let y = 0; y < rows; y++) {
+    // Left boundary zone (x = 0 or 1)
+    const l0 = grid[y][0];
+    const l1 = cols > 1 ? grid[y][1] : 0;
+    if (l0 > 0) leftColors.add(l0 as GrainColor);
+    if (l1 > 0) leftColors.add(l1 as GrainColor);
+
+    // Right boundary zone (x = cols - 1 or cols - 2)
+    const r0 = grid[y][cols - 1];
+    const r1 = cols > 1 ? grid[y][cols - 2] : 0;
+    if (r0 > 0) rightColors.add(r0 as GrainColor);
+    if (r1 > 0) rightColors.add(r1 as GrainColor);
+  }
+
+  for (const c of leftColors) {
+    if (rightColors.has(c)) {
+      connectedColors.add(c);
+    }
+  }
+
+  return { leftColors, rightColors, connectedColors };
+}
+
+/**
+ * Finds and clears all contiguous same-color sand strands that stretch from the left wall zone
+ * to the right wall zone.
+ * Uses 8-neighbor Moore connectivity (orthogonals + diagonals) so natural 45° sand dunes
+ * connect fluidly without breaking!
  */
 export function checkAndClearConnectedLines(
   grid: number[][],
   cols: number,
   rows: number
-): { newGrid: number[][]; clearedGrains: number; strandsCleared: number } {
+): { newGrid: number[][]; clearedGrains: number; strandsCleared: number; clearedColor: GrainColor | null } {
   const visited: boolean[][] = Array.from({ length: rows }, () => Array(cols).fill(false));
   const toDelete: boolean[][] = Array.from({ length: rows }, () => Array(cols).fill(false));
   let totalCleared = 0;
   let strands = 0;
+  let clearedColor: GrainColor | null = null;
 
-  for (let startY = 0; startY < rows; startY++) {
-    const color = grid[startY][0];
-    if (color === 0 || visited[startY][0]) continue;
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const color = grid[y][x];
+      if (color === 0 || visited[y][x]) continue;
 
-    // BFS to find connected component of same color
-    const queue: [number, number][] = [[0, startY]];
-    visited[startY][0] = true;
-    const component: [number, number][] = [[0, startY]];
-    let reachedRightWall = false;
+      // BFS to find all connected grains of the same color (8-direction Moore neighborhood)
+      const queue: [number, number][] = [[x, y]];
+      visited[y][x] = true;
+      const component: [number, number][] = [[x, y]];
+      let minX = x;
+      let maxX = x;
 
-    while (queue.length > 0) {
-      const [cx, cy] = queue.shift()!;
-      if (cx === cols - 1) {
-        reachedRightWall = true;
-      }
+      while (queue.length > 0) {
+        const [cx, cy] = queue.shift()!;
+        if (cx < minX) minX = cx;
+        if (cx > maxX) maxX = cx;
 
-      // Check 4 neighbors
-      const neighbors: [number, number][] = [
-        [cx + 1, cy],
-        [cx - 1, cy],
-        [cx, cy + 1],
-        [cx, cy - 1],
-      ];
+        // 8-neighbor Moore connectivity: cardinal + diagonal
+        const neighbors: [number, number][] = [
+          [cx + 1, cy],
+          [cx - 1, cy],
+          [cx, cy + 1],
+          [cx, cy - 1],
+          [cx + 1, cy + 1],
+          [cx + 1, cy - 1],
+          [cx - 1, cy + 1],
+          [cx - 1, cy - 1],
+        ];
 
-      for (const [nx, ny] of neighbors) {
-        if (nx >= 0 && nx < cols && ny >= 0 && ny < rows) {
-          if (!visited[ny][nx] && grid[ny][nx] === color) {
-            visited[ny][nx] = true;
-            queue.push([nx, ny]);
-            component.push([nx, ny]);
+        for (const [nx, ny] of neighbors) {
+          if (nx >= 0 && nx < cols && ny >= 0 && ny < rows) {
+            if (!visited[ny][nx] && grid[ny][nx] === color) {
+              visited[ny][nx] = true;
+              queue.push([nx, ny]);
+              component.push([nx, ny]);
+            }
           }
         }
       }
-    }
 
-    // If component touched right wall, mark for deletion!
-    if (reachedRightWall) {
-      strands++;
-      for (const [cx, cy] of component) {
-        toDelete[cy][cx] = true;
+      // Check if this continuous sand strand spans from the left border zone to the right border zone
+      // Tolerance: minX <= 1 and maxX >= cols - 2 (covers full width even with 1-cell edge rolling)
+      const touchesLeft = minX <= 1;
+      const touchesRight = maxX >= cols - 2;
+
+      if (touchesLeft && touchesRight) {
+        strands++;
+        clearedColor = color as GrainColor;
+        for (const [cx, cy] of component) {
+          toDelete[cy][cx] = true;
+        }
       }
     }
   }
@@ -319,7 +410,7 @@ export function checkAndClearConnectedLines(
     }
   }
 
-  return { newGrid, clearedGrains: totalCleared, strandsCleared: strands };
+  return { newGrid, clearedGrains: totalCleared, strandsCleared: strands, clearedColor };
 }
 
 /**

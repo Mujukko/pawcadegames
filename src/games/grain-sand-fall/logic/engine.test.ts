@@ -8,6 +8,7 @@ import {
   stepSandPhysics,
   checkAndClearConnectedLines,
   initializeSandGame,
+  getWallContacts,
 } from './engine';
 
 describe('Grain Sand Fall: Farm Physics Engine', () => {
@@ -96,19 +97,56 @@ describe('Grain Sand Fall: Farm Physics Engine', () => {
     const result = checkAndClearConnectedLines(grid, 6, 6);
     expect(result.strandsCleared).toBe(1);
     expect(result.clearedGrains).toBe(6);
+    expect(result.clearedColor).toBe(1);
     // Entire row 5 is now cleared
     expect(result.newGrid[5].every(c => c === 0)).toBe(true);
   });
 
-  it('does NOT clear if path does not reach the right wall', () => {
-    const grid = createEmptyGrid(6, 6);
-    // Fill only columns 0 to 4 (leaving column 5 empty)
-    for (let x = 0; x < 5; x++) {
-      grid[5][x] = 1;
+  it('detects and clears a 45-degree diagonal sand dune connecting left wall to right wall', () => {
+    const grid = createEmptyGrid(8, 8);
+    // Place a diagonal sand slope from (0, 7) to (7, 0)
+    for (let i = 0; i < 8; i++) {
+      grid[7 - i][i] = 2; // Ruby Cranberry
     }
 
-    const result = checkAndClearConnectedLines(grid, 6, 6);
+    // With 8-neighbor connectivity, this diagonal slope must clear!
+    const result = checkAndClearConnectedLines(grid, 8, 8);
+    expect(result.strandsCleared).toBe(1);
+    expect(result.clearedGrains).toBe(8);
+    expect(result.clearedColor).toBe(2);
+    // All 8 diagonal grains cleared
+    for (let i = 0; i < 8; i++) {
+      expect(result.newGrid[7 - i][i]).toBe(0);
+    }
+  });
+
+  it('does NOT clear if path does not reach the right wall', () => {
+    const grid = createEmptyGrid(10, 10);
+    // Fill only columns 0 to 4 (in a 10-wide grid, cols-2 is 8, so col 4 is only halfway!)
+    for (let x = 0; x < 5; x++) {
+      grid[9][x] = 1;
+    }
+
+    const result = checkAndClearConnectedLines(grid, 10, 10);
     expect(result.strandsCleared).toBe(0);
     expect(result.clearedGrains).toBe(0);
+  });
+
+  it('detects wall contacts correctly for left and right sensor rails', () => {
+    const grid = createEmptyGrid(10, 10);
+    // Place yellow on left wall
+    grid[9][0] = 1;
+    // Place red on right wall
+    grid[9][9] = 2;
+    // Place blue on both left and right
+    grid[5][0] = 3;
+    grid[5][9] = 3;
+
+    const contacts = getWallContacts(grid, 10, 10);
+
+    expect(contacts.leftColors.has(1)).toBe(true);
+    expect(contacts.rightColors.has(2)).toBe(true);
+    expect(contacts.connectedColors.has(3)).toBe(true); // Blue touches both
+    expect(contacts.connectedColors.has(1)).toBe(false); // Yellow touches only left
   });
 });

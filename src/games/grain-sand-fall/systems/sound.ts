@@ -145,6 +145,32 @@ class SoundSystem {
     osc.start(t);
     osc.stop(t + 0.11);
   }
+
+  /**
+   * Lateral shift tap / whoosh
+   */
+  public playShift() {
+    if (this.isMuted) return;
+    this.initCtx();
+    if (!this.ctx) return;
+
+    const t = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(480, t);
+    osc.frequency.exponentialRampToValueAtTime(260, t + 0.04);
+
+    gain.gain.setValueAtTime(0.04, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+
+    osc.start(t);
+    osc.stop(t + 0.05);
+  }
 }
 
 export const sound = new SoundSystem();
