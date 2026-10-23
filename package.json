@@ -10,7 +10,8 @@
     "test": "bun test",
     "typecheck": "tsc --noEmit",
     "seo:audit": "bun scripts/seo-audit.ts",
-    "seo:intel": "bun scripts/seo-intel.ts"
+    "seo:intel": "bun scripts/seo-intel.ts",
+    "seo:monitor": "bun scripts/seo-monitor.ts"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
