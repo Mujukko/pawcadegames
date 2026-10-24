@@ -143,6 +143,13 @@ const GAME_FALLBACKS: Record<string, GameVisualConfig> = {
     tagline: "Organize Grandma's farm cupboard, slide jars and pies to match 3 on shelves!",
     badgeLabel: 'GOODS SORT',
   },
+  'duck-hunt-classic': {
+    icon: '🦆🎯',
+    gradient: 'from-sky-500 via-emerald-600 to-amber-700',
+    glow: 'group-hover:border-sky-400 group-hover:shadow-sky-500/30',
+    tagline: 'Track flying mallards across the reed marsh and shoot with Buster the hunting hound!',
+    badgeLabel: 'NES CLASSIC',
+  },
   'cat-cafe-rush': {
     icon: '🧁',
     gradient: 'from-rose-600 via-pink-700 to-slate-900',

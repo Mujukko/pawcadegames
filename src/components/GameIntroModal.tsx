@@ -20,6 +20,43 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'duck-hunt-classic': {
+    title: 'Duck Hunt Classic: Barnyard Shoot',
+    subtitle: 'NES & Atari Retro Arcade Shooter',
+    mascot: '🦆🎯',
+    themeColor: 'from-sky-500 via-emerald-600 to-amber-700',
+    goal: 'Track flying mallards across the marsh, take quick aim, and blast targets before they escape into the sky!',
+    steps: [
+      {
+        icon: '👀',
+        title: '1. Watch Buster Flush Ducks',
+        desc: 'Buster the hound sniffs the grass and leaps into the reeds to flush wild mallards into the air.',
+      },
+      {
+        icon: '🎯',
+        title: '2. Aim & Fire Quickly',
+        desc: 'Tap on your phone screen or click with your mouse crosshair to shoot. You have 3 shells per flush!',
+      },
+      {
+        icon: '🏆',
+        title: '3. Meet the Round Quota',
+        desc: 'Hit at least 6 out of 10 ducks in early rounds to advance. Faster golden ducks appear in later rounds!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Aim & Left Click: Fire shotgun blast at flying ducks',
+        'Spacebar / R: Quick reload shells or restart round',
+        'M Key: Toggle retro audio and dog barks',
+      ],
+      mobile: [
+        'Tap Flying Duck: Direct tap fires instantly with zero delay',
+        'Shell Counter: 3 shots per flush before ducks fly away',
+        'HUD Tracker: Follow your 10 round shots at the bottom',
+      ],
+    },
+    proTip: 'Ducks change direction when they bounce off screen edges. Anticipate their bounce path for an easy direct hit!',
+  },
   'sheep-stampede': {
     title: 'Sheep Stampede: Pasture Rush',
     subtitle: 'Mob Multiplier & Meadow Runner',

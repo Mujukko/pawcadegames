@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="60%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#fef08a"/>
+    </linearGradient>
+    <linearGradient id="grassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#16a34a"/>
+      <stop offset="60%" stop-color="#15803d"/>
+      <stop offset="100%" stop-color="#052e16"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#020617" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="512" height="512" rx="64" fill="url(#skyGrad)"/>
+
+  <!-- Fluffy Cartoon Clouds -->
+  <path d="M 40 120 Q 70 80 120 100 Q 170 70 210 110 Q 240 140 190 160 Q 140 170 80 160 Z" fill="#ffffff" opacity="0.8"/>
+  <path d="M 320 80 Q 360 40 410 60 Q 460 30 490 80 Q 520 120 460 130 Q 400 140 340 130 Z" fill="#ffffff" opacity="0.8"/>
+
+  <!-- Distant Barn Silo -->
+  <rect x="70" y="270" width="60" height="70" rx="4" fill="#b91c1c" opacity="0.6"/>
+  <polygon points="65,270 100,230 135,270" fill="#991b1b" opacity="0.6"/>
+
+  <!-- Rustic Tree Trunk on Left -->
+  <path d="M 0 160 Q 40 240 30 380 L 0 380 Z" fill="#78350f" opacity="0.9"/>
+  <circle cx="20" cy="180" r="70" fill="#15803d" opacity="0.9"/>
+  <circle cx="70" cy="140" r="60" fill="#16a34a" opacity="0.9"/>
+
+  <!-- Flying Emerald Mallard Duck -->
+  <g transform="translate(190, 90) scale(1.6)" filter="url(#shadow)">
+    <!-- Body -->
+    <ellipse cx="60" cy="65" rx="36" ry="24" fill="#78350f" stroke="#451a03" stroke-width="2.5"/>
+    <!-- Tail -->
+    <polygon points="18,60 4,50 18,72" fill="#451a03"/>
+    <!-- White Ring Collar -->
+    <ellipse cx="82" cy="52" rx="7" ry="14" fill="#ffffff"/>
+    <!-- Emerald Green Head -->
+    <circle cx="95" cy="42" r="20" fill="#059669" stroke="#065f46" stroke-width="2.5"/>
+    <!-- Orange Beak -->
+    <polygon points="108,40 130,46 108,52" fill="#ea580c" stroke="#c2410c" stroke-width="2"/>
+    <!-- Eye -->
+    <circle cx="98" cy="38" r="5" fill="#000000"/>
+    <circle cx="96" cy="36" r="1.8" fill="#ffffff"/>
+    <!-- Flapping Blue & Brown Wings (Upstroke) -->
+    <polygon points="45,55 70,10 90,52" fill="#2563eb" stroke="#1d4ed8" stroke-width="2.5"/>
+    <polygon points="50,55 70,18 85,52" fill="#93c5fd"/>
+  </g>
+
+  <!-- Glowing Arcade Red Crosshair -->
+  <g transform="translate(345, 160)" filter="url(#shadow)">
+    <circle cx="0" cy="0" r="54" fill="none" stroke="#ef4444" stroke-width="6" opacity="0.95"/>
+    <circle cx="0" cy="0" r="14" fill="none" stroke="#ef4444" stroke-width="4"/>
+    <circle cx="0" cy="0" r="4" fill="#ef4444"/>
+    <!-- Cross Lines -->
+    <line x1="-70" y1="0" x2="-22" y2="0" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+    <line x1="22" y1="0" x2="70" y2="0" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="-70" x2="0" y2="-22" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="22" x2="0" y2="70" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+    <!-- Muzzle Flash Starburst Sparkles -->
+    <polygon points="0,-16 4,-4 16,0 4,4 0,16 -4,4 -16,0 -4,-4" fill="#fef08a"/>
+  </g>
+
+  <!-- Buster the Mascot Pup Popping Up from Reeds -->
+  <g transform="translate(190, 260)" filter="url(#shadow)">
+    <!-- Dog Body -->
+    <ellipse cx="66" cy="110" rx="42" ry="46" fill="#b45309" stroke="#78350f" stroke-width="4"/>
+    <ellipse cx="66" cy="115" rx="24" ry="28" fill="#fef3c7"/>
+    <!-- Dog Head -->
+    <circle cx="66" cy="55" r="36" fill="#b45309" stroke="#78350f" stroke-width="4"/>
+    <!-- Floppy Ears -->
+    <ellipse cx="26" cy="62" rx="14" ry="28" fill="#78350f" transform="rotate(-20 26 62)"/>
+    <ellipse cx="106" cy="62" rx="14" ry="28" fill="#78350f" transform="rotate(20 106 62)"/>
+    <!-- White Muzzle -->
+    <ellipse cx="66" cy="66" rx="20" ry="15" fill="#fef3c7"/>
+    <circle cx="66" cy="58" r="7" fill="#000000"/>
+    <circle cx="64" cy="56" r="2" fill="#ffffff"/>
+    <!-- Happy Dog Smile -->
+    <path d="M 58 72 Q 66 78 74 72" stroke="#000000" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Dog Eyes -->
+    <circle cx="52" cy="46" r="6" fill="#000000"/>
+    <circle cx="50" cy="44" r="2" fill="#ffffff"/>
+    <circle cx="80" cy="46" r="6" fill="#000000"/>
+    <circle cx="78" cy="44" r="2" fill="#ffffff"/>
+    <!-- Red Collar with Gold Tag -->
+    <path d="M 40 82 Q 66 92 92 82" stroke="#dc2626" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <circle cx="66" cy="90" r="5" fill="#f59e0b"/>
+  </g>
+
+  <!-- Shotgun Shells in Bottom Corner -->
+  <g transform="translate(420, 420) rotate(-15)">
+    <rect x="0" y="0" width="16" height="32" rx="2" fill="#dc2626" stroke="#991b1b" stroke-width="1.5"/>
+    <rect x="0" y="24" width="16" height="8" rx="1" fill="#f59e0b" stroke="#b45309" stroke-width="1.5"/>
+  </g>
+  <g transform="translate(442, 425) rotate(-5)">
+    <rect x="0" y="0" width="16" height="32" rx="2" fill="#dc2626" stroke="#991b1b" stroke-width="1.5"/>
+    <rect x="0" y="24" width="16" height="8" rx="1" fill="#f59e0b" stroke="#b45309" stroke-width="1.5"/>
+  </g>
+
+  <!-- Foreground Lush Green Marsh Reeds Layer -->
+  <rect x="0" y="380" width="512" height="132" rx="0" fill="url(#grassGrad)"/>
+  <!-- Reeds & Cattails -->
+  <g fill="#166534">
+    <path d="M 20 512 L 35 340 L 45 512 Z"/>
+    <path d="M 60 512 L 80 320 L 95 512 Z"/>
+    <path d="M 120 512 L 140 350 L 155 512 Z"/>
+    <path d="M 280 512 L 300 330 L 315 512 Z"/>
+    <path d="M 360 512 L 380 320 L 395 512 Z"/>
+    <path d="M 440 512 L 460 340 L 475 512 Z"/>
+  </g>
+  <g fill="#854d0e">
+    <ellipse cx="80" cy="330" rx="6" ry="18"/>
+    <ellipse cx="380" cy="330" rx="6" ry="18"/>
+  </g>
+
+  <!-- Modern Glossy Highlight Border -->
+  <rect x="4" y="4" width="504" height="504" rx="60" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.35"/>
+</svg>

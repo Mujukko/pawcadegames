@@ -60,6 +60,9 @@ const SheepStampedeContainer = lazy(() =>
 const HorseshoeTwistContainer = lazy(() =>
   import('../games/horseshoe-twist/HorseshoeTwistContainer').then((m) => ({ default: m.HorseshoeTwistContainer }))
 );
+const DuckHuntClassicContainer = lazy(() =>
+  import('../games/duck-hunt-classic/DuckHuntClassicContainer').then((m) => ({ default: m.DuckHuntClassicContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -89,6 +92,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isDuckHunt = gameId === 'duck-hunt-classic' || gameId === 'duck-hunt' || gameId === 'retro-duck-hunt';
   const isSheepStampede = gameId === 'sheep-stampede' || gameId === 'mob-control' || gameId === 'colony-flow';
   const isHorseshoeTwist = gameId === 'horseshoe-twist' || gameId === 'rotate-rings' || gameId === 'ring-unlock';
   const isEggBuster = gameId === 'egg-buster' || gameId === 'royal-smash' || gameId === 'smash-fest';
@@ -215,7 +219,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isSheepStampede
+                isDuckHunt
+                  ? 'bg-sky-500/20 text-sky-300 border-sky-500/30'
+                  : isSheepStampede
                   ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
                   : isHorseshoeTwist
                   ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
@@ -247,7 +253,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   ? 'bg-purple-500/20 text-purple-300 border-purple-500/30'
                   : 'bg-orange-500/20 text-orange-400 border-orange-500/30'
               }`}>
-                {isSheepStampede ? '🐕 Sheep Stampede: Pasture Rush' : isHorseshoeTwist ? '🐴 Horseshoe Twist: Barn Unlock' : isEggBuster ? '🐥 Egg Buster Slingshot' : isBlockBlast ? '🐶 Farm Block Blast 8x8' : isSheepJam ? '🐑 Sheep Cart Jam: Bus Jam' : isSandFall ? '⏳ Grain Sand Fall Physics' : isChefRat ? '🐭 Chef Rat Rush: Ratatouille Bistro' : isFarmMart ? '🏪 Farm Mini Mart Tycoon' : isDuckRunner ? '🦆🎃 Vampire Duck Runner' : isPetCrush ? '🍬 Spooky Animal Match' : isFlappy ? '👻 Ghost Chicken Flight' : is2048 ? '🦇 Spooky Animal 2048' : isFarmTetris ? '🎃 Haunted Harvest Tetris' : isFarm ? '🐮 Haunted Cow Driving' : isCat ? '🐈‍⬛ Witch Cat Puzzle' : '🦴 Ghost Pup Puzzle'}
+                {isDuckHunt ? '🦆 Duck Hunt Classic: Barnyard Shoot' : isSheepStampede ? '🐕 Sheep Stampede: Pasture Rush' : isHorseshoeTwist ? '🐴 Horseshoe Twist: Barn Unlock' : isEggBuster ? '🐥 Egg Buster Slingshot' : isBlockBlast ? '🐶 Farm Block Blast 8x8' : isSheepJam ? '🐑 Sheep Cart Jam: Bus Jam' : isSandFall ? '⏳ Grain Sand Fall Physics' : isChefRat ? '🐭 Chef Rat Rush: Ratatouille Bistro' : isFarmMart ? '🏪 Farm Mini Mart Tycoon' : isDuckRunner ? '🦆🎃 Vampire Duck Runner' : isPetCrush ? '🍬 Spooky Animal Match' : isFlappy ? '👻 Ghost Chicken Flight' : is2048 ? '🦇 Spooky Animal 2048' : isFarmTetris ? '🎃 Haunted Harvest Tetris' : isFarm ? '🐮 Haunted Cow Driving' : isCat ? '🐈‍⬛ Witch Cat Puzzle' : '🦴 Ghost Pup Puzzle'}
               </span>
               <div className="flex items-center text-amber-400 text-xs font-bold">
                 <Star className="w-3.5 h-3.5 fill-amber-400 mr-1" />
@@ -281,7 +287,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isSheepStampede
+                  isDuckHunt
+                    ? '🦆🎯'
+                    : isSheepStampede
                     ? '🐕'
                     : isHorseshoeTwist
                     ? '🐴'
@@ -320,7 +328,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isSheepStampede ? (
+            {isDuckHunt ? (
+              <DuckHuntClassicContainer />
+            ) : isSheepStampede ? (
               <SheepStampedeContainer />
             ) : isHorseshoeTwist ? (
               <HorseshoeTwistContainer />

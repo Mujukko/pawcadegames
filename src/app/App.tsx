@@ -37,6 +37,7 @@ export const App: React.FC = () => {
 
   // Update SEO document title on route changes
   useEffect(() => {
+    const duckHuntGame = GAMES_REGISTRY.find(g => g.id === 'duck-hunt-classic');
     const sheepStampedeGame = GAMES_REGISTRY.find(g => g.id === 'sheep-stampede');
     const horseshoeTwistGame = GAMES_REGISTRY.find(g => g.id === 'horseshoe-twist');
     const eggBusterGame = GAMES_REGISTRY.find(g => g.id === 'egg-buster');
@@ -59,7 +60,12 @@ export const App: React.FC = () => {
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/sheep-stampede') || currentRoute.startsWith('/games/mob-control') || currentRoute.startsWith('/games/colony-flow')) {
+    if (currentRoute.startsWith('/games/duck-hunt-classic') || currentRoute.startsWith('/games/duck-hunt') || currentRoute.startsWith('/games/retro-duck-hunt')) {
+      if (duckHuntGame) {
+        activeTitle = duckHuntGame.metaTitle;
+        activeDesc = duckHuntGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/sheep-stampede') || currentRoute.startsWith('/games/mob-control') || currentRoute.startsWith('/games/colony-flow')) {
       if (sheepStampedeGame) {
         activeTitle = sheepStampedeGame.metaTitle;
         activeDesc = sheepStampedeGame.metaDescription;
@@ -194,6 +200,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/duck-hunt-classic') || currentRoute.startsWith('/games/duck-hunt') || currentRoute.startsWith('/games/retro-duck-hunt')) {
+      return <GamePage navigate={navigate} gameId="duck-hunt-classic" />;
     }
     if (currentRoute.startsWith('/games/sheep-stampede') || currentRoute.startsWith('/games/mob-control') || currentRoute.startsWith('/games/colony-flow')) {
       return <GamePage navigate={navigate} gameId="sheep-stampede" />;
