@@ -6,6 +6,7 @@ import {
   upgradePlayerCapacity,
   saveMartState,
   loadMartState,
+  isPadVisible,
   MartGameState,
   PRODUCTS,
   WORLD_BOUNDS,
@@ -330,7 +331,7 @@ export const FarmMiniMartContainer: React.FC = () => {
       </div>
 
       {/* 2. MAIN CANVAS VIEWPORT (800x600 coordinate world) */}
-      <div className="relative w-full bg-slate-950 border border-amber-500/30 shadow-2xl overflow-hidden aspect-[4/3] rounded-b-2xl">
+      <div className="relative w-full bg-slate-950 border border-amber-500/30 shadow-2xl overflow-hidden aspect-[4/3] rounded-b-2xl touch-none overscroll-none select-none">
         <canvas
           ref={canvasRef}
           width={800}
@@ -339,7 +340,7 @@ export const FarmMiniMartContainer: React.FC = () => {
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
-          className="w-full h-full block cursor-pointer touch-none"
+          className="w-full h-full block cursor-pointer touch-none select-none"
         />
 
         {/* Floating Touch Guidance on Canvas */}
@@ -353,48 +354,80 @@ export const FarmMiniMartContainer: React.FC = () => {
         <div className="sm:hidden absolute top-2 right-2 z-10">
           <button
             onClick={() => setShowTouchDpad((prev) => !prev)}
-            className="px-2.5 py-1 bg-slate-900/80 backdrop-blur-sm border border-slate-700 text-slate-300 rounded-lg text-[10px] font-black uppercase tracking-wider active:scale-95 cursor-pointer"
+            className="px-2.5 py-1 bg-slate-900/80 backdrop-blur-sm border border-slate-700 text-slate-300 rounded-lg text-[10px] font-black uppercase tracking-wider active:scale-95 cursor-pointer touch-none"
           >
             {showTouchDpad ? 'Hide D-Pad' : 'Show D-Pad'}
           </button>
         </div>
       </div>
 
-      {/* Optional Ergonomic Mobile D-Pad Buttons */}
+      {/* Optional Ergonomic Mobile D-Pad Buttons (Continuous Touch Navigation) */}
       {showTouchDpad && (
-        <div className="w-full flex justify-center py-2 bg-slate-900/90 border border-slate-800 rounded-xl mt-2 select-none touch-none">
-          <div className="grid grid-cols-3 gap-2 w-48">
+        <div className="w-full flex justify-center py-2 bg-slate-900/90 border border-slate-800 rounded-xl mt-2 select-none touch-none overscroll-none">
+          <div className="grid grid-cols-3 gap-2 w-48 touch-none">
             <div />
             <button
-              onPointerDown={() => setDpadDir(0, -1)}
-              onPointerUp={() => setDpadDir(0, 0)}
-              onPointerLeave={() => setDpadDir(0, 0)}
-              className="w-14 h-12 bg-slate-800 active:bg-amber-500 border border-slate-700 rounded-xl flex items-center justify-center text-white active:text-slate-950 font-black cursor-pointer shadow"
+              onPointerDown={(e) => {
+                e.preventDefault();
+                try { e.currentTarget.setPointerCapture(e.pointerId); } catch {}
+                setDpadDir(0, -1);
+              }}
+              onPointerUp={(e) => {
+                e.preventDefault();
+                try { e.currentTarget.releasePointerCapture(e.pointerId); } catch {}
+                setDpadDir(0, 0);
+              }}
+              onPointerCancel={() => setDpadDir(0, 0)}
+              className="w-14 h-12 bg-slate-800 active:bg-amber-500 border border-slate-700 rounded-xl flex items-center justify-center text-white active:text-slate-950 font-black cursor-pointer shadow touch-none select-none"
             >
               <ArrowUp className="w-6 h-6" />
             </button>
             <div />
             <button
-              onPointerDown={() => setDpadDir(-1, 0)}
-              onPointerUp={() => setDpadDir(0, 0)}
-              onPointerLeave={() => setDpadDir(0, 0)}
-              className="w-14 h-12 bg-slate-800 active:bg-amber-500 border border-slate-700 rounded-xl flex items-center justify-center text-white active:text-slate-950 font-black cursor-pointer shadow"
+              onPointerDown={(e) => {
+                e.preventDefault();
+                try { e.currentTarget.setPointerCapture(e.pointerId); } catch {}
+                setDpadDir(-1, 0);
+              }}
+              onPointerUp={(e) => {
+                e.preventDefault();
+                try { e.currentTarget.releasePointerCapture(e.pointerId); } catch {}
+                setDpadDir(0, 0);
+              }}
+              onPointerCancel={() => setDpadDir(0, 0)}
+              className="w-14 h-12 bg-slate-800 active:bg-amber-500 border border-slate-700 rounded-xl flex items-center justify-center text-white active:text-slate-950 font-black cursor-pointer shadow touch-none select-none"
             >
               <ArrowLeft className="w-6 h-6" />
             </button>
             <button
-              onPointerDown={() => setDpadDir(0, 1)}
-              onPointerUp={() => setDpadDir(0, 0)}
-              onPointerLeave={() => setDpadDir(0, 0)}
-              className="w-14 h-12 bg-slate-800 active:bg-amber-500 border border-slate-700 rounded-xl flex items-center justify-center text-white active:text-slate-950 font-black cursor-pointer shadow"
+              onPointerDown={(e) => {
+                e.preventDefault();
+                try { e.currentTarget.setPointerCapture(e.pointerId); } catch {}
+                setDpadDir(0, 1);
+              }}
+              onPointerUp={(e) => {
+                e.preventDefault();
+                try { e.currentTarget.releasePointerCapture(e.pointerId); } catch {}
+                setDpadDir(0, 0);
+              }}
+              onPointerCancel={() => setDpadDir(0, 0)}
+              className="w-14 h-12 bg-slate-800 active:bg-amber-500 border border-slate-700 rounded-xl flex items-center justify-center text-white active:text-slate-950 font-black cursor-pointer shadow touch-none select-none"
             >
               <ArrowDown className="w-6 h-6" />
             </button>
             <button
-              onPointerDown={() => setDpadDir(1, 0)}
-              onPointerUp={() => setDpadDir(0, 0)}
-              onPointerLeave={() => setDpadDir(0, 0)}
-              className="w-14 h-12 bg-slate-800 active:bg-amber-500 border border-slate-700 rounded-xl flex items-center justify-center text-white active:text-slate-950 font-black cursor-pointer shadow"
+              onPointerDown={(e) => {
+                e.preventDefault();
+                try { e.currentTarget.setPointerCapture(e.pointerId); } catch {}
+                setDpadDir(1, 0);
+              }}
+              onPointerUp={(e) => {
+                e.preventDefault();
+                try { e.currentTarget.releasePointerCapture(e.pointerId); } catch {}
+                setDpadDir(0, 0);
+              }}
+              onPointerCancel={() => setDpadDir(0, 0)}
+              className="w-14 h-12 bg-slate-800 active:bg-amber-500 border border-slate-700 rounded-xl flex items-center justify-center text-white active:text-slate-950 font-black cursor-pointer shadow touch-none select-none"
             >
               <ArrowRight className="w-6 h-6" />
             </button>
@@ -649,12 +682,20 @@ function getActiveObjective(state: MartGameState): { icon: string; text: string 
 
   // 5. If player has enough coins to unlock next station
   const affordablePad = state.unlockPads.find(
-    (pad) => !pad.unlocked && state.player.coins >= pad.cost - pad.paid
+    (pad) => !pad.unlocked && isPadVisible(pad, state) && state.player.coins >= pad.cost - pad.paid
   );
   if (affordablePad) {
     return {
       icon: '🔓',
-      text: `Stand on the yellow pad to unlock ${affordablePad.title}! (${affordablePad.cost - affordablePad.paid} 💰)`,
+      text: `Stand on yellow pad to unlock ${affordablePad.title}! (${affordablePad.cost - affordablePad.paid} 💰)`,
+    };
+  }
+
+  const nextVisiblePad = state.unlockPads.find((pad) => !pad.unlocked && isPadVisible(pad, state));
+  if (nextVisiblePad) {
+    return {
+      icon: '🎯',
+      text: `Goal: Save ${nextVisiblePad.cost - nextVisiblePad.paid} 💰 to unlock ${nextVisiblePad.title}!`,
     };
   }
 
@@ -708,9 +749,9 @@ function renderMartScene(
 
   // 2. INDOOR STORE AREA (Warm Honey Oak Wooden Floor)
   const storeX = 230;
-  const storeY = 70;
+  const storeY = 40;
   const storeW = 340;
-  const storeH = 450;
+  const storeH = 515;
 
   // Store floor shadow
   ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
@@ -737,26 +778,26 @@ function renderMartScene(
   // Decorative Entrance Mat
   ctx.fillStyle = '#ea580c';
   ctx.beginPath();
-  ctx.roundRect(360, 495, 80, 24, 6);
+  ctx.roundRect(360, 525, 80, 22, 6);
   ctx.fill();
   ctx.strokeStyle = '#fef08a';
   ctx.lineWidth = 1.5;
   ctx.stroke();
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'black 10px sans-serif';
+  ctx.font = 'black 9px sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('WELCOME 🛒', 400, 511);
+  ctx.fillText('WELCOME 🛒', 400, 540);
 
-  // 3. CASHIER MAT (KASA PASPASI) - Highly Visible Yellow/Emerald Zone Behind Register
+  // 3. CASHIER MAT (KASA PASPASI) - Dedicated Zone Behind Register Counter
   const reg = state.register;
-  const cashierMatX = 350;
-  const cashierMatY = 245;
-  const cashierMatW = 100;
-  const cashierMatH = 55;
+  const cashierMatX = reg.x;
+  const cashierMatY = reg.y - 58;
+  const cashierMatW = reg.width;
+  const cashierMatH = 50;
 
   ctx.save();
   const matPulse = Math.sin(time * 0.006) * 0.15 + 0.85;
-  ctx.fillStyle = `rgba(234, 179, 8, ${0.18 * matPulse})`;
+  ctx.fillStyle = `rgba(234, 179, 8, ${0.2 * matPulse})`;
   ctx.strokeStyle = '#facc15';
   ctx.lineWidth = 2.5;
   ctx.setLineDash([5, 4]);
@@ -1000,9 +1041,9 @@ function renderMartScene(
     ctx.restore();
   }
 
-  // 7. UNLOCK PADS
+  // 7. UNLOCK PADS (Progressive Disclosure - only show active unlock objectives!)
   for (const pad of state.unlockPads) {
-    if (pad.unlocked) continue;
+    if (pad.unlocked || !isPadVisible(pad, state)) continue;
 
     ctx.save();
     const pulse = Math.sin(time * 0.005) * 2;
@@ -1075,13 +1116,23 @@ function renderMartScene(
     // Soft shadow
     ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
     ctx.beginPath();
-    ctx.ellipse(cust.x, cust.y + 10, 14, 6, 0, 0, Math.PI * 2);
+    ctx.ellipse(cust.x, cust.y + 12, 16, 7, 0, 0, Math.PI * 2);
     ctx.fill();
 
+    // Solid high-contrast circular backing disc so animal is 100% visible on any floor
+    ctx.fillStyle = '#ffffff';
+    ctx.strokeStyle = '#0f172a';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(cust.x, cust.y - 2, 16, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
     // Customer character
-    ctx.font = '28px sans-serif';
+    ctx.font = '22px sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(cust.emoji, cust.x, cust.y + 4);
+    ctx.textBaseline = 'middle';
+    ctx.fillText(cust.emoji, cust.x, cust.y - 2);
 
     // Customer Thought / Wishlist Bubble
     ctx.fillStyle = '#ffffff';

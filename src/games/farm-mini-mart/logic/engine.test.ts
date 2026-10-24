@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'bun:test';
+import { describe, it, expect } from 'bun:test';
 import {
   createInitialMartState,
   updateMartGame,
@@ -8,6 +8,7 @@ import {
   distance,
   saveMartState,
   loadMartState,
+  isPadVisible,
   PRODUCTS,
 } from './engine';
 
@@ -303,4 +304,49 @@ describe('Farm Mini Mart Core Engine', () => {
       expect(res.nextState.player.capacity).toBe(initialCapacity + 2);
     });
   });
+
+  describe('Progressive Unlock Disclosure & Anti-Clutter Layout', () => {
+    it('only reveals the immediate next progression pad at start (zero screen clutter)', () => {
+      const state = createInitialMartState();
+
+      // Only pad-corn-plot should be visible initially
+      const visiblePads = state.unlockPads.filter((pad) => isPadVisible(pad, state));
+      expect(visiblePads.length).toBe(1);
+      expect(visiblePads[0]!.id).toBe('pad-corn-plot');
+
+      // Heavy endgame pads must NEVER be visible at start
+      expect(isPadVisible(state.unlockPads.find((p) => p.id === 'pad-milk-plot')!, state)).toBe(false);
+      expect(isPadVisible(state.unlockPads.find((p) => p.id === 'pad-pumpkin-plot')!, state)).toBe(false);
+      expect(isPadVisible(state.unlockPads.find((p) => p.id === 'pad-cashier')!, state)).toBe(false);
+    });
+
+    it('reveals corn crate pad once sweet corn plot is unlocked', () => {
+      let state = createInitialMartState();
+      state.plots.find((p) => p.id === 'plot-corn')!.unlocked = true;
+
+      const visiblePads = state.unlockPads.filter((pad) => isPadVisible(pad, state));
+      const cornShelfPad = visiblePads.find((p) => p.id === 'pad-corn-shelf');
+      expect(cornShelfPad).toBeDefined();
+    });
+
+    it('guarantees cashier mat zone is 100% free of any unlock pads', () => {
+      const state = createInitialMartState();
+      // Cashier mat is north of the register: x in [350, 450], y in [360, 420]
+      const cashierMatMinX = 350;
+      const cashierMatMaxX = 450;
+      const cashierMatMinY = 360;
+      const cashierMatMaxY = 420;
+
+      for (const pad of state.unlockPads) {
+        const insideCashierMat =
+          pad.x >= cashierMatMinX - pad.radius &&
+          pad.x <= cashierMatMaxX + pad.radius &&
+          pad.y >= cashierMatMinY - pad.radius &&
+          pad.y <= cashierMatMaxY + pad.radius;
+
+        expect(insideCashierMat).toBe(false);
+      }
+    });
+  });
 });
+

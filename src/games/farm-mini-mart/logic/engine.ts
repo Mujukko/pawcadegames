@@ -204,12 +204,12 @@ export const WORLD_BOUNDS = {
   maxX: 770,
   minY: 40,
   maxY: 560,
-  entrance: { x: 400, y: 540 },
+  entrance: { x: 400, y: 545 },
   checkoutSpots: [
-    { x: 360, y: 350 }, // slot 0 (at counter)
-    { x: 360, y: 395 }, // slot 1
-    { x: 360, y: 440 }, // slot 2
-    { x: 360, y: 485 }, // slot 3
+    { x: 400, y: 485 }, // slot 0 (in front of register counter)
+    { x: 400, y: 518 }, // slot 1
+    { x: 400, y: 548 }, // slot 2
+    { x: 400, y: 575 }, // slot 3
   ],
 };
 
@@ -219,8 +219,60 @@ const ANIMAL_ROSTER: { species: AnimalSpecies; name: string; emoji: string }[] =
   { species: 'dog', name: 'Doug Pup', emoji: '🐶' },
   { species: 'bear', name: 'Barry Bear', emoji: '🐻' },
   { species: 'pig', name: 'Penny Pig', emoji: '🐷' },
-  { species: 'ghost', name: 'Spooky Casper', emoji: '👻' },
 ];
+
+/**
+ * Evaluates whether an unlock pad should be visible to the player
+ * Enforces idle arcade tycoon progressive disclosure: only 1 or 2 relevant next goals appear at any time.
+ */
+export function isPadVisible(pad: UnlockPad, state: MartGameState): boolean {
+  if (pad.unlocked) return false;
+
+  switch (pad.id) {
+    case 'pad-corn-plot':
+      // First progression target: visible from game start
+      return true;
+
+    case 'pad-corn-shelf':
+      // Appears once sweet corn plot has been unlocked
+      return state.plots.find((p) => p.id === 'plot-corn')?.unlocked === true;
+
+    case 'pad-helper':
+      // Appears once corn crate shelf is unlocked
+      return state.shelves.find((s) => s.id === 'shelf-corn')?.unlocked === true;
+
+    case 'pad-egg-plot':
+      // Appears once corn crate shelf is unlocked
+      return state.shelves.find((s) => s.id === 'shelf-corn')?.unlocked === true;
+
+    case 'pad-egg-shelf':
+      // Appears once chicken coop is unlocked
+      return state.plots.find((p) => p.id === 'plot-egg')?.unlocked === true;
+
+    case 'pad-cashier':
+      // Appears once egg basket shelf is unlocked
+      return state.shelves.find((s) => s.id === 'shelf-egg')?.unlocked === true;
+
+    case 'pad-milk-plot':
+      // Appears once egg basket shelf is unlocked
+      return state.shelves.find((s) => s.id === 'shelf-egg')?.unlocked === true;
+
+    case 'pad-milk-shelf':
+      // Appears once dairy pasture is unlocked
+      return state.plots.find((p) => p.id === 'plot-milk')?.unlocked === true;
+
+    case 'pad-pumpkin-plot':
+      // Appears once milk cooler shelf is unlocked
+      return state.shelves.find((s) => s.id === 'shelf-milk')?.unlocked === true;
+
+    case 'pad-pumpkin-shelf':
+      // Appears once pumpkin patch is unlocked
+      return state.plots.find((p) => p.id === 'plot-pumpkin')?.unlocked === true;
+
+    default:
+      return true;
+  }
+}
 
 /**
  * Creates the initial game state with starting tomato patch, tomato stand, and unlock pads
@@ -231,10 +283,10 @@ export function createInitialMartState(): MartGameState {
       id: 'plot-tomato',
       product: 'tomato',
       name: 'Tomato Patch',
-      x: 100,
-      y: 110,
-      width: 110,
-      height: 90,
+      x: 50,
+      y: 70,
+      width: 140,
+      height: 95,
       readyCount: 4,
       maxCapacity: 8,
       growTimer: 0,
@@ -245,10 +297,10 @@ export function createInitialMartState(): MartGameState {
       id: 'plot-corn',
       product: 'corn',
       name: 'Sweet Corn Field',
-      x: 100,
-      y: 240,
-      width: 110,
-      height: 90,
+      x: 50,
+      y: 215,
+      width: 140,
+      height: 95,
       readyCount: 0,
       maxCapacity: 8,
       growTimer: 0,
@@ -259,10 +311,10 @@ export function createInitialMartState(): MartGameState {
       id: 'plot-egg',
       product: 'egg',
       name: 'Chicken Coop',
-      x: 100,
-      y: 370,
-      width: 110,
-      height: 90,
+      x: 50,
+      y: 360,
+      width: 140,
+      height: 95,
       readyCount: 0,
       maxCapacity: 6,
       growTimer: 0,
@@ -273,10 +325,10 @@ export function createInitialMartState(): MartGameState {
       id: 'plot-milk',
       product: 'milk',
       name: 'Dairy Pasture',
-      x: 600,
-      y: 110,
-      width: 110,
-      height: 90,
+      x: 610,
+      y: 70,
+      width: 140,
+      height: 95,
       readyCount: 0,
       maxCapacity: 6,
       growTimer: 0,
@@ -287,10 +339,10 @@ export function createInitialMartState(): MartGameState {
       id: 'plot-pumpkin',
       product: 'pumpkin',
       name: 'Pumpkin Patch 🎃',
-      x: 600,
-      y: 240,
-      width: 110,
-      height: 90,
+      x: 610,
+      y: 215,
+      width: 140,
+      height: 95,
       readyCount: 0,
       maxCapacity: 6,
       growTimer: 0,
@@ -304,10 +356,10 @@ export function createInitialMartState(): MartGameState {
       id: 'shelf-tomato',
       product: 'tomato',
       name: 'Tomato Stand',
-      x: 280,
-      y: 110,
-      width: 90,
-      height: 70,
+      x: 270,
+      y: 75,
+      width: 100,
+      height: 75,
       currentStock: 4,
       maxStock: 8,
       unlocked: true,
@@ -316,10 +368,10 @@ export function createInitialMartState(): MartGameState {
       id: 'shelf-corn',
       product: 'corn',
       name: 'Corn Crate',
-      x: 280,
-      y: 210,
-      width: 90,
-      height: 70,
+      x: 270,
+      y: 195,
+      width: 100,
+      height: 75,
       currentStock: 0,
       maxStock: 8,
       unlocked: false,
@@ -329,9 +381,9 @@ export function createInitialMartState(): MartGameState {
       product: 'egg',
       name: 'Egg Basket',
       x: 430,
-      y: 110,
-      width: 90,
-      height: 70,
+      y: 75,
+      width: 100,
+      height: 75,
       currentStock: 0,
       maxStock: 8,
       unlocked: false,
@@ -341,9 +393,9 @@ export function createInitialMartState(): MartGameState {
       product: 'milk',
       name: 'Milk Cooler',
       x: 430,
-      y: 210,
-      width: 90,
-      height: 70,
+      y: 195,
+      width: 100,
+      height: 75,
       currentStock: 0,
       maxStock: 8,
       unlocked: false,
@@ -352,10 +404,10 @@ export function createInitialMartState(): MartGameState {
       id: 'shelf-pumpkin',
       product: 'pumpkin',
       name: 'Pumpkin Stand 🎃',
-      x: 600,
-      y: 370,
-      width: 90,
-      height: 70,
+      x: 270,
+      y: 315,
+      width: 100,
+      height: 75,
       currentStock: 0,
       maxStock: 6,
       unlocked: false,
@@ -364,9 +416,9 @@ export function createInitialMartState(): MartGameState {
 
   const register: CashRegister = {
     x: 350,
-    y: 310,
+    y: 420,
     width: 100,
-    height: 50,
+    height: 45,
     coinsOnCounter: 0,
     hasCashier: false,
     serveTimer: 0,
@@ -378,8 +430,8 @@ export function createInitialMartState(): MartGameState {
       title: 'Unlock Corn Field',
       cost: 40,
       paid: 0,
-      x: 155,
-      y: 285,
+      x: 120,
+      y: 262,
       radius: 36,
       unlocked: false,
       unlocks: { type: 'plot', targetId: 'plot-corn' },
@@ -389,8 +441,8 @@ export function createInitialMartState(): MartGameState {
       title: 'Unlock Corn Crate',
       cost: 30,
       paid: 0,
-      x: 325,
-      y: 245,
+      x: 320,
+      y: 232,
       radius: 32,
       unlocked: false,
       unlocks: { type: 'shelf', targetId: 'shelf-corn' },
@@ -398,10 +450,10 @@ export function createInitialMartState(): MartGameState {
     {
       id: 'pad-helper',
       title: 'Hire Farmhand Dog 🐶',
-      cost: 90,
+      cost: 80,
       paid: 0,
-      x: 230,
-      y: 330,
+      x: 680,
+      y: 407,
       radius: 36,
       unlocked: false,
       unlocks: { type: 'helper', targetId: 'helper-dog' },
@@ -409,10 +461,10 @@ export function createInitialMartState(): MartGameState {
     {
       id: 'pad-egg-plot',
       title: 'Unlock Chicken Coop',
-      cost: 110,
+      cost: 100,
       paid: 0,
-      x: 155,
-      y: 415,
+      x: 120,
+      y: 407,
       radius: 36,
       unlocked: false,
       unlocks: { type: 'plot', targetId: 'plot-egg' },
@@ -420,10 +472,10 @@ export function createInitialMartState(): MartGameState {
     {
       id: 'pad-egg-shelf',
       title: 'Unlock Egg Basket',
-      cost: 80,
+      cost: 70,
       paid: 0,
-      x: 475,
-      y: 145,
+      x: 480,
+      y: 112,
       radius: 32,
       unlocked: false,
       unlocks: { type: 'shelf', targetId: 'shelf-egg' },
@@ -431,21 +483,21 @@ export function createInitialMartState(): MartGameState {
     {
       id: 'pad-cashier',
       title: 'Hire Register Cashier 🧑‍💼',
-      cost: 150,
+      cost: 140,
       paid: 0,
-      x: 480,
-      y: 330,
-      radius: 36,
+      x: 505,
+      y: 420,
+      radius: 32,
       unlocked: false,
       unlocks: { type: 'cashier', targetId: 'cashier' },
     },
     {
       id: 'pad-milk-plot',
       title: 'Unlock Dairy Pasture',
-      cost: 200,
+      cost: 180,
       paid: 0,
-      x: 655,
-      y: 155,
+      x: 680,
+      y: 117,
       radius: 36,
       unlocked: false,
       unlocks: { type: 'plot', targetId: 'plot-milk' },
@@ -453,10 +505,10 @@ export function createInitialMartState(): MartGameState {
     {
       id: 'pad-milk-shelf',
       title: 'Unlock Milk Cooler',
-      cost: 160,
+      cost: 150,
       paid: 0,
-      x: 475,
-      y: 245,
+      x: 480,
+      y: 232,
       radius: 32,
       unlocked: false,
       unlocks: { type: 'shelf', targetId: 'shelf-milk' },
@@ -464,10 +516,10 @@ export function createInitialMartState(): MartGameState {
     {
       id: 'pad-pumpkin-plot',
       title: 'Unlock Pumpkin Patch 🎃',
-      cost: 280,
+      cost: 240,
       paid: 0,
-      x: 655,
-      y: 285,
+      x: 680,
+      y: 262,
       radius: 36,
       unlocked: false,
       unlocks: { type: 'plot', targetId: 'plot-pumpkin' },
@@ -475,11 +527,11 @@ export function createInitialMartState(): MartGameState {
     {
       id: 'pad-pumpkin-shelf',
       title: 'Unlock Pumpkin Stand 🎃',
-      cost: 220,
+      cost: 200,
       paid: 0,
-      x: 645,
-      y: 405,
-      radius: 32,
+      x: 295,
+      y: 352,
+      radius: 28,
       unlocked: false,
       unlocks: { type: 'shelf', targetId: 'shelf-pumpkin' },
     },
@@ -489,10 +541,10 @@ export function createInitialMartState(): MartGameState {
     id: 'helper-dog',
     name: 'Barnaby Dog',
     emoji: '🐶',
-    x: 230,
-    y: 330,
-    targetX: 230,
-    targetY: 330,
+    x: 680,
+    y: 407,
+    targetX: 680,
+    targetY: 407,
     speed: 110,
     capacity: 4,
     stack: [],
@@ -504,7 +556,7 @@ export function createInitialMartState(): MartGameState {
 
   const player: PlayerState = {
     x: 350,
-    y: 250,
+    y: 150,
     vx: 0,
     vy: 0,
     speed: 150,
@@ -764,12 +816,7 @@ export function updateMartGame(
   // 5. Unlock Pads: Coin Transfer & Activation
   for (const pad of unlockPads) {
     if (pad.unlocked) continue;
-
-    // Check if prerequisite exists (e.g. shelf requires corresponding plot)
-    if (pad.id === 'pad-corn-shelf' && !plots.find((p) => p.id === 'plot-corn')?.unlocked) continue;
-    if (pad.id === 'pad-egg-shelf' && !plots.find((p) => p.id === 'plot-egg')?.unlocked) continue;
-    if (pad.id === 'pad-milk-shelf' && !plots.find((p) => p.id === 'plot-milk')?.unlocked) continue;
-    if (pad.id === 'pad-pumpkin-shelf' && !plots.find((p) => p.id === 'plot-pumpkin')?.unlocked) continue;
+    if (!isPadVisible(pad, state)) continue; // Must be visible & active in current progression!
 
     const distPlayer = distance(player.x, player.y, pad.x, pad.y);
     if (distPlayer < pad.radius + 20 && player.coins > 0) {
@@ -814,9 +861,9 @@ export function updateMartGame(
   // 6. Cash Register & Checkout
   const regCenterX = register.x + register.width / 2;
   const regCenterY = register.y + register.height / 2;
-  // Player is at cashier if standing behind counter or within generous radius
-  const isBehindCounter = player.x >= 310 && player.x <= 490 && player.y >= 230 && player.y <= 340;
-  const isNearRegister = distance(player.x, player.y, regCenterX, regCenterY) < 85;
+  // Player is at cashier if standing on cashier mat behind counter or near counter
+  const isBehindCounter = player.x >= 320 && player.x <= 480 && player.y >= register.y - 75 && player.y <= register.y + 15;
+  const isNearRegister = distance(player.x, player.y, regCenterX, regCenterY) < 80;
   const isPlayerAtRegister = isBehindCounter || isNearRegister;
   const isCashierActive = register.hasCashier;
 
