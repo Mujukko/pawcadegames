@@ -271,10 +271,11 @@ export function stepPhysics(
   });
 
   // 1.5. Tower Gravity Collapse: If a supporting crate was destroyed, drop stacked targets directly above it
-  if (destroyedTarget && (destroyedTarget.type === 'crate' || destroyedTarget.type === 'hay')) {
-    const destX = destroyedTarget.x;
-    const destY = destroyedTarget.y;
-    const destH = destroyedTarget.height;
+  const collapsedTarget = destroyedTarget as Target | null;
+  if (collapsedTarget && (collapsedTarget.type === 'crate' || collapsedTarget.type === 'hay')) {
+    const destX = collapsedTarget.x;
+    const destY = collapsedTarget.y;
+    const destH = collapsedTarget.height;
     for (let i = 0; i < updatedTargets.length; i++) {
       const obj = updatedTargets[i];
       if (!obj.isDestroyed && Math.abs(obj.x - destX) < 24 && obj.y < destY) {

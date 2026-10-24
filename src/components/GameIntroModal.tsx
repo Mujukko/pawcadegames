@@ -57,6 +57,82 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Ducks change direction when they bounce off screen edges. Anticipate their bounce path for an easy direct hit!',
   },
+  'farm-mahjong': {
+    title: 'Farm Mahjong Solitaire',
+    subtitle: 'Barnyard Tile Matching Puzzle',
+    mascot: '🀄🌾',
+    themeColor: 'from-emerald-600 via-green-700 to-amber-900',
+    goal: 'Clear all 3D layered farm tiles from the board by finding and matching unblocked pairs before time expires!',
+    steps: [
+      {
+        icon: '👀',
+        title: '1. Spot Free Tiles',
+        desc: 'A tile is free if its top face is uncovered and either its left or right side has no adjacent tile.',
+      },
+      {
+        icon: '🀄',
+        title: '2. Tap Matching Pairs',
+        desc: 'Tap two identical tiles (like two sweet corn or two red apples) to match them and clear them from the board.',
+      },
+      {
+        icon: '⚡',
+        title: '3. Use Smart Boosters',
+        desc: 'Need help? Tap Hint to reveal a match, Undo to step back, or Shuffle to rearrange remaining tiles.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Click Tile: Select and match valid unblocked tiles',
+        'H Key: Reveal a valid matching pair',
+        'U Key: Undo your last move',
+        'S Key: Shuffle remaining tiles on the board',
+      ],
+      mobile: [
+        'Tap Tile: Select unblocked tiles with ease',
+        'Golden Highlight: Shows currently selected tile',
+        'Booster Buttons: Tap Hint, Undo, or Shuffle at any time',
+      ],
+    },
+    proTip: 'Focus on clearing high stacks and outer wings first. This opens up the widest number of hidden tiles beneath!',
+  },
+  'pet-memory-match': {
+    title: 'Pet Memory Match',
+    subtitle: 'Barnyard Animal Card Concentration',
+    mascot: '🃏🐾',
+    themeColor: 'from-indigo-600 via-purple-700 to-pink-900',
+    goal: 'Flip cards, memorize cute pet faces, and match all identical animal pairs before the timer runs out!',
+    steps: [
+      {
+        icon: '🃏',
+        title: '1. Flip & Memorize',
+        desc: 'Tap any rustic wooden card to reveal the pet portrait hidden underneath.',
+      },
+      {
+        icon: '🐾',
+        title: '2. Find Its Pair',
+        desc: 'Tap a second card. If they match, they stay open and reward bonus combo points!',
+      },
+      {
+        icon: '⏱️',
+        title: '3. Use Smart Boosters',
+        desc: 'Use Peek to briefly reveal all cards, or Time Freeze to stop the countdown clock for 5 crucial seconds.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Click Card: Flip and reveal pet faces',
+        'P Key: X-Ray Peek booster',
+        'F Key: Freeze time booster',
+        'R Key: Quick restart',
+      ],
+      mobile: [
+        'Tap Card: Instant smooth 3D flip animation',
+        'Peek Button: Reveal all cards for 1.8 seconds',
+        'Freeze Button: Pause timer for 5 seconds',
+      ],
+    },
+    proTip: 'Match pairs quickly in succession to activate Combo Streaks and multiply your score by up to 4x!',
+  },
   'sheep-stampede': {
     title: 'Sheep Stampede: Pasture Rush',
     subtitle: 'Mob Multiplier & Meadow Runner',

@@ -37,6 +37,8 @@ export const App: React.FC = () => {
 
   // Update SEO document title on route changes
   useEffect(() => {
+    const farmMahjongGame = GAMES_REGISTRY.find(g => g.id === 'farm-mahjong');
+    const petMemoryGame = GAMES_REGISTRY.find(g => g.id === 'pet-memory-match');
     const duckHuntGame = GAMES_REGISTRY.find(g => g.id === 'duck-hunt-classic');
     const sheepStampedeGame = GAMES_REGISTRY.find(g => g.id === 'sheep-stampede');
     const horseshoeTwistGame = GAMES_REGISTRY.find(g => g.id === 'horseshoe-twist');
@@ -60,7 +62,17 @@ export const App: React.FC = () => {
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/duck-hunt-classic') || currentRoute.startsWith('/games/duck-hunt') || currentRoute.startsWith('/games/retro-duck-hunt')) {
+    if (currentRoute.startsWith('/games/farm-mahjong') || currentRoute.startsWith('/games/mahjong') || currentRoute.startsWith('/games/farm-mahjong-solitaire')) {
+      if (farmMahjongGame) {
+        activeTitle = farmMahjongGame.metaTitle;
+        activeDesc = farmMahjongGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/pet-memory-match') || currentRoute.startsWith('/games/memory-match') || currentRoute.startsWith('/games/card-match')) {
+      if (petMemoryGame) {
+        activeTitle = petMemoryGame.metaTitle;
+        activeDesc = petMemoryGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/duck-hunt-classic') || currentRoute.startsWith('/games/duck-hunt') || currentRoute.startsWith('/games/retro-duck-hunt')) {
       if (duckHuntGame) {
         activeTitle = duckHuntGame.metaTitle;
         activeDesc = duckHuntGame.metaDescription;
@@ -200,6 +212,12 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/farm-mahjong') || currentRoute.startsWith('/games/mahjong') || currentRoute.startsWith('/games/farm-mahjong-solitaire')) {
+      return <GamePage navigate={navigate} gameId="farm-mahjong" />;
+    }
+    if (currentRoute.startsWith('/games/pet-memory-match') || currentRoute.startsWith('/games/memory-match') || currentRoute.startsWith('/games/card-match')) {
+      return <GamePage navigate={navigate} gameId="pet-memory-match" />;
     }
     if (currentRoute.startsWith('/games/duck-hunt-classic') || currentRoute.startsWith('/games/duck-hunt') || currentRoute.startsWith('/games/retro-duck-hunt')) {
       return <GamePage navigate={navigate} gameId="duck-hunt-classic" />;

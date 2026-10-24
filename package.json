@@ -8,7 +8,7 @@
     "build": "bun ./node_modules/vite/bin/vite.js build && bun scripts/prerender.ts",
     "preview": "vite preview",
     "test": "bun test",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "bunx --bun tsc --noEmit",
     "seo:audit": "bun scripts/seo-audit.ts",
     "seo:intel": "bun scripts/seo-intel.ts",
     "seo:monitor": "bun scripts/seo-monitor.ts",

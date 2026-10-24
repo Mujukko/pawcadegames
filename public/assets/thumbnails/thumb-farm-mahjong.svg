@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Pasture Table Gradient -->
+    <radialGradient id="tableBg" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#15803d"/>
+      <stop offset="60%" stop-color="#166534"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </radialGradient>
+
+    <!-- Wooden Edge Gradient -->
+    <linearGradient id="woodBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="50%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+
+    <!-- Ivory Tile Face Gradient -->
+    <linearGradient id="tileFace" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="85%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+
+    <!-- Wooden Tile Base Gradient (3D Depth) -->
+    <linearGradient id="tileBase" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#92400e"/>
+      <stop offset="100%" stop-color="#713f12"/>
+    </linearGradient>
+
+    <!-- Active Matched Gold Glow Tile Face -->
+    <linearGradient id="tileGlowFace" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="60%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#eab308"/>
+    </linearGradient>
+
+    <!-- Star Glow Filter -->
+    <filter id="tileShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#052e16" flood-opacity="0.6"/>
+    </filter>
+
+    <filter id="matchAura" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Base Rounded Container -->
+  <rect width="512" height="512" rx="64" fill="url(#tableBg)"/>
+
+  <!-- Rustic Wooden Table Planks Pattern Subdued -->
+  <line x1="0" y1="128" x2="512" y2="128" stroke="#052e16" stroke-width="2" opacity="0.3"/>
+  <line x1="0" y1="256" x2="512" y2="256" stroke="#052e16" stroke-width="2" opacity="0.3"/>
+  <line x1="0" y1="384" x2="512" y2="384" stroke="#052e16" stroke-width="2" opacity="0.3"/>
+
+  <!-- Subtle Corner Felt Vignette -->
+  <rect width="512" height="512" rx="64" fill="none" stroke="url(#woodBorder)" stroke-width="16" opacity="0.8"/>
+
+  <!-- Golden Ray Rays in Center -->
+  <circle cx="256" cy="240" r="180" fill="#facc15" opacity="0.12" filter="url(#matchAura)"/>
+
+  <!-- BACKGROUND TILE STACK (Lower Layer) -->
+  <!-- Layer 0 Tile Left -->
+  <g transform="translate(100, 160)" filter="url(#tileShadow)">
+    <rect x="0" y="14" width="96" height="126" rx="14" fill="#5c2e0b"/>
+    <rect x="0" y="0" width="96" height="120" rx="14" fill="url(#tileBase)"/>
+    <rect x="3" y="3" width="90" height="106" rx="11" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <!-- Carrot Icon -->
+    <path d="M 48 30 L 62 82 Q 48 94 34 82 Z" fill="#ea580c"/>
+    <path d="M 44 22 Q 48 14 52 22 Q 56 12 60 20" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Layer 0 Tile Right -->
+  <g transform="translate(316, 160)" filter="url(#tileShadow)">
+    <rect x="0" y="14" width="96" height="126" rx="14" fill="#5c2e0b"/>
+    <rect x="0" y="0" width="96" height="120" rx="14" fill="url(#tileBase)"/>
+    <rect x="3" y="3" width="90" height="106" rx="11" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <!-- Red Barn Icon -->
+    <rect x="26" y="52" width="44" height="38" rx="2" fill="#dc2626"/>
+    <polygon points="20,54 48,26 76,54" fill="#991b1b"/>
+    <rect x="42" y="66" width="12" height="24" rx="2" fill="#ffffff"/>
+  </g>
+
+  <!-- Mid Layer Top Tile -->
+  <g transform="translate(208, 90)" filter="url(#tileShadow)">
+    <rect x="0" y="14" width="96" height="126" rx="14" fill="#5c2e0b"/>
+    <rect x="0" y="0" width="96" height="120" rx="14" fill="url(#tileBase)"/>
+    <rect x="3" y="3" width="90" height="106" rx="11" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <!-- Golden Wheat Sheaf -->
+    <ellipse cx="48" cy="62" rx="16" ry="24" fill="#eab308"/>
+    <line x1="48" y1="36" x2="48" y2="92" stroke="#ca8a04" stroke-width="3"/>
+    <circle cx="48" cy="46" r="6" fill="#fef08a"/>
+    <circle cx="48" cy="62" r="6" fill="#fef08a"/>
+  </g>
+
+  <!-- MAIN MATCHING PAIR (Top Layer - Active Golden Match Resonance) -->
+  <!-- Matching Arc / Sparkle Beam -->
+  <path d="M 195 295 Q 256 220 317 295" fill="none" stroke="#facc15" stroke-width="6" stroke-dasharray="10 8" filter="url(#matchAura)" opacity="0.9"/>
+  <circle cx="256" cy="256" r="16" fill="#ffffff" filter="url(#matchAura)"/>
+
+  <!-- Left Main Tile: Golden Sweet Corn 🌽 -->
+  <g transform="translate(142, 230)" filter="url(#tileShadow)">
+    <!-- 3D Wood Depth Base -->
+    <rect x="0" y="16" width="108" height="142" rx="16" fill="#451a03"/>
+    <rect x="0" y="0" width="108" height="136" rx="16" fill="url(#tileBase)"/>
+    <!-- Bright Ivory Tile Face with Golden Border -->
+    <rect x="4" y="4" width="100" height="120" rx="13" fill="url(#tileGlowFace)" stroke="#d97706" stroke-width="3"/>
+
+    <!-- Corn Husk (Green Leaves) -->
+    <path d="M 32 100 Q 24 60 44 48 Q 42 76 50 102 Z" fill="#22c55e"/>
+    <path d="M 76 100 Q 84 60 64 48 Q 66 76 58 102 Z" fill="#16a34a"/>
+    <!-- Golden Corn Body -->
+    <ellipse cx="54" cy="68" rx="20" ry="34" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+    <!-- Corn Kernels Grid Details -->
+    <circle cx="48" cy="54" r="4.5" fill="#fef08a"/>
+    <circle cx="60" cy="54" r="4.5" fill="#fef08a"/>
+    <circle cx="44" cy="66" r="5" fill="#fef08a"/>
+    <circle cx="54" cy="66" r="5" fill="#ffffff"/>
+    <circle cx="64" cy="66" r="5" fill="#fef08a"/>
+    <circle cx="48" cy="78" r="4.5" fill="#fef08a"/>
+    <circle cx="60" cy="78" r="4.5" fill="#fef08a"/>
+    <circle cx="54" cy="90" r="4" fill="#fef08a"/>
+  </g>
+
+  <!-- Right Main Tile: Matching Golden Sweet Corn 🌽 -->
+  <g transform="translate(262, 230)" filter="url(#tileShadow)">
+    <!-- 3D Wood Depth Base -->
+    <rect x="0" y="16" width="108" height="142" rx="16" fill="#451a03"/>
+    <rect x="0" y="0" width="108" height="136" rx="16" fill="url(#tileBase)"/>
+    <!-- Bright Ivory Tile Face with Golden Border -->
+    <rect x="4" y="4" width="100" height="120" rx="13" fill="url(#tileGlowFace)" stroke="#d97706" stroke-width="3"/>
+
+    <!-- Corn Husk (Green Leaves) -->
+    <path d="M 32 100 Q 24 60 44 48 Q 42 76 50 102 Z" fill="#22c55e"/>
+    <path d="M 76 100 Q 84 60 64 48 Q 66 76 58 102 Z" fill="#16a34a"/>
+    <!-- Golden Corn Body -->
+    <ellipse cx="54" cy="68" rx="20" ry="34" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+    <!-- Corn Kernels Grid Details -->
+    <circle cx="48" cy="54" r="4.5" fill="#fef08a"/>
+    <circle cx="60" cy="54" r="4.5" fill="#fef08a"/>
+    <circle cx="44" cy="66" r="5" fill="#fef08a"/>
+    <circle cx="54" cy="66" r="5" fill="#ffffff"/>
+    <circle cx="64" cy="66" r="5" fill="#fef08a"/>
+    <circle cx="48" cy="78" r="4.5" fill="#fef08a"/>
+    <circle cx="60" cy="78" r="4.5" fill="#fef08a"/>
+    <circle cx="54" cy="90" r="4" fill="#fef08a"/>
+  </g>
+
+  <!-- Golden 4-point Sparkles & Stars -->
+  <g fill="#fef08a" filter="url(#matchAura)">
+    <!-- Sparkle 1 Top Center -->
+    <path d="M 256 200 Q 256 220 276 220 Q 256 220 256 240 Q 256 220 236 220 Q 256 220 256 200 Z"/>
+    <!-- Sparkle 2 Right -->
+    <path d="M 388 220 Q 388 234 402 234 Q 388 234 388 248 Q 388 234 374 234 Q 388 234 388 220 Z"/>
+    <!-- Sparkle 3 Left -->
+    <path d="M 124 220 Q 124 234 138 234 Q 124 234 124 248 Q 124 234 110 234 Q 124 234 124 220 Z"/>
+    <!-- Sparkle 4 Bottom -->
+    <path d="M 256 390 Q 256 405 271 405 Q 256 405 256 420 Q 256 405 241 405 Q 256 405 256 390 Z"/>
+  </g>
+
+  <!-- Floating Golden Particles -->
+  <circle cx="160" cy="180" r="5" fill="#fde047" opacity="0.8"/>
+  <circle cx="350" cy="180" r="5" fill="#fde047" opacity="0.8"/>
+  <circle cx="210" cy="380" r="4" fill="#fde047" opacity="0.9"/>
+  <circle cx="300" cy="380" r="4" fill="#fde047" opacity="0.9"/>
+</svg>

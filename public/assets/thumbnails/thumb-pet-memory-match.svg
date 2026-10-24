@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Table Gradient (Warm Indigo-Blue Barn Night) -->
+    <radialGradient id="cardTableBg" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="60%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+
+    <!-- Card Face Ivory Gradient -->
+    <linearGradient id="cardFaceGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="85%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+
+    <!-- Card Back Rustic Red Barn Wood Gradient -->
+    <linearGradient id="cardBackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="50%" stop-color="#b91c1c"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </linearGradient>
+
+    <!-- Golden Foil / Emboss Gradient -->
+    <linearGradient id="goldFoil" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+
+    <!-- Card Drop Shadow -->
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+
+    <!-- Magic Sparkle Filter -->
+    <filter id="glowFilt" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Base Rounded Container -->
+  <rect width="512" height="512" rx="64" fill="url(#cardTableBg)"/>
+
+  <!-- Warm Table Spotlight -->
+  <circle cx="256" cy="240" r="200" fill="#6366f1" opacity="0.15" filter="url(#glowFilt)"/>
+
+  <!-- CARD 1: Background Card (Face-Down with Golden Paw Print) -->
+  <g transform="translate(290, 70) rotate(14)" filter="url(#cardShadow)">
+    <!-- Card Border -->
+    <rect x="0" y="0" width="130" height="180" rx="18" fill="#ffffff"/>
+    <!-- Card Back Red Wood -->
+    <rect x="4" y="4" width="122" height="172" rx="14" fill="url(#cardBackGrad)"/>
+    <!-- Inner Golden Border -->
+    <rect x="12" y="12" width="106" height="156" rx="10" fill="none" stroke="url(#goldFoil)" stroke-width="3" stroke-dasharray="6 4"/>
+    <!-- Golden Center Paw Print -->
+    <ellipse cx="65" cy="100" rx="18" ry="14" fill="url(#goldFoil)"/>
+    <circle cx="48" cy="80" r="6" fill="url(#goldFoil)"/>
+    <circle cx="60" cy="72" r="6.5" fill="url(#goldFoil)"/>
+    <circle cx="70" cy="72" r="6.5" fill="url(#goldFoil)"/>
+    <circle cx="82" cy="80" r="6" fill="url(#goldFoil)"/>
+  </g>
+
+  <!-- CARD 2: Mid-Left Card (Face-Down Angled) -->
+  <g transform="translate(70, 110) rotate(-12)" filter="url(#cardShadow)">
+    <!-- Card Border -->
+    <rect x="0" y="0" width="130" height="180" rx="18" fill="#ffffff"/>
+    <rect x="4" y="4" width="122" height="172" rx="14" fill="url(#cardBackGrad)"/>
+    <rect x="12" y="12" width="106" height="156" rx="10" fill="none" stroke="url(#goldFoil)" stroke-width="3" stroke-dasharray="6 4"/>
+    <!-- Golden Center Paw Print -->
+    <ellipse cx="65" cy="100" rx="18" ry="14" fill="url(#goldFoil)"/>
+    <circle cx="48" cy="80" r="6" fill="url(#goldFoil)"/>
+    <circle cx="60" cy="72" r="6.5" fill="url(#goldFoil)"/>
+    <circle cx="70" cy="72" r="6.5" fill="url(#goldFoil)"/>
+    <circle cx="82" cy="80" r="6" fill="url(#goldFoil)"/>
+  </g>
+
+  <!-- FOREGROUND MATCHING PAIR -->
+  <!-- Connecting Magic Burst between the two face-up cards -->
+  <path d="M 180 320 Q 256 250 332 320" fill="none" stroke="#facc15" stroke-width="6" stroke-dasharray="8 6" filter="url(#glowFilt)"/>
+  <circle cx="256" cy="275" r="14" fill="#ffffff" filter="url(#glowFilt)"/>
+
+  <!-- Left Face-Up Card: Corgi Puppy 🐶 -->
+  <g transform="translate(100, 210) rotate(-4)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="144" height="200" rx="20" fill="#facc15" stroke="#eab308" stroke-width="4"/>
+    <rect x="6" y="6" width="132" height="188" rx="16" fill="url(#cardFaceGrad)"/>
+
+    <!-- Small Paw Corners -->
+    <circle cx="22" cy="24" r="4" fill="#f59e0b" opacity="0.6"/>
+    <circle cx="122" cy="176" r="4" fill="#f59e0b" opacity="0.6"/>
+
+    <!-- Corgi Head Illustration -->
+    <!-- Pointy Ears with Pink Inner -->
+    <polygon points="40,90 28,34 60,60" fill="#ea580c"/>
+    <polygon points="38,82 32,46 54,64" fill="#f472b6"/>
+    <polygon points="104,90 116,34 84,60" fill="#ea580c"/>
+    <polygon points="106,82 112,46 90,64" fill="#f472b6"/>
+
+    <!-- Head Base -->
+    <ellipse cx="72" cy="98" rx="38" ry="32" fill="#f97316"/>
+    <!-- White Face Blaze (Cheeks and Snout) -->
+    <path d="M 72 74 Q 60 90 50 110 Q 72 124 94 110 Q 84 90 72 74 Z" fill="#ffffff"/>
+
+    <!-- Eyes with Sparkle -->
+    <circle cx="56" cy="92" r="6" fill="#1e1b4b"/>
+    <circle cx="54" cy="90" r="2" fill="#ffffff"/>
+    <circle cx="88" cy="92" r="6" fill="#1e1b4b"/>
+    <circle cx="86" cy="90" r="2" fill="#ffffff"/>
+
+    <!-- Black Nose & Happy Mouth -->
+    <ellipse cx="72" cy="106" rx="5" ry="4" fill="#0f172a"/>
+    <!-- Cute Pink Tongue -->
+    <path d="M 69 113 Q 72 122 75 113 Z" fill="#f43f5e"/>
+
+    <!-- Star Burst Tag Below -->
+    <g transform="translate(42, 144) scale(0.9)">
+      <polygon points="30,0 38,18 58,18 42,30 48,48 30,36 12,48 18,30 2,18 22,18" fill="url(#goldFoil)"/>
+    </g>
+  </g>
+
+  <!-- Right Face-Up Card: Matching Corgi Puppy 🐶 -->
+  <g transform="translate(268, 210) rotate(4)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="144" height="200" rx="20" fill="#facc15" stroke="#eab308" stroke-width="4"/>
+    <rect x="6" y="6" width="132" height="188" rx="16" fill="url(#cardFaceGrad)"/>
+
+    <!-- Small Paw Corners -->
+    <circle cx="22" cy="24" r="4" fill="#f59e0b" opacity="0.6"/>
+    <circle cx="122" cy="176" r="4" fill="#f59e0b" opacity="0.6"/>
+
+    <!-- Corgi Head Illustration -->
+    <!-- Pointy Ears with Pink Inner -->
+    <polygon points="40,90 28,34 60,60" fill="#ea580c"/>
+    <polygon points="38,82 32,46 54,64" fill="#f472b6"/>
+    <polygon points="104,90 116,34 84,60" fill="#ea580c"/>
+    <polygon points="106,82 112,46 90,64" fill="#f472b6"/>
+
+    <!-- Head Base -->
+    <ellipse cx="72" cy="98" rx="38" ry="32" fill="#f97316"/>
+    <!-- White Face Blaze (Cheeks and Snout) -->
+    <path d="M 72 74 Q 60 90 50 110 Q 72 124 94 110 Q 84 90 72 74 Z" fill="#ffffff"/>
+
+    <!-- Eyes with Sparkle -->
+    <circle cx="56" cy="92" r="6" fill="#1e1b4b"/>
+    <circle cx="54" cy="90" r="2" fill="#ffffff"/>
+    <circle cx="88" cy="92" r="6" fill="#1e1b4b"/>
+    <circle cx="86" cy="90" r="2" fill="#ffffff"/>
+
+    <!-- Black Nose & Happy Mouth -->
+    <ellipse cx="72" cy="106" rx="5" ry="4" fill="#0f172a"/>
+    <!-- Cute Pink Tongue -->
+    <path d="M 69 113 Q 72 122 75 113 Z" fill="#f43f5e"/>
+
+    <!-- Star Burst Tag Below -->
+    <g transform="translate(42, 144) scale(0.9)">
+      <polygon points="30,0 38,18 58,18 42,30 48,48 30,36 12,48 18,30 2,18 22,18" fill="url(#goldFoil)"/>
+    </g>
+  </g>
+
+  <!-- Golden 4-point Sparkles -->
+  <g fill="#fde047" filter="url(#glowFilt)">
+    <path d="M 256 160 Q 256 178 274 178 Q 256 178 256 196 Q 256 178 238 178 Q 256 178 256 160 Z"/>
+    <path d="M 90 190 Q 90 204 104 204 Q 90 204 90 218 Q 90 204 76 204 Q 90 204 90 190 Z"/>
+    <path d="M 420 200 Q 420 214 434 214 Q 420 214 420 228 Q 420 214 406 214 Q 420 214 420 200 Z"/>
+    <path d="M 256 420 Q 256 432 268 432 Q 256 432 256 444 Q 256 432 244 432 Q 256 432 256 420 Z"/>
+  </g>
+
+  <!-- Floating Sparkle Specks -->
+  <circle cx="160" cy="170" r="4.5" fill="#fef08a" opacity="0.9"/>
+  <circle cx="360" cy="170" r="4.5" fill="#fef08a" opacity="0.9"/>
+  <circle cx="210" cy="440" r="3.5" fill="#fde047" opacity="0.8"/>
+  <circle cx="300" cy="440" r="3.5" fill="#fde047" opacity="0.8"/>
+</svg>

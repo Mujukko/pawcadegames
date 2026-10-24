@@ -150,6 +150,20 @@ const GAME_FALLBACKS: Record<string, GameVisualConfig> = {
     tagline: 'Track flying mallards across the reed marsh and shoot with Buster the hunting hound!',
     badgeLabel: 'NES CLASSIC',
   },
+  'farm-mahjong': {
+    icon: '🀄🌾',
+    gradient: 'from-emerald-600 via-green-700 to-amber-900',
+    glow: 'group-hover:border-emerald-400 group-hover:shadow-emerald-500/30',
+    tagline: 'Match free wooden farm tiles to dismantle the pyramid stack!',
+    badgeLabel: 'MAHJONG',
+  },
+  'pet-memory-match': {
+    icon: '🃏🐾',
+    gradient: 'from-indigo-600 via-purple-700 to-pink-900',
+    glow: 'group-hover:border-indigo-400 group-hover:shadow-indigo-500/30',
+    tagline: 'Flip rustic barnyard cards to uncover and match cute pet pairs!',
+    badgeLabel: 'MEMORY',
+  },
   'cat-cafe-rush': {
     icon: '🧁',
     gradient: 'from-rose-600 via-pink-700 to-slate-900',

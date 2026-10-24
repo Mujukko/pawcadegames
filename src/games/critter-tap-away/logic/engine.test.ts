@@ -4,6 +4,8 @@ import {
   isPathClear,
   tapCritter,
   Critter,
+  CRITTER_LEVELS,
+  isLevelSolvable,
 } from './engine';
 
 describe('Critter Tap Away: Barn Escape Core Engine', () => {
@@ -75,7 +77,6 @@ describe('Critter Tap Away: Barn Escape Core Engine', () => {
   });
 
   it('guarantees that ALL campaign levels in CRITTER_LEVELS are 100% mathematically solvable to completion', () => {
-    const { CRITTER_LEVELS, isLevelSolvable } = require('./engine');
     expect(CRITTER_LEVELS.length).toBeGreaterThanOrEqual(4);
 
     for (const level of CRITTER_LEVELS) {
