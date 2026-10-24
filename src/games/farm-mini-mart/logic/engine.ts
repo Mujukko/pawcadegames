@@ -667,7 +667,7 @@ export function updateMartGame(
     const plotCenterY = plot.y + plot.height / 2;
     const distPlayer = distance(player.x, player.y, plotCenterX, plotCenterY);
 
-    if (distPlayer < 65 && plot.readyCount > 0 && player.stack.length < player.capacity) {
+    if (distPlayer < 75 && plot.readyCount > 0 && player.stack.length < player.capacity) {
       plot.readyCount--;
       player.stack = [...player.stack, plot.product];
       events.push('harvest');
@@ -691,7 +691,7 @@ export function updateMartGame(
     const shelfCenterY = shelf.y + shelf.height / 2;
     const distPlayer = distance(player.x, player.y, shelfCenterX, shelfCenterY);
 
-    if (distPlayer < 65 && shelf.currentStock < shelf.maxStock) {
+    if (distPlayer < 75 && shelf.currentStock < shelf.maxStock) {
       // Find if player has matching product
       const itemIndex = player.stack.lastIndexOf(shelf.product);
       if (itemIndex !== -1) {
@@ -722,7 +722,7 @@ export function updateMartGame(
         helper.targetY = candidatePlot.y + candidatePlot.height / 2;
 
         const distPlot = distance(helper.x, helper.y, helper.targetX, helper.targetY);
-        if (distPlot < 45 && candidatePlot.readyCount > 0) {
+        if (distPlot < 55 && candidatePlot.readyCount > 0) {
           candidatePlot.readyCount--;
           helper.stack.push(candidatePlot.product);
           events.push('harvest');
@@ -743,7 +743,7 @@ export function updateMartGame(
         helper.targetY = targetShelf.y + targetShelf.height / 2;
 
         const distShelf = distance(helper.x, helper.y, helper.targetX, helper.targetY);
-        if (distShelf < 45 && targetShelf.currentStock < targetShelf.maxStock) {
+        if (distShelf < 55 && targetShelf.currentStock < targetShelf.maxStock) {
           helper.stack.pop();
           targetShelf.currentStock++;
           events.push('stock');
@@ -772,7 +772,7 @@ export function updateMartGame(
     if (pad.id === 'pad-pumpkin-shelf' && !plots.find((p) => p.id === 'plot-pumpkin')?.unlocked) continue;
 
     const distPlayer = distance(player.x, player.y, pad.x, pad.y);
-    if (distPlayer < pad.radius + 15 && player.coins > 0) {
+    if (distPlayer < pad.radius + 20 && player.coins > 0) {
       // Transfer coins rapidly
       const needed = pad.cost - pad.paid;
       const transfer = Math.min(needed, player.coins, Math.max(1, Math.floor(dt / 50)));
@@ -814,15 +814,18 @@ export function updateMartGame(
   // 6. Cash Register & Checkout
   const regCenterX = register.x + register.width / 2;
   const regCenterY = register.y + register.height / 2;
-  const isPlayerAtRegister = distance(player.x, player.y, regCenterX, regCenterY - 15) < 55;
+  // Player is at cashier if standing behind counter or within generous radius
+  const isBehindCounter = player.x >= 310 && player.x <= 490 && player.y >= 230 && player.y <= 340;
+  const isNearRegister = distance(player.x, player.y, regCenterX, regCenterY) < 85;
+  const isPlayerAtRegister = isBehindCounter || isNearRegister;
   const isCashierActive = register.hasCashier;
 
   // Serve the customer at index 0 of the checkout queue
   const queueLeader = customers.find((c) => c.state === 'in_queue' && c.queueIndex === 0);
   if (queueLeader && (isPlayerAtRegister || isCashierActive)) {
     register.serveTimer += dt;
-    // Serve customer every 700ms
-    if (register.serveTimer >= 700) {
+    // Serve customer every 600ms (faster, responsive checkout)
+    if (register.serveTimer >= 600) {
       register.serveTimer = 0;
       queueLeader.state = 'leaving';
       queueLeader.targetX = WORLD_BOUNDS.entrance.x;
@@ -842,10 +845,10 @@ export function updateMartGame(
       floatingNotes.push({
         id: `bill-${Date.now()}`,
         text: `+${billTotal} 💰`,
-        x: register.x + 20,
-        y: register.y - 20,
-        lifeMs: 1000,
-        maxLifeMs: 1000,
+        x: register.x + register.width / 2,
+        y: register.y - 25,
+        lifeMs: 1200,
+        maxLifeMs: 1200,
         color: '#facc15',
       });
 
@@ -861,10 +864,19 @@ export function updateMartGame(
     }
   }
 
-  // Player collects coins from register counter when nearby
-  if (distance(player.x, player.y, regCenterX, regCenterY) < 65 && register.coinsOnCounter > 0) {
+  // Player collects coins from register counter when nearby (generous magnet collection!)
+  if ((isPlayerAtRegister || distance(player.x, player.y, regCenterX, regCenterY) < 95) && register.coinsOnCounter > 0) {
     player.coins += register.coinsOnCounter;
     events.push('coin_pickup');
+    floatingNotes.push({
+      id: `pickup-${Date.now()}`,
+      text: `+${register.coinsOnCounter} COINS!`,
+      x: player.x,
+      y: player.y - 45,
+      lifeMs: 900,
+      maxLifeMs: 900,
+      color: '#fbbf24',
+    });
     register.coinsOnCounter = 0;
   }
 
