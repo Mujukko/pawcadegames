@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   CritterTapAwayState,
   initializeCritterLevel,
   tapCritter,
   isPathClear,
+  getBlockingCritter,
   CRITTER_LEVELS,
   CRITTER_CONFIGS,
 } from './logic/engine';
@@ -17,27 +18,41 @@ import {
   ArrowDown,
   ArrowLeft,
   ArrowRight,
-  Trophy,
+  Undo2,
+  AlertCircle,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export const CritterTapAwayContainer: React.FC = () => {
   const [levelNum, setLevelNum] = useState<number>(1);
   const [gameState, setGameState] = useState<CritterTapAwayState>(() => initializeCritterLevel(1));
+  const [history, setHistory] = useState<CritterTapAwayState[]>([]);
   const [isMuted, setIsMuted] = useState<boolean>(() => sound.getMuted());
   const [shakeCritterId, setShakeCritterId] = useState<string | null>(null);
+  const [blockingCritterId, setBlockingCritterId] = useState<string | null>(null);
   const [escapingId, setEscapingId] = useState<string | null>(null);
 
   const startLevel = useCallback((lvl: number) => {
     setLevelNum(lvl);
     setGameState(initializeCritterLevel(lvl));
+    setHistory([]);
     setShakeCritterId(null);
+    setBlockingCritterId(null);
     setEscapingId(null);
   }, []);
 
   const handleToggleSound = () => {
     const muted = sound.toggleMute();
     setIsMuted(muted);
+  };
+
+  const handleUndo = () => {
+    if (history.length === 0 || escapingId !== null || gameState.isWon) return;
+    const prev = history[history.length - 1];
+    setHistory(h => h.slice(0, -1));
+    setGameState(prev);
+    setShakeCritterId(null);
+    setBlockingCritterId(null);
   };
 
   const handleCritterClick = (critterId: string) => {
@@ -50,8 +65,13 @@ export const CritterTapAwayContainer: React.FC = () => {
 
     if (!clear) {
       sound.playCritterBlocked();
+      const blocker = getBlockingCritter(critter, gameState.critters, gameState.gridSize);
       setShakeCritterId(critterId);
-      setTimeout(() => setShakeCritterId(null), 400);
+      setBlockingCritterId(blocker ? blocker.id : null);
+      setTimeout(() => {
+        setShakeCritterId(null);
+        setBlockingCritterId(null);
+      }, 600);
       setGameState(prev => ({ ...prev, moves: prev.moves + 1 }));
       return;
     }
@@ -59,6 +79,11 @@ export const CritterTapAwayContainer: React.FC = () => {
     // Unobstructed - Escape!
     sound.playCritterEscape(critter.type);
     setEscapingId(critterId);
+    setBlockingCritterId(null);
+    setShakeCritterId(null);
+
+    // Record undo state
+    setHistory(prev => [...prev.slice(-15), gameState]);
 
     setTimeout(() => {
       const { nextState } = tapCritter(gameState, critterId);
@@ -82,16 +107,16 @@ export const CritterTapAwayContainer: React.FC = () => {
   return (
     <div className="flex flex-col items-center w-full max-w-md mx-auto p-2 sm:p-4 select-none text-slate-100">
       {/* 1. TOP HEADER & HUD */}
-      <div className="w-full flex items-center justify-between bg-slate-900/95 border border-amber-500/30 rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 mb-2.5 shadow-xl">
+      <div className="w-full flex items-center justify-between bg-slate-900/95 border border-amber-500/30 rounded-2xl px-2.5 py-2 sm:px-4 sm:py-2.5 mb-2.5 shadow-xl">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center p-1 shadow-md border border-emerald-400/40">
-            <span className="text-xl">🐮</span>
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center p-1 shadow-md border border-emerald-400/40">
+            <span className="text-lg sm:text-xl">🐮</span>
           </div>
           <div>
             <div className="text-[10px] font-black uppercase text-emerald-400 tracking-wider">
               Level {gameState.level} of {CRITTER_LEVELS.length}
             </div>
-            <div className="text-sm sm:text-base font-black text-white leading-tight font-mono">
+            <div className="text-xs sm:text-base font-black text-white leading-tight font-mono">
               Escaped: <span className="text-emerald-400">{gameState.escapedCount}</span>
               <span className="text-slate-400 text-xs">/{gameState.initialCritterCount}</span>
             </div>
@@ -99,13 +124,13 @@ export const CritterTapAwayContainer: React.FC = () => {
         </div>
 
         {/* Level Selector & Quick Controls */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-1.5">
           <div className="flex bg-slate-800 p-0.5 rounded-xl border border-slate-700">
             {CRITTER_LEVELS.map(l => (
               <button
                 key={l.level}
                 onClick={() => startLevel(l.level)}
-                className={`px-2 py-1 text-xs font-black rounded-lg transition-all cursor-pointer ${
+                className={`px-1.5 sm:px-2 py-1 text-[11px] sm:text-xs font-black rounded-lg transition-all cursor-pointer ${
                   levelNum === l.level
                     ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 shadow-md font-bold'
                     : 'text-slate-400 hover:text-white'
@@ -117,9 +142,23 @@ export const CritterTapAwayContainer: React.FC = () => {
           </div>
 
           <button
+            onClick={handleUndo}
+            disabled={history.length === 0}
+            aria-label="Undo Move"
+            title="Undo Move"
+            className={`w-9 h-9 sm:w-10 sm:h-10 min-w-[36px] min-h-[36px] rounded-xl border flex items-center justify-center transition-all cursor-pointer ${
+              history.length > 0
+                ? 'bg-slate-800 hover:bg-slate-700 border-slate-700 text-amber-400 hover:text-amber-300'
+                : 'bg-slate-900/60 border-slate-800 text-slate-600 cursor-not-allowed opacity-40'
+            }`}
+          >
+            <Undo2 className="w-4 h-4" />
+          </button>
+
+          <button
             onClick={handleToggleSound}
             aria-label="Toggle Sound"
-            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="w-9 h-9 sm:w-10 sm:h-10 min-w-[36px] min-h-[36px] rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors cursor-pointer"
           >
             {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
           </button>
@@ -127,15 +166,15 @@ export const CritterTapAwayContainer: React.FC = () => {
           <button
             onClick={() => startLevel(levelNum)}
             aria-label="Restart Level"
-            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="w-9 h-9 sm:w-10 sm:h-10 min-w-[36px] min-h-[36px] rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors cursor-pointer"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
         </div>
       </div>
 
-      {/* 2. THE BARNYARD PEN (1:1 Square Grid with Open Fences) */}
-      <div className="relative w-full aspect-square max-w-[390px] bg-amber-950/90 border-4 border-amber-800 rounded-3xl p-2 shadow-2xl overflow-hidden mx-auto touch-none overscroll-none">
+      {/* 2. THE BARNYARD PEN (1:1 Square Grid with Open Pasture Perimeter Fences) */}
+      <div className="relative w-full aspect-square max-w-[390px] bg-amber-950/90 border-4 border-amber-800 rounded-3xl p-2.5 shadow-2xl overflow-hidden mx-auto touch-none overscroll-none">
         {/* Pasture Grass Grid Checkerboard */}
         <div
           className="absolute inset-0 grid opacity-30 pointer-events-none"
@@ -157,18 +196,18 @@ export const CritterTapAwayContainer: React.FC = () => {
           })}
         </div>
 
-        {/* 4 Open Perimeter Gate Exits */}
-        <div className="absolute top-0 inset-x-0 h-3 bg-gradient-to-b from-emerald-500/40 to-transparent pointer-events-none z-10 flex items-center justify-center">
-          <ArrowUp className="w-3 h-3 text-emerald-400/80" />
+        {/* Open Pasture Perimeter Exits (All 4 boundaries are open escape routes) */}
+        <div className="absolute top-0 inset-x-0 h-3 bg-gradient-to-b from-emerald-500/50 to-transparent pointer-events-none z-10 border-t-2 border-dashed border-emerald-400/80 flex items-center justify-around px-3">
+          <span className="text-[9px] font-black tracking-widest text-emerald-300 drop-shadow">▲ OPEN MEADOW EXIT ▲</span>
         </div>
-        <div className="absolute bottom-0 inset-x-0 h-3 bg-gradient-to-t from-emerald-500/40 to-transparent pointer-events-none z-10 flex items-center justify-center">
-          <ArrowDown className="w-3 h-3 text-emerald-400/80" />
+        <div className="absolute bottom-0 inset-x-0 h-3 bg-gradient-to-t from-emerald-500/50 to-transparent pointer-events-none z-10 border-b-2 border-dashed border-emerald-400/80 flex items-center justify-around px-3">
+          <span className="text-[9px] font-black tracking-widest text-emerald-300 drop-shadow">▼ OPEN MEADOW EXIT ▼</span>
         </div>
-        <div className="absolute left-0 inset-y-0 w-3 bg-gradient-to-r from-emerald-500/40 to-transparent pointer-events-none z-10 flex items-center justify-center">
-          <ArrowLeft className="w-3 h-3 text-emerald-400/80" />
+        <div className="absolute left-0 inset-y-0 w-3 bg-gradient-to-r from-emerald-500/50 to-transparent pointer-events-none z-10 border-l-2 border-dashed border-emerald-400/80 flex flex-col items-center justify-around py-3">
+          <span className="text-[8px] font-black tracking-wider text-emerald-300 [writing-mode:vertical-lr] rotate-180 drop-shadow">◀ EXIT</span>
         </div>
-        <div className="absolute right-0 inset-y-0 w-3 bg-gradient-to-l from-emerald-500/40 to-transparent pointer-events-none z-10 flex items-center justify-center">
-          <ArrowRight className="w-3 h-3 text-emerald-400/80" />
+        <div className="absolute right-0 inset-y-0 w-3 bg-gradient-to-l from-emerald-500/50 to-transparent pointer-events-none z-10 border-r-2 border-dashed border-emerald-400/80 flex flex-col items-center justify-around py-3">
+          <span className="text-[8px] font-black tracking-wider text-emerald-300 [writing-mode:vertical-lr] drop-shadow">EXIT ▶</span>
         </div>
 
         {/* RENDER CRITTERS */}
@@ -176,6 +215,7 @@ export const CritterTapAwayContainer: React.FC = () => {
           const config = CRITTER_CONFIGS[critter.type];
           const isClear = isPathClear(critter, gameState.critters, gameState.gridSize);
           const isShaking = shakeCritterId === critter.id;
+          const isBlocker = blockingCritterId === critter.id;
           const isEscaping = escapingId === critter.id;
 
           const leftPercent = (critter.x / gameState.gridSize) * 100;
@@ -221,16 +261,31 @@ export const CritterTapAwayContainer: React.FC = () => {
                 className={`w-full h-full rounded-2xl border-2 sm:border-3 flex flex-col items-center justify-between p-1 shadow-lg relative transition-all active:scale-95 ${
                   config.borderColor
                 } ${
-                  isClear
+                  isBlocker
+                    ? 'ring-4 ring-rose-500 shadow-[0_0_18px_rgba(244,63,94,0.95)] animate-pulse bg-rose-950/90 z-20 scale-105'
+                    : isClear
                     ? 'ring-2 ring-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.6)] bg-slate-900/95 hover:scale-103'
+                    : isShaking
+                    ? 'ring-2 ring-rose-400 bg-rose-950/60'
                     : 'bg-slate-900/80 opacity-90'
                 }`}
               >
+                {/* Visual Blocker Alert Badge */}
+                {isBlocker && (
+                  <div className="absolute -top-1.5 -right-1.5 bg-rose-600 text-white rounded-full p-0.5 shadow-md flex items-center justify-center animate-bounce z-30">
+                    <AlertCircle className="w-3.5 h-3.5" />
+                  </div>
+                )}
+
                 {/* Direction Chevron Badge */}
                 <div
                   className={`w-full flex items-center justify-center p-0.5 rounded-md shadow-sm leading-none ${
-                    isClear
+                    isBlocker
+                      ? 'bg-rose-600 text-white font-black'
+                      : isClear
                       ? 'bg-emerald-500 text-slate-950 font-black animate-pulse'
+                      : isShaking
+                      ? 'bg-rose-500 text-white font-bold'
                       : 'bg-black/50 text-white/70'
                   }`}
                 >
@@ -253,9 +308,9 @@ export const CritterTapAwayContainer: React.FC = () => {
 
       {/* 3. STRATEGY HINT FOOTER */}
       <div className="w-full mt-2.5 text-center text-xs text-slate-300 bg-slate-900/90 border border-slate-800 rounded-xl px-3 py-2 flex items-center justify-center gap-1.5">
-        <Sparkles className="w-4 h-4 text-emerald-400" />
+        <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
         <span>
-          Tap <strong className="text-emerald-400">Green Glowing Animals</strong> whose arrows point to open exits to free them!
+          Tap <strong className="text-emerald-400">Green Glowing Animals</strong> facing open meadow borders. If blocked, the obstacle flashes <strong className="text-rose-400">Red</strong>!
         </span>
       </div>
 

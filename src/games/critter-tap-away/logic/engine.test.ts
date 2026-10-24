@@ -73,4 +73,14 @@ describe('Critter Tap Away: Barn Escape Core Engine', () => {
     expect(result.nextState.isWon).toBe(true);
     expect(result.nextState.critters.length).toBe(0);
   });
+
+  it('guarantees that ALL campaign levels in CRITTER_LEVELS are 100% mathematically solvable to completion', () => {
+    const { CRITTER_LEVELS, isLevelSolvable } = require('./engine');
+    expect(CRITTER_LEVELS.length).toBeGreaterThanOrEqual(4);
+
+    for (const level of CRITTER_LEVELS) {
+      const solvable = isLevelSolvable(level.critters, level.gridSize);
+      expect(solvable).toBe(true);
+    }
+  });
 });

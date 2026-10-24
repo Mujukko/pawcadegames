@@ -118,7 +118,7 @@ export const CRITTER_LEVELS: CritterLevelConfig[] = [
       { id: 'c6', type: 'pig', x: 3, y: 2, direction: 'right' },
     ],
   },
-  // Level 2: Interlocking Ring (5x5, 12 critters)
+  // Level 2: Interlocking Ring (5x5, 12 critters - verified solvable)
   {
     level: 2,
     gridSize: 5,
@@ -133,13 +133,13 @@ export const CRITTER_LEVELS: CritterLevelConfig[] = [
       { id: 'c7', type: 'bunny', x: 0, y: 3, direction: 'left' },
       { id: 'c8', type: 'bunny', x: 0, y: 1, direction: 'left' },
       // Inner core interlocking
-      { id: 'c9', type: 'cow', x: 1, y: 1, direction: 'right' }, // blocked by c10
-      { id: 'c10', type: 'cow', x: 2, y: 1, direction: 'down' },  // blocked by c12
-      { id: 'c11', type: 'cow', x: 1, y: 2, direction: 'up' },    // blocked by c9
-      { id: 'c12', type: 'cow', x: 2, y: 2, direction: 'left' },  // blocked by c11
+      { id: 'c9', type: 'cow', x: 1, y: 1, direction: 'right' },
+      { id: 'c10', type: 'cow', x: 2, y: 1, direction: 'up' },
+      { id: 'c11', type: 'cow', x: 1, y: 2, direction: 'up' },
+      { id: 'c12', type: 'cow', x: 2, y: 2, direction: 'left' },
     ],
   },
-  // Level 3: Deep Barn Maze (6x6, 18 critters)
+  // Level 3: Deep Barn Maze (6x6, 18 critters - verified solvable)
   {
     level: 3,
     gridSize: 6,
@@ -151,7 +151,7 @@ export const CRITTER_LEVELS: CritterLevelConfig[] = [
       { id: 'c4', type: 'sheep', x: 4, y: 1, direction: 'right' },
       // Row 2
       { id: 'c5', type: 'chick', x: 1, y: 2, direction: 'left' },
-      { id: 'c6', type: 'cow', x: 2, y: 2, direction: 'down' },
+      { id: 'c6', type: 'cow', x: 2, y: 2, direction: 'up' },
       { id: 'c7', type: 'pig', x: 3, y: 2, direction: 'left' },
       { id: 'c8', type: 'bunny', x: 4, y: 2, direction: 'right' },
       // Row 3
@@ -169,7 +169,7 @@ export const CRITTER_LEVELS: CritterLevelConfig[] = [
       { id: 'c18', type: 'sheep', x: 5, y: 3, direction: 'right' },
     ],
   },
-  // Level 4: Master Pen (6x6, 22 critters)
+  // Level 4: Master Pen (6x6, 22 critters - verified solvable)
   {
     level: 4,
     gridSize: 6,
@@ -181,21 +181,63 @@ export const CRITTER_LEVELS: CritterLevelConfig[] = [
       { id: 'c5', type: 'bunny', x: 4, y: 0, direction: 'up' },
       { id: 'c6', type: 'chick', x: 5, y: 1, direction: 'right' },
       { id: 'c7', type: 'pig', x: 1, y: 1, direction: 'right' },
-      { id: 'c8', type: 'cow', x: 2, y: 1, direction: 'down' },
-      { id: 'c9', type: 'sheep', x: 3, y: 1, direction: 'left' },
+      { id: 'c8', type: 'cow', x: 2, y: 1, direction: 'up' },
+      { id: 'c9', type: 'sheep', x: 3, y: 1, direction: 'up' },
       { id: 'c10', type: 'bunny', x: 4, y: 1, direction: 'down' },
-      { id: 'c11', type: 'chick', x: 1, y: 2, direction: 'up' },
+      { id: 'c11', type: 'chick', x: 1, y: 2, direction: 'left' },
       { id: 'c12', type: 'pig', x: 2, y: 2, direction: 'right' },
-      { id: 'c13', type: 'cow', x: 3, y: 2, direction: 'left' },
+      { id: 'c13', type: 'cow', x: 3, y: 2, direction: 'right' },
       { id: 'c14', type: 'sheep', x: 4, y: 2, direction: 'down' },
       { id: 'c15', type: 'bunny', x: 1, y: 3, direction: 'down' },
-      { id: 'c16', type: 'chick', x: 2, y: 3, direction: 'up' },
+      { id: 'c16', type: 'chick', x: 2, y: 3, direction: 'down' },
       { id: 'c17', type: 'pig', x: 3, y: 3, direction: 'right' },
       { id: 'c18', type: 'cow', x: 4, y: 3, direction: 'down' },
       { id: 'c19', type: 'sheep', x: 1, y: 5, direction: 'down' },
       { id: 'c20', type: 'bunny', x: 2, y: 5, direction: 'down' },
       { id: 'c21', type: 'chick', x: 3, y: 5, direction: 'down' },
       { id: 'c22', type: 'pig', x: 4, y: 5, direction: 'down' },
+    ],
+  },
+  // Level 5: Grand Clover Labyrinth (6x6, 26 critters - verified solvable)
+  {
+    level: 5,
+    gridSize: 6,
+    critters: [
+      // Border scouts
+      { id: 'c1', type: 'pig', x: 0, y: 0, direction: 'up' },
+      { id: 'c2', type: 'cow', x: 1, y: 0, direction: 'up' },
+      { id: 'c3', type: 'sheep', x: 2, y: 0, direction: 'up' },
+      { id: 'c4', type: 'bunny', x: 3, y: 0, direction: 'up' },
+      { id: 'c5', type: 'chick', x: 4, y: 0, direction: 'up' },
+      { id: 'c6', type: 'pig', x: 5, y: 0, direction: 'right' },
+
+      { id: 'c7', type: 'cow', x: 0, y: 1, direction: 'left' },
+      { id: 'c8', type: 'sheep', x: 5, y: 1, direction: 'right' },
+
+      { id: 'c9', type: 'bunny', x: 0, y: 2, direction: 'left' },
+      { id: 'c10', type: 'chick', x: 5, y: 2, direction: 'right' },
+
+      { id: 'c11', type: 'pig', x: 0, y: 3, direction: 'left' },
+      { id: 'c12', type: 'cow', x: 5, y: 3, direction: 'right' },
+
+      { id: 'c13', type: 'sheep', x: 0, y: 4, direction: 'left' },
+      { id: 'c14', type: 'bunny', x: 5, y: 4, direction: 'right' },
+
+      { id: 'c15', type: 'chick', x: 0, y: 5, direction: 'down' },
+      { id: 'c16', type: 'pig', x: 1, y: 5, direction: 'down' },
+      { id: 'c17', type: 'cow', x: 2, y: 5, direction: 'down' },
+      { id: 'c18', type: 'sheep', x: 3, y: 5, direction: 'down' },
+      { id: 'c19', type: 'bunny', x: 4, y: 5, direction: 'down' },
+      { id: 'c20', type: 'chick', x: 5, y: 5, direction: 'down' },
+
+      // Inner Core Matrix
+      { id: 'c21', type: 'cow', x: 1, y: 2, direction: 'up' },
+      { id: 'c22', type: 'sheep', x: 2, y: 2, direction: 'up' },
+      { id: 'c23', type: 'bunny', x: 3, y: 2, direction: 'right' },
+      { id: 'c24', type: 'chick', x: 4, y: 2, direction: 'right' },
+
+      { id: 'c25', type: 'pig', x: 1, y: 3, direction: 'left' },
+      { id: 'c26', type: 'cow', x: 2, y: 3, direction: 'down' },
     ],
   },
 ];
@@ -306,4 +348,61 @@ export function tapCritter(
     },
     success: true,
   };
+}
+
+/**
+ * Returns the immediate blocking critter obstructing the given critter's escape path.
+ * Used for visual player feedback (shake & flash blocker).
+ */
+export function getBlockingCritter(
+  critter: Critter,
+  allCritters: Critter[],
+  gridSize: number
+): Critter | null {
+  const others = allCritters.filter(c => c.id !== critter.id);
+
+  switch (critter.direction) {
+    case 'up': {
+      for (let y = critter.y - 1; y >= 0; y--) {
+        const found = others.find(c => c.x === critter.x && c.y === y);
+        if (found) return found;
+      }
+      return null;
+    }
+    case 'down': {
+      for (let y = critter.y + 1; y < gridSize; y++) {
+        const found = others.find(c => c.x === critter.x && c.y === y);
+        if (found) return found;
+      }
+      return null;
+    }
+    case 'left': {
+      for (let x = critter.x - 1; x >= 0; x--) {
+        const found = others.find(c => c.x === x && c.y === critter.y);
+        if (found) return found;
+      }
+      return null;
+    }
+    case 'right': {
+      for (let x = critter.x + 1; x < gridSize; x++) {
+        const found = others.find(c => c.x === x && c.y === critter.y);
+        if (found) return found;
+      }
+      return null;
+    }
+  }
+}
+
+/**
+ * Mathematical DAG solver verifying that a given critter configuration
+ * can be solved completely without any deadlock cycles.
+ */
+export function isLevelSolvable(critters: Critter[], gridSize: number): boolean {
+  let remaining = [...critters];
+  while (remaining.length > 0) {
+    const unblockedIndex = remaining.findIndex(c => isPathClear(c, remaining, gridSize));
+    if (unblockedIndex === -1) return false;
+    remaining.splice(unblockedIndex, 1);
+  }
+  return true;
 }
