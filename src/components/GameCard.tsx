@@ -108,6 +108,41 @@ const GAME_FALLBACKS: Record<string, GameVisualConfig> = {
     tagline: 'Chop fresh produce, simmer gourmet ratatouille on stove, and ring the service bell!',
     badgeLabel: 'CHEF RUSH',
   },
+  'sheep-stampede': {
+    icon: '🐕🐑',
+    gradient: 'from-emerald-600 via-teal-700 to-slate-900',
+    glow: 'group-hover:border-emerald-400 group-hover:shadow-emerald-500/30',
+    tagline: 'Steer Buster through positive multiplier gates and stampede into the barn corral!',
+    badgeLabel: 'MOB RUNNER',
+  },
+  'horseshoe-twist': {
+    icon: '🐴🔓',
+    gradient: 'from-amber-600 via-yellow-700 to-stone-900',
+    glow: 'group-hover:border-amber-400 group-hover:shadow-amber-500/30',
+    tagline: 'Rotate concentric rings to align escape notches and unlock the Lucky Horseshoe!',
+    badgeLabel: 'RING UNLOCK',
+  },
+  'egg-buster': {
+    icon: '🐥🥚',
+    gradient: 'from-amber-500 via-orange-600 to-red-800',
+    glow: 'group-hover:border-amber-400 group-hover:shadow-amber-500/30',
+    tagline: 'Pull back slingshot, bounce eggs off milk churns, and topple sneaky foxes!',
+    badgeLabel: 'SLINGSHOT',
+  },
+  'critter-tap-away': {
+    icon: '🐮🐷🐰',
+    gradient: 'from-sky-500 via-indigo-600 to-purple-800',
+    glow: 'group-hover:border-sky-400 group-hover:shadow-sky-500/30',
+    tagline: 'Tap unobstructed farm critters to help them escape into the clover pasture!',
+    badgeLabel: 'TAP AWAY',
+  },
+  'farm-pantry-sort': {
+    icon: '🐿️🍯',
+    gradient: 'from-amber-600 via-amber-700 to-yellow-900',
+    glow: 'group-hover:border-amber-400 group-hover:shadow-amber-500/30',
+    tagline: "Organize Grandma's farm cupboard, slide jars and pies to match 3 on shelves!",
+    badgeLabel: 'GOODS SORT',
+  },
   'cat-cafe-rush': {
     icon: '🧁',
     gradient: 'from-rose-600 via-pink-700 to-slate-900',
@@ -122,6 +157,13 @@ const GAME_FALLBACKS: Record<string, GameVisualConfig> = {
     tagline: 'Roll inside a crystal ball down stunt ramps and collect golden seeds!',
     badgeLabel: 'SOON',
   },
+};
+
+const CATEGORY_STYLES: Record<string, { label: string; badgeClass: string }> = {
+  puzzle: { label: 'Puzzle', badgeClass: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30' },
+  farm: { label: 'Farm', badgeClass: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' },
+  arcade: { label: 'Arcade', badgeClass: 'bg-amber-500/20 text-amber-300 border-amber-500/30' },
+  pets: { label: 'Pets', badgeClass: 'bg-pink-500/20 text-pink-300 border-pink-500/30' },
 };
 
 export const GameCard: React.FC<GameCardProps> = ({ game, onClick }) => {
@@ -219,8 +261,12 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onClick }) => {
           <span className="font-black text-xs sm:text-sm text-white group-hover:text-amber-300 transition-colors truncate">
             {cleanTitle}
           </span>
-          <span className="text-[10px] uppercase font-bold text-slate-300 bg-slate-700/70 px-1.5 py-0.5 rounded shrink-0">
-            {game.category}
+          <span
+            className={`text-[9px] sm:text-[10px] uppercase font-extrabold px-1.5 py-0.5 rounded-md border shrink-0 ${
+              CATEGORY_STYLES[game.category]?.badgeClass || 'bg-slate-700/70 text-slate-300 border-slate-600'
+            }`}
+          >
+            {CATEGORY_STYLES[game.category]?.label || game.category}
           </span>
         </div>
       </button>

@@ -45,16 +45,7 @@ const CATEGORIES: Record<
     metaDescription: 'Play free online puzzle games with zero downloads on Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, Critter Tap Away, and more. Instant play on mobile and PC.',
     h1: 'Free Online Puzzle Games 🧩',
     description: 'Challenge your mind with handcrafted spatial puzzles, sliding block challenges, and logic teasers. Instant play with zero downloads.',
-    filter: (g) =>
-      g.category.toLowerCase().includes('puzzle') ||
-      g.id.includes('2048') ||
-      g.id.includes('tetris') ||
-      g.id.includes('block') ||
-      g.id.includes('sand') ||
-      g.id.includes('parking') ||
-      g.id.includes('sort') ||
-      g.id.includes('tap') ||
-      g.id.includes('twist'),
+    filter: (g) => g.category === 'puzzle' || Boolean(g.categories?.includes('puzzle')),
   },
   farm: {
     name: 'Farm & Barnyard',
@@ -63,16 +54,7 @@ const CATEGORIES: Record<
     metaDescription: 'Play free casual farm games online at Pawcade! Manage farm markets, drive tractors, herd sheep, and harvest crops directly in your browser with no installs.',
     h1: 'Free Online Farm & Barnyard Games 🚜',
     description: 'Experience cozy agricultural life! Run village markets, herd lively sheep, harvest golden crops, and drive tractors in zero-install browser games.',
-    filter: (g) =>
-      g.category.toLowerCase().includes('farm') ||
-      g.id.includes('farm') ||
-      g.id.includes('mart') ||
-      g.id.includes('chicken') ||
-      g.id.includes('sheep') ||
-      g.id.includes('grain') ||
-      g.id.includes('chef') ||
-      g.id.includes('egg') ||
-      g.id.includes('critter'),
+    filter: (g) => g.category === 'farm' || Boolean(g.categories?.includes('farm')),
   },
   arcade: {
     name: 'Arcade & Action',
@@ -81,13 +63,7 @@ const CATEGORIES: Record<
     metaDescription: 'Enjoy free retro-style casual arcade web games on Pawcade! Tap, dodge, flap, and jump in Duck Runner, Flappy Chicken, Egg Buster, and more with zero downloads.',
     h1: 'Free Online Arcade & Tap Games 🕹️',
     description: 'Fast-paced casual reflex games for quick breaks! Dodge obstacles, slingshot eggs, and flap through pastures with instant keyboard and touch controls.',
-    filter: (g) =>
-      g.category.toLowerCase().includes('arcade') ||
-      g.id.includes('runner') ||
-      g.id.includes('chicken') ||
-      g.id.includes('egg') ||
-      g.id.includes('rush') ||
-      g.id.includes('stampede'),
+    filter: (g) => g.category === 'arcade' || Boolean(g.categories?.includes('arcade')),
   },
   pets: {
     name: 'Pets & Animals',
@@ -96,15 +72,7 @@ const CATEGORIES: Record<
     metaDescription: 'Play free cute pet games in your browser on Pawcade! Slide corgis in Dog Parking, save cats in Cat Parking, feed cute critters, and solve cozy animal puzzles.',
     h1: 'Cute Pet & Animal Games Online 🐾',
     description: 'Meet playful corgis, mischievous cats, fluffy sheep, and barnyard animals! Cozy, family-friendly browser games designed for animal lovers of all ages.',
-    filter: (g) =>
-      g.category.toLowerCase().includes('pet') ||
-      g.id.includes('dog') ||
-      g.id.includes('cat') ||
-      g.id.includes('duck') ||
-      g.id.includes('animal') ||
-      g.id.includes('sheep') ||
-      g.id.includes('critter') ||
-      g.id.includes('rat'),
+    filter: (g) => g.category === 'pets' || Boolean(g.categories?.includes('pets')),
   },
 };
 
