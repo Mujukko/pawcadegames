@@ -200,16 +200,18 @@ export interface MartGameState {
 }
 
 export const WORLD_BOUNDS = {
-  minX: 30,
-  maxX: 770,
+  minX: 40,
+  maxX: 1460,
   minY: 40,
-  maxY: 560,
-  entrance: { x: 445, y: 330 },
+  maxY: 1060,
+  width: 1500,
+  height: 1100,
+  entrance: { x: 450, y: 530 },
   checkoutSpots: [
-    { x: 445, y: 295 }, // slot 0 (in front of turquoise counter)
-    { x: 445, y: 330 }, // slot 1
-    { x: 445, y: 365 }, // slot 2
-    { x: 445, y: 400 }, // slot 3
+    { x: 410, y: 460 }, // slot 0 (in front of turquoise counter)
+    { x: 410, y: 495 }, // slot 1
+    { x: 410, y: 530 }, // slot 2
+    { x: 410, y: 565 }, // slot 3 (outside entrance on sidewalk)
   ],
 };
 
@@ -283,10 +285,10 @@ export function createInitialMartState(): MartGameState {
       id: 'plot-tomato',
       product: 'tomato',
       name: 'Tomato Bed',
-      x: 380,
-      y: 360,
+      x: 650,
+      y: 640,
       width: 140,
-      height: 60,
+      height: 70,
       readyCount: 4,
       maxCapacity: 8,
       growTimer: 0,
@@ -297,10 +299,10 @@ export function createInitialMartState(): MartGameState {
       id: 'plot-corn',
       product: 'corn',
       name: 'Corn Bed',
-      x: 550,
-      y: 360,
+      x: 920,
+      y: 640,
       width: 140,
-      height: 60,
+      height: 70,
       readyCount: 0,
       maxCapacity: 8,
       growTimer: 0,
@@ -311,10 +313,10 @@ export function createInitialMartState(): MartGameState {
       id: 'plot-egg',
       product: 'egg',
       name: 'Chicken Coop',
-      x: 200,
-      y: 350,
-      width: 130,
-      height: 80,
+      x: 180,
+      y: 660,
+      width: 150,
+      height: 90,
       readyCount: 0,
       maxCapacity: 6,
       growTimer: 0,
@@ -325,10 +327,10 @@ export function createInitialMartState(): MartGameState {
       id: 'plot-milk',
       product: 'milk',
       name: 'Dairy Pasture',
-      x: 640,
-      y: 250,
-      width: 120,
-      height: 80,
+      x: 1160,
+      y: 640,
+      width: 150,
+      height: 90,
       readyCount: 0,
       maxCapacity: 6,
       growTimer: 0,
@@ -339,9 +341,9 @@ export function createInitialMartState(): MartGameState {
       id: 'plot-pumpkin',
       product: 'pumpkin',
       name: 'Pumpkin Plot 🎃',
-      x: 550,
-      y: 450,
-      width: 120,
+      x: 750,
+      y: 860,
+      width: 140,
       height: 75,
       readyCount: 0,
       maxCapacity: 6,
@@ -356,8 +358,8 @@ export function createInitialMartState(): MartGameState {
       id: 'shelf-tomato',
       product: 'tomato',
       name: 'Tomato Table',
-      x: 410,
-      y: 110,
+      x: 650,
+      y: 340,
       width: 90,
       height: 60,
       currentStock: 4,
@@ -368,8 +370,8 @@ export function createInitialMartState(): MartGameState {
       id: 'shelf-corn',
       product: 'corn',
       name: 'Corn Table',
-      x: 535,
-      y: 110,
+      x: 880,
+      y: 340,
       width: 90,
       height: 60,
       currentStock: 0,
@@ -380,9 +382,9 @@ export function createInitialMartState(): MartGameState {
       id: 'shelf-egg',
       product: 'egg',
       name: 'Egg Table',
-      x: 310,
-      y: 110,
-      width: 80,
+      x: 650,
+      y: 170,
+      width: 90,
       height: 60,
       currentStock: 0,
       maxStock: 8,
@@ -392,10 +394,10 @@ export function createInitialMartState(): MartGameState {
       id: 'shelf-milk',
       product: 'milk',
       name: 'Milk Cooler',
-      x: 310,
-      y: 45,
-      width: 80,
-      height: 55,
+      x: 880,
+      y: 170,
+      width: 90,
+      height: 60,
       currentStock: 0,
       maxStock: 8,
       unlocked: false,
@@ -404,10 +406,10 @@ export function createInitialMartState(): MartGameState {
       id: 'shelf-pumpkin',
       product: 'pumpkin',
       name: 'Pumpkin Stand 🎃',
-      x: 535,
-      y: 45,
+      x: 1080,
+      y: 250,
       width: 90,
-      height: 55,
+      height: 60,
       currentStock: 0,
       maxStock: 6,
       unlocked: false,
@@ -415,9 +417,9 @@ export function createInitialMartState(): MartGameState {
   ];
 
   const register: CashRegister = {
-    x: 390,
-    y: 240,
-    width: 110,
+    x: 350,
+    y: 400,
+    width: 120,
     height: 42,
     coinsOnCounter: 0,
     hasCashier: false,
@@ -430,8 +432,8 @@ export function createInitialMartState(): MartGameState {
       title: 'Unlock Corn Bed',
       cost: 40,
       paid: 0,
-      x: 620,
-      y: 390,
+      x: 990,
+      y: 745,
       radius: 32,
       unlocked: false,
       unlocks: { type: 'plot', targetId: 'plot-corn' },
@@ -441,8 +443,8 @@ export function createInitialMartState(): MartGameState {
       title: 'Unlock Corn Table',
       cost: 30,
       paid: 0,
-      x: 580,
-      y: 140,
+      x: 925,
+      y: 430,
       radius: 28,
       unlocked: false,
       unlocks: { type: 'shelf', targetId: 'shelf-corn' },
@@ -452,8 +454,8 @@ export function createInitialMartState(): MartGameState {
       title: 'Hire Farmhand Dog 🐶',
       cost: 80,
       paid: 0,
-      x: 190,
-      y: 460,
+      x: 450,
+      y: 720,
       radius: 32,
       unlocked: false,
       unlocks: { type: 'helper', targetId: 'helper-dog' },
@@ -463,8 +465,8 @@ export function createInitialMartState(): MartGameState {
       title: 'Unlock Chicken Coop',
       cost: 100,
       paid: 0,
-      x: 265,
-      y: 390,
+      x: 255,
+      y: 785,
       radius: 32,
       unlocked: false,
       unlocks: { type: 'plot', targetId: 'plot-egg' },
@@ -474,8 +476,8 @@ export function createInitialMartState(): MartGameState {
       title: 'Unlock Egg Table',
       cost: 70,
       paid: 0,
-      x: 350,
-      y: 140,
+      x: 695,
+      y: 255,
       radius: 28,
       unlocked: false,
       unlocks: { type: 'shelf', targetId: 'shelf-egg' },
@@ -485,8 +487,8 @@ export function createInitialMartState(): MartGameState {
       title: 'Hire Register Cashier 🧑‍💼',
       cost: 140,
       paid: 0,
-      x: 535,
-      y: 250,
+      x: 250,
+      y: 400,
       radius: 30,
       unlocked: false,
       unlocks: { type: 'cashier', targetId: 'cashier' },
@@ -496,8 +498,8 @@ export function createInitialMartState(): MartGameState {
       title: 'Unlock Dairy Pasture',
       cost: 180,
       paid: 0,
-      x: 700,
-      y: 290,
+      x: 1235,
+      y: 765,
       radius: 32,
       unlocked: false,
       unlocks: { type: 'plot', targetId: 'plot-milk' },
@@ -507,8 +509,8 @@ export function createInitialMartState(): MartGameState {
       title: 'Unlock Milk Cooler',
       cost: 150,
       paid: 0,
-      x: 350,
-      y: 75,
+      x: 925,
+      y: 255,
       radius: 28,
       unlocked: false,
       unlocks: { type: 'shelf', targetId: 'shelf-milk' },
@@ -518,8 +520,8 @@ export function createInitialMartState(): MartGameState {
       title: 'Unlock Pumpkin Plot 🎃',
       cost: 240,
       paid: 0,
-      x: 610,
-      y: 485,
+      x: 820,
+      y: 965,
       radius: 32,
       unlocked: false,
       unlocks: { type: 'plot', targetId: 'plot-pumpkin' },
@@ -529,8 +531,8 @@ export function createInitialMartState(): MartGameState {
       title: 'Unlock Pumpkin Stand 🎃',
       cost: 200,
       paid: 0,
-      x: 580,
-      y: 75,
+      x: 1125,
+      y: 335,
       radius: 28,
       unlocked: false,
       unlocks: { type: 'shelf', targetId: 'shelf-pumpkin' },
@@ -541,10 +543,10 @@ export function createInitialMartState(): MartGameState {
     id: 'helper-dog',
     name: 'Barnaby Dog',
     emoji: '🐶',
-    x: 190,
-    y: 460,
-    targetX: 190,
-    targetY: 460,
+    x: 450,
+    y: 720,
+    targetX: 450,
+    targetY: 720,
     speed: 110,
     capacity: 4,
     stack: [],
@@ -555,8 +557,8 @@ export function createInitialMartState(): MartGameState {
   };
 
   const player: PlayerState = {
-    x: 445,
-    y: 200,
+    x: 410,
+    y: 365,
     vx: 0,
     vy: 0,
     speed: 150,
@@ -565,7 +567,7 @@ export function createInitialMartState(): MartGameState {
     coins: 15,
     totalEarned: 0,
     customersServed: 0,
-    facing: 'up',
+    facing: 'down',
     speedLevel: 1,
     capacityLevel: 1,
   };
@@ -781,8 +783,8 @@ export function updateMartGame(
         }
       } else {
         // Idle near center
-        helper.targetX = 230;
-        helper.targetY = 330;
+        helper.targetX = 450;
+        helper.targetY = 720;
       }
     } else {
       // Stack is full -> go to matching shelf to restock
@@ -862,8 +864,12 @@ export function updateMartGame(
   const regCenterX = register.x + register.width / 2;
   const regCenterY = register.y + register.height / 2;
   // Player is at cashier if standing on cashier mat behind counter or near counter
-  const isBehindCounter = player.x >= 320 && player.x <= 480 && player.y >= register.y - 75 && player.y <= register.y + 15;
-  const isNearRegister = distance(player.x, player.y, regCenterX, regCenterY) < 80;
+  const isBehindCounter =
+    player.x >= register.x - 15 &&
+    player.x <= register.x + register.width + 15 &&
+    player.y >= register.y - 75 &&
+    player.y <= register.y + 15;
+  const isNearRegister = distance(player.x, player.y, regCenterX, regCenterY) < 85;
   const isPlayerAtRegister = isBehindCounter || isNearRegister;
   const isCashierActive = register.hasCashier;
 

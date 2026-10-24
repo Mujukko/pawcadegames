@@ -331,11 +331,11 @@ describe('Farm Mini Mart Core Engine', () => {
 
     it('guarantees cashier mat zone is 100% free of any unlock pads', () => {
       const state = createInitialMartState();
-      // Cashier mat is north of the register: x in [350, 450], y in [360, 420]
-      const cashierMatMinX = 350;
-      const cashierMatMaxX = 450;
-      const cashierMatMinY = 360;
-      const cashierMatMaxY = 420;
+      const reg = state.register;
+      const cashierMatMinX = reg.x;
+      const cashierMatMaxX = reg.x + reg.width;
+      const cashierMatMinY = reg.y - 65;
+      const cashierMatMaxY = reg.y;
 
       for (const pad of state.unlockPads) {
         const insideCashierMat =

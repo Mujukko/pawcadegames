@@ -68,6 +68,12 @@ export const FarmMiniMartContainer: React.FC = () => {
   // Trailing dust particles for running capsule dummy
   const dustParticlesRef = useRef<DustParticle[]>([]);
 
+  // Smooth follow camera for expansive scrolling world (1500 x 1100)
+  const cameraRef = useRef<{ x: number; y: number }>({
+    x: Math.max(0, Math.min(WORLD_BOUNDS.maxX - 800, gameState.player.x - 400)),
+    y: Math.max(0, Math.min(WORLD_BOUNDS.maxY - 600, gameState.player.y - 300)),
+  });
+
   // Sync state reference for animation loop
   const stateRef = useRef<MartGameState>(gameState);
   stateRef.current = gameState;
@@ -207,6 +213,12 @@ export const FarmMiniMartContainer: React.FC = () => {
       const { nextState, events } = updateMartGame(stateRef.current, dt, currentInput);
       stateRef.current = nextState;
 
+      // Smooth camera follow tracking (smooth 60 FPS lerp)
+      const targetCamX = Math.max(0, Math.min(WORLD_BOUNDS.maxX - 800, nextState.player.x - 400));
+      const targetCamY = Math.max(0, Math.min(WORLD_BOUNDS.maxY - 600, nextState.player.y - 300));
+      cameraRef.current.x += (targetCamX - cameraRef.current.x) * 0.12;
+      cameraRef.current.y += (targetCamY - cameraRef.current.y) * 0.12;
+
       // Trigger audio events
       for (const ev of events) {
         if (ev === 'harvest') farmMartAudio.playHarvestSound();
@@ -256,7 +268,8 @@ export const FarmMiniMartContainer: React.FC = () => {
             touchOriginRef.current,
             touchCurrentRef.current,
             moving,
-            dustParticlesRef.current
+            dustParticlesRef.current,
+            cameraRef.current
           );
         }
       }
@@ -382,7 +395,7 @@ export const FarmMiniMartContainer: React.FC = () => {
         {/* Floating Touch Guidance on Canvas */}
         {!touchActive && (
           <div className="sm:hidden absolute bottom-3 left-1/2 -translate-x-1/2 pointer-events-none bg-black/75 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-black text-emerald-300 border border-emerald-500/40 flex items-center gap-2 shadow-lg animate-pulse">
-            <span>👆 Drag thumb anywhere to walk!</span>
+            <span>👆 Drag thumb anywhere to explore!</span>
           </div>
         )}
 
@@ -609,7 +622,7 @@ export const FarmMiniMartContainer: React.FC = () => {
                 <span className="text-2xl">🍅</span>
                 <div>
                   <strong className="text-emerald-300">1. Harvest Crops:</strong>
-                  <p className="text-xs text-slate-400 mt-0.5">Walk near ripe plots (Tomatoes, Corn, Eggs, Milk, Pumpkins) to collect them in your carried backpack stack.</p>
+                  <p className="text-xs text-slate-400 mt-0.5">Explore the farm pastures to harvest ripe crops (Tomatoes, Corn, Eggs, Milk, Pumpkins).</p>
                 </div>
               </div>
 
@@ -617,7 +630,7 @@ export const FarmMiniMartContainer: React.FC = () => {
                 <span className="text-2xl">📦</span>
                 <div>
                   <strong className="text-emerald-300">2. Restock Shelves:</strong>
-                  <p className="text-xs text-slate-400 mt-0.5">Walk to matching display tables in the market with the glowing yellow arrow ⬇️ to stock fresh produce.</p>
+                  <p className="text-xs text-slate-400 mt-0.5">Walk into the spacious mini mart to stock display tables marked with the floating yellow arrow ⬇️.</p>
                 </div>
               </div>
 
@@ -625,7 +638,7 @@ export const FarmMiniMartContainer: React.FC = () => {
                 <span className="text-2xl">🐰</span>
                 <div>
                   <strong className="text-emerald-300">3. Serve Animal Customers:</strong>
-                  <p className="text-xs text-slate-400 mt-0.5">Cute animal capsule customers enter the shop, take items from tables, and line up at the turquoise checkout counter.</p>
+                  <p className="text-xs text-slate-400 mt-0.5">Cute animal capsule customers enter the shop, grab items from tables, and line up at the turquoise checkout counter.</p>
                 </div>
               </div>
 
@@ -633,15 +646,15 @@ export const FarmMiniMartContainer: React.FC = () => {
                 <span className="text-2xl">💵</span>
                 <div>
                   <strong className="text-emerald-300">4. Cash Out & Collect:</strong>
-                  <p className="text-xs text-slate-400 mt-0.5">Stand on the glowing Cashier Mat behind the register to ring up customers. Green cash banknote stacks drop on the counter and are magnetically collected!</p>
+                  <p className="text-xs text-slate-400 mt-0.5">Stand on the Cashier Mat behind the register to ring up customers. Green cash banknote stacks drop on the counter and are collected!</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3 bg-slate-800/60 p-3 rounded-2xl border border-slate-700/60">
                 <span className="text-2xl">🌟</span>
                 <div>
-                  <strong className="text-emerald-300">5. Unlock & Automate:</strong>
-                  <p className="text-xs text-slate-400 mt-0.5">Stand on yellow unlock pads to deposit cash and unlock new crop planter beds, tables, the Farmhand Dog 🐶, and Register Cashier 🧑‍💼.</p>
+                  <strong className="text-emerald-300">5. Unlock & Expand:</strong>
+                  <p className="text-xs text-slate-400 mt-0.5">Deposit cash on yellow unlock pads to unlock new crop fields, tables, the Farmhand Dog 🐶, and Register Cashier 🧑‍💼.</p>
                 </div>
               </div>
             </div>
@@ -731,9 +744,9 @@ function getActiveObjective(state: MartGameState): { icon: string; text: string 
 }
 
 /**
- * Procedural Canvas 2D scene renderer for Farm Mini Mart (My Mini Mart 2.5D Style)
- * Delivers bright sunny lime grass, warm peach store floor, glass architecture,
- * turquoise counter, wooden tables, raised planter beds, cash stacks, and capsule dummy characters!
+ * Procedural Canvas 2D scene renderer for Farm Mini Mart (Spacious Scrolling World 1500x1100)
+ * Includes smooth follow camera, expansive multi-zone layout, mini-map radar,
+ * turquoise checkout counter, separated produce aisles, raised planter beds, cash stacks, and capsule dummies!
  */
 function renderMartScene(
   ctx: CanvasRenderingContext2D,
@@ -742,29 +755,37 @@ function renderMartScene(
   touchOrigin: { x: number; y: number } | null,
   touchCurrent: { x: number; y: number } | null,
   isMoving: boolean,
-  dustParticles: DustParticle[]
+  dustParticles: DustParticle[],
+  camera: { x: number; y: number }
 ) {
   ctx.save();
   ctx.clearRect(0, 0, 800, 600);
 
-  // 1. OUTDOOR SUNNY LIME GREEN PASTURE (My Mini Mart bright lawn)
+  const camX = Math.round(camera.x);
+  const camY = Math.round(camera.y);
+
+  // Apply camera translation for all world elements
+  ctx.save();
+  ctx.translate(-camX, -camY);
+
+  // 1. EXPANSIVE OUTDOOR SUNNY LIME GREEN PASTURE (covers full 1500x1100 world)
   ctx.fillStyle = '#92e434'; // Bright sunny lime green lawn
-  ctx.fillRect(0, 0, 800, 600);
+  ctx.fillRect(0, 0, WORLD_BOUNDS.width, WORLD_BOUNDS.height);
 
   // Subtle checkered lawn stripes
   ctx.fillStyle = 'rgba(255, 255, 255, 0.07)';
-  for (let x = 0; x < 800; x += 40) {
-    for (let y = 0; y < 600; y += 40) {
-      if ((x / 40 + y / 40) % 2 === 0) {
-        ctx.fillRect(x, y, 40, 40);
+  for (let x = 0; x < WORLD_BOUNDS.width; x += 50) {
+    for (let y = 0; y < WORLD_BOUNDS.height; y += 50) {
+      if ((x / 50 + y / 50) % 2 === 0) {
+        ctx.fillRect(x, y, 50, 50);
       }
     }
   }
 
-  // Outdoor paved pathway to shop entrance
+  // Outdoor main paved walkway (Heading from entrance 450, 530 straight south into farm)
   ctx.fillStyle = '#e2e8f0';
   ctx.beginPath();
-  ctx.roundRect(415, 285, 60, 270, 8);
+  ctx.roundRect(415, 520, 70, 480, 8);
   ctx.fill();
   ctx.strokeStyle = '#cbd5e1';
   ctx.lineWidth = 2;
@@ -773,14 +794,23 @@ function renderMartScene(
   // Paved path horizontal joints
   ctx.strokeStyle = '#94a3b8';
   ctx.lineWidth = 1.5;
-  for (let py = 310; py < 550; py += 25) {
+  for (let py = 545; py < 990; py += 25) {
     ctx.beginPath();
     ctx.moveTo(418, py);
-    ctx.lineTo(472, py);
+    ctx.lineTo(482, py);
     ctx.stroke();
   }
 
-  // 2. INDOOR STORE AREA (Warm peach/sand tile floor, glass walls, office room, entrance canopy)
+  // Cross walkway connecting chicken coop (west) and tomato bed (east)
+  ctx.fillStyle = '#e2e8f0';
+  ctx.beginPath();
+  ctx.roundRect(330, 655, 320, 40, 6);
+  ctx.fill();
+  ctx.strokeStyle = '#cbd5e1';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // 2. INDOOR STORE AREA (Spacious 1040x470 peach tile floor, glass walls, office, awning)
   renderModernStoreArchitecture(ctx, time);
 
   // 3. CASHIER MAT (Dedicated Zone Behind Register Counter)
@@ -835,23 +865,29 @@ function renderMartScene(
     renderFloatingNote(ctx, note);
   }
 
-  // 13. FLOATING ANALOG JOYSTICK (On touch drag)
+  ctx.restore(); // Restore world translation
+
+  // Screen-Space Overlays (Fixed to screen viewport):
+  // 1. Floating Analog Joystick (On touch drag)
   if (touchOrigin && touchCurrent) {
     renderFloatingJoystick(ctx, touchOrigin, touchCurrent);
   }
+
+  // 2. World Mini-Map Radar (Top-Right HUD overview)
+  renderWorldMinimap(ctx, state, camX, camY);
 
   ctx.restore();
 }
 
 /**
- * 2. Modern Store Architecture: Peach tile floor, Glass Walls, Office room, Striped Awning
+ * 2. Modern Store Architecture: Spacious 1040x470 Peach Tile Floor, Glass Walls, Office Suite, Entrance Awning
  */
 function renderModernStoreArchitecture(ctx: CanvasRenderingContext2D, time: number) {
   ctx.save();
-  const storeX = 220;
-  const storeY = 20;
-  const storeW = 450;
-  const storeH = 270;
+  const storeX = 180;
+  const storeY = 60;
+  const storeW = 1040;
+  const storeH = 470;
 
   // Store floor shadow
   ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
@@ -865,8 +901,8 @@ function renderModernStoreArchitecture(ctx: CanvasRenderingContext2D, time: numb
   ctx.roundRect(storeX, storeY, storeW, storeH, 10);
   ctx.fill();
 
-  // Floor grid tiles
-  ctx.strokeStyle = 'rgba(217, 119, 6, 0.18)';
+  // Floor grid tiles (30px grid)
+  ctx.strokeStyle = 'rgba(217, 119, 6, 0.15)';
   ctx.lineWidth = 1;
   for (let x = storeX; x <= storeX + storeW; x += 30) {
     ctx.beginPath();
@@ -881,39 +917,39 @@ function renderModernStoreArchitecture(ctx: CanvasRenderingContext2D, time: numb
     ctx.stroke();
   }
 
-  // TOP-LEFT OFFICE ROOM PARTITION (As seen in Screenshot 1)
-  const officeW = 85;
-  const officeH = 175;
-  ctx.fillStyle = 'rgba(254, 215, 170, 0.5)';
+  // TOP-LEFT OFFICE ROOM PARTITION
+  const officeW = 140;
+  const officeH = 200;
+  ctx.fillStyle = 'rgba(254, 215, 170, 0.55)';
   ctx.fillRect(storeX, storeY, officeW, officeH);
 
   // Office interior desk & computer
   ctx.fillStyle = '#92400e'; // Desk
-  ctx.fillRect(storeX + 15, storeY + 45, 50, 24);
+  ctx.fillRect(storeX + 25, storeY + 50, 75, 30);
   ctx.fillStyle = '#0f172a'; // Monitor base
-  ctx.fillRect(storeX + 32, storeY + 48, 16, 12);
+  ctx.fillRect(storeX + 50, storeY + 53, 24, 16);
   ctx.fillStyle = '#38bdf8'; // Glowing PC screen
-  ctx.fillRect(storeX + 34, storeY + 50, 12, 8);
+  ctx.fillRect(storeX + 53, storeY + 55, 18, 10);
   // Swivel Chair
   ctx.fillStyle = '#475569';
   ctx.beginPath();
-  ctx.arc(storeX + 40, storeY + 80, 8, 0, Math.PI * 2);
+  ctx.arc(storeX + 62, storeY + 95, 10, 0, Math.PI * 2);
   ctx.fill();
   // Indoor potted plant
-  ctx.font = '16px sans-serif';
-  ctx.fillText('🪴', storeX + 20, storeY + 145);
+  ctx.font = '20px sans-serif';
+  ctx.fillText('🪴', storeX + 30, storeY + 160);
 
   // Office Glass Divider Wall
   ctx.strokeStyle = '#38bdf8';
-  ctx.lineWidth = 2.5;
+  ctx.lineWidth = 3;
   ctx.beginPath();
   ctx.moveTo(storeX + officeW, storeY);
   ctx.lineTo(storeX + officeW, storeY + officeH);
   ctx.stroke();
-  // Horizontal office wall with door gap
+  // Horizontal office wall with door opening
   ctx.beginPath();
   ctx.moveTo(storeX, storeY + officeH);
-  ctx.lineTo(storeX + 45, storeY + officeH);
+  ctx.lineTo(storeX + 80, storeY + officeH);
   ctx.stroke();
 
   // EXTERIOR STORE GLASS WALLS (Translucent with white/cyan trim)
@@ -938,12 +974,12 @@ function renderModernStoreArchitecture(ctx: CanvasRenderingContext2D, time: numb
   // Front glass wall left section
   ctx.beginPath();
   ctx.moveTo(storeX, storeY + storeH);
-  ctx.lineTo(385, storeY + storeH);
+  ctx.lineTo(370, storeY + storeH);
   ctx.stroke();
 
   // Front glass wall right section
   ctx.beginPath();
-  ctx.moveTo(505, storeY + storeH);
+  ctx.moveTo(530, storeY + storeH);
   ctx.lineTo(storeX + storeW, storeY + storeH);
   ctx.stroke();
 
@@ -953,17 +989,17 @@ function renderModernStoreArchitecture(ctx: CanvasRenderingContext2D, time: numb
   ctx.strokeRect(storeX, storeY, storeW, storeH);
 
   // ENTRANCE AWNING (Red & White Striped Canopy over entrance)
-  const canopyX = 380;
-  const canopyY = 280;
-  const canopyW = 130;
-  const canopyH = 20;
+  const canopyX = 360;
+  const canopyY = 520;
+  const canopyW = 180;
+  const canopyH = 22;
 
   // Shadow under awning
   ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
   ctx.fillRect(canopyX, canopyY + canopyH, canopyW, 6);
 
   // Awning stripes
-  const stripeW = 13;
+  const stripeW = 15;
   const stripeCount = Math.floor(canopyW / stripeW);
   for (let s = 0; s < stripeCount; s++) {
     ctx.fillStyle = s % 2 === 0 ? '#ef4444' : '#ffffff';
@@ -976,10 +1012,10 @@ function renderModernStoreArchitecture(ctx: CanvasRenderingContext2D, time: numb
   ctx.fillStyle = '#ffffff';
   ctx.strokeStyle = '#b91c1c';
   ctx.lineWidth = 2;
-  ctx.font = 'black 9px sans-serif';
+  ctx.font = 'black 10px sans-serif';
   ctx.textAlign = 'center';
-  ctx.strokeText('MINI MART 🛒', canopyX + canopyW / 2, canopyY + 13);
-  ctx.fillText('MINI MART 🛒', canopyX + canopyW / 2, canopyY + 13);
+  ctx.strokeText('MINI MART 🛒', canopyX + canopyW / 2, canopyY + 15);
+  ctx.fillText('MINI MART 🛒', canopyX + canopyW / 2, canopyY + 15);
 
   ctx.restore();
 }
@@ -1792,11 +1828,118 @@ function renderFloatingJoystick(
   ctx.fill();
   ctx.stroke();
 
-  // Subtle center pointer dot
+  // Center pointer dot
   ctx.fillStyle = '#ffffff';
   ctx.beginPath();
   ctx.arc(capX, capY, 4, 0, Math.PI * 2);
   ctx.fill();
+
+  ctx.restore();
+}
+
+/**
+ * 14. World Mini-Map Radar (Screen-Space Top-Right HUD)
+ * Provides high-level spatial awareness of the entire 1500x1100 expanded farm & mini mart
+ */
+function renderWorldMinimap(
+  ctx: CanvasRenderingContext2D,
+  state: MartGameState,
+  camX: number,
+  camY: number
+) {
+  ctx.save();
+  const mapW = 140;
+  const mapH = 95;
+  const mapX = 800 - mapW - 14;
+  const mapY = 14;
+  const scaleX = mapW / WORLD_BOUNDS.width;
+  const scaleY = mapH / WORLD_BOUNDS.height;
+
+  // Background map box
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
+  ctx.strokeStyle = '#10b981';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(mapX, mapY, mapW, mapH, 8);
+  ctx.fill();
+  ctx.stroke();
+
+  // Mini Store Area (Peach rectangle)
+  ctx.fillStyle = '#fed7aa';
+  ctx.fillRect(
+    mapX + 180 * scaleX,
+    mapY + 60 * scaleY,
+    1040 * scaleX,
+    470 * scaleY
+  );
+  ctx.strokeStyle = '#38bdf8';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(
+    mapX + 180 * scaleX,
+    mapY + 60 * scaleY,
+    1040 * scaleX,
+    470 * scaleY
+  );
+
+  // Mini Farm Plots (Green squares)
+  for (const plot of state.plots) {
+    if (!plot.unlocked) continue;
+    ctx.fillStyle = '#22c55e';
+    ctx.fillRect(
+      mapX + plot.x * scaleX,
+      mapY + plot.y * scaleY,
+      Math.max(5, plot.width * scaleX),
+      Math.max(4, plot.height * scaleY)
+    );
+  }
+
+  // Mini Shelves (Amber dots)
+  for (const shelf of state.shelves) {
+    if (!shelf.unlocked) continue;
+    ctx.fillStyle = '#f59e0b';
+    ctx.fillRect(
+      mapX + shelf.x * scaleX,
+      mapY + shelf.y * scaleY,
+      Math.max(4, shelf.width * scaleX),
+      Math.max(3, shelf.height * scaleY)
+    );
+  }
+
+  // Mini Checkout Counter (Turquoise dot)
+  ctx.fillStyle = '#22d3ee';
+  ctx.fillRect(
+    mapX + state.register.x * scaleX,
+    mapY + state.register.y * scaleY,
+    Math.max(5, state.register.width * scaleX),
+    Math.max(3, state.register.height * scaleY)
+  );
+
+  // Camera Viewport Box on Minimap (Shows what is currently on screen)
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(
+    mapX + camX * scaleX,
+    mapY + camY * scaleY,
+    800 * scaleX,
+    600 * scaleY
+  );
+
+  // Player Marker (Cyan/Blue dot with pulse)
+  const px = mapX + state.player.x * scaleX;
+  const py = mapY + state.player.y * scaleY;
+  ctx.fillStyle = '#0284c7';
+  ctx.beginPath();
+  ctx.arc(px, py, 3.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Mini Map Title badge
+  ctx.fillStyle = '#10b981';
+  ctx.font = 'bold 8px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('🗺️ MAP', mapX + 6, mapY + 11);
 
   ctx.restore();
 }
