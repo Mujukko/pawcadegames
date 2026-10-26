@@ -47,7 +47,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     h1: 'Most Popular Free Online Games 🌟',
     description: 'The most played, highest-rated casual browser games on Pawcade. Zero downloads, instant play on mobile and desktop.',
     directAnswer: 'The most popular free browser games on Pawcade are Farm Block Blast, Farm Mini Mart, Dog Parking, and Duck Hunt Classic. These titles feature instant touch controls, clean puzzle mechanics, zero required downloads, and seamless play across mobile phones, tablets, and desktop browsers.',
-    filter: (g) => Boolean(g.featured || g.rating >= 4.9),
+    filter: (g) => Boolean(g.featured),
     faqs: [
       {
         question: 'What are the top games on Pawcade?',

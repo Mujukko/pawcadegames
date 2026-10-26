@@ -67,7 +67,7 @@ const CATEGORY_INFOS: CategoryInfo[] = [
 
 const matchCategory = (game: GameMetadata, cat: CategoryTab): boolean => {
   if (cat === 'all') return true;
-  if (cat === 'popular') return Boolean(game.featured || game.rating >= 4.9);
+  if (cat === 'popular') return Boolean(game.featured);
   return game.category === cat || Boolean(game.categories && game.categories.includes(cat));
 };
 

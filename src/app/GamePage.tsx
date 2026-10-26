@@ -265,7 +265,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   ? 'bg-purple-500/20 text-purple-300 border-purple-500/30'
                   : 'bg-orange-500/20 text-orange-400 border-orange-500/30'
               }`}>
-                {isMahjong ? '🀄 Farm Mahjong Solitaire' : isMemoryMatch ? '🃏 Pet Memory Match' : isDuckHunt ? '🦆 Duck Hunt Classic: Barnyard Shoot' : isSheepStampede ? '🐕 Sheep Stampede: Pasture Rush' : isHorseshoeTwist ? '🐴 Horseshoe Twist: Barn Unlock' : isEggBuster ? '🐥 Egg Buster Slingshot' : isBlockBlast ? '🐶 Farm Block Blast 8x8' : isSheepJam ? '🐑 Sheep Cart Jam: Bus Jam' : isSandFall ? '⏳ Grain Sand Fall Physics' : isChefRat ? '🐭 Chef Rat Rush: Ratatouille Bistro' : isFarmMart ? '🏪 Farm Mini Mart Tycoon' : isDuckRunner ? '🦆🎃 Vampire Duck Runner' : isPetCrush ? '🍬 Spooky Animal Match' : isFlappy ? '👻 Ghost Chicken Flight' : is2048 ? '🦇 Spooky Animal 2048' : isFarmTetris ? '🎃 Haunted Harvest Tetris' : isFarm ? '🐮 Haunted Cow Driving' : isCat ? '🐈‍⬛ Witch Cat Puzzle' : '🦴 Ghost Pup Puzzle'}
+                {game.badge || game.title}
               </span>
               <div className="flex items-center text-amber-400 text-xs font-bold">
                 <Star className="w-3.5 h-3.5 fill-amber-400 mr-1" />

@@ -12,6 +12,7 @@
     "seo:audit": "bun scripts/seo-audit.ts",
     "seo:intel": "bun scripts/seo-intel.ts",
     "seo:monitor": "bun scripts/seo-monitor.ts",
+    "seo:report": "bun scripts/seo-daily-report.ts",
     "seo:indexnow": "bun scripts/indexnow.ts",
     "speedgrapher": "bun scripts/speedgrapher-lint.ts"
   },

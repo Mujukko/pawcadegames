@@ -555,7 +555,7 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     proTip: 'Gentle, rhythmic taps keep Clucky at a steady hover, making tight gate transitions much easier!',
   },
   'animal-2048': {
-    title: 'Animal 2048: Spooky Evolution',
+    title: 'Animal 2048: Safari Merge',
     subtitle: 'Creature Merge & Logic Puzzle',
     mascot: '🐘',
     themeColor: 'from-indigo-500 via-purple-600 to-violet-800',
