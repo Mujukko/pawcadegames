@@ -39,25 +39,57 @@ class AnalyticsService {
       console.log(`[Analytics Event]`, data);
     }
 
-    // Provider hook (e.g. Google Analytics / Plausible / custom endpoint)
-    if (typeof window !== 'undefined' && (window as unknown as { gtag?: Function }).gtag) {
-      try {
-        (window as unknown as { gtag: Function }).gtag('event', event, data);
-      } catch {}
+    // Provider hook (Google Analytics 4 / gtag)
+    if (typeof window !== 'undefined') {
+      const w = window as unknown as { gtag?: Function; dataLayer?: unknown[] };
+      if (typeof w.gtag === 'function') {
+        try {
+          w.gtag('event', event, data);
+        } catch (e) {
+          if (import.meta.env.DEV) {
+            console.warn('[Analytics Error]', e);
+          }
+        }
+      } else if (Array.isArray(w.dataLayer)) {
+        w.dataLayer.push(['event', event, data]);
+      }
     }
   }
 
   public trackPageView(path: string, title?: string): void {
+    const pageTitle = title || (typeof document !== 'undefined' ? document.title : '');
+    const pageLocation = typeof window !== 'undefined' ? window.location.href : '';
+
     if (import.meta.env.DEV) {
-      console.log(`[Analytics PageView]`, { path, title });
+      console.log(`[Analytics PageView]`, { path, title: pageTitle, location: pageLocation });
     }
-    if (typeof window !== 'undefined' && (window as unknown as { gtag?: Function }).gtag) {
-      try {
-        (window as unknown as { gtag: Function }).gtag('config', 'G-6QENGPZ73F', {
-          page_path: path,
-          page_title: title || (typeof document !== 'undefined' ? document.title : ''),
-        });
-      } catch {}
+
+    if (typeof window !== 'undefined') {
+      const w = window as unknown as { gtag?: Function; dataLayer?: unknown[] };
+      if (typeof w.gtag === 'function') {
+        try {
+          // 1. Update ambient configuration so subsequent events inherit the active page path
+          w.gtag('set', {
+            page_path: path,
+            page_title: pageTitle,
+            page_location: pageLocation,
+          });
+
+          // 2. Explicitly dispatch GA4 'page_view' event
+          w.gtag('event', 'page_view', {
+            page_path: path,
+            page_title: pageTitle,
+            page_location: pageLocation,
+          });
+        } catch (e) {
+          if (import.meta.env.DEV) {
+            console.warn('[Analytics Error]', e);
+          }
+        }
+      } else if (Array.isArray(w.dataLayer)) {
+        w.dataLayer.push(['set', { page_path: path, page_title: pageTitle, page_location: pageLocation }]);
+        w.dataLayer.push(['event', 'page_view', { page_path: path, page_title: pageTitle, page_location: pageLocation }]);
+      }
     }
   }
 

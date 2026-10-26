@@ -174,7 +174,7 @@ export const App: React.FC = () => {
       metaDescTag.setAttribute('content', activeDesc);
     }
 
-    analytics.trackPageView(currentRoute);
+    analytics.trackPageView(currentRoute, activeTitle);
   }, [currentRoute]);
 
   const navigate = (path: string) => {
