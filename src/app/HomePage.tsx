@@ -9,7 +9,7 @@ interface HomePageProps {
   initialCategory?: CategoryTab;
 }
 
-export type CategoryTab = 'all' | 'puzzle' | 'farm' | 'arcade' | 'pets';
+export type CategoryTab = 'all' | 'popular' | 'puzzle' | 'farm' | 'arcade' | 'pets';
 export type SortOption = 'popular' | 'rating' | 'az';
 
 interface CategoryInfo {
@@ -26,7 +26,14 @@ const CATEGORY_INFOS: CategoryInfo[] = [
     label: 'All Games',
     icon: '🎮',
     title: 'All Games 🎮',
-    tagline: 'Discover our complete collection of 18 handcrafted browser games. Zero downloads, instant play on mobile & desktop!',
+    tagline: 'Discover our complete collection of 21 handcrafted browser games. Zero downloads, instant play on mobile & desktop!',
+  },
+  {
+    id: 'popular',
+    label: 'Popular Hits',
+    icon: '🌟',
+    title: 'Popular & Trending Games 🌟',
+    tagline: 'The most played, highest-rated free casual web games on Pawcade. Zero downloads, instant play on mobile and PC!',
   },
   {
     id: 'puzzle',
@@ -60,6 +67,7 @@ const CATEGORY_INFOS: CategoryInfo[] = [
 
 const matchCategory = (game: GameMetadata, cat: CategoryTab): boolean => {
   if (cat === 'all') return true;
+  if (cat === 'popular') return Boolean(game.featured || game.rating >= 4.9);
   return game.category === cat || Boolean(game.categories && game.categories.includes(cat));
 };
 
@@ -83,6 +91,7 @@ export const HomePage: React.FC<HomePageProps> = ({
     const playable = GAMES_REGISTRY.filter((g) => g.status === 'playable');
     return {
       all: playable.length,
+      popular: playable.filter((g) => matchCategory(g, 'popular')).length,
       puzzle: playable.filter((g) => matchCategory(g, 'puzzle')).length,
       farm: playable.filter((g) => matchCategory(g, 'farm')).length,
       arcade: playable.filter((g) => matchCategory(g, 'arcade')).length,

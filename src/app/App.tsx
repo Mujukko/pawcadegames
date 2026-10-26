@@ -149,6 +149,9 @@ export const App: React.FC = () => {
     } else if (currentRoute.startsWith('/games/animal-farm-parking') && farmParkingGame) {
       activeTitle = farmParkingGame.metaTitle;
       activeDesc = farmParkingGame.metaDescription;
+    } else if (currentRoute.startsWith('/category/popular') || currentRoute.startsWith('/popular')) {
+      activeTitle = 'Most Popular Free Online Games 🌟 — Top Browser Hits (No Download) | Pawcade';
+      activeDesc = 'Play the most popular free online browser games on Pawcade! Enjoy top trending hits like Farm Mini Mart, Farm Block Blast, Dog Parking, and Duck Hunt with zero downloads.';
     } else if (currentRoute.startsWith('/category/puzzle')) {
       activeTitle = 'Free Online Puzzle Games 🧩 — Brain Teasers & Spatial Puzzles (No Download) | Pawcade';
       activeDesc = 'Play free online puzzle games with zero downloads on Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, Critter Tap Away, and more.';
@@ -200,6 +203,9 @@ export const App: React.FC = () => {
       currentRoute === '/map'
     ) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="all" />;
+    }
+    if (currentRoute.startsWith('/category/popular') || currentRoute.startsWith('/popular')) {
+      return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="popular" />;
     }
     if (currentRoute.startsWith('/category/puzzle')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="puzzle" />;

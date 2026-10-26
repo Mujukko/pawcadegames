@@ -25,19 +25,44 @@ if (existsSync(public404)) {
   console.log('[Pre-render] Successfully deployed dist/404.html for Cloudflare Pages 404 handling.');
 }
 
-// 1. Category Definitions
-const CATEGORIES: Record<
-  string,
-  {
-    name: string;
-    slug: string;
-    metaTitle: string;
-    metaDescription: string;
-    h1: string;
-    description: string;
-    filter: (game: typeof GAMES_REGISTRY[0]) => boolean;
-  }
-> = {
+// 1. Category Definitions (GEO / AEO Enhanced)
+interface CategoryConfig {
+  name: string;
+  slug: string;
+  metaTitle: string;
+  metaDescription: string;
+  h1: string;
+  description: string;
+  directAnswer: string;
+  filter: (game: typeof GAMES_REGISTRY[0]) => boolean;
+  faqs: Array<{ question: string; answer: string }>;
+}
+
+const CATEGORIES: Record<string, CategoryConfig> = {
+  popular: {
+    name: 'Popular Hits',
+    slug: 'popular',
+    metaTitle: 'Most Popular Free Online Games 🌟 — Top Browser Hits (No Download) | Pawcade',
+    metaDescription: 'Play the most popular free online browser games on Pawcade! Enjoy top trending hits like Farm Mini Mart, Farm Block Blast, Dog Parking, and Duck Hunt with zero downloads.',
+    h1: 'Most Popular Free Online Games 🌟',
+    description: 'The most played, highest-rated casual browser games on Pawcade. Zero downloads, instant play on mobile and desktop.',
+    directAnswer: 'The most popular free browser games on Pawcade are Farm Block Blast, Farm Mini Mart, Dog Parking, and Duck Hunt Classic. These titles feature instant touch controls, clean puzzle mechanics, zero required downloads, and seamless play across mobile phones, tablets, and desktop browsers.',
+    filter: (g) => Boolean(g.featured || g.rating >= 4.9),
+    faqs: [
+      {
+        question: 'What are the top games on Pawcade?',
+        answer: 'The highest rated titles include Farm Block Blast (puzzle), Farm Mini Mart (tycoon), Dog Parking (sliding puzzle), and Duck Hunt Classic (arcade reflex). All run instantly in modern web browsers.',
+      },
+      {
+        question: 'Do I need to download or install apps to play popular games on Pawcade?',
+        answer: 'No downloads or installations are needed. All games run directly in your web browser using HTML5 Canvas and Web Audio with instant loading.',
+      },
+      {
+        question: 'Can I play these popular games on iPhone and Android phones?',
+        answer: 'Yes. Every game is mobile optimized with responsive touch controls, zero screen lag, and single-screen viewports.',
+      },
+    ],
+  },
   puzzle: {
     name: 'Puzzles & Brain',
     slug: 'puzzle',
@@ -45,7 +70,22 @@ const CATEGORIES: Record<
     metaDescription: 'Play free online puzzle games with zero downloads! Enjoy Farm Mahjong, Farm Block Blast, Sheep Cart Jam, and Critter Tap Away. Instant play on mobile and PC.',
     h1: 'Free Online Puzzle Games 🧩',
     description: 'Challenge your mind with handcrafted spatial puzzles, sliding block challenges, and logic teasers. Instant play with zero downloads.',
+    directAnswer: 'Pawcade puzzle games offer logic teasers, spatial block clearing, sliding traffic unblocking, and matching games. Standout titles include Farm Block Blast, Farm Mahjong Solitaire, Sheep Cart Jam, and Critter Tap Away.',
     filter: (g) => g.category === 'puzzle' || Boolean(g.categories?.includes('puzzle')),
+    faqs: [
+      {
+        question: 'Which puzzle game is similar to Block Blast or Woodoku?',
+        answer: 'Farm Block Blast features an 8x8 grid where you place polyomino crop shapes to clear full rows and columns for combo streak points.',
+      },
+      {
+        question: 'What is Sheep Cart Jam?',
+        answer: 'Sheep Cart Jam is a spatial parking puzzle inspired by Bus Jam. Players guide color-coded sheep onto matching farm trailers while avoiding gridlocks.',
+      },
+      {
+        question: 'Can I undo moves in Pawcade puzzle games?',
+        answer: 'Yes. Games like Farm Mahjong and Animal 2048 include built-in undo actions and shuffle tools to assist puzzle solving.',
+      },
+    ],
   },
   farm: {
     name: 'Farm & Barnyard',
@@ -54,7 +94,22 @@ const CATEGORIES: Record<
     metaDescription: 'Play free casual farm games online at Pawcade! Manage farm markets, drive tractors, herd sheep, and harvest crops directly in your browser with no installs.',
     h1: 'Free Online Farm & Barnyard Games 🚜',
     description: 'Experience cozy agricultural life! Run village markets, herd lively sheep, harvest golden crops, and drive tractors in zero-install browser games.',
+    directAnswer: 'Free online farm games on Pawcade combine crop harvesting, market management, and barnyard animal puzzles. Players can run a grocery stall in Farm Mini Mart, solve tile matching in Farm Mahjong, steer tractors in Animal Farm Parking, or herd animals in Sheep Stampede without installing any app.',
     filter: (g) => g.category === 'farm' || Boolean(g.categories?.includes('farm')),
+    faqs: [
+      {
+        question: 'What is the best farm market game on Pawcade?',
+        answer: 'Farm Mini Mart is the top farm tycoon game. You plant tomatoes, stock market display stands, collect customer cash, and hire helper staff.',
+      },
+      {
+        question: 'Are there farm puzzle games available?',
+        answer: 'Yes. Pawcade offers Farm Mahjong Solitaire, Farm Block Blast, Farm Pantry Sort, and Grain Sand Fall with agricultural crop and barnyard themes.',
+      },
+      {
+        question: 'Are Pawcade farm games safe and free for kids?',
+        answer: 'Yes. Pawcade games contain zero predatory microtransactions, zero pop-up account requirements, and family-friendly farm animal themes.',
+      },
+    ],
   },
   arcade: {
     name: 'Arcade & Action',
@@ -63,7 +118,22 @@ const CATEGORIES: Record<
     metaDescription: 'Enjoy free retro-style casual arcade web games on Pawcade! Tap, dodge, flap, and jump in Duck Runner, Flappy Chicken, Egg Buster, and more with zero downloads.',
     h1: 'Free Online Arcade & Tap Games 🕹️',
     description: 'Fast-paced casual reflex games for quick breaks! Dodge obstacles, slingshot eggs, and flap through pastures with instant keyboard and touch controls.',
+    directAnswer: 'Pawcade arcade games deliver instant reflex action with simple tap and key controls. Players can shoot retro targets in Duck Hunt Classic, flap between fences in Flappy Chicken, destroy fox fortresses in Egg Buster, and multiply herds in Sheep Stampede.',
     filter: (g) => g.category === 'arcade' || Boolean(g.categories?.includes('arcade')),
+    faqs: [
+      {
+        question: 'Is Duck Hunt Classic playable on mobile touchscreens?',
+        answer: 'Yes. Tap anywhere on the sky to fire your virtual light gun, hit flying ducks before they escape, and rack up high scores across 10 rounds.',
+      },
+      {
+        question: 'What is Egg Buster?',
+        answer: 'Egg Buster is a physics slingshot demolition game where you launch bouncy barnyard eggs to smash wooden crates and defeat sneaky foxes.',
+      },
+      {
+        question: 'Do Pawcade arcade games support keyboard shortcuts?',
+        answer: 'Yes. Desktop players can use Space, Arrow keys, or Mouse Clicks for reflex jumping, aiming, and navigation.',
+      },
+    ],
   },
   pets: {
     name: 'Pets & Animals',
@@ -72,7 +142,22 @@ const CATEGORIES: Record<
     metaDescription: 'Play free cute pet games in your browser on Pawcade! Enjoy Pet Memory Match, Dog Parking, Cat Parking, and cozy animal puzzles with zero downloads on mobile and PC.',
     h1: 'Cute Pet & Animal Games Online 🐾',
     description: 'Meet playful corgis, mischievous cats, fluffy sheep, and barnyard animals! Cozy, family-friendly browser games designed for animal lovers of all ages.',
+    directAnswer: 'Pawcade pet games feature cute dogs, cats, hamsters, and barn critters in family-friendly challenges. Test your memory in Pet Memory Match, slide friendly corgis in Dog Parking, untangle felines in Cat Parking, or roll through obstacle courses in Hamster Ball Dash.',
     filter: (g) => g.category === 'pets' || Boolean(g.categories?.includes('pets')),
+    faqs: [
+      {
+        question: 'What dog games are available on Pawcade?',
+        answer: 'Dog Parking features Corgis, Pugs, and Dalmatians navigating pasture gates. Sheep Stampede features Buster the border collie leading herds.',
+      },
+      {
+        question: 'How does Pet Memory Match work?',
+        answer: 'Pet Memory Match is a classic concentration card game where you flip pairs of cards showing puppies, kittens, hamsters, and bunnies across 4 difficulty levels.',
+      },
+      {
+        question: 'Are these pet games free to play on mobile?',
+        answer: 'Yes. All pet games are free with zero ads during gameplay, responsive touch layouts, and native Web Audio sounds.',
+      },
+    ],
   },
 };
 
@@ -294,7 +379,7 @@ for (const game of playableGames) {
   writeFileSync(targetFile, pageHtml, 'utf-8');
 }
 
-// 3. Generate Pre-rendered Category Hub Pages
+// 3. Generate Pre-rendered Category Hub Pages (GEO / AEO Enhanced)
 for (const [key, cat] of Object.entries(CATEGORIES)) {
   const catDir = resolve(DIST_DIR, `category/${cat.slug}`);
   mkdirSync(catDir, { recursive: true });
@@ -302,22 +387,40 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
   const targetFile = resolve(catDir, 'index.html');
   const catGames = playableGames.filter(cat.filter);
 
+  // Schema.org Graph (CollectionPage + FAQPage for Answer Engine citation)
   const catSchema = JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: cat.metaTitle,
-    description: cat.metaDescription,
-    url: `https://pawcadegames.com/category/${cat.slug}/`,
-    inLanguage: 'en-US',
-    mainEntity: {
-      '@type': 'ItemList',
-      itemListElement: catGames.map((g, idx) => ({
-        '@type': 'ListItem',
-        position: idx + 1,
-        url: `https://pawcadegames.com${g.route}`,
-        name: g.title,
-      })),
-    },
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `https://pawcadegames.com/category/${cat.slug}/#collection`,
+        name: cat.metaTitle,
+        description: cat.metaDescription,
+        url: `https://pawcadegames.com/category/${cat.slug}/`,
+        inLanguage: 'en-US',
+        mainEntity: {
+          '@type': 'ItemList',
+          itemListElement: catGames.map((g, idx) => ({
+            '@type': 'ListItem',
+            position: idx + 1,
+            url: `https://pawcadegames.com${g.route}`,
+            name: g.title,
+          })),
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `https://pawcadegames.com/category/${cat.slug}/#faq`,
+        mainEntity: cat.faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.answer,
+          },
+        })),
+      },
+    ],
   });
 
   const catSemanticContent = `
@@ -328,10 +431,17 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
         <span class="text-orange-400">${cat.name}</span>
       </nav>
 
-      <header class="text-center mb-10">
+      <header class="text-center mb-8">
         <h1 class="text-3xl sm:text-4xl font-black text-white mb-3">${cat.h1}</h1>
-        <p class="text-slate-300 text-base max-w-2xl mx-auto leading-relaxed">${cat.description}</p>
-        <div class="mt-3 text-xs font-bold text-amber-400">Showing ${catGames.length} free games &bull; 100% Free Browser Play &bull; No Download Required</div>
+        <p class="text-slate-300 text-base max-w-2xl mx-auto leading-relaxed mb-4">${cat.description}</p>
+        
+        <!-- GEO / AEO Direct Answer Hook for AI Search Engines -->
+        <div class="p-4 bg-slate-950/90 rounded-2xl border border-amber-400/30 text-left max-w-3xl mx-auto mb-4">
+          <div class="text-[11px] font-black uppercase tracking-wider text-amber-400 mb-1">Quick Answer & Overview</div>
+          <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">${cat.directAnswer}</p>
+        </div>
+
+        <div class="mt-2 text-xs font-bold text-amber-400">Showing ${catGames.length} free games &bull; 100% Free Browser Play &bull; No Download Required</div>
       </header>
 
       <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
@@ -358,6 +468,59 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
           .join('')}
       </section>
 
+      <!-- GEO / AEO Structured Comparative Matrix for AI Citations -->
+      <section class="mt-10 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
+        <h2 class="text-xl font-bold text-white mb-2">${cat.name} Games Comparison</h2>
+        <p class="text-xs text-slate-400 mb-4">Compare key gameplay mechanics, player ratings, and controls across our top free ${cat.name.toLowerCase()} browser games.</p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400">
+                <th class="py-2.5 px-3 font-bold text-amber-400">Game</th>
+                <th class="py-2.5 px-3 font-bold">Genre</th>
+                <th class="py-2.5 px-3 font-bold">Core Mechanic</th>
+                <th class="py-2.5 px-3 font-bold">Rating</th>
+                <th class="py-2.5 px-3 font-bold">Controls</th>
+                <th class="py-2.5 px-3 font-bold">Platform</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-900 text-slate-300">
+              ${catGames
+                .map(
+                  (g) => `
+                <tr class="hover:bg-slate-900/50">
+                  <td class="py-2.5 px-3 font-bold text-white">
+                    <a href="${g.route}" class="hover:text-amber-400 underline decoration-amber-400/40">${g.title}</a>
+                  </td>
+                  <td class="py-2.5 px-3 capitalize">${g.category}</td>
+                  <td class="py-2.5 px-3 text-slate-400">${g.tagline}</td>
+                  <td class="py-2.5 px-3 text-amber-400 font-bold">★ ${g.rating}</td>
+                  <td class="py-2.5 px-3 text-slate-400">${g.controls.touch ? 'Touch / ' : ''}${g.controls.keyboard ? 'Keys' : 'Mouse'}</td>
+                  <td class="py-2.5 px-3 text-emerald-400 font-semibold">Web / Mobile</td>
+                </tr>`
+                )
+                .join('')}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- GEO / AEO Semantic Q&A for Answer Engine Extraction -->
+      <section class="mt-8 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
+        <h2 class="text-xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          ${cat.faqs
+            .map(
+              (faq) => `
+            <div class="border-b border-slate-800/80 pb-3 last:border-0 last:pb-0">
+              <h3 class="text-sm font-bold text-amber-300 mb-1">${faq.question}</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">${faq.answer}</p>
+            </div>`
+            )
+            .join('')}
+        </div>
+      </section>
+
       <footer class="mt-12 text-center text-xs text-slate-400 border-t border-slate-800 pt-6">
         <a href="/" class="text-amber-400 hover:underline font-bold">← Back to All Pawcade Games</a>
       </footer>
@@ -382,6 +545,19 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
     .replace('<div id="root"></div>', catSemanticContent);
 
   writeFileSync(targetFile, catHtml, 'utf-8');
+
+  // Also pre-render /popular/ root alias if cat.slug is popular
+  if (cat.slug === 'popular') {
+    const popDir = resolve(DIST_DIR, 'popular');
+    mkdirSync(popDir, { recursive: true });
+    const popHtml = catHtml
+      .replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="https://pawcadegames.com/popular/" />`)
+      .replace(/<link rel="alternate" hreflang="en-US" href=".*?" \/>/, `<link rel="alternate" hreflang="en-US" href="https://pawcadegames.com/popular/" />`)
+      .replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/, `<link rel="alternate" hreflang="x-default" href="https://pawcadegames.com/popular/" />`)
+      .replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="https://pawcadegames.com/popular/" />`)
+      .replace(/<meta property="twitter:url" content=".*?" \/>/, `<meta property="twitter:url" content="https://pawcadegames.com/popular/" />`);
+    writeFileSync(resolve(popDir, 'index.html'), popHtml, 'utf-8');
+  }
 }
 
 // 4. Enhance Root dist/index.html with pre-rendered semantic directory and categories for crawlers
@@ -393,6 +569,7 @@ const homeSemanticContent = `
         <p class="text-slate-300 text-base max-w-2xl mx-auto">Instant play animal & farm casual web games. No downloads, no installations, 100% free on desktop, mobile, and Chromebook.</p>
         
         <nav aria-label="Quick Category Hubs" class="mt-4 flex flex-wrap justify-center gap-2 text-xs font-bold">
+          <a href="/popular/" class="px-3 py-1.5 bg-amber-400 text-slate-950 hover:bg-amber-300 rounded-xl font-black">🌟 Popular Hits</a>
           <a href="/category/puzzle/" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-amber-300 border border-slate-700">🧩 Puzzle Games</a>
           <a href="/category/farm/" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-amber-300 border border-slate-700">🌾 Farm Games</a>
           <a href="/category/arcade/" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-amber-300 border border-slate-700">⚡ Arcade Games</a>
@@ -421,4 +598,4 @@ const homeSemanticContent = `
 const updatedHomeHtml = template.replace('<div id="root"></div>', homeSemanticContent);
 writeFileSync(TEMPLATE_PATH, updatedHomeHtml, 'utf-8');
 
-console.log(`[Pre-render] Successfully pre-rendered ${playableGames.length} game routes + 4 category hubs + root homepage!`);
+console.log(`[Pre-render] Successfully pre-rendered ${playableGames.length} game routes + 5 category/popular hubs + root homepage!`);
