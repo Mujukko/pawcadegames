@@ -1,4 +1,4 @@
-import { runSeoAudit } from './seo-audit';
+import { runUnifiedAudit } from './seo-audit';
 import { runSeoIntel, COMPETITOR_BENCHMARKS, GOOGLE_TRENDS_US_CLUSTERS } from './seo-intel';
 import { writeFileSync, appendFileSync, existsSync, mkdirSync } from 'fs';
 import { resolve } from 'path';
@@ -22,13 +22,13 @@ export function runPeriodicMonitoringCycle(): SentinelReport {
   }
 
   // 1. Run SEO On-Page & Schema Audit
-  const auditResult = runSeoAudit();
+  const auditResult = runUnifiedAudit();
   
   // 2. Refresh Competitor & Trend Intelligence
   runSeoIntel();
 
   // 3. Compute Metrics
-  const totalScore = auditResult.results.reduce((acc, r) => acc + r.relevanceScore, 0);
+  const totalScore = auditResult.results.reduce((acc, r) => acc + r.totalWeightedScore, 0);
   const avgScore = Math.round(totalScore / auditResult.results.length);
   const criticalIssues = auditResult.results.filter(r => r.issues.length > 0);
   
