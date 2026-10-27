@@ -16,7 +16,7 @@ export interface SentinelReport {
   dailyReportPath?: string;
 }
 
-export function runPeriodicMonitoringCycle(): SentinelReport {
+export async function runPeriodicMonitoringCycle(): Promise<SentinelReport> {
   const rootDir = resolve(__dirname, '..');
   const seoDocsDir = resolve(rootDir, 'docs/seo');
   if (!existsSync(seoDocsDir)) {
@@ -26,8 +26,8 @@ export function runPeriodicMonitoringCycle(): SentinelReport {
   // 1. Run SEO On-Page & Schema Audit
   const auditResult = runUnifiedAudit();
 
-  // 2. Generate Structured Daily Report & Archive
-  const dailyReport = generateDailyExecutiveReport();
+  // 2. Generate Structured Daily Report & Archive (including live traffic if configured)
+  const dailyReport = await generateDailyExecutiveReport();
   
   // 3. Refresh Competitor & Trend Intelligence
   runSeoIntel();
@@ -99,6 +99,6 @@ export function runPeriodicMonitoringCycle(): SentinelReport {
 }
 
 if (import.meta.main) {
-  const report = runPeriodicMonitoringCycle();
+  const report = await runPeriodicMonitoringCycle();
   console.log(report.executiveBrief);
 }

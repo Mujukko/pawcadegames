@@ -32,3 +32,10 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # Finder (MacOS) folder config
 .DS_Store
+
+# Google Cloud Service Account & API credentials
+service-account*.json
+*credentials*.json
+*.xlsx
+*.csv
+!scratch/top_apps_utf8.csv

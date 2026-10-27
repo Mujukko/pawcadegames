@@ -1,5 +1,6 @@
 import { runUnifiedAudit } from './seo-audit';
 import { runSeoIntel, COMPETITOR_BENCHMARKS, GOOGLE_TRENDS_US_CLUSTERS } from './seo-intel';
+import { fetchLiveTrafficSnapshot, TrafficSnapshot } from './fetch-traffic';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { resolve } from 'path';
 
@@ -13,11 +14,12 @@ export interface DailyExecutiveReport {
   geoAeoStatus: string;
   aiBotsAllowed: string[];
   trendingKeywords: string[];
+  trafficSnapshot: TrafficSnapshot;
   reportFilePath: string;
   turkishSummary: string;
 }
 
-export function generateDailyExecutiveReport(): DailyExecutiveReport {
+export async function generateDailyExecutiveReport(): Promise<DailyExecutiveReport> {
   const rootDir = resolve(__dirname, '..');
   const reportsDir = resolve(rootDir, 'docs/seo/reports');
   if (!existsSync(reportsDir)) {
@@ -52,13 +54,40 @@ export function generateDailyExecutiveReport(): DailyExecutiveReport {
 
   const geoAeoReady = allowedAiBots.length === aiBots.length && popularInSitemap;
 
-  // 4. Construct Markdown Daily Report
+  // 4. Fetch Live Google Traffic (GSC & GA4)
+  const traffic = await fetchLiveTrafficSnapshot();
+
+  // 5. Construct Markdown Daily Report
   const reportFileName = `DAILY_REPORT_${dateStr}.md`;
   const reportFilePath = resolve(reportsDir, reportFileName);
 
   const topOpportunities = COMPETITOR_BENCHMARKS.flatMap((c) =>
     c.pawcadeMatch.map((m) => `\`${m.gameId}\`: ${m.suggestedKeyword}`)
   ).slice(0, 5);
+
+  let trafficSection = '';
+  if (traffic.authenticated) {
+    trafficSection = `
+## 3. 🚦 Canlı Trafik & Google Arama Verisi (GA4 & GSC)
+- **GA4 Anlık Aktif Kullanıcı (Realtime):** **${traffic.ga4Realtime?.activeUsers || 0}**
+- **GA4 Son 7 Günlük Toplam Ziyaretçi:** **${traffic.ga4Historical?.totalUsers || 0}** (${traffic.ga4Historical?.screenPageViews || 0} sayfa gösterimi)
+- **GSC Son 28 Günlük Tıklama (Clicks):** **${traffic.gscTotals?.clicks || 0}**
+- **GSC Son 28 Günlük Gösterim (Impressions):** **${traffic.gscTotals?.impressions || 0}** (Ort. Pozisyon: ${traffic.gscTotals?.avgPosition || 0})
+
+### En Çok Tıklanan / Gösterilen İlk 5 Arama Sorgusu:
+| Arama Sorgusu | Tıklama | Gösterim | CTR | Ortalama Pozisyon |
+| :--- | :---: | :---: | :---: | :---: |
+${(traffic.gscTopQueries || [])
+  .slice(0, 5)
+  .map((r) => `| \`${r.query}\` | ${r.clicks} | ${r.impressions} | %${r.ctr} | ${r.position} |`)
+  .join('\n')}
+`;
+  } else {
+    trafficSection = `
+## 3. 🚦 Canlı Trafik & Search Console Entegrasyonu
+- **Durum:** ⚠️ *Otomatik API çekim motoru hazır (\`bun run seo:traffic\`). Projeye \`service-account.json\` eklendiğinde canlı rakamlar bu bölüme otomatik yazılacaktır.*
+`;
+  }
 
   const mdContent = `# 👑 Pawcade Daily SEO & AI Search Executive Report
 **Tarih:** ${dateStr}  
@@ -87,15 +116,17 @@ export function generateDailyExecutiveReport(): DailyExecutiveReport {
 - **FAQPage & CollectionPage JSON-LD Şeması:** ✅ Aktif (@graph yapısı geçerli)
 
 ---
+${trafficSection}
+---
 
-## 3. 📈 Google Trends & ABD Arama Trendleri
+## 4. 📈 Google Trends & ABD Arama Trendleri
 - **Aktif İzlenen Arama Kümeleri:** ${GOOGLE_TRENDS_US_CLUSTERS.length} Trend Kümesi
 - **Öncelikli ABD Anahtar Kelime Fırsatları:**
 ${topOpportunities.map((op) => `  - ${op}`).join('\n')}
 
 ---
 
-## 4. 📋 Oyun Bazlı Hızlı Skor Özeti
+## 5. 📋 Oyun Bazlı Hızlı Skor Özeti
 | Oyun ID | Skor | Okunabilirlik (Fog) | Slop | Şema | Durum |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 ${auditResult.results
@@ -111,13 +142,18 @@ ${auditResult.results
 
   writeFileSync(reportFilePath, mdContent, 'utf-8');
 
-  // 5. Construct Clean Turkish Executive Summary for Chat
+  // 6. Construct Clean Turkish Executive Summary for Chat
+  const trafficChatLine = traffic.authenticated
+    ? `🚦 **Canlı Veri:** GA4 Anlık ${traffic.ga4Realtime?.activeUsers || 0} aktif kullanıcı, GSC ${traffic.gscTotals?.clicks || 0} tıklama / ${traffic.gscTotals?.impressions || 0} gösterim.`
+    : `🚦 **Canlı Veri Durumu:** Otomatik çekim motoru hazır (\`bun run seo:traffic\`). \`service-account.json\` tanımlandığında anlık çekilecek.`;
+
   const turkishSummary = `### 👑 Pawcade Günlük SEO & AI Arama (GEO) Raporu — ${dateStr}
 
 📊 **Genel Durum:** 🟢 **%100 Sağlıklı** (Ortalama Skor: **${avgScore}/100**)
 🎮 **İncelenen Oyun:** 21 Oyunun tamamı 7 SEO sütunundan ve Speedgrapher denetiminden geçti.
 ✍️ **Metin Kalitesi:** Ortalama Gunning Fog **${avgFog}** (ABD 6.-8. sınıf standardı), Yapay Zeka Klişe Skoru **0/100** (Slop-free).
 🤖 **AI Arama (ChatGPT, Perplexity, Copilot):** Canlı indeksleme botlarına tam yetki verildi, \`/popular/\` ve semantik karşılaştırma tabloları devrede.
+${trafficChatLine}
 📈 **Trend Odak:** En yüksek dönüşüm "farm-mini-mart: free farm market idle tycoon online" kümesinde.
 📁 **Rapor Arşivi:** \`docs/seo/reports/${reportFileName}\` dosyasına kaydedildi.`;
 
@@ -131,12 +167,14 @@ ${auditResult.results
     geoAeoStatus: geoAeoReady ? 'READY' : 'PARTIAL',
     aiBotsAllowed: allowedAiBots,
     trendingKeywords: topOpportunities,
+    trafficSnapshot: traffic,
     reportFilePath,
     turkishSummary,
   };
 }
 
 if (import.meta.main) {
-  const report = generateDailyExecutiveReport();
-  console.log(report.turkishSummary);
+  generateDailyExecutiveReport().then((report) => {
+    console.log(report.turkishSummary);
+  });
 }
