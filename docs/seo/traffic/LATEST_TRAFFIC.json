@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-10-27T10:26:18.910Z",
+  "authenticated": true,
+  "source": "api",
+  "ga4Realtime": {
+    "activeUsers": 0,
+    "topPages": []
+  },
+  "ga4Historical": {
+    "totalUsers": 0,
+    "screenPageViews": 0,
+    "sessions": 0,
+    "topPages": []
+  },
+  "gscTotals": {
+    "clicks": 0,
+    "impressions": 0,
+    "avgCtr": 0,
+    "avgPosition": 0
+  },
+  "gscTopQueries": [],
+  "summaryMessage": "✅ Canlı trafik verileri GA4 (560318238) ve GSC (Pawcade) üzerinden başarıyla çekildi."
+}

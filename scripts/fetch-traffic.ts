@@ -132,7 +132,7 @@ async function fetchGscAnalytics(accessToken: string): Promise<{
 
   for (const siteUrl of siteCandidates) {
     const encoded = encodeURIComponent(siteUrl);
-    const url = `https://searchconsole.googleapis.com/v1/sites/${encoded}/searchAnalytics/query`;
+    const url = `https://www.googleapis.com/webmasters/v3/sites/${encoded}/searchAnalytics/query`;
 
     const res = await fetch(url, {
       method: 'POST',
@@ -168,6 +168,14 @@ async function fetchGscAnalytics(accessToken: string): Promise<{
       }));
 
       return { rows, siteUrlUsed: siteUrl };
+    } else {
+      const errText = await res.text();
+      try {
+        const parsed = JSON.parse(errText);
+        if (parsed.error?.message) {
+          console.warn(`[Traffic Engine] GSC warning for ${siteUrl}: ${parsed.error.message}`);
+        }
+      } catch {}
     }
   }
 
@@ -206,6 +214,14 @@ async function fetchGa4Reports(
       topPages.push({ pagePath: page, activeUsers: users });
     });
     realtime = { activeUsers: totalActive, topPages };
+  } else {
+    const errText = await realtimeRes.text();
+    try {
+      const parsed = JSON.parse(errText);
+      if (parsed.error?.message) {
+        console.warn(`[Traffic Engine] GA4 Realtime error: ${parsed.error.message}`);
+      }
+    } catch {}
   }
 
   // 2. 7-Day Historical Report
