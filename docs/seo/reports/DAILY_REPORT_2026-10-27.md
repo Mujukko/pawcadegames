@@ -1,6 +1,6 @@
 # 👑 Pawcade Daily SEO & AI Search Executive Report
 **Tarih:** 2026-10-27  
-**Saat:** 13:10:06 (GMT+3)  
+**Saat:** 21:30:47 (GMT+3)  
 **Denetçi Ajanlar:** `seo-sentinel` • `agentic-seo-strategist` • `speedgrapher-supervisor`  
 **Site:** [Pawcade Games](https://pawcadegames.com/)
 
@@ -8,9 +8,9 @@
 
 ## 1. 📊 Genel Sağlık & Skor Tablosu
 - **Ortalama SEO Skoru:** **100/100** 🟢 Mükemmel
-- **İzlenen Aktif Oyun Sayısı:** **23 Oyun**
+- **İzlenen Aktif Oyun Sayısı:** **27 Oyun**
 - **7-Pillar Kanonik Denetim:** ✅ TÜM TESTLER GEÇTİ
-- **Speedgrapher Okunabilirlik (Gunning Fog):** **9.0** (Hedef: 6.0 – 8.5 US 6th-8th Grade)
+- **Speedgrapher Okunabilirlik (Gunning Fog):** **8.7** (Hedef: 6.0 – 8.5 US 6th-8th Grade)
 - **Yapay Zeka Klişesi (Slop Skoru):** **0/100** (Hedef: < 15, Veto Eşiği: 20)
 
 ---
@@ -26,8 +26,16 @@
 
 ---
 
-## 3. 🚦 Canlı Trafik & Search Console Entegrasyonu
-- **Durum:** ⚠️ *Otomatik API çekim motoru hazır (`bun run seo:traffic`). Projeye `service-account.json` eklendiğinde canlı rakamlar bu bölüme otomatik yazılacaktır.*
+## 3. 🚦 Canlı Trafik & Google Arama Verisi (GA4 & GSC)
+- **GA4 Anlık Aktif Kullanıcı (Realtime):** **0**
+- **GA4 Son 7 Günlük Toplam Ziyaretçi:** **54** (196 sayfa gösterimi)
+- **GSC Son 28 Günlük Tıklama (Clicks):** **1**
+- **GSC Son 28 Günlük Gösterim (Impressions):** **1** (Ort. Pozisyon: 4)
+
+### En Çok Tıklanan / Gösterilen İlk 5 Arama Sorgusu:
+| Arama Sorgusu | Tıklama | Gösterim | CTR | Ortalama Pozisyon |
+| :--- | :---: | :---: | :---: | :---: |
+| `pawcade` | 1 | 1 | %100 | 4 |
 
 ---
 
@@ -68,6 +76,10 @@
 | `animal-farm-parking` | 100/100 | 8.6 | 0 | ✅ | 🟢 Mükemmel |
 | `barnyard-tower` | 100/100 | 7.7 | 0 | ✅ | 🟢 Mükemmel |
 | `gopher-garden` | 100/100 | 6.1 | 0 | ✅ | 🟢 Mükemmel |
+| `farm-fruit-bubble` | 100/100 | 6.1 | 0 | ✅ | 🟢 Mükemmel |
+| `pasture-sheep-jump` | 100/100 | 8.2 | 0 | ✅ | 🟢 Mükemmel |
+| `hungry-piggy` | 100/100 | 7.1 | 0 | ✅ | 🟢 Mükemmel |
+| `duck-pond-sort` | 100/100 | 7.2 | 0 | ✅ | 🟢 Mükemmel |
 
 ---
 *Bu rapor `seo-sentinel` tarafından her gün 21:00'de otomatik olarak oluşturulur ve arşivlenir.*

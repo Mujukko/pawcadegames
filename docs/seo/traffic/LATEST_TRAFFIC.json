@@ -1,29 +1,29 @@
 {
-  "timestamp": "2026-10-27T10:57:34.679Z",
+  "timestamp": "2026-10-27T18:30:47.457Z",
   "authenticated": true,
   "source": "api",
   "ga4Realtime": {
-    "activeUsers": 1,
-    "topPages": [
-      {
-        "pagePath": "Cat Parking: Kitty Meadow Escape 🐈‍⬛ — Free Online Cat Puzzle | Pawcade",
-        "activeUsers": 1
-      }
-    ]
+    "activeUsers": 0,
+    "topPages": []
   },
   "ga4Historical": {
-    "totalUsers": 51,
-    "screenPageViews": 180,
-    "sessions": 63,
+    "totalUsers": 54,
+    "screenPageViews": 196,
+    "sessions": 70,
     "topPages": [
       {
         "pagePath": "/",
-        "views": 129,
-        "users": 48
+        "views": 137,
+        "users": 51
       },
       {
         "pagePath": "/games/cat-parking/",
-        "views": 3,
+        "views": 5,
+        "users": 4
+      },
+      {
+        "pagePath": "/games/sheep-cart-jam/",
+        "views": 11,
         "users": 3
       },
       {
@@ -64,11 +64,6 @@
       {
         "pagePath": "/games/pet-candy-crush/",
         "views": 2,
-        "users": 2
-      },
-      {
-        "pagePath": "/games/sheep-cart-jam/",
-        "views": 6,
         "users": 2
       },
       {
