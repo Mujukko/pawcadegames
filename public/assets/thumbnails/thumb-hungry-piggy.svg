@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pastureBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e" />
+      <stop offset="60%" stop-color="#16a34a" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+    <linearGradient id="piggyPink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbcfe8" />
+      <stop offset="40%" stop-color="#f472b6" />
+      <stop offset="100%" stop-color="#db2777" />
+    </linearGradient>
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+    <filter id="piggyShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#052e16" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Pasture Background -->
+  <rect width="512" height="512" rx="48" fill="url(#pastureBg)" />
+
+  <!-- Farm Grid Checker Texture -->
+  <path d="M 0 60 L 512 60 M 0 120 L 512 120 M 0 180 L 512 180 M 0 240 L 512 240 M 0 300 L 512 300 M 0 360 L 512 360 M 0 420 L 512 420" stroke="#15803d" stroke-width="4" opacity="0.3" />
+  <path d="M 60 0 L 60 512 M 120 0 L 120 512 M 180 0 L 180 512 M 240 0 L 240 512 M 300 0 L 300 512 M 360 0 L 360 512 M 420 0 L 420 512" stroke="#15803d" stroke-width="4" opacity="0.3" />
+
+  <!-- Wooden Fence Edge -->
+  <rect x="16" y="16" width="480" height="480" rx="36" fill="none" stroke="#78350f" stroke-width="8" opacity="0.7" />
+
+  <!-- Food Items Scattering Around Arena -->
+  <!-- Crisp Red Apple -->
+  <g transform="translate(90, 110)" filter="url(#piggyShadow)">
+    <circle cx="0" cy="0" r="28" fill="#ef4444" stroke="#991b1b" stroke-width="4" />
+    <path d="M 0 -24 Q 10 -40 22 -32" stroke="#16a34a" stroke-width="6" fill="none" stroke-linecap="round" />
+    <circle cx="-8" cy="-8" r="6" fill="#fca5a5" />
+  </g>
+
+  <!-- Crunchy Orange Carrot -->
+  <g transform="translate(420, 130) rotate(35)" filter="url(#piggyShadow)">
+    <polygon points="0,32 -18,-18 18,-18" fill="#f97316" stroke="#c2410c" stroke-width="4" />
+    <rect x="-10" y="-36" width="20" height="18" rx="4" fill="#22c55e" stroke="#15803d" stroke-width="3" />
+  </g>
+
+  <!-- Big Plump Pumpkin -->
+  <g transform="translate(100, 390)" filter="url(#piggyShadow)">
+    <ellipse cx="0" cy="0" rx="36" ry="30" fill="#ea580c" stroke="#9a3412" stroke-width="5" />
+    <ellipse cx="-16" cy="0" rx="20" ry="28" fill="#f97316" />
+    <ellipse cx="16" cy="0" rx="20" ry="28" fill="#f97316" />
+    <rect x="-6" y="-38" width="12" height="14" rx="3" fill="#15803d" stroke="#14532d" stroke-width="3" />
+  </g>
+
+  <!-- Miniature Green Tractor -->
+  <g transform="translate(410, 380)" filter="url(#piggyShadow)">
+    <rect x="-30" y="-18" width="60" height="36" rx="6" fill="#22c55e" stroke="#15803d" stroke-width="4" />
+    <rect x="-12" y="-32" width="26" height="16" rx="4" fill="#e2e8f0" stroke="#64748b" stroke-width="3" />
+    <circle cx="-20" cy="18" r="14" fill="#1e293b" stroke="#0f172a" stroke-width="4" />
+    <circle cx="20" cy="18" r="14" fill="#1e293b" stroke="#0f172a" stroke-width="4" />
+  </g>
+
+  <!-- Barnaby the Hungry Piggy Center Stage -->
+  <g transform="translate(256, 260)" filter="url(#piggyShadow)">
+    <!-- Motion Wind Ripple Rings -->
+    <circle cx="0" cy="0" r="120" fill="none" stroke="#ffffff" stroke-width="4" stroke-dasharray="16 12" opacity="0.3" />
+
+    <!-- Curly Tail -->
+    <path d="M -80 10 Q -110 -10 -95 -30 Q -80 -45 -65 -25" fill="none" stroke="#db2777" stroke-width="10" stroke-linecap="round" />
+
+    <!-- Large Chubby Pink Body -->
+    <circle cx="0" cy="0" r="88" fill="url(#piggyPink)" stroke="#be185d" stroke-width="7" />
+
+    <!-- Golden Boss Crown -->
+    <path d="M -35 -85 L -45 -135 L -15 -110 L 0 -145 L 15 -110 L 45 -135 L 35 -85 Z" fill="url(#goldGlow)" stroke="#a16207" stroke-width="5" />
+    <circle cx="0" cy="-145" r="7" fill="#ef4444" stroke="#991b1b" stroke-width="2" />
+
+    <!-- Big Floppy Ears -->
+    <ellipse cx="-40" cy="-75" rx="26" ry="36" transform="rotate(-30, -40, -75)" fill="#ec4899" stroke="#9d174d" stroke-width="5" />
+    <ellipse cx="40" cy="-75" rx="26" ry="36" transform="rotate(30, 40, -75)" fill="#ec4899" stroke="#9d174d" stroke-width="5" />
+
+    <!-- Cute Round Snout -->
+    <ellipse cx="0" cy="15" rx="38" ry="26" fill="#fce7f3" stroke="#db2777" stroke-width="5" />
+    <!-- Nostrils -->
+    <ellipse cx="-14" cy="15" rx="7" ry="10" fill="#9d174d" />
+    <ellipse cx="14" cy="15" rx="7" ry="10" fill="#9d174d" />
+
+    <!-- Kawaii Anime Eyes -->
+    <circle cx="-32" cy="-22" r="16" fill="#0f172a" />
+    <circle cx="32" cy="-22" r="16" fill="#0f172a" />
+    <!-- White Eye Gleams -->
+    <circle cx="-28" cy="-26" r="6" fill="#ffffff" />
+    <circle cx="36" cy="-26" r="6" fill="#ffffff" />
+    <circle cx="-35" cy="-18" r="3" fill="#ffffff" />
+    <circle cx="29" cy="-18" r="3" fill="#ffffff" />
+
+    <!-- Rosy Blushing Cheeks -->
+    <ellipse cx="-52" cy="0" rx="14" ry="8" fill="#f43f5e" opacity="0.6" />
+    <ellipse cx="52" cy="0" rx="14" ry="8" fill="#f43f5e" opacity="0.6" />
+
+    <!-- Golden Star Sparkles -->
+    <path d="M 85 -70 L 92 -50 L 112 -45 L 95 -32 L 100 -12 L 85 -25 L 70 -12 L 75 -32 L 58 -45 L 78 -50 Z" fill="#facc15" stroke="#ca8a04" stroke-width="3" />
+    <path d="M -90 -50 L -85 -35 L -70 -30 L -82 -20 L -80 -5 L -92 -15 L -104 -5 L -100 -20 L -112 -30 L -97 -35 Z" fill="#facc15" stroke="#ca8a04" stroke-width="2.5" />
+  </g>
+</svg>

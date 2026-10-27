@@ -884,6 +884,80 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Use screen wraparound to your advantage! If a platform is far on the left edge, hopping off the right side of the screen can land you right on top of it.',
   },
+  'hungry-piggy': {
+    title: 'Hungry Piggy: Farmyard Chomper',
+    subtitle: '60-Second Timed Arena Growth Rush',
+    mascot: '🐷🍎',
+    themeColor: 'from-pink-500 via-rose-600 to-amber-600',
+    goal: 'Steer Barnaby around the farmyard, eat treats smaller than you to grow bigger, and reach the Boss tier before time expires!',
+    steps: [
+      {
+        icon: '🍎',
+        title: '1. Start with Small Treats',
+        desc: 'Chomp small acorns, red apples, and carrots to earn points and kickstart your growth bar.',
+      },
+      {
+        icon: '📦',
+        title: '2. Grow into Bigger Tiers',
+        desc: 'Advance through Little Piglet, Chubby Porker, Big Hog, and Mega Boss to swallow crates, hay bales, and giant tractors!',
+      },
+      {
+        icon: '⚡',
+        title: '3. Build Rapid Combo Streaks',
+        desc: 'Eat items rapidly within 2 seconds to unlock up to 4X point multipliers and smash high score records.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'W/A/S/D or Arrow Keys: Steer Barnaby across the pasture',
+        'Mouse Pointer: Guide piggy smoothly in any direction',
+        'M Key: Toggle crunch & oink sound effects',
+        'Spacebar: Tap to restart after game over',
+      ],
+      mobile: [
+        'Touch & Drag: Slide finger anywhere on screen to steer',
+        'Zero-Delay Touch Response with live analog direction arrow',
+      ],
+    },
+    proTip: 'Target tight clusters of small fruit early on to level up quickly. Once you reach Tier 3 and 4, rush toward tractors and silos for huge 200+ point bonuses!',
+  },
+  'duck-pond-sort': {
+    title: 'Duck Pond Sort: Water Lily Float',
+    subtitle: 'Calm Color Sorting Puzzle',
+    mascot: '🦆🌸',
+    themeColor: 'from-teal-600 via-sky-600 to-emerald-700',
+    goal: 'Sort cute colored rubber ducks into matching farm pond docks until all colors are separated!',
+    steps: [
+      {
+        icon: '👆',
+        title: '1. Tap Source Dock',
+        desc: 'Click or tap any pond dock with ducks to lift the top matching duckies into a swimming hover.',
+      },
+      {
+        icon: '🌊',
+        title: '2. Tap Target Dock',
+        desc: 'Tap an empty dock bay or a dock whose top duck matches your lifted color to move them over.',
+      },
+      {
+        icon: '🎉',
+        title: '3. Clear All Color Groups',
+        desc: 'Group four ducks of the same color into their own dock to complete the stage and advance.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Select source dock then target dock',
+        'U Key: Undo previous duck move',
+        'R Key: Restart current pond level',
+        'M Key: Toggle soothing pond sounds and quacks',
+      ],
+      mobile: [
+        'Tap Docks: Instant touch selection and move',
+        'Undo Button: Rewind any missteps cleanly',
+      ],
+    },
+    proTip: 'Keep at least one empty buffer dock open as long as possible. It serves as your temporary parking spot while untangling mixed duck columns!',
+  },
 };
 
 interface GameIntroModalProps {

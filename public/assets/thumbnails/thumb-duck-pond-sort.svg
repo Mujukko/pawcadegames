@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pondBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="40%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+    <linearGradient id="yellowDuck" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+    <linearGradient id="pinkDuck" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fce7f3" />
+      <stop offset="60%" stop-color="#f472b6" />
+      <stop offset="100%" stop-color="#db2777" />
+    </linearGradient>
+    <linearGradient id="mallardDuck" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#86efac" />
+      <stop offset="60%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+    <filter id="pondShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#042f2e" flood-opacity="0.45" />
+    </filter>
+  </defs>
+
+  <!-- Pond Background -->
+  <rect width="512" height="512" rx="48" fill="url(#pondBg)" />
+
+  <!-- Water Ripple Rings -->
+  <ellipse cx="256" cy="380" rx="200" ry="40" fill="none" stroke="#38bdf8" stroke-width="4" opacity="0.35" />
+  <ellipse cx="256" cy="380" rx="140" ry="28" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.4" />
+  <ellipse cx="140" cy="220" rx="80" ry="16" fill="none" stroke="#38bdf8" stroke-width="3" opacity="0.3" />
+  <ellipse cx="380" cy="240" rx="80" ry="16" fill="none" stroke="#38bdf8" stroke-width="3" opacity="0.3" />
+
+  <!-- Floating Water Lilies & Lotus Flower -->
+  <g transform="translate(100, 110)" filter="url(#pondShadow)">
+    <circle cx="0" cy="0" r="32" fill="#15803d" stroke="#14532d" stroke-width="4" />
+    <path d="M 0 0 L 28 -14 L 32 0 Z" fill="url(#pondBg)" />
+    <!-- Pink Lotus -->
+    <circle cx="0" cy="0" r="12" fill="#f472b6" />
+    <circle cx="0" cy="0" r="6" fill="#fef08a" />
+  </g>
+
+  <g transform="translate(420, 130)" filter="url(#pondShadow)">
+    <circle cx="0" cy="0" r="28" fill="#15803d" stroke="#14532d" stroke-width="4" />
+    <path d="M 0 0 L 24 -12 L 28 0 Z" fill="url(#pondBg)" />
+    <circle cx="0" cy="0" r="10" fill="#fb7185" />
+  </g>
+
+  <!-- Wooden Dock Pier Posts -->
+  <g filter="url(#pondShadow)">
+    <rect x="40" y="440" width="432" height="40" rx="8" fill="#78350f" stroke="#451a03" stroke-width="5" />
+    <rect x="60" y="410" width="30" height="40" rx="4" fill="#92400e" stroke="#451a03" stroke-width="4" />
+    <rect x="240" y="410" width="30" height="40" rx="4" fill="#92400e" stroke="#451a03" stroke-width="4" />
+    <rect x="420" y="410" width="30" height="40" rx="4" fill="#92400e" stroke="#451a03" stroke-width="4" />
+  </g>
+
+  <!-- Secondary Duck: Rosy Pink (Left) -->
+  <g transform="translate(140, 260) scale(0.75)" filter="url(#pondShadow)">
+    <ellipse cx="0" cy="40" rx="60" ry="16" fill="rgba(0,0,0,0.2)" />
+    <ellipse cx="0" cy="15" rx="50" ry="32" fill="url(#pinkDuck)" stroke="#9d174d" stroke-width="5" />
+    <circle cx="35" cy="-20" r="30" fill="url(#pinkDuck)" stroke="#9d174d" stroke-width="5" />
+    <path d="M 55 -15 Q 80 -10 65 0 Q 55 0 50 -5 Z" fill="#ea580c" stroke="#9a3412" stroke-width="4" />
+    <circle cx="42" cy="-28" r="6" fill="#0f172a" />
+    <circle cx="44" cy="-30" r="2" fill="#ffffff" />
+  </g>
+
+  <!-- Secondary Duck: Mallard Green (Right) -->
+  <g transform="translate(370, 270) scale(0.75)" filter="url(#pondShadow)">
+    <ellipse cx="0" cy="40" rx="60" ry="16" fill="rgba(0,0,0,0.2)" />
+    <ellipse cx="0" cy="15" rx="50" ry="32" fill="url(#mallardDuck)" stroke="#14532d" stroke-width="5" />
+    <circle cx="35" cy="-20" r="30" fill="url(#mallardDuck)" stroke="#14532d" stroke-width="5" />
+    <path d="M 55 -15 Q 80 -10 65 0 Q 55 0 50 -5 Z" fill="#ea580c" stroke="#9a3412" stroke-width="4" />
+    <circle cx="42" cy="-28" r="6" fill="#0f172a" />
+    <circle cx="44" cy="-30" r="2" fill="#ffffff" />
+  </g>
+
+  <!-- Main Hero Duck: Sunny Yellow Duck (Center Stage) -->
+  <g transform="translate(256, 290)" filter="url(#pondShadow)">
+    <!-- Water Ripple under Hero -->
+    <ellipse cx="0" cy="55" rx="90" ry="22" fill="rgba(255,255,255,0.3)" />
+
+    <!-- Chubby Body -->
+    <ellipse cx="-10" cy="20" rx="75" ry="48" fill="url(#yellowDuck)" stroke="#a16207" stroke-width="7" />
+
+    <!-- Cute Wing -->
+    <path d="M -35 15 Q 10 0 35 25 Q 5 45 -35 15" fill="#facc15" stroke="#a16207" stroke-width="5" />
+
+    <!-- Tail Feathers -->
+    <path d="M -75 10 Q -95 -10 -70 -5 Z" fill="url(#yellowDuck)" stroke="#a16207" stroke-width="5" />
+
+    <!-- Cute Round Head -->
+    <circle cx="45" cy="-35" r="44" fill="url(#yellowDuck)" stroke="#a16207" stroke-width="7" />
+
+    <!-- Orange Duck Bill -->
+    <path d="M 75 -28 Q 115 -20 95 -6 Q 80 -6 72 -14 Z" fill="#f97316" stroke="#9a3412" stroke-width="6" />
+
+    <!-- Kawaii Eye -->
+    <circle cx="52" cy="-45" r="10" fill="#0f172a" />
+    <circle cx="56" cy="-48" r="4" fill="#ffffff" />
+    <circle cx="50" cy="-42" r="2" fill="#ffffff" />
+
+    <!-- Sweet Pink Cheeks -->
+    <circle cx="44" cy="-24" r="8" fill="#f43f5e" opacity="0.6" />
+
+    <!-- Floating Star Sparkles -->
+    <path d="M -60 -40 L -55 -25 L -40 -20 L -52 -10 L -50 5 L -62 -5 L -74 5 L -70 -10 L -82 -20 L -67 -25 Z" fill="#fef08a" stroke="#ca8a04" stroke-width="3" />
+    <path d="M 100 -70 L 105 -55 L 120 -50 L 108 -40 L 110 -25 L 98 -35 L 86 -25 L 90 -40 L 78 -50 L 93 -55 Z" fill="#fef08a" stroke="#ca8a04" stroke-width="3" />
+  </g>
+</svg>

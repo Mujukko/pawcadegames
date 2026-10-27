@@ -62,11 +62,23 @@ export const App: React.FC = () => {
     const gopherGardenGame = GAMES_REGISTRY.find(g => g.id === 'gopher-garden');
     const fruitBubbleGame = GAMES_REGISTRY.find(g => g.id === 'farm-fruit-bubble');
     const sheepJumpGame = GAMES_REGISTRY.find(g => g.id === 'pasture-sheep-jump');
+    const hungryPiggyGame = GAMES_REGISTRY.find(g => g.id === 'hungry-piggy');
+    const duckPondGame = GAMES_REGISTRY.find(g => g.id === 'duck-pond-sort');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/farm-fruit-bubble') || currentRoute.startsWith('/games/fruit-bubble') || currentRoute.startsWith('/games/bubble-shooter')) {
+    if (currentRoute.startsWith('/games/duck-pond-sort') || currentRoute.startsWith('/games/duck-sort') || currentRoute.startsWith('/games/water-sort')) {
+      if (duckPondGame) {
+        activeTitle = duckPondGame.metaTitle;
+        activeDesc = duckPondGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/hungry-piggy') || currentRoute.startsWith('/games/piggy-chomper') || currentRoute.startsWith('/games/farm-hole')) {
+      if (hungryPiggyGame) {
+        activeTitle = hungryPiggyGame.metaTitle;
+        activeDesc = hungryPiggyGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/farm-fruit-bubble') || currentRoute.startsWith('/games/fruit-bubble') || currentRoute.startsWith('/games/bubble-shooter')) {
       if (fruitBubbleGame) {
         activeTitle = fruitBubbleGame.metaTitle;
         activeDesc = fruitBubbleGame.metaDescription;
@@ -242,6 +254,12 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/duck-pond-sort') || currentRoute.startsWith('/games/duck-sort') || currentRoute.startsWith('/games/water-sort')) {
+      return <GamePage navigate={navigate} gameId="duck-pond-sort" />;
+    }
+    if (currentRoute.startsWith('/games/hungry-piggy') || currentRoute.startsWith('/games/piggy-chomper') || currentRoute.startsWith('/games/farm-hole')) {
+      return <GamePage navigate={navigate} gameId="hungry-piggy" />;
     }
     if (currentRoute.startsWith('/games/farm-fruit-bubble') || currentRoute.startsWith('/games/fruit-bubble') || currentRoute.startsWith('/games/bubble-shooter')) {
       return <GamePage navigate={navigate} gameId="farm-fruit-bubble" />;
