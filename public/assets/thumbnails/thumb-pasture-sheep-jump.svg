@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#7dd3fc" />
+    </linearGradient>
+    <linearGradient id="rainbowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="25%" stop-color="#fb923c" />
+      <stop offset="50%" stop-color="#facc15" />
+      <stop offset="75%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="512" height="512" rx="48" fill="url(#skyGrad)" />
+
+  <!-- Distant Rainbow Arc -->
+  <path d="M 40 400 A 240 240 0 0 1 480 400" stroke="url(#rainbowGrad)" stroke-width="20" fill="none" opacity="0.35" />
+
+  <!-- Fluffy Cloud Platforms -->
+  <g filter="url(#dropShadow)">
+    <path d="M 60 410 A 24 24 0 0 1 100 380 A 30 30 0 0 1 150 400 A 20 20 0 0 1 170 420 Z" fill="#ffffff" />
+    <path d="M 330 340 A 24 24 0 0 1 370 310 A 30 30 0 0 1 420 330 A 20 20 0 0 1 440 350 Z" fill="#ffffff" />
+    <path d="M 120 180 A 24 24 0 0 1 160 150 A 30 30 0 0 1 210 170 A 20 20 0 0 1 230 190 Z" fill="#ffffff" />
+  </g>
+
+  <!-- Spring Hay Bale Platform -->
+  <g filter="url(#dropShadow)">
+    <rect x="180" y="380" width="150" height="34" rx="8" fill="#eab308" stroke="#a16207" stroke-width="4" />
+    <!-- Steel Spring -->
+    <path d="M 235 380 L 275 365 L 235 350 L 275 335 L 255 320" stroke="#ef4444" stroke-width="8" stroke-linecap="round" fill="none" />
+    <text x="255" y="402" font-size="14" font-weight="900" fill="#451a03" text-anchor="middle">SUPER BOING!</text>
+  </g>
+
+  <!-- Motion Speed Lines -->
+  <line x1="230" y1="310" x2="230" y2="240" stroke="#facc15" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 8" />
+  <line x1="280" y1="310" x2="280" y2="240" stroke="#facc15" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 8" />
+
+  <!-- Barnaby the Fluffy Sheep in Mid-Air Leap -->
+  <g transform="translate(256, 170)" filter="url(#dropShadow)">
+    <!-- Fluffy Wool Clouds -->
+    <circle cx="-35" cy="-10" r="32" fill="#f8fafc" stroke="#94a3b8" stroke-width="5" />
+    <circle cx="35" cy="-10" r="32" fill="#f8fafc" stroke="#94a3b8" stroke-width="5" />
+    <circle cx="0" cy="-35" r="34" fill="#f8fafc" stroke="#94a3b8" stroke-width="5" />
+    <circle cx="0" cy="15" r="36" fill="#f8fafc" stroke="#94a3b8" stroke-width="5" />
+    <circle cx="-25" cy="15" r="28" fill="#f8fafc" stroke="#94a3b8" stroke-width="5" />
+    <circle cx="25" cy="15" r="28" fill="#f8fafc" stroke="#94a3b8" stroke-width="5" />
+
+    <!-- Peach Face -->
+    <rect x="0" y="-18" width="45" height="40" rx="18" fill="#fed7aa" stroke="#ea580c" stroke-width="3" />
+
+    <!-- Floppy Ears -->
+    <ellipse cx="-10" cy="-20" rx="16" ry="9" fill="#cbd5e1" stroke="#94a3b8" stroke-width="3" transform="rotate(-25 -10 -20)" />
+
+    <!-- Kawaii Eyes with Sparkles -->
+    <circle cx="24" cy="-6" r="6" fill="#0f172a" />
+    <circle cx="21" cy="-8" r="2.5" fill="#ffffff" />
+    <circle cx="26" cy="-4" r="1.5" fill="#ffffff" />
+
+    <!-- Blushing Pink Cheeks -->
+    <circle cx="18" cy="8" r="6" fill="#f472b6" opacity="0.6" />
+
+    <!-- Smiling Mouth -->
+    <path d="M 28 4 Q 34 10 38 4" stroke="#7c2d12" stroke-width="3" fill="none" stroke-linecap="round" />
+
+    <!-- Black Little Hooves Kicking -->
+    <rect x="-24" y="42" width="12" height="20" rx="5" fill="#1e293b" />
+    <rect x="12" y="42" width="12" height="20" rx="5" fill="#1e293b" />
+
+    <!-- Golden Bell on Red Collar -->
+    <rect x="-6" y="24" width="28" height="6" rx="3" fill="#ef4444" />
+    <circle cx="8" cy="38" r="12" fill="#facc15" stroke="#b45309" stroke-width="2.5" />
+    <circle cx="8" cy="46" r="3" fill="#78350f" />
+  </g>
+
+  <!-- Golden Stars & Sparkles -->
+  <path d="M 120 90 L 124 102 L 136 106 L 124 110 L 120 122 L 116 110 L 104 106 L 116 102 Z" fill="#facc15" filter="url(#dropShadow)" />
+  <path d="M 390 130 L 393 140 L 403 143 L 393 146 L 390 156 L 387 146 L 377 143 L 387 140 Z" fill="#facc15" filter="url(#dropShadow)" />
+</svg>

@@ -810,6 +810,80 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Keep your eye on the Golden King Gopher. Triggering Harvest Frenzy during high combo streaks can skyrocket your score above 5,000 points!',
   },
+  'farm-fruit-bubble': {
+    title: 'Farm Fruit Bubble: Orchard Pop',
+    subtitle: 'Classic Barnyard Bubble Match & Harvest',
+    mascot: '🍎🎈',
+    themeColor: 'from-amber-600 via-rose-600 to-emerald-700',
+    goal: 'Aim and shoot orchard fruit bubbles to match clusters of 3 or more and clear the orchard ceiling!',
+    steps: [
+      {
+        icon: '🎯',
+        title: '1. Aim Slingshot Trajectory',
+        desc: 'Drag your finger or move your mouse to aim the dotted trajectory line. Bounce shots off wooden walls for tricky angles.',
+      },
+      {
+        icon: '💥',
+        title: '2. Match 3+ Orchard Fruits',
+        desc: 'Connect 3 or more matching fruits (apples, pears, plums, lemons, berries) to trigger satisfying fruit pops.',
+      },
+      {
+        icon: '🧺',
+        title: '3. Drop Orphan Clusters',
+        desc: 'Popping anchor fruits causes unattached bubbles to tumble into harvest baskets at the bottom for bonus points!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Drag & Left Click: Aim trajectory and shoot fruit bubble',
+        'Arrow Keys Left / Right: Fine-tune aiming angle',
+        'Spacebar: Quick shoot current fruit',
+        'M Key: Toggle sound effects',
+      ],
+      mobile: [
+        'Touch & Drag: Adjust aim trajectory anywhere on screen',
+        'Release Finger: Shoot fruit bubble instantly with zero delay',
+      ],
+    },
+    proTip: 'Look for thin branches near the top of the board. Popping a small cluster that supports many bubbles will drop the entire group into your harvest baskets!',
+  },
+  'pasture-sheep-jump': {
+    title: 'Pasture Sheep Jump: Cloud Leap',
+    subtitle: 'Endless Vertical Bouncing Platformer',
+    mascot: '🐑☁️',
+    themeColor: 'from-sky-500 via-indigo-600 to-amber-600',
+    goal: 'Bounce Barnaby the fluffy sheep across floating platforms and climb as high as possible into the sky!',
+    steps: [
+      {
+        icon: '🐑',
+        title: '1. Automatic Bouncing Jump',
+        desc: 'Barnaby bounces automatically whenever his hooves touch down on a platform from above.',
+      },
+      {
+        icon: '🌾',
+        title: '2. Spring Bales & Moving Clouds',
+        desc: 'Land on golden spring bales for massive super leaps! Watch out for moving cloud platforms and brittle twigs.',
+      },
+      {
+        icon: '🔔',
+        title: '3. Collect Golden Wool Bells',
+        desc: 'Grab floating golden bells along your ascent for 200 bonus points each and climb past altitude milestones!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Arrow Keys or A/D: Steer Barnaby left and right in mid-air',
+        'Screen Wraparound: Jump off the left edge to reappear on the right',
+        'M Key: Toggle sound effects',
+        'R Key: Quick restart after a fall',
+      ],
+      mobile: [
+        'Touch & Drag: Slide finger left or right to steer sheep smoothly',
+        'Tilt / Swipe: Instant zero-latency response on all mobile screens',
+      ],
+    },
+    proTip: 'Use screen wraparound to your advantage! If a platform is far on the left edge, hopping off the right side of the screen can land you right on top of it.',
+  },
 };
 
 interface GameIntroModalProps {

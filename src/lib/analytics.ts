@@ -16,6 +16,34 @@ export interface AnalyticsEventPayload {
   [key: string]: unknown;
 }
 
+export type TrafficChannel = 'ai_search' | 'organic_search' | 'social' | 'direct' | 'referral';
+
+export function detectTrafficChannel(): { channel: TrafficChannel; source: string } {
+  if (typeof document === 'undefined') return { channel: 'direct', source: 'direct' };
+  const ref = document.referrer.toLowerCase();
+  if (!ref) return { channel: 'direct', source: 'direct' };
+
+  if (ref.includes('chatgpt.com') || ref.includes('openai.com')) {
+    return { channel: 'ai_search', source: 'chatgpt' };
+  }
+  if (ref.includes('perplexity.ai')) {
+    return { channel: 'ai_search', source: 'perplexity' };
+  }
+  if (ref.includes('copilot.microsoft.com') || ref.includes('bing.com/chat')) {
+    return { channel: 'ai_search', source: 'copilot' };
+  }
+  if (ref.includes('claude.ai') || ref.includes('anthropic.com')) {
+    return { channel: 'ai_search', source: 'claude' };
+  }
+  if (ref.includes('google.') || ref.includes('bing.') || ref.includes('yahoo.') || ref.includes('duckduckgo.')) {
+    return { channel: 'organic_search', source: ref.includes('google') ? 'google' : 'other_search' };
+  }
+  if (ref.includes('t.co') || ref.includes('twitter.com') || ref.includes('x.com') || ref.includes('reddit.') || ref.includes('facebook.')) {
+    return { channel: 'social', source: 'social' };
+  }
+  return { channel: 'referral', source: 'referral' };
+}
+
 class AnalyticsService {
   private sessionId: string;
   private sessionStartTime: number;
@@ -59,20 +87,23 @@ class AnalyticsService {
   public trackPageView(path: string, title?: string): void {
     const pageTitle = title || (typeof document !== 'undefined' ? document.title : '');
     const pageLocation = typeof window !== 'undefined' ? window.location.href : '';
+    const trafficInfo = detectTrafficChannel();
 
     if (import.meta.env.DEV) {
-      console.log(`[Analytics PageView]`, { path, title: pageTitle, location: pageLocation });
+      console.log(`[Analytics PageView]`, { path, title: pageTitle, location: pageLocation, trafficInfo });
     }
 
     if (typeof window !== 'undefined') {
       const w = window as unknown as { gtag?: Function; dataLayer?: unknown[] };
       if (typeof w.gtag === 'function') {
         try {
-          // 1. Update ambient configuration so subsequent events inherit the active page path
+          // 1. Update ambient configuration so subsequent events inherit active path & AI traffic channel
           w.gtag('set', {
             page_path: path,
             page_title: pageTitle,
             page_location: pageLocation,
+            traffic_channel: trafficInfo.channel,
+            traffic_source_engine: trafficInfo.source,
           });
 
           // 2. Explicitly dispatch GA4 'page_view' event
@@ -80,6 +111,8 @@ class AnalyticsService {
             page_path: path,
             page_title: pageTitle,
             page_location: pageLocation,
+            traffic_channel: trafficInfo.channel,
+            traffic_source_engine: trafficInfo.source,
           });
         } catch (e) {
           if (import.meta.env.DEV) {
@@ -87,27 +120,19 @@ class AnalyticsService {
           }
         }
       } else if (Array.isArray(w.dataLayer)) {
-        w.dataLayer.push(['set', { page_path: path, page_title: pageTitle, page_location: pageLocation }]);
-        w.dataLayer.push(['event', 'page_view', { page_path: path, page_title: pageTitle, page_location: pageLocation }]);
+        w.dataLayer.push(['set', { page_path: path, page_title: pageTitle, page_location: pageLocation, traffic_channel: trafficInfo.channel }]);
+        w.dataLayer.push(['event', 'page_view', { page_path: path, page_title: pageTitle, page_location: pageLocation, traffic_channel: trafficInfo.channel }]);
       }
     }
   }
 
-  /**
-   * Future Ad Placement Hook: Interstitial Ad
-   * Safe stub that resolves immediately in MVP.
-   */
   public async requestInterstitialAd(placement: string): Promise<boolean> {
     if (import.meta.env.DEV) {
       console.log(`[Ad Hook] Requesting interstitial ad at placement: ${placement}`);
     }
-    // Future ad SDK hook
     return Promise.resolve(true);
   }
 
-  /**
-   * Future Ad Placement Hook: Rewarded Ad (e.g. for hint)
-   */
   public async requestRewardedAd(rewardItem: string): Promise<boolean> {
     if (import.meta.env.DEV) {
       console.log(`[Ad Hook] Requesting rewarded ad for: ${rewardItem}`);

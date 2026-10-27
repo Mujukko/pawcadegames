@@ -75,6 +75,12 @@ const BarnyardTowerContainer = lazy(() =>
 const GopherGardenContainer = lazy(() =>
   import('../games/gopher-garden/GopherGardenContainer').then((m) => ({ default: m.GopherGardenContainer }))
 );
+const FarmFruitBubbleContainer = lazy(() =>
+  import('../games/farm-fruit-bubble/FarmFruitBubbleContainer').then((m) => ({ default: m.FarmFruitBubbleContainer }))
+);
+const PastureSheepJumpContainer = lazy(() =>
+  import('../games/pasture-sheep-jump/PastureSheepJumpContainer').then((m) => ({ default: m.PastureSheepJumpContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -104,6 +110,8 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isFruitBubble = gameId === 'farm-fruit-bubble' || gameId === 'fruit-bubble' || gameId === 'bubble-shooter';
+  const isSheepJump = gameId === 'pasture-sheep-jump' || gameId === 'sheep-jump' || gameId === 'doodle-jump';
   const isBarnyardTower = gameId === 'barnyard-tower' || gameId === 'animal-stack';
   const isGopherGarden = gameId === 'gopher-garden' || gameId === 'whack-a-mole';
   const isMahjong = gameId === 'farm-mahjong' || gameId === 'mahjong' || gameId === 'farm-mahjong-solitaire';
@@ -307,7 +315,11 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isBarnyardTower
+                  isFruitBubble
+                    ? '🍎🎈'
+                    : isSheepJump
+                    ? '🐑☁️'
+                    : isBarnyardTower
                     ? '🐮🏗️'
                     : isGopherGarden
                     ? '🥕🐾'
@@ -356,7 +368,11 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isBarnyardTower ? (
+            {isFruitBubble ? (
+              <FarmFruitBubbleContainer />
+            ) : isSheepJump ? (
+              <PastureSheepJumpContainer />
+            ) : isBarnyardTower ? (
               <BarnyardTowerContainer />
             ) : isGopherGarden ? (
               <GopherGardenContainer />
