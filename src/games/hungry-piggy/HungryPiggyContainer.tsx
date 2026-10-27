@@ -339,6 +339,9 @@ export const HungryPiggyContainer: React.FC = () => {
 
   // Touch and Mouse Handling
   const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {}
     isPointerDownRef.current = true;
     updatePointerCoords(e);
   };
@@ -349,7 +352,10 @@ export const HungryPiggyContainer: React.FC = () => {
     }
   };
 
-  const handlePointerUp = () => {
+  const handlePointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {}
     isPointerDownRef.current = false;
   };
 
@@ -688,17 +694,17 @@ export const HungryPiggyContainer: React.FC = () => {
         <div className="flex items-center gap-1.5">
           <button
             onClick={toggleMute}
-            className="p-2 bg-slate-700 hover:bg-slate-600 active:scale-95 text-slate-200 rounded-xl transition-all"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] bg-slate-700 hover:bg-slate-600 active:scale-95 text-slate-200 rounded-xl transition-all flex items-center justify-center cursor-pointer"
             aria-label={isMuted ? 'Unmute' : 'Mute'}
           >
-            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+            {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </button>
           <button
             onClick={handleRestart}
-            className="p-2 bg-slate-700 hover:bg-slate-600 active:scale-95 text-slate-200 rounded-xl transition-all"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] bg-slate-700 hover:bg-slate-600 active:scale-95 text-slate-200 rounded-xl transition-all flex items-center justify-center cursor-pointer"
             aria-label="Restart Game"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="w-5 h-5" />
           </button>
         </div>
       </div>
@@ -744,7 +750,7 @@ export const HungryPiggyContainer: React.FC = () => {
 
         {/* Game Over Modal Overlay */}
         {isGameOver && (
-          <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-fade-in z-20">
+          <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-fade-in z-20 overflow-y-auto max-h-full py-4">
             <div className="w-16 h-16 rounded-full bg-pink-500/20 border-2 border-pink-500/40 flex items-center justify-center text-4xl mb-3 shadow-lg shadow-pink-500/30">
               🐷
             </div>

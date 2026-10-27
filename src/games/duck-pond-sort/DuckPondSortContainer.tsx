@@ -42,14 +42,28 @@ export const DuckPondSortContainer: React.FC = () => {
     setShakingColIndex(null);
   };
 
-  const handleUndo = () => {
+  const handleUndo = useCallback(() => {
     if (game.moveHistory.length === 0 || game.isWon) return;
     const newState = { ...game };
     if (undoMove(newState)) {
       duckPondSortAudio.playSplash();
       setGame(newState);
     }
-  };
+  }, [game]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'u' || e.key === 'U') {
+        handleUndo();
+      } else if (e.key === 'r' || e.key === 'R') {
+        handleRestart();
+      } else if (e.key === 'm' || e.key === 'M') {
+        toggleMute();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleUndo, handleRestart]);
 
   const handleColumnClick = (colIndex: number) => {
     if (game.isWon) return;
@@ -115,8 +129,8 @@ export const DuckPondSortContainer: React.FC = () => {
 
     return (
       <div
-        className={`relative w-12 sm:w-14 h-11 sm:h-12 flex items-center justify-center transition-all duration-300 ${
-          isLifted ? '-translate-y-6 sm:-translate-y-8 scale-110 drop-shadow-[0_8px_12px_rgba(0,0,0,0.4)]' : ''
+        className={`relative w-9 xs:w-11 sm:w-14 h-8 xs:h-10 sm:h-12 flex items-center justify-center transition-all duration-300 ${
+          isLifted ? '-translate-y-4 sm:-translate-y-8 scale-110 drop-shadow-[0_8px_12px_rgba(0,0,0,0.4)]' : ''
         }`}
       >
         <svg viewBox="0 0 64 64" className="w-full h-full drop-shadow-md">
@@ -189,21 +203,21 @@ export const DuckPondSortContainer: React.FC = () => {
           <button
             onClick={handleUndo}
             disabled={game.moveHistory.length === 0 || game.isWon}
-            className="p-2 bg-slate-700 hover:bg-slate-600 active:scale-95 text-slate-200 rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] bg-slate-700 hover:bg-slate-600 active:scale-95 text-slate-200 rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center cursor-pointer"
             aria-label="Undo Move"
           >
             <Undo2 className="w-4 h-4" />
           </button>
           <button
             onClick={toggleMute}
-            className="p-2 bg-slate-700 hover:bg-slate-600 active:scale-95 text-slate-200 rounded-xl transition-all"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] bg-slate-700 hover:bg-slate-600 active:scale-95 text-slate-200 rounded-xl transition-all flex items-center justify-center cursor-pointer"
             aria-label={isMuted ? 'Unmute' : 'Mute'}
           >
             {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
           </button>
           <button
             onClick={handleRestart}
-            className="p-2 bg-slate-700 hover:bg-slate-600 active:scale-95 text-slate-200 rounded-xl transition-all"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] bg-slate-700 hover:bg-slate-600 active:scale-95 text-slate-200 rounded-xl transition-all flex items-center justify-center cursor-pointer"
             aria-label="Restart Level"
           >
             <RotateCcw className="w-4 h-4" />
@@ -219,7 +233,7 @@ export const DuckPondSortContainer: React.FC = () => {
         <div className="absolute top-24 left-1/3 text-xl opacity-25 select-none pointer-events-none">🌿</div>
 
         {/* Ponds Grid Columns */}
-        <div className="w-full flex items-end justify-center gap-2 sm:gap-3 z-10 pb-4">
+        <div className="w-full flex items-end justify-center gap-1 xs:gap-1.5 sm:gap-3 z-10 pb-4 overflow-x-auto scrollbar-none">
           {game.columns.map((col, colIdx) => {
             const isSelected = game.selectedColumnIndex === colIdx;
             const isShaking = shakingColIndex === colIdx;
@@ -235,14 +249,14 @@ export const DuckPondSortContainer: React.FC = () => {
               >
                 {/* Column Selection Indicator */}
                 {isSelected && (
-                  <div className="absolute -top-7 text-xs font-black text-amber-300 animate-bounce bg-amber-500/20 px-2 py-0.5 rounded-full border border-amber-400/40">
-                    TAP TARGET
+                  <div className="absolute -top-7 text-[10px] sm:text-xs font-black text-amber-300 animate-bounce bg-amber-500/20 px-1.5 sm:px-2 py-0.5 rounded-full border border-amber-400/40">
+                    TARGET
                   </div>
                 )}
 
                 {/* Wooden Dock Pier Column Container */}
                 <div
-                  className={`relative w-14 sm:w-16 h-56 sm:h-64 rounded-2xl flex flex-col-reverse items-center justify-start p-1 border-2 transition-all duration-200 ${
+                  className={`relative w-10 xs:w-12 sm:w-16 h-48 xs:h-54 sm:h-64 rounded-xl sm:rounded-2xl flex flex-col-reverse items-center justify-start p-0.5 sm:p-1 border-2 transition-all duration-200 ${
                     isSelected
                       ? 'bg-sky-700/50 border-amber-400 shadow-[0_0_15px_rgba(251,191,36,0.6)]'
                       : 'bg-emerald-950/60 border-amber-800/60 hover:border-amber-600/80 shadow-md'
@@ -284,7 +298,7 @@ export const DuckPondSortContainer: React.FC = () => {
 
         {/* Victory Modal Overlay */}
         {game.isWon && (
-          <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-fade-in z-20">
+          <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-fade-in z-20 overflow-y-auto max-h-full py-4">
             <div className="w-16 h-16 rounded-full bg-amber-500/20 border-2 border-amber-500/40 flex items-center justify-center text-4xl mb-3 shadow-lg shadow-amber-500/30">
               🦆✨
             </div>

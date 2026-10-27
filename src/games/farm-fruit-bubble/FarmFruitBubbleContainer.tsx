@@ -380,9 +380,12 @@ export const FarmFruitBubbleContainer: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-md mx-auto h-[620px] select-none bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-800/40 flex flex-col touch-none cursor-crosshair"
+      className="relative w-full max-w-md mx-auto h-[560px] sm:h-[620px] max-h-[85vh] select-none bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-800/40 flex flex-col touch-none cursor-crosshair"
       onPointerDown={(e) => {
         e.preventDefault();
+        try {
+          (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+        } catch {}
         isAimingRef.current = true;
         updateAimFromPointer(e.clientX, e.clientY);
       }}
@@ -393,9 +396,18 @@ export const FarmFruitBubbleContainer: React.FC = () => {
       }}
       onPointerUp={(e) => {
         if (isAimingRef.current) {
+          try {
+            (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+          } catch {}
           isAimingRef.current = false;
           shootBubble();
         }
+      }}
+      onPointerCancel={(e) => {
+        try {
+          (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+        } catch {}
+        isAimingRef.current = false;
       }}
       style={{ touchAction: 'none' }}
     >
@@ -444,7 +456,7 @@ export const FarmFruitBubbleContainer: React.FC = () => {
       {hud.gameWon && (
         <div
           onPointerDown={(e) => e.stopPropagation()}
-          className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-fadeIn"
+          className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-fadeIn overflow-y-auto max-h-full"
         >
           <div className="text-5xl mb-2 animate-bounce">🍎🏆</div>
           <h2 className="text-2xl font-black text-emerald-400 tracking-wide uppercase mb-1">Orchard Cleared!</h2>
@@ -474,7 +486,7 @@ export const FarmFruitBubbleContainer: React.FC = () => {
       {hud.gameOver && (
         <div
           onPointerDown={(e) => e.stopPropagation()}
-          className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-fadeIn overflow-y-auto"
+          className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-fadeIn overflow-y-auto max-h-full"
         >
           <div className="text-5xl mb-2 animate-bounce">🍇💥</div>
           <h2 className="text-2xl font-black text-rose-400 tracking-wide uppercase mb-1">Branch Collapsed!</h2>

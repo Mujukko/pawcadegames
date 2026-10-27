@@ -294,9 +294,12 @@ export const PastureSheepJumpContainer: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-md mx-auto h-[620px] select-none bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-800/40 flex flex-col touch-none cursor-pointer"
+      className="relative w-full max-w-md mx-auto h-[560px] sm:h-[620px] max-h-[85vh] select-none bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-800/40 flex flex-col touch-none cursor-pointer"
       onPointerDown={(e) => {
         e.preventDefault();
+        try {
+          (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+        } catch {}
         isTouchingRef.current = true;
         updatePointerSteering(e.clientX);
       }}
@@ -305,7 +308,16 @@ export const PastureSheepJumpContainer: React.FC = () => {
           updatePointerSteering(e.clientX);
         }
       }}
-      onPointerUp={() => {
+      onPointerUp={(e) => {
+        try {
+          (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+        } catch {}
+        isTouchingRef.current = false;
+      }}
+      onPointerCancel={(e) => {
+        try {
+          (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+        } catch {}
         isTouchingRef.current = false;
       }}
       style={{ touchAction: 'none' }}
@@ -363,7 +375,7 @@ export const PastureSheepJumpContainer: React.FC = () => {
       {hud.gameOver && (
         <div
           onPointerDown={(e) => e.stopPropagation()}
-          className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-fadeIn overflow-y-auto"
+          className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-fadeIn overflow-y-auto max-h-full"
         >
           <div className="text-5xl mb-2 animate-bounce">🐑💨</div>
           <h2 className="text-2xl font-black text-rose-400 tracking-wide uppercase mb-1">Sheep Plunged!</h2>
