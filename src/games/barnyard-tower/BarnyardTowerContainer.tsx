@@ -584,7 +584,7 @@ export const BarnyardTowerContainer: React.FC = () => {
       {hud.gameOver && (
         <div
           onPointerDown={(e) => e.stopPropagation()}
-          className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-fadeIn"
+          className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-fadeIn overflow-y-auto"
         >
           <div className="text-5xl mb-2 animate-bounce">🐮💥</div>
           <h2 className="text-2xl font-black text-rose-400 tracking-wide uppercase mb-1">Tower Toppled!</h2>
