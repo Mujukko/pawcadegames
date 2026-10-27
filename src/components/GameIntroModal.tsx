@@ -737,6 +737,79 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Cold dishes like Cheese Baguettes and Bistro Salads don\'t need cooking—serve them instantly to keep your combo alive while hot stews simmer on the stove!',
   },
+  'barnyard-tower': {
+    title: 'Barnyard Tower: Animal Stack',
+    subtitle: 'Casual Physics Stacking Arcade',
+    mascot: '🐮🏗️',
+    themeColor: 'from-sky-500 via-amber-500 to-emerald-600',
+    goal: 'Drop farm animals from the swinging crane to build the tallest wobbling tower without toppling over!',
+    steps: [
+      {
+        icon: '🏗️',
+        title: '1. Time the Swinging Crane',
+        desc: 'Watch the crane swing smoothly across the barnyard. Align the animal directly above the center of the stack.',
+      },
+      {
+        icon: '✨',
+        title: '2. Drop for Perfect Combos',
+        desc: 'Press Space or tap the screen to drop. Centered drops trigger Perfect Stack star combos and stabilize the tower.',
+      },
+      {
+        icon: '⚠️',
+        title: '3. Balance Center of Mass',
+        desc: 'Off-center drops tilt the tower. If the tilt gets too steep or an animal falls into the grass, you lose a heart!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Spacebar / Down Arrow / Left Click: Drop animal from crane',
+        'M Key: Toggle sound effects',
+        'R Key: Restart round when tower collapses',
+      ],
+      mobile: [
+        'Tap Anywhere on Screen: Instant drop release',
+        'Audio Button: Toggle sound on/off',
+      ],
+    },
+    proTip: 'Look at the wobbling meter! Perfect drops gently correct the lean of the tower back towards the stable center.',
+  },
+  'gopher-garden': {
+    title: 'Gopher Garden: Whack & Harvest',
+    subtitle: 'Fast Garden Reflex Arcade',
+    mascot: '🥕🐾',
+    themeColor: 'from-amber-600 via-yellow-500 to-emerald-700',
+    goal: 'Protect Farmer Giles\' vegetable patch by whacking cheeky gophers before they steal your prize harvest!',
+    steps: [
+      {
+        icon: '🐾',
+        title: '1. Whack Popping Gophers',
+        desc: 'Tap cheeky gophers the moment they emerge from soil mounds to earn 100 points and build your streak.',
+      },
+      {
+        icon: '👑',
+        title: '2. Catch the Golden King',
+        desc: 'Whack the rare Golden King Gopher for 300 points and trigger Harvest Frenzy: 2x points and rapid spawns!',
+      },
+      {
+        icon: '🚫',
+        title: '3. Avoid Spiky Thistles',
+        desc: 'Do not hit the spiky purple thistles (🦔)! Hitting them deducts 150 points and resets your combo multiplier.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Click: Tap any gopher or mound',
+        'Keys 1-9: Quick keypad tap for each of the 9 garden mounds',
+        'M Key: Toggle sound effects',
+        'R Key: Restart 60-second time trial',
+      ],
+      mobile: [
+        'Direct Finger Tap: Hit emerging gophers anywhere on the 3x3 grid',
+        'Large Touch Targets: Zero-lag tactile response',
+      ],
+    },
+    proTip: 'Keep your eye on the Golden King Gopher. Triggering Harvest Frenzy during high combo streaks can skyrocket your score above 5,000 points!',
+  },
 };
 
 interface GameIntroModalProps {

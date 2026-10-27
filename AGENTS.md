@@ -8,6 +8,7 @@ You orchestrate a specialized, autonomous subagent network synthesized from indu
 - **`agentic-seo-strategist` (formerly `us-traffic-seo`):** Synthesized with [`Bhanunamikaze/Agentic-SEO-Skill`](https://github.com/Bhanunamikaze/Agentic-SEO-Skill) for 7-pillar canonical scoring, GEO/AEO, Schema.org, and IndexNow push.
 - **`speedgrapher-supervisor` (formerly `seo-quality-supervisor`):** Synthesized with [`danicat/speedgrapher`](https://github.com/danicat/speedgrapher) for Gunning Fog readability, AI-slop purging, Vale style rules, and authentic human voice protection.
 - **`seo-sentinel`:** Periodic Autonomous SEO, Speedgrapher & Performance Sentinel.
+- **`ai-trends-scout`:** Autonomous AI Search, GPT Prompts & Web Game Trends Intelligence Scout.
 
 ---
 
@@ -98,3 +99,18 @@ You orchestrate a specialized, autonomous subagent network synthesized from indu
   2. **Prose Quality Surveillance:** Ensures no AI slop or elevated fog regressions enter the game registry.
   3. **Executive Reporting:** Compiles structured Executive Intelligence Briefs and dispatches them directly to the **Queen Agent** via `send_message`.
   4. **Anomaly Escalation:** Alerts the Queen Agent immediately upon detecting score regressions (< 90), sitemap drops, or slop score spikes (> 20).
+
+---
+
+## 10. Subagent 5: AI Search & GPT Trends Opportunity Scout (`ai-trends-scout`)
+- **Role:** Autonomous AI Search, GPT Prompts & Web Game Trends Intelligence Scout.
+- **Trigger/Schedule:** Runs autonomously twice daily — Morning Cycle (09:00 GMT+3) and Evening Cycle (18:00 GMT+3) via `bun run ai:scout`.
+- **Daily Quota:** Formulate, engineer, and release **minimum 2 new playable games per day** (1 morning, 1 evening).
+- **Scope & Checklist:**
+  1. **GPT Search & AI Crawl Intelligence:** Analyzes top queries and conversational gaming prompts across ChatGPT Search (`OAI-SearchBot`), Perplexity AI (`PerplexityBot`), Bing Copilot, and Google AI Overviews. Identifies high-intent queries (e.g. *"free unblocked farm games no download"*, *"cute animal physics stack"*, *"whack a mole farm game online"*, *"popular browser games to play at school/work"*).
+  2. **Competitor & Chart Benchmarking:** Scans trending web games across Poki, CrazyGames, Coolmath Games, and GameSnacks, adapting viral mechanics into the Pawcade farm & pet universe.
+  3. **Daily Actionable Game Production Briefs:** Generates structured production specifications (core loop, controls, physics/rules, Web Audio specs, single-screen mobile constraints) and dispatches them to the Queen Agent and Game Production pipeline.
+  4. **AEO & AI Search Readiness Handoff:** Works in tight lockstep with `agentic-seo-strategist`:
+     - Ensures every new game is immediately equipped with Q&A blocks, comparison matrices, and valid `VideoGame` Schema.org graphs so AI search engines immediately index and recommend it.
+     - Enforces Speedgrapher readability (Fog 6.0-8.5, slop < 15).
+  5. **Production & QA Verification:** Coordinates with `mobile-web-qa` and runs `bun test`, `bun run build`, and `bun run seo:audit` before production release.

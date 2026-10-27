@@ -58,11 +58,23 @@ export const App: React.FC = () => {
     const farmParkingGame = GAMES_REGISTRY.find(g => g.id === 'animal-farm-parking');
     const farmTetrisGame = GAMES_REGISTRY.find(g => g.id === 'farm-tetris');
     const chefRatGame = GAMES_REGISTRY.find(g => g.id === 'chef-rat-rush');
+    const barnyardTowerGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-tower');
+    const gopherGardenGame = GAMES_REGISTRY.find(g => g.id === 'gopher-garden');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/farm-mahjong') || currentRoute.startsWith('/games/mahjong') || currentRoute.startsWith('/games/farm-mahjong-solitaire')) {
+    if (currentRoute.startsWith('/games/barnyard-tower') || currentRoute.startsWith('/games/animal-stack')) {
+      if (barnyardTowerGame) {
+        activeTitle = barnyardTowerGame.metaTitle;
+        activeDesc = barnyardTowerGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/gopher-garden') || currentRoute.startsWith('/games/whack-a-mole')) {
+      if (gopherGardenGame) {
+        activeTitle = gopherGardenGame.metaTitle;
+        activeDesc = gopherGardenGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/farm-mahjong') || currentRoute.startsWith('/games/mahjong') || currentRoute.startsWith('/games/farm-mahjong-solitaire')) {
       if (farmMahjongGame) {
         activeTitle = farmMahjongGame.metaTitle;
         activeDesc = farmMahjongGame.metaDescription;
@@ -218,6 +230,12 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/barnyard-tower') || currentRoute.startsWith('/games/animal-stack')) {
+      return <GamePage navigate={navigate} gameId="barnyard-tower" />;
+    }
+    if (currentRoute.startsWith('/games/gopher-garden') || currentRoute.startsWith('/games/whack-a-mole')) {
+      return <GamePage navigate={navigate} gameId="gopher-garden" />;
     }
     if (currentRoute.startsWith('/games/farm-mahjong') || currentRoute.startsWith('/games/mahjong') || currentRoute.startsWith('/games/farm-mahjong-solitaire')) {
       return <GamePage navigate={navigate} gameId="farm-mahjong" />;

@@ -69,6 +69,12 @@ const FarmMahjongContainer = lazy(() =>
 const PetMemoryMatchContainer = lazy(() =>
   import('../games/pet-memory-match/PetMemoryMatchContainer').then((m) => ({ default: m.PetMemoryMatchContainer }))
 );
+const BarnyardTowerContainer = lazy(() =>
+  import('../games/barnyard-tower/BarnyardTowerContainer').then((m) => ({ default: m.BarnyardTowerContainer }))
+);
+const GopherGardenContainer = lazy(() =>
+  import('../games/gopher-garden/GopherGardenContainer').then((m) => ({ default: m.GopherGardenContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -98,6 +104,8 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isBarnyardTower = gameId === 'barnyard-tower' || gameId === 'animal-stack';
+  const isGopherGarden = gameId === 'gopher-garden' || gameId === 'whack-a-mole';
   const isMahjong = gameId === 'farm-mahjong' || gameId === 'mahjong' || gameId === 'farm-mahjong-solitaire';
   const isMemoryMatch = gameId === 'pet-memory-match' || gameId === 'memory-match' || gameId === 'card-match';
   const isDuckHunt = gameId === 'duck-hunt-classic' || gameId === 'duck-hunt' || gameId === 'retro-duck-hunt';
@@ -299,7 +307,11 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isMahjong
+                  isBarnyardTower
+                    ? '🐮🏗️'
+                    : isGopherGarden
+                    ? '🥕🐾'
+                    : isMahjong
                     ? '🀄'
                     : isMemoryMatch
                     ? '🃏'
@@ -344,7 +356,11 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isMahjong ? (
+            {isBarnyardTower ? (
+              <BarnyardTowerContainer />
+            ) : isGopherGarden ? (
+              <GopherGardenContainer />
+            ) : isMahjong ? (
               <FarmMahjongContainer />
             ) : isMemoryMatch ? (
               <PetMemoryMatchContainer />

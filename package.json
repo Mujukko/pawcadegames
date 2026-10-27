@@ -15,6 +15,7 @@
     "seo:report": "bun scripts/seo-daily-report.ts",
     "seo:traffic": "bun scripts/fetch-traffic.ts",
     "seo:indexnow": "bun scripts/indexnow.ts",
+    "ai:scout": "bun scripts/ai-game-scout.ts",
     "speedgrapher": "bun scripts/speedgrapher-lint.ts"
   },
   "dependencies": {

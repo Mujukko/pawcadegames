@@ -116,21 +116,21 @@ export const GOOGLE_TRENDS_US_CLUSTERS: GoogleTrendCluster[] = [
     queryGroup: 'Unblocked School & Work Breaks',
     usSearchVolumeLevel: 'VERY_HIGH',
     peakPeriod: 'Mon-Fri 8:00 AM - 3:00 PM EST (US School Hours)',
-    relevantPawcadeGames: ['duck-runner', 'dog-parking', 'cat-parking', 'flappy-chicken', 'farm-tetris'],
+    relevantPawcadeGames: ['duck-runner', 'dog-parking', 'cat-parking', 'flappy-chicken', 'farm-tetris', 'barnyard-tower', 'gopher-garden'],
     recommendedMetadataModifier: 'unblocked casual play'
   },
   {
     queryGroup: 'Instant Play / No Download Games',
     usSearchVolumeLevel: 'VERY_HIGH',
     peakPeriod: 'Year-round steady (high mobile web conversion)',
-    relevantPawcadeGames: ['farm-mini-mart', 'pet-candy-crush', 'animal-2048'],
+    relevantPawcadeGames: ['farm-mini-mart', 'pet-candy-crush', 'animal-2048', 'barnyard-tower', 'gopher-garden'],
     recommendedMetadataModifier: 'instant play no download'
   },
   {
     queryGroup: 'Cozy & Cute Animal Puzzles',
     usSearchVolumeLevel: 'HIGH',
     peakPeriod: 'Evenings & Weekends (US Casual demographic)',
-    relevantPawcadeGames: ['dog-parking', 'cat-parking', 'animal-2048', 'farm-mini-mart'],
+    relevantPawcadeGames: ['dog-parking', 'cat-parking', 'animal-2048', 'farm-mini-mart', 'barnyard-tower'],
     recommendedMetadataModifier: 'cute pet relaxing puzzle'
   },
   {

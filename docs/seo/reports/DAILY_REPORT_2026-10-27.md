@@ -1,6 +1,6 @@
 # 👑 Pawcade Daily SEO & AI Search Executive Report
 **Tarih:** 2026-10-27  
-**Saat:** 09:18:12 (GMT+3)  
+**Saat:** 13:10:06 (GMT+3)  
 **Denetçi Ajanlar:** `seo-sentinel` • `agentic-seo-strategist` • `speedgrapher-supervisor`  
 **Site:** [Pawcade Games](https://pawcadegames.com/)
 
@@ -8,9 +8,9 @@
 
 ## 1. 📊 Genel Sağlık & Skor Tablosu
 - **Ortalama SEO Skoru:** **100/100** 🟢 Mükemmel
-- **İzlenen Aktif Oyun Sayısı:** **21 Oyun**
+- **İzlenen Aktif Oyun Sayısı:** **23 Oyun**
 - **7-Pillar Kanonik Denetim:** ✅ TÜM TESTLER GEÇTİ
-- **Speedgrapher Okunabilirlik (Gunning Fog):** **9.2** (Hedef: 6.0 – 8.5 US 6th-8th Grade)
+- **Speedgrapher Okunabilirlik (Gunning Fog):** **9.0** (Hedef: 6.0 – 8.5 US 6th-8th Grade)
 - **Yapay Zeka Klişesi (Slop Skoru):** **0/100** (Hedef: < 15, Veto Eşiği: 20)
 
 ---
@@ -66,6 +66,8 @@
 | `animal-2048` | 95/100 | 11.6 | 0 | ✅ | 🟢 Mükemmel |
 | `farm-tetris` | 100/100 | 6.6 | 0 | ✅ | 🟢 Mükemmel |
 | `animal-farm-parking` | 100/100 | 8.6 | 0 | ✅ | 🟢 Mükemmel |
+| `barnyard-tower` | 100/100 | 7.7 | 0 | ✅ | 🟢 Mükemmel |
+| `gopher-garden` | 100/100 | 6.1 | 0 | ✅ | 🟢 Mükemmel |
 
 ---
 *Bu rapor `seo-sentinel` tarafından her gün 21:00'de otomatik olarak oluşturulur ve arşivlenir.*

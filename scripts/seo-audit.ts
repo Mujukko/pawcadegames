@@ -149,7 +149,8 @@ export function runUnifiedAudit(): { passed: boolean; results: UnifiedAuditResul
     const combinedLower = textCorpus.toLowerCase();
     let hasSpam = false;
     for (const word of FORBIDDEN_SPAM_WORDS) {
-      if (combinedLower.includes(word)) {
+      const regex = new RegExp(`\\b${word}\\b`, 'i');
+      if (regex.test(combinedLower)) {
         hasSpam = true;
         issues.push(`Detected prohibited term: ${word}`);
         totalFailures++;
