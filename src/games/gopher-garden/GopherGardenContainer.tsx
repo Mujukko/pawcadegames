@@ -173,14 +173,15 @@ export const GopherGardenContainer: React.FC = () => {
             <span>{highScore}</span>
           </div>
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               const muted = gopherAudio.toggleMute();
               setIsMuted(muted);
             }}
-            className="p-1.5 rounded-full bg-white/20 hover:bg-white/30 text-white transition active:scale-95"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/20 hover:bg-white/30 text-white transition active:scale-95 flex items-center justify-center cursor-pointer"
             aria-label="Toggle Mute"
           >
-            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+            {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </button>
         </div>
       </div>
@@ -203,7 +204,7 @@ export const GopherGardenContainer: React.FC = () => {
             <div
               key={mound.id}
               onClick={() => handleTapMound(mound.id)}
-              className="relative w-full aspect-square max-w-[100px] flex flex-col items-center justify-end cursor-pointer active:scale-95 transition-transform"
+              className="relative w-full aspect-square max-w-[100px] min-w-[72px] min-h-[72px] flex flex-col items-center justify-end cursor-pointer active:scale-95 transition-transform"
             >
               {/* Floating Point Notification */}
               {floatPoints
@@ -270,7 +271,10 @@ export const GopherGardenContainer: React.FC = () => {
 
       {/* Game Over Modal */}
       {state.gameOver && (
-        <div className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-fadeIn">
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-fadeIn"
+        >
           <div className="text-5xl mb-2 animate-bounce">🥕🏆</div>
           <h2 className="text-2xl font-black text-amber-400 tracking-wide uppercase mb-1">Harvest Time Up!</h2>
           <p className="text-xs text-slate-300 max-w-xs mb-4">
@@ -290,7 +294,7 @@ export const GopherGardenContainer: React.FC = () => {
 
           <button
             onClick={restartGame}
-            className="w-full max-w-xs py-3 px-6 rounded-2xl bg-gradient-to-r from-amber-500 to-emerald-500 hover:from-amber-400 hover:to-emerald-400 text-white font-black text-sm tracking-wider uppercase shadow-xl transition active:scale-95 flex items-center justify-center gap-2"
+            className="w-full max-w-xs min-h-[48px] py-3 px-6 rounded-2xl bg-gradient-to-r from-amber-500 to-emerald-500 hover:from-amber-400 hover:to-emerald-400 text-white font-black text-sm tracking-wider uppercase shadow-xl transition active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
           >
             <RotateCcw className="w-4 h-4" />
             Play Again

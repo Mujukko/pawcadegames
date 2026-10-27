@@ -20,6 +20,9 @@ class GopherGardenAudio {
 
   public toggleMute(): boolean {
     this.isMuted = !this.isMuted;
+    if (!this.isMuted) {
+      this.initCtx();
+    }
     return this.isMuted;
   }
 

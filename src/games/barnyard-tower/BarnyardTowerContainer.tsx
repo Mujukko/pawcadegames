@@ -148,7 +148,7 @@ export const BarnyardTowerContainer: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-md mx-auto h-[620px] select-none bg-gradient-to-b from-sky-400 via-sky-300 to-emerald-200 rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-800/40 flex flex-col touch-none"
+      className="relative w-full max-w-md mx-auto h-[620px] select-none bg-gradient-to-b from-sky-400 via-sky-300 to-emerald-200 rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-800/40 flex flex-col touch-none cursor-pointer"
       onClick={triggerDrop}
       style={{ touchAction: 'none' }}
     >
@@ -189,10 +189,10 @@ export const BarnyardTowerContainer: React.FC = () => {
               const muted = towerAudio.toggleMute();
               setIsMuted(muted);
             }}
-            className="p-1.5 rounded-full bg-white/20 hover:bg-white/30 text-white transition active:scale-95"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/20 hover:bg-white/30 text-white transition active:scale-95 flex items-center justify-center cursor-pointer"
             aria-label="Toggle Mute"
           >
-            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+            {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </button>
         </div>
       </div>
@@ -344,7 +344,10 @@ export const BarnyardTowerContainer: React.FC = () => {
 
       {/* Game Over Modal */}
       {state.gameOver && (
-        <div className="absolute inset-0 z-40 bg-slate-950/80 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-fadeIn">
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="absolute inset-0 z-40 bg-slate-950/80 backdrop-blur-md flex flex-col items-center justify-center p-6 text-white text-center animate-fadeIn"
+        >
           <div className="text-5xl mb-2 animate-bounce">🐮💥</div>
           <h2 className="text-2xl font-black text-rose-400 tracking-wide uppercase mb-1">Tower Toppled!</h2>
           <p className="text-xs text-slate-300 max-w-xs mb-4">
@@ -367,7 +370,7 @@ export const BarnyardTowerContainer: React.FC = () => {
               e.stopPropagation();
               restartGame();
             }}
-            className="w-full max-w-xs py-3 px-6 rounded-2xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-black text-sm tracking-wider uppercase shadow-xl transition active:scale-95 flex items-center justify-center gap-2"
+            className="w-full max-w-xs min-h-[48px] py-3 px-6 rounded-2xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-black text-sm tracking-wider uppercase shadow-xl transition active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
           >
             <RotateCcw className="w-4 h-4" />
             Stack Again
