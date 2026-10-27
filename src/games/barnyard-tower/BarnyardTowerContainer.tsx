@@ -90,9 +90,10 @@ export const BarnyardTowerContainer: React.FC = () => {
           const newY = falling.y + falling.vy * dt;
 
           // Target landing altitude:
-          // Board height is approx 520px. Base cart is at 450px.
-          // Each stacked animal adds approx 48px height.
-          const landingAltitude = 450 - next.height * 46;
+          // Board height is approx 528px. Hay Cart top is at 422px.
+          // For heights <= 3, the stack grows upward (landing altitude decreases by ~48px per animal).
+          // For heights > 3, the camera scrolls down to keep the top of the stack at a stable ~278px.
+          const landingAltitude = next.height <= 3 ? 422 - next.height * 48 : 278;
 
           if (newY >= landingAltitude) {
             // Animal hits stack level
@@ -259,26 +260,41 @@ export const BarnyardTowerContainer: React.FC = () => {
 
         {/* Stack Viewport (translates downward as tower grows) */}
         <div
-          className="absolute inset-x-0 bottom-16 pointer-events-none transition-transform duration-300 flex flex-col items-center justify-end"
+          className="absolute inset-x-0 bottom-16 pointer-events-none transition-transform duration-300 ease-out flex flex-col items-center justify-end"
           style={{
-            transform: `translateY(${Math.max(0, (state.height - 4) * 44)}px) rotate(${state.wobble * 0.4}deg)`,
+            transform: `translateY(${Math.max(0, (state.height - 3) * 48)}px) rotate(${Math.min(6, Math.max(-6, state.wobble * 0.25))}deg)`,
             transformOrigin: 'bottom center',
           }}
         >
-          {/* Stacked Animals */}
+          {/* Stacked Animals - Hay Cart base at bottom, animals stacked upwards */}
           <div className="relative flex flex-col-reverse items-center">
+            {/* 1. Farm Hay Wagon Base MUST be first child in flex-col-reverse to sit at the very bottom */}
+            <div
+              className="relative flex flex-col items-center justify-center bg-amber-800 border-4 border-amber-950 rounded-xl shadow-xl z-0"
+              style={{ width: `${BASE_PLATFORM_WIDTH}px`, height: '42px' }}
+            >
+              <div className="text-xs font-black tracking-wider text-amber-100 uppercase drop-shadow flex items-center gap-1">
+                🌾 HAY CART 🚜
+              </div>
+              <div className="absolute -bottom-3 flex justify-between w-full px-2">
+                <div className="w-5 h-5 rounded-full bg-slate-900 border-2 border-slate-700" />
+                <div className="w-5 h-5 rounded-full bg-slate-900 border-2 border-slate-700" />
+              </div>
+            </div>
+
+            {/* 2. Stacked Animals on top of Hay Cart */}
             {state.stackedAnimals.map((animal, idx) => {
               const def = ANIMAL_DEFS[animal.type];
               return (
                 <div
                   key={animal.id}
-                  className="relative flex items-center justify-center rounded-2xl shadow-md border-3 transition-transform -mb-2"
+                  className="relative flex items-center justify-center rounded-2xl shadow-md border-3 transition-transform -mb-3 z-10"
                   style={{
                     width: `${animal.width}px`,
                     height: `${animal.height}px`,
                     backgroundColor: def.color,
                     borderColor: def.borderColor,
-                    transform: `translateX(${(animal.x - 200) * 0.45}px) rotate(${animal.rotation}deg)`,
+                    transform: `translateX(${animal.x - 200}px) rotate(${animal.rotation}deg)`,
                   }}
                 >
                   <span className="text-3xl filter drop-shadow select-none">{def.emoji}</span>
@@ -291,25 +307,16 @@ export const BarnyardTowerContainer: React.FC = () => {
                 </div>
               );
             })}
-
-            {/* Farm Hay Wagon Base */}
-            <div
-              className="relative flex flex-col items-center justify-center bg-amber-700 border-4 border-amber-950 rounded-xl shadow-xl z-0"
-              style={{ width: `${BASE_PLATFORM_WIDTH}px`, height: '42px' }}
-            >
-              <div className="text-xs font-black tracking-wider text-amber-100 uppercase drop-shadow flex items-center gap-1">
-                🌾 HAY CART 🚜
-              </div>
-              <div className="absolute -bottom-3 flex justify-between w-full px-2">
-                <div className="w-5 h-5 rounded-full bg-slate-900 border-2 border-slate-700" />
-                <div className="w-5 h-5 rounded-full bg-slate-900 border-2 border-slate-700" />
-              </div>
-            </div>
           </div>
         </div>
 
-        {/* Lush Green Farm Ground */}
-        <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-emerald-800 to-emerald-600 border-t-4 border-emerald-900 flex items-center justify-center z-0">
+        {/* Lush Green Farm Ground (sinks smoothly as tower climbs into the clouds) */}
+        <div
+          className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-emerald-800 to-emerald-600 border-t-4 border-emerald-900 flex items-center justify-center z-0 transition-transform duration-300 ease-out"
+          style={{
+            transform: `translateY(${Math.max(0, (state.height - 3) * 48)}px)`,
+          }}
+        >
           <span className="text-xs font-bold text-emerald-200/90 tracking-widest uppercase">
             🌱 Barnyard Pasture Ground 🌱
           </span>
