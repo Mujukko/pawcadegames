@@ -1,23 +1,102 @@
 {
-  "timestamp": "2026-10-27T10:26:18.910Z",
+  "timestamp": "2026-10-27T10:57:34.679Z",
   "authenticated": true,
   "source": "api",
   "ga4Realtime": {
-    "activeUsers": 0,
-    "topPages": []
+    "activeUsers": 1,
+    "topPages": [
+      {
+        "pagePath": "Cat Parking: Kitty Meadow Escape 🐈‍⬛ — Free Online Cat Puzzle | Pawcade",
+        "activeUsers": 1
+      }
+    ]
   },
   "ga4Historical": {
-    "totalUsers": 0,
-    "screenPageViews": 0,
-    "sessions": 0,
-    "topPages": []
+    "totalUsers": 51,
+    "screenPageViews": 180,
+    "sessions": 63,
+    "topPages": [
+      {
+        "pagePath": "/",
+        "views": 129,
+        "users": 48
+      },
+      {
+        "pagePath": "/games/cat-parking/",
+        "views": 3,
+        "users": 3
+      },
+      {
+        "pagePath": "/games/sheep-stampede/",
+        "views": 4,
+        "users": 3
+      },
+      {
+        "pagePath": "/games/duck-runner/",
+        "views": 3,
+        "users": 2
+      },
+      {
+        "pagePath": "/games/egg-buster/",
+        "views": 3,
+        "users": 2
+      },
+      {
+        "pagePath": "/games/farm-block-blast/",
+        "views": 5,
+        "users": 2
+      },
+      {
+        "pagePath": "/games/farm-mini-mart/",
+        "views": 5,
+        "users": 2
+      },
+      {
+        "pagePath": "/games/grain-sand-fall/",
+        "views": 5,
+        "users": 2
+      },
+      {
+        "pagePath": "/games/horseshoe-twist/",
+        "views": 3,
+        "users": 2
+      },
+      {
+        "pagePath": "/games/pet-candy-crush/",
+        "views": 2,
+        "users": 2
+      },
+      {
+        "pagePath": "/games/sheep-cart-jam/",
+        "views": 6,
+        "users": 2
+      },
+      {
+        "pagePath": "/category/arcade/",
+        "views": 2,
+        "users": 1
+      },
+      {
+        "pagePath": "/category/farm/",
+        "views": 1,
+        "users": 1
+      }
+    ]
   },
   "gscTotals": {
-    "clicks": 0,
-    "impressions": 0,
-    "avgCtr": 0,
-    "avgPosition": 0
+    "clicks": 1,
+    "impressions": 1,
+    "avgCtr": 100,
+    "avgPosition": 4
   },
-  "gscTopQueries": [],
-  "summaryMessage": "✅ Canlı trafik verileri GA4 (560318238) ve GSC (Pawcade) üzerinden başarıyla çekildi."
+  "gscTopQueries": [
+    {
+      "query": "pawcade",
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 100,
+      "position": 4
+    }
+  ],
+  "summaryMessage": "✅ Canlı trafik verileri GA4 (560318238) ve GSC (https://pawcadegames.com/) üzerinden başarıyla çekildi."
 }

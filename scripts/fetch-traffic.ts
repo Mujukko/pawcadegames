@@ -240,7 +240,8 @@ async function fetchGa4Reports(
         { name: 'sessions' },
       ],
       dimensions: [{ name: 'pagePath' }],
-      limit: 10,
+      metricAggregations: ['TOTAL'],
+      limit: 15,
     }),
   });
 
@@ -251,14 +252,22 @@ async function fetchGa4Reports(
       rows?: Array<{ dimensionValues: Array<{ value: string }>; metricValues: Array<{ value: string }> }>;
     };
 
-    const totalUsers = parseInt(hData.totals?.[0]?.metricValues?.[0]?.value || '0', 10);
-    const screenPageViews = parseInt(hData.totals?.[0]?.metricValues?.[1]?.value || '0', 10);
-    const sessions = parseInt(hData.totals?.[0]?.metricValues?.[2]?.value || '0', 10);
+    const topPages = (hData.rows || [])
+      .map((row) => ({
+        pagePath: row.dimensionValues[0]?.value || '/',
+        views: parseInt(row.metricValues[1]?.value || '0', 10),
+        users: parseInt(row.metricValues[0]?.value || '0', 10),
+      }))
+      .filter((p) => !p.pagePath.startsWith('/assets/') && !p.pagePath.endsWith('.js') && !p.pagePath.endsWith('.css'));
 
-    const topPages = (hData.rows || []).map((row) => ({
-      pagePath: row.dimensionValues[0]?.value || '/',
-      views: parseInt(row.metricValues[1]?.value || '0', 10),
-    }));
+    // Use GA4 totals if provided, or sum from rows
+    const totalUsers =
+      parseInt(hData.totals?.[0]?.metricValues?.[0]?.value || '0', 10) ||
+      topPages.reduce((acc, p) => acc + (p.users || 0), 0);
+    const screenPageViews =
+      parseInt(hData.totals?.[0]?.metricValues?.[1]?.value || '0', 10) ||
+      topPages.reduce((acc, p) => acc + p.views, 0);
+    const sessions = parseInt(hData.totals?.[0]?.metricValues?.[2]?.value || '0', 10);
 
     historical = { totalUsers, screenPageViews, sessions, topPages };
   }
