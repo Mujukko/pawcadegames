@@ -740,6 +740,42 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Look ahead before clearing cards! Choosing lines that uncover hidden face-down cards keeps your streak going without needing to draw.',
   },
+  'sheep-sorter-gate': {
+    title: 'Barnyard Sheep Sorter: Pasture Gate',
+    subtitle: 'Fast Reflex Color Sorting Arcade',
+    mascot: '🐑🚪',
+    themeColor: 'from-emerald-600 via-amber-600 to-green-700',
+    goal: 'Flip the pasture gate left or right to sort fluffy sheep into their meadows before time runs out!',
+    steps: [
+      {
+        icon: '🐑',
+        title: '1. Watch Incoming Sheep',
+        desc: 'White and Pink sheep belong to the Left pasture. Black and Golden sheep belong to the Right paddock.',
+      },
+      {
+        icon: '🚪',
+        title: '2. Flip the Pasture Gate',
+        desc: 'Tap Left or Right to swing the gate paddle so the sheep bounces straight into its matching pen.',
+      },
+      {
+        icon: '⭐',
+        title: '3. Trigger Golden Fever',
+        desc: 'Sort 15 sheep consecutively to ignite 5 seconds of Golden Fever for double points!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left / Right Arrows or A / D Keys: Flip gate left or right',
+        'Spacebar: Quick flip gate direction',
+        'M Key: Toggle sound effects',
+      ],
+      mobile: [
+        'Tap Left Half / LEFT Button: Direct sheep to Left pen',
+        'Tap Right Half / RIGHT Button: Direct sheep to Right paddock',
+      ],
+    },
+    proTip: 'Keep your eyes at the top of the runway rather than right at the gate! Anticipating 2 sheep in advance makes reaching 20+ combos easy.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

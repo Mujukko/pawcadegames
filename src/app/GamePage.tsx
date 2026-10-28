@@ -150,6 +150,9 @@ const MilkBottlePlinkoContainer = lazy(() =>
 const FarmTriPeaksSolitaireContainer = lazy(() =>
   import('../games/farm-tripeaks-solitaire/FarmTriPeaksSolitaireContainer').then((m) => ({ default: m.FarmTriPeaksSolitaireContainer }))
 );
+const SheepSorterGateContainer = lazy(() =>
+  import('../games/sheep-sorter-gate/SheepSorterGateContainer').then((m) => ({ default: m.SheepSorterGateContainer }))
+);
 
 
 
@@ -182,6 +185,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isSheepSorter = gameId === 'sheep-sorter-gate' || gameId === 'sheep-sorter' || gameId === 'sheep-gate';
   const isTriPeaks = gameId === 'farm-tripeaks-solitaire' || gameId === 'tripeaks' || gameId === 'solitaire';
   const isMilkPlinko = gameId === 'milk-bottle-plinko' || gameId === 'milk-plinko' || gameId === 'plinko';
   const isCoinPusher = gameId === 'piggy-coin-pusher' || gameId === 'coin-pusher' || gameId === 'coin-dozer';
@@ -521,7 +525,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isTriPeaks ? (
+            {isSheepSorter ? (
+              <SheepSorterGateContainer />
+            ) : isTriPeaks ? (
               <FarmTriPeaksSolitaireContainer />
             ) : isMilkPlinko ? (
               <MilkBottlePlinkoContainer />

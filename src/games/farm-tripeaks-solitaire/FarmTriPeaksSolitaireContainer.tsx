@@ -568,7 +568,7 @@ export const FarmTriPeaksSolitaireContainer: React.FC = () => {
           <button
             onClick={handleUndo}
             disabled={!hudState.canUndo}
-            className={`w-9 h-9 min-w-[36px] min-h-[36px] rounded-lg border flex items-center justify-center text-sm transition-transform touch-manipulation ${
+            className={`w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-lg border flex items-center justify-center text-sm transition-transform touch-manipulation ${
               hudState.canUndo
                 ? 'bg-slate-800 border-slate-700 active:scale-95 text-slate-200'
                 : 'bg-slate-900 border-slate-800 text-slate-600 cursor-not-allowed opacity-60'
@@ -579,14 +579,14 @@ export const FarmTriPeaksSolitaireContainer: React.FC = () => {
           </button>
           <button
             onClick={toggleSound}
-            className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm active:scale-95 transition-transform touch-manipulation"
+            className="w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm active:scale-95 transition-transform touch-manipulation"
             aria-label="Toggle Sound"
           >
             {isMuted ? '🔇' : '🔊'}
           </button>
           <button
             onClick={handleRestart}
-            className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm active:scale-95 transition-transform text-slate-300 hover:text-white touch-manipulation"
+            className="w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm active:scale-95 transition-transform text-slate-300 hover:text-white touch-manipulation"
             aria-label="Restart Stage"
           >
             🔄
@@ -595,7 +595,7 @@ export const FarmTriPeaksSolitaireContainer: React.FC = () => {
       </div>
 
       {/* Interactive 60 FPS Canvas Board */}
-      <div className="relative w-full aspect-[420/540] bg-slate-950 border-x border-slate-800 overflow-hidden shadow-2xl">
+      <div className="relative w-full aspect-[420/540] bg-slate-950 border-x border-slate-800 overflow-hidden shadow-2xl touch-none">
         <canvas
           ref={canvasRef}
           width={420}

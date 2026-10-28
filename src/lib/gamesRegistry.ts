@@ -1892,6 +1892,44 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Farm TriPeaks Solitaire: Harvest Peak 🌾 — No Download | Pawcade',
     metaDescription: 'Play Farm TriPeaks Solitaire free online! Clear 3 card peaks, build streak multipliers, and uncover harvest crop cards. Free casual card game with no download.',
   },
+  {
+    id: 'sheep-sorter-gate',
+    slug: 'sheep-sorter-gate',
+    title: 'Barnyard Sheep Sorter: Pasture Gate 🐑🚪',
+    tagline: 'Flip the pasture gate left or right to sort fluffy sheep into their meadows before time runs out!',
+    description: 'Flip the swinging wooden pasture gate left or right to sort incoming fluffy sheep! Guide white and pink sheep to the left meadow, and send black and golden sheep to the right paddock. Build rapid streak combos to trigger Golden Fever mode and earn double points. Test your quick reflexes across endless waves!',
+    category: 'arcade',
+    categories: ['arcade', 'farm'],
+    route: '/games/sheep-sorter-gate/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '19.2K',
+    badge: '🐑 Gate Reflex',
+    thumbnailUrl: '/assets/thumbnails/thumb-sheep-sorter-gate.svg',
+    controls: {
+      desktop: [
+        'Left Arrow / A Key: Flip pasture gate to the left corral',
+        'Right Arrow / D Key: Flip pasture gate to the right corral',
+        'Spacebar: Toggle gate direction instantly',
+        'M Key: Toggle gate thud and sheep sound effects',
+      ],
+      mobile: [
+        'Tap Left Screen / LEFT Button: Direct sheep to White & Pink meadow',
+        'Tap Right Screen / RIGHT Button: Direct sheep to Black & Gold paddock',
+        'Top Header: Check remaining hearts and combo multiplier',
+      ],
+    },
+    features: [
+      'Rapid Two-Way Reflex Sorting: White/Pink to Left, Black/Golden to Right',
+      'Golden Fever Mode with 2x Multiplier Every 15 Streak Combos',
+      'Dynamic Speed Scaling with Increasing Sheep Trot Paces',
+      'Fluffy Cloud Wool Physics with Bouncing Trot Animations',
+      'Procedural Web Audio Latch Snaps, Sheep Baas, and Chimes',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Barnyard Sheep Sorter: Pasture Gate 🐑 — No Download | Pawcade',
+    metaDescription: 'Play Barnyard Sheep Sorter free online! Flip the pasture gate left or right to sort fluffy sheep, build streak combos, and trigger Golden Fever mode.',
+  },
 ];
 
 

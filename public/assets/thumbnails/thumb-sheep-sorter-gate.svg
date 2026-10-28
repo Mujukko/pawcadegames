@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Sky & Hills -->
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#7dd3fc" />
+      <stop offset="100%" stop-color="#bae6fd" />
+    </linearGradient>
+
+    <!-- Pasture Green Left -->
+    <linearGradient id="grassLeftGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#22c55e" />
+    </linearGradient>
+
+    <!-- Pasture Golden Right -->
+    <linearGradient id="grassRightGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+
+    <!-- Dirt Runway -->
+    <linearGradient id="runwayGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="25%" stop-color="#fef3c7" />
+      <stop offset="75%" stop-color="#fef3c7" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+
+    <!-- Wood Plank Gate -->
+    <linearGradient id="woodGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="50%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <!-- Golden Sheep Gradient -->
+    <radialGradient id="goldSheepGrad" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#eab308" />
+    </radialGradient>
+
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feOffset dx="0" dy="4" result="offset" />
+      <feComposite in="SourceGraphic" in2="offset" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="512" height="512" fill="url(#skyGrad)" />
+
+  <!-- Far Pasture Hills -->
+  <path d="M0,180 Q140,120 280,160 T512,140 L512,512 L0,512 Z" fill="#15803d" opacity="0.6" />
+  <path d="M0,210 Q180,160 360,200 T512,180 L512,512 L0,512 Z" fill="#166534" />
+
+  <!-- Dual Split Corrals (Left: Emerald Pasture, Right: Amber Meadow) -->
+  <path d="M0,230 L220,230 L200,512 L0,512 Z" fill="url(#grassLeftGrad)" />
+  <path d="M292,230 L512,230 L512,512 L312,512 Z" fill="url(#grassRightGrad)" opacity="0.85" />
+
+  <!-- Central Runway Track -->
+  <polygon points="210,0 302,0 312,512 200,512" fill="url(#runwayGrad)" />
+  <line x1="256" y1="0" x2="256" y2="310" stroke="#f59e0b" stroke-width="4" stroke-dasharray="12,10" opacity="0.7" />
+
+  <!-- Wooden Fences Bordering Runway -->
+  <g stroke="#78350f" stroke-width="5" fill="#92400e">
+    <!-- Left Fence Posts -->
+    <rect x="200" y="80" width="12" height="40" rx="2" />
+    <rect x="195" y="160" width="12" height="42" rx="2" />
+    <rect x="190" y="240" width="12" height="44" rx="2" />
+    <line x1="190" y1="100" x2="200" y2="260" stroke="#b45309" stroke-width="6" />
+
+    <!-- Right Fence Posts -->
+    <rect x="300" y="80" width="12" height="40" rx="2" />
+    <rect x="305" y="160" width="12" height="42" rx="2" />
+    <rect x="310" y="240" width="12" height="44" rx="2" />
+    <line x1="300" y1="100" x2="310" y2="260" stroke="#b45309" stroke-width="6" />
+  </g>
+
+  <!-- Left Corral Sign: White / Pink Sheep -->
+  <g transform="translate(60, 240)">
+    <rect x="0" y="0" width="100" height="46" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="4" filter="url(#dropShadow)" />
+    <circle cx="28" cy="23" r="14" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" />
+    <text x="28" y="28" font-family="system-ui, sans-serif" font-size="14" text-anchor="middle">⚪</text>
+    <circle cx="68" cy="23" r="14" fill="#fce7f3" stroke="#f472b6" stroke-width="2" />
+    <text x="68" y="28" font-family="system-ui, sans-serif" font-size="14" text-anchor="middle">🌸</text>
+    <text x="50" y="60" font-family="system-ui, sans-serif" font-size="12" font-weight="900" fill="#1e293b" text-anchor="middle">LEFT</text>
+  </g>
+
+  <!-- Right Corral Sign: Black / Golden Sheep -->
+  <g transform="translate(352, 240)">
+    <rect x="0" y="0" width="100" height="46" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="4" filter="url(#dropShadow)" />
+    <circle cx="28" cy="23" r="14" fill="#334155" stroke="#475569" stroke-width="2" />
+    <text x="28" y="28" font-family="system-ui, sans-serif" font-size="14" text-anchor="middle">⚫</text>
+    <circle cx="68" cy="23" r="14" fill="#fef08a" stroke="#eab308" stroke-width="2" />
+    <text x="68" y="28" font-family="system-ui, sans-serif" font-size="14" text-anchor="middle">⭐</text>
+    <text x="50" y="60" font-family="system-ui, sans-serif" font-size="12" font-weight="900" fill="#ffffff" text-anchor="middle">RIGHT</text>
+  </g>
+
+  <!-- Central Pasture Gate Flipping Left -->
+  <g transform="translate(256, 320)" filter="url(#dropShadow)">
+    <!-- Gate Hinge Post -->
+    <circle cx="0" cy="0" r="14" fill="#475569" stroke="#1e293b" stroke-width="4" />
+    <!-- Gate Wood Arm Angled Left (-35 deg) -->
+    <g transform="rotate(-35)">
+      <rect x="-8" y="-12" width="110" height="24" rx="6" fill="url(#woodGrad)" stroke="#451a03" stroke-width="3" />
+      <circle cx="25" cy="0" r="4" fill="#fbbf24" />
+      <circle cx="75" cy="0" r="4" fill="#fbbf24" />
+      <!-- Arrow on Gate -->
+      <polygon points="90,-8 105,0 90,8" fill="#fde047" stroke="#b45309" stroke-width="2" />
+    </g>
+  </g>
+
+  <!-- Running Sheep Characters -->
+  <!-- 1. White Sheep (Front & Center, bouncing down runway) -->
+  <g transform="translate(256, 210)" filter="url(#dropShadow)">
+    <!-- Cloud Puffs Body -->
+    <ellipse cx="0" cy="0" rx="36" ry="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="3" />
+    <circle cx="-22" cy="-12" r="14" fill="#ffffff" />
+    <circle cx="0" cy="-18" r="15" fill="#ffffff" />
+    <circle cx="22" cy="-12" r="14" fill="#ffffff" />
+    <circle cx="-24" cy="8" r="13" fill="#ffffff" />
+    <circle cx="24" cy="8" r="13" fill="#ffffff" />
+    <!-- Head -->
+    <ellipse cx="0" cy="-10" rx="16" ry="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
+    <!-- Ears -->
+    <ellipse cx="-16" cy="-14" rx="7" ry="4" fill="#fbcfe8" transform="rotate(-20 -16 -14)" />
+    <ellipse cx="16" cy="-14" rx="7" ry="4" fill="#fbcfe8" transform="rotate(20 16 -14)" />
+    <!-- Happy Face -->
+    <circle cx="-5" cy="-12" r="2.5" fill="#0f172a" />
+    <circle cx="5" cy="-12" r="2.5" fill="#0f172a" />
+    <path d="M-3,-7 Q0,-4 3,-7" stroke="#0f172a" stroke-width="2" fill="none" stroke-linecap="round" />
+    <circle cx="-9" cy="-8" r="3" fill="#f472b6" opacity="0.6" />
+    <circle cx="9" cy="-8" r="3" fill="#f472b6" opacity="0.6" />
+    <!-- Little Trot Feet -->
+    <circle cx="-12" cy="24" r="5" fill="#0f172a" />
+    <circle cx="12" cy="24" r="5" fill="#0f172a" />
+  </g>
+
+  <!-- 2. Golden Sheep (Flanking right leaping with sparkles) -->
+  <g transform="translate(390, 390)" filter="url(#dropShadow)">
+    <ellipse cx="0" cy="0" rx="34" ry="26" fill="url(#goldSheepGrad)" stroke="#d97706" stroke-width="3" />
+    <circle cx="-20" cy="-10" r="13" fill="#fef08a" />
+    <circle cx="0" cy="-16" r="14" fill="#fef08a" />
+    <circle cx="20" cy="-10" r="13" fill="#fef08a" />
+    <!-- Head -->
+    <ellipse cx="0" cy="-8" rx="15" ry="13" fill="#fef08a" stroke="#ca8a04" stroke-width="2" />
+    <!-- Crown / Sparkle -->
+    <polygon points="0,-24 -4,-18 4,-18" fill="#ffffff" />
+    <!-- Eyes -->
+    <circle cx="-5" cy="-10" r="2.5" fill="#78350f" />
+    <circle cx="5" cy="-10" r="2.5" fill="#78350f" />
+    <circle cx="-9" cy="-6" r="3" fill="#f59e0b" opacity="0.7" />
+    <circle cx="9" cy="-6" r="3" fill="#f59e0b" opacity="0.7" />
+    <!-- Golden Stars -->
+    <text x="24" y="-18" font-size="20">✨</text>
+    <text x="-32" y="10" font-size="16">✨</text>
+  </g>
+
+  <!-- 3. Pink Sheep (Flanking left in green pasture) -->
+  <g transform="translate(120, 390)" filter="url(#dropShadow)">
+    <ellipse cx="0" cy="0" rx="34" ry="26" fill="#fce7f3" stroke="#f472b6" stroke-width="3" />
+    <circle cx="-20" cy="-10" r="13" fill="#fbcfe8" />
+    <circle cx="0" cy="-16" r="14" fill="#fbcfe8" />
+    <circle cx="20" cy="-10" r="13" fill="#fbcfe8" />
+    <ellipse cx="0" cy="-8" rx="15" ry="13" fill="#fdf2f8" stroke="#ec4899" stroke-width="2" />
+    <circle cx="-5" cy="-10" r="2.5" fill="#831843" />
+    <circle cx="5" cy="-10" r="2.5" fill="#831843" />
+    <circle cx="-8" cy="-6" r="3" fill="#f43f5e" opacity="0.7" />
+    <circle cx="8" cy="-6" r="3" fill="#f43f5e" opacity="0.7" />
+    <!-- Flower in Wool -->
+    <text x="12" y="-18" font-size="16">🌸</text>
+  </g>
+
+  <!-- Top Supervisor: Buster the Sheepdog -->
+  <g transform="translate(60, 60)" filter="url(#dropShadow)">
+    <circle cx="0" cy="0" r="34" fill="#3b82f6" stroke="#1d4ed8" stroke-width="3" />
+    <!-- Corgi/Dog Face -->
+    <ellipse cx="0" cy="4" rx="22" ry="20" fill="#f59e0b" />
+    <polygon points="-16,-12 -8,-32 0,-14" fill="#d97706" />
+    <polygon points="16,-12 8,-32 0,-14" fill="#d97706" />
+    <ellipse cx="0" cy="10" rx="12" ry="10" fill="#ffffff" />
+    <circle cx="0" cy="4" r="4" fill="#0f172a" />
+    <circle cx="-8" cy="-2" r="3" fill="#0f172a" />
+    <circle cx="8" cy="-2" r="3" fill="#0f172a" />
+    <!-- Red Bandana -->
+    <path d="M-16,18 Q0,26 16,18 L0,32 Z" fill="#ef4444" />
+  </g>
+
+  <!-- Header Banner -->
+  <g transform="translate(256, 44)" filter="url(#dropShadow)">
+    <rect x="-140" y="-22" width="280" height="44" rx="22" fill="#0f172a" stroke="#fbbf24" stroke-width="3" opacity="0.9" />
+    <text x="0" y="7" font-family="system-ui, sans-serif" font-size="18" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1">
+      SHEEP SORTER: GATE
+    </text>
+  </g>
+</svg>

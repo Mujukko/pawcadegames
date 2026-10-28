@@ -85,11 +85,17 @@ export const App: React.FC = () => {
     const coinPusherGame = GAMES_REGISTRY.find(g => g.id === 'piggy-coin-pusher');
     const milkPlinkoGame = GAMES_REGISTRY.find(g => g.id === 'milk-bottle-plinko');
     const triPeaksGame = GAMES_REGISTRY.find(g => g.id === 'farm-tripeaks-solitaire');
+    const sheepSorterGame = GAMES_REGISTRY.find(g => g.id === 'sheep-sorter-gate');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/farm-tripeaks-solitaire') || currentRoute.startsWith('/games/tripeaks') || currentRoute.startsWith('/games/solitaire')) {
+    if (currentRoute.startsWith('/games/sheep-sorter-gate') || currentRoute.startsWith('/games/sheep-sorter') || currentRoute.startsWith('/games/sheep-gate')) {
+      if (sheepSorterGame) {
+        activeTitle = sheepSorterGame.metaTitle;
+        activeDesc = sheepSorterGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/farm-tripeaks-solitaire') || currentRoute.startsWith('/games/tripeaks') || currentRoute.startsWith('/games/solitaire')) {
       if (triPeaksGame) {
         activeTitle = triPeaksGame.metaTitle;
         activeDesc = triPeaksGame.metaDescription;
@@ -380,6 +386,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/sheep-sorter-gate') || currentRoute.startsWith('/games/sheep-sorter') || currentRoute.startsWith('/games/sheep-gate')) {
+      return <GamePage navigate={navigate} gameId="sheep-sorter-gate" />;
     }
     if (currentRoute.startsWith('/games/farm-tripeaks-solitaire') || currentRoute.startsWith('/games/tripeaks') || currentRoute.startsWith('/games/solitaire')) {
       return <GamePage navigate={navigate} gameId="farm-tripeaks-solitaire" />;
