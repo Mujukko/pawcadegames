@@ -87,6 +87,9 @@ const HungryPiggyContainer = lazy(() =>
 const DuckPondSortContainer = lazy(() =>
   import('../games/duck-pond-sort/DuckPondSortContainer').then((m) => ({ default: m.DuckPondSortContainer }))
 );
+const HamsterBallDashContainer = lazy(() =>
+  import('../games/hamster-ball-dash/HamsterBallDashContainer').then((m) => ({ default: m.HamsterBallDashContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -116,6 +119,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isHamsterBall = gameId === 'hamster-ball-dash' || gameId === 'tube-roll';
   const isDuckPond = gameId === 'duck-pond-sort' || gameId === 'duck-sort' || gameId === 'water-sort';
   const isHungryPiggy = gameId === 'hungry-piggy' || gameId === 'piggy-chomper' || gameId === 'farm-hole';
   const isFruitBubble = gameId === 'farm-fruit-bubble' || gameId === 'fruit-bubble' || gameId === 'bubble-shooter';
@@ -323,7 +327,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isDuckPond
+                  isHamsterBall
+                    ? '🐹⚡'
+                    : isDuckPond
                     ? '🦆🌸'
                     : isHungryPiggy
                     ? '🐷🍎'
@@ -380,7 +386,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isDuckPond ? (
+            {isHamsterBall ? (
+              <HamsterBallDashContainer />
+            ) : isDuckPond ? (
               <DuckPondSortContainer />
             ) : isHungryPiggy ? (
               <HungryPiggyContainer />

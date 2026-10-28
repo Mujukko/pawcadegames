@@ -21,6 +21,43 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'hamster-ball-dash': {
+    title: 'Hamster Ball Dash: Tube Roll',
+    subtitle: 'High-Speed Stunt Ball Arcade',
+    mascot: '🐹⚡',
+    themeColor: 'from-amber-500 via-orange-600 to-yellow-600',
+    goal: 'Roll Pip inside the transparent stunt sphere, grab sunflower seeds, and reach the finish line before time runs out!',
+    steps: [
+      {
+        icon: '🐹',
+        title: '1. Steer Across Stunt Tubes',
+        desc: 'Drag your finger or press Arrow Keys / A & D to steer Pip along boardwalks and through clear silo tubes.',
+      },
+      {
+        icon: '⚡',
+        title: '2. Hit Boost Pads & Ramps',
+        desc: 'Drive over neon chevron boost pads for supersonic speed and launch off ramps into soaring jumps!',
+      },
+      {
+        icon: '🌻',
+        title: '3. Collect Seeds & Stay on Track',
+        desc: 'Collect golden sunflower seeds and purple magnet power-ups. Watch out for open bridges and don\'t tumble off!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Arrow Keys / A & D: Steer Pip left and right across the track',
+        'Up Arrow / W: Accelerate forward into high-speed roll',
+        'Down Arrow / S: Brake for sharp corners and tight ledges',
+        'M Key: Toggle sound effects',
+      ],
+      mobile: [
+        'Touch & Drag on Screen: Steer Pip smoothly with instant response',
+        'On-Screen Steer Buttons: Tap Left or Right at the bottom of the screen',
+      ],
+    },
+    proTip: 'Brake briefly before entering open narrow bridges without rails to keep your momentum centered and avoid falling off!',
+  },
   'duck-hunt-classic': {
     title: 'Duck Hunt Classic: Barnyard Shoot',
     subtitle: 'NES & Atari Retro Arcade Shooter',

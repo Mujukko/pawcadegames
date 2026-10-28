@@ -64,11 +64,17 @@ export const App: React.FC = () => {
     const sheepJumpGame = GAMES_REGISTRY.find(g => g.id === 'pasture-sheep-jump');
     const hungryPiggyGame = GAMES_REGISTRY.find(g => g.id === 'hungry-piggy');
     const duckPondGame = GAMES_REGISTRY.find(g => g.id === 'duck-pond-sort');
+    const hamsterBallGame = GAMES_REGISTRY.find(g => g.id === 'hamster-ball-dash');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/duck-pond-sort') || currentRoute.startsWith('/games/duck-sort') || currentRoute.startsWith('/games/water-sort')) {
+    if (currentRoute.startsWith('/games/hamster-ball-dash') || currentRoute.startsWith('/games/tube-roll')) {
+      if (hamsterBallGame) {
+        activeTitle = hamsterBallGame.metaTitle;
+        activeDesc = hamsterBallGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/duck-pond-sort') || currentRoute.startsWith('/games/duck-sort') || currentRoute.startsWith('/games/water-sort')) {
       if (duckPondGame) {
         activeTitle = duckPondGame.metaTitle;
         activeDesc = duckPondGame.metaDescription;
@@ -254,6 +260,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/hamster-ball-dash') || currentRoute.startsWith('/games/tube-roll')) {
+      return <GamePage navigate={navigate} gameId="hamster-ball-dash" />;
     }
     if (currentRoute.startsWith('/games/duck-pond-sort') || currentRoute.startsWith('/games/duck-sort') || currentRoute.startsWith('/games/water-sort')) {
       return <GamePage navigate={navigate} gameId="duck-pond-sort" />;
