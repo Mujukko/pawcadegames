@@ -21,6 +21,43 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'cat-cafe-rush': {
+    title: 'Cat Cafe Rush: Cozy Bakery',
+    subtitle: 'Cozy Time-Management Bakery',
+    mascot: '🐱🍰',
+    themeColor: 'from-rose-500 via-pink-600 to-amber-600',
+    goal: 'Bake warm fish waffles, froth matcha lattes, and serve visiting customer cats before their patience runs out!',
+    steps: [
+      {
+        icon: '🧇',
+        title: '1. Bake & Prep Pastries',
+        desc: 'Tap the waffle iron to pour batter and bake taiyaki, steam matcha lattes, or layer fresh strawberry cakes.',
+      },
+      {
+        icon: '🍽️',
+        title: '2. Platter to Hold Orders',
+        desc: 'Cooked items move to your 4-slot serving platter. Keep a balanced supply ready for incoming orders.',
+      },
+      {
+        icon: '🐾',
+        title: '3. Serve Waiting Cats',
+        desc: 'Tap SERVE on any customer seat whose order matches an item on your platter to collect coins and build combos!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Tap kitchen stations to bake, froth, and layer pastries',
+        'Click SERVE: Deliver prepared pastry to waiting customer cat',
+        'M Key: Toggle soothing cafe sounds and purrs',
+      ],
+      mobile: [
+        'Tap Stations: Quick touch to start baking or collecting items',
+        'Tap SERVE: Deliver order to matching customer seat',
+        'Tap Platter Item: Discard an item if you need an empty slot',
+      ],
+    },
+    proTip: 'Serve cats when their patience gauge is green (>60%) to earn a +50% Speed Tip and build high combo multipliers!',
+  },
   'hamster-ball-dash': {
     title: 'Hamster Ball Dash: Tube Roll',
     subtitle: 'High-Speed Stunt Ball Arcade',

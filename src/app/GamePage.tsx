@@ -90,6 +90,9 @@ const DuckPondSortContainer = lazy(() =>
 const HamsterBallDashContainer = lazy(() =>
   import('../games/hamster-ball-dash/HamsterBallDashContainer').then((m) => ({ default: m.HamsterBallDashContainer }))
 );
+const CatCafeRushContainer = lazy(() =>
+  import('../games/cat-cafe-rush/CatCafeRushContainer').then((m) => ({ default: m.CatCafeRushContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -119,6 +122,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isCatCafe = gameId === 'cat-cafe-rush';
   const isHamsterBall = gameId === 'hamster-ball-dash' || gameId === 'tube-roll';
   const isDuckPond = gameId === 'duck-pond-sort' || gameId === 'duck-sort' || gameId === 'water-sort';
   const isHungryPiggy = gameId === 'hungry-piggy' || gameId === 'piggy-chomper' || gameId === 'farm-hole';
@@ -143,7 +147,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   const isFlappy = gameId === 'flappy-chicken';
   const is2048 = gameId === 'animal-2048';
   const isFarmTetris = gameId === 'farm-tetris';
-  const isChefRat = gameId === 'chef-rat-rush' || gameId === 'cat-cafe-rush';
+  const isChefRat = gameId === 'chef-rat-rush';
   const isCat = gameId === 'cat-parking';
   const isFarm = gameId === 'animal-farm-parking';
   const game = GAMES_REGISTRY.find(g => g.id === gameId) || GAMES_REGISTRY[0]!;
@@ -327,7 +331,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isHamsterBall
+                  isCatCafe
+                    ? '🐱🍰'
+                    : isHamsterBall
                     ? '🐹⚡'
                     : isDuckPond
                     ? '🦆🌸'
@@ -386,7 +392,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isHamsterBall ? (
+            {isCatCafe ? (
+              <CatCafeRushContainer />
+            ) : isHamsterBall ? (
               <HamsterBallDashContainer />
             ) : isDuckPond ? (
               <DuckPondSortContainer />

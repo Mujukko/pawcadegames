@@ -65,11 +65,17 @@ export const App: React.FC = () => {
     const hungryPiggyGame = GAMES_REGISTRY.find(g => g.id === 'hungry-piggy');
     const duckPondGame = GAMES_REGISTRY.find(g => g.id === 'duck-pond-sort');
     const hamsterBallGame = GAMES_REGISTRY.find(g => g.id === 'hamster-ball-dash');
+    const catCafeGame = GAMES_REGISTRY.find(g => g.id === 'cat-cafe-rush');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/hamster-ball-dash') || currentRoute.startsWith('/games/tube-roll')) {
+    if (currentRoute.startsWith('/games/cat-cafe-rush')) {
+      if (catCafeGame) {
+        activeTitle = catCafeGame.metaTitle;
+        activeDesc = catCafeGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/hamster-ball-dash') || currentRoute.startsWith('/games/tube-roll')) {
       if (hamsterBallGame) {
         activeTitle = hamsterBallGame.metaTitle;
         activeDesc = hamsterBallGame.metaDescription;
@@ -159,7 +165,7 @@ export const App: React.FC = () => {
         activeTitle = sandFallGame.metaTitle;
         activeDesc = sandFallGame.metaDescription;
       }
-    } else if (currentRoute.startsWith('/games/chef-rat-rush') || currentRoute.startsWith('/games/cat-cafe-rush')) {
+    } else if (currentRoute.startsWith('/games/chef-rat-rush')) {
       if (chefRatGame) {
         activeTitle = chefRatGame.metaTitle;
         activeDesc = chefRatGame.metaDescription;
@@ -261,6 +267,9 @@ export const App: React.FC = () => {
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
     }
+    if (currentRoute.startsWith('/games/cat-cafe-rush')) {
+      return <GamePage navigate={navigate} gameId="cat-cafe-rush" />;
+    }
     if (currentRoute.startsWith('/games/hamster-ball-dash') || currentRoute.startsWith('/games/tube-roll')) {
       return <GamePage navigate={navigate} gameId="hamster-ball-dash" />;
     }
@@ -315,7 +324,7 @@ export const App: React.FC = () => {
     if (currentRoute.startsWith('/games/grain-sand-fall') || currentRoute.startsWith('/games/sand-blocks') || currentRoute.startsWith('/games/sand-tetris')) {
       return <GamePage navigate={navigate} gameId="grain-sand-fall" />;
     }
-    if (currentRoute.startsWith('/games/chef-rat-rush') || currentRoute.startsWith('/games/cat-cafe-rush')) {
+    if (currentRoute.startsWith('/games/chef-rat-rush')) {
       return <GamePage navigate={navigate} gameId="chef-rat-rush" />;
     }
     if (currentRoute.startsWith('/games/farm-mini-mart')) {
