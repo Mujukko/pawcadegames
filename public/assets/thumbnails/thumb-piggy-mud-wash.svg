@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="45%" stop-color="#bae6fd"/>
+      <stop offset="75%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+
+    <!-- Wood Tub Gradient -->
+    <linearGradient id="woodTub" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="25%" stop-color="#92400e"/>
+      <stop offset="70%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+
+    <!-- Piggy Pink Gradient -->
+    <linearGradient id="piggyPink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fbcfe8"/>
+      <stop offset="50%" stop-color="#f472b6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+
+    <!-- Piggy Snout Gradient -->
+    <linearGradient id="snoutPink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f9a8d4"/>
+      <stop offset="100%" stop-color="#db2777"/>
+    </linearGradient>
+
+    <!-- Water Bubble Gradient -->
+    <radialGradient id="bubbleGleam" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#e0f2fe" stop-opacity="0.6"/>
+      <stop offset="80%" stop-color="#38bdf8" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0.8"/>
+    </radialGradient>
+
+    <!-- Mud Gradient -->
+    <linearGradient id="mudBrown" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#854d0e"/>
+      <stop offset="60%" stop-color="#713f12"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+
+    <!-- County Fair Blue Ribbon -->
+    <linearGradient id="blueRibbon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+
+    <!-- Gold Medal -->
+    <linearGradient id="goldMedal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="40%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky & Grass Country Background -->
+  <rect width="512" height="512" rx="36" fill="url(#bgGrad)"/>
+
+  <!-- Sun Rays & Warm Ambiance -->
+  <g opacity="0.35">
+    <path d="M256 256 L180 0 L220 0 Z" fill="#ffffff"/>
+    <path d="M256 256 L300 0 L340 0 Z" fill="#ffffff"/>
+    <path d="M256 256 L420 50 L460 70 Z" fill="#ffffff"/>
+    <path d="M256 256 L60 70 L100 50 Z" fill="#ffffff"/>
+  </g>
+
+  <!-- Wooden Wash Tub Back Rim -->
+  <ellipse cx="256" cy="360" rx="190" ry="46" fill="#5c2607"/>
+
+  <!-- Penny the Piglet Body Inside Tub -->
+  <g id="piggyGroup">
+    <!-- Piggy Ears -->
+    <path d="M175 180 C150 120 120 135 140 185 Z" fill="url(#piggyPink)" stroke="#be185d" stroke-width="4"/>
+    <path d="M165 175 C150 140 135 150 145 180 Z" fill="#f43f5e" opacity="0.4"/>
+
+    <path d="M337 180 C362 120 392 135 372 185 Z" fill="url(#piggyPink)" stroke="#be185d" stroke-width="4"/>
+    <path d="M347 175 C362 140 377 150 367 180 Z" fill="#f43f5e" opacity="0.4"/>
+
+    <!-- Piggy Head & Body -->
+    <circle cx="256" cy="240" r="105" fill="url(#piggyPink)" stroke="#be185d" stroke-width="5"/>
+
+    <!-- Shiny Clean Left Cheeks, Rosy Blush -->
+    <circle cx="185" cy="270" r="22" fill="#fb7185" opacity="0.45"/>
+    <circle cx="327" cy="270" r="22" fill="#fb7185" opacity="0.45"/>
+
+    <!-- Big Happy Cartoon Eyes -->
+    <!-- Left Eye (Winking / Sparkling) -->
+    <ellipse cx="205" cy="220" rx="16" ry="20" fill="#1e293b"/>
+    <circle cx="210" cy="214" r="7" fill="#ffffff"/>
+    <circle cx="202" cy="226" r="3" fill="#ffffff"/>
+
+    <!-- Right Eye -->
+    <ellipse cx="307" cy="220" rx="16" ry="20" fill="#1e293b"/>
+    <circle cx="312" cy="214" r="7" fill="#ffffff"/>
+    <circle cx="304" cy="226" r="3" fill="#ffffff"/>
+
+    <!-- Cute Big Oval Snout -->
+    <ellipse cx="256" cy="268" rx="42" ry="28" fill="url(#snoutPink)" stroke="#be185d" stroke-width="4"/>
+    <!-- Nostrils -->
+    <ellipse cx="242" cy="268" rx="8" ry="12" fill="#9d174d"/>
+    <ellipse cx="270" cy="268" rx="8" ry="12" fill="#9d174d"/>
+
+    <!-- Cute Smiling Mouth Below Snout -->
+    <path d="M236 302 Q256 318 276 302" fill="none" stroke="#be185d" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Front Little Piggy Trotters Clinging to Tub Rim -->
+    <ellipse cx="190" cy="355" rx="20" ry="16" fill="url(#snoutPink)" stroke="#be185d" stroke-width="4"/>
+    <path d="M190 348 L190 365" stroke="#9d174d" stroke-width="3"/>
+
+    <ellipse cx="322" cy="355" rx="20" ry="16" fill="url(#snoutPink)" stroke="#be185d" stroke-width="4"/>
+    <path d="M322 348 L322 365" stroke="#9d174d" stroke-width="3"/>
+
+    <!-- Muddy Splats on Left Ear & Cheeks (Before Washing) -->
+    <path d="M150 160 Q130 140 145 175 Q160 170 150 160 Z" fill="url(#mudBrown)"/>
+    <path d="M170 230 Q150 240 160 260 Q180 250 170 230 Z" fill="url(#mudBrown)"/>
+    <circle cx="150" cy="220" r="7" fill="url(#mudBrown)"/>
+  </g>
+
+  <!-- Wooden Wash Tub Front -->
+  <path d="M76 360 L102 465 C110 495 160 500 256 500 C352 500 402 495 410 465 L436 360 Z" fill="url(#woodTub)" stroke="#451a03" stroke-width="6"/>
+
+  <!-- Metal Bands on Wooden Tub -->
+  <path d="M85 395 C140 420 372 420 427 395" fill="none" stroke="#cbd5e1" stroke-width="8"/>
+  <path d="M96 440 C145 465 367 465 416 440" fill="none" stroke="#94a3b8" stroke-width="8"/>
+
+  <!-- Soapy Foam Mountain Overflowing Tub -->
+  <g id="soapyFoam">
+    <circle cx="120" cy="360" r="26" fill="#f8fafc" stroke="#e2e8f0" stroke-width="3"/>
+    <circle cx="150" cy="350" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"/>
+    <circle cx="215" cy="365" r="28" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="295" cy="365" r="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="360" cy="355" r="32" fill="#f8fafc" stroke="#e2e8f0" stroke-width="3"/>
+    <circle cx="395" cy="365" r="24" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"/>
+  </g>
+
+  <!-- Yellow Rubber Ducky in Tub -->
+  <g id="rubberDucky" transform="translate(110, 310) scale(0.9)">
+    <path d="M20 30 C10 30 0 40 5 55 C12 65 35 65 40 55 C42 45 35 30 20 30 Z" fill="#facc15" stroke="#ca8a04" stroke-width="3"/>
+    <circle cx="32" cy="26" r="14" fill="#facc15" stroke="#ca8a04" stroke-width="3"/>
+    <path d="M42 26 L52 29 L42 34 Z" fill="#ea580c"/>
+    <circle cx="36" cy="22" r="3" fill="#1e293b"/>
+    <circle cx="37" cy="21" r="1" fill="#ffffff"/>
+  </g>
+
+  <!-- Shiny Soap Bubbles Floating Up -->
+  <circle cx="390" cy="190" r="32" fill="url(#bubbleGleam)" stroke="#bae6fd" stroke-width="2"/>
+  <path d="M380 175 A15 15 0 0 1 405 185" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+
+  <circle cx="105" cy="180" r="24" fill="url(#bubbleGleam)" stroke="#bae6fd" stroke-width="2"/>
+  <path d="M98 170 A10 10 0 0 1 115 176" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+
+  <circle cx="330" cy="100" r="20" fill="url(#bubbleGleam)" stroke="#bae6fd" stroke-width="2"/>
+  <circle cx="180" cy="90" r="16" fill="url(#bubbleGleam)" stroke="#bae6fd" stroke-width="1.5"/>
+
+  <!-- Sparkling Clean Star Gleams -->
+  <path d="M330 210 L335 225 L350 230 L335 235 L330 250 L325 235 L310 230 L325 225 Z" fill="#fef08a" stroke="#eab308" stroke-width="2"/>
+  <path d="M260 140 L263 150 L273 153 L263 156 L260 166 L257 156 L247 153 L257 150 Z" fill="#ffffff"/>
+  <path d="M375 280 L378 288 L386 291 L378 294 L375 302 L372 294 L364 291 L372 288 Z" fill="#fef08a"/>
+
+  <!-- County Fair 1st Prize Rosette Blue Ribbon Pinned to Tub -->
+  <g id="countyFairRibbon" transform="translate(370, 390)">
+    <!-- Ribbon Tails -->
+    <path d="M10 35 L-5 95 L25 80 L35 95 L20 35 Z" fill="url(#blueRibbon)" stroke="#1e3a8a" stroke-width="2"/>
+    <path d="M40 35 L55 95 L25 80 L15 95 L30 35 Z" fill="url(#blueRibbon)" stroke="#1e3a8a" stroke-width="2"/>
+
+    <!-- Rosette Ruffles -->
+    <circle cx="25" cy="25" r="38" fill="url(#blueRibbon)" stroke="#1e3a8a" stroke-width="3"/>
+
+    <!-- Gold Center Medal -->
+    <circle cx="25" cy="25" r="24" fill="url(#goldMedal)" stroke="#ca8a04" stroke-width="2"/>
+
+    <!-- 1st Prize Text / Star -->
+    <path d="M25 12 L28 20 L37 20 L30 25 L33 34 L25 29 L17 34 L20 25 L13 20 L22 20 Z" fill="#991b1b"/>
+  </g>
+</svg>

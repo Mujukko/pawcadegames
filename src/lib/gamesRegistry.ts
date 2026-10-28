@@ -2080,7 +2080,46 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Chicken Egg Catcher: Barnyard Rush 🐔 — No Download | Pawcade',
     metaDescription: 'Play Chicken Egg Catcher free online! Catch falling farm eggs in your straw basket, dodge rotten eggs, and rack up combo points. Free arcade catch with no download.',
   },
+  {
+    id: 'piggy-mud-wash',
+    slug: 'piggy-mud-wash',
+    title: 'Piggy Mud Wash: County Fair Spa 🐷🧼',
+    tagline: 'Scrub muddy farm pets with soap, rinse them with the hose, towel dry, and win the County Fair 1st prize ribbon!',
+    description: 'Wash dirty farm animals for the County Fair! Use bubbly sponge soap to loosen mud patches, spray water to rinse them away, and towel dry until their coats shine. Clean all four pets to earn the blue ribbon with zero downloads.',
+    category: 'pets',
+    categories: ['pets', 'farm', 'arcade'],
+    route: '/games/piggy-mud-wash/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '29.4K',
+    badge: '🐷 Mud Wash',
+    thumbnailUrl: '/assets/thumbnails/thumb-piggy-mud-wash.svg',
+    controls: {
+      desktop: [
+        'Mouse Drag: Scrub sponge, spray hose, or wipe towel over muddy patches',
+        '1, 2, 3 Keys: Switch between Soap Sponge, Water Hose, and Fluffy Towel',
+        'Spacebar: Advance to next farm animal upon winning ribbon',
+        'R Key: Reset muddy patches for a fresh wash',
+        'M Key: Toggle bubbly scrub and water splash sounds',
+      ],
+      mobile: [
+        'Touch & Drag: Slide finger across animal to scrub and wash mud away',
+        'Bottom Tool Dock: Tap large icons to switch Sponge, Hose, and Towel',
+      ],
+    },
+    features: [
+      '4 Adorable Farm Animals: Penny the Piglet, Barnaby Pup, Daisy Calf, and Woolly Lamb',
+      'Satisfying 3-Step Cleaning: Foaming Soap Sponge, Water Spray Rinse, and Towel Dry',
+      'Sub-Pixel Canvas 2D Physics with Sparkling Star Bursts and Foaming Bubbles',
+      'County Fair 1st Prize Blue Ribbon Awards and Grand Champion Ceremony',
+      'Procedural Web Audio Soap Lather, Water Jet Spray, and Cheerful Animal Vocals',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Piggy Mud Wash: County Fair Spa 🐷 — No Download | Pawcade',
+    metaDescription: 'Play Piggy Mud Wash free online! Scrub muddy farm animals with soap, rinse with water, and dry them for the County Fair. Free casual pet spa with no download.',
+  },
 ];
+
 
 
 

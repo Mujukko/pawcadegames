@@ -165,6 +165,9 @@ const HamsterMazeRunnerContainer = lazy(() =>
 const ChickenEggCatcherContainer = lazy(() =>
   import('../games/chicken-egg-catcher/ChickenEggCatcherContainer').then((m) => ({ default: m.ChickenEggCatcherContainer }))
 );
+const PiggyMudWashContainer = lazy(() =>
+  import('../games/piggy-mud-wash/PiggyMudWashContainer').then((m) => ({ default: m.PiggyMudWashContainer }))
+);
 
 
 
@@ -197,6 +200,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isPiggyMudWash = gameId === 'piggy-mud-wash' || gameId === 'mud-wash' || gameId === 'pig-wash';
   const isEggCatcher = gameId === 'chicken-egg-catcher' || gameId === 'egg-catcher';
   const isHamsterMaze = gameId === 'hamster-maze-runner' || gameId === 'hamster-maze' || gameId === 'nut-escape';
   const isCropMower = gameId === 'crop-mower-harvest' || gameId === 'crop-mower' || gameId === 'lawn-mower';
@@ -377,7 +381,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isEggCatcher
+                isPiggyMudWash
+                  ? 'bg-pink-500/20 text-pink-300 border-pink-500/30'
+                  : isEggCatcher
                   ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
                   : isHamsterMaze
                   ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
@@ -517,7 +523,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   <GameLoadingFallback
                     title={game.title}
                     mascot={
-                      isEggCatcher
+                      isPiggyMudWash
+                        ? '🐷🧼'
+                        : isEggCatcher
                         ? '🐔🥚'
                         : isHamsterMaze
                         ? '🐹🌰'
@@ -610,7 +618,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   />
                 }
               >
-                {isEggCatcher ? (
+                {isPiggyMudWash ? (
+                  <PiggyMudWashContainer />
+                ) : isEggCatcher ? (
                   <ChickenEggCatcherContainer />
                 ) : isHamsterMaze ? (
                   <HamsterMazeRunnerContainer />

@@ -923,6 +923,43 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Watch for green spoiled eggs and deliberately let them drop! Rotten eggs splat harmlessly on the floor, saving your 3 precious hearts.',
   },
+  'piggy-mud-wash': {
+    title: 'Piggy Mud Wash: County Fair Spa',
+    subtitle: 'Satisfying Farm Pet Wash Arcade',
+    mascot: '🐷🧼',
+    themeColor: 'from-pink-500 via-rose-500 to-amber-500',
+    goal: 'Scrub muddy farm pets with soap, rinse away grime with the hose, towel dry, and win County Fair ribbons!',
+    steps: [
+      {
+        icon: '🧽',
+        title: '1. Soap Up With Sponge',
+        desc: 'Select Tool 1 and drag over dark brown mud patches to lather them up with thick soap bubbles.',
+      },
+      {
+        icon: '🚿',
+        title: '2. Rinse Clean With Hose',
+        desc: 'Select Tool 2 and spray water over the soapy lather to wash away all loosened mud and bubbles.',
+      },
+      {
+        icon: '🧖',
+        title: '3. Towel Dry & Polish',
+        desc: 'Select Tool 3 and wipe the wet coat with a fluffy towel until bright golden sparkles appear!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Drag: Scrub, rinse, and dry across the animal',
+        '1, 2, 3 Keys: Instant tool selection (Sponge, Hose, Towel)',
+        'Spacebar: Advance after winning ribbon',
+        'R Key: Reset current animal',
+      ],
+      mobile: [
+        'Touch & Drag: Slide finger across animal body to clean',
+        'Tool Dock: Tap bottom Sponge, Hose, and Towel buttons',
+      ],
+    },
+    proTip: 'Work in systematic passes! Lather all mud with the sponge first, blast everything with the water hose second, then finish with a quick towel dry to hit 100% in record time.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

@@ -90,11 +90,17 @@ export const App: React.FC = () => {
     const cropMowerGame = GAMES_REGISTRY.find(g => g.id === 'crop-mower-harvest');
     const hamsterMazeGame = GAMES_REGISTRY.find(g => g.id === 'hamster-maze-runner');
     const chickenEggCatcherGame = GAMES_REGISTRY.find(g => g.id === 'chicken-egg-catcher');
+    const piggyMudWashGame = GAMES_REGISTRY.find(g => g.id === 'piggy-mud-wash');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/chicken-egg-catcher') || currentRoute.startsWith('/games/egg-catcher')) {
+    if (currentRoute.startsWith('/games/piggy-mud-wash') || currentRoute.startsWith('/games/mud-wash') || currentRoute.startsWith('/games/pig-wash')) {
+      if (piggyMudWashGame) {
+        activeTitle = piggyMudWashGame.metaTitle;
+        activeDesc = piggyMudWashGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/chicken-egg-catcher') || currentRoute.startsWith('/games/egg-catcher')) {
       if (chickenEggCatcherGame) {
         activeTitle = chickenEggCatcherGame.metaTitle;
         activeDesc = chickenEggCatcherGame.metaDescription;
