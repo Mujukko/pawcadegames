@@ -79,11 +79,17 @@ export const App: React.FC = () => {
     const pegPopGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-peg-pop');
     const duckArcheryGame = GAMES_REGISTRY.find(g => g.id === 'duck-archery-range');
     const corgiGolfGame = GAMES_REGISTRY.find(g => g.id === 'corgi-mini-golf');
+    const caterpillarGame = GAMES_REGISTRY.find(g => g.id === 'caterpillar-fruit-trail');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/corgi-mini-golf') || currentRoute.startsWith('/games/mini-golf') || currentRoute.startsWith('/games/golf')) {
+    if (currentRoute.startsWith('/games/caterpillar-fruit-trail') || currentRoute.startsWith('/games/caterpillar') || currentRoute.startsWith('/games/snake')) {
+      if (caterpillarGame) {
+        activeTitle = caterpillarGame.metaTitle;
+        activeDesc = caterpillarGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/corgi-mini-golf') || currentRoute.startsWith('/games/mini-golf') || currentRoute.startsWith('/games/golf')) {
       if (corgiGolfGame) {
         activeTitle = corgiGolfGame.metaTitle;
         activeDesc = corgiGolfGame.metaDescription;

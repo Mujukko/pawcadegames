@@ -1663,6 +1663,43 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Corgi Mini Golf: Pasture Putt 🐶⛳ — No Download | Pawcade',
     metaDescription: 'Play Corgi Mini Golf free online! Aim your putter, bank off wooden rails, dodge sand traps, and sink hole-in-ones. Free casual game with no download.',
   },
+  {
+    id: 'caterpillar-fruit-trail',
+    slug: 'caterpillar-fruit-trail',
+    title: 'Caterpillar Garden: Fruit Trail Snake 🐛🍎',
+    tagline: 'Crawl through garden plots, eat sweet berries, dodge thorny hedges, and grow your fuzzy trail!',
+    description: 'Guide Sammy the friendly garden caterpillar across lush fruit patches! Crawl along garden tiles, munch on sweet cherries, strawberries, and golden apples to grow your wavy body. Dodge stone rocks, thorny brambles, and your own tail across four blooming garden plots.',
+    category: 'arcade',
+    categories: ['arcade', 'farm'],
+    route: '/games/caterpillar-fruit-trail/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '29.1K',
+    badge: '🐛 Fruit Snake',
+    thumbnailUrl: '/assets/thumbnails/thumb-caterpillar-fruit-trail.svg',
+    controls: {
+      desktop: [
+        'Arrow Keys / WASD: Steer Sammy up, down, left, and right',
+        'R Key: Restart current garden plot',
+        'M Key: Toggle fruit crunch and crawl sounds',
+      ],
+      mobile: [
+        'Touch & Swipe: Swipe anywhere on screen in four directions',
+        'On-Screen D-Pad: Tap directional arrows below the garden',
+        'Restart Button: Reset level anytime',
+      ],
+    },
+    features: [
+      '4 Handcrafted Garden Plots: Daisy Meadow, Strawberry Patch, Thorn Hedge Maze, and Butterfly Greenhouse',
+      'Smooth 60 FPS Multi-Segment Wavy Caterpillar Crawl Animations with Responsive Turning',
+      '5 Garden Treats: Sweet Cherries (25 pts), Strawberries (40 pts), Crisp Apples (60 pts), Golden Apples (150 pts), and Turbo Leaves',
+      'Dynamic Obstacles: Garden Stones, Wooden Hedges, and Prickly Blackberry Brambles',
+      'Procedural Web Audio Synthesizer (Crunchy Munches, Turbo Sweeps, Rustles, and Victory Fanfare)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Caterpillar Garden: Fruit Trail Snake 🐛🍎 — No Download | Pawcade',
+    metaDescription: 'Play Caterpillar Garden: Fruit Trail Snake free online! Crawl across garden tiles, eat sweet berries, grow your caterpillar body, and dodge thorns. Free no download.',
+  },
 ];
 
 

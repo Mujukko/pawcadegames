@@ -132,6 +132,9 @@ const DuckArcheryRangeContainer = lazy(() =>
 const CorgiMiniGolfContainer = lazy(() =>
   import('../games/corgi-mini-golf/CorgiMiniGolfContainer').then((m) => ({ default: m.CorgiMiniGolfContainer }))
 );
+const CaterpillarFruitTrailContainer = lazy(() =>
+  import('../games/caterpillar-fruit-trail/CaterpillarFruitTrailContainer').then((m) => ({ default: m.CaterpillarFruitTrailContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -161,6 +164,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isCaterpillar = gameId === 'caterpillar-fruit-trail' || gameId === 'caterpillar' || gameId === 'snake';
   const isMiniGolf = gameId === 'corgi-mini-golf' || gameId === 'mini-golf' || gameId === 'golf';
   const isDuckArchery = gameId === 'duck-archery-range' || gameId === 'duck-archery' || gameId === 'archery';
   const isPegPop = gameId === 'barnyard-peg-pop' || gameId === 'peg-pop' || gameId === 'peggle';
@@ -311,7 +315,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isMiniGolf
+                isCaterpillar
+                  ? 'bg-lime-500/20 text-lime-300 border-lime-500/30'
+                  : isMiniGolf
                   ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
                   : isDuckArchery
                   ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
@@ -403,7 +409,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isMiniGolf
+                  isCaterpillar
+                    ? '🐛🍎'
+                    : isMiniGolf
                     ? '🐶⛳'
                     : isDuckArchery
                     ? '🎯🦆'
@@ -490,7 +498,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isMiniGolf ? (
+            {isCaterpillar ? (
+              <CaterpillarFruitTrailContainer />
+            ) : isMiniGolf ? (
               <CorgiMiniGolfContainer />
             ) : isDuckArchery ? (
               <DuckArcheryRangeContainer />

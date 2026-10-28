@@ -561,30 +561,34 @@ export const CorgiMiniGolfContainer: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-lg mx-auto flex flex-col items-center select-none overflow-hidden touch-none"
+      className="relative w-full max-w-lg mx-auto flex flex-col items-center select-none overflow-hidden touch-none overscroll-none rounded-3xl border border-amber-500/30 shadow-2xl bg-slate-950"
       style={{ touchAction: 'none', overscrollBehavior: 'none' }}
     >
       {/* COMPACT BALANCED MOBILE HUD (320px - 430px) */}
-      <div className="w-full flex items-center justify-between px-3 py-2 bg-slate-900/90 border-b border-amber-500/20 text-white z-20 shrink-0 text-xs sm:text-sm">
+      <div className="w-full flex items-center justify-between px-2 sm:px-3 py-1.5 sm:py-2 bg-slate-900/90 border-b border-amber-500/20 text-white z-20 shrink-0 text-xs sm:text-sm">
         {/* Left Cluster */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          <div className="flex items-center gap-1 font-black text-amber-400 bg-amber-950/60 px-2 py-1 rounded-lg border border-amber-500/30">
-            <Flag className="w-3.5 h-3.5" />
-            <span>HOLE {displayState.holeNumber}/4</span>
+        <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-1 font-black text-amber-400 bg-amber-950/60 px-1.5 sm:px-2 py-1 rounded-lg border border-amber-500/30 text-[11px] sm:text-xs">
+            <Flag className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+            <span>
+              <span className="hidden sm:inline">HOLE </span>H{displayState.holeNumber}/4
+            </span>
           </div>
-          <div className="flex items-center gap-1 font-bold text-slate-300 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700">
+          <div className="flex items-center gap-1 font-bold text-slate-300 bg-slate-800/80 px-1.5 sm:px-2 py-1 rounded-lg border border-slate-700 text-[11px] sm:text-xs">
             <span>PAR {displayState.par}</span>
           </div>
-          <div className="flex items-center gap-1 font-black text-emerald-400 bg-emerald-950/60 px-2 py-1 rounded-lg border border-emerald-500/30">
-            <span>STROKES:</span>
+          <div className="flex items-center gap-1 font-black text-emerald-400 bg-emerald-950/60 px-1.5 sm:px-2 py-1 rounded-lg border border-emerald-500/30 text-[11px] sm:text-xs">
+            <span>
+              <span className="hidden sm:inline">STROKES: </span>S:
+            </span>
             <span>{displayState.strokes}</span>
           </div>
         </div>
 
         {/* Right Cluster */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          <div className="flex items-center gap-1 font-black text-amber-400 bg-amber-950/60 px-2 py-1 rounded-lg border border-amber-500/30">
-            <Trophy className="w-3.5 h-3.5" />
+        <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-1 font-black text-amber-400 bg-amber-950/60 px-1.5 sm:px-2 py-1 rounded-lg border border-amber-500/30 text-[11px] sm:text-xs">
+            <Trophy className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             <span>{displayState.score}</span>
           </div>
 
@@ -592,7 +596,7 @@ export const CorgiMiniGolfContainer: React.FC = () => {
           <button
             onClick={handleToggleMute}
             aria-label={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-            className="w-8 h-8 min-w-[32px] min-h-[32px] sm:w-9 sm:h-9 sm:min-w-[36px] sm:min-h-[36px] rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 flex items-center justify-center text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="w-9 h-9 sm:w-10 sm:h-10 min-w-[38px] sm:min-w-[44px] min-h-[38px] sm:min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-600 flex items-center justify-center text-slate-300 hover:text-white transition-all cursor-pointer touch-manipulation relative after:absolute after:-inset-1.5 after:content-['']"
           >
             {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
           </button>
@@ -601,7 +605,7 @@ export const CorgiMiniGolfContainer: React.FC = () => {
           <button
             onClick={handleResetHole}
             aria-label="Restart Hole"
-            className="w-8 h-8 min-w-[32px] min-h-[32px] sm:w-9 sm:h-9 sm:min-w-[36px] sm:min-h-[36px] rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 flex items-center justify-center text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="w-9 h-9 sm:w-10 sm:h-10 min-w-[38px] sm:min-w-[44px] min-h-[38px] sm:min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-600 flex items-center justify-center text-slate-300 hover:text-white transition-all cursor-pointer touch-manipulation relative after:absolute after:-inset-1.5 after:content-['']"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
@@ -623,44 +627,48 @@ export const CorgiMiniGolfContainer: React.FC = () => {
 
         {/* HOLE CLEARED OVERLAY */}
         {displayState.status === 'hole_cleared' && (
-          <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center animate-fade-in z-30">
-            <div className="w-16 h-16 rounded-full bg-emerald-400/20 border-2 border-emerald-400 flex items-center justify-center text-3xl mb-3 shadow-lg shadow-emerald-400/20 animate-bounce">
-              ⛳
+          <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center p-4 sm:p-6 text-center animate-fade-in z-30 max-h-[90vh] overflow-y-auto">
+            <div className="bg-slate-900 border border-emerald-400/50 rounded-3xl p-5 sm:p-6 text-center max-w-sm w-full shadow-2xl flex flex-col items-center">
+              <div className="w-16 h-16 rounded-full bg-emerald-400/20 border-2 border-emerald-400 flex items-center justify-center text-3xl mb-3 shadow-lg shadow-emerald-400/20 animate-bounce">
+                ⛳
+              </div>
+              <h3 className="text-2xl font-black text-emerald-300 tracking-tight">HOLE {displayState.holeNumber} COMPLETED!</h3>
+              <p className="text-sm text-slate-300 mt-1 mb-4">
+                Strokes: <span className="font-bold text-amber-400">{displayState.strokes}</span> (Par {displayState.par}) • Total Score: {displayState.score}
+              </p>
+              <button
+                onClick={handleNextHole}
+                className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-black text-base flex items-center justify-center gap-2 shadow-lg shadow-emerald-400/30 active:scale-95 transition-all cursor-pointer min-h-[44px] touch-manipulation"
+              >
+                <span>NEXT HOLE</span>
+                <ArrowRight className="w-5 h-5" />
+              </button>
             </div>
-            <h3 className="text-2xl font-black text-emerald-300 tracking-tight">HOLE {displayState.holeNumber} COMPLETED!</h3>
-            <p className="text-sm text-slate-300 mt-1 mb-4">
-              Strokes: <span className="font-bold text-amber-400">{displayState.strokes}</span> (Par {displayState.par}) • Total Score: {displayState.score}
-            </p>
-            <button
-              onClick={handleNextHole}
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-black text-base flex items-center gap-2 shadow-lg shadow-emerald-400/30 transform hover:scale-105 active:scale-95 transition-all cursor-pointer"
-            >
-              <span>NEXT HOLE</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
           </div>
         )}
 
         {/* COURSE VICTORY OVERLAY */}
         {displayState.status === 'victory' && (
-          <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-fade-in z-30">
-            <div className="w-20 h-20 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-4xl mb-3 shadow-lg shadow-amber-400/30 animate-pulse">
-              🏆
+          <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-6 text-center animate-fade-in z-30 max-h-[90vh] overflow-y-auto">
+            <div className="bg-slate-900 border border-amber-400/50 rounded-3xl p-5 sm:p-6 text-center max-w-sm w-full shadow-2xl flex flex-col items-center">
+              <div className="w-20 h-20 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-4xl mb-3 shadow-lg shadow-amber-400/30 animate-pulse">
+                🏆
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-black text-amber-300 tracking-tight">COURSE CHAMPION!</h3>
+              <p className="text-sm text-slate-200 mt-1 mb-2">
+                You sank every putt across all 4 countryside pasture holes!
+              </p>
+              <div className="text-lg font-black text-emerald-400 bg-emerald-950/60 px-4 py-2 rounded-xl border border-emerald-500/40 my-3">
+                Total Strokes: {displayState.totalStrokes} • Final Score: {displayState.score}
+              </div>
+              <button
+                onClick={handleResetHole}
+                className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-slate-950 font-black text-base flex items-center justify-center gap-2 shadow-lg shadow-amber-400/30 active:scale-95 transition-all cursor-pointer min-h-[44px] touch-manipulation"
+              >
+                <RotateCcw className="w-5 h-5" />
+                <span>PLAY AGAIN</span>
+              </button>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-black text-amber-300 tracking-tight">COURSE CHAMPION!</h3>
-            <p className="text-sm text-slate-200 mt-1 mb-2">
-              You sank every putt across all 4 countryside pasture holes!
-            </p>
-            <div className="text-lg font-black text-emerald-400 bg-emerald-950/60 px-4 py-2 rounded-xl border border-emerald-500/40 my-3">
-              Total Strokes: {displayState.totalStrokes} • Final Score: {displayState.score}
-            </div>
-            <button
-              onClick={handleResetHole}
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-slate-950 font-black text-base flex items-center gap-2 shadow-lg shadow-amber-400/30 transform hover:scale-105 active:scale-95 transition-all cursor-pointer"
-            >
-              <RotateCcw className="w-5 h-5" />
-              <span>PLAY AGAIN</span>
-            </button>
           </div>
         )}
       </div>

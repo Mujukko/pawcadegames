@@ -513,6 +513,43 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Avoid sand traps and mud puddles at all costs! Rough hazards drain ball momentum instantly and cost extra strokes.',
   },
+  'caterpillar-fruit-trail': {
+    title: 'Caterpillar Garden: Fruit Trail Snake',
+    subtitle: 'Classic Fruit Crawling & Garden Maze',
+    mascot: '🐛🍎',
+    themeColor: 'from-lime-500 via-emerald-600 to-amber-600',
+    goal: 'Crawl through garden plots, eat sweet berries, dodge thorny hedges, and grow your fuzzy trail!',
+    steps: [
+      {
+        icon: '🍎',
+        title: '1. Eat Ripe Garden Fruits',
+        desc: 'Munch cherries, strawberries, and apples to grow longer body segments and score points.',
+      },
+      {
+        icon: '🧱',
+        title: '2. Dodge Rocks & Thorns',
+        desc: 'Never hit garden boundary walls, stone boulders, or prickly brambles. Watch your turning room!',
+      },
+      {
+        icon: '🦋',
+        title: '3. Reach Stage Fruit Quotas',
+        desc: 'Eat the target count of fruits to complete each stage and turn Sammy into a garden butterfly.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Arrow Keys / WASD: Steer caterpillar in four directions',
+        'R Key: Quick restart garden stage',
+        'M Key: Toggle crunch and crawl sounds',
+      ],
+      mobile: [
+        'Swipe Screen: Slide your finger up, down, left, or right',
+        'Virtual D-Pad: Tap direction arrows below the garden',
+        'Restart Button: Reset stage anytime',
+      ],
+    },
+    proTip: 'Grab the green speed boost leaf whenever it spawns! Turbo crawl mode lets you sweep across the garden twice as fast without risk of tail tangles.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',
