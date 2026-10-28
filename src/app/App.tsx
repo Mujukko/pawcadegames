@@ -68,11 +68,17 @@ export const App: React.FC = () => {
     const catCafeGame = GAMES_REGISTRY.find(g => g.id === 'cat-cafe-rush');
     const saveTheSheepGame = GAMES_REGISTRY.find(g => g.id === 'save-the-sheep');
     const capybaraSpaGame = GAMES_REGISTRY.find(g => g.id === 'capybara-spa-rush');
+    const woodNutsGame = GAMES_REGISTRY.find(g => g.id === 'wood-nuts-farm');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/capybara-spa-rush') || currentRoute.startsWith('/games/capybara-spa')) {
+    if (currentRoute.startsWith('/games/wood-nuts-farm') || currentRoute.startsWith('/games/wood-nuts') || currentRoute.startsWith('/games/screw-puzzle')) {
+      if (woodNutsGame) {
+        activeTitle = woodNutsGame.metaTitle;
+        activeDesc = woodNutsGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/capybara-spa-rush') || currentRoute.startsWith('/games/capybara-spa')) {
       if (capybaraSpaGame) {
         activeTitle = capybaraSpaGame.metaTitle;
         activeDesc = capybaraSpaGame.metaDescription;
@@ -278,6 +284,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/wood-nuts-farm') || currentRoute.startsWith('/games/wood-nuts') || currentRoute.startsWith('/games/screw-puzzle')) {
+      return <GamePage navigate={navigate} gameId="wood-nuts-farm" />;
     }
     if (currentRoute.startsWith('/games/capybara-spa-rush') || currentRoute.startsWith('/games/capybara-spa')) {
       return <GamePage navigate={navigate} gameId="capybara-spa-rush" />;

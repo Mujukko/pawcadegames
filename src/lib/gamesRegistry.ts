@@ -1243,6 +1243,45 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Capybara Spa: Hot Springs 🍊🛁 — Relaxing Onsen Game | Pawcade',
     metaDescription: 'Play Capybara Spa free online! Run a cozy Japanese hot spring for cute capybaras and friend critters. Free relaxing game with no download.',
   },
+  {
+    id: 'wood-nuts-farm',
+    slug: 'wood-nuts-farm',
+    title: 'Wood Nuts & Bolts: Barnyard Jam 🔩🚜',
+    tagline: 'Unscrew metallic bolts from farm boards to drop colorful wooden planks in this physics puzzle!',
+    description: 'Test your puzzle logic in Wood Nuts & Bolts Barnyard Jam! Unscrew metallic bolts from wooden farm boards to drop colorful planks. Tap a screw to unfasten it, then tap an open hole to move it. Plan every move carefully so you do not run out of empty holes. Watch heavy cedar beams and pine rails tumble with realistic gravity physics. Clear all four workshop stages to become the ultimate farm craftsman!',
+    category: 'puzzle',
+    categories: ['puzzle', 'farm', 'arcade'],
+    route: '/games/wood-nuts-farm/',
+    status: 'playable',
+    rating: 4.9,
+    playCount: '23.8K',
+    badge: '🆕 Daily Drop',
+    thumbnailUrl: '/assets/thumbnails/thumb-wood-nuts-farm.svg',
+    controls: {
+      desktop: [
+        'Left Click Screw: Select a screw to unscrew from the wooden board',
+        'Left Click Empty Hole: Move selected screw into an open hole',
+        'R Key: Restart current workshop level',
+        'M Key: Toggle ratchet and wood clatter sounds',
+      ],
+      mobile: [
+        'Tap Screw: Select and loosen a bolt with your finger',
+        'Tap Empty Hole: Move the screw into any open peg slot',
+        'Restart Button: Reset current board if you run out of moves',
+      ],
+    },
+    features: [
+      '4 Handcrafted Workshop Stages: Garden Gate, Windmill Vane, Silo Ladder, and Barn Truss',
+      'Realistic Wood Plank Gravity Physics with Dynamic Rotations and Drops',
+      'Tactile Screw Selection and Board Pinning Mechanics',
+      'Move Counter and Star Scoring System for Efficient Solutions',
+      'Procedural Zero-Latency Web Audio (Ratchets, Metallic Snaps, and Wood Thuds)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Wood Nuts & Bolts: Barnyard Jam 🔩🚜 — Free Screw Puzzle | Pawcade',
+    metaDescription: 'Play Wood Nuts & Bolts free online! Unscrew bolts from wooden planks to clear barnyard puzzles. Free browser screw game with no download.',
+  },
 ];
+
 
 

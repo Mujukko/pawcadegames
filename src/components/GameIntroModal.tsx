@@ -21,6 +21,43 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'wood-nuts-farm': {
+    title: 'Wood Nuts & Bolts: Barnyard Jam',
+    subtitle: 'Tactile Wood Screw Physics Puzzle',
+    mascot: '🔩🚜',
+    themeColor: 'from-amber-600 via-orange-600 to-yellow-600',
+    goal: 'Unscrew metallic bolts and move them to open holes to let all wooden planks fall off the board!',
+    steps: [
+      {
+        icon: '🔩',
+        title: '1. Select a Fastened Bolt',
+        desc: 'Tap any bolt holding a wooden plank. A glowing yellow ring shows the bolt is selected.',
+      },
+      {
+        icon: '🕳️',
+        title: '2. Move into Empty Holes',
+        desc: 'Tap an open peg hole to screw the bolt in. Planks with no bolts fall with gravity!',
+      },
+      {
+        icon: '🏆',
+        title: '3. Drop Every Wooden Plank',
+        desc: 'Clear every wooden rail and beam off the workshop board to clear the level with high score!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Tap screws to loosen and empty holes to fasten',
+        'R Key: Restart current level if you run out of moves',
+        'M Key: Toggle ratchet and wood clatter sound effects',
+      ],
+      mobile: [
+        'Tap Screw: Loosen and pick up a bolt with your finger',
+        'Tap Empty Hole: Fasten the bolt into any open slot',
+        'Restart Button: Reset the board to try a new sequence',
+      ],
+    },
+    proTip: 'Look for planks pinned by only a single bolt. Freeing those first opens up empty holes for longer multi-bolt planks!',
+  },
   'capybara-spa-rush': {
     title: 'Capybara Spa: Hot Springs',
     subtitle: 'Cozy Japanese Onsen Simulator',

@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient: Workshop Barn Wall -->
+    <linearGradient id="wallBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="40%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Pegboard Wood Gradient -->
+    <linearGradient id="pegboard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="50%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <!-- Orange Plank -->
+    <linearGradient id="plankOrange" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="50%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#c2410c" />
+    </linearGradient>
+
+    <!-- Green Plank -->
+    <linearGradient id="plankGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e" />
+      <stop offset="50%" stop-color="#16a34a" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+
+    <!-- Purple Plank -->
+    <linearGradient id="plankPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="50%" stop-color="#9333ea" />
+      <stop offset="100%" stop-color="#7e22ce" />
+    </linearGradient>
+
+    <!-- Metallic Brass Hex Screw -->
+    <linearGradient id="brassScrew" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="40%" stop-color="#facc15" />
+      <stop offset="80%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+
+    <!-- Glowing Silver Screw -->
+    <linearGradient id="silverScrew" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="50%" stop-color="#cbd5e1" />
+      <stop offset="100%" stop-color="#64748b" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="woodShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="4" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
+
+    <!-- Star Glow Filter -->
+    <filter id="starGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="40" fill="url(#wallBg)" />
+
+  <!-- Wooden Pegboard Base -->
+  <rect x="36" y="36" width="440" height="440" rx="28" fill="url(#pegboard)" stroke="#b45309" stroke-width="6" />
+
+  <!-- Pegboard Holes Pattern -->
+  <g fill="#1c1917" stroke="#451a03" stroke-width="3">
+    <!-- Row 1 -->
+    <circle cx="100" cy="110" r="16" />
+    <circle cx="180" cy="110" r="16" />
+    <circle cx="260" cy="110" r="16" />
+    <circle cx="340" cy="110" r="16" />
+    <circle cx="410" cy="110" r="16" />
+
+    <!-- Row 2 -->
+    <circle cx="100" cy="190" r="16" />
+    <circle cx="180" cy="190" r="16" />
+    <circle cx="260" cy="190" r="16" />
+    <circle cx="340" cy="190" r="16" />
+    <circle cx="410" cy="190" r="16" />
+
+    <!-- Row 3 -->
+    <circle cx="100" cy="270" r="16" />
+    <circle cx="180" cy="270" r="16" />
+    <circle cx="260" cy="270" r="16" />
+    <circle cx="340" cy="270" r="16" />
+    <circle cx="410" cy="270" r="16" />
+
+    <!-- Row 4 -->
+    <circle cx="100" cy="350" r="16" />
+    <circle cx="180" cy="350" r="16" />
+    <circle cx="260" cy="350" r="16" />
+    <circle cx="340" cy="350" r="16" />
+    <circle cx="410" cy="350" r="16" />
+  </g>
+
+  <!-- PLANK 1: Horizontal Purple Plank (Bottom Layer) -->
+  <rect x="70" y="245" width="280" height="50" rx="25" fill="url(#plankPurple)" stroke="#6b21a8" stroke-width="4" filter="url(#woodShadow)" />
+  <!-- Plank Wood Grain Details -->
+  <line x1="120" y1="270" x2="290" y2="270" stroke="#c084fc" stroke-width="2" stroke-linecap="round" opacity="0.3" />
+
+  <!-- PLANK 2: Vertical Green Plank (Middle Layer) -->
+  <rect x="235" y="80" width="50" height="300" rx="25" fill="url(#plankGreen)" stroke="#14532d" stroke-width="4" filter="url(#woodShadow)" />
+  <line x1="260" y1="120" x2="260" y2="340" stroke="#86efac" stroke-width="2" stroke-linecap="round" opacity="0.3" />
+
+  <!-- PLANK 3: Diagonal Orange Plank (Falling Downwards!) -->
+  <g transform="translate(140, 100) rotate(18)" filter="url(#woodShadow)">
+    <rect x="-10" y="0" width="270" height="52" rx="26" fill="url(#plankOrange)" stroke="#9a3412" stroke-width="4" />
+    <line x1="40" y1="26" x2="200" y2="26" stroke="#fdba74" stroke-width="2.5" stroke-linecap="round" opacity="0.4" />
+  </g>
+
+  <!-- Screws Pinned in Tightly -->
+  <!-- Screw at (100, 270) -->
+  <circle cx="100" cy="270" r="22" fill="url(#brassScrew)" stroke="#78350f" stroke-width="3" filter="url(#woodShadow)" />
+  <path d="M 90 270 L 110 270 M 100 260 L 100 280" stroke="#78350f" stroke-width="5" stroke-linecap="round" />
+
+  <!-- Screw at (260, 110) -->
+  <circle cx="260" cy="110" r="22" fill="url(#silverScrew)" stroke="#334155" stroke-width="3" filter="url(#woodShadow)" />
+  <path d="M 252 110 L 268 110 M 260 102 L 260 118" stroke="#334155" stroke-width="5" stroke-linecap="round" />
+
+  <!-- Screw at (260, 350) -->
+  <circle cx="260" cy="350" r="22" fill="url(#brassScrew)" stroke="#78350f" stroke-width="3" filter="url(#woodShadow)" />
+  <path d="M 252 350 L 268 350 M 260 342 L 260 358" stroke="#78350f" stroke-width="5" stroke-linecap="round" />
+
+  <!-- FLOATING UNSCREWED BOLT (Key Hero Action) -->
+  <g transform="translate(340, 170)" filter="url(#starGlow)">
+    <!-- Swirling Motion Trail -->
+    <path d="M -30 20 Q 0 -30 30 10" stroke="#facc15" stroke-width="4" stroke-linecap="round" stroke-dasharray="6,6" fill="none" opacity="0.8" />
+    
+    <!-- Huge Shiny Floating Screw -->
+    <circle cx="0" cy="0" r="32" fill="url(#brassScrew)" stroke="#78350f" stroke-width="4" />
+    <!-- Hex Head Detail -->
+    <polygon points="0,-22 19,-11 19,11 0,22 -19,11 -19,-11" fill="url(#brassScrew)" stroke="#ca8a04" stroke-width="2" />
+    <path d="M -12 0 L 12 0 M 0 -12 L 0 12" stroke="#451a03" stroke-width="6" stroke-linecap="round" />
+    
+    <!-- Sparkles -->
+    <circle cx="25" cy="-22" r="5" fill="#ffffff" />
+    <circle cx="-24" cy="22" r="4" fill="#ffffff" />
+  </g>
+
+  <!-- Barnaby the Workshop Pup in Bottom Right Corner -->
+  <g transform="translate(360, 350)">
+    <!-- Puppy Head -->
+    <circle cx="45" cy="45" r="42" fill="#d97706" />
+    <!-- Floppy Ears -->
+    <ellipse cx="12" cy="35" rx="14" ry="24" fill="#92400e" transform="rotate(-15, 12, 35)" />
+    <ellipse cx="78" cy="35" rx="14" ry="24" fill="#92400e" transform="rotate(15, 78, 35)" />
+    <!-- Snout -->
+    <ellipse cx="45" cy="55" rx="20" ry="14" fill="#fef3c7" />
+    <ellipse cx="45" cy="49" rx="7" ry="5" fill="#1c1917" />
+    <!-- Eyes -->
+    <circle cx="32" cy="38" r="6" fill="#1c1917" />
+    <circle cx="34" cy="36" r="2" fill="#ffffff" />
+    <circle cx="58" cy="38" r="6" fill="#1c1917" />
+    <circle cx="60" cy="36" r="2" fill="#ffffff" />
+    <!-- Safety Goggles -->
+    <rect x="20" y="26" width="24" height="20" rx="8" fill="#38bdf8" opacity="0.65" stroke="#0284c7" stroke-width="3" />
+    <rect x="46" y="26" width="24" height="20" rx="8" fill="#38bdf8" opacity="0.65" stroke="#0284c7" stroke-width="3" />
+    <line x1="42" y1="36" x2="48" y2="36" stroke="#0284c7" stroke-width="4" />
+  </g>
+
+  <!-- Golden Stars & Combo Sparkles -->
+  <g fill="#facc15" filter="url(#starGlow)">
+    <polygon points="120,60 126,74 140,75 129,84 133,98 120,89 107,98 111,84 100,75 114,74" />
+    <polygon points="410,60 415,72 427,73 417,81 421,93 410,85 399,93 403,81 393,73 405,72" transform="scale(0.8) translate(70, 10)" />
+  </g>
+</svg>

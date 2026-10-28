@@ -99,6 +99,9 @@ const SaveTheSheepContainer = lazy(() =>
 const CapybaraSpaRushContainer = lazy(() =>
   import('../games/capybara-spa-rush/CapybaraSpaRushContainer').then((m) => ({ default: m.CapybaraSpaRushContainer }))
 );
+const WoodNutsFarmContainer = lazy(() =>
+  import('../games/wood-nuts-farm/WoodNutsFarmContainer').then((m) => ({ default: m.WoodNutsFarmContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -128,6 +131,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isWoodNuts = gameId === 'wood-nuts-farm' || gameId === 'wood-nuts' || gameId === 'screw-puzzle';
   const isCapybaraSpa = gameId === 'capybara-spa-rush' || gameId === 'capybara-spa';
   const isSaveTheSheep = gameId === 'save-the-sheep' || gameId === 'save-sheep';
   const isCatCafe = gameId === 'cat-cafe-rush';
@@ -339,7 +343,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isCapybaraSpa
+                  isWoodNuts
+                    ? '🔩🚜'
+                    : isCapybaraSpa
                     ? '🍊🛁'
                     : isSaveTheSheep
                     ? '🐝🐑'
@@ -404,7 +410,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isCapybaraSpa ? (
+            {isWoodNuts ? (
+              <WoodNutsFarmContainer />
+            ) : isCapybaraSpa ? (
               <CapybaraSpaRushContainer />
             ) : isSaveTheSheep ? (
               <SaveTheSheepContainer />
