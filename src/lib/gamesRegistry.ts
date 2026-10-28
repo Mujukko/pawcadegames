@@ -2192,6 +2192,44 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Duck Water Slide: Splash Rush 🦆 — No Download | Pawcade',
     metaDescription: 'Play Duck Water Slide free online! Steer Quacky down rushing water flumes, collect rubber ducks, and hit stunt ramps. Free arcade water racer with no download.',
   },
+  {
+    id: 'bunny-hop-cross',
+    slug: 'bunny-hop-cross',
+    title: 'Bunny Hop: Road & River Cross 🐰🥕',
+    tagline: 'Guide Barnaby Bunny across busy farm roads, floating river logs, and railroad tracks in this classic arcade hopper!',
+    description: 'Hop with Barnaby Bunny across country lanes, rushing creeks, and train tracks! Dodge moving tractors, leap onto floating wooden logs, and snap up crunchy carrots before the hawk sweeps down. Clear all four pastoral stages with zero downloads.',
+    category: 'arcade',
+    categories: ['arcade', 'pets', 'farm'],
+    route: '/games/bunny-hop-cross/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '35.2K',
+    badge: '🐰 Road Cross',
+    thumbnailUrl: '/assets/thumbnails/thumb-bunny-hop-cross.svg',
+    controls: {
+      desktop: [
+        'Arrow Keys or W/A/S/D: Hop forward, back, left, or right',
+        'Spacebar: Quick forward hop',
+        'R Key: Reset current stage',
+        'M Key: Toggle hop sounds and tractor horns',
+      ],
+      mobile: [
+        'Touch Swipe: Swipe in any direction for instant hopping',
+        'Tap Screen: Tap top half to hop forward, bottom half to hop back',
+        'Bottom D-Pad: On-screen tactile directional arrows',
+      ],
+    },
+    features: [
+      'Classic Crossy Arcade Mechanics with Smooth Sub-Pixel Animation',
+      'Multi-Hazard Farm World: Tractors, Grain Pickups, Creek Rapids, and Fast Express Trains',
+      'Sub-Stepped Log Floating Physics: Ride Moving Timber Across Deep Waters',
+      '4 Handcrafted Pastoral Stages: Peaceful Pasture, Autumn Orchard, Railroad Junction, and Jubilee',
+      'Procedural Web Audio Synthesizer (Bouncy Hops, Carrot Crunches, and River Splashes)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Bunny Hop: Road & River Cross 🐰 — No Download | Pawcade',
+    metaDescription: 'Play Bunny Hop free online! Hop Barnaby Bunny across farm roads, floating river logs, and train tracks. Free arcade animal hopper game with zero downloads.',
+  },
 ];
 
 

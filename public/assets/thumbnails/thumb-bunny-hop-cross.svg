@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#bae6fd" />
+    </linearGradient>
+    <linearGradient id="meadowGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#22c55e" />
+    </linearGradient>
+    <linearGradient id="riverGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+    <linearGradient id="roadGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="bunnyGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f1f5f9" />
+    </linearGradient>
+    <linearGradient id="earPink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f472b6" />
+      <stop offset="100%" stop-color="#fb7185" />
+    </linearGradient>
+    <linearGradient id="tractorGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+    <linearGradient id="carrotGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fb923c" />
+      <stop offset="100%" stop-color="#ea580c" />
+    </linearGradient>
+    <linearGradient id="logGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#854d0e" />
+      <stop offset="50%" stop-color="#a16207" />
+      <stop offset="100%" stop-color="#713f12" />
+    </linearGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- SKY BACKGROUND -->
+  <rect x="0" y="0" width="512" height="150" fill="url(#skyGrad)" />
+  <!-- Fluffy cartoon clouds -->
+  <path d="M 60 70 Q 75 50 100 55 Q 125 45 145 65 Q 165 70 160 85 Q 140 100 80 95 Z" fill="#ffffff" opacity="0.85" />
+  <path d="M 360 50 Q 380 30 410 40 Q 435 30 450 50 Q 470 60 460 75 Q 430 85 380 80 Z" fill="#ffffff" opacity="0.85" />
+
+  <!-- DISTANT RED BARN -->
+  <polygon points="210,110 240,80 270,110" fill="#dc2626" />
+  <rect x="215" y="110" width="50" height="35" fill="#b91c1c" />
+  <rect x="233" y="122" width="14" height="23" fill="#ffffff" opacity="0.9" />
+
+  <!-- MEADOW STRIPE TOP -->
+  <rect x="0" y="140" width="512" height="50" fill="url(#meadowGrad)" />
+
+  <!-- RIVER STRIPE -->
+  <rect x="0" y="190" width="512" height="100" fill="url(#riverGrad)" />
+  <!-- Water ripples -->
+  <path d="M 20 220 Q 60 215 100 220 T 180 220" stroke="#bae6fd" stroke-width="3" fill="none" opacity="0.7" />
+  <path d="M 280 250 Q 320 245 360 250 T 440 250" stroke="#bae6fd" stroke-width="3" fill="none" opacity="0.7" />
+
+  <!-- FLOATING LOG & LILY PAD -->
+  <g filter="url(#dropShadow)">
+    <rect x="40" y="210" width="130" height="38" rx="19" fill="url(#logGrad)" stroke="#451a03" stroke-width="2" />
+    <!-- Wood grain rings -->
+    <ellipse cx="55" cy="229" rx="8" ry="14" fill="#713f12" />
+    <ellipse cx="55" cy="229" rx="4" ry="8" fill="#a16207" />
+    
+    <!-- Floating Lily Pad -->
+    <circle cx="430" cy="245" r="32" fill="#16a34a" stroke="#15803d" stroke-width="2" />
+    <path d="M 430 245 L 460 255" stroke="#0284c7" stroke-width="6" />
+    <circle cx="430" cy="240" r="10" fill="#fef08a" />
+  </g>
+
+  <!-- MEADOW STRIPE MIDDLE -->
+  <rect x="0" y="290" width="512" height="40" fill="url(#meadowGrad)" />
+
+  <!-- ASPHALT ROAD STRIPE -->
+  <rect x="0" y="330" width="512" height="110" fill="url(#roadGrad)" />
+  <!-- Dashed yellow center lines -->
+  <line x1="10" y1="385" x2="80" y2="385" stroke="#facc15" stroke-width="6" stroke-linecap="round" />
+  <line x1="120" y1="385" x2="190" y2="385" stroke="#facc15" stroke-width="6" stroke-linecap="round" />
+  <line x1="230" y1="385" x2="300" y2="385" stroke="#facc15" stroke-width="6" stroke-linecap="round" />
+  <line x1="340" y1="385" x2="410" y2="385" stroke="#facc15" stroke-width="6" stroke-linecap="round" />
+  <line x1="450" y1="385" x2="520" y2="385" stroke="#facc15" stroke-width="6" stroke-linecap="round" />
+
+  <!-- TRACTOR DRIVING ON ROAD -->
+  <g transform="translate(30, 345)" filter="url(#dropShadow)">
+    <!-- Tractor body -->
+    <rect x="20" y="20" width="75" height="36" rx="8" fill="url(#tractorGrad)" stroke="#166534" stroke-width="2" />
+    <!-- Cabin -->
+    <path d="M 55 20 L 55 2 Q 55 -5 62 -5 L 88 -5 Q 95 -5 95 2 L 95 20 Z" fill="#22c55e" stroke="#166534" stroke-width="2" />
+    <rect x="62" y="0" width="26" height="15" rx="3" fill="#bae6fd" opacity="0.85" />
+    <!-- Exhaust pipe & smoke -->
+    <rect x="30" y="-10" width="6" height="30" fill="#475569" rx="2" />
+    <circle cx="33" cy="-16" r="4" fill="#cbd5e1" opacity="0.7" />
+    <circle cx="36" cy="-24" r="6" fill="#cbd5e1" opacity="0.5" />
+    <!-- Headlight -->
+    <polygon points="18,32 5,24 5,42" fill="#fef08a" opacity="0.65" />
+    <circle cx="20" cy="33" r="5" fill="#fde047" />
+    <!-- Rear large wheel -->
+    <circle cx="82" cy="45" r="22" fill="#1e293b" stroke="#0f172a" stroke-width="3" />
+    <circle cx="82" cy="45" r="12" fill="#e2e8f0" />
+    <circle cx="82" cy="45" r="5" fill="#f59e0b" />
+    <!-- Front small wheel -->
+    <circle cx="35" cy="50" r="14" fill="#1e293b" stroke="#0f172a" stroke-width="2.5" />
+    <circle cx="35" cy="50" r="7" fill="#e2e8f0" />
+  </g>
+
+  <!-- MEADOW STRIPE BOTTOM -->
+  <rect x="0" y="440" width="512" height="72" fill="url(#meadowGrad)" />
+
+  <!-- SHADOW UNDER HOPPING BUNNY -->
+  <ellipse cx="280" cy="420" rx="36" ry="12" fill="#0f172a" opacity="0.3" />
+
+  <!-- HERO: BARNABY BUNNY MID-AIR HOP -->
+  <g transform="translate(200, 180)" filter="url(#dropShadow)">
+    <!-- Cotton tail -->
+    <circle cx="10" cy="115" r="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+
+    <!-- Left Leg (back) -->
+    <ellipse cx="35" cy="125" rx="14" ry="24" transform="rotate(-30 35 125)" fill="url(#bunnyGrad)" stroke="#cbd5e1" stroke-width="2" />
+    <!-- Right Leg (forward) -->
+    <ellipse cx="100" cy="125" rx="16" ry="26" transform="rotate(25 100 125)" fill="url(#bunnyGrad)" stroke="#cbd5e1" stroke-width="2" />
+    <ellipse cx="112" cy="142" rx="14" ry="8" fill="#fbcfe8" />
+
+    <!-- Chubby White Bunny Body -->
+    <ellipse cx="65" cy="95" rx="46" ry="40" fill="url(#bunnyGrad)" stroke="#cbd5e1" stroke-width="2.5" />
+    <!-- Fluffy tummy -->
+    <ellipse cx="72" cy="98" rx="28" ry="24" fill="#f8fafc" />
+
+    <!-- Red Bandana -->
+    <path d="M 50 65 Q 75 75 95 62 L 98 75 Q 75 88 48 76 Z" fill="#ef4444" />
+    <polygon points="50,75 42,88 56,84" fill="#dc2626" />
+
+    <!-- Bunny Head -->
+    <circle cx="80" cy="45" r="36" fill="url(#bunnyGrad)" stroke="#cbd5e1" stroke-width="2.5" />
+    <!-- Rosy Cheeks -->
+    <circle cx="62" cy="54" r="8" fill="#fda4af" opacity="0.6" />
+    <circle cx="102" cy="52" r="8" fill="#fda4af" opacity="0.6" />
+
+    <!-- Sparkling Big Cartoon Eyes -->
+    <ellipse cx="72" cy="38" rx="6" ry="9" fill="#0f172a" />
+    <circle cx="70" cy="35" r="2.5" fill="#ffffff" />
+    <circle cx="73" cy="42" r="1.2" fill="#ffffff" />
+    
+    <ellipse cx="94" cy="36" rx="6" ry="9" fill="#0f172a" />
+    <circle cx="92" cy="33" r="2.5" fill="#ffffff" />
+    <circle cx="95" cy="40" r="1.2" fill="#ffffff" />
+
+    <!-- Pink Cute Nose & Smile -->
+    <polygon points="82,48 78,44 86,44" fill="#f43f5e" rx="1" />
+    <path d="M 78 50 Q 82 55 86 50" stroke="#0f172a" stroke-width="2" fill="none" stroke-linecap="round" />
+
+    <!-- Floppy Long Ears -->
+    <!-- Left Ear (tilted back) -->
+    <path d="M 64 20 C 50 -30 20 -40 32 -10 C 40 10 58 15 64 20 Z" fill="url(#bunnyGrad)" stroke="#cbd5e1" stroke-width="2" />
+    <path d="M 60 16 C 50 -20 28 -28 36 -6 C 42 8 55 12 60 16 Z" fill="url(#earPink)" />
+    <!-- Right Ear (perky up) -->
+    <path d="M 88 18 C 96 -35 125 -40 115 -10 C 108 12 95 15 88 18 Z" fill="url(#bunnyGrad)" stroke="#cbd5e1" stroke-width="2" />
+    <path d="M 91 14 C 98 -25 118 -30 111 -6 C 105 10 96 12 91 14 Z" fill="url(#earPink)" />
+
+    <!-- Front Paws holding Juicy Carrot -->
+    <!-- Crunchy Orange Carrot -->
+    <g transform="translate(95, 60) rotate(-20)">
+      <polygon points="0,0 28,8 30,-4" fill="url(#carrotGrad)" stroke="#c2410c" stroke-width="1.5" />
+      <!-- Carrot ridges -->
+      <line x1="10" y1="1" x2="10" y2="4" stroke="#9a3412" stroke-width="1.5" />
+      <line x1="18" y1="3" x2="18" y2="6" stroke="#9a3412" stroke-width="1.5" />
+      <!-- Green Carrot Tops -->
+      <path d="M 0 0 C -10 -8 -18 -4 -16 2 C -18 8 -8 10 0 0" fill="#22c55e" />
+      <path d="M 0 0 C -12 -2 -14 6 -2 4" stroke="#16a34a" stroke-width="1.5" fill="none" />
+    </g>
+
+    <!-- Paws -->
+    <circle cx="82" cy="72" r="9" fill="url(#bunnyGrad)" stroke="#cbd5e1" stroke-width="1.5" />
+    <circle cx="106" cy="66" r="9" fill="url(#bunnyGrad)" stroke="#cbd5e1" stroke-width="1.5" />
+  </g>
+
+  <!-- STAR SPARKLES -->
+  <g fill="#fef08a" stroke="#f59e0b" stroke-width="1.5">
+    <path d="M 390 130 L 394 140 L 404 144 L 394 148 L 390 158 L 386 148 L 376 144 L 386 140 Z" />
+    <path d="M 140 160 L 143 167 L 150 170 L 143 173 L 140 180 L 137 173 L 130 170 L 137 167 Z" transform="scale(0.8) translate(40, 20)" />
+    <circle cx="340" cy="180" r="4" fill="#ffffff" stroke="none" />
+    <circle cx="180" cy="230" r="3" fill="#ffffff" stroke="none" />
+  </g>
+</svg>

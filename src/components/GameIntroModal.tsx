@@ -1033,6 +1033,43 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Hit every water ramp you can! Stunt jumps award 200 bonus points each and keep your speed high while sailing safely over tricky soap hazards.',
   },
+  'bunny-hop-cross': {
+    title: 'Bunny Hop: Road & River Cross',
+    subtitle: 'Classic Arcade Animal Hopper',
+    mascot: '🐰🥕',
+    themeColor: 'from-emerald-600 via-green-600 to-amber-500',
+    goal: 'Hop Barnaby Bunny across busy country roads, floating river logs, and train tracks to reach the farm finish gate!',
+    steps: [
+      {
+        icon: '🚜',
+        title: '1. Cross Country Roads',
+        desc: 'Time your hops to pass safely between moving farm tractors, grain trucks, and red pickups.',
+      },
+      {
+        icon: '🪵',
+        title: '2. Ride Floating Logs',
+        desc: 'Leap onto moving river logs and water lily pads. Stay on the timber to keep from splashing into deep creek water.',
+      },
+      {
+        icon: '🥕',
+        title: '3. Grab Carrots & Keep Moving',
+        desc: 'Collect orange and golden carrots for bonus points. Keep hopping forward so the farm hawk cannot catch you!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Arrow Keys or W/A/S/D: Hop forward, backward, left, or right',
+        'Spacebar: Quick forward hop',
+        'M Key: Toggle hop chimes and sound effects',
+      ],
+      mobile: [
+        'Touch Swipe: Swipe in any direction for instant hopping',
+        'Tap Screen: Tap top half to hop up, bottom half to hop down',
+        'Bottom D-Pad: On-screen tactile arrow buttons',
+      ],
+    },
+    proTip: 'Never idle in one spot for too long! The circling hawk strikes after seven seconds of standing still. Keep hopping steadily forward.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',
