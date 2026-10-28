@@ -2043,6 +2043,43 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Hamster Maze: Nut Escape 🐹 — No Download | Pawcade',
     metaDescription: 'Play Hamster Maze Nut Escape free online! Guide Pip the hungry hamster through timber mazes, gather golden acorns, and find the exit. Play free with no download.',
   },
+  {
+    id: 'chicken-egg-catcher',
+    slug: 'chicken-egg-catcher',
+    title: 'Chicken Egg Catcher: Barnyard Rush 🐔🥚',
+    tagline: 'Slide your woven straw basket to catch falling golden eggs, dodge spoiled rotten eggs, and trigger fever mode!',
+    description: 'Catch tumbling farm eggs before they hit the wooden barn floor! Slide your woven straw basket left and right to scoop up white, speckled, and golden eggs. Avoid nasty rotten eggs, build high combo streaks, and trigger glowing golden fever mode with zero downloads.',
+    category: 'arcade',
+    categories: ['arcade', 'farm'],
+    route: '/games/chicken-egg-catcher/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '28.6K',
+    badge: '🐔 Egg Catcher',
+    thumbnailUrl: '/assets/thumbnails/thumb-chicken-egg-catcher.svg',
+    controls: {
+      desktop: [
+        'Left / Right Arrow Keys or A / D: Slide straw basket across barn floor',
+        'Spacebar: Quick restart game on game over',
+        'R Key: Reset and start a fresh run',
+        'M Key: Toggle egg catch and hen clucking audio',
+      ],
+      mobile: [
+        'Touch & Drag: Slide your thumb across the screen for instant basket tracking',
+        'Slide Left / Right Buttons: Tap large bottom buttons for tactile control',
+      ],
+    },
+    features: [
+      'Fast-Paced Reflex Egg Catching with Real-Time Physics and Wobble',
+      '4 Egg Types: Regular White, Speckled Brown, Golden Star, and Rotten Green',
+      '6-Second Golden Egg Fever Frenzy with 2x Score Multiplier',
+      'Dynamic Wave Scaling with Accelerating Hen Laying Rhythms',
+      'Procedural Web Audio Basket Thumps, Yolk Splats, and Hen Clucks',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Chicken Egg Catcher: Barnyard Rush 🐔 — No Download | Pawcade',
+    metaDescription: 'Play Chicken Egg Catcher free online! Catch falling farm eggs in your straw basket, dodge rotten eggs, and rack up combo points. Free arcade catch with no download.',
+  },
 ];
 
 

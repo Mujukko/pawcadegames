@@ -886,6 +886,43 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Always scout the maze layout first! Locate the shiny brass key before rushing to the locked gate, and scoop up every acorn along your path for maximum bonus stars.',
   },
+  'chicken-egg-catcher': {
+    title: 'Chicken Egg Catcher: Barnyard Rush',
+    subtitle: 'Classic Reflex Egg Catch Arcade',
+    mascot: '🐔🥚',
+    themeColor: 'from-amber-500 via-orange-600 to-yellow-600',
+    goal: 'Slide your straw basket across the barn floor to catch falling eggs, dodge rotten eggs, and activate fever mode!',
+    steps: [
+      {
+        icon: '🧺',
+        title: '1. Slide Basket Left & Right',
+        desc: 'Drag your finger across the canvas or use Arrow Keys / A-D to position your basket under falling eggs.',
+      },
+      {
+        icon: '🥚',
+        title: '2. Catch White & Speckled Eggs',
+        desc: 'Catch eggs before they hit the ground! Regular eggs award 10 pts, speckled eggs award 25 pts, and combos increase score.',
+      },
+      {
+        icon: '🌟',
+        title: '3. Golden Eggs & Rotten Traps',
+        desc: 'Catch golden star eggs for 100 pts + 6 seconds of 2x Golden Fever! Dodge green rotten eggs—catching one loses a heart!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left / Right Arrows or A / D: Slide basket',
+        'Spacebar / Enter: Restart on game over',
+        'R Key: Quick restart run',
+        'M Key: Toggle catch audio effects',
+      ],
+      mobile: [
+        'Touch & Drag: Slide thumb anywhere on canvas for instant basket follow',
+        'Slide Left / Right Buttons: Tap large bottom directional buttons',
+      ],
+    },
+    proTip: 'Watch for green spoiled eggs and deliberately let them drop! Rotten eggs splat harmlessly on the floor, saving your 3 precious hearts.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

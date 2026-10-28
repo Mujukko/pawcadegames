@@ -162,6 +162,9 @@ const CropMowerHarvestContainer = lazy(() =>
 const HamsterMazeRunnerContainer = lazy(() =>
   import('../games/hamster-maze-runner/HamsterMazeRunnerContainer').then((m) => ({ default: m.HamsterMazeRunnerContainer }))
 );
+const ChickenEggCatcherContainer = lazy(() =>
+  import('../games/chicken-egg-catcher/ChickenEggCatcherContainer').then((m) => ({ default: m.ChickenEggCatcherContainer }))
+);
 
 
 
@@ -194,6 +197,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isEggCatcher = gameId === 'chicken-egg-catcher' || gameId === 'egg-catcher';
   const isHamsterMaze = gameId === 'hamster-maze-runner' || gameId === 'hamster-maze' || gameId === 'nut-escape';
   const isCropMower = gameId === 'crop-mower-harvest' || gameId === 'crop-mower' || gameId === 'lawn-mower';
   const isPinball = gameId === 'barnyard-pinball' || gameId === 'pinball' || gameId === 'flipper';
@@ -373,7 +377,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isHamsterMaze
+                isEggCatcher
+                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+                  : isHamsterMaze
                   ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
                   : isCaterpillar
                   ? 'bg-lime-500/20 text-lime-300 border-lime-500/30'
@@ -511,7 +517,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   <GameLoadingFallback
                     title={game.title}
                     mascot={
-                      isHamsterMaze
+                      isEggCatcher
+                        ? '🐔🥚'
+                        : isHamsterMaze
                         ? '🐹🌰'
                         : isCaterpillar
                         ? '🐛🍎'
@@ -602,7 +610,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   />
                 }
               >
-                {isHamsterMaze ? (
+                {isEggCatcher ? (
+                  <ChickenEggCatcherContainer />
+                ) : isHamsterMaze ? (
                   <HamsterMazeRunnerContainer />
                 ) : isCropMower ? (
                   <CropMowerHarvestContainer />
@@ -782,7 +792,18 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
 
             <div className="space-y-3 text-sm text-slate-300">
-              {isHamsterMaze ? (
+              {isEggCatcher ? (
+                <>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-amber-400 min-w-24">Desktop:</span>
+                    <span>Use <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">Left/Right Arrow Keys</kbd> or <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">A/D</kbd> to slide your straw basket across the barn floor. Catch white, speckled, and golden star eggs to build combo streaks. Dodge green rotten eggs—catching one deducts a heart! Press <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">Spacebar</kbd> or <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">R</kbd> to restart, and <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">M</kbd> to toggle audio.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-amber-400 min-w-24">Mobile:</span>
+                    <span>Touch and drag your thumb anywhere on the screen for instant basket tracking! Or tap the large bottom <strong>Slide Left</strong> and <strong>Slide Right</strong> buttons.</span>
+                  </div>
+                </>
+              ) : isHamsterMaze ? (
                 <>
                   <div className="flex items-start gap-2">
                     <span className="font-bold text-amber-400 min-w-24">Desktop:</span>

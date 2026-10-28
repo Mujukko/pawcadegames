@@ -1,0 +1,211 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Warm Barn Interior Gradient -->
+    <radialGradient id="barnGlow" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="60%" stop-color="#451a03" />
+      <stop offset="100%" stop-color="#1c0a00" />
+    </radialGradient>
+
+    <!-- Golden Hay Chute Gradient -->
+    <linearGradient id="timberWood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="50%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <!-- Woven Straw Basket Gradient -->
+    <linearGradient id="basketStraw" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="40%" stop-color="#facc15" />
+      <stop offset="80%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+
+    <!-- White Egg Gloss Gradient -->
+    <linearGradient id="whiteEgg" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="65%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#cbd5e1" />
+    </linearGradient>
+
+    <!-- Golden Star Egg Gradient -->
+    <radialGradient id="goldenEgg" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fffbeb" />
+      <stop offset="35%" stop-color="#fde047" />
+      <stop offset="70%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#a16207" />
+    </radialGradient>
+
+    <!-- Chicken Clucky Feather Gradient -->
+    <radialGradient id="chickenFeather" cx="45%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="70%" stop-color="#f1f5f9" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </radialGradient>
+
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feOffset dx="0" dy="5" result="offset" />
+      <feComposite in="SourceGraphic" in2="offset" operator="over" />
+    </filter>
+
+    <filter id="glowFrenzy" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Barn Backdrop -->
+  <rect width="512" height="512" fill="url(#barnGlow)" />
+
+  <!-- Wooden Wall Planks Lines -->
+  <g stroke="#2d1202" stroke-width="3" opacity="0.7">
+    <line x1="0" y1="80" x2="512" y2="80" />
+    <line x1="0" y1="160" x2="512" y2="160" />
+    <line x1="0" y1="240" x2="512" y2="240" />
+    <line x1="0" y1="320" x2="512" y2="320" />
+    <line x1="0" y1="400" x2="512" y2="400" />
+    <line x1="0" y1="480" x2="512" y2="480" />
+  </g>
+
+  <!-- Top Chicken Roost Wooden Beam -->
+  <rect x="20" y="70" width="472" height="28" rx="8" fill="url(#timberWood)" stroke="#f59e0b" stroke-width="3" filter="url(#dropShadow)" />
+
+  <!-- Straw Nests on Roost -->
+  <ellipse cx="110" cy="85" rx="42" ry="14" fill="#ca8a04" stroke="#713f12" stroke-width="2" />
+  <ellipse cx="256" cy="85" rx="54" ry="16" fill="#ca8a04" stroke="#713f12" stroke-width="2" />
+  <ellipse cx="400" cy="85" rx="42" ry="14" fill="#ca8a04" stroke="#713f12" stroke-width="2" />
+
+  <!-- Left Chicken Hen -->
+  <g transform="translate(85, 30)">
+    <ellipse cx="25" cy="40" rx="26" ry="22" fill="url(#chickenFeather)" stroke="#cbd5e1" stroke-width="2" />
+    <!-- Comb -->
+    <path d="M18,22 Q24,12 28,20 Q34,14 36,22" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5" />
+    <!-- Beak -->
+    <polygon points="12,38 2,42 12,46" fill="#f59e0b" />
+    <!-- Eye -->
+    <circle cx="18" cy="36" r="3" fill="#0f172a" />
+    <circle cx="17" cy="35" r="1" fill="#ffffff" />
+  </g>
+
+  <!-- Right Chicken Hen -->
+  <g transform="translate(375, 30)">
+    <ellipse cx="25" cy="40" rx="26" ry="22" fill="url(#chickenFeather)" stroke="#cbd5e1" stroke-width="2" />
+    <!-- Comb -->
+    <path d="M16,22 Q22,12 26,20 Q32,14 34,22" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5" />
+    <!-- Beak -->
+    <polygon points="38,38 48,42 38,46" fill="#f59e0b" />
+    <!-- Eye -->
+    <circle cx="32" cy="36" r="3" fill="#0f172a" />
+    <circle cx="33" cy="35" r="1" fill="#ffffff" />
+  </g>
+
+  <!-- Center Queen Hen (Clucky) with Crown & Golden Feathers -->
+  <g transform="translate(216, 10)" filter="url(#dropShadow)">
+    <ellipse cx="40" cy="55" rx="36" ry="30" fill="url(#chickenFeather)" stroke="#cbd5e1" stroke-width="2.5" />
+    <!-- Wing -->
+    <path d="M40,50 Q65,55 58,72 Q42,75 35,62 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+    <!-- Big Red Comb -->
+    <path d="M30,30 Q40,14 46,26 Q54,16 60,28 Q66,22 68,34" fill="#dc2626" stroke="#991b1b" stroke-width="2" />
+    <!-- Wattle -->
+    <ellipse cx="32" cy="62" rx="6" ry="10" fill="#dc2626" />
+    <!-- Golden Crown -->
+    <polygon points="34,26 38,10 46,20 54,10 58,26" fill="#facc15" stroke="#b45309" stroke-width="1.5" />
+    <!-- Beak -->
+    <polygon points="26,50 12,54 26,60" fill="#f59e0b" stroke="#b45309" stroke-width="1" />
+    <!-- Big Cute Eye -->
+    <circle cx="34" cy="46" r="5" fill="#0f172a" />
+    <circle cx="32" cy="44" r="2" fill="#ffffff" />
+  </g>
+
+  <!-- Angled Wooden Slides for Eggs -->
+  <polygon points="70,110 130,220 148,214 90,104" fill="url(#timberWood)" stroke="#92400e" stroke-width="2" />
+  <polygon points="440,110 380,220 362,214 420,104" fill="url(#timberWood)" stroke="#92400e" stroke-width="2" />
+
+  <!-- Falling Regular Eggs -->
+  <!-- Falling Egg Left -->
+  <g transform="translate(136, 230) rotate(18)" filter="url(#dropShadow)">
+    <path d="M0,0 C-12,0 -18,16 -18,28 C-18,44 -8,52 0,52 C8,52 18,44 18,28 C18,16 12,0 0,0 Z" fill="url(#whiteEgg)" stroke="#94a3b8" stroke-width="1.5" />
+  </g>
+
+  <!-- Falling Speckled Brown Egg Right -->
+  <g transform="translate(366, 220) rotate(-22)" filter="url(#dropShadow)">
+    <path d="M0,0 C-13,0 -19,16 -19,29 C-19,45 -9,54 0,54 C9,54 19,45 19,29 C19,16 13,0 0,0 Z" fill="#fed7aa" stroke="#c2410c" stroke-width="1.5" />
+    <circle cx="-6" cy="22" r="2.5" fill="#9a3412" />
+    <circle cx="4" cy="30" r="2" fill="#9a3412" />
+    <circle cx="-2" cy="40" r="3" fill="#9a3412" />
+    <circle cx="7" cy="18" r="1.5" fill="#9a3412" />
+  </g>
+
+  <!-- ============================================== -->
+  <!-- GIANT GLOWING GOLDEN STAR EGG (CENTER HERO)    -->
+  <!-- ============================================== -->
+  <g transform="translate(256, 260)" filter="url(#glowFrenzy)">
+    <!-- Golden Radial Burst -->
+    <circle cx="0" cy="26" r="65" fill="#fde047" opacity="0.35" />
+    <circle cx="0" cy="26" r="48" fill="#facc15" opacity="0.45" />
+
+    <!-- Egg Geometry -->
+    <path d="M0,-24 C-24,-24 -36,8 -36,32 C-36,60 -18,74 0,74 C18,74 36,60 36,32 C36,8 24,-24 0,-24 Z" fill="url(#goldenEgg)" stroke="#854d0e" stroke-width="3.5" />
+
+    <!-- Gloss Specular Highlight -->
+    <ellipse cx="-12" cy="12" rx="7" ry="18" transform="rotate(-25, -12, 12)" fill="#ffffff" opacity="0.75" />
+
+    <!-- Star Badge on Egg -->
+    <polygon points="0,20 5,32 18,34 8,42 11,54 0,46 -11,54 -8,42 -18,34 -5,32" fill="#ffffff" opacity="0.9" />
+  </g>
+
+  <!-- Floating Sparkle Stars -->
+  <g fill="#fde047" filter="url(#glowFrenzy)">
+    <!-- Star 1 -->
+    <polygon points="180,210 184,222 196,226 184,230 180,242 176,230 164,226 176,222" />
+    <!-- Star 2 -->
+    <polygon points="330,200 333,208 341,211 333,214 330,222 327,214 319,211 327,208" />
+    <!-- Star 3 -->
+    <polygon points="210,330 213,338 221,341 213,344 210,352 207,344 199,341 207,338" />
+  </g>
+
+  <!-- ============================================== -->
+  <!-- WOVEN STRAW BASKET ON WHEELS (BOTTOM CATCHER)  -->
+  <!-- ============================================== -->
+  <g transform="translate(256, 420)" filter="url(#dropShadow)">
+    <!-- Shadow under basket -->
+    <ellipse cx="0" cy="54" rx="110" ry="16" fill="#000000" opacity="0.55" />
+
+    <!-- Wooden Wheels -->
+    <circle cx="-75" cy="45" r="16" fill="#78350f" stroke="#f59e0b" stroke-width="3" />
+    <circle cx="-75" cy="45" r="5" fill="#451a03" />
+    <circle cx="75" cy="45" r="16" fill="#78350f" stroke="#f59e0b" stroke-width="3" />
+    <circle cx="75" cy="45" r="5" fill="#451a03" />
+
+    <!-- Woven Basket Body -->
+    <path d="M-90,0 L90,0 L72,44 L-72,44 Z" fill="url(#basketStraw)" stroke="#78350f" stroke-width="3.5" />
+
+    <!-- Basket Rim -->
+    <rect x="-96" y="-6" width="192" height="14" rx="7" fill="#facc15" stroke="#78350f" stroke-width="2.5" />
+
+    <!-- Woven Straw Texture Hatching -->
+    <g stroke="#92400e" stroke-width="2" opacity="0.75">
+      <line x1="-70" y1="2" x2="-54" y2="44" />
+      <line x1="-40" y1="2" x2="-26" y2="44" />
+      <line x1="-10" y1="2" x2="2" y2="44" />
+      <line x1="20" y1="2" x2="30" y2="44" />
+      <line x1="50" y1="2" x2="58" y2="44" />
+
+      <line x1="70" y1="2" x2="54" y2="44" />
+      <line x1="40" y1="2" x2="26" y2="44" />
+      <line x1="10" y1="2" x2="-2" y2="44" />
+      <line x1="-20" y1="2" x2="-30" y2="44" />
+      <line x1="-50" y1="2" x2="-58" y2="44" />
+    </g>
+
+    <!-- Fluffy Golden Straw Cushion Peeking Out of Rim -->
+    <ellipse cx="0" cy="-2" rx="80" ry="8" fill="#fef08a" />
+
+    <!-- Red Ribbon Bow on Front of Basket -->
+    <circle cx="0" cy="22" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" />
+    <path d="M-22,12 Q-10,22 -2,22 Q-10,32 -20,24 Z" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" />
+    <path d="M22,12 Q10,22 2,22 Q10,32 20,24 Z" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" />
+  </g>
+</svg>

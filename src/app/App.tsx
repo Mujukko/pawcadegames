@@ -89,11 +89,17 @@ export const App: React.FC = () => {
     const pinballGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-pinball');
     const cropMowerGame = GAMES_REGISTRY.find(g => g.id === 'crop-mower-harvest');
     const hamsterMazeGame = GAMES_REGISTRY.find(g => g.id === 'hamster-maze-runner');
+    const chickenEggCatcherGame = GAMES_REGISTRY.find(g => g.id === 'chicken-egg-catcher');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/hamster-maze-runner') || currentRoute.startsWith('/games/hamster-maze') || currentRoute.startsWith('/games/nut-escape')) {
+    if (currentRoute.startsWith('/games/chicken-egg-catcher') || currentRoute.startsWith('/games/egg-catcher')) {
+      if (chickenEggCatcherGame) {
+        activeTitle = chickenEggCatcherGame.metaTitle;
+        activeDesc = chickenEggCatcherGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/hamster-maze-runner') || currentRoute.startsWith('/games/hamster-maze') || currentRoute.startsWith('/games/nut-escape')) {
       if (hamsterMazeGame) {
         activeTitle = hamsterMazeGame.metaTitle;
         activeDesc = hamsterMazeGame.metaDescription;
@@ -404,6 +410,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/chicken-egg-catcher') || currentRoute.startsWith('/games/egg-catcher')) {
+      return <GamePage navigate={navigate} gameId="chicken-egg-catcher" />;
     }
     if (currentRoute.startsWith('/games/hamster-maze-runner') || currentRoute.startsWith('/games/hamster-maze') || currentRoute.startsWith('/games/nut-escape')) {
       return <GamePage navigate={navigate} gameId="hamster-maze-runner" />;
