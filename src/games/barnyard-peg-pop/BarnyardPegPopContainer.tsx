@@ -431,7 +431,7 @@ export const BarnyardPegPopContainer: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[520px] sm:h-[620px] rounded-3xl overflow-hidden bg-slate-950 border border-amber-500/30 shadow-2xl select-none"
+      className="relative w-full max-w-lg mx-auto h-[520px] sm:h-[620px] max-h-[82vh] min-h-[460px] rounded-3xl overflow-hidden bg-slate-950 border border-amber-500/30 shadow-2xl select-none touch-none overscroll-none"
       style={{ touchAction: 'none' }}
     >
       {/* 60 FPS Canvas */}
@@ -441,36 +441,39 @@ export const BarnyardPegPopContainer: React.FC = () => {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
-        className="w-full h-full block cursor-pointer select-none"
+        className="w-full h-full block cursor-pointer select-none touch-none overscroll-none"
         style={{ touchAction: 'none' }}
       />
 
       {/* Top Header HUD */}
-      <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 right-2.5 sm:right-3 flex items-center justify-between pointer-events-none">
-        {/* Stage & Targets Remaining */}
-        <div className="flex items-center gap-2">
-          <div className="bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-2xl border border-amber-500/30 shadow-lg flex items-center gap-1.5">
-            <span className="text-xs font-black text-amber-300">Stage {uiStage}</span>
+      <div className="absolute top-2 sm:top-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between pointer-events-none z-10">
+        {/* Stage & Targets Remaining & Balls Left */}
+        <div className="flex items-center gap-1 sm:gap-2">
+          <div className="bg-slate-900/90 backdrop-blur-md px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl sm:rounded-2xl border border-amber-500/30 shadow-lg flex items-center gap-1">
+            <span className="text-[11px] sm:text-xs font-black text-amber-300 whitespace-nowrap">
+              <span className="hidden sm:inline">Stage </span>S{uiStage}
+            </span>
           </div>
 
-          <div className="bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-2xl border border-orange-500/40 shadow-lg flex items-center gap-1">
-            <span className="text-sm">🟠</span>
-            <span className="text-xs font-black text-orange-400">{uiOrangeRemaining} targets</span>
+          <div className="bg-slate-900/90 backdrop-blur-md px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl sm:rounded-2xl border border-orange-500/40 shadow-lg flex items-center gap-1">
+            <span className="text-xs sm:text-sm">🟠</span>
+            <span className="text-[11px] sm:text-xs font-black text-orange-400 whitespace-nowrap">
+              {uiOrangeRemaining}<span className="hidden sm:inline"> targets</span>
+            </span>
+          </div>
+
+          <div className="bg-slate-900/90 backdrop-blur-md px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl sm:rounded-2xl border border-amber-500/30 shadow-lg flex items-center gap-1">
+            <span className="text-xs sm:text-sm">🌰</span>
+            <span className="text-[11px] sm:text-xs font-black text-amber-300 whitespace-nowrap">x{uiBallsLeft}</span>
           </div>
         </div>
 
-        {/* Balls Left & Score & Controls */}
-        <div className="flex items-center gap-2 pointer-events-auto">
-          {/* Acorn Balls Left */}
-          <div className="bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-2xl border border-amber-500/30 shadow-lg flex items-center gap-1">
-            <span className="text-sm">🌰</span>
-            <span className="text-xs font-black text-amber-300">x{uiBallsLeft}</span>
-          </div>
-
+        {/* Score & Controls */}
+        <div className="flex items-center gap-1 sm:gap-2 pointer-events-auto">
           {/* Score Counter */}
-          <div className="bg-slate-900/90 backdrop-blur-md px-3.5 py-1.5 rounded-2xl border border-amber-500/30 shadow-lg">
-            <div className="text-[10px] uppercase font-bold text-slate-400">Score</div>
-            <div className="text-base font-black text-amber-300 leading-none">{uiScore}</div>
+          <div className="bg-slate-900/90 backdrop-blur-md px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-xl sm:rounded-2xl border border-amber-500/30 shadow-lg text-right">
+            <div className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 leading-none">Score</div>
+            <div className="text-xs sm:text-base font-black text-amber-300 leading-none mt-0.5">{uiScore}</div>
           </div>
 
           {/* Mute Button */}
@@ -479,7 +482,7 @@ export const BarnyardPegPopContainer: React.FC = () => {
               const muted = pegPopAudio.toggleMute();
               setIsMuted(muted);
             }}
-            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-2xl bg-slate-900/90 backdrop-blur-md border border-amber-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform cursor-pointer"
+            className="w-10 h-10 sm:w-11 sm:h-11 min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] rounded-xl sm:rounded-2xl bg-slate-900/90 backdrop-blur-md border border-amber-500/30 flex items-center justify-center text-base sm:text-lg shadow-lg active:scale-95 transition-transform cursor-pointer touch-manipulation"
             aria-label={isMuted ? 'Unmute' : 'Mute'}
           >
             {isMuted ? '🔇' : '🔊'}
@@ -488,7 +491,7 @@ export const BarnyardPegPopContainer: React.FC = () => {
           {/* Restart Button */}
           <button
             onClick={handleRestart}
-            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-2xl bg-slate-900/90 backdrop-blur-md border border-amber-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform cursor-pointer"
+            className="w-10 h-10 sm:w-11 sm:h-11 min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] rounded-xl sm:rounded-2xl bg-slate-900/90 backdrop-blur-md border border-amber-500/30 flex items-center justify-center text-base sm:text-lg shadow-lg active:scale-95 transition-transform cursor-pointer touch-manipulation"
             aria-label="Restart level"
           >
             🔄
@@ -498,10 +501,10 @@ export const BarnyardPegPopContainer: React.FC = () => {
 
       {/* On-Screen Fire Button for Mobile Thumb Convenience */}
       {uiStatus === 'aiming' && (
-        <div className="absolute bottom-4 right-4 pointer-events-auto">
+        <div className="absolute bottom-4 right-4 pointer-events-auto z-10">
           <button
             onClick={handleFire}
-            className="px-5 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-black text-sm shadow-xl active:scale-95 transition-transform flex items-center gap-2 cursor-pointer border border-amber-300/40 min-h-[44px]"
+            className="px-5 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-black text-sm shadow-xl active:scale-95 transition-transform flex items-center gap-2 cursor-pointer border border-amber-300/40 min-h-[44px] min-w-[44px] select-none touch-manipulation"
             aria-label="Fire acorn ball"
           >
             <span>🌰</span> FIRE!
@@ -532,7 +535,7 @@ export const BarnyardPegPopContainer: React.FC = () => {
             <div className="mt-5 flex flex-col gap-2.5">
               <button
                 onClick={handleNextStage}
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer"
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer touch-manipulation"
               >
                 Next Pegboard (Stage {uiStage + 1}/4) 🎯
               </button>
@@ -555,7 +558,7 @@ export const BarnyardPegPopContainer: React.FC = () => {
             <div className="mt-5 flex flex-col gap-2.5">
               <button
                 onClick={handleRestart}
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer"
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer touch-manipulation"
               >
                 Play Peg Pop Again 🌰
               </button>
@@ -578,7 +581,7 @@ export const BarnyardPegPopContainer: React.FC = () => {
             <div className="mt-5 flex flex-col gap-2.5">
               <button
                 onClick={handleRestart}
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-red-500 to-orange-500 text-white font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer"
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-red-500 to-orange-500 text-white font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer touch-manipulation"
               >
                 Try Again 🔄
               </button>
