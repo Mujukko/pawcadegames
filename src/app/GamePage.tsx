@@ -120,6 +120,9 @@ const BarnyardPinPullContainer = lazy(() =>
 const HamsterCookieStackContainer = lazy(() =>
   import('../games/hamster-cookie-stack/HamsterCookieStackContainer').then((m) => ({ default: m.HamsterCookieStackContainer }))
 );
+const BarnyardFruitSlicerContainer = lazy(() =>
+  import('../games/barnyard-fruit-slicer/BarnyardFruitSlicerContainer').then((m) => ({ default: m.BarnyardFruitSlicerContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -149,6 +152,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isFruitSlicer = gameId === 'barnyard-fruit-slicer' || gameId === 'fruit-slicer' || gameId === 'fruit-ninja';
   const isCookieStack = gameId === 'hamster-cookie-stack' || gameId === 'cookie-stack' || gameId === 'bakery-tower';
   const isPinPull = gameId === 'barnyard-pin-pull' || gameId === 'pin-pull' || gameId === 'pull-the-pin';
   const isKoiPond = gameId === 'koi-pond-zen' || gameId === 'koi-pond' || gameId === 'zen-pond';
@@ -295,7 +299,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isCookieStack
+                isFruitSlicer
+                  ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                  : isCookieStack
                   ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
                   : isPinPull
                   ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
@@ -379,7 +385,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isCookieStack
+                  isFruitSlicer
+                    ? '🍉⚔️'
+                    : isCookieStack
                     ? '🐹🍪'
                     : isPinPull
                     ? '🚜📌'
@@ -458,7 +466,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isCookieStack ? (
+            {isFruitSlicer ? (
+              <BarnyardFruitSlicerContainer />
+            ) : isCookieStack ? (
               <HamsterCookieStackContainer />
             ) : isPinPull ? (
               <BarnyardPinPullContainer />

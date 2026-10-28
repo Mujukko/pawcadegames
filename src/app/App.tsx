@@ -75,11 +75,17 @@ export const App: React.FC = () => {
     const koiPondGame = GAMES_REGISTRY.find(g => g.id === 'koi-pond-zen');
     const barnyardPinGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-pin-pull');
     const cookieStackGame = GAMES_REGISTRY.find(g => g.id === 'hamster-cookie-stack');
+    const fruitSlicerGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-fruit-slicer');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/hamster-cookie-stack') || currentRoute.startsWith('/games/cookie-stack') || currentRoute.startsWith('/games/bakery-tower')) {
+    if (currentRoute.startsWith('/games/barnyard-fruit-slicer') || currentRoute.startsWith('/games/fruit-slicer') || currentRoute.startsWith('/games/fruit-ninja')) {
+      if (fruitSlicerGame) {
+        activeTitle = fruitSlicerGame.metaTitle;
+        activeDesc = fruitSlicerGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/hamster-cookie-stack') || currentRoute.startsWith('/games/cookie-stack') || currentRoute.startsWith('/games/bakery-tower')) {
       if (cookieStackGame) {
         activeTitle = cookieStackGame.metaTitle;
         activeDesc = cookieStackGame.metaDescription;
@@ -320,6 +326,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/barnyard-fruit-slicer') || currentRoute.startsWith('/games/fruit-slicer') || currentRoute.startsWith('/games/fruit-ninja')) {
+      return <GamePage navigate={navigate} gameId="barnyard-fruit-slicer" />;
     }
     if (currentRoute.startsWith('/games/hamster-cookie-stack') || currentRoute.startsWith('/games/cookie-stack') || currentRoute.startsWith('/games/bakery-tower')) {
       return <GamePage navigate={navigate} gameId="hamster-cookie-stack" />;

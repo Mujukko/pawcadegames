@@ -363,6 +363,43 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Aim for centered catches! Perfect centered catches stabilize the tower spring wobble and trigger massive 2x to 5x combo multipliers!',
   },
+  'barnyard-fruit-slicer': {
+    title: 'Barnyard Fruit Slicer: Farm Juice',
+    subtitle: 'Tactile Airborne Fruit Slicing & Juice Arcade',
+    mascot: '🍉⚔️',
+    themeColor: 'from-emerald-600 via-teal-600 to-amber-600',
+    goal: 'Swipe your blade across flying apples, watermelons, and golden corn in mid-air to make fresh juice while dodging prickly thistle bombs!',
+    steps: [
+      {
+        icon: '⚔️',
+        title: '1. Swipe Through Flying Fruit',
+        desc: 'Drag your finger or mouse across the screen to slice airborne fruits cleanly in half before they drop.',
+      },
+      {
+        icon: '💣',
+        title: '2. Dodge Thistle Bombs',
+        desc: 'Never slice prickly dark bombs! Slicing a thistle bomb explodes and deducts one of your three hearts.',
+      },
+      {
+        icon: '⭐',
+        title: '3. Build Combo Streaks',
+        desc: 'Slice 3 or more fruits in a single swift sweep to score massive bonus combo points and floating badges!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Drag / Swipe: Cut through flying fruits in mid-air',
+        'R Key: Quick restart orchard level',
+        'M Key: Toggle slicing and whoosh sounds',
+      ],
+      mobile: [
+        'Touch & Swipe Anywhere: Cut cleanly through fruits with your finger',
+        'Multi-Slice: Hit 3+ fruits in one stroke for bonus combos',
+        'Restart Button: Reset level anytime',
+      ],
+    },
+    proTip: 'Wait for fruits to cluster near the peak of their flight! Slicing right as they pause in mid-air lets you grab easy 3x and 4x combos without touching bombs!',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

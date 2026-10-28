@@ -1510,6 +1510,43 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Hamster Cookie Stack: Sweet Bakery 🐹🍪 — No Download | Pawcade',
     metaDescription: 'Play Hamster Cookie Stack free online! Catch dropping cookies, macarons, and donuts to balance a giant dessert tower with Mochi the hamster. Free no download.',
   },
+  {
+    id: 'barnyard-fruit-slicer',
+    slug: 'barnyard-fruit-slicer',
+    title: 'Barnyard Fruit Slicer: Farm Juice 🍉⚔️',
+    tagline: 'Swipe your blade across flying apples, watermelons, and golden corn in mid-air to make fresh barnyard juice!',
+    description: 'Slice flying orchard fruits in mid-air with Barnaby! Swipe across juicy watermelons, crisp apples, and sweet strawberries. Dodge prickly thistle bombs and build massive slice combos. Clear four harvest stages and become the ultimate barnyard juice master.',
+    category: 'arcade',
+    categories: ['arcade', 'farm', 'puzzle'],
+    route: '/games/barnyard-fruit-slicer/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '25.8K',
+    badge: '🍉 Fruit Ninja',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-fruit-slicer.svg',
+    controls: {
+      desktop: [
+        'Mouse Drag / Swipe: Cut through flying fruits in mid-air',
+        'R Key: Quick restart orchard level',
+        'M Key: Toggle slicing and whoosh sounds',
+      ],
+      mobile: [
+        'Touch & Swipe Anywhere: Cut cleanly through fruits with your finger',
+        'Multi-Slice: Hit 3+ fruits in one stroke for bonus combos',
+        'Restart Button: Reset level anytime',
+      ],
+    },
+    features: [
+      '4 Handcrafted Harvest Stages: Orchard Sunrise, Berry Harvest, Pumpkin Festival, and Mega Juice Frenzy',
+      '7 Unique Farm Targets: Barnyard Apples, Sweet Watermelons, Wild Strawberries, Sweetcorn, Eggplants, Golden Pineapples, and Thistle Bombs',
+      'Dynamic 60 FPS Halving Physics with Realistic Angular Velocity and Juice Splatters',
+      'Satisfying Combo Streak System with Sparkling Floating Text Badges',
+      'Procedural Web Audio Synthesizer (Blade Whooshes, Juicy Chops, Bomb Blasts, and Combo Fanfares)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Barnyard Fruit Slicer: Farm Juice 🍉⚔️ — No Download | Pawcade',
+    metaDescription: 'Play Barnyard Fruit Slicer free online! Slice flying apples, watermelons, and berries in mid-air. Dodge thistle bombs and build combo streaks. Free no download.',
+  },
 ];
 
 

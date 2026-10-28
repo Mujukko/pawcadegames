@@ -408,7 +408,14 @@ export const HamsterCookieStackContainer: React.FC = () => {
     ctx.restore();
   };
 
-  // Touch and Mouse Slide Steer Handler
+  // Touch and Mouse Slide Steer Handler with Pointer Capture
+  const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {}
+    handlePointerMove(e);
+  };
+
   const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (e.buttons === 0 && e.pointerType === 'mouse') return;
     const canvas = canvasRef.current;
@@ -422,8 +429,10 @@ export const HamsterCookieStackContainer: React.FC = () => {
     stateRef.current = movePlate(stateRef.current, targetWorldX);
   };
 
-  const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    handlePointerMove(e);
+  const handlePointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {}
   };
 
   const handleNextStage = () => {
@@ -449,18 +458,20 @@ export const HamsterCookieStackContainer: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-[620px] max-w-lg mx-auto bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-pink-500/20 select-none touch-none">
+    <div className="relative w-full h-[540px] sm:h-[620px] max-h-[82vh] min-h-[460px] max-w-lg mx-auto bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-pink-500/20 select-none touch-none overscroll-none">
       {/* 60 FPS Interactive Canvas */}
       <canvas
         ref={canvasRef}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
-        className="w-full h-full block cursor-pointer"
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        className="w-full h-full block cursor-pointer select-none"
         style={{ touchAction: 'none' }}
       />
 
       {/* Top HUD */}
-      <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+      <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 right-2.5 sm:right-3 flex items-center justify-between pointer-events-none">
         {/* Stage & Stack Progress */}
         <div className="bg-slate-900/90 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-pink-500/30 shadow-lg">
           <div className="flex items-center gap-2">
@@ -487,17 +498,24 @@ export const HamsterCookieStackContainer: React.FC = () => {
         </div>
 
         {/* Lives & Buttons */}
-        <div className="flex items-center gap-2 pointer-events-auto">
+        <div className="flex items-center gap-1.5 sm:gap-2 pointer-events-auto">
           {/* Lives Indicator */}
-          <div className="bg-slate-900/90 backdrop-blur-md px-3 py-2 rounded-2xl border border-pink-500/30 text-xs font-black text-rose-400 shadow-lg">
+          <div className="bg-slate-900/90 backdrop-blur-md px-2.5 sm:px-3 py-2 rounded-2xl border border-pink-500/30 text-xs font-black text-rose-400 shadow-lg select-none">
             {'❤️'.repeat(Math.max(0, uiLives))}
           </div>
+          <button
+            onClick={handleRestart}
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-2xl bg-slate-900/90 backdrop-blur-md border border-pink-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform cursor-pointer"
+            aria-label="Restart stage"
+          >
+            🔄
+          </button>
           <button
             onClick={() => {
               const muted = cookieStackAudio.toggleMute();
               setIsMuted(muted);
             }}
-            className="w-10 h-10 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-pink-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-2xl bg-slate-900/90 backdrop-blur-md border border-pink-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform cursor-pointer"
             aria-label={isMuted ? 'Unmute' : 'Mute'}
           >
             {isMuted ? '🔇' : '🔊'}
@@ -506,24 +524,24 @@ export const HamsterCookieStackContainer: React.FC = () => {
       </div>
 
       {/* Bottom On-Screen Steer Buttons for Easy Thumb Control */}
-      <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between pointer-events-auto sm:hidden">
+      <div className="absolute bottom-2.5 sm:bottom-3 left-2 sm:left-4 right-2 sm:right-4 flex items-center justify-between pointer-events-auto gap-1 sm:gap-2 sm:hidden">
         <button
           onClick={() => {
             stateRef.current = movePlate(stateRef.current, stateRef.current.plateX - 45);
           }}
-          className="w-14 h-14 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-pink-500/40 text-pink-200 font-black text-2xl flex items-center justify-center shadow-xl active:scale-90 transition-transform"
+          className="w-12 h-12 sm:w-14 sm:h-14 min-w-[44px] min-h-[44px] rounded-2xl bg-slate-900/85 backdrop-blur-md border border-pink-500/40 text-pink-200 font-black text-2xl flex items-center justify-center shadow-xl active:scale-90 transition-transform cursor-pointer"
           aria-label="Steer Left"
         >
           ⬅️
         </button>
-        <div className="text-[11px] font-bold text-pink-200 bg-slate-900/80 px-3 py-1 rounded-full border border-pink-500/30">
+        <div className="text-[10px] sm:text-[11px] font-bold text-pink-200 bg-slate-900/85 backdrop-blur-md px-2.5 sm:px-3 py-1.5 rounded-full border border-pink-500/30 select-none truncate text-center">
           Slide Finger to Balance
         </div>
         <button
           onClick={() => {
             stateRef.current = movePlate(stateRef.current, stateRef.current.plateX + 45);
           }}
-          className="w-14 h-14 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-pink-500/40 text-pink-200 font-black text-2xl flex items-center justify-center shadow-xl active:scale-90 transition-transform"
+          className="w-12 h-12 sm:w-14 sm:h-14 min-w-[44px] min-h-[44px] rounded-2xl bg-slate-900/85 backdrop-blur-md border border-pink-500/40 text-pink-200 font-black text-2xl flex items-center justify-center shadow-xl active:scale-90 transition-transform cursor-pointer"
           aria-label="Steer Right"
         >
           ➡️
@@ -532,8 +550,8 @@ export const HamsterCookieStackContainer: React.FC = () => {
 
       {/* Stage Victory Modal */}
       {uiStatus === 'won' && (
-        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-6 z-20">
-          <div className="bg-slate-900 border border-pink-400/50 rounded-3xl p-6 text-center max-w-sm shadow-2xl animate-fade-in">
+        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 z-20">
+          <div className="bg-slate-900 border border-pink-400/50 rounded-3xl p-5 sm:p-6 text-center max-w-sm w-full shadow-2xl animate-fade-in max-h-[90vh] overflow-y-auto">
             <div className="text-5xl mb-3">🐹🧁🎉</div>
             <h3 className="text-2xl font-black text-pink-300">
               Delicious Tower Complete!
@@ -545,14 +563,14 @@ export const HamsterCookieStackContainer: React.FC = () => {
               {uiStage < BAKERY_STAGES.length ? (
                 <button
                   onClick={handleNextStage}
-                  className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-pink-400 to-rose-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px]"
+                  className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-pink-400 to-rose-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer"
                 >
                   Enter Next Patisserie ({uiStage + 1}/{BAKERY_STAGES.length}) 🍰
                 </button>
               ) : (
                 <button
                   onClick={handleRestart}
-                  className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px]"
+                  className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer"
                 >
                   Bake Summit Masterpiece Again 👑
                 </button>
@@ -564,8 +582,8 @@ export const HamsterCookieStackContainer: React.FC = () => {
 
       {/* Stage Defeat Modal */}
       {uiStatus === 'lost' && (
-        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-6 z-20">
-          <div className="bg-slate-900 border border-red-500/50 rounded-3xl p-6 text-center max-w-sm shadow-2xl animate-fade-in">
+        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 z-20">
+          <div className="bg-slate-900 border border-red-500/50 rounded-3xl p-5 sm:p-6 text-center max-w-sm w-full shadow-2xl animate-fade-in max-h-[90vh] overflow-y-auto">
             <div className="text-5xl mb-3">🧁💥🥺</div>
             <h3 className="text-2xl font-black text-red-400">
               Tower Tumbled!
@@ -576,7 +594,7 @@ export const HamsterCookieStackContainer: React.FC = () => {
             <div className="mt-5 flex flex-col gap-2.5">
               <button
                 onClick={handleRestart}
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-red-500 to-orange-500 text-white font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px]"
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-red-500 to-orange-500 text-white font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer"
               >
                 Try Counter Again 🔄
               </button>
