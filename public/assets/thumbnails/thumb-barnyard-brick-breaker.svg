@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Sky -->
+    <linearGradient id="bgSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="40%" stop-color="#38bdf8"/>
+      <stop offset="75%" stop-color="#bae6fd"/>
+      <stop offset="100%" stop-color="#fef08a"/>
+    </linearGradient>
+
+    <!-- Wood Crate Brick Gradient -->
+    <linearGradient id="woodCrate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="30%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#92400e"/>
+    </linearGradient>
+
+    <!-- Stone Brick Gradient -->
+    <linearGradient id="stoneBrick" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="50%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+
+    <!-- Golden Honeycomb Gradient -->
+    <linearGradient id="goldHoney" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="40%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+
+    <!-- Red Harvester Paddle -->
+    <linearGradient id="paddleRed" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="40%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+
+    <!-- Bouncy Apple Gradient -->
+    <radialGradient id="appleGleam" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="35%" stop-color="#ef4444"/>
+      <stop offset="85%" stop-color="#b91c1c"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background Sky & Orchard -->
+  <rect width="512" height="512" rx="36" fill="url(#bgSky)"/>
+
+  <!-- Countryside Rolling Green Hills in Background -->
+  <path d="M0 320 Q120 280 256 310 Q400 340 512 300 L512 512 L0 512 Z" fill="#22c55e" opacity="0.6"/>
+  <path d="M0 370 Q160 330 320 360 Q440 380 512 350 L512 512 L0 512 Z" fill="#15803d" opacity="0.8"/>
+
+  <!-- Bricks Wall Grid (Arkanoid / Breakout Style) -->
+  <g id="brickWall" transform="translate(36, 60)">
+    <!-- Row 1: Wood Crates -->
+    <rect x="0" y="0" width="68" height="26" rx="5" fill="url(#woodCrate)" stroke="#78350f" stroke-width="2"/>
+    <rect x="74" y="0" width="68" height="26" rx="5" fill="url(#woodCrate)" stroke="#78350f" stroke-width="2"/>
+    <rect x="148" y="0" width="68" height="26" rx="5" fill="url(#goldHoney)" stroke="#a16207" stroke-width="2.5"/>
+    <rect x="222" y="0" width="68" height="26" rx="5" fill="url(#goldHoney)" stroke="#a16207" stroke-width="2.5"/>
+    <rect x="296" y="0" width="68" height="26" rx="5" fill="url(#woodCrate)" stroke="#78350f" stroke-width="2"/>
+    <rect x="370" y="0" width="68" height="26" rx="5" fill="url(#woodCrate)" stroke="#78350f" stroke-width="2"/>
+
+    <!-- Row 2: Alternating Stone & Wood -->
+    <rect x="0" y="32" width="68" height="26" rx="5" fill="url(#stoneBrick)" stroke="#1e293b" stroke-width="2"/>
+    <rect x="74" y="32" width="68" height="26" rx="5" fill="url(#woodCrate)" stroke="#78350f" stroke-width="2"/>
+    <rect x="148" y="32" width="68" height="26" rx="5" fill="url(#woodCrate)" stroke="#78350f" stroke-width="2"/>
+    <rect x="222" y="32" width="68" height="26" rx="5" fill="url(#woodCrate)" stroke="#78350f" stroke-width="2"/>
+    <rect x="296" y="32" width="68" height="26" rx="5" fill="url(#woodCrate)" stroke="#78350f" stroke-width="2"/>
+    <rect x="370" y="32" width="68" height="26" rx="5" fill="url(#stoneBrick)" stroke="#1e293b" stroke-width="2"/>
+
+    <!-- Row 3: Staggered Wood Crates & Impact Burst -->
+    <rect x="37" y="64" width="68" height="26" rx="5" fill="url(#woodCrate)" stroke="#78350f" stroke-width="2"/>
+    <rect x="111" y="64" width="68" height="26" rx="5" fill="url(#goldHoney)" stroke="#a16207" stroke-width="2.5"/>
+
+    <!-- Shattered Exploding Brick (Center Impact) -->
+    <g transform="translate(185, 64)">
+      <!-- Flying Wooden Splinters -->
+      <polygon points="0,0 20,4 12,22 2,18" fill="#d97706" transform="rotate(-18 10 10)"/>
+      <polygon points="26,2 48,0 42,20 28,16" fill="#f59e0b" transform="rotate(22 36 10)"/>
+      <polygon points="46,12 66,8 60,26 42,24" fill="#b45309" transform="rotate(35 54 18)"/>
+
+      <!-- Star Impact Sparkles -->
+      <path d="M34 13 L37 2 L41 13 L52 16 L41 19 L37 30 L34 19 L23 16 Z" fill="#fef08a"/>
+      <circle cx="15" cy="5" r="3" fill="#ffffff"/>
+      <circle cx="55" cy="8" r="3.5" fill="#facc15"/>
+      <circle cx="20" cy="24" r="2.5" fill="#facc15"/>
+    </g>
+
+    <rect x="259" y="64" width="68" height="26" rx="5" fill="url(#woodCrate)" stroke="#78350f" stroke-width="2"/>
+    <rect x="333" y="64" width="68" height="26" rx="5" fill="url(#stoneBrick)" stroke="#1e293b" stroke-width="2"/>
+  </g>
+
+  <!-- Power-Up Dropping (Multi-Ball 3 Apples Badge) -->
+  <g transform="translate(230, 210)">
+    <circle cx="20" cy="20" r="22" fill="#0f172a" opacity="0.4"/>
+    <circle cx="20" cy="18" r="20" fill="url(#goldHoney)" stroke="#ffffff" stroke-width="2.5"/>
+    <text x="20" y="24" font-size="16" font-weight="900" text-anchor="middle" fill="#713f12">x3</text>
+  </g>
+
+  <!-- Bouncing Red Apple (Hero Ball) -->
+  <!-- Motion Action Trail -->
+  <path d="M256 420 Q240 330 220 200" fill="none" stroke="#fca5a5" stroke-width="6" stroke-dasharray="10 8" opacity="0.65"/>
+  <path d="M256 420 Q240 330 220 200" fill="none" stroke="#ffffff" stroke-width="3" stroke-dasharray="6 6" opacity="0.8"/>
+
+  <!-- The Apple Ball -->
+  <g transform="translate(200, 160)">
+    <!-- Little Green Leaf & Stem -->
+    <path d="M26 12 Q28 2 34 0" fill="none" stroke="#78350f" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="33" cy="4" rx="7" ry="4" fill="#22c55e" stroke="#15803d" stroke-width="1.5" transform="rotate(-25 33 4)"/>
+
+    <!-- Red Apple Body with Glossy Highlight -->
+    <circle cx="25" cy="25" r="22" fill="url(#appleGleam)" stroke="#7f1d1d" stroke-width="2"/>
+    <ellipse cx="18" cy="16" rx="6" ry="10" fill="#ffffff" opacity="0.65" transform="rotate(-25 18 16)"/>
+    <circle cx="15" cy="12" r="2.5" fill="#ffffff"/>
+  </g>
+
+  <!-- Red Farm Harvester Paddle at Bottom -->
+  <g id="paddleHarvester" transform="translate(136, 420)">
+    <!-- Rubber Wheels on Sides -->
+    <ellipse cx="10" cy="38" rx="14" ry="10" fill="#1e293b" stroke="#0f172a" stroke-width="3"/>
+    <circle cx="10" cy="38" r="5" fill="#cbd5e1"/>
+
+    <ellipse cx="230" cy="38" rx="14" ry="10" fill="#1e293b" stroke="#0f172a" stroke-width="3"/>
+    <circle cx="230" cy="38" r="5" fill="#cbd5e1"/>
+
+    <!-- Red Main Harvester Bumper Body -->
+    <rect x="0" y="8" width="240" height="28" rx="14" fill="url(#paddleRed)" stroke="#7f1d1d" stroke-width="3"/>
+
+    <!-- Yellow & Black Caution Warning Striping -->
+    <g opacity="0.85">
+      <path d="M30 8 L42 36 L52 36 L40 8 Z" fill="#facc15"/>
+      <path d="M70 8 L82 36 L92 36 L80 8 Z" fill="#facc15"/>
+      <path d="M110 8 L122 36 L132 36 L120 8 Z" fill="#facc15"/>
+      <path d="M150 8 L162 36 L172 36 L160 8 Z" fill="#facc15"/>
+      <path d="M190 8 L202 36 L212 36 L200 8 Z" fill="#facc15"/>
+    </g>
+
+    <!-- Top Metallic Paddle Guide Rail -->
+    <rect x="15" y="4" width="210" height="8" rx="4" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/>
+
+    <!-- Glowing Green Deflection Arrow on Paddle -->
+    <path d="M110 22 L120 12 L130 22 Z" fill="#22c55e" stroke="#15803d" stroke-width="1"/>
+  </g>
+</svg>

@@ -2118,7 +2118,45 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Piggy Mud Wash: County Fair Spa 🐷 — No Download | Pawcade',
     metaDescription: 'Play Piggy Mud Wash free online! Scrub muddy farm animals with soap, rinse with water, and dry them for the County Fair. Free casual pet spa with no download.',
   },
+  {
+    id: 'barnyard-brick-breaker',
+    slug: 'barnyard-brick-breaker',
+    title: 'Barnyard Brick Breaker: Apple Bounce 🍎🧱',
+    tagline: 'Steer your farm cart paddle, bounce crisp apples, smash wooden fruit crates, and grab golden honey power-ups!',
+    description: 'Smash through wooden fruit crates and stone barn walls in this retro arcade brick breaker! Steer your red harvester cart, deflect bouncy red apples, and collect golden honey drops. Trigger multi-ball splits and wide paddles across four handcrafted farm stages with zero downloads.',
+    category: 'arcade',
+    categories: ['arcade', 'farm'],
+    route: '/games/barnyard-brick-breaker/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '31.2K',
+    badge: '🍎 Brick Breaker',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-brick-breaker.svg',
+    controls: {
+      desktop: [
+        'Mouse Drag or Arrow Keys / A-D: Steer red harvester cart left and right',
+        'Spacebar or Click: Launch apple from cart to begin stage',
+        'R Key: Reset and start a fresh harvest run',
+        'M Key: Toggle bounce thuds and crate smash sound effects',
+      ],
+      mobile: [
+        'Touch & Drag: Slide thumb across canvas to steer harvester cart smoothly',
+        'Bottom Buttons: Tap Left, Right, or Launch for tactile control',
+      ],
+    },
+    features: [
+      'Classic Breakout & Arkanoid Action Reimagined in a Sunny Apple Orchard',
+      '3 Unique Brick Varieties: Wooden Fruit Crates, Stone Bricks, and Golden Honey',
+      'Exciting Power-Up Drops: Multi-Ball 3x Apple Splits, Wide Paddle, and Fireball Pierce',
+      '4 Handcrafted Agricultural Stages: Apple Orchard, Red Barn Gable, Windmill Rotor, and Silo Peak',
+      'Procedural Web Audio Synthesizer (Wood Crate Crunches, Paddle Pings, and Chimes)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Barnyard Brick Breaker: Apple Bounce 🍎 — No Download | Pawcade',
+    metaDescription: 'Play Barnyard Brick Breaker free online! Deflect bouncy apples with your harvester cart, smash fruit crates, and grab power-ups. Free arcade game with no download.',
+  },
 ];
+
 
 
 

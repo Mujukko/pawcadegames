@@ -960,6 +960,43 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Work in systematic passes! Lather all mud with the sponge first, blast everything with the water hose second, then finish with a quick towel dry to hit 100% in record time.',
   },
+  'barnyard-brick-breaker': {
+    title: 'Barnyard Brick Breaker: Apple Bounce',
+    subtitle: 'Classic Retro Arcade Brick Breaker',
+    mascot: '🍎🧱',
+    themeColor: 'from-red-500 via-amber-600 to-yellow-500',
+    goal: 'Deflect bouncing apples with your harvester cart, break fruit crates, and grab golden honey drops!',
+    steps: [
+      {
+        icon: '🚜',
+        title: '1. Steer Harvester Cart',
+        desc: 'Drag your finger across the canvas or use Arrow Keys / A-D to guide your harvester paddle under falling apples.',
+      },
+      {
+        icon: '🍎',
+        title: '2. Smash Fruit Crates & Stone',
+        desc: 'Bounce apples into wooden crates (1 hit) and stone foundations (2 hits) to clear the farm stage.',
+      },
+      {
+        icon: '🍯',
+        title: '3. Catch Honey Power-Ups',
+        desc: 'Catch falling capsules to trigger Triple Apple Multi-Ball, Wide Paddle, or blazing Fireballs!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left / Right Arrows or A / D: Steer cart',
+        'Spacebar or Click: Launch apple / Restart',
+        'R Key: Reset current stage',
+        'M Key: Toggle audio effects',
+      ],
+      mobile: [
+        'Touch & Drag: Slide thumb anywhere on canvas for instant cart follow',
+        'Left / Right / Launch: Bottom directional buttons',
+      ],
+    },
+    proTip: 'Angle your paddle shots! Hitting the apple near the left or right edge of your cart sends it slicing at sharp angles into hard-to-reach top corners.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',
