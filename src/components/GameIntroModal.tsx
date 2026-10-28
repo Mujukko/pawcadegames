@@ -250,6 +250,46 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Work backwards from the thirsty crop targets as well as forward from the water pump to see where the pipe path must meet in the middle!',
   },
+  'koi-pond-zen': {
+    title: 'Koi Pond: Zen Water Garden',
+    subtitle: 'Serene Water Garden & Fish Feeding',
+    mascot: '🎏🌸',
+    themeColor: 'from-teal-600 via-emerald-600 to-cyan-800',
+    goal: 'Feed graceful Japanese koi fish, bloom pink lotus flowers, and create gentle water ripples in your serene pond sanctuary!',
+    steps: [
+      {
+        icon: '🟤',
+        title: '1. Drop Food Pellets',
+        desc: 'Tap or click the pond surface to drop food pellets. Nearby koi smell the food and swim over to nibble.',
+      },
+      {
+        icon: '🪷',
+        title: '2. Bloom Lotus Lilies',
+        desc: 'Feeding fish nourishes the pond water, opening closed flower buds into gorgeous blooming pink lotus flowers.',
+      },
+      {
+        icon: '🔔',
+        title: '3. Ring the Singing Bowl',
+        desc: 'Tap Chime to ring the Tibetan singing bowl, summoning all koi fish to the pond center with a golden wave!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Drop food pellet and create water ripple',
+        'Spacebar / B Key: Ring singing bowl',
+        'S Key: Trigger falling sakura petal shower',
+        'M Key: Toggle soothing water audio',
+        'R Key: Restart zen sanctuary',
+      ],
+      mobile: [
+        'Tap Water: Drop food pellets and create ripples',
+        'Food / Gold Toggle: Switch between standard and golden food',
+        'Chime Button: Ring singing bowl to call all fish',
+        'Sakura Button: Trigger sakura shower for 2x points',
+      ],
+    },
+    proTip: 'Group multiple food pellets in the center before ringing the singing bowl. All five koi will rush together and create a huge burst of zen points!',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

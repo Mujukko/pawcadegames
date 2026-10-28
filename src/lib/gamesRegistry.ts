@@ -1397,6 +1397,46 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Farm Pipe Flow: Barnyard Plumber 🚜💧 — No Download | Pawcade',
     metaDescription: 'Play Farm Pipe Flow free online! Rotate water pipes to irrigate thirsty barnyard crops and animal troughs. Free casual plumber puzzle with no download.',
   },
+  {
+    id: 'koi-pond-zen',
+    slug: 'koi-pond-zen',
+    title: 'Koi Pond: Zen Water Garden 🎏🌸',
+    tagline: 'Feed graceful Japanese koi fish, bloom pink lotus flowers, and create gentle water ripples in a peaceful zen pond garden.',
+    description: 'Feed graceful Japanese koi fish, bloom pink lotus flowers, and create gentle water ripples in a peaceful zen pond garden. Relax as Kohaku, Yamabuki, Showa, and Tancho koi swim smoothly through crystal clear waters. Ring the singing bowl to call all fish together, drop golden food pellets, and watch delicate lotus blossoms open across four serene sanctuary ponds.',
+    category: 'pets',
+    categories: ['pets', 'farm', 'arcade'],
+    route: '/games/koi-pond-zen/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '21.5K',
+    badge: '🎏 Zen Waters',
+    thumbnailUrl: '/assets/thumbnails/thumb-koi-pond-zen.svg',
+    controls: {
+      desktop: [
+        'Left Click Water: Drop fish food pellets and make gentle ripples',
+        'Spacebar / B Key: Ring Tibetan singing bowl to gather all koi',
+        'S Key: Activate falling sakura petal shower for 2x zen boost',
+        'R Key: Restart zen garden sanctuary',
+        'M Key: Toggle soothing water and chime sounds',
+      ],
+      mobile: [
+        'Tap Water: Drop food pellets and create expanding ripples',
+        'Food / Gold Toggle: Switch between standard and golden pellets',
+        'Chime Button: Ring singing bowl to guide all fish to center',
+        'Sakura Button: Trigger sakura petal shower for double points',
+      ],
+    },
+    features: [
+      '4 Handcrafted Zen Sanctuaries: Bamboo Grove Spring, Cherry Blossom Basin, Golden Pavilion Pool, and Moonlit Sanctuary',
+      '5 Japanese Koi Breeds: Kohaku (🔴⚪), Yamabuki (🟡✨), Showa (⚫🔴⚪), Tancho (⚪🔴), and Butterfly Sakura Koi (🌸🎏)',
+      'Autonomous Boid Schooling AI and Scent Tracking Food Navigation',
+      'Interactive 60 FPS Fluid Water Ripple Dynamics and Floating Lotus Lily Pads',
+      'Procedural Web Audio Soundscape (Water Plinks, Bamboo Clacks, Singing Bowl Gongs, and Zen Fanfare)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Koi Pond: Zen Water Garden 🎏🌸 — No Download | Pawcade',
+    metaDescription: 'Play Koi Pond Zen free online! Feed graceful Japanese koi, bloom lotus flowers, and create water ripples in a tranquil pond garden. Free relaxing game with no download.',
+  },
 ];
 
 
