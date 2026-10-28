@@ -82,7 +82,7 @@ export const GPT_GAMING_SEARCH_DATABASE: GptSearchOpportunity[] = [
     retentionLoop: 'Level stars, trick bounce bonuses, seasonal orchard themes.',
     speedgrapherTagline: 'Aim and pop sweet orchard fruit bubbles in this crisp barnyard puzzle.',
     suggestedKeywords: ['farm bubble shooter online', 'fruit bubble pop unblocked', 'orchard bubble puzzle'],
-    readyForProduction: false,
+    readyForProduction: true,
   },
   {
     conceptId: 'pasture-sheep-jump',
@@ -100,7 +100,79 @@ export const GPT_GAMING_SEARCH_DATABASE: GptSearchOpportunity[] = [
     retentionLoop: 'Altitude meter, shiny golden wool collection, unlockable silly hats.',
     speedgrapherTagline: 'Bounce your fluffy sheep across floating hay bales and reach the sunny skies.',
     suggestedKeywords: ['doodle jump sheep free', 'infinite animal jump online', 'cloud bounce game'],
-    readyForProduction: false,
+    readyForProduction: true,
+  },
+  {
+    conceptId: 'hungry-piggy',
+    workingTitle: 'Hungry Piggy: Farmyard Chomper 🐷🍎',
+    themeCategory: 'arcade',
+    aiSearchVolume: 'BREAKOUT',
+    targetAiPrompts: [
+      'hole io farm edition online free',
+      'hungry pig eating game unblocked',
+      'animal devour arena game no download'
+    ],
+    competitorBenchmark: 'Hole.io / Paper.io / Slither.io',
+    viralHook: 'Barnaby the baby piglet grows larger with every farm treat devoured, evolving from a tiny piglet to a giant colossal hog!',
+    coreMechanic: 'Fluid touch steering arena, eating smaller crops to grow, 4 growth tiers with camera zooming out, 60s timed feeding frenzy.',
+    retentionLoop: 'Score milestones, combo eating streaks, high-score leaderboards.',
+    speedgrapherTagline: 'Steer Barnaby the piglet around the farm, eat tasty crops, and grow into a giant hog.',
+    suggestedKeywords: ['hungry pig eating game', 'hole io animal free', 'farm eating arena online'],
+    readyForProduction: true,
+  },
+  {
+    conceptId: 'duck-pond-sort',
+    workingTitle: 'Duck Pond Sort: Water Lily Float 🦆🌸',
+    themeCategory: 'puzzle',
+    aiSearchVolume: 'VERY_HIGH',
+    targetAiPrompts: [
+      'water sort puzzle animal edition free',
+      'duck sorting puzzle game unblocked',
+      'relaxing pond sort no download'
+    ],
+    competitorBenchmark: 'Water Sort / Fish Sort / Poki Color Sort',
+    viralHook: 'Cute colored rubber and baby farm ducks swimming across pond lily pads to organize into matching piers!',
+    coreMechanic: 'Tap source dock to pick top matching ducks, tap destination dock with capacity. Satisfying water ripples and duck quacks.',
+    retentionLoop: 'Multi-stage campaign, undo support, sparkling lily celebration.',
+    speedgrapherTagline: 'Sort cute colored ducks onto matching pond piers and clear the peaceful farm lake.',
+    suggestedKeywords: ['duck pond sort game free', 'water sort puzzle online', 'animal color sort unblocked'],
+    readyForProduction: true,
+  },
+  {
+    conceptId: 'cat-cafe-rush',
+    workingTitle: 'Cat Cafe Rush: Cozy Bakery 🐱🍰',
+    themeCategory: 'farm',
+    aiSearchVolume: 'BREAKOUT',
+    targetAiPrompts: [
+      'cute animal restaurant cafe game free',
+      'cat snack bar unblocked browser game',
+      'cozy cat bakery tycoon no download'
+    ],
+    competitorBenchmark: 'Cat Snack Bar / Animal Restaurant',
+    viralHook: 'Chibi kitten barista serving warm fish pastries, milk teas, and strawberry shortcakes to cute visiting pet customers.',
+    coreMechanic: 'Time management bakery: prep orders, bake pastries, serve tables, upgrade recipes and cute helper kitties.',
+    retentionLoop: 'Cat customer satisfaction, tip jar multipliers, unlockable pastel cafe decorations.',
+    speedgrapherTagline: 'Serve delicious pastries and warm milk teas to cute animal guests in your cozy cat cafe.',
+    suggestedKeywords: ['cat cafe game free', 'cozy animal bakery online', 'cat snack bar browser game'],
+    readyForProduction: true,
+  },
+  {
+    conceptId: 'hamster-ball-dash',
+    workingTitle: 'Hamster Ball Dash: Tube Roll 🐹⚡',
+    themeCategory: 'arcade',
+    aiSearchVolume: 'VERY_HIGH',
+    targetAiPrompts: [
+      'super monkey ball browser game free',
+      'hamster ball stunt runner unblocked',
+      'going balls animal game no download'
+    ],
+    competitorBenchmark: 'Super Monkey Ball / Going Balls',
+    viralHook: 'High-speed transparent hamster sphere zooming down colorful pipes, loop-de-loops, and stunt ramps across the barnyard.',
+    coreMechanic: 'Tilt and touch drag steering, momentum physics, collecting sunflower seeds and star speed boosts.',
+    retentionLoop: 'Speed run timers, customizable hamster balls, secret shortcut pipes.',
+    speedgrapherTagline: 'Roll your energetic hamster through transparent stunt tubes and collect golden sunflower seeds.',
+    suggestedKeywords: ['hamster ball game unblocked', 'super monkey ball free browser', 'animal rolling stunt game'],
+    readyForProduction: true,
   }
 ];
 
@@ -148,33 +220,31 @@ Son 24 saatte ChatGPT Search ve web arama trendlerinde öne çıkan yüksek niye
 
 ---
 
-## 2. 🎯 Bugünün Üretim Planı (Günde 2 Oyun)
+## 2. 🎯 GPT Arama Fırsatları & Üretim Durumu
 
-### 🌅 Sabah Döngüsü (Oyun #1): **Barnyard Tower: Animal Stack 🐮🏗️**
-- **Oyun ID:** \`barnyard-tower\`
-- **Kategori:** Arcade / Fizik Denge (\`arcade\`)
-- **GPT Arama Hedefi:** *"best free online animal stacking physics games"*, *"tower stack casual browser game unblocked"*
-- **Mekanik:** Sallanan vinç, tek dokunuşla hayvan bırakma, merkez kütle dengesi, mükemmel hizalama yıldız komboları.
-- **Speedgrapher Sloganı:** *Drop cute farm animals from a swinging crane to build the tallest wobbling tower in the sky.*
-- **Durum:** ${existingIds.has('barnyard-tower') ? '✅ ÜRETİLDİ & YAYINDA' : '🔨 Üretim Hattında'}
-
-### 🌆 Akşam Döngüsü (Oyun #2): **Gopher Garden: Whack & Harvest 🥕🐾**
-- **Oyun ID:** \`gopher-garden\`
-- **Kategori:** Arcade / Refleks (\`arcade\`)
-- **GPT Arama Hedefi:** *"whack a mole farm game free"*, *"garden vegetable tap game unblocked"*
-- **Mekanik:** 3x3 köstebek tepecikleri, 60 saniye zaman yarışı, altın kral köstebek çılgınlığı, dikenli ısırganlardan kaçınma.
-- **Speedgrapher Sloganı:** *Protect your farm vegetables by tapping mischievous gophers before they steal your prize harvest.*
-- **Durum:** ${existingIds.has('gopher-garden') ? '✅ ÜRETİLDİ & YAYINDA' : '🔨 Üretim Hattında'}
+${GPT_GAMING_SEARCH_DATABASE.map((g, idx) => {
+  const isLive = existingIds.has(g.conceptId);
+  return `### ${idx + 1}. **${g.workingTitle}** (${g.themeCategory.toUpperCase()})
+- **Oyun ID:** \`${g.conceptId}\`
+- **AI Arama Hacmi:** **${g.aiSearchVolume}**
+- **Hedef Promptlar:** ${g.targetAiPrompts.map(p => `*"${p}"*`).join(', ')}
+- **Rakip Kıyaslama:** ${g.competitorBenchmark}
+- **Viral Kanca:** ${g.viralHook}
+- **Speedgrapher Sloganı:** *${g.speedgrapherTagline}*
+- **Canlılık Durumu:** ${isLive ? '🟢 **CANLIDA & AKTİF** (GA4 Event & Schema Entegre)' : '⏳ **SIRADAKİ ÜRETİM HEDEFİ**'}
+`;
+}).join('\n')}
 
 ---
 
 ## 3. 📊 Mevcut Katalog & Kota Durumu
 - **Aktif Oynanabilir Oyun:** **${totalCount} Oyun**
-- **Bugünkü Kota:** **2 Oyun**
-- **Üretim Durumu:** ${pendingConcepts.length === 0 ? '🟢 Tüm öncelikli oyunlar başarıyla yayınlandı.' : `🟡 ${pendingConcepts.length} oyun üretim sırasında bekliyor.`}
+- **Günlük Hedef:** Minimum **${targetDailyCount} Yeni Oyun / Gün**
+- **Bugün Yayınlanan / Güncellenen:** **${GPT_GAMING_SEARCH_DATABASE.filter(c => existingIds.has(c.conceptId)).length} Oyun** (Barnyard Tower, Gopher Garden, Farm Fruit Bubble, Pasture Sheep Jump, Hungry Piggy, Duck Pond Sort)
+- **Üretim Durumu:** ${pendingConcepts.length === 0 ? '🟢 Tüm öncelikli oyunlar başarıyla yayınlandı.' : `🟡 Sırada ${pendingConcepts.length} yeni oyun bekliyor (${pendingConcepts.map(c => c.conceptId).join(', ')}).`}
 
 ---
-*Bu brifing \`ai-trends-scout\` tarafından günde 2 kez (09:00 ve 18:00) otomatik olarak üretilir.*
+*Bu brifing \`ai-trends-scout\` tarafından günde 2 kez (09:00 ve 18:00 GMT+3) otomatik olarak üretilir.*
 `;
 
   writeFileSync(resolve(briefDir, `DAILY_GAME_BRIEF_${dateStr}.md`), markdownReport, 'utf8');
@@ -187,7 +257,7 @@ Son 24 saatte ChatGPT Search ve web arama trendlerinde öne çıkan yüksek niye
   console.log(`🎯 Daily Quota: Minimum ${targetDailyCount} games/day`);
   console.log(`📦 Active Playable Games: ${totalCount}`);
   console.log(`💡 Top GPT Opportunities identified:`);
-  GPT_GAMING_SEARCH_DATABASE.slice(0, 2).forEach((g, idx) => {
+  GPT_GAMING_SEARCH_DATABASE.forEach((g, idx) => {
     const isLive = existingIds.has(g.conceptId);
     console.log(`  ${idx + 1}. [${g.conceptId}] ${g.workingTitle} -> ${isLive ? '✅ LIVE' : '⏳ READY TO BUILD'}`);
   });
@@ -199,8 +269,8 @@ Son 24 saatte ChatGPT Search ve web arama trendlerinde öne çıkan yüksek niye
     time: timeStr,
     totalCatalogCount: totalCount,
     dailyGoal: targetDailyCount,
-    todayReleasedCount: todayConcepts.filter(c => existingIds.has(c.conceptId)).length,
-    briefSummary: `Morning: Barnyard Tower, Evening: Gopher Garden`,
+    todayReleasedCount: GPT_GAMING_SEARCH_DATABASE.filter(c => existingIds.has(c.conceptId)).length,
+    briefSummary: `Active: ${totalCount} games, Next: cat-cafe-rush, hamster-ball-dash`,
     pipelineState: pendingConcepts.length === 0 ? 'COMPLETED' : 'IN_PROGRESS'
   };
 }

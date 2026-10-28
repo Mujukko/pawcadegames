@@ -67,7 +67,7 @@
       "fruit bubble pop unblocked",
       "orchard bubble puzzle"
     ],
-    "readyForProduction": false
+    "readyForProduction": true
   },
   {
     "conceptId": "pasture-sheep-jump",
@@ -89,6 +89,94 @@
       "infinite animal jump online",
       "cloud bounce game"
     ],
-    "readyForProduction": false
+    "readyForProduction": true
+  },
+  {
+    "conceptId": "hungry-piggy",
+    "workingTitle": "Hungry Piggy: Farmyard Chomper 🐷🍎",
+    "themeCategory": "arcade",
+    "aiSearchVolume": "BREAKOUT",
+    "targetAiPrompts": [
+      "hole io farm edition online free",
+      "hungry pig eating game unblocked",
+      "animal devour arena game no download"
+    ],
+    "competitorBenchmark": "Hole.io / Paper.io / Slither.io",
+    "viralHook": "Barnaby the baby piglet grows larger with every farm treat devoured, evolving from a tiny piglet to a giant colossal hog!",
+    "coreMechanic": "Fluid touch steering arena, eating smaller crops to grow, 4 growth tiers with camera zooming out, 60s timed feeding frenzy.",
+    "retentionLoop": "Score milestones, combo eating streaks, high-score leaderboards.",
+    "speedgrapherTagline": "Steer Barnaby the piglet around the farm, eat tasty crops, and grow into a giant hog.",
+    "suggestedKeywords": [
+      "hungry pig eating game",
+      "hole io animal free",
+      "farm eating arena online"
+    ],
+    "readyForProduction": true
+  },
+  {
+    "conceptId": "duck-pond-sort",
+    "workingTitle": "Duck Pond Sort: Water Lily Float 🦆🌸",
+    "themeCategory": "puzzle",
+    "aiSearchVolume": "VERY_HIGH",
+    "targetAiPrompts": [
+      "water sort puzzle animal edition free",
+      "duck sorting puzzle game unblocked",
+      "relaxing pond sort no download"
+    ],
+    "competitorBenchmark": "Water Sort / Fish Sort / Poki Color Sort",
+    "viralHook": "Cute colored rubber and baby farm ducks swimming across pond lily pads to organize into matching piers!",
+    "coreMechanic": "Tap source dock to pick top matching ducks, tap destination dock with capacity. Satisfying water ripples and duck quacks.",
+    "retentionLoop": "Multi-stage campaign, undo support, sparkling lily celebration.",
+    "speedgrapherTagline": "Sort cute colored ducks onto matching pond piers and clear the peaceful farm lake.",
+    "suggestedKeywords": [
+      "duck pond sort game free",
+      "water sort puzzle online",
+      "animal color sort unblocked"
+    ],
+    "readyForProduction": true
+  },
+  {
+    "conceptId": "cat-cafe-rush",
+    "workingTitle": "Cat Cafe Rush: Cozy Bakery 🐱🍰",
+    "themeCategory": "farm",
+    "aiSearchVolume": "BREAKOUT",
+    "targetAiPrompts": [
+      "cute animal restaurant cafe game free",
+      "cat snack bar unblocked browser game",
+      "cozy cat bakery tycoon no download"
+    ],
+    "competitorBenchmark": "Cat Snack Bar / Animal Restaurant",
+    "viralHook": "Chibi kitten barista serving warm fish pastries, milk teas, and strawberry shortcakes to cute visiting pet customers.",
+    "coreMechanic": "Time management bakery: prep orders, bake pastries, serve tables, upgrade recipes and cute helper kitties.",
+    "retentionLoop": "Cat customer satisfaction, tip jar multipliers, unlockable pastel cafe decorations.",
+    "speedgrapherTagline": "Serve delicious pastries and warm milk teas to cute animal guests in your cozy cat cafe.",
+    "suggestedKeywords": [
+      "cat cafe game free",
+      "cozy animal bakery online",
+      "cat snack bar browser game"
+    ],
+    "readyForProduction": true
+  },
+  {
+    "conceptId": "hamster-ball-dash",
+    "workingTitle": "Hamster Ball Dash: Tube Roll 🐹⚡",
+    "themeCategory": "arcade",
+    "aiSearchVolume": "VERY_HIGH",
+    "targetAiPrompts": [
+      "super monkey ball browser game free",
+      "hamster ball stunt runner unblocked",
+      "going balls animal game no download"
+    ],
+    "competitorBenchmark": "Super Monkey Ball / Going Balls",
+    "viralHook": "High-speed transparent hamster sphere zooming down colorful pipes, loop-de-loops, and stunt ramps across the barnyard.",
+    "coreMechanic": "Tilt and touch drag steering, momentum physics, collecting sunflower seeds and star speed boosts.",
+    "retentionLoop": "Speed run timers, customizable hamster balls, secret shortcut pipes.",
+    "speedgrapherTagline": "Roll your energetic hamster through transparent stunt tubes and collect golden sunflower seeds.",
+    "suggestedKeywords": [
+      "hamster ball game unblocked",
+      "super monkey ball free browser",
+      "animal rolling stunt game"
+    ],
+    "readyForProduction": true
   }
 ]
