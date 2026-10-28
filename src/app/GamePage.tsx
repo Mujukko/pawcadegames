@@ -105,6 +105,9 @@ const WoodNutsFarmContainer = lazy(() =>
 const AnimalSuikaDropContainer = lazy(() =>
   import('../games/animal-suika-drop/AnimalSuikaDropContainer').then((m) => ({ default: m.AnimalSuikaDropContainer }))
 );
+const FarmTileTripleContainer = lazy(() =>
+  import('../games/farm-tile-triple/FarmTileTripleContainer').then((m) => ({ default: m.FarmTileTripleContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -134,6 +137,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isFarmTileTriple = gameId === 'farm-tile-triple' || gameId === 'tile-triple' || gameId === 'triple-match';
   const isAnimalSuika = gameId === 'animal-suika-drop' || gameId === 'suika-game' || gameId === 'watermelon-merge';
   const isWoodNuts = gameId === 'wood-nuts-farm' || gameId === 'wood-nuts' || gameId === 'screw-puzzle';
   const isCapybaraSpa = gameId === 'capybara-spa-rush' || gameId === 'capybara-spa';
@@ -275,7 +279,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isAnimalSuika
+                isFarmTileTriple
+                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+                  : isAnimalSuika
                   ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
                   : isMahjong
                   ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
@@ -349,7 +355,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isAnimalSuika
+                  isFarmTileTriple
+                    ? '🧺🍎'
+                    : isAnimalSuika
                     ? '🍉🐾'
                     : isWoodNuts
                     ? '🔩🚜'
@@ -418,7 +426,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isAnimalSuika ? (
+            {isFarmTileTriple ? (
+              <FarmTileTripleContainer />
+            ) : isAnimalSuika ? (
               <AnimalSuikaDropContainer />
             ) : isWoodNuts ? (
               <WoodNutsFarmContainer />
@@ -500,7 +510,18 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
 
             <div className="space-y-3 text-sm text-slate-300">
-              {isAnimalSuika ? (
+              {isFarmTileTriple ? (
+                <>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-amber-400 min-w-24">Desktop:</span>
+                    <span>Left-click any unblocked crop tile on the board to move it into your 7-slot bottom tray. Collect 3 matching tiles to clear them and score 300 points! Press <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">U</kbd> to undo a move, <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">S</kbd> to shuffle, <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">R</kbd> to restart, and <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">M</kbd> to toggle audio.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-amber-400 min-w-24">Mobile:</span>
+                    <span>Tap any unblocked tile to send it into your holding tray. Clear all crops in triplets before your 7 tray slots fill up!</span>
+                  </div>
+                </>
+              ) : isAnimalSuika ? (
                 <>
                   <div className="flex items-start gap-2">
                     <span className="font-bold text-emerald-400 min-w-24">Desktop:</span>

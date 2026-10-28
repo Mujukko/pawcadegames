@@ -70,11 +70,17 @@ export const App: React.FC = () => {
     const capybaraSpaGame = GAMES_REGISTRY.find(g => g.id === 'capybara-spa-rush');
     const woodNutsGame = GAMES_REGISTRY.find(g => g.id === 'wood-nuts-farm');
     const animalSuikaGame = GAMES_REGISTRY.find(g => g.id === 'animal-suika-drop');
+    const farmTileTripleGame = GAMES_REGISTRY.find(g => g.id === 'farm-tile-triple');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/animal-suika-drop') || currentRoute.startsWith('/games/suika-game') || currentRoute.startsWith('/games/watermelon-merge')) {
+    if (currentRoute.startsWith('/games/farm-tile-triple') || currentRoute.startsWith('/games/tile-triple') || currentRoute.startsWith('/games/triple-match')) {
+      if (farmTileTripleGame) {
+        activeTitle = farmTileTripleGame.metaTitle;
+        activeDesc = farmTileTripleGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/animal-suika-drop') || currentRoute.startsWith('/games/suika-game') || currentRoute.startsWith('/games/watermelon-merge')) {
       if (animalSuikaGame) {
         activeTitle = animalSuikaGame.metaTitle;
         activeDesc = animalSuikaGame.metaDescription;
@@ -290,6 +296,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/farm-tile-triple') || currentRoute.startsWith('/games/tile-triple') || currentRoute.startsWith('/games/triple-match')) {
+      return <GamePage navigate={navigate} gameId="farm-tile-triple" />;
     }
     if (currentRoute.startsWith('/games/animal-suika-drop') || currentRoute.startsWith('/games/suika-game') || currentRoute.startsWith('/games/watermelon-merge')) {
       return <GamePage navigate={navigate} gameId="animal-suika-drop" />;

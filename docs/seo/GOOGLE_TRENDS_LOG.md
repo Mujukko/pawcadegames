@@ -2,7 +2,7 @@
 
 **Region:** United States (geo=US)
 **Category:** Games / Computer & Video Games
-**Updated:** 2026-10-27
+**Updated:** 2026-10-28
 
 ## 1. High-Volume Search Clusters in the United States
 

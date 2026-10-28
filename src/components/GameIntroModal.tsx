@@ -172,6 +172,46 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Drop small animals (chicks and ducklings) along the sides so they roll down toward their matching twins instead of blocking big animals in the center!',
   },
+  'farm-tile-triple': {
+    title: 'Barnyard Tile Match: Triple Pick',
+    subtitle: 'Cozy Triple Tile Match Puzzle',
+    mascot: '🧺🍎',
+    themeColor: 'from-amber-500 via-orange-600 to-emerald-600',
+    goal: 'Pick matching crop tiles into your 7-slot tray and clear the entire board in triplets!',
+    steps: [
+      {
+        icon: '👆',
+        title: '1. Pick Unblocked Tiles',
+        desc: 'Tap any unblocked tile with a clear border to send it into your 7-slot bottom tray.',
+      },
+      {
+        icon: '✨',
+        title: '2. Match Three to Clear',
+        desc: 'When you collect three matching crops in your tray, they clear with golden starbursts and +300 points.',
+      },
+      {
+        icon: '⚠️',
+        title: '3. Prevent Tray Jam',
+        desc: 'Do not let your tray fill with 7 mismatched tiles! Use Undo or Shuffle if you get stuck.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Pick an unblocked tile into the tray',
+        'U Key: Undo previous tile pick',
+        'S Key: Shuffle unpicked board tiles',
+        'R Key: Quick restart stage',
+        'M Key: Toggle sound effects',
+      ],
+      mobile: [
+        'Tap Tile: Send top unblocked tile to your tray',
+        'Undo Button: Take back a misstep easily',
+        'Shuffle Button: Reorder remaining board tiles',
+        'Restart Button: Reset current stage',
+      ],
+    },
+    proTip: 'Focus on clearing tiles that uncover multiple covered tiles below them. Never pick random single tiles unless you have a path to their matching triplet!',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

@@ -1319,6 +1319,46 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Animal Drop: Watermelon Merge 🍉🐾 — No Download | Pawcade',
     metaDescription: 'Play Animal Drop Watermelon Merge free online! Drop and merge cute farm animals to grow the giant Watermelon Elephant. Free puzzle game with no download.',
   },
+  {
+    id: 'farm-tile-triple',
+    slug: 'farm-tile-triple',
+    title: 'Barnyard Tile Match: Triple Pick 🧺🍎',
+    tagline: 'Pick and match 3 cute farm crop tiles in your 7-slot tray to clear the board in this cozy puzzle!',
+    description: 'Match cute crop tiles in this relaxing farm puzzle. Tap unblocked tiles from the board to move them into your tray. When you collect three identical tiles, they clear instantly for bonus points. Keep your seven tray slots from filling up as you dig through layered tiles. Clear every crop from the garden table to complete all four handcrafted stages today!',
+    category: 'puzzle',
+    categories: ['puzzle', 'farm', 'arcade'],
+    route: '/games/farm-tile-triple/',
+    status: 'playable',
+    rating: 4.9,
+    playCount: '19.8K',
+    badge: '🧺 Tile Triple',
+    thumbnailUrl: '/assets/thumbnails/thumb-farm-tile-triple.svg',
+    controls: {
+      desktop: [
+        'Left Click Tile: Pick an unblocked crop tile into your 7-slot tray',
+        'U Key: Undo previous tile pick',
+        'S Key: Shuffle unpicked board tiles',
+        'R Key: Quick restart current stage',
+        'M Key: Toggle soothing wooden sound effects',
+      ],
+      mobile: [
+        'Tap Tile: Send top unblocked crop tile into your tray',
+        'Undo Button: Take back a misstep easily',
+        'Shuffle Button: Reorder tiles if stuck',
+        'Restart Button: Reset level for a fresh attempt',
+      ],
+    },
+    features: [
+      '4 Handcrafted Puzzle Stages: Garden Gate, Orchard Basket, Harvest Festival, and Barnyard Cornucopia',
+      '8 Charming Farm Crops & Animals: Apples, Corn, Pumpkins, Berries, Eggplants, Honey, Chicks, and Sunflowers',
+      'Layered 3D Tile Blocking System with Real-Time Unblock Updates',
+      'Dynamic 7-Slot Tray Mechanics with 3-Match Particle Burst Celebrations',
+      'Procedural Web Audio Synthesizer (Wooden Taps, Harp Chimes, Shuffle Whooshes, and Victory Fanfare)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Barnyard Tile Match: Triple Pick 🧺🍎 — No Download | Pawcade',
+    metaDescription: 'Play Barnyard Tile Match free online! Pick and match 3 cute farm crop tiles in your 7-slot tray to clear the board. Free cozy puzzle game with no download.',
+  },
 ];
 
 

@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient: Warm Farm Workbench -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="45%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Table Wood Mat -->
+    <linearGradient id="woodTable" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="50%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <!-- Holding Tray Frame -->
+    <linearGradient id="trayWood" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="50%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#92400e" />
+    </linearGradient>
+
+    <!-- Tile Gradients -->
+    <linearGradient id="tileWhite" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="70%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+
+    <linearGradient id="tileGolden" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="tileShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+
+    <filter id="matchGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" fill="url(#bgGrad)" />
+
+  <!-- Wooden Puzzle Mat Board -->
+  <rect x="40" y="44" width="432" height="340" rx="24" fill="url(#woodTable)" stroke="#d97706" stroke-width="4" filter="url(#tileShadow)" />
+  <!-- Inset Playfield Pattern -->
+  <rect x="52" y="56" width="408" height="316" rx="18" fill="#18181b" opacity="0.6" />
+
+  <!-- LAYERED 3D TILES ON BOARD -->
+
+  <!-- Layer 0 (Base Tiles, slightly darkened) -->
+  <g filter="url(#tileShadow)" opacity="0.85">
+    <!-- Tile: Apple -->
+    <rect x="76" y="80" width="70" height="80" rx="14" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2" />
+    <text x="111" y="132" font-size="40" text-anchor="middle">🍎</text>
+
+    <!-- Tile: Corn -->
+    <rect x="160" y="80" width="70" height="80" rx="14" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2" />
+    <text x="195" y="132" font-size="40" text-anchor="middle">🌽</text>
+
+    <!-- Tile: Pumpkin -->
+    <rect x="244" y="80" width="70" height="80" rx="14" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2" />
+    <text x="279" y="132" font-size="40" text-anchor="middle">🎃</text>
+
+    <!-- Tile: Strawberry -->
+    <rect x="328" y="80" width="70" height="80" rx="14" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2" />
+    <text x="363" y="132" font-size="40" text-anchor="middle">🍓</text>
+
+    <!-- Tile: Eggplant -->
+    <rect x="76" y="174" width="70" height="80" rx="14" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2" />
+    <text x="111" y="226" font-size="40" text-anchor="middle">🍆</text>
+
+    <!-- Tile: Chick -->
+    <rect x="328" y="174" width="70" height="80" rx="14" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2" />
+    <text x="363" y="226" font-size="40" text-anchor="middle">🐥</text>
+  </g>
+
+  <!-- Layer 1 (Mid Layer Tiles, prominent, glossy white) -->
+  <g filter="url(#tileShadow)">
+    <!-- Tile: Sunflower (overlapping Apple & Corn) -->
+    <rect x="118" y="125" width="72" height="84" rx="15" fill="url(#tileWhite)" stroke="#f59e0b" stroke-width="3" />
+    <path d="M 124 131 L 184 131" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+    <text x="154" y="180" font-size="42" text-anchor="middle">🌻</text>
+
+    <!-- Tile: Honey (overlapping Corn & Pumpkin) -->
+    <rect x="202" y="125" width="72" height="84" rx="15" fill="url(#tileWhite)" stroke="#f59e0b" stroke-width="3" />
+    <path d="M 208 131 L 268 131" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+    <text x="238" y="180" font-size="42" text-anchor="middle">🍯</text>
+
+    <!-- Tile: Strawberry (overlapping Pumpkin & Berry) -->
+    <rect x="286" y="125" width="72" height="84" rx="15" fill="url(#tileWhite)" stroke="#f59e0b" stroke-width="3" />
+    <path d="M 292 131 L 352 131" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+    <text x="322" y="180" font-size="42" text-anchor="middle">🍓</text>
+
+    <!-- Tile: Chick (lower center) -->
+    <rect x="160" y="218" width="72" height="84" rx="15" fill="url(#tileWhite)" stroke="#f59e0b" stroke-width="3" />
+    <text x="196" y="273" font-size="42" text-anchor="middle">🐥</text>
+
+    <!-- Tile: Apple (lower center right) -->
+    <rect x="244" y="218" width="72" height="84" rx="15" fill="url(#tileWhite)" stroke="#f59e0b" stroke-width="3" />
+    <text x="280" y="273" font-size="42" text-anchor="middle">🍎</text>
+  </g>
+
+  <!-- Layer 2 (Crown Tile - Center Spotlight) -->
+  <g filter="url(#tileShadow)">
+    <rect x="202" y="170" width="76" height="88" rx="16" fill="url(#tileWhite)" stroke="#38bdf8" stroke-width="3.5" />
+    <path d="M 208 176 L 272 176" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+    <text x="240" y="228" font-size="46" text-anchor="middle">🍯</text>
+  </g>
+
+  <!-- 7-SLOT HOLDING TRAY AT BOTTOM -->
+  <g filter="url(#tileShadow)">
+    <!-- Main Tray Body -->
+    <rect x="26" y="405" width="460" height="85" rx="20" fill="url(#trayWood)" stroke="#f59e0b" stroke-width="3.5" />
+
+    <!-- 7 Individual Inset Compartment Slots -->
+    <rect x="36" y="415" width="58" height="65" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1.5" />
+    <rect x="100" y="415" width="58" height="65" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1.5" />
+    <rect x="164" y="415" width="58" height="65" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1.5" />
+    <rect x="228" y="415" width="58" height="65" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1.5" />
+    <rect x="292" y="415" width="58" height="65" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1.5" />
+    <rect x="356" y="415" width="58" height="65" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1.5" />
+    <rect x="420" y="415" width="58" height="65" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1.5" />
+  </g>
+
+  <!-- 3 MATCHING TILES IN TRAY BURSTING WITH PARTICLES -->
+  <g filter="url(#matchGlow)">
+    <!-- Match Tile 1: Honey -->
+    <rect x="39" y="418" width="52" height="59" rx="8" fill="url(#tileGolden)" stroke="#eab308" stroke-width="2" />
+    <text x="65" y="460" font-size="34" text-anchor="middle">🍯</text>
+
+    <!-- Match Tile 2: Honey -->
+    <rect x="103" y="418" width="52" height="59" rx="8" fill="url(#tileGolden)" stroke="#eab308" stroke-width="2" />
+    <text x="129" y="460" font-size="34" text-anchor="middle">🍯</text>
+
+    <!-- Match Tile 3: Honey -->
+    <rect x="167" y="418" width="52" height="59" rx="8" fill="url(#tileGolden)" stroke="#eab308" stroke-width="2" />
+    <text x="193" y="460" font-size="34" text-anchor="middle">🍯</text>
+  </g>
+
+  <!-- Other Tray Tile: Chick -->
+  <rect x="231" y="418" width="52" height="59" rx="8" fill="url(#tileWhite)" stroke="#ca8a04" stroke-width="1.5" />
+  <text x="257" y="460" font-size="34" text-anchor="middle">🐥</text>
+
+  <!-- Golden 3-Match Starburst Particles -->
+  <g filter="url(#matchGlow)">
+    <polygon points="129,390 133,400 144,402 135,409 138,419 129,413 120,419 123,409 114,402 125,400" fill="#fde047" />
+    <polygon points="193,385 196,394 205,396 198,402 200,410 193,405 186,410 188,402 181,396 190,394" fill="#fde047" />
+    <polygon points="65,395 67,402 75,404 69,409 71,416 65,412 59,416 61,409 55,404 63,402" fill="#fde047" />
+  </g>
+
+  <!-- Floating Match Badge -->
+  <g filter="url(#tileShadow)" transform="translate(130, 345)">
+    <rect x="0" y="0" width="160" height="38" rx="19" fill="#0f172a" stroke="#facc15" stroke-width="2.5" />
+    <text x="80" y="24" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="16" fill="#fef08a">
+      TRIPLE! +300
+    </text>
+  </g>
+</svg>
