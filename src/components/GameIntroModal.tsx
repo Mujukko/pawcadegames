@@ -1149,6 +1149,47 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Match flavors in the exact order shown in the customer bubble to earn maximum style points and high combo multipliers!',
   },
+  'barnyard-kart-drift': {
+    title: 'Barnyard Kart: Tractor Grand Prix',
+    subtitle: 'High-Speed Tractor Drift Arcade',
+    mascot: '🚜🏁',
+    themeColor: 'from-amber-500 via-orange-600 to-red-700',
+    goal: 'Steer your tractor around countryside tracks, slide through dirt drifts, and cross the finish line in first place!',
+    steps: [
+      {
+        icon: '🏎️',
+        title: '1. Steer & Accelerate',
+        desc: 'Steer with arrows or touch buttons. Hold Gas to gain speed along straight country paths.',
+      },
+      {
+        icon: '🔥',
+        title: '2. Drift Curves for Turbo',
+        desc: 'Hold Drift while turning into bends. Charging drift power triggers a mini-turbo boost on release!',
+      },
+      {
+        icon: '🌽',
+        title: '3. Dodge Hazards & Grab Corn',
+        desc: 'Avoid deep mud puddles and slick patches. Drive through golden corn to trigger sudden nitro speed!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'A / D or Left / Right: Steer tractor left and right',
+        'W / Up Arrow: Accelerate gas pedal',
+        'S / Down Arrow: Brake and reverse',
+        'Spacebar or Shift: Hold to drift around curves',
+        'R Key: Quick restart current race',
+        'M Key: Toggle engine and tire sounds',
+      ],
+      mobile: [
+        'Left & Right Arrows: Smooth responsive steering',
+        'GAS Button: Hold to accelerate full throttle',
+        'DRIFT Button: Hold into corners for sliding turns and turbo boosts',
+        'Circuit Pills: Switch between 4 grand prix tracks anytime',
+      ],
+    },
+    proTip: 'Release your drift right as you exit the curve to slingshot your tractor down the straightaway at top speed!',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

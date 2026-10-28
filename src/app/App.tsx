@@ -96,11 +96,17 @@ export const App: React.FC = () => {
     const bunnyHopGame = GAMES_REGISTRY.find(g => g.id === 'bunny-hop-cross');
     const farmBobaGame = GAMES_REGISTRY.find(g => g.id === 'farm-boba-tea');
     const barnyardIceCreamGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-ice-cream');
+    const barnyardKartGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-kart-drift');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/barnyard-ice-cream') || currentRoute.startsWith('/games/ice-cream') || currentRoute.startsWith('/games/scoop-stack')) {
+    if (currentRoute.startsWith('/games/barnyard-kart-drift') || currentRoute.startsWith('/games/kart-drift') || currentRoute.startsWith('/games/tractor-grand-prix')) {
+      if (barnyardKartGame) {
+        activeTitle = barnyardKartGame.metaTitle;
+        activeDesc = barnyardKartGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/barnyard-ice-cream') || currentRoute.startsWith('/games/ice-cream') || currentRoute.startsWith('/games/scoop-stack')) {
       if (barnyardIceCreamGame) {
         activeTitle = barnyardIceCreamGame.metaTitle;
         activeDesc = barnyardIceCreamGame.metaDescription;
@@ -446,6 +452,27 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/barnyard-kart-drift') || currentRoute.startsWith('/games/kart-drift') || currentRoute.startsWith('/games/tractor-grand-prix')) {
+      return <GamePage navigate={navigate} gameId="barnyard-kart-drift" />;
+    }
+    if (currentRoute.startsWith('/games/barnyard-ice-cream') || currentRoute.startsWith('/games/ice-cream') || currentRoute.startsWith('/games/scoop-stack')) {
+      return <GamePage navigate={navigate} gameId="barnyard-ice-cream" />;
+    }
+    if (currentRoute.startsWith('/games/farm-boba-tea') || currentRoute.startsWith('/games/boba-tea') || currentRoute.startsWith('/games/boba-cafe')) {
+      return <GamePage navigate={navigate} gameId="farm-boba-tea" />;
+    }
+    if (currentRoute.startsWith('/games/bunny-hop-cross') || currentRoute.startsWith('/games/bunny-hop') || currentRoute.startsWith('/games/road-cross')) {
+      return <GamePage navigate={navigate} gameId="bunny-hop-cross" />;
+    }
+    if (currentRoute.startsWith('/games/duck-water-slide') || currentRoute.startsWith('/games/water-slide') || currentRoute.startsWith('/games/splash-rush')) {
+      return <GamePage navigate={navigate} gameId="duck-water-slide" />;
+    }
+    if (currentRoute.startsWith('/games/barnyard-brick-breaker') || currentRoute.startsWith('/games/brick-breaker') || currentRoute.startsWith('/games/breakout')) {
+      return <GamePage navigate={navigate} gameId="barnyard-brick-breaker" />;
+    }
+    if (currentRoute.startsWith('/games/piggy-mud-wash') || currentRoute.startsWith('/games/mud-wash') || currentRoute.startsWith('/games/pig-wash')) {
+      return <GamePage navigate={navigate} gameId="piggy-mud-wash" />;
     }
     if (currentRoute.startsWith('/games/chicken-egg-catcher') || currentRoute.startsWith('/games/egg-catcher')) {
       return <GamePage navigate={navigate} gameId="chicken-egg-catcher" />;

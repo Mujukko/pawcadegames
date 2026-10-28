@@ -2309,6 +2309,47 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Barnyard Ice Cream: Scoop & Stack 🍦 — No Download | Pawcade',
     metaDescription: 'Play Barnyard Ice Cream free online! Stack giant ice cream scoops on waffle cones, add syrups and sprinkles, and serve cute farm pets. Free arcade game no download.',
   },
+  {
+    id: 'barnyard-kart-drift',
+    slug: 'barnyard-kart-drift',
+    title: 'Barnyard Kart: Tractor Grand Prix 🚜🏁',
+    tagline: 'Steer and drift your farm tractor around muddy championship tracks!',
+    description: 'Race customized farm tractors around four countryside grand prix tracks. Steer around sharp dirt curves, slide through tire smoke drifts, dodge deep mud puddles, and collect turbo corn to grab the checkered flag.',
+    category: 'arcade',
+    categories: ['arcade', 'farm', 'pets'],
+    route: '/games/barnyard-kart-drift/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '44.8K',
+    badge: '🚜 Tractor Kart',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-kart-drift.svg',
+    controls: {
+      desktop: [
+        'A / D or Left / Right Arrows: Steer tractor left and right',
+        'W / Up Arrow: Accelerate gas pedal',
+        'S / Down Arrow: Brake and reverse',
+        'Spacebar / Shift: Hold to drift around curves and charge mini-turbo',
+        'R Key: Quick restart current race',
+        'M Key: Toggle tractor engine and tire squeak audio',
+      ],
+      mobile: [
+        'Left & Right Arrows: Smooth responsive steering',
+        'GAS Button: Hold to accelerate full throttle',
+        'DRIFT Button: Hold into corners for sliding turns and turbo boosts',
+        'Circuit Pills: Switch between 4 grand prix tracks anytime',
+      ],
+    },
+    features: [
+      '4 Countryside Grand Prix Circuits: Clover Meadow, Autumn Orchard, Sunset Speedway, and Muddy Mountain',
+      'Realistic Arcade 2D Drift Mechanics with Mini-Turbo Boost Release',
+      'Track Obstacles & Hazards: Slowdown Mud Puddles, Spinning Oil Slicks, and Bouncy Hay Bales',
+      'Collectible Turbo Corn Nitro Pickups for Sudden Bursts of Top Speed',
+      'Procedural Web Audio Engine (Tractor Engine Revs, Tire Squeals, and Victory Brass Fanfare)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Barnyard Kart: Tractor Grand Prix 🚜🏁 — No Download | Pawcade',
+    metaDescription: 'Play Barnyard Kart Tractor Grand Prix free online! Drift tractors around muddy curves, grab turbo corn, and race farm animals for 1st place. Free game no download.',
+  },
 ];
 
 
