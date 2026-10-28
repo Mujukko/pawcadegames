@@ -97,11 +97,17 @@ export const App: React.FC = () => {
     const farmBobaGame = GAMES_REGISTRY.find(g => g.id === 'farm-boba-tea');
     const barnyardIceCreamGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-ice-cream');
     const barnyardKartGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-kart-drift');
+    const piggyCannonGame = GAMES_REGISTRY.find(g => g.id === 'piggy-cannon-blast');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/barnyard-kart-drift') || currentRoute.startsWith('/games/kart-drift') || currentRoute.startsWith('/games/tractor-grand-prix')) {
+    if (currentRoute.startsWith('/games/piggy-cannon-blast') || currentRoute.startsWith('/games/piggy-launch') || currentRoute.startsWith('/games/cannon-blast')) {
+      if (piggyCannonGame) {
+        activeTitle = piggyCannonGame.metaTitle;
+        activeDesc = piggyCannonGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/barnyard-kart-drift') || currentRoute.startsWith('/games/kart-drift') || currentRoute.startsWith('/games/tractor-grand-prix')) {
       if (barnyardKartGame) {
         activeTitle = barnyardKartGame.metaTitle;
         activeDesc = barnyardKartGame.metaDescription;
@@ -452,6 +458,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/piggy-cannon-blast') || currentRoute.startsWith('/games/piggy-launch') || currentRoute.startsWith('/games/cannon-blast')) {
+      return <GamePage navigate={navigate} gameId="piggy-cannon-blast" />;
     }
     if (currentRoute.startsWith('/games/barnyard-kart-drift') || currentRoute.startsWith('/games/kart-drift') || currentRoute.startsWith('/games/tractor-grand-prix')) {
       return <GamePage navigate={navigate} gameId="barnyard-kart-drift" />;

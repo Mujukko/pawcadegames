@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Sky Gradient -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="85%" stop-color="#bae6fd"/>
+      <stop offset="100%" stop-color="#fef08a"/>
+    </linearGradient>
+
+    <!-- Pasture Hill Gradient -->
+    <linearGradient id="hillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </linearGradient>
+
+    <!-- Cannon Cast Iron -->
+    <linearGradient id="cannonIron" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- Cannon Brass Rim -->
+    <linearGradient id="brassRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#a16207"/>
+    </linearGradient>
+
+    <!-- Piggy Pink Skin -->
+    <linearGradient id="piggySkin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fbcfe8"/>
+      <stop offset="60%" stop-color="#f472b6"/>
+      <stop offset="100%" stop-color="#db2777"/>
+    </linearGradient>
+
+    <!-- Blast Fire Glow -->
+    <filter id="blastGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Sky & Far Farm Hills -->
+  <rect width="512" height="512" fill="url(#skyGrad)"/>
+  <ellipse cx="120" cy="480" rx="260" ry="110" fill="url(#hillGrad)"/>
+  <ellipse cx="440" cy="510" rx="200" ry="90" fill="#16a34a"/>
+
+  <!-- Distant Windmill Silhouette -->
+  <polygon points="430,390 436,340 444,340 450,390" fill="#94a3b8" opacity="0.6"/>
+  <line x1="440" y1="340" x2="415" y2="320" stroke="#cbd5e1" stroke-width="2.5" opacity="0.6"/>
+  <line x1="440" y1="340" x2="465" y2="360" stroke="#cbd5e1" stroke-width="2.5" opacity="0.6"/>
+
+  <!-- Cannon Wheels & Wooden Mount Carriage -->
+  <g transform="translate(60, 420)">
+    <!-- Wooden Base Triangle -->
+    <polygon points="0,30 80,30 40,-10" fill="#78350f" stroke="#451a03" stroke-width="3"/>
+    <!-- Iron Wheel -->
+    <circle cx="40" cy="30" r="32" fill="#334155" stroke="#0f172a" stroke-width="4"/>
+    <circle cx="40" cy="30" r="18" fill="#64748b"/>
+    <circle cx="40" cy="30" r="6" fill="#e2e8f0"/>
+  </g>
+
+  <!-- Circus Blast Cannon (Angled 48deg upward) -->
+  <g transform="translate(100, 410) rotate(-48)">
+    <!-- Main Iron Barrel -->
+    <path d="M-15,-20 L-25,-120 L25,-120 L15,-20 Z" fill="url(#cannonIron)" stroke="#0f172a" stroke-width="3"/>
+    <!-- Circus Red Stripes -->
+    <polygon points="-17,-40 -20,-60 20,-60 17,-40" fill="#ef4444"/>
+    <polygon points="-22,-80 -24,-100 24,-100 22,-80" fill="#ef4444"/>
+    <!-- Muzzle Brass Ring -->
+    <ellipse cx="0" cy="-120" rx="28" ry="8" fill="url(#brassRim)" stroke="#78350f" stroke-width="2"/>
+    <!-- Cannon Ball Base Joint -->
+    <circle cx="0" cy="-10" r="24" fill="url(#cannonIron)"/>
+  </g>
+
+  <!-- Cannon Muzzle Flash & Puffy Smoke Rings -->
+  <!-- Smoke Clouds -->
+  <circle cx="160" cy="310" r="32" fill="#ffffff" opacity="0.85"/>
+  <circle cx="190" cy="340" r="26" fill="#f1f5f9" opacity="0.9"/>
+  <circle cx="140" cy="335" r="22" fill="#e2e8f0" opacity="0.75"/>
+  <circle cx="210" cy="305" r="18" fill="#ffffff" opacity="0.8"/>
+
+  <!-- Blast Fire Spark Burst -->
+  <polygon points="180,290 205,255 190,275 225,260 195,295 210,315" fill="#f97316" filter="url(#blastGlow)"/>
+  <polygon points="185,285 200,265 190,280 215,270 195,295" fill="#fde047"/>
+
+  <!-- Trajectory Dotted Line Arc -->
+  <path d="M190,280 Q290,120 370,160" fill="none" stroke="#fef08a" stroke-width="4" stroke-dasharray="10,12" opacity="0.75"/>
+
+  <!-- FLYING HERO: PENNY PIGLET (Ascending toward upper right) -->
+  <g transform="translate(365, 175) rotate(-22)">
+    <!-- Red Superhero Cape Flapping in Wind -->
+    <path d="M-25,10 Q-70,-10 -90,25 Q-60,40 -20,28 Z" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+    <path d="M-25,12 Q-65,5 -80,35 Q-50,45 -20,30 Z" fill="#ef4444"/>
+
+    <!-- Rocket Soda Can Thruster on Back -->
+    <rect x="-35" y="-14" width="22" height="12" rx="4" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5"/>
+    <!-- Thruster Fire Jet -->
+    <polygon points="-35,-8 -55,-12 -45,-8 -60,-4 -45,-2" fill="#f97316" filter="url(#blastGlow)"/>
+    <polygon points="-35,-8 -48,-10 -42,-8 -50,-5 -42,-4" fill="#fef08a"/>
+
+    <!-- Piggy Body -->
+    <ellipse cx="0" cy="10" rx="34" ry="26" fill="url(#piggySkin)" stroke="#be185d" stroke-width="2.5"/>
+
+    <!-- Cute Curly Tail -->
+    <path d="M-34,14 C-44,10 -46,24 -38,26 C-30,28 -34,18 -40,16" fill="none" stroke="#be185d" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Front & Back Little Trotters with Golden Bouncy Horseshoes -->
+    <rect x="18" y="22" width="10" height="16" rx="4" fill="url(#piggySkin)"/>
+    <ellipse cx="23" cy="38" rx="7" ry="3" fill="#facc15" stroke="#ca8a04" stroke-width="1"/>
+
+    <rect x="-10" y="25" width="10" height="16" rx="4" fill="url(#piggySkin)"/>
+    <ellipse cx="-5" cy="41" rx="7" ry="3" fill="#facc15" stroke="#ca8a04" stroke-width="1"/>
+
+    <!-- Piggy Head -->
+    <circle cx="16" cy="-4" r="26" fill="url(#piggySkin)" stroke="#be185d" stroke-width="2.5"/>
+
+    <!-- Pointy Piggy Ears -->
+    <polygon points="12,-26 24,-48 30,-22" fill="url(#piggySkin)" stroke="#be185d" stroke-width="2"/>
+    <polygon points="16,-26 23,-42 27,-23" fill="#fbcfe8"/>
+
+    <polygon points="-4,-24 -6,-46 10,-24" fill="url(#piggySkin)" stroke="#be185d" stroke-width="2"/>
+    <polygon points="-2,-25 -4,-40 7,-25" fill="#fbcfe8"/>
+
+    <!-- Aviator Goggles on Forehead -->
+    <rect x="4" y="-18" width="30" height="12" rx="5" fill="#1e293b"/>
+    <ellipse cx="12" cy="-12" rx="7" ry="5" fill="#38bdf8" stroke="#f8fafc" stroke-width="1.5"/>
+    <ellipse cx="27" cy="-12" rx="7" ry="5" fill="#38bdf8" stroke="#f8fafc" stroke-width="1.5"/>
+
+    <!-- Cheerful Big Eyes -->
+    <circle cx="22" cy="0" r="4.5" fill="#0f172a"/>
+    <circle cx="24" cy="-2" r="1.5" fill="#ffffff"/>
+
+    <!-- Smiling Pig Snout -->
+    <ellipse cx="34" cy="5" rx="10" ry="7" fill="#f472b6" stroke="#be185d" stroke-width="2"/>
+    <circle cx="31" cy="5" r="2.5" fill="#9d174d"/>
+    <circle cx="37" cy="5" r="2.5" fill="#9d174d"/>
+
+    <!-- Happy Open Mouth -->
+    <path d="M26,16 Q32,24 38,16" fill="#be185d" stroke="#be185d" stroke-width="1.5"/>
+    <circle cx="32" cy="20" r="2" fill="#fb7185"/>
+
+    <!-- Rosy Cheeks -->
+    <circle cx="16" cy="8" r="5" fill="#f43f5e" opacity="0.6"/>
+  </g>
+
+  <!-- SKY COLLECTIBLES (Coins & Star Balloon Ahead of Penny) -->
+  <!-- Golden Star Balloon -->
+  <g transform="translate(440, 80) rotate(12)" filter="url(#blastGlow)">
+    <polygon points="0,-24 7,-8 24,-8 11,4 16,21 0,11 -16,21 -11,4 -24,-8 -7,-8" fill="#fde047" stroke="#eab308" stroke-width="2"/>
+    <circle cx="-4" cy="-10" r="2" fill="#ffffff"/>
+    <path d="M0,18 L0,38" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+  </g>
+
+  <!-- Golden Coins Flying in Sky -->
+  <g transform="translate(320, 70)" filter="url(#blastGlow)">
+    <circle cx="0" cy="0" r="14" fill="#facc15" stroke="#ca8a04" stroke-width="2"/>
+    <circle cx="0" cy="0" r="10" fill="#fde047"/>
+    <text x="0" y="4" font-size="11" font-weight="900" font-family="sans-serif" text-anchor="middle" fill="#a16207">$</text>
+  </g>
+
+  <g transform="translate(240, 110)">
+    <circle cx="0" cy="0" r="11" fill="#facc15" stroke="#ca8a04" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="8" fill="#fde047"/>
+    <text x="0" y="3" font-size="9" font-weight="900" font-family="sans-serif" text-anchor="middle" fill="#a16207">$</text>
+  </g>
+
+  <!-- Little Fluffy Cloud in Background -->
+  <ellipse cx="140" cy="110" rx="45" ry="20" fill="#ffffff" opacity="0.75"/>
+  <ellipse cx="160" cy="98" rx="28" ry="18" fill="#ffffff" opacity="0.75"/>
+  <ellipse cx="120" cy="105" rx="24" ry="15" fill="#ffffff" opacity="0.75"/>
+</svg>

@@ -2350,6 +2350,47 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Barnyard Kart: Tractor Grand Prix 🚜🏁 — No Download | Pawcade',
     metaDescription: 'Play Barnyard Kart Tractor Grand Prix free online! Drift tractors around muddy curves, grab turbo corn, and race farm animals for 1st place. Free game no download.',
   },
+  {
+    id: 'piggy-cannon-blast',
+    slug: 'piggy-cannon-blast',
+    title: 'Piggy Cannon Blast: Barnyard Launch 🚀🐷',
+    tagline: 'Aim your circus cannon, blast Penny high into the sky, and upgrade your flight gear!',
+    description: 'Launch Penny the piglet high into the clouds! Set your cannon angle and blast power, bounce off sheep trampolines, collect golden balloons, and glide across four scenic farm zones. Earn coins each flight to buy rocket thrusters and bouncy shoes.',
+    category: 'arcade',
+    categories: ['arcade', 'farm', 'pets'],
+    route: '/games/piggy-cannon-blast/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '47.5K',
+    badge: '🚀 Cannon Launch',
+    thumbnailUrl: '/assets/thumbnails/thumb-piggy-cannon-blast.svg',
+    controls: {
+      desktop: [
+        'Spacebar / Click: Set launch angle, fire cannon, and activate rocket nitro',
+        'W / Up Arrow: Tilt nose up for air glide lift',
+        'S / Down Arrow: Tilt nose down for diving speed',
+        'U Key: Open flight upgrades shop',
+        'R Key: Quick restart flight',
+        'M Key: Toggle cannon boom and thruster audio',
+      ],
+      mobile: [
+        'Main Action Button: Tap to lock angle, fire cannon, and trigger rocket nitro',
+        'GLIDE Button: Pull up nose to catch gentle air thermals',
+        'DIVE Button: Point nose down to build forward momentum',
+        'Shop Button: Open flight gear upgrades menu',
+      ],
+    },
+    features: [
+      'Classic Distance Launch Arcade Loop Inspired by Learn to Fly and Burrito Bison',
+      'Two-Step Skill Launch: Oscillating Trajectory Needle and Pulse Power Meter',
+      'Interactive Air Flight Controls with Glide Thermals and Rocket Soda Nitro Thrusters',
+      'Bouncy Pasture Physics: Sheep Trampolines, Hay Bales, and Star Balloons',
+      '5 Deep Flight Upgrades: Bigger Gunpowder, Aviator Cape, Rocket Nitro, Spring Shoes, and Coin Magnet',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Piggy Cannon Blast: Barnyard Launch 🚀🐷 — No Download | Pawcade',
+    metaDescription: 'Play Piggy Cannon Blast free online! Blast Penny the piglet from circus cannons, grab rocket soda, and bounce across farm clouds. Free arcade game no download.',
+  },
 ];
 
 

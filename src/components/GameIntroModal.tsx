@@ -1190,6 +1190,47 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Release your drift right as you exit the curve to slingshot your tractor down the straightaway at top speed!',
   },
+  'piggy-cannon-blast': {
+    title: 'Piggy Cannon Blast: Barnyard Launch',
+    subtitle: 'High-Altitude Distance Flight Arcade',
+    mascot: '🚀🐷',
+    themeColor: 'from-pink-500 via-rose-600 to-amber-600',
+    goal: 'Launch Penny the piglet high into the sky, bounce off sheep trampolines, and glide across countryside horizons!',
+    steps: [
+      {
+        icon: '💥',
+        title: '1. Aim & Fire Cannon',
+        desc: 'Lock the swinging angle needle and time the gunpowder meter to blast Penny from the circus barrel.',
+      },
+      {
+        icon: '🚀',
+        title: '2. Steer & Rocket Boost',
+        desc: 'Tilt nose up to glide on air thermals. Tap Nitro Boost to fire rocket soda thrusters for extra height.',
+      },
+      {
+        icon: '🐑',
+        title: '3. Bounce & Upgrade',
+        desc: 'Bounce off woolly sheep and pop star balloons. Spend collected coins on bigger gunpowder and bouncy shoes.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Spacebar / Click: Lock angle, blast cannon, and fire rocket nitro',
+        'W / Up Arrow: Tilt nose up for air glide lift',
+        'S / Down Arrow: Tilt nose down for diving speed',
+        'U Key: Open flight upgrades shop',
+        'R Key: Quick restart flight',
+        'M Key: Toggle cannon boom and thruster audio',
+      ],
+      mobile: [
+        'Main Action Button: Tap to lock angle, fire cannon, and trigger rocket nitro',
+        'GLIDE Button: Pull up nose to catch gentle air thermals',
+        'DIVE Button: Point nose down to build forward momentum',
+        'Shop Button: Open flight gear upgrades menu',
+      ],
+    },
+    proTip: 'Save your rocket nitro thrusters for when you begin losing altitude! Firing nitro at the peak of a bounce gives maximum glide distance.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',
