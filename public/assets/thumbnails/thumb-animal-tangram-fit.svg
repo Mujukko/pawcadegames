@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Radial Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#451a03" />
+      <stop offset="50%" stop-color="#291002" />
+      <stop offset="100%" stop-color="#0f0702" />
+    </radialGradient>
+
+    <!-- Board Carved Face -->
+    <linearGradient id="boardWood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="50%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <!-- Hollow Carved Silhouette Basin -->
+    <linearGradient id="hollowBasin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1c0a00" />
+      <stop offset="100%" stop-color="#2c1204" />
+    </linearGradient>
+
+    <!-- Polished Cherry Wood Piece -->
+    <linearGradient id="cherryWood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f87171" />
+      <stop offset="40%" stop-color="#dc2626" />
+      <stop offset="100%" stop-color="#991b1b" />
+    </linearGradient>
+
+    <!-- Polished Honey Oak Piece -->
+    <linearGradient id="oakWood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+
+    <!-- Polished Walnut Piece -->
+    <linearGradient id="walnutWood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a16207" />
+      <stop offset="55%" stop-color="#854d0e" />
+      <stop offset="100%" stop-color="#713f12" />
+    </linearGradient>
+
+    <!-- Polished Pine Wood Piece -->
+    <linearGradient id="pineWood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#86efac" />
+      <stop offset="50%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+
+    <!-- Golden Snap Glow Filter -->
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="shadowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="512" height="512" rx="48" fill="url(#bgGrad)" />
+
+  <!-- Wooden Workbench Plank Lines -->
+  <g stroke="#78350f" stroke-width="2" opacity="0.3">
+    <line x1="0" y1="128" x2="512" y2="128" />
+    <line x1="0" y1="256" x2="512" y2="256" />
+    <line x1="0" y1="384" x2="512" y2="384" />
+  </g>
+
+  <!-- Central Wooden Tangram Tray Board -->
+  <g filter="url(#shadowFilter)">
+    <!-- Beveled Board Outer Frame -->
+    <rect x="56" y="56" width="400" height="400" rx="36" fill="url(#boardWood)" stroke="#451a03" stroke-width="8" />
+
+    <!-- Corner Brass Screws -->
+    <circle cx="84" cy="84" r="8" fill="#fbbf24" stroke="#78350f" stroke-width="2" />
+    <circle cx="428" cy="84" r="8" fill="#fbbf24" stroke="#78350f" stroke-width="2" />
+    <circle cx="84" cy="428" r="8" fill="#fbbf24" stroke="#78350f" stroke-width="2" />
+    <circle cx="428" cy="428" r="8" fill="#fbbf24" stroke="#78350f" stroke-width="2" />
+
+    <!-- Inset Board Surface -->
+    <rect x="80" y="80" width="352" height="352" rx="24" fill="#78350f" stroke="#451a03" stroke-width="4" />
+
+    <!-- Carved Animal Silhouette Basin (Rooster Outline) -->
+    <!-- Grid Cells: 60px size on 5x5 layout -->
+    <g transform="translate(106, 106)">
+      <!-- Silhouette Hollow Carve -->
+      <!-- Comb/Head at top (row 0: col 1,2,3; row 1: col 2) -->
+      <rect x="60" y="0" width="180" height="60" rx="8" fill="url(#hollowBasin)" stroke="#260f02" stroke-width="3" />
+      <rect x="120" y="60" width="60" height="60" rx="8" fill="url(#hollowBasin)" stroke="#260f02" stroke-width="3" />
+
+      <!-- Neck & Throat (row 1: col 0; row 2: col 0; row 3: col 0,1) -->
+      <rect x="0" y="60" width="60" height="120" rx="8" fill="url(#hollowBasin)" stroke="#260f02" stroke-width="3" />
+      <rect x="0" y="180" width="120" height="60" rx="8" fill="url(#hollowBasin)" stroke="#260f02" stroke-width="3" />
+
+      <!-- Body (row 2: col 2,3; row 3: col 2,3) -->
+      <rect x="120" y="120" width="120" height="120" rx="8" fill="url(#hollowBasin)" stroke="#260f02" stroke-width="3" />
+
+      <!-- Feet & Perch (row 4: col 1,2,3; row 5: col 2) -->
+      <rect x="60" y="240" width="180" height="60" rx="8" fill="url(#hollowBasin)" stroke="#260f02" stroke-width="3" />
+
+      <!-- Glowing Blueprint Contour Line -->
+      <path d="M 60 0 L 240 0 L 240 60 L 180 60 L 240 120 L 240 240 L 180 240 L 180 300 L 60 300 L 60 240 L 0 240 L 0 60 L 60 60 Z"
+            fill="none" stroke="#fde047" stroke-width="3" stroke-dasharray="10 8" opacity="0.6" />
+
+      <!-- FITTED POLISHED WOODEN PUZZLE PIECES -->
+
+      <!-- 1. Cherry T-Piece: Crest & Crown -->
+      <g filter="url(#shadowFilter)">
+        <path d="M 64 4 L 236 4 C 238 4 238 6 238 8 L 238 56 L 176 56 L 176 116 L 124 116 L 124 56 L 64 56 Z"
+              fill="url(#cherryWood)" stroke="#7f1d1d" stroke-width="3" />
+        <!-- Wood Inset Bevel -->
+        <path d="M 70 10 L 230 10 L 230 50 L 170 50 L 170 110 L 130 110 L 130 50 L 70 50 Z"
+              fill="none" stroke="#ffffff" stroke-width="2" opacity="0.3" />
+      </g>
+
+      <!-- 2. Walnut 2x2 Square: Plump Body -->
+      <g filter="url(#shadowFilter)">
+        <rect x="124" y="124" width="112" height="112" rx="10" fill="url(#walnutWood)" stroke="#451a03" stroke-width="3" />
+        <rect x="130" y="130" width="100" height="100" rx="6" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.25" />
+        <!-- Wood Growth Rings -->
+        <circle cx="180" cy="180" r="32" fill="none" stroke="#451a03" stroke-width="2" opacity="0.4" />
+      </g>
+
+      <!-- 3. Pine L-Piece: Neck & Beak -->
+      <g filter="url(#shadowFilter)">
+        <path d="M 4 64 L 56 64 L 56 180 L 116 180 L 116 236 L 4 236 Z"
+              fill="url(#pineWood)" stroke="#14532d" stroke-width="3" />
+        <path d="M 10 70 L 50 70 L 50 186 L 110 186 L 110 230 L 10 230 Z"
+              fill="none" stroke="#ffffff" stroke-width="2" opacity="0.35" />
+      </g>
+
+      <!-- 4. Dynamic Honey Oak Piece Snapping Into Place (Hovering with Glow) -->
+      <g transform="translate(64, 230)" filter="url(#goldGlow)">
+        <path d="M 0 14 L 172 14 L 172 66 L 0 66 Z"
+              fill="url(#oakWood)" stroke="#854d0e" stroke-width="3" />
+        <path d="M 6 20 L 166 20 L 166 60 L 6 60 Z"
+              fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5" />
+      </g>
+    </g>
+  </g>
+
+  <!-- Sparkle Stars Bursting upon Perfect Fit -->
+  <g fill="#fde047">
+    <!-- Star 1 Top Right -->
+    <path d="M 390 120 Q 400 130 410 120 Q 400 130 410 140 Q 400 130 390 140 Q 400 130 390 120 Z" />
+    <!-- Star 2 Bottom Left -->
+    <path d="M 90 380 Q 98 388 106 380 Q 98 388 106 396 Q 98 388 90 396 Q 98 388 90 380 Z" />
+    <!-- Star 3 Bottom Right -->
+    <path d="M 410 390 Q 418 398 426 390 Q 418 398 426 406 Q 418 398 410 406 Q 418 398 410 390 Z" />
+    <!-- Star 4 Top Left -->
+    <path d="M 110 100 Q 116 106 122 100 Q 116 106 122 112 Q 116 106 110 112 Q 116 106 110 100 Z" />
+  </g>
+</svg>

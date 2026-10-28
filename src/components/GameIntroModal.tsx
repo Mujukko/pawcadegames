@@ -586,6 +586,43 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Study the stump rotation pattern! When speed decelerates or hesitates, that is your golden window to flick your carrots safely into open gaps.',
   },
+  'animal-tangram-fit': {
+    title: 'Animal Tangram: Wooden Block Fit',
+    subtitle: 'Cozy Wooden Silhouette Puzzle',
+    mascot: '🧩🐾',
+    themeColor: 'from-amber-600 via-amber-700 to-yellow-800',
+    goal: 'Fit polished wooden blocks into cute animal silhouettes without overlapping!',
+    steps: [
+      {
+        icon: '🪵',
+        title: '1. Pick Tray Pieces',
+        desc: 'Tap a wooden polyomino piece from the bottom tray to select it.',
+      },
+      {
+        icon: '🔄',
+        title: '2. Rotate & Place',
+        desc: 'Use the Rotate button to turn shapes 90 degrees, then tap the board to place them.',
+      },
+      {
+        icon: '🏆',
+        title: '3. Assemble All Animals',
+        desc: 'Cover every silhouette cell without overlap to unlock roosters, pups, lambs, and cows!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Select shape & place on board',
+        'Rotate Button / R Key: Turn piece 90 degrees',
+        'M Key: Toggle soothing wood clack sounds',
+      ],
+      mobile: [
+        'Tap Tray Piece: Select wooden shape',
+        'Tap Board: Place into matching outline',
+        'Tap Placed Piece: Return piece to tray',
+      ],
+    },
+    proTip: 'Start with the largest and corner pieces first! Placing bulky squares and long bars reveals the exact slots left for smaller pieces.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

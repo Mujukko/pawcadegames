@@ -483,7 +483,8 @@ export const CarrotTargetThrowContainer: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="max-w-md mx-auto flex flex-col items-center select-none overflow-hidden touch-none overscroll-none rounded-3xl border border-amber-500/30 shadow-2xl bg-slate-950 p-2 sm:p-4 text-white"
+      className="relative w-full max-w-md mx-auto flex flex-col items-center select-none overflow-hidden touch-none overscroll-none rounded-3xl border border-amber-500/30 shadow-2xl bg-slate-950 p-2 sm:p-4 text-white"
+      style={{ touchAction: 'none', overscrollBehavior: 'none' }}
     >
       {/* COMPACT SINGLE-SCREEN HUD */}
       <div className="w-full flex items-center justify-between gap-1 sm:gap-2 mb-2 px-1">
@@ -520,14 +521,14 @@ export const CarrotTargetThrowContainer: React.FC = () => {
 
       {/* CANVAS CONTAINER */}
       <div
-        className="relative w-full aspect-[420/540] max-h-[calc(100vh-210px)] rounded-2xl overflow-hidden border border-slate-800 shadow-inner bg-slate-900 cursor-pointer"
+        className="relative w-full aspect-[420/540] max-h-[calc(100vh-210px)] rounded-2xl overflow-hidden border border-slate-800 shadow-inner bg-slate-900 cursor-pointer touch-none select-none"
         onPointerDown={handleThrow}
       >
         <canvas
           ref={canvasRef}
           width={420}
           height={540}
-          className="w-full h-full object-contain block"
+          className="w-full h-full object-contain block touch-none select-none"
         />
 
         {/* STAGE HEADER OVERLAY (Fades out when playing) */}

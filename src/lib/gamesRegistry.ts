@@ -1736,6 +1736,45 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Carrot Target Throw: Barnyard Spin 🎯🥕 — No Download | Pawcade',
     metaDescription: 'Play Carrot Target Throw free online! Flick crisp carrots into rotating farm targets, dodge obstacles, and slice bonus fruit across 4 stages. Free no download.',
   },
+  {
+    id: 'animal-tangram-fit',
+    slug: 'animal-tangram-fit',
+    title: 'Animal Tangram: Wooden Block Fit 🧩🐾',
+    tagline: 'Fit rustic wooden blocks into cute animal silhouettes without overlapping!',
+    description: 'Fit polished wooden blocks into cute animal silhouettes in this relaxing brain puzzle! Pick shapes from your tray, rotate pieces to match carved contours, and assemble roosters, puppies, lambs, and cows. Fill every cell without overlap across four handcrafted stages to win!',
+    category: 'puzzle',
+    categories: ['puzzle', 'farm', 'pets'],
+    route: '/games/animal-tangram-fit/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '33.4K',
+    badge: '🧩 Wood Fit',
+    thumbnailUrl: '/assets/thumbnails/thumb-animal-tangram-fit.svg',
+    controls: {
+      desktop: [
+        'Left Click Tray Piece: Select a wooden shape',
+        'Left Click Board Cell: Place selected shape onto carved silhouette',
+        'Rotate Button / R Key: Rotate selected shape 90 degrees',
+        'M Key: Toggle soothing wood clack sounds',
+      ],
+      mobile: [
+        'Tap Tray Piece: Select shape to place',
+        'Tap Board: Place shape into matching outline',
+        'Tap Placed Piece: Return piece back to tray',
+        'ROTATE Button: Turn shape 90 degrees',
+      ],
+    },
+    features: [
+      '4 Handcrafted Animal Silhouettes: Clucky the Rooster, Buster the Puppy, Daisy the Lamb, and Bessie the Cow',
+      '5 Authentic Polished Wood Grain Tones: Cherry, Walnut, Honey Oak, Pine, and Mahogany',
+      'Tactile Snap-to-Grid Placement with Instant Overlap Prevention',
+      'Full Piece Recall and 90-Degree In-Tray and On-Board Rotation',
+      'Procedural Web Audio Synthesizer (Oak Clacks, Wood Taps, Ratchet Turns, and Marimba Fanfare)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Animal Tangram: Wooden Block Fit 🧩🐾 — No Download | Pawcade',
+    metaDescription: 'Play Animal Tangram free online! Fit polished wooden blocks into cute animal silhouettes without overlapping. Relaxing farm brain puzzle with no download.',
+  },
 ];
 
 
