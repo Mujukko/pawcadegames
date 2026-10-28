@@ -95,11 +95,17 @@ export const App: React.FC = () => {
     const duckWaterSlideGame = GAMES_REGISTRY.find(g => g.id === 'duck-water-slide');
     const bunnyHopGame = GAMES_REGISTRY.find(g => g.id === 'bunny-hop-cross');
     const farmBobaGame = GAMES_REGISTRY.find(g => g.id === 'farm-boba-tea');
+    const barnyardIceCreamGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-ice-cream');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/farm-boba-tea') || currentRoute.startsWith('/games/boba-tea') || currentRoute.startsWith('/games/boba-cafe')) {
+    if (currentRoute.startsWith('/games/barnyard-ice-cream') || currentRoute.startsWith('/games/ice-cream') || currentRoute.startsWith('/games/scoop-stack')) {
+      if (barnyardIceCreamGame) {
+        activeTitle = barnyardIceCreamGame.metaTitle;
+        activeDesc = barnyardIceCreamGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/farm-boba-tea') || currentRoute.startsWith('/games/boba-tea') || currentRoute.startsWith('/games/boba-cafe')) {
       if (farmBobaGame) {
         activeTitle = farmBobaGame.metaTitle;
         activeDesc = farmBobaGame.metaDescription;

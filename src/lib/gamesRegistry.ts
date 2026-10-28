@@ -2269,6 +2269,46 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Farm Boba Tea: Animal Cafe 🧋 — No Download | Pawcade',
     metaDescription: 'Play Farm Boba Tea free online! Brew fresh milk tea, scoop chewy tapioca pearls, and serve cute animal cafe customers. Free bubble tea game with no download.',
   },
+  {
+    id: 'barnyard-ice-cream',
+    slug: 'barnyard-ice-cream',
+    title: 'Barnyard Ice Cream: Scoop & Stack 🍦🍨',
+    tagline: 'Stack giant ice cream scoops on crispy waffle cones, drizzle hot fudge, and serve hungry farm pets!',
+    description: 'Run the sweetest ice cream cart in the meadow! Stack creamy vanilla, sweet strawberry, chocolate fudge, and mint chip scoops high onto waffle cones. Drizzle warm syrup, scatter rainbow sprinkles, and crown each order with whipped cream and a cherry for zero downloads.',
+    category: 'arcade',
+    categories: ['arcade', 'pets', 'farm'],
+    route: '/games/barnyard-ice-cream/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '41.2K',
+    badge: '🍦 Ice Cream',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-ice-cream.svg',
+    controls: {
+      desktop: [
+        'Left Click: Select cones, scoops, syrups, and toppings',
+        'W Key: Add fluffy whipped cream swirl',
+        'C Key: Crown order with bright red cherry',
+        'Spacebar / Enter: Serve ice cream order to customer',
+        'T Key: Trash mistake cone to start fresh',
+        'M Key: Toggle cheerful ice cream cart sounds',
+      ],
+      mobile: [
+        'Tap Buttons: Instant scoop stacking and toppings',
+        'Cone / Bowl Switch: Toggle between crispy waffle and sundae',
+        'Serve Button: Deliver finished ice cream to farm pets',
+      ],
+    },
+    features: [
+      'Satisfying Scoop Stacking Mechanics with Tactile Drop Physics',
+      '5 Farm-Fresh Flavors: Vanilla Cream, Strawberry, Chocolate Fudge, Mint Chip, and Caramel',
+      'Decadent Toppings: Hot Fudge, Strawberry Glaze, Rainbow Sprinkles, and Glazed Cherries',
+      'Visiting Cute Farm Customers: Penny Piglet, Barnaby Pup, Whiskers Cat, and Bessie Cow',
+      'Procedural Web Audio Synthesizer (Scoop Plops, Syrup Squeezes, and Sprinkle Rattles)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Barnyard Ice Cream: Scoop & Stack 🍦 — No Download | Pawcade',
+    metaDescription: 'Play Barnyard Ice Cream free online! Stack giant ice cream scoops on waffle cones, add syrups and sprinkles, and serve cute farm pets. Free arcade game no download.',
+  },
 ];
 
 

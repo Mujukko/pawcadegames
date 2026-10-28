@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="fairSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fdba74" />
+      <stop offset="40%" stop-color="#fed7aa" />
+      <stop offset="100%" stop-color="#fef08a" />
+    </linearGradient>
+    <linearGradient id="coneGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="50%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+    <linearGradient id="chocoGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#713f12" />
+      <stop offset="100%" stop-color="#3f1d0b" />
+    </linearGradient>
+    <linearGradient id="mintGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6ee7b7" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="berryGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fda4af" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+    <linearGradient id="creamGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f1f5f9" />
+    </linearGradient>
+    <linearGradient id="cherryGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="40%" stop-color="#e11d48" />
+      <stop offset="100%" stop-color="#881337" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#451a03" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- WARM SUMMER FAIR SKY -->
+  <rect x="0" y="0" width="512" height="512" fill="url(#fairSky)" />
+
+  <!-- CARNIVAL AWNING STRIPES -->
+  <path d="M 0 0 L 512 0 L 512 45 C 470 55 430 40 384 50 C 340 60 298 40 256 50 C 214 60 172 40 128 50 C 84 60 42 40 0 50 Z" fill="#ec4899" opacity="0.9" />
+  <path d="M 64 0 L 128 0 L 128 50 C 84 60 42 40 0 50 L 0 0 Z" fill="#f43f5e" />
+  <path d="M 192 0 L 256 0 L 256 50 C 214 60 172 40 128 50 L 128 0 Z" fill="#f43f5e" />
+  <path d="M 320 0 L 384 0 L 384 50 C 340 60 298 40 256 50 L 256 0 Z" fill="#f43f5e" />
+  <path d="M 448 0 L 512 0 L 512 45 L 448 0 Z" fill="#f43f5e" />
+
+  <!-- COUNTER BASE -->
+  <rect x="0" y="440" width="512" height="72" fill="#451a03" />
+  <rect x="0" y="440" width="512" height="12" fill="#d97706" />
+
+  <!-- PENNY PIGLET (CHEERFUL HELPER) -->
+  <g transform="translate(40, 240)" filter="url(#shadow)">
+    <!-- Ears -->
+    <polygon points="30,40 10,15 45,25" fill="#fda4af" stroke="#f43f5e" stroke-width="2" />
+    <polygon points="110,40 130,15 95,25" fill="#fda4af" stroke="#f43f5e" stroke-width="2" />
+    <!-- Piggy Head -->
+    <ellipse cx="70" cy="70" rx="46" ry="42" fill="#fbcfe8" stroke="#f472b6" stroke-width="2.5" />
+    <circle cx="50" cy="65" r="5" fill="#0f172a" />
+    <circle cx="48" cy="63" r="1.8" fill="#ffffff" />
+    <circle cx="90" cy="65" r="5" fill="#0f172a" />
+    <circle cx="88" cy="63" r="1.8" fill="#ffffff" />
+    <!-- Cute Oval Snout -->
+    <ellipse cx="70" cy="85" rx="20" ry="14" fill="#fda4af" stroke="#f43f5e" stroke-width="2" />
+    <circle cx="63" cy="85" r="3" fill="#be185d" />
+    <circle cx="77" cy="85" r="3" fill="#be185d" />
+    <!-- Happy open mouth with tongue -->
+    <path d="M 60 100 Q 70 114 80 100 Z" fill="#be185d" />
+    <ellipse cx="70" cy="104" rx="5" ry="3" fill="#f43f5e" />
+    <!-- Rosy cheeks -->
+    <circle cx="40" cy="78" r="7" fill="#fb7185" opacity="0.6" />
+    <circle cx="100" cy="78" r="7" fill="#fb7185" opacity="0.6" />
+    <!-- White Chef Hat on Piggy -->
+    <ellipse cx="70" cy="30" rx="28" ry="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+    <path d="M 46 30 C 40 8 100 8 94 30 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+  </g>
+
+  <!-- SHADOW UNDER TOWER CONE -->
+  <ellipse cx="320" cy="445" rx="55" ry="14" fill="#0f172a" opacity="0.35" />
+
+  <!-- HERO: TOWERING WAFFLE CONE & 3 GIANT SCOOPS -->
+  <g transform="translate(230, 60)" filter="url(#shadow)">
+    <!-- CRISP WAFFLE CONE (BOTTOM) -->
+    <polygon points="30,260 150,260 90,410" fill="url(#coneGrad)" stroke="#451a03" stroke-width="2.5" />
+    <!-- Waffle Grid Lines -->
+    <g stroke="#78350f" stroke-width="2" opacity="0.8">
+      <line x1="50" y1="260" x2="100" y2="385" />
+      <line x1="75" y1="260" x2="110" y2="347" />
+      <line x1="100" y1="260" x2="120" y2="310" />
+
+      <line x1="130" y1="260" x2="80" y2="385" />
+      <line x1="105" y1="260" x2="70" y2="347" />
+      <line x1="80" y1="260" x2="60" y2="310" />
+    </g>
+
+    <!-- SCOOP 1: RICH CHOCOLATE FUDGE (BOTTOM SCOOP) -->
+    <ellipse cx="90" cy="245" rx="58" ry="42" fill="url(#chocoGrad)" stroke="#261005" stroke-width="2" />
+    <!-- Scoop scalloped base -->
+    <path d="M 32 255 Q 50 270 65 258 Q 80 272 95 258 Q 110 272 125 258 Q 140 268 148 255 Z" fill="#3f1d0b" />
+
+    <!-- SCOOP 2: MINT CHOCOLATE CHIP (MIDDLE SCOOP) -->
+    <ellipse cx="90" cy="180" rx="54" ry="40" fill="url(#mintGrad)" stroke="#047857" stroke-width="2" />
+    <!-- Mint chocolate chips -->
+    <g fill="#261005">
+      <rect x="65" y="165" width="8" height="6" rx="2" transform="rotate(15 65 165)" />
+      <rect x="95" y="172" width="7" height="6" rx="2" transform="rotate(-20 95 172)" />
+      <rect x="115" y="160" width="8" height="5" rx="2" transform="rotate(35 115 160)" />
+      <rect x="75" y="190" width="6" height="5" rx="2" transform="rotate(-10 75 190)" />
+      <rect x="105" y="195" width="7" height="6" rx="2" transform="rotate(25 105 195)" />
+    </g>
+
+    <!-- SCOOP 3: SWEET STRAWBERRY CREAM (TOP SCOOP) -->
+    <ellipse cx="90" cy="115" rx="50" ry="38" fill="url(#berryGrad)" stroke="#be185d" stroke-width="2" />
+    <!-- Strawberry seeds -->
+    <g fill="#fde047" opacity="0.8">
+      <circle cx="70" cy="100" r="1.5" />
+      <circle cx="85" cy="95" r="1.5" />
+      <circle cx="102" cy="102" r="1.5" />
+      <circle cx="115" cy="115" r="1.5" />
+      <circle cx="80" cy="120" r="1.5" />
+      <circle cx="98" cy="125" r="1.5" />
+      <circle cx="65" cy="122" r="1.5" />
+    </g>
+
+    <!-- HOT FUDGE SYRUP DRIP -->
+    <path d="M 52 110 Q 56 145 60 160 Q 64 175 62 195 Q 60 215 56 225 Q 52 235 55 240" stroke="#3f1d0b" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.9" />
+    <path d="M 122 105 Q 128 135 125 155 Q 122 175 126 190 Q 130 205 127 215" stroke="#3f1d0b" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.9" />
+
+    <!-- RAINBOW SPRINKLES SCATTER -->
+    <rect x="65" y="90" width="7" height="3" rx="1.5" fill="#38bdf8" transform="rotate(20 65 90)" />
+    <rect x="80" y="80" width="7" height="3" rx="1.5" fill="#facc15" transform="rotate(-30 80 80)" />
+    <rect x="105" y="85" width="7" height="3" rx="1.5" fill="#a855f7" transform="rotate(45 105 85)" />
+    <rect x="75" y="145" width="7" height="3" rx="1.5" fill="#facc15" transform="rotate(15 75 145)" />
+    <rect x="110" y="150" width="7" height="3" rx="1.5" fill="#ec4899" transform="rotate(-40 110 150)" />
+    <rect x="90" y="210" width="7" height="3" rx="1.5" fill="#38bdf8" transform="rotate(30 90 210)" />
+
+    <!-- FLUFFY WHIPPED CREAM CROWN SWIRL -->
+    <path d="M 65 85 C 50 65 70 50 85 55 C 80 40 100 35 105 45 C 115 35 130 48 122 65 C 132 75 120 85 110 85 Z" fill="url(#creamGrad)" stroke="#e2e8f0" stroke-width="2" />
+    <path d="M 88 45 Q 92 25 100 20 Q 98 35 94 48" fill="#ffffff" />
+
+    <!-- RED GLAZED CHERRY ON TOP -->
+    <!-- Stem -->
+    <path d="M 96 32 C 105 5 125 0 135 10" stroke="#15803d" stroke-width="3" fill="none" stroke-linecap="round" />
+    <circle cx="95" cy="36" r="14" fill="url(#cherryGrad)" stroke="#881337" stroke-width="1.5" />
+    <!-- Glaze highlight -->
+    <ellipse cx="91" cy="31" rx="4" ry="2.5" transform="rotate(-30 91 31)" fill="#ffffff" opacity="0.8" />
+  </g>
+
+  <!-- STAR SPARKLES -->
+  <g fill="#fef08a" stroke="#f59e0b" stroke-width="1.5">
+    <path d="M 420 110 L 424 120 L 434 124 L 424 128 L 420 138 L 416 128 L 406 124 L 416 120 Z" />
+    <path d="M 180 160 L 183 167 L 190 170 L 183 173 L 180 180 L 177 173 L 170 170 L 177 167 Z" transform="scale(0.85) translate(10, 20)" />
+    <circle cx="390" cy="200" r="4" fill="#ffffff" stroke="none" />
+    <circle cx="190" cy="110" r="3" fill="#ffffff" stroke="none" />
+  </g>
+</svg>

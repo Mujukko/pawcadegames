@@ -1109,6 +1109,46 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Serve while the customer patience meter is high! Fast service awards big extra coin tips and keeps your combo multiplier climbing.',
   },
+  'barnyard-ice-cream': {
+    title: 'Barnyard Ice Cream: Scoop & Stack',
+    subtitle: 'Waffle Cone Ice Cream Stacking Arcade',
+    mascot: '🍦🍨',
+    themeColor: 'from-amber-500 via-pink-500 to-rose-600',
+    goal: 'Stack giant ice cream scoops on waffle cones, drizzle hot syrups, scatter sprinkles, and serve cute farm animals!',
+    steps: [
+      {
+        icon: '🍦',
+        title: '1. Choose Base & Scoops',
+        desc: 'Select a crispy waffle cone or sundae bowl, then stack the customer requested ice cream flavors.',
+      },
+      {
+        icon: '🍫',
+        title: '2. Drizzle Syrup & Sprinkles',
+        desc: 'Add hot fudge or strawberry glaze, scatter rainbow sprinkles, and pipe a fluffy whipped cream swirl.',
+      },
+      {
+        icon: '🍒',
+        title: '3. Cherry on Top & Serve',
+        desc: 'Crown the sweet creation with a glazed red cherry and tap Serve Order before customer patience melts away!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Select cones, scoops, syrups, and toppings',
+        'W Key: Pipe whipped cream swirl',
+        'C Key: Add bright red cherry on top',
+        'Spacebar or Enter: Serve finished ice cream',
+        'T Key: Trash mistake cone to start fresh',
+        'M Key: Toggle ice cream cart sounds',
+      ],
+      mobile: [
+        'Tap Buttons: Quick flavor and topping additions',
+        'Base Switch: Toggle waffle cone or sundae bowl',
+        'Serve Button: Deliver ice cream to waiting pets',
+      ],
+    },
+    proTip: 'Match flavors in the exact order shown in the customer bubble to earn maximum style points and high combo multipliers!',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',
