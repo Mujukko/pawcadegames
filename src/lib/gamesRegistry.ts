@@ -2005,6 +2005,44 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Crop Mower: Harvest Rush 🚜 — No Download | Pawcade',
     metaDescription: 'Play Crop Mower Harvest Rush free online! Drive your tractor to mow golden wheat, fill your basket, and clear fields. Free casual farm game with no download.',
   },
+  {
+    id: 'hamster-maze-runner',
+    slug: 'hamster-maze-runner',
+    title: 'Hamster Maze: Nut Escape 🐹🌰',
+    tagline: 'Guide Pip the hungry hamster through timber mazes, gather golden acorns, find the brass key, and unlock the exit door!',
+    description: 'Guide Pip the hungry hamster through tricky farmyard mazes to gather golden acorns! Dodge dead ends, find the hidden brass key, and unlock the heavy barn door before dinner. Explore four handcrafted timber labyrinths, munch crispy sunflower seeds, and reach the glowing exit gate with zero downloads or delays.',
+    category: 'puzzle',
+    categories: ['puzzle', 'pets'],
+    route: '/games/hamster-maze-runner/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '34.8K',
+    badge: '🐹 Maze Escape',
+    thumbnailUrl: '/assets/thumbnails/thumb-hamster-maze-runner.svg',
+    controls: {
+      desktop: [
+        'Arrow Keys / WASD: Steer Pip through maze corridors',
+        'Spacebar / Enter: Advance to next stage or restart',
+        'R Key: Restart current maze stage',
+        'M Key: Toggle squeak and crunch audio sounds',
+      ],
+      mobile: [
+        'Swipe Gestures: Swipe anywhere on maze to steer Pip',
+        'Tactile D-Pad: Tap bottom direction buttons (Up, Down, Left, Right)',
+        'Next Stage Button: Advance after reaching the exit gate',
+      ],
+    },
+    features: [
+      '4 Handcrafted Wooden Labyrinths with Increasing Complexity',
+      'Crisp Grid Path Blocking and Smooth Sub-Pixel Hamster Animation',
+      'Brass Key Hunt and Locked Barn Gate Latch Mechanics',
+      'Golden Acorn Munching with Sparkling Particle FX',
+      'Procedural Web Audio Hamster Chirps, Seed Crunches, and Gate Clinks',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Hamster Maze: Nut Escape 🐹 — No Download | Pawcade',
+    metaDescription: 'Play Hamster Maze Nut Escape free online! Guide Pip the hungry hamster through timber mazes, gather golden acorns, and find the exit. Play free with no download.',
+  },
 ];
 
 

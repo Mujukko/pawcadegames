@@ -848,6 +848,44 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Mow in long continuous serpentines from one end of the paddock to the other! This prevents leaving isolated single tiles and maximizes your combo bonus.',
   },
+  'hamster-maze-runner': {
+    title: 'Hamster Maze: Nut Escape',
+    subtitle: 'Timber Labyrinth & Acorn Hunt',
+    mascot: '🐹🌰',
+    themeColor: 'from-amber-600 via-orange-600 to-yellow-700',
+    goal: 'Guide Pip the hungry hamster through timber mazes, gather golden acorns, find the brass key, and unlock the exit door!',
+    steps: [
+      {
+        icon: '🐹',
+        title: '1. Steer Pip Through Mazes',
+        desc: 'Swipe on the maze or use the bottom D-Pad arrows to guide Pip through twists, turns, and wooden corridors.',
+      },
+      {
+        icon: '🌰',
+        title: '2. Gather Acorns & Key',
+        desc: 'Munch all golden acorns for high score points, and seek out the shiny brass key hidden in the maze.',
+      },
+      {
+        icon: '🚪',
+        title: '3. Unlock Gate & Exit',
+        desc: 'With the key in your paws, bump the locked red gate to unlatch it, then reach the glowing green exit door!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Arrow Keys or WASD: Steer Pip through maze corridors',
+        'Spacebar / Enter: Advance to next stage or restart',
+        'R Key: Restart current maze stage',
+        'M Key: Toggle squeak and crunch audio sounds',
+      ],
+      mobile: [
+        'Swipe Gestures: Swipe anywhere on maze to steer Pip',
+        'Tactile D-Pad: Tap bottom direction buttons (Up, Down, Left, Right)',
+        'Next Stage Button: Advance after reaching the exit gate',
+      ],
+    },
+    proTip: 'Always scout the maze layout first! Locate the shiny brass key before rushing to the locked gate, and scoop up every acorn along your path for maximum bonus stars.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

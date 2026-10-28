@@ -159,6 +159,9 @@ const BarnyardPinballContainer = lazy(() =>
 const CropMowerHarvestContainer = lazy(() =>
   import('../games/crop-mower-harvest/CropMowerHarvestContainer').then((m) => ({ default: m.CropMowerHarvestContainer }))
 );
+const HamsterMazeRunnerContainer = lazy(() =>
+  import('../games/hamster-maze-runner/HamsterMazeRunnerContainer').then((m) => ({ default: m.HamsterMazeRunnerContainer }))
+);
 
 
 
@@ -191,6 +194,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isHamsterMaze = gameId === 'hamster-maze-runner' || gameId === 'hamster-maze' || gameId === 'nut-escape';
   const isCropMower = gameId === 'crop-mower-harvest' || gameId === 'crop-mower' || gameId === 'lawn-mower';
   const isPinball = gameId === 'barnyard-pinball' || gameId === 'pinball' || gameId === 'flipper';
   const isSheepSorter = gameId === 'sheep-sorter-gate' || gameId === 'sheep-sorter' || gameId === 'sheep-gate';
@@ -244,6 +248,15 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   const game = GAMES_REGISTRY.find(g => g.id === gameId) || GAMES_REGISTRY[0]!;
   const relatedGames = GAMES_REGISTRY.filter(g => g.id !== gameId && g.status === 'playable').slice(0, 4);
 
+  // Curated lists for Poki / CrazyGames desktop sidebar theater (1920x1080 bounce prevention)
+  const desktopTrendingGames = GAMES_REGISTRY.filter(g =>
+    g.id !== gameId && ['farm-block-blast', 'barnyard-pinball', 'farm-mini-mart', 'milk-bottle-plinko'].includes(g.id)
+  ).slice(0, 4);
+
+  const desktopPuzzleGames = GAMES_REGISTRY.filter(g =>
+    g.id !== gameId && ['sheep-cart-jam', 'crop-mower-harvest', 'hamster-maze-runner', 'grain-sand-fall', 'animal-suika-drop'].includes(g.id)
+  ).slice(0, 4);
+
   // Pre-game Intro / How to Play modal state (always opens on first entry)
   const [isIntroOpen, setIsIntroOpen] = useState<boolean>(() => {
     try {
@@ -265,6 +278,16 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   useEffect(() => {
     window.scrollTo(0, 0);
     analytics.track('game_loaded', { gameId });
+
+    // Auto-scroll on short viewports (GA4 800x600 & 1280x720 bounce prevention)
+    if (typeof window !== 'undefined' && window.innerHeight <= 760) {
+      setTimeout(() => {
+        const frame = document.getElementById('playable-game-frame');
+        if (frame) {
+          frame.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 120);
+    }
 
     // Dynamic Schema.org VideoGame & WebApplication JSON-LD injection for US Search Crawlers
     const existingScript = document.getElementById('game-schema-ld');
@@ -305,7 +328,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   return (
     <div className="flex flex-col min-h-screen bg-slate-900 text-slate-100 pb-16 pb-safe">
       {/* Breadcrumb Header */}
-      <div className="bg-slate-900/90 border-b border-orange-500/20 py-2 sm:py-3 px-3 sm:px-6 lg:px-8">
+      <div className="bg-slate-900/90 border-b border-orange-500/20 py-2 sm:py-3 px-3 sm:px-6 lg:px-8 short-screen-compact">
         <div className="max-w-7xl mx-auto flex items-center text-xs font-semibold text-slate-400 gap-1.5 overflow-x-auto scrollbar-none">
           <button onClick={() => navigate('/')} className="hover:text-orange-300 transition-colors cursor-pointer shrink-0 flex items-center gap-1">
             <span>🎃 Home</span>
@@ -321,7 +344,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
 
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 pt-3 sm:pt-8 w-full">
         {/* Halloween Live Event Banner */}
-        <div className="mb-4 sm:mb-6 bg-gradient-to-r from-orange-600 via-purple-700 to-amber-600 rounded-2xl p-3 sm:p-4 text-white flex items-center justify-between shadow-lg shadow-orange-950/40 border border-orange-400/40">
+        <div className="mb-4 sm:mb-6 bg-gradient-to-r from-orange-600 via-purple-700 to-amber-600 rounded-2xl p-3 sm:p-4 text-white flex items-center justify-between shadow-lg shadow-orange-950/40 border border-orange-400/40 short-screen-hide">
           <div className="flex items-center gap-3">
             <span className="text-2xl sm:text-3xl animate-spooky-float select-none">🎃</span>
             <div>
@@ -346,11 +369,13 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
         </div>
 
         {/* Game Title Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-3 sm:mb-6 px-1">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-3 sm:mb-6 px-1 short-screen-condense-title">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isCaterpillar
+                isHamsterMaze
+                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+                  : isCaterpillar
                   ? 'bg-lime-500/20 text-lime-300 border-lime-500/30'
                   : isMiniGolf
                   ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
@@ -437,206 +462,312 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           </div>
         </div>
 
-        {/* The Playable Game Frame */}
-        <div className="bg-slate-900/90 rounded-2xl sm:rounded-3xl p-1 sm:p-6 border border-orange-500/30 mb-8 sm:mb-12 shadow-2xl shadow-orange-950/20 flex justify-center overflow-hidden">
-          <Suspense
-            fallback={
-              <GameLoadingFallback
-                title={game.title}
-                mascot={
-                  isCaterpillar
-                    ? '🐛🍎'
-                    : isMiniGolf
-                    ? '🐶⛳'
-                    : isDuckArchery
-                    ? '🎯🦆'
-                    : isPegPop
-                    ? '🌰🎯'
-                    : isFruitSlicer
-                    ? '🍉⚔️'
-                    : isCookieStack
-                    ? '🐹🍪'
-                    : isPinPull
-                    ? '🚜📌'
-                    : isKoiPond
-                    ? '🎏🌸'
-                    : isFarmPipeFlow
-                    ? '🚜💧'
-                    : isFarmTileTriple
-                    ? '🧺🍎'
-                    : isAnimalSuika
-                    ? '🍉🐾'
-                    : isWoodNuts
-                    ? '🔩🚜'
-                    : isCapybaraSpa
-                    ? '🍊🛁'
-                    : isSaveTheSheep
-                    ? '🐝🐑'
-                    : isCatCafe
-                    ? '🐱🍰'
-                    : isHamsterBall
-                    ? '🐹⚡'
-                    : isDuckPond
-                    ? '🦆🌸'
-                    : isHungryPiggy
-                    ? '🐷🍎'
-                    : isFruitBubble
-                    ? '🍎🎈'
-                    : isSheepJump
-                    ? '🐑☁️'
-                    : isBarnyardTower
-                    ? '🐮🏗️'
-                    : isGopherGarden
-                    ? '🥕🐾'
-                    : isMahjong
-                    ? '🀄'
-                    : isMemoryMatch
-                    ? '🃏'
-                    : isDuckHunt
-                    ? '🦆🎯'
-                    : isSheepStampede
-                    ? '🐕'
-                    : isHorseshoeTwist
-                    ? '🐴'
-                    : isEggBuster
-                    ? '🐥'
-                    : isCritterTap
-                    ? '🐮'
-                    : isPantrySort
-                    ? '🐿️'
-                    : isBlockBlast
-                    ? '🐶'
-                    : isSheepJam
-                    ? '🐑'
-                    : isSandFall
-                    ? '⏳'
-                    : isChefRat
-                    ? '🐭'
-                    : isFarmMart
-                    ? '🏪'
-                    : isDuckRunner
-                    ? '🦆'
-                    : isPetCrush
-                    ? '🍬'
-                    : isFlappy
-                    ? '🐔'
-                    : is2048
-                    ? '🐘'
-                    : isFarmTetris
-                    ? '🌾'
-                    : isFarm
-                    ? '🐮'
-                    : isCat
-                    ? '🐱'
-                    : '🐶'
+        {/* The Playable Game Frame with Desktop Theater Rails (1920x1080 Poki/CrazyGames Style) */}
+        <div className="xl:flex xl:items-start xl:justify-center xl:gap-6 w-full mb-8 sm:mb-12">
+          {/* DESKTOP THEATER: LEFT SIDEBAR (Trending Games) */}
+          <aside className="hidden xl:flex flex-col gap-3 w-[210px] 2xl:w-[240px] shrink-0 select-none">
+            <div className="flex items-center gap-2 px-1">
+              <span className="text-base select-none">🔥</span>
+              <h3 className="text-xs font-black uppercase tracking-wider text-amber-400">Trending Hits</h3>
+            </div>
+            <div className="flex flex-col gap-2.5">
+              {desktopTrendingGames.map((g) => (
+                <button
+                  key={g.id}
+                  onClick={() => navigate(g.route)}
+                  className="group flex items-center gap-2.5 p-2 rounded-2xl bg-slate-900/90 hover:bg-slate-850 border border-slate-800/80 hover:border-amber-500/40 transition-all text-left cursor-pointer transform hover:-translate-y-0.5 shadow-md"
+                >
+                  <img
+                    src={g.thumbnailUrl}
+                    alt={g.title}
+                    className="w-12 h-12 rounded-xl object-cover shrink-0 border border-slate-700/60 group-hover:scale-105 transition-transform"
+                    loading="lazy"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-xs font-black text-white truncate group-hover:text-amber-300 transition-colors">
+                      {g.title.split(':')[0]}
+                    </h4>
+                    <div className="flex items-center gap-1 mt-0.5">
+                      <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                      <span className="text-[10px] font-bold text-slate-400">{g.rating}</span>
+                    </div>
+                    <span className="inline-block text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 mt-1">
+                      Play
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </aside>
+
+          {/* CENTER COLUMN: THE GAME FRAME & DESKTOP KEYBOARD STRIP */}
+          <div className="flex-1 min-w-0 max-w-full">
+            <div
+              id="playable-game-frame"
+              className="bg-slate-900/90 rounded-2xl sm:rounded-3xl p-1 sm:p-6 border border-orange-500/30 mb-3 sm:mb-4 shadow-2xl shadow-orange-950/20 flex justify-center overflow-hidden short-screen-game-frame"
+            >
+              <Suspense
+                fallback={
+                  <GameLoadingFallback
+                    title={game.title}
+                    mascot={
+                      isHamsterMaze
+                        ? '🐹🌰'
+                        : isCaterpillar
+                        ? '🐛🍎'
+                        : isMiniGolf
+                        ? '🐶⛳'
+                        : isDuckArchery
+                        ? '🎯🦆'
+                        : isPegPop
+                        ? '🌰🎯'
+                        : isFruitSlicer
+                        ? '🍉⚔️'
+                        : isCookieStack
+                        ? '🐹🍪'
+                        : isPinPull
+                        ? '🚜📌'
+                        : isKoiPond
+                        ? '🎏🌸'
+                        : isFarmPipeFlow
+                        ? '🚜💧'
+                        : isFarmTileTriple
+                        ? '🧺🍎'
+                        : isAnimalSuika
+                        ? '🍉🐾'
+                        : isWoodNuts
+                        ? '🔩🚜'
+                        : isCapybaraSpa
+                        ? '🍊🛁'
+                        : isSaveTheSheep
+                        ? '🐝🐑'
+                        : isCatCafe
+                        ? '🐱🍰'
+                        : isHamsterBall
+                        ? '🐹⚡'
+                        : isDuckPond
+                        ? '🦆🌸'
+                        : isHungryPiggy
+                        ? '🐷🍎'
+                        : isFruitBubble
+                        ? '🍎🎈'
+                        : isSheepJump
+                        ? '🐑☁️'
+                        : isBarnyardTower
+                        ? '🐮🏗️'
+                        : isGopherGarden
+                        ? '🥕🐾'
+                        : isMahjong
+                        ? '🀄'
+                        : isMemoryMatch
+                        ? '🃏'
+                        : isDuckHunt
+                        ? '🦆🎯'
+                        : isSheepStampede
+                        ? '🐕'
+                        : isHorseshoeTwist
+                        ? '🐴'
+                        : isEggBuster
+                        ? '🐥'
+                        : isCritterTap
+                        ? '🐮'
+                        : isPantrySort
+                        ? '🐿️'
+                        : isBlockBlast
+                        ? '🐶'
+                        : isSheepJam
+                        ? '🐑'
+                        : isSandFall
+                        ? '⏳'
+                        : isChefRat
+                        ? '🐭'
+                        : isFarmMart
+                        ? '🏪'
+                        : isDuckRunner
+                        ? '🦆'
+                        : isPetCrush
+                        ? '🍬'
+                        : isFlappy
+                        ? '🐔'
+                        : is2048
+                        ? '🐘'
+                        : isFarmTetris
+                        ? '🌾'
+                        : isFarm
+                        ? '🐮'
+                        : isCat
+                        ? '🐱'
+                        : '🐶'
+                    }
+                  />
                 }
-              />
-            }
-          >
-            {isCropMower ? (
-              <CropMowerHarvestContainer />
-            ) : isPinball ? (
-              <BarnyardPinballContainer />
-            ) : isSheepSorter ? (
-              <SheepSorterGateContainer />
-            ) : isTriPeaks ? (
-              <FarmTriPeaksSolitaireContainer />
-            ) : isMilkPlinko ? (
-              <MilkBottlePlinkoContainer />
-            ) : isCoinPusher ? (
-              <PiggyCoinPusherContainer />
-            ) : isTangram ? (
-              <AnimalTangramFitContainer />
-            ) : isCarrotTarget ? (
-              <CarrotTargetThrowContainer />
-            ) : isCaterpillar ? (
-              <CaterpillarFruitTrailContainer />
-            ) : isMiniGolf ? (
-              <CorgiMiniGolfContainer />
-            ) : isDuckArchery ? (
-              <DuckArcheryRangeContainer />
-            ) : isPegPop ? (
-              <BarnyardPegPopContainer />
-            ) : isFruitSlicer ? (
-              <BarnyardFruitSlicerContainer />
-            ) : isCookieStack ? (
-              <HamsterCookieStackContainer />
-            ) : isPinPull ? (
-              <BarnyardPinPullContainer />
-            ) : isKoiPond ? (
-              <KoiPondZenContainer />
-            ) : isFarmPipeFlow ? (
-              <FarmPipeFlowContainer />
-            ) : isFarmTileTriple ? (
-              <FarmTileTripleContainer />
-            ) : isAnimalSuika ? (
-              <AnimalSuikaDropContainer />
-            ) : isWoodNuts ? (
-              <WoodNutsFarmContainer />
-            ) : isCapybaraSpa ? (
-              <CapybaraSpaRushContainer />
-            ) : isSaveTheSheep ? (
-              <SaveTheSheepContainer />
-            ) : isCatCafe ? (
-              <CatCafeRushContainer />
-            ) : isHamsterBall ? (
-              <HamsterBallDashContainer />
-            ) : isDuckPond ? (
-              <DuckPondSortContainer />
-            ) : isHungryPiggy ? (
-              <HungryPiggyContainer />
-            ) : isFruitBubble ? (
-              <FarmFruitBubbleContainer />
-            ) : isSheepJump ? (
-              <PastureSheepJumpContainer />
-            ) : isBarnyardTower ? (
-              <BarnyardTowerContainer />
-            ) : isGopherGarden ? (
-              <GopherGardenContainer />
-            ) : isMahjong ? (
-              <FarmMahjongContainer />
-            ) : isMemoryMatch ? (
-              <PetMemoryMatchContainer />
-            ) : isDuckHunt ? (
-              <DuckHuntClassicContainer />
-            ) : isSheepStampede ? (
-              <SheepStampedeContainer />
-            ) : isHorseshoeTwist ? (
-              <HorseshoeTwistContainer />
-            ) : isEggBuster ? (
-              <EggBusterContainer />
-            ) : isCritterTap ? (
-              <CritterTapAwayContainer />
-            ) : isPantrySort ? (
-              <FarmPantrySortContainer />
-            ) : isBlockBlast ? (
-              <FarmBlockBlastContainer />
-            ) : isSheepJam ? (
-              <SheepCartJamContainer />
-            ) : isSandFall ? (
-              <GrainSandFallContainer />
-            ) : isChefRat ? (
-              <ChefRatRushContainer />
-            ) : isFarmMart ? (
-              <FarmMiniMartContainer />
-            ) : isDuckRunner ? (
-              <DuckRunnerContainer />
-            ) : isPetCrush ? (
-              <PetCandyCrushContainer />
-            ) : isFlappy ? (
-              <FlappyChickenContainer />
-            ) : is2048 ? (
-              <Animal2048Container />
-            ) : isFarmTetris ? (
-              <FarmTetrisContainer />
-            ) : isFarm ? (
-              <AnimalFarmParkingContainer />
-            ) : isCat ? (
-              <CatParkingContainer />
-            ) : (
-              <DogParkingContainer />
-            )}
-          </Suspense>
+              >
+                {isHamsterMaze ? (
+                  <HamsterMazeRunnerContainer />
+                ) : isCropMower ? (
+                  <CropMowerHarvestContainer />
+                ) : isPinball ? (
+                  <BarnyardPinballContainer />
+                ) : isSheepSorter ? (
+                  <SheepSorterGateContainer />
+                ) : isTriPeaks ? (
+                  <FarmTriPeaksSolitaireContainer />
+                ) : isMilkPlinko ? (
+                  <MilkBottlePlinkoContainer />
+                ) : isCoinPusher ? (
+                  <PiggyCoinPusherContainer />
+                ) : isTangram ? (
+                  <AnimalTangramFitContainer />
+                ) : isCarrotTarget ? (
+                  <CarrotTargetThrowContainer />
+                ) : isCaterpillar ? (
+                  <CaterpillarFruitTrailContainer />
+                ) : isMiniGolf ? (
+                  <CorgiMiniGolfContainer />
+                ) : isDuckArchery ? (
+                  <DuckArcheryRangeContainer />
+                ) : isPegPop ? (
+                  <BarnyardPegPopContainer />
+                ) : isFruitSlicer ? (
+                  <BarnyardFruitSlicerContainer />
+                ) : isCookieStack ? (
+                  <HamsterCookieStackContainer />
+                ) : isPinPull ? (
+                  <BarnyardPinPullContainer />
+                ) : isKoiPond ? (
+                  <KoiPondZenContainer />
+                ) : isFarmPipeFlow ? (
+                  <FarmPipeFlowContainer />
+                ) : isFarmTileTriple ? (
+                  <FarmTileTripleContainer />
+                ) : isAnimalSuika ? (
+                  <AnimalSuikaDropContainer />
+                ) : isWoodNuts ? (
+                  <WoodNutsFarmContainer />
+                ) : isCapybaraSpa ? (
+                  <CapybaraSpaRushContainer />
+                ) : isSaveTheSheep ? (
+                  <SaveTheSheepContainer />
+                ) : isCatCafe ? (
+                  <CatCafeRushContainer />
+                ) : isHamsterBall ? (
+                  <HamsterBallDashContainer />
+                ) : isDuckPond ? (
+                  <DuckPondSortContainer />
+                ) : isHungryPiggy ? (
+                  <HungryPiggyContainer />
+                ) : isFruitBubble ? (
+                  <FarmFruitBubbleContainer />
+                ) : isSheepJump ? (
+                  <PastureSheepJumpContainer />
+                ) : isBarnyardTower ? (
+                  <BarnyardTowerContainer />
+                ) : isGopherGarden ? (
+                  <GopherGardenContainer />
+                ) : isMahjong ? (
+                  <FarmMahjongContainer />
+                ) : isMemoryMatch ? (
+                  <PetMemoryMatchContainer />
+                ) : isDuckHunt ? (
+                  <DuckHuntClassicContainer />
+                ) : isSheepStampede ? (
+                  <SheepStampedeContainer />
+                ) : isHorseshoeTwist ? (
+                  <HorseshoeTwistContainer />
+                ) : isEggBuster ? (
+                  <EggBusterContainer />
+                ) : isCritterTap ? (
+                  <CritterTapAwayContainer />
+                ) : isPantrySort ? (
+                  <FarmPantrySortContainer />
+                ) : isBlockBlast ? (
+                  <FarmBlockBlastContainer />
+                ) : isSheepJam ? (
+                  <SheepCartJamContainer />
+                ) : isSandFall ? (
+                  <GrainSandFallContainer />
+                ) : isChefRat ? (
+                  <ChefRatRushContainer />
+                ) : isFarmMart ? (
+                  <FarmMiniMartContainer />
+                ) : isDuckRunner ? (
+                  <DuckRunnerContainer />
+                ) : isPetCrush ? (
+                  <PetCandyCrushContainer />
+                ) : isFlappy ? (
+                  <FlappyChickenContainer />
+                ) : is2048 ? (
+                  <Animal2048Container />
+                ) : isFarmTetris ? (
+                  <FarmTetrisContainer />
+                ) : isFarm ? (
+                  <AnimalFarmParkingContainer />
+                ) : isCat ? (
+                  <CatParkingContainer />
+                ) : (
+                  <DogParkingContainer />
+                )}
+              </Suspense>
+            </div>
+
+            {/* Desktop Keyboard Quick Keycaps Strip */}
+            <div className="hidden sm:flex items-center justify-center gap-3 py-2 px-4 rounded-xl bg-slate-950/70 border border-slate-800 text-slate-300 text-xs font-semibold select-none">
+              <div className="flex items-center gap-1.5">
+                <kbd className="px-1.5 py-0.5 rounded bg-slate-800 text-amber-300 border border-slate-700 font-mono text-[11px] font-bold">W A S D</kbd>
+                <span>/</span>
+                <kbd className="px-1.5 py-0.5 rounded bg-slate-800 text-amber-300 border border-slate-700 font-mono text-[11px] font-bold">Arrows</kbd>
+                <span className="text-slate-400">Move</span>
+              </div>
+              <span className="text-slate-700">•</span>
+              <div className="flex items-center gap-1.5">
+                <kbd className="px-2 py-0.5 rounded bg-slate-800 text-amber-300 border border-slate-700 font-mono text-[11px] font-bold">Space</kbd>
+                <span className="text-slate-400">Action</span>
+              </div>
+              <span className="text-slate-700">•</span>
+              <div className="flex items-center gap-1.5">
+                <kbd className="px-1.5 py-0.5 rounded bg-slate-800 text-amber-300 border border-slate-700 font-mono text-[11px] font-bold">R</kbd>
+                <span className="text-slate-400">Restart</span>
+              </div>
+              <span className="text-slate-700">•</span>
+              <div className="flex items-center gap-1.5">
+                <kbd className="px-1.5 py-0.5 rounded bg-slate-800 text-amber-300 border border-slate-700 font-mono text-[11px] font-bold">M</kbd>
+                <span className="text-slate-400">Audio</span>
+              </div>
+            </div>
+          </div>
+
+          {/* DESKTOP THEATER: RIGHT SIDEBAR (Quick Play Games) */}
+          <aside className="hidden xl:flex flex-col gap-3 w-[210px] 2xl:w-[240px] shrink-0 select-none">
+            <div className="flex items-center gap-2 px-1">
+              <span className="text-base select-none">🌟</span>
+              <h3 className="text-xs font-black uppercase tracking-wider text-amber-400">Quick Play</h3>
+            </div>
+            <div className="flex flex-col gap-2.5">
+              {desktopPuzzleGames.map((g) => (
+                <button
+                  key={g.id}
+                  onClick={() => navigate(g.route)}
+                  className="group flex items-center gap-2.5 p-2 rounded-2xl bg-slate-900/90 hover:bg-slate-850 border border-slate-800/80 hover:border-amber-500/40 transition-all text-left cursor-pointer transform hover:-translate-y-0.5 shadow-md"
+                >
+                  <img
+                    src={g.thumbnailUrl}
+                    alt={g.title}
+                    className="w-12 h-12 rounded-xl object-cover shrink-0 border border-slate-700/60 group-hover:scale-105 transition-transform"
+                    loading="lazy"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-xs font-black text-white truncate group-hover:text-amber-300 transition-colors">
+                      {g.title.split(':')[0]}
+                    </h4>
+                    <span className="text-[10px] text-slate-400 truncate block mt-0.5 capitalize">{g.category}</span>
+                    <span className="inline-block text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 mt-1">
+                      Instant
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </aside>
         </div>
 
         {/* Instructions & Controls Guide */}
@@ -651,7 +782,18 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
 
             <div className="space-y-3 text-sm text-slate-300">
-              {isFarmPipeFlow ? (
+              {isHamsterMaze ? (
+                <>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-amber-400 min-w-24">Desktop:</span>
+                    <span>Use <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">Arrow Keys</kbd> or <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">W/A/S/D</kbd> to steer Pip through the wooden maze. Munch all golden acorns, pick up the brass key, unlock the locked gate, and enter the exit door! Press <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">Spacebar</kbd> to advance or restart, <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">R</kbd> to restart current stage, and <kbd className="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded text-xs font-mono border border-amber-500/30">M</kbd> to toggle audio.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-amber-400 min-w-24">Mobile:</span>
+                    <span>Swipe in any direction across the maze, or tap the large bottom D-Pad arrows (Up, Down, Left, Right) for responsive thumb steering!</span>
+                  </div>
+                </>
+              ) : isFarmPipeFlow ? (
                 <>
                   <div className="flex items-start gap-2">
                     <span className="font-bold text-sky-400 min-w-24">Desktop:</span>

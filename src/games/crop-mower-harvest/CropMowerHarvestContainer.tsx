@@ -178,7 +178,7 @@ export const CropMowerHarvestContainer: React.FC = () => {
     const dx = curX - dragStartRef.current.x;
     const dy = curY - dragStartRef.current.y;
 
-    if (Math.abs(dx) > 16 || Math.abs(dy) > 16) {
+    if (Math.abs(dx) > 12 || Math.abs(dy) > 12) {
       if (Math.abs(dx) > Math.abs(dy)) {
         handleDirection(dx > 0 ? 'right' : 'left');
       } else {
@@ -528,7 +528,7 @@ export const CropMowerHarvestContainer: React.FC = () => {
         </div>
 
         {/* Basket & Controls */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1.5">
           <div className="text-right text-xs">
             <div className="text-slate-400 text-[10px]">BASKET</div>
             <div className={`font-bold ${hudState.basket >= hudState.maxBasket ? 'text-amber-400 animate-pulse' : 'text-slate-200'}`}>
@@ -537,16 +537,23 @@ export const CropMowerHarvestContainer: React.FC = () => {
           </div>
           <button
             onClick={toggleSound}
-            className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 flex items-center justify-center text-sm border border-slate-700 transition"
+            className="w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 flex items-center justify-center text-sm sm:text-base border border-slate-700 transition touch-manipulation"
             aria-label="Toggle Sound"
           >
             {isMuted ? '🔇' : '🔊'}
+          </button>
+          <button
+            onClick={handleRestartStage}
+            className="w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 flex items-center justify-center text-sm border border-slate-700 transition text-slate-300 hover:text-white touch-manipulation"
+            aria-label="Restart Stage"
+          >
+            🔄
           </button>
         </div>
       </div>
 
       {/* Main Interactive Field Canvas */}
-      <div className="relative w-full aspect-[400/540] bg-slate-950 overflow-hidden shadow-2xl border-x border-slate-800">
+      <div className="relative w-full aspect-[400/540] bg-slate-950 overflow-hidden shadow-2xl border-x border-slate-800 touch-none">
         <canvas
           ref={canvasRef}
           width={400}
@@ -554,6 +561,8 @@ export const CropMowerHarvestContainer: React.FC = () => {
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          onPointerLeave={handlePointerUp}
           className="w-full h-full cursor-pointer touch-none select-none"
         />
 
@@ -579,7 +588,9 @@ export const CropMowerHarvestContainer: React.FC = () => {
           <button
             onPointerDown={() => handleDirection('left')}
             onPointerUp={handleStop}
-            className="w-12 h-12 rounded-xl bg-slate-800 active:bg-orange-600 text-white font-bold text-lg border border-slate-700 flex items-center justify-center active:scale-95 transition"
+            onPointerCancel={handleStop}
+            onPointerLeave={handleStop}
+            className="w-12 h-12 rounded-xl bg-slate-800 active:bg-orange-600 text-white font-bold text-lg border border-slate-700 flex items-center justify-center active:scale-95 transition touch-manipulation"
             aria-label="Move Left"
           >
             ⬅️
@@ -589,7 +600,9 @@ export const CropMowerHarvestContainer: React.FC = () => {
             <button
               onPointerDown={() => handleDirection('up')}
               onPointerUp={handleStop}
-              className="w-12 h-12 rounded-xl bg-slate-800 active:bg-orange-600 text-white font-bold text-lg border border-slate-700 flex items-center justify-center active:scale-95 transition"
+              onPointerCancel={handleStop}
+              onPointerLeave={handleStop}
+              className="w-12 h-12 rounded-xl bg-slate-800 active:bg-orange-600 text-white font-bold text-lg border border-slate-700 flex items-center justify-center active:scale-95 transition touch-manipulation"
               aria-label="Move Up"
             >
               ⬆️
@@ -597,7 +610,9 @@ export const CropMowerHarvestContainer: React.FC = () => {
             <button
               onPointerDown={() => handleDirection('down')}
               onPointerUp={handleStop}
-              className="w-12 h-12 rounded-xl bg-slate-800 active:bg-orange-600 text-white font-bold text-lg border border-slate-700 flex items-center justify-center active:scale-95 transition"
+              onPointerCancel={handleStop}
+              onPointerLeave={handleStop}
+              className="w-12 h-12 rounded-xl bg-slate-800 active:bg-orange-600 text-white font-bold text-lg border border-slate-700 flex items-center justify-center active:scale-95 transition touch-manipulation"
               aria-label="Move Down"
             >
               ⬇️
@@ -607,7 +622,9 @@ export const CropMowerHarvestContainer: React.FC = () => {
           <button
             onPointerDown={() => handleDirection('right')}
             onPointerUp={handleStop}
-            className="w-12 h-12 rounded-xl bg-slate-800 active:bg-orange-600 text-white font-bold text-lg border border-slate-700 flex items-center justify-center active:scale-95 transition"
+            onPointerCancel={handleStop}
+            onPointerLeave={handleStop}
+            className="w-12 h-12 rounded-xl bg-slate-800 active:bg-orange-600 text-white font-bold text-lg border border-slate-700 flex items-center justify-center active:scale-95 transition touch-manipulation"
             aria-label="Move Right"
           >
             ➡️
@@ -640,7 +657,7 @@ export const CropMowerHarvestContainer: React.FC = () => {
 
             <button
               onClick={handleNextStage}
-              className="w-full min-h-[48px] bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-black text-base rounded-xl shadow-lg active:scale-95 transition"
+              className="w-full min-h-[48px] bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-black text-base rounded-xl shadow-lg active:scale-95 transition touch-manipulation"
             >
               NEXT STAGE 🌾
             </button>

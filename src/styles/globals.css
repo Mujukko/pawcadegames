@@ -138,4 +138,23 @@ h1, h2, h3, h4, h5, h6 {
   animation: pulseGentle 1.8s ease-in-out infinite;
 }
 
+/* Short Viewport Optimization (GA4 800x600 & 1280x720 Bounce Prevention) */
+@media (max-height: 760px) {
+  .short-screen-hide {
+    display: none !important;
+  }
+  .short-screen-compact {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .short-screen-condense-title {
+    margin-bottom: 0.5rem !important;
+  }
+  .short-screen-game-frame {
+    padding: 0.25rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+}
+
 

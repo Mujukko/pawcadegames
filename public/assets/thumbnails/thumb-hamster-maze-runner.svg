@@ -1,0 +1,241 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Warm Barn Floor Gradient -->
+    <radialGradient id="floorGrad" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#451a03" />
+      <stop offset="70%" stop-color="#290e02" />
+      <stop offset="100%" stop-color="#180701" />
+    </radialGradient>
+
+    <!-- Rich Timber Maze Wall Gradient -->
+    <linearGradient id="woodWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="35%" stop-color="#d97706" />
+      <stop offset="75%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <linearGradient id="wallTop" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="50%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+
+    <!-- Hamster Pip Golden Fur Gradient -->
+    <radialGradient id="hamsterFur" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fed7aa" />
+      <stop offset="50%" stop-color="#fb923c" />
+      <stop offset="90%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#c2410c" />
+    </radialGradient>
+
+    <!-- Hamster White Belly Gradient -->
+    <radialGradient id="hamsterBelly" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="80%" stop-color="#ffedd5" />
+      <stop offset="100%" stop-color="#fed7aa" />
+    </radialGradient>
+
+    <!-- Golden Acorn Gradient -->
+    <linearGradient id="acornGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="40%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+
+    <!-- Acorn Cap Gradient -->
+    <linearGradient id="acornCap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <!-- Brass Key Gold Gradient -->
+    <linearGradient id="brassKey" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="40%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Exit Door Green Glow -->
+    <radialGradient id="exitGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4ade80" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#22c55e" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#15803d" stop-opacity="0" />
+    </radialGradient>
+
+    <filter id="glowEffect" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="shadowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feOffset dx="0" dy="6" result="offset" />
+      <feComposite in="SourceGraphic" in2="offset" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Wooden Floor -->
+  <rect width="512" height="512" fill="url(#floorGrad)" />
+
+  <!-- Wood Floor Board Planks Lines -->
+  <g stroke="#3b1502" stroke-width="2" opacity="0.6">
+    <line x1="0" y1="64" x2="512" y2="64" />
+    <line x1="0" y1="128" x2="512" y2="128" />
+    <line x1="0" y1="192" x2="512" y2="192" />
+    <line x1="0" y1="256" x2="512" y2="256" />
+    <line x1="0" y1="320" x2="512" y2="320" />
+    <line x1="0" y1="384" x2="512" y2="384" />
+    <line x1="0" y1="448" x2="512" y2="448" />
+  </g>
+
+  <!-- Maze Walls Structure (Top-Down 3D Isometric Feel) -->
+  <!-- Outer Maze Border -->
+  <rect x="24" y="24" width="464" height="464" rx="20" fill="none" stroke="url(#woodWall)" stroke-width="28" filter="url(#shadowFilter)" />
+  <rect x="24" y="24" width="464" height="464" rx="20" fill="none" stroke="url(#wallTop)" stroke-width="8" />
+
+  <!-- Interior Maze Dividers -->
+  <g fill="url(#woodWall)" stroke="url(#wallTop)" stroke-width="4">
+    <!-- Top-left wall block -->
+    <rect x="38" y="110" width="130" height="24" rx="8" />
+    <rect x="144" y="110" width="24" height="110" rx="8" />
+
+    <!-- Top-right loop wall -->
+    <rect x="240" y="38" width="24" height="120" rx="8" />
+    <rect x="310" y="110" width="140" height="24" rx="8" />
+
+    <!-- Mid horizontal barrier -->
+    <rect x="210" y="220" width="130" height="24" rx="8" />
+    <rect x="316" y="220" width="24" height="130" rx="8" />
+
+    <!-- Bottom barriers -->
+    <rect x="80" y="330" width="150" height="24" rx="8" />
+    <rect x="80" y="260" width="24" height="94" rx="8" />
+    <rect x="206" y="330" width="24" height="110" rx="8" />
+  </g>
+
+  <!-- Exit Gate (Top Right) with Glowing Arch -->
+  <circle cx="430" cy="74" r="50" fill="url(#exitGlow)" />
+  <rect x="406" y="44" width="48" height="60" rx="12" fill="#15803d" stroke="#4ade80" stroke-width="5" />
+  <!-- Exit Light beam -->
+  <polygon points="414,104 446,104 466,160 394,160" fill="#4ade80" opacity="0.35" />
+  <circle cx="430" cy="74" r="14" fill="#86efac" />
+  <polygon points="426,68 436,74 426,80" fill="#14532d" />
+
+  <!-- Locked Wooden Gate with Brass Padlock (Mid corridor) -->
+  <g transform="translate(196, 216)">
+    <rect x="0" y="0" width="52" height="32" rx="6" fill="#78350f" stroke="#f59e0b" stroke-width="3" />
+    <line x1="14" y1="4" x2="14" y2="28" stroke="#451a03" stroke-width="2" />
+    <line x1="26" y1="4" x2="26" y2="28" stroke="#451a03" stroke-width="2" />
+    <line x1="38" y1="4" x2="38" y2="28" stroke="#451a03" stroke-width="2" />
+    <!-- Padlock Body -->
+    <rect x="18" y="10" width="16" height="14" rx="3" fill="#eab308" stroke="#854d0e" stroke-width="1.5" />
+    <!-- Shackle -->
+    <path d="M21,10 V6 A5,5 0 0,1 31,6 V10" fill="none" stroke="#713f12" stroke-width="2" />
+    <circle cx="26" cy="16" r="2" fill="#451a03" />
+  </g>
+
+  <!-- Brass Key on Floor with Sparkling Glow -->
+  <g transform="translate(90, 150) rotate(-25)" filter="url(#glowEffect)">
+    <circle cx="0" cy="0" r="16" fill="url(#brassKey)" stroke="#ca8a04" stroke-width="2" />
+    <circle cx="0" cy="0" r="7" fill="#290e02" />
+    <rect x="12" y="-4" width="34" height="8" rx="2" fill="url(#brassKey)" stroke="#ca8a04" stroke-width="1.5" />
+    <rect x="36" y="4" width="6" height="10" rx="1.5" fill="url(#brassKey)" />
+    <rect x="42" y="4" width="5" height="7" rx="1.5" fill="url(#brassKey)" />
+  </g>
+
+  <!-- Glowing Sunflower Seeds / Acorn Path -->
+  <g filter="url(#glowEffect)">
+    <!-- Small Acorn 1 -->
+    <circle cx="100" cy="74" r="9" fill="#facc15" />
+    <!-- Small Acorn 2 -->
+    <circle cx="100" cy="390" r="9" fill="#facc15" />
+    <!-- Small Acorn 3 -->
+    <circle cx="260" cy="390" r="9" fill="#facc15" />
+    <!-- Small Acorn 4 -->
+    <circle cx="390" cy="390" r="9" fill="#facc15" />
+  </g>
+
+  <!-- ============================================== -->
+  <!-- PIP THE CUTE HAMSTER (HERO IN CENTER CORRIDOR) -->
+  <!-- ============================================== -->
+  <g transform="translate(230, 290)" filter="url(#shadowFilter)">
+    <!-- Shadow beneath Pip -->
+    <ellipse cx="26" cy="76" rx="54" ry="18" fill="#000000" opacity="0.45" />
+
+    <!-- Cute Hamster Little Feet -->
+    <ellipse cx="-4" cy="72" rx="14" ry="8" fill="#fed7aa" stroke="#ea580c" stroke-width="2" />
+    <ellipse cx="56" cy="72" rx="14" ry="8" fill="#fed7aa" stroke="#ea580c" stroke-width="2" />
+
+    <!-- Hamster Plump Round Body -->
+    <ellipse cx="26" cy="36" rx="62" ry="52" fill="url(#hamsterFur)" stroke="#9a3412" stroke-width="3" />
+
+    <!-- Creamy White Belly Patch -->
+    <ellipse cx="26" cy="46" rx="36" ry="32" fill="url(#hamsterBelly)" />
+
+    <!-- Chubby Round Cheeks -->
+    <circle cx="-16" cy="34" r="24" fill="#fb923c" />
+    <circle cx="68" cy="34" r="24" fill="#fb923c" />
+
+    <!-- Pink Cheerful Blush -->
+    <ellipse cx="-16" cy="40" rx="12" ry="8" fill="#fb7185" opacity="0.6" />
+    <ellipse cx="68" cy="40" rx="12" ry="8" fill="#fb7185" opacity="0.6" />
+
+    <!-- Cute Round Ears -->
+    <!-- Left Ear -->
+    <ellipse cx="-22" cy="-12" rx="16" ry="18" fill="url(#hamsterFur)" stroke="#9a3412" stroke-width="2.5" />
+    <ellipse cx="-22" cy="-12" rx="9" ry="11" fill="#f472b6" />
+    <!-- Right Ear -->
+    <ellipse cx="74" cy="-12" rx="16" ry="18" fill="url(#hamsterFur)" stroke="#9a3412" stroke-width="2.5" />
+    <ellipse cx="74" cy="-12" rx="9" ry="11" fill="#f472b6" />
+
+    <!-- Big Shiny Black Cartoon Eyes -->
+    <ellipse cx="4" cy="18" rx="11" ry="14" fill="#18181b" />
+    <circle cx="1" cy="13" r="4.5" fill="#ffffff" />
+    <circle cx="7" cy="22" r="2" fill="#ffffff" />
+
+    <ellipse cx="48" cy="18" rx="11" ry="14" fill="#18181b" />
+    <circle cx="45" cy="13" r="4.5" fill="#ffffff" />
+    <circle cx="51" cy="22" r="2" fill="#ffffff" />
+
+    <!-- Tiny Pink Cute Nose -->
+    <polygon points="26,30 21,24 31,24" fill="#f43f5e" rx="3" />
+
+    <!-- Happy Little Mouth -->
+    <path d="M20,32 Q26,38 26,33 Q26,38 32,32" fill="none" stroke="#881337" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Whiskers -->
+    <line x1="-24" y1="28" x2="-44" y2="24" stroke="#7c2d12" stroke-width="2" stroke-linecap="round" />
+    <line x1="-24" y1="34" x2="-46" y2="36" stroke="#7c2d12" stroke-width="2" stroke-linecap="round" />
+    <line x1="76" y1="28" x2="96" y2="24" stroke="#7c2d12" stroke-width="2" stroke-linecap="round" />
+    <line x1="76" y1="34" x2="98" y2="36" stroke="#7c2d12" stroke-width="2" stroke-linecap="round" />
+
+    <!-- ============================== -->
+    <!-- GIANT GOLDEN ACORN HELD IN PAWS -->
+    <!-- ============================== -->
+    <g transform="translate(6, 42)">
+      <!-- Acorn Nut Body -->
+      <path d="M6,10 C-4,26 4,48 20,54 C36,48 44,26 34,10 Z" fill="url(#acornGrad)" stroke="#854d0e" stroke-width="2.5" />
+      <!-- Acorn Cap -->
+      <path d="M2,12 C2,2 38,2 38,12 Z" fill="url(#acornCap)" stroke="#451a03" stroke-width="2" />
+      <!-- Acorn Stem -->
+      <path d="M20,2 Q22,-8 28,-10" fill="none" stroke="#451a03" stroke-width="3.5" stroke-linecap="round" />
+      <!-- Specular Highlight on Nut -->
+      <ellipse cx="14" cy="24" rx="4" ry="10" transform="rotate(-15, 14, 24)" fill="#ffffff" opacity="0.6" />
+    </g>
+
+    <!-- Hamster Paws Clutching Acorn -->
+    <ellipse cx="6" cy="52" rx="10" ry="7" fill="#fed7aa" stroke="#ea580c" stroke-width="2" />
+    <ellipse cx="46" cy="52" rx="10" ry="7" fill="#fed7aa" stroke="#ea580c" stroke-width="2" />
+  </g>
+
+  <!-- Golden Sparkles & Floating Star Flares -->
+  <g fill="#fde047" opacity="0.9">
+    <!-- Star 1 -->
+    <path d="M360,180 L364,192 L376,196 L364,200 L360,212 L356,200 L344,196 L356,192 Z" />
+    <!-- Star 2 -->
+    <path d="M120,280 L123,288 L131,291 L123,294 L120,302 L117,294 L109,291 L117,288 Z" />
+    <!-- Star 3 -->
+    <path d="M390,320 L393,328 L401,331 L393,334 L390,342 L387,334 L379,331 L387,328 Z" />
+  </g>
+</svg>
