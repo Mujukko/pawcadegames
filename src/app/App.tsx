@@ -86,11 +86,17 @@ export const App: React.FC = () => {
     const milkPlinkoGame = GAMES_REGISTRY.find(g => g.id === 'milk-bottle-plinko');
     const triPeaksGame = GAMES_REGISTRY.find(g => g.id === 'farm-tripeaks-solitaire');
     const sheepSorterGame = GAMES_REGISTRY.find(g => g.id === 'sheep-sorter-gate');
+    const pinballGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-pinball');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/sheep-sorter-gate') || currentRoute.startsWith('/games/sheep-sorter') || currentRoute.startsWith('/games/sheep-gate')) {
+    if (currentRoute.startsWith('/games/barnyard-pinball') || currentRoute.startsWith('/games/pinball') || currentRoute.startsWith('/games/flipper')) {
+      if (pinballGame) {
+        activeTitle = pinballGame.metaTitle;
+        activeDesc = pinballGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/sheep-sorter-gate') || currentRoute.startsWith('/games/sheep-sorter') || currentRoute.startsWith('/games/sheep-gate')) {
       if (sheepSorterGame) {
         activeTitle = sheepSorterGame.metaTitle;
         activeDesc = sheepSorterGame.metaDescription;
@@ -386,6 +392,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/barnyard-pinball') || currentRoute.startsWith('/games/pinball') || currentRoute.startsWith('/games/flipper')) {
+      return <GamePage navigate={navigate} gameId="barnyard-pinball" />;
     }
     if (currentRoute.startsWith('/games/sheep-sorter-gate') || currentRoute.startsWith('/games/sheep-sorter') || currentRoute.startsWith('/games/sheep-gate')) {
       return <GamePage navigate={navigate} gameId="sheep-sorter-gate" />;

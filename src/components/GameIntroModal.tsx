@@ -776,6 +776,42 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Keep your eyes at the top of the runway rather than right at the gate! Anticipating 2 sheep in advance makes reaching 20+ combos easy.',
   },
+  'barnyard-pinball': {
+    title: 'Barnyard Pinball: Flipper Farm',
+    subtitle: 'Classic Retro Arcade Pinball',
+    mascot: '🕹️🌾',
+    themeColor: 'from-amber-600 via-orange-600 to-green-700',
+    goal: 'Launch chrome pinballs, hit glowing farm bumpers, and keep the ball in play with dual flippers!',
+    steps: [
+      {
+        icon: '🚀',
+        title: '1. Pull & Launch Plunger',
+        desc: 'Hold the launch button or pull the plunger spring to blast the ball through the curved top arch.',
+      },
+      {
+        icon: '🕹️',
+        title: '2. Work the Dual Flippers',
+        desc: 'Time your flips as the steel ball rolls down the inlanes to shoot it back toward high-value bumpers.',
+      },
+      {
+        icon: '⭐',
+        title: '3. Spell F-A-R-M & Multiball',
+        desc: 'Roll through all 4 rollover lanes to boost your multiplier, and hit the barn 3 times for Multiball!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left / Right Arrows, A / D, or Z / /: Engage flippers',
+        'Down Arrow / Spacebar: Pull and release plunger',
+        'M Key: Toggle sound effects',
+      ],
+      mobile: [
+        'LEFT / RIGHT FLIPPER Buttons or screen halves: Flip blades',
+        'LAUNCH Button: Hold to charge spring and release to fire',
+      ],
+    },
+    proTip: 'Do not double-flip randomly! Cradle the ball on a raised flipper blade to pause, line up your shot toward the bumper triangle, and fire with precision.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

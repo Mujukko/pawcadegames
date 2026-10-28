@@ -618,17 +618,24 @@ export const SheepSorterGateContainer: React.FC = () => {
         </div>
 
         {/* Controls / High Score */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1.5">
           <div className="text-right text-xs text-slate-400">
             <div>BEST</div>
             <div className="font-bold text-amber-200">{highScore}</div>
           </div>
           <button
             onClick={toggleSound}
-            className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 flex items-center justify-center text-lg border border-slate-700 transition"
+            className="w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 flex items-center justify-center text-base border border-slate-700 transition touch-manipulation"
             aria-label="Toggle Sound"
           >
             {isMuted ? '🔇' : '🔊'}
+          </button>
+          <button
+            onClick={handleRestart}
+            className="w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 flex items-center justify-center text-sm border border-slate-700 transition text-slate-300 hover:text-white touch-manipulation"
+            aria-label="Restart Game"
+          >
+            🔄
           </button>
         </div>
       </div>
@@ -641,7 +648,7 @@ export const SheepSorterGateContainer: React.FC = () => {
       )}
 
       {/* Main Interactive Canvas */}
-      <div className="relative w-full aspect-[420/540] bg-slate-950 overflow-hidden shadow-2xl border-x border-slate-800">
+      <div className="relative w-full aspect-[420/540] bg-slate-950 overflow-hidden shadow-2xl border-x border-slate-800 touch-none">
         <canvas
           ref={canvasRef}
           width={420}
@@ -667,7 +674,7 @@ export const SheepSorterGateContainer: React.FC = () => {
       <div className="w-full bg-slate-900/95 border border-slate-800 rounded-b-2xl p-2.5 flex space-x-2">
         <button
           onClick={() => handleFlip('left')}
-          className={`flex-1 min-h-[52px] rounded-xl font-black text-sm transition-all duration-150 flex items-center justify-center space-x-1.5 border active:scale-95 ${
+          className={`flex-1 min-h-[52px] rounded-xl font-black text-sm transition-all duration-150 flex items-center justify-center space-x-1.5 border active:scale-95 touch-manipulation ${
             hudState.gateDir === 'left'
               ? 'bg-emerald-600 text-white border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.5)]'
               : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
@@ -679,7 +686,7 @@ export const SheepSorterGateContainer: React.FC = () => {
 
         <button
           onClick={() => handleFlip('right')}
-          className={`flex-1 min-h-[52px] rounded-xl font-black text-sm transition-all duration-150 flex items-center justify-center space-x-1.5 border active:scale-95 ${
+          className={`flex-1 min-h-[52px] rounded-xl font-black text-sm transition-all duration-150 flex items-center justify-center space-x-1.5 border active:scale-95 touch-manipulation ${
             hudState.gateDir === 'right'
               ? 'bg-amber-600 text-white border-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.5)]'
               : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
@@ -715,7 +722,7 @@ export const SheepSorterGateContainer: React.FC = () => {
 
             <button
               onClick={handleRestart}
-              className="w-full min-h-[48px] bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-black text-base rounded-xl shadow-lg active:scale-95 transition"
+              className="w-full min-h-[48px] bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-black text-base rounded-xl shadow-lg active:scale-95 transition touch-manipulation"
             >
               PLAY AGAIN 🔄
             </button>

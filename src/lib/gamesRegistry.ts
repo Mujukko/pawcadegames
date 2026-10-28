@@ -1930,6 +1930,44 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Barnyard Sheep Sorter: Pasture Gate 🐑 — No Download | Pawcade',
     metaDescription: 'Play Barnyard Sheep Sorter free online! Flip the pasture gate left or right to sort fluffy sheep, build streak combos, and trigger Golden Fever mode.',
   },
+  {
+    id: 'barnyard-pinball',
+    slug: 'barnyard-pinball',
+    title: 'Barnyard Pinball: Flipper Farm 🕹️🌾',
+    tagline: 'Launch chrome pinballs, hit glowing farm bumpers, and keep the ball in play with dual flippers!',
+    description: 'Launch chrome pinballs across a lively farm arcade table! Use dual flippers to deflect the steel ball into illuminated barn and corn bumpers. Light up all four F-A-R-M rollover lanes to boost your score multiplier up to 5x. Hit the red barn three times to trigger exciting multiball action. Test your timing and reflexes with zero downloads!',
+    category: 'arcade',
+    categories: ['arcade', 'farm'],
+    route: '/games/barnyard-pinball/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '44.8K',
+    badge: '🕹️ Pinball Arcade',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-pinball.svg',
+    controls: {
+      desktop: [
+        'Left Arrow / A / Z: Engage Left Flipper',
+        'Right Arrow / D / Slash: Engage Right Flipper',
+        'Down Arrow / Spacebar: Pull and release spring plunger to launch ball',
+        'M Key: Toggle mechanical flipper and chime sounds',
+      ],
+      mobile: [
+        'LEFT FLIPPER Button / Tap Left Screen: Flip left blade upward',
+        'RIGHT FLIPPER Button / Tap Right Screen: Flip right blade upward',
+        'LAUNCH Button: Hold to compress plunger spring and release to fire',
+      ],
+    },
+    features: [
+      'Sub-Stepped 60 FPS Pinball Physics with Authentic Restitution and Gravity',
+      '3 Illuminated Mushroom Bumpers: Red Barn, Golden Corn, and Fresh Milk',
+      '4 Rollover Lanes (F-A-R-M) with Multiplier Upgrades up to 5x',
+      'High-Speed Multiball Frenzy with Dual Chrome Steel Balls',
+      'Procedural Web Audio Solenoids, Spring Plunger Snaps, and Bumper Pings',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Barnyard Pinball: Flipper Farm 🕹️ — No Download | Pawcade',
+    metaDescription: 'Play Barnyard Pinball free online! Launch chrome balls, hit glowing farm bumpers, light F-A-R-M lanes, and trigger multiball. Free arcade pinball with no download.',
+  },
 ];
 
 
