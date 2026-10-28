@@ -1586,6 +1586,44 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Barnyard Peg Pop: Acorn Bounce 🌰🎯 — No Download | Pawcade',
     metaDescription: 'Play Barnyard Peg Pop free online! Aim the acorn cannon, bounce off colorful pegs, and clear golden targets in Peggle style. Free casual game with no download.',
   },
+  {
+    id: 'duck-archery-range',
+    slug: 'duck-archery-range',
+    title: 'Duck Archery: Target Master 🎯🦆',
+    tagline: 'Pull back the bowstring, gauge prairie wind gusts, and shoot bullseyes with Quacky the Robin Duck!',
+    description: 'Help Quacky the Robin Duck master the countryside archery range! Pull back the bowstring, adjust your launch angle, and compensate for shifting wind gusts. Hit bullseyes, pop bonus apples, and ring golden bells across four challenging archery ranges to claim the trophy.',
+    category: 'arcade',
+    categories: ['arcade', 'farm'],
+    route: '/games/duck-archery-range/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '21.4K',
+    badge: '🎯 Target Master',
+    thumbnailUrl: '/assets/thumbnails/thumb-duck-archery-range.svg',
+    controls: {
+      desktop: [
+        'Mouse Drag & Release: Pull back bowstring to aim angle and power',
+        'Trajectory Preview: Follow the dotted guideline to gauge gravity',
+        'R Key: Restart current archery stage',
+        'M Key: Toggle bow and impact sound effects',
+      ],
+      mobile: [
+        'Touch & Drag: Pull back on the bow to aim and charge power',
+        'Release Finger: Fire arrow toward target field',
+        'Restart Button: Reset current stage anytime',
+      ],
+    },
+    features: [
+      '4 Handcrafted Archery Ranges: Pasture Warmup, Windmill Breeze, Orchard Trickshot, and Grand Championship',
+      'Realistic Ballistics Physics with Gravity Arc and Dynamic Crosswind Gusts',
+      'Multi-Zone Target Scoring: Bullseyes (100 pts), Red Rings (50 pts), Blue Rings (25 pts), and White Rings (10 pts)',
+      'Bonus Field Targets: Juicy Crisp Apples (+150 pts) and Golden Chime Bells (+1 Extra Arrow)',
+      'Procedural Web Audio Synthesizer (Bow Creaks, Twang Snaps, Wood Thuds, and Bullseye Chimes)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Duck Archery: Target Master 🎯🦆 — No Download | Pawcade',
+    metaDescription: 'Play Duck Archery: Target Master free online! Pull back the bowstring, gauge wind gusts, and shoot bullseyes across 4 ranges. Free casual game with no download.',
+  },
 ];
 
 

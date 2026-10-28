@@ -439,6 +439,43 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Aim for the green magic pegs early! Green pegs trigger an explosive upward rebound boost, allowing one ball to clear dozens of pegs on its return descent!',
   },
+  'duck-archery-range': {
+    title: 'Duck Archery: Target Master',
+    subtitle: 'Prairie Bowstring & Bullseye Arcade',
+    mascot: '🎯🦆',
+    themeColor: 'from-amber-500 via-emerald-600 to-sky-700',
+    goal: 'Pull back the bowstring, gauge wind gusts, and shoot bullseyes with Quacky the Robin Duck!',
+    steps: [
+      {
+        icon: '🏹',
+        title: '1. Pull & Aim Bow',
+        desc: 'Drag backward from the bow to aim your shot. Pull further back to charge higher arrow velocity.',
+      },
+      {
+        icon: '💨',
+        title: '2. Watch Wind Gusts',
+        desc: 'Check the top wind gauge before releasing. Crosswinds push your arrow sideways during its flight.',
+      },
+      {
+        icon: '🎯',
+        title: '3. Hit Bullseyes & Apples',
+        desc: 'Hit golden center rings for 100 points, pop apples for 150 points, and strike bells for extra arrows.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Drag & Release: Pull back bowstring to aim and shoot',
+        'R Key: Quick restart archery range',
+        'M Key: Toggle bow and chime sounds',
+      ],
+      mobile: [
+        'Touch & Drag: Pull back on bow to aim angle and power',
+        'Release Finger: Fire arrow toward targets',
+        'Restart Button: Reset stage anytime',
+      ],
+    },
+    proTip: 'Aim high when crosswinds push against your shot! The dotted arc preview reveals your initial trajectory, but wind will carry your arrow further sideways.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',
