@@ -662,6 +662,45 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Drop coins when the chrome pusher begins sliding backward! This lands your coin flat on the shelf so the forward stroke gives maximum pushing force.',
   },
+  'milk-bottle-plinko': {
+    title: 'Milk Bottle Plinko: Carnival Drop',
+    subtitle: 'Classic Carnival Peg Drop & 100x Jackpot',
+    mascot: '🥛🎪',
+    themeColor: 'from-blue-600 via-indigo-700 to-amber-600',
+    goal: 'Drop farm milk bottles through bouncy wooden pegs into the 100x jackpot bucket!',
+    steps: [
+      {
+        icon: '🥛',
+        title: '1. Drop From Moving Hopper',
+        desc: 'Tap anywhere across the board to drop bottles from Bessie\'s moving dispenser cart.',
+      },
+      {
+        icon: '⚡',
+        title: '2. Bounce Off Bumpers & Pegs',
+        desc: 'Watch bottles bounce down through 10 peg rows and hit red bumper rings to charge your meter.',
+      },
+      {
+        icon: '⭐',
+        title: '3. Hit the 100x Jackpot',
+        desc: 'Land bottles in the golden center corral for a huge 100x score boost and trigger Golden Frenzy!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click Anywhere: Drop milk bottle from hopper',
+        'Spacebar / Drop Button: Drop bottle immediately',
+        'Frenzy Button: Activate Golden Frenzy when meter is full',
+        'M Key: Toggle sound effects',
+      ],
+      mobile: [
+        'Tap Anywhere: Drop bottle at tapped X position',
+        'DROP MILK BOTTLE Button: Large bottom button to drop bottle',
+        'GOLDEN FRENZY Button: Tap to start 5x bottle stream',
+        'Mute & Reset: Compact buttons on top HUD',
+      ],
+    },
+    proTip: 'Drop bottles when the hopper aligns just slightly off-center! Deflecting inward off the outer pegs creates the cleanest angle into the 100x center jackpot.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

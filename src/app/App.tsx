@@ -83,11 +83,17 @@ export const App: React.FC = () => {
     const carrotTargetGame = GAMES_REGISTRY.find(g => g.id === 'carrot-target-throw');
     const tangramGame = GAMES_REGISTRY.find(g => g.id === 'animal-tangram-fit');
     const coinPusherGame = GAMES_REGISTRY.find(g => g.id === 'piggy-coin-pusher');
+    const milkPlinkoGame = GAMES_REGISTRY.find(g => g.id === 'milk-bottle-plinko');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/piggy-coin-pusher') || currentRoute.startsWith('/games/coin-pusher') || currentRoute.startsWith('/games/coin-dozer')) {
+    if (currentRoute.startsWith('/games/milk-bottle-plinko') || currentRoute.startsWith('/games/milk-plinko') || currentRoute.startsWith('/games/plinko')) {
+      if (milkPlinkoGame) {
+        activeTitle = milkPlinkoGame.metaTitle;
+        activeDesc = milkPlinkoGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/piggy-coin-pusher') || currentRoute.startsWith('/games/coin-pusher') || currentRoute.startsWith('/games/coin-dozer')) {
       if (coinPusherGame) {
         activeTitle = coinPusherGame.metaTitle;
         activeDesc = coinPusherGame.metaDescription;
@@ -368,6 +374,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/milk-bottle-plinko') || currentRoute.startsWith('/games/milk-plinko') || currentRoute.startsWith('/games/plinko')) {
+      return <GamePage navigate={navigate} gameId="milk-bottle-plinko" />;
     }
     if (currentRoute.startsWith('/games/piggy-coin-pusher') || currentRoute.startsWith('/games/coin-pusher') || currentRoute.startsWith('/games/coin-dozer')) {
       return <GamePage navigate={navigate} gameId="piggy-coin-pusher" />;

@@ -144,6 +144,10 @@ const AnimalTangramFitContainer = lazy(() =>
 const PiggyCoinPusherContainer = lazy(() =>
   import('../games/piggy-coin-pusher/PiggyCoinPusherContainer').then((m) => ({ default: m.PiggyCoinPusherContainer }))
 );
+const MilkBottlePlinkoContainer = lazy(() =>
+  import('../games/milk-bottle-plinko/MilkBottlePlinkoContainer').then((m) => ({ default: m.MilkBottlePlinkoContainer }))
+);
+
 
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
@@ -174,6 +178,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isMilkPlinko = gameId === 'milk-bottle-plinko' || gameId === 'milk-plinko' || gameId === 'plinko';
   const isCoinPusher = gameId === 'piggy-coin-pusher' || gameId === 'coin-pusher' || gameId === 'coin-dozer';
   const isTangram = gameId === 'animal-tangram-fit' || gameId === 'tangram' || gameId === 'wood-fit';
   const isCarrotTarget = gameId === 'carrot-target-throw' || gameId === 'carrot-target' || gameId === 'knife-hit';
@@ -511,7 +516,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isCoinPusher ? (
+            {isMilkPlinko ? (
+              <MilkBottlePlinkoContainer />
+            ) : isCoinPusher ? (
               <PiggyCoinPusherContainer />
             ) : isTangram ? (
               <AnimalTangramFitContainer />

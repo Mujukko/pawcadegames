@@ -92,22 +92,12 @@ export const PiggyCoinPusherContainer: React.FC = () => {
     }
   }, []);
 
-  const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+  const handleCanvasPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
-
-    let clientX = 0;
-    if ('touches' in e && e.touches.length > 0) {
-      clientX = e.touches[0].clientX;
-    } else if ('clientX' in e) {
-      clientX = e.clientX;
-    } else {
-      return;
-    }
-
     const scaleX = 420 / rect.width;
-    const targetX = (clientX - rect.left) * scaleX;
+    const targetX = (e.clientX - rect.left) * scaleX;
     handleDrop(targetX);
   };
 
@@ -482,17 +472,17 @@ export const PiggyCoinPusherContainer: React.FC = () => {
         </div>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <button
             onClick={toggleSound}
-            className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm active:scale-95 transition-transform"
+            className="w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm sm:text-base active:scale-95 transition-transform touch-manipulation"
             aria-label="Toggle Sound"
           >
             {isMuted ? '🔇' : '🔊'}
           </button>
           <button
             onClick={handleResetGame}
-            className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm active:scale-95 transition-transform text-slate-300 hover:text-white"
+            className="w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm sm:text-base active:scale-95 transition-transform text-slate-300 hover:text-white touch-manipulation"
             aria-label="Reset Machine"
           >
             🔄
@@ -501,14 +491,13 @@ export const PiggyCoinPusherContainer: React.FC = () => {
       </div>
 
       {/* Interactive 60 FPS Canvas Table */}
-      <div className="relative w-full aspect-[420/540] bg-slate-950 border-x border-slate-800 overflow-hidden shadow-2xl">
+      <div className="relative w-full aspect-[420/540] bg-slate-950 border-x border-slate-800 overflow-hidden shadow-2xl touch-none">
         <canvas
           ref={canvasRef}
           width={420}
           height={540}
-          onClick={handleCanvasClick}
-          onTouchStart={handleCanvasClick}
-          className="w-full h-full cursor-pointer block"
+          onPointerDown={handleCanvasPointerDown}
+          className="w-full h-full cursor-pointer block touch-none"
         />
       </div>
 
@@ -518,7 +507,7 @@ export const PiggyCoinPusherContainer: React.FC = () => {
         <button
           onClick={handleQuakeClick}
           disabled={hudState.quakeProgress < 100 || hudState.quakeActive}
-          className={`flex-1 py-2 px-2 rounded-lg font-bold text-xs flex flex-col items-center justify-center transition-all ${
+          className={`flex-1 min-h-[44px] py-2 px-2 rounded-lg font-bold text-xs flex flex-col items-center justify-center transition-all touch-manipulation ${
             hudState.quakeActive
               ? 'bg-amber-600 text-white animate-pulse'
               : hudState.quakeProgress >= 100
@@ -543,7 +532,7 @@ export const PiggyCoinPusherContainer: React.FC = () => {
         <button
           onClick={handleWallsClick}
           disabled={hudState.wallProgress < 100 || hudState.wallsActive}
-          className={`flex-1 py-2 px-2 rounded-lg font-bold text-xs flex flex-col items-center justify-center transition-all ${
+          className={`flex-1 min-h-[44px] py-2 px-2 rounded-lg font-bold text-xs flex flex-col items-center justify-center transition-all touch-manipulation ${
             hudState.wallsActive
               ? 'bg-sky-600 text-white animate-pulse'
               : hudState.wallProgress >= 100
@@ -570,7 +559,7 @@ export const PiggyCoinPusherContainer: React.FC = () => {
         <button
           onClick={() => handleDrop(210 + (Math.random() - 0.5) * 140)}
           disabled={hudState.wallet <= 0}
-          className={`w-full py-3.5 px-4 rounded-xl font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
+          className={`w-full min-h-[48px] py-3.5 px-4 rounded-xl font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-all touch-manipulation ${
             hudState.wallet > 0
               ? 'bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 text-slate-950 shadow-lg shadow-amber-500/30 active:scale-[0.98] hover:brightness-105 ring-2 ring-amber-300'
               : 'bg-slate-800 text-slate-500 cursor-not-allowed'
@@ -598,7 +587,7 @@ export const PiggyCoinPusherContainer: React.FC = () => {
 
             <button
               onClick={handleRefill}
-              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-emerald-500/30 active:scale-95 transition-all flex items-center justify-center gap-2"
+              className="w-full min-h-[48px] py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-emerald-500/30 active:scale-95 transition-all flex items-center justify-center gap-2 touch-manipulation"
             >
               <span>🎁</span>
               <span>CLAIM +35 FREE COINS</span>

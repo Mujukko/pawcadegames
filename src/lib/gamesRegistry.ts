@@ -1814,7 +1814,47 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Piggy Coin Pusher: Barnyard Dozer 🐷🪙 — No Download | Pawcade',
     metaDescription: 'Play Piggy Coin Pusher free online! Drop shiny coins into the barnyard dozer, trigger quakes, raise walls, and push big prizes over the ledge. Free no download.',
   },
+  {
+    id: 'milk-bottle-plinko',
+    slug: 'milk-bottle-plinko',
+    title: 'Milk Bottle Plinko: Carnival Drop 🥛🎪',
+    tagline: 'Drop farm milk bottles through bouncy wooden pegs into the 100x jackpot bucket!',
+    description: 'Drop glass milk bottles from Bessie the Cow\'s moving hopper in this carnival plinko arcade! Watch bottles bounce through 10 rows of wooden pegs and rubber bumpers. Time your drops to hit the central 100x Golden Jackpot bucket or score corner multipliers. Charge your meter to trigger the Golden Milk Frenzy and multiply your carnival prize score!',
+    category: 'arcade',
+    categories: ['arcade', 'farm'],
+    route: '/games/milk-bottle-plinko/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '36.5K',
+    badge: '🎪 Carnival Plinko',
+    thumbnailUrl: '/assets/thumbnails/thumb-milk-bottle-plinko.svg',
+    controls: {
+      desktop: [
+        'Left Click: Drop a milk bottle from the moving dispenser',
+        'Spacebar / Drop Button: Drop bottle immediately',
+        'Frenzy Button: Activate Golden Milk Frenzy when meter is full',
+        'M Key: Toggle pentatonic chime and bell sound effects',
+      ],
+      mobile: [
+        'Tap Anywhere on Board: Drop bottle at tapped X position',
+        'DROP MILK BOTTLE: Large bottom button to drop bottle',
+        'GOLDEN FRENZY Button: Tap to start 5x bottle stream',
+        'Mute & Reset: Compact buttons on top HUD',
+      ],
+    },
+    features: [
+      'Sub-Stepped Multi-Row Plinko Physics with Elastic Bumper Restitution',
+      'Moving Top Dispenser Hopper with Direct Tap Drop Targeting',
+      '7 Multiplier Catch Buckets from 2x up to the 100x Golden Jackpot Corral',
+      '4 Bottle Varieties: Farm Milk, Strawberry Milk, Chocolate Milk, and Golden Star Milk',
+      'Pentatonic Note Web Audio Synthesizer with Ascending Peg Pings and Fanfares',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Milk Bottle Plinko: Carnival Drop 🥛🎪 — No Download | Pawcade',
+    metaDescription: 'Play Milk Bottle Plinko free online! Drop farm milk bottles through bouncy wooden pegs into the 100x jackpot bucket. Free casual carnival game with no download.',
+  },
 ];
+
 
 
 
