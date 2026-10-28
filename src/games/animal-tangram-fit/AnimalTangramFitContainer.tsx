@@ -459,7 +459,7 @@ export const AnimalTangramFitContainer: React.FC = () => {
             <button
               onClick={handleRotateSelected}
               aria-label="Rotate Selected Piece"
-              className="px-2.5 py-1 min-h-[38px] sm:min-h-[44px] rounded-xl bg-amber-500/20 hover:bg-amber-500/30 active:scale-95 border border-amber-500/40 flex items-center gap-1 text-amber-300 font-extrabold text-xs transition-all cursor-pointer touch-manipulation"
+              className="px-2 sm:px-2.5 py-1 min-h-[40px] sm:min-h-[44px] rounded-xl bg-amber-500/20 hover:bg-amber-500/30 active:scale-95 border border-amber-500/40 flex items-center gap-1 text-amber-300 font-extrabold text-[11px] sm:text-xs transition-all cursor-pointer touch-manipulation"
             >
               <RotateCw className="w-3.5 h-3.5" />
               <span>ROTATE</span>
@@ -485,14 +485,14 @@ export const AnimalTangramFitContainer: React.FC = () => {
       </div>
 
       {/* CANVAS CONTAINER */}
-      <div className="relative w-full aspect-[420/480] max-h-[calc(100vh-220px)] rounded-2xl overflow-hidden border border-slate-800 shadow-inner bg-slate-900">
+      <div className="relative w-full aspect-[420/480] max-h-[calc(100vh-220px)] rounded-2xl overflow-hidden border border-slate-800 shadow-inner bg-slate-900 touch-none select-none">
         <canvas
           ref={canvasRef}
           width={420}
           height={480}
           onPointerDown={handleBoardClick}
           onPointerMove={handlePointerMove}
-          className="w-full h-full object-contain block cursor-pointer"
+          className="w-full h-full object-contain block cursor-pointer touch-none select-none"
         />
 
         {/* PROGRESS BADGE OVERLAY */}

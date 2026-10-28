@@ -1,5 +1,4 @@
-// Procedural Web Audio Sound Synthesizer for Animal Tangram: Wooden Block Fit
-// Zero external audio files, zero latency, resilient to mobile touch unlocking
+import { getSharedAudioContext } from '../../../lib/audio/webAudioUnlocker';
 
 class TangramAudioSystem {
   private ctx: AudioContext | null = null;
@@ -16,11 +15,8 @@ class TangramAudioSystem {
 
   private initCtx(): AudioContext | null {
     if (this.isMuted) return null;
-    if (!this.ctx) {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (AudioCtx) {
-        this.ctx = new AudioCtx();
-      }
+    if (!this.ctx && typeof window !== 'undefined') {
+      this.ctx = getSharedAudioContext();
     }
     if (this.ctx && this.ctx.state === 'suspended') {
       this.ctx.resume().catch(() => {});

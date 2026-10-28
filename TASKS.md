@@ -79,10 +79,11 @@
 | TASK-075 | P0 | DONE | Caterpillar Garden: Fruit Trail Snake (Game #43) | Wavy caterpillar snake puzzle: Sammy the caterpillar, multi-segment smooth crawling, 5 garden fruits (cherries, strawberries, apples, golden apples, turbo leaves), hedge & rock obstacles, 4 garden plots, tactile touch swipe & virtual D-Pad, Web Audio bites & munch sounds, 11 unit tests. |
 | TASK-076 | P0 | DONE | Carrot Target Throw: Barnyard Spin (Game #44) | Precision timing & target throw arcade: flick crunchy carrots into rotating oak stump, waterwheel timber, and windmill rotor; dodge pre-stuck wood pegs and existing carrots; slice bonus apples (+250 pts) & golden acorns (+500 pts); sub-stepped deflection physics; 4 spinning stages, 10 unit tests. |
 | TASK-077 | P0 | DONE | Animal Tangram: Wooden Block Fit (Game #45) | Tactile wooden silhouette puzzle: assemble roosters, puppies, lambs, and cows from polished wood polyominoes (cherry, walnut, oak, pine, mahogany); snap-to-grid placement; 90-degree in-tray & on-board rotation; 4 handcrafted stages, 11 unit tests. |
+| TASK-078 | P0 | DONE | Piggy Coin Pusher: Barnyard Dozer (Game #46) | Classic arcade coin dozer: moving chrome pusher blade with red bumper, sub-stepped multi-coin circle relaxation, front prize chute collection, side gutter barriers, Barn Quake tremor & Coin Walls power-ups, 5 collectible coin types, procedural Web Audio synthesizer, 8 unit tests. |
 
 ## Completed Sprint Summary
 - All backlog tasks completed.
-- Definition of Done met: **45 complete playable games** with pure TypeScript logic engines, Web Audio procedural synthesizers, 481 automated tests passing across 47 test suites (4800+ assertions), zero type errors, lightweight code-split bundles, single-screen zero-scroll mobile responsiveness, 100/100 7-pillar Agentic SEO audit with 0/100 slop, and live deployment.
+- Definition of Done met: **46 complete playable games** with pure TypeScript logic engines, Web Audio procedural synthesizers, 489 automated tests passing across 48 test suites (4800+ assertions), zero type errors, lightweight code-split bundles, single-screen zero-scroll mobile responsiveness, 100/100 7-pillar Agentic SEO audit with 0/100 slop, and live deployment.
 
 
 

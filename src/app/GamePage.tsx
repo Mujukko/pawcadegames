@@ -141,6 +141,10 @@ const CarrotTargetThrowContainer = lazy(() =>
 const AnimalTangramFitContainer = lazy(() =>
   import('../games/animal-tangram-fit/AnimalTangramFitContainer').then((m) => ({ default: m.AnimalTangramFitContainer }))
 );
+const PiggyCoinPusherContainer = lazy(() =>
+  import('../games/piggy-coin-pusher/PiggyCoinPusherContainer').then((m) => ({ default: m.PiggyCoinPusherContainer }))
+);
+
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -170,6 +174,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isCoinPusher = gameId === 'piggy-coin-pusher' || gameId === 'coin-pusher' || gameId === 'coin-dozer';
   const isTangram = gameId === 'animal-tangram-fit' || gameId === 'tangram' || gameId === 'wood-fit';
   const isCarrotTarget = gameId === 'carrot-target-throw' || gameId === 'carrot-target' || gameId === 'knife-hit';
   const isCaterpillar = gameId === 'caterpillar-fruit-trail' || gameId === 'caterpillar' || gameId === 'snake';
@@ -506,7 +511,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isTangram ? (
+            {isCoinPusher ? (
+              <PiggyCoinPusherContainer />
+            ) : isTangram ? (
               <AnimalTangramFitContainer />
             ) : isCarrotTarget ? (
               <CarrotTargetThrowContainer />

@@ -82,11 +82,17 @@ export const App: React.FC = () => {
     const caterpillarGame = GAMES_REGISTRY.find(g => g.id === 'caterpillar-fruit-trail');
     const carrotTargetGame = GAMES_REGISTRY.find(g => g.id === 'carrot-target-throw');
     const tangramGame = GAMES_REGISTRY.find(g => g.id === 'animal-tangram-fit');
+    const coinPusherGame = GAMES_REGISTRY.find(g => g.id === 'piggy-coin-pusher');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/animal-tangram-fit') || currentRoute.startsWith('/games/tangram') || currentRoute.startsWith('/games/wood-fit')) {
+    if (currentRoute.startsWith('/games/piggy-coin-pusher') || currentRoute.startsWith('/games/coin-pusher') || currentRoute.startsWith('/games/coin-dozer')) {
+      if (coinPusherGame) {
+        activeTitle = coinPusherGame.metaTitle;
+        activeDesc = coinPusherGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/animal-tangram-fit') || currentRoute.startsWith('/games/tangram') || currentRoute.startsWith('/games/wood-fit')) {
       if (tangramGame) {
         activeTitle = tangramGame.metaTitle;
         activeDesc = tangramGame.metaDescription;
@@ -362,6 +368,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/piggy-coin-pusher') || currentRoute.startsWith('/games/coin-pusher') || currentRoute.startsWith('/games/coin-dozer')) {
+      return <GamePage navigate={navigate} gameId="piggy-coin-pusher" />;
     }
     if (currentRoute.startsWith('/games/animal-tangram-fit') || currentRoute.startsWith('/games/tangram') || currentRoute.startsWith('/games/wood-fit')) {
       return <GamePage navigate={navigate} gameId="animal-tangram-fit" />;

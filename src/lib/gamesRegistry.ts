@@ -1775,7 +1775,47 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Animal Tangram: Wooden Block Fit 🧩🐾 — No Download | Pawcade',
     metaDescription: 'Play Animal Tangram free online! Fit polished wooden blocks into cute animal silhouettes without overlapping. Relaxing farm brain puzzle with no download.',
   },
+  {
+    id: 'piggy-coin-pusher',
+    slug: 'piggy-coin-pusher',
+    title: 'Piggy Coin Pusher: Barnyard Dozer 🐷🪙',
+    tagline: 'Drop shiny coins, trigger farm quakes, and push big prizes over the ledge!',
+    description: 'Drop shiny golden coins onto the barnyard pusher in this classic arcade dozer! Time your drops to slide moving coins forward. Push clover silvers, prize eggs, and milk bottles over the front ledge to collect bonus points. Trigger the Barn Quake to shake the table or raise Coin Walls to protect your loot from side gutters!',
+    category: 'arcade',
+    categories: ['arcade', 'farm'],
+    route: '/games/piggy-coin-pusher/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '34.8K',
+    badge: '🪙 Coin Dozer',
+    thumbnailUrl: '/assets/thumbnails/thumb-piggy-coin-pusher.svg',
+    controls: {
+      desktop: [
+        'Left Click Anywhere: Drop a coin at the cursor position',
+        'Spacebar / Drop Button: Drop coin down center chute',
+        'Quake Button: Trigger table tremor when power meter is full',
+        'Walls Button: Raise protective side barriers when meter is full',
+      ],
+      mobile: [
+        'Tap Anywhere: Drop coin at tapped screen position',
+        'DROP COIN Button: Large bottom button to drop coin instantly',
+        'BARN QUAKE Button: Shake table to push coins over edge',
+        'COIN WALLS Button: Shield side gutters from coin loss',
+      ],
+    },
+    features: [
+      'Sub-Stepped Multi-Coin Physics Engine with Smooth Circle-Circle Relaxation',
+      'Continuous Moving Chrome Pusher Blade with Red Ruby Bumper',
+      '5 Collectible Coin Types: Golden Corn, Clover Silver, Mega Coin, Prize Egg, and Milk Bottle',
+      'Dynamic Table Power-Ups: Barn Quake Tremor and Energy Shield Side Coin Walls',
+      'Procedural Web Audio Synthesizer (Coin Pings, Golden Chimes, Quake Rumbles, and Fanfares)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Piggy Coin Pusher: Barnyard Dozer 🐷🪙 — No Download | Pawcade',
+    metaDescription: 'Play Piggy Coin Pusher free online! Drop shiny coins into the barnyard dozer, trigger quakes, raise walls, and push big prizes over the ledge. Free no download.',
+  },
 ];
+
 
 
 

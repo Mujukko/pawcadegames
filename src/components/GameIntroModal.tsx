@@ -623,6 +623,45 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Start with the largest and corner pieces first! Placing bulky squares and long bars reveals the exact slots left for smaller pieces.',
   },
+  'piggy-coin-pusher': {
+    title: 'Piggy Coin Pusher: Barnyard Dozer',
+    subtitle: 'Classic Arcade Coin Dozer & Quake',
+    mascot: '🐷🪙',
+    themeColor: 'from-amber-500 via-yellow-600 to-amber-700',
+    goal: 'Drop shiny coins onto the moving blade, cascade piles forward, and push prize items over the front ledge!',
+    steps: [
+      {
+        icon: '🪙',
+        title: '1. Drop Golden Coins',
+        desc: 'Tap anywhere across the top drop chute to release coins onto the sliding upper bed.',
+      },
+      {
+        icon: '🚜',
+        title: '2. Push Over Front Ledge',
+        desc: 'Time your drops so the moving rake pushes stacked coins and prizes directly over the front edge.',
+      },
+      {
+        icon: '⚡',
+        title: '3. Barn Quake & Coin Walls',
+        desc: 'Tap Barn Quake to shake the table or activate Coin Walls to block side gutters from swallowing your coins!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click Anywhere: Drop coin at cursor position',
+        'Spacebar / Drop Button: Drop coin down center chute',
+        'Quake Button: Trigger table tremor when meter is full',
+        'Walls Button: Raise protective side barriers',
+      ],
+      mobile: [
+        'Tap Anywhere: Drop coin at tapped screen position',
+        'DROP COIN Button: Large touch button to drop coin',
+        'BARN QUAKE Button: Shake table to push coins over edge',
+        'COIN WALLS Button: Shield side gutters from coin loss',
+      ],
+    },
+    proTip: 'Drop coins when the chrome pusher begins sliding backward! This lands your coin flat on the shelf so the forward stroke gives maximum pushing force.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',
