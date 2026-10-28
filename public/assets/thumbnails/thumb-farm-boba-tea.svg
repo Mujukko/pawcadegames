@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="cafeBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fdf4ff" />
+      <stop offset="50%" stop-color="#fae8ff" />
+      <stop offset="100%" stop-color="#f5d0fe" />
+    </linearGradient>
+    <linearGradient id="counterWood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+    <linearGradient id="teaGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="35%" stop-color="#fb923c" />
+      <stop offset="80%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#9a3412" />
+    </linearGradient>
+    <linearGradient id="foamGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#fdf2f8" />
+    </linearGradient>
+    <linearGradient id="cupGlass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6" />
+      <stop offset="20%" stop-color="#ffffff" stop-opacity="0.2" />
+      <stop offset="80%" stop-color="#ffffff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.45" />
+    </linearGradient>
+    <linearGradient id="strawGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c084fc" />
+      <stop offset="100%" stop-color="#9333ea" />
+    </linearGradient>
+    <linearGradient id="pearlGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#451a03" />
+      <stop offset="40%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#09090b" />
+    </linearGradient>
+    <linearGradient id="apronGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#4c0519" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- PASTEL CAFE BACKGROUND -->
+  <rect x="0" y="0" width="512" height="420" fill="url(#cafeBg)" />
+  <!-- Cafe awning stripes -->
+  <path d="M 0 0 L 512 0 L 512 40 C 470 50 430 35 384 45 C 340 55 298 35 256 45 C 214 55 172 35 128 45 C 84 55 42 35 0 45 Z" fill="#ec4899" opacity="0.85" />
+  <path d="M 64 0 L 128 0 L 128 45 C 84 55 42 35 0 45 L 0 0 Z" fill="#f472b6" opacity="0.9" />
+  <path d="M 192 0 L 256 0 L 256 45 C 214 55 172 35 128 45 L 128 0 Z" fill="#f472b6" opacity="0.9" />
+  <path d="M 320 0 L 384 0 L 384 45 C 340 55 298 35 256 45 L 256 0 Z" fill="#f472b6" opacity="0.9" />
+  <path d="M 448 0 L 512 0 L 512 40 L 448 0 Z" fill="#f472b6" opacity="0.9" />
+
+  <!-- WOODEN COUNTER TOP -->
+  <rect x="0" y="420" width="512" height="92" fill="url(#counterWood)" />
+  <rect x="0" y="420" width="512" height="10" fill="#d97706" />
+
+  <!-- BARISTA DAISY CALF (PEEKING FROM BEHIND COUNTER) -->
+  <g transform="translate(60, 210)" filter="url(#shadow)">
+    <!-- Cow Ears -->
+    <ellipse cx="40" cy="50" rx="20" ry="10" transform="rotate(-25 40 50)" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+    <ellipse cx="40" cy="50" rx="14" ry="6" transform="rotate(-25 40 50)" fill="#fda4af" />
+    <ellipse cx="120" cy="50" rx="20" ry="10" transform="rotate(25 120 50)" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+    <ellipse cx="120" cy="50" rx="14" ry="6" transform="rotate(25 120 50)" fill="#fda4af" />
+
+    <!-- Cow Horns -->
+    <path d="M 52 42 Q 46 22 56 18 Q 62 30 60 42 Z" fill="#fde047" stroke="#ca8a04" stroke-width="1.5" />
+    <path d="M 108 42 Q 114 22 104 18 Q 98 30 100 42 Z" fill="#fde047" stroke="#ca8a04" stroke-width="1.5" />
+
+    <!-- Head -->
+    <ellipse cx="80" cy="75" rx="46" ry="42" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+    <!-- Black Cow Patch -->
+    <path d="M 45 50 Q 65 45 70 65 Q 60 85 45 80 Z" fill="#1e293b" />
+
+    <!-- Big Sparkling Cartoon Eyes -->
+    <ellipse cx="64" cy="72" rx="5" ry="8" fill="#0f172a" />
+    <circle cx="62" cy="69" r="2" fill="#ffffff" />
+    <ellipse cx="96" cy="72" rx="5" ry="8" fill="#0f172a" />
+    <circle cx="94" cy="69" r="2" fill="#ffffff" />
+
+    <!-- Cute Pink Snout -->
+    <ellipse cx="80" cy="94" rx="26" ry="16" fill="#fbcfe8" stroke="#f472b6" stroke-width="1.5" />
+    <circle cx="72" cy="94" r="3" fill="#be185d" />
+    <circle cx="88" cy="94" r="3" fill="#be185d" />
+
+    <!-- Green Barista Apron Bib -->
+    <path d="M 46 115 L 114 115 L 124 210 L 36 210 Z" fill="url(#apronGrad)" stroke="#065f46" stroke-width="2" />
+    <rect x="68" y="130" width="24" height="20" rx="4" fill="#065f46" opacity="0.6" />
+    <!-- Apron straps -->
+    <line x1="56" y1="115" x2="48" y2="90" stroke="#047857" stroke-width="4" />
+    <line x1="104" y1="115" x2="112" y2="90" stroke="#047857" stroke-width="4" />
+  </g>
+
+  <!-- SHADOW UNDER BOBA CUP -->
+  <ellipse cx="320" cy="425" rx="70" ry="16" fill="#0f172a" opacity="0.3" />
+
+  <!-- HERO: GIANT BOBA TEA CUP -->
+  <g transform="translate(230, 90)" filter="url(#shadow)">
+    <!-- OVERSIZED DIAGONAL BOBA STRAW -->
+    <g transform="rotate(12 90 40)">
+      <rect x="78" y="-30" width="24" height="280" rx="12" fill="url(#strawGrad)" stroke="#6b21a8" stroke-width="2" />
+      <line x1="86" y1="-25" x2="86" y2="240" stroke="#e9d5ff" stroke-width="3" opacity="0.7" />
+      <!-- Slanted cut straw tip -->
+      <polygon points="78,250 102,230 102,250 78,250" fill="#581c87" />
+    </g>
+
+    <!-- CUP BODY (TAPERED PLASTIC TUMBLER) -->
+    <!-- Clip path for liquid fill -->
+    <clipPath id="cupClip">
+      <path d="M 25 70 L 40 310 Q 45 330 90 330 Q 135 330 140 310 L 155 70 Z" />
+    </clipPath>
+
+    <!-- Base Cup Glass Outline -->
+    <path d="M 25 70 L 40 310 Q 45 330 90 330 Q 135 330 140 310 L 155 70 Z" fill="#ffffff" opacity="0.2" />
+
+    <!-- INSIDE DRINK LAYERS (CLIPPED) -->
+    <g clip-path="url(#cupClip)">
+      <!-- Tea Gradient Fill -->
+      <rect x="0" y="80" width="180" height="260" fill="url(#teaGrad)" />
+
+      <!-- Cold Milk Foam Top Layer -->
+      <path d="M 20 80 Q 55 95 90 85 Q 125 75 160 85 L 160 120 Q 125 130 90 120 Q 55 130 20 120 Z" fill="url(#foamGrad)" />
+      <!-- Honey drizzle lines -->
+      <path d="M 50 100 Q 70 115 90 105 Q 110 95 130 110" stroke="#f59e0b" stroke-width="3" fill="none" opacity="0.8" />
+
+      <!-- FLOATING ICE CUBES -->
+      <rect x="50" y="130" width="30" height="30" rx="6" fill="#ffffff" opacity="0.6" stroke="#e2e8f0" stroke-width="1.5" />
+      <rect x="100" y="150" width="34" height="34" rx="7" transform="rotate(18 100 150)" fill="#ffffff" opacity="0.55" stroke="#e2e8f0" stroke-width="1.5" />
+      <rect x="65" y="180" width="28" height="28" rx="6" transform="rotate(-15 65 180)" fill="#ffffff" opacity="0.5" stroke="#e2e8f0" stroke-width="1.5" />
+
+      <!-- BOTTOM TAPIOCA PEARLS & JELLIES -->
+      <!-- Black Boba Pearls -->
+      <g fill="url(#pearlGrad)">
+        <circle cx="50" cy="305" r="14" />
+        <circle cx="75" cy="312" r="15" />
+        <circle cx="102" cy="308" r="14" />
+        <circle cx="128" cy="302" r="13" />
+        
+        <circle cx="62" cy="285" r="14" />
+        <circle cx="90" cy="288" r="15" />
+        <circle cx="118" cy="282" r="14" />
+
+        <circle cx="75" cy="262" r="13" />
+        <circle cx="102" cy="265" r="13" />
+      </g>
+      <!-- Pearl glossy star glints -->
+      <g fill="#ffffff" opacity="0.75">
+        <circle cx="46" cy="301" r="3" />
+        <circle cx="71" cy="308" r="3.5" />
+        <circle cx="98" cy="304" r="3.5" />
+        <circle cx="58" cy="281" r="3" />
+        <circle cx="86" cy="284" r="3.5" />
+        <circle cx="114" cy="278" r="3" />
+        <circle cx="71" cy="258" r="2.5" />
+      </g>
+
+      <!-- Rainbow Fruit Jelly Cubes -->
+      <!-- Strawberry jelly (red/pink) -->
+      <rect x="42" y="240" width="16" height="16" rx="3" fill="#f43f5e" opacity="0.85" />
+      <rect x="116" y="245" width="16" height="16" rx="3" fill="#f43f5e" opacity="0.85" />
+      <!-- Mango jelly (gold/orange) -->
+      <rect x="85" y="235" width="16" height="16" rx="3" fill="#fbbf24" opacity="0.9" />
+    </g>
+
+    <!-- CUP GLASS HIGHLIGHT OVERLAY -->
+    <path d="M 25 70 L 40 310 Q 45 330 90 330 Q 135 330 140 310 L 155 70 Z" fill="url(#cupGlass)" stroke="#e2e8f0" stroke-width="2.5" />
+    <!-- White glass sheen reflection -->
+    <path d="M 36 80 L 48 300" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.7" />
+
+    <!-- CUP LID (DOMED CLEAR PLASTIC) -->
+    <path d="M 18 70 C 18 20 162 20 162 70 Z" fill="#ffffff" opacity="0.45" stroke="#cbd5e1" stroke-width="2.5" />
+    <ellipse cx="90" cy="70" rx="72" ry="8" fill="#ffffff" opacity="0.8" stroke="#94a3b8" stroke-width="2" />
+    <!-- Straw hole grommet -->
+    <ellipse cx="98" cy="36" rx="14" ry="6" fill="#9333ea" opacity="0.4" />
+  </g>
+
+  <!-- HEART & STAR SPARKLES -->
+  <g fill="#ec4899">
+    <path d="M 160 140 C 160 132 150 126 142 134 C 134 126 124 132 124 140 C 124 152 142 162 142 162 C 142 162 160 152 160 140 Z" />
+    <path d="M 440 180 C 440 174 432 170 426 176 C 420 170 412 174 412 180 C 412 190 426 198 426 198 C 426 198 440 190 440 180 Z" transform="scale(0.85) translate(40, -10)" />
+  </g>
+  <g fill="#facc15" stroke="#eab308" stroke-width="1.5">
+    <path d="M 430 110 L 433 118 L 442 121 L 433 124 L 430 132 L 427 124 L 418 121 L 427 118 Z" />
+    <path d="M 210 65 L 212 70 L 218 72 L 212 74 L 210 80 L 208 74 L 202 72 L 208 70 Z" />
+  </g>
+</svg>

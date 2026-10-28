@@ -2230,6 +2230,45 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Bunny Hop: Road & River Cross 🐰 — No Download | Pawcade',
     metaDescription: 'Play Bunny Hop free online! Hop Barnaby Bunny across farm roads, floating river logs, and train tracks. Free arcade animal hopper game with zero downloads.',
   },
+  {
+    id: 'farm-boba-tea',
+    slug: 'farm-boba-tea',
+    title: 'Farm Boba Tea: Animal Cafe 🧋🐮',
+    tagline: 'Brew delicious boba bubble tea, scoop chewy tapioca pearls, and serve thirsty animal customers in your cozy farm cafe!',
+    description: 'Brew farm-fresh boba milk tea and serve visiting animal guests! Layer chewy tapioca pearls, scoop fruit jellies, pour creamy matcha, and poke colorful straws. Satisfy Daisy Calf, Sunny Corgi, and Whiskers Cat with zero downloads.',
+    category: 'arcade',
+    categories: ['arcade', 'pets', 'farm'],
+    route: '/games/farm-boba-tea/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '38.4K',
+    badge: '🧋 Boba Cafe',
+    thumbnailUrl: '/assets/thumbnails/thumb-farm-boba-tea.svg',
+    controls: {
+      desktop: [
+        'Left Click: Select teas, toppings, ice, and sweetness levels',
+        'S Key: Seal cup and poke colorful straw',
+        'Spacebar / Enter: Serve finished boba order',
+        'T Key: Trash mistake cup and start fresh',
+        'M Key: Toggle soothing cafe sounds and clinks',
+      ],
+      mobile: [
+        'Tap Buttons: Instant ingredient selection and boba scoops',
+        'Seal & Straw: Tap to cap drink and punch straw',
+        'Serve Order: Big bottom button for quick delivery',
+      ],
+    },
+    features: [
+      'Satisfying Drink Mixing Mechanics with Real-Time Fluid Fill and Layering',
+      '4 Farm Tea Bases: Fresh Pasture Milk, Matcha Green, Strawberry, and Thai Tea',
+      '4 Chewy Boba Toppings: Dark Tapioca, Strawberry Jelly, Mango Boba, and Honeycomb',
+      'Visiting Cute Animal Customers: Daisy Calf, Sunny Corgi, Whiskers Cat, and Woolly Lamb',
+      'Procedural Web Audio Synthesizer (Boba Drops, Ice Clinks, Milk Streams, and Straw Pokes)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Farm Boba Tea: Animal Cafe 🧋 — No Download | Pawcade',
+    metaDescription: 'Play Farm Boba Tea free online! Brew fresh milk tea, scoop chewy tapioca pearls, and serve cute animal cafe customers. Free bubble tea game with no download.',
+  },
 ];
 
 

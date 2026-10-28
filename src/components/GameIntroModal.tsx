@@ -1070,6 +1070,45 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Never idle in one spot for too long! The circling hawk strikes after seven seconds of standing still. Keep hopping steadily forward.',
   },
+  'farm-boba-tea': {
+    title: 'Farm Boba Tea: Animal Cafe',
+    subtitle: 'Cozy Bubble Tea Time Management',
+    mascot: '🧋🐮',
+    themeColor: 'from-amber-600 via-pink-600 to-purple-700',
+    goal: 'Mix sweet farm boba teas, scoop chewy tapioca pearls, seal cups, and serve thirsty animal customers!',
+    steps: [
+      {
+        icon: '🧋',
+        title: '1. Check Customer Order',
+        desc: 'Review the customer bubble for requested tea base, boba topping, ice level, and sweetness.',
+      },
+      {
+        icon: '🍓',
+        title: '2. Layer Teas & Toppings',
+        desc: 'Pour fresh farm milk, scoop tapioca or fruit jellies, adjust ice cubes, and pump golden honey.',
+      },
+      {
+        icon: '✨',
+        title: '3. Seal, Straw & Serve',
+        desc: 'Tap Seal & Straw to cap the cup, then tap Serve Order to collect coins, tips, and build combos!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Select teas, toppings, and ice settings',
+        'S Key: Seal cup and punch straw',
+        'Spacebar or Enter: Serve finished boba order',
+        'T Key: Trash mistake cup to start fresh',
+        'M Key: Toggle cafe audio effects',
+      ],
+      mobile: [
+        'Tap Buttons: Quick ingredient and scoop selections',
+        'Seal & Straw: Cap drink and punch colorful straw',
+        'Serve Order: Deliver drink to waiting animal customer',
+      ],
+    },
+    proTip: 'Serve while the customer patience meter is high! Fast service awards big extra coin tips and keeps your combo multiplier climbing.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',
