@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'save-the-sheep': {
+    title: 'Save the Sheep: Hive Defense',
+    subtitle: 'Draw & Protect Physics Puzzle',
+    mascot: '🐝🐑',
+    themeColor: 'from-amber-500 via-emerald-600 to-sky-600',
+    goal: 'Draw protective barrier fences with ink to shield Barnaby the sheep from buzzing bee swarms for 5 seconds!',
+    steps: [
+      {
+        icon: '✏️',
+        title: '1. Draw Protective Barriers',
+        desc: 'Drag your finger or mouse to draw continuous wooden fence lines surrounding Barnaby.',
+      },
+      {
+        icon: '🐝',
+        title: '2. Deflect the Bee Swarm',
+        desc: 'Release your finger to lock the fence and release bees that bounce off with elastic physics.',
+      },
+      {
+        icon: '⭐',
+        title: '3. Conserve Ink for 3 Stars',
+        desc: 'Survive the 5-second countdown. Use minimal ink to earn a 3-star rating and unlock the next stage!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Click & Drag: Draw protective wooden fences around Barnaby',
+        'Release Click: Lock fence and begin 5-second swarm test',
+        'R Key: Clear ink and restart current level',
+        'M Key: Toggle sound effects',
+      ],
+      mobile: [
+        'Touch & Drag: Draw wooden fence lines with your finger',
+        'Lift Finger: Lock fence and release the bee swarm',
+        'Reset Button: Tap to erase lines and redraw with full ink',
+      ],
+    },
+    proTip: 'Draw closed loop shapes (like a dome or box) around Barnaby so bees cannot slip through gaps from above or below!',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

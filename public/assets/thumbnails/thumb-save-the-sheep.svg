@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="60%" stop-color="#7dd3fc" />
+      <stop offset="100%" stop-color="#a7f3d0" />
+    </linearGradient>
+    <linearGradient id="grassHill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="50%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+    <linearGradient id="woodFence" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="50%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#92400e" />
+    </linearGradient>
+    <linearGradient id="beeGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#064e3b" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="512" height="512" rx="48" fill="url(#skyBg)" />
+
+  <!-- Cartoon Clouds -->
+  <g fill="#ffffff" opacity="0.85">
+    <ellipse cx="100" cy="80" rx="60" ry="24" />
+    <ellipse cx="140" cy="70" rx="40" ry="28" />
+    <ellipse cx="420" cy="110" rx="70" ry="26" />
+    <ellipse cx="380" cy="98" rx="44" ry="30" />
+  </g>
+
+  <!-- Green Rolling Pasture Hill -->
+  <path d="M 0 380 Q 256 320 512 380 L 512 512 L 0 512 Z" fill="url(#grassHill)" />
+
+  <!-- Wooden Beehive in Top Right Corner -->
+  <g transform="translate(420, 140)" filter="url(#shadow)">
+    <!-- Branch -->
+    <path d="M 90 -40 L -20 -10 L -20 0 L 90 -30 Z" fill="#78350f" />
+    <!-- Beehive Body -->
+    <ellipse cx="0" cy="20" rx="36" ry="18" fill="#d97706" stroke="#92400e" stroke-width="4" />
+    <ellipse cx="0" cy="40" rx="42" ry="22" fill="#f59e0b" stroke="#92400e" stroke-width="4" />
+    <ellipse cx="0" cy="62" rx="36" ry="20" fill="#d97706" stroke="#92400e" stroke-width="4" />
+    <ellipse cx="0" cy="80" rx="26" ry="14" fill="#b45309" stroke="#92400e" stroke-width="4" />
+    <!-- Hive Hole -->
+    <circle cx="0" cy="45" r="10" fill="#451a03" />
+  </g>
+
+  <!-- Protective Drawn Glowing Fence Arch -->
+  <g filter="url(#shadow)">
+    <!-- Glow aura -->
+    <path d="M 120 380 C 130 180 370 180 380 380" fill="none" stroke="#fde047" stroke-width="24" stroke-linecap="round" opacity="0.5" />
+    <!-- Rigid Wooden Fence Line -->
+    <path d="M 120 380 C 130 180 370 180 380 380" fill="none" stroke="url(#woodFence)" stroke-width="16" stroke-linecap="round" />
+    <!-- Wood grain rings -->
+    <circle cx="170" cy="240" r="4" fill="#78350f" />
+    <circle cx="250" cy="200" r="4" fill="#78350f" />
+    <circle cx="330" cy="240" r="4" fill="#78350f" />
+  </g>
+
+  <!-- Deflected Bouncing Bees (Above Fence) -->
+  <!-- Bee 1: Bouncing Off Center -->
+  <g transform="translate(230, 160) scale(0.9)" filter="url(#shadow)">
+    <!-- Impact Starburst -->
+    <polygon points="10,25 15,35 25,35 18,42 20,52 10,46 0,52 2,42 -5,35 5,35" fill="#fef08a" stroke="#ca8a04" stroke-width="2" />
+    <!-- Wings -->
+    <ellipse cx="-4" cy="-14" rx="8" ry="14" fill="#e0f2fe" opacity="0.8" stroke="#38bdf8" stroke-width="2" />
+    <ellipse cx="8" cy="-14" rx="8" ry="14" fill="#e0f2fe" opacity="0.8" stroke="#38bdf8" stroke-width="2" />
+    <!-- Body -->
+    <ellipse cx="0" cy="0" rx="16" ry="12" fill="url(#beeGold)" stroke="#78350f" stroke-width="3" />
+    <!-- Black Stripes -->
+    <line x1="-3" y1="-10" x2="-3" y2="10" stroke="#0f172a" stroke-width="3.5" />
+    <line x1="5" y1="-10" x2="5" y2="10" stroke="#0f172a" stroke-width="3.5" />
+    <!-- Angry Eye -->
+    <circle cx="10" cy="-3" r="3" fill="#0f172a" />
+    <!-- Stinger -->
+    <polygon points="-16,-2 -22,0 -16,2" fill="#0f172a" />
+  </g>
+
+  <!-- Bee 2: Swarming from Right -->
+  <g transform="translate(330, 130) scale(0.85)" filter="url(#shadow)">
+    <ellipse cx="-4" cy="-14" rx="8" ry="14" fill="#e0f2fe" opacity="0.8" stroke="#38bdf8" stroke-width="2" />
+    <ellipse cx="8" cy="-14" rx="8" ry="14" fill="#e0f2fe" opacity="0.8" stroke="#38bdf8" stroke-width="2" />
+    <ellipse cx="0" cy="0" rx="16" ry="12" fill="url(#beeGold)" stroke="#78350f" stroke-width="3" />
+    <line x1="-3" y1="-10" x2="-3" y2="10" stroke="#0f172a" stroke-width="3.5" />
+    <line x1="5" y1="-10" x2="5" y2="10" stroke="#0f172a" stroke-width="3.5" />
+    <circle cx="10" cy="-3" r="3" fill="#0f172a" />
+    <polygon points="-16,-2 -22,0 -16,2" fill="#0f172a" />
+  </g>
+
+  <!-- Main Hero Sheep: Barnaby (Inside the Safe Arch) -->
+  <g transform="translate(250, 340)" filter="url(#shadow)">
+    <!-- Shadow -->
+    <ellipse cx="0" cy="45" rx="55" ry="14" fill="rgba(0,0,0,0.25)" />
+
+    <!-- Fluffy Wool Clouds (Body) -->
+    <circle cx="-35" cy="5" r="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="5" />
+    <circle cx="35" cy="5" r="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="5" />
+    <circle cx="-20" cy="-20" r="26" fill="#ffffff" stroke="#cbd5e1" stroke-width="5" />
+    <circle cx="20" cy="-20" r="26" fill="#ffffff" stroke="#cbd5e1" stroke-width="5" />
+    <circle cx="0" cy="20" r="28" fill="#ffffff" stroke="#cbd5e1" stroke-width="5" />
+    <circle cx="0" cy="0" r="36" fill="#ffffff" />
+
+    <!-- Wooden Hooves -->
+    <rect x="-24" y="32" width="12" height="18" rx="4" fill="#1e293b" />
+    <rect x="12" y="32" width="12" height="18" rx="4" fill="#1e293b" />
+
+    <!-- Cute Sheep Face -->
+    <ellipse cx="0" cy="-6" rx="28" ry="24" fill="#fed7aa" stroke="#c2410c" stroke-width="4" />
+
+    <!-- Big Worried/Relieved Eyes Looking Up -->
+    <ellipse cx="-10" cy="-12" rx="7" ry="9" fill="#0f172a" />
+    <ellipse cx="10" cy="-12" rx="7" ry="9" fill="#0f172a" />
+    <!-- Eye Glints (Looking Up at Shield) -->
+    <circle cx="-8" cy="-16" r="3" fill="#ffffff" />
+    <circle cx="12" cy="-16" r="3" fill="#ffffff" />
+
+    <!-- Sheep Ears -->
+    <ellipse cx="-34" cy="-14" rx="14" ry="7" fill="#fed7aa" stroke="#c2410c" stroke-width="3" transform="rotate(-15, -34, -14)" />
+    <ellipse cx="34" cy="-14" rx="14" ry="7" fill="#fed7aa" stroke="#c2410c" stroke-width="3" transform="rotate(15, 34, -14)" />
+
+    <!-- Rosy Cheeks -->
+    <circle cx="-18" cy="2" r="5" fill="#f43f5e" opacity="0.6" />
+    <circle cx="18" cy="2" r="5" fill="#f43f5e" opacity="0.6" />
+
+    <!-- Cute Smiling Mouth -->
+    <path d="M -5 6 Q 0 10 5 6" fill="none" stroke="#9a3412" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Wool Tuft on Forehead -->
+    <circle cx="0" cy="-28" r="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="3" />
+  </g>
+
+  <!-- 3 Stars Trophy Badge on Left -->
+  <g transform="translate(60, 80)">
+    <circle cx="0" cy="0" r="36" fill="#1e293b" stroke="#facc15" stroke-width="4" />
+    <path d="M 0 -18 L 5 -5 L 18 -5 L 8 4 L 12 16 L 0 8 L -12 16 L -8 4 L -18 -5 L -5 -5 Z" fill="#facc15" stroke="#ca8a04" stroke-width="2" />
+  </g>
+</svg>

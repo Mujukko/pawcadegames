@@ -93,6 +93,9 @@ const HamsterBallDashContainer = lazy(() =>
 const CatCafeRushContainer = lazy(() =>
   import('../games/cat-cafe-rush/CatCafeRushContainer').then((m) => ({ default: m.CatCafeRushContainer }))
 );
+const SaveTheSheepContainer = lazy(() =>
+  import('../games/save-the-sheep/SaveTheSheepContainer').then((m) => ({ default: m.SaveTheSheepContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -122,6 +125,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isSaveTheSheep = gameId === 'save-the-sheep' || gameId === 'save-sheep';
   const isCatCafe = gameId === 'cat-cafe-rush';
   const isHamsterBall = gameId === 'hamster-ball-dash' || gameId === 'tube-roll';
   const isDuckPond = gameId === 'duck-pond-sort' || gameId === 'duck-sort' || gameId === 'water-sort';
@@ -331,7 +335,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isCatCafe
+                  isSaveTheSheep
+                    ? '🐝🐑'
+                    : isCatCafe
                     ? '🐱🍰'
                     : isHamsterBall
                     ? '🐹⚡'
@@ -392,7 +398,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isCatCafe ? (
+            {isSaveTheSheep ? (
+              <SaveTheSheepContainer />
+            ) : isCatCafe ? (
               <CatCafeRushContainer />
             ) : isHamsterBall ? (
               <HamsterBallDashContainer />

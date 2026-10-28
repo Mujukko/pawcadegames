@@ -1163,4 +1163,43 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Cat Cafe Rush: Cozy Bakery 🐱🍰 — Free Online Bakery Game | Pawcade',
     metaDescription: 'Play Cat Cafe Rush free online! Bake fish waffles, steam matcha lattes, and serve cute cats in your cozy bakery. Free browser play with no download.',
   },
+  {
+    id: 'save-the-sheep',
+    slug: 'save-the-sheep',
+    title: 'Save the Sheep: Hive Defense 🐝🐑',
+    tagline: 'Draw sturdy fences with ink to shield Barnaby the sheep from buzzing bee swarms!',
+    description: 'Protect cute sheep from angry bee swarms in Save the Sheep! Drag your finger or mouse across the screen to draw custom wooden barrier lines. Guard Barnaby from stinging bees, sharp cliff drops, and spiky brambles. Bees bounce off your drawn fences with elastic physics. Hold your defenses solid for five seconds to win each puzzle stage. Use minimal ink to score three golden stars on every level!',
+    category: 'puzzle',
+    categories: ['puzzle', 'farm', 'arcade'],
+    route: '/games/save-the-sheep/',
+    status: 'playable',
+    rating: 4.9,
+    playCount: '21.5K',
+    badge: '🆕 Daily Drop',
+    thumbnailUrl: '/assets/thumbnails/thumb-save-the-sheep.svg',
+    controls: {
+      desktop: [
+        'Click & Drag: Draw protective barrier lines around Barnaby the sheep',
+        'Release Mouse: Solidify the barrier fence and release the bee swarm',
+        'R Key: Clear ink and restart current puzzle stage',
+        'M Key: Toggle sound effects',
+      ],
+      mobile: [
+        'Touch & Drag: Draw wooden fence lines with your finger',
+        'Lift Finger: Lock fence in place and begin 5-second swarm test',
+        'Reset Button: Tap to erase lines and redraw with full ink',
+      ],
+    },
+    features: [
+      '4 Handcrafted Puzzle Stages: Meadow Perch, Dual Hives, The Crevasse, and Spike Canyon',
+      'Dynamic Line Drawing Physics with Real-Time Collision and Deflection',
+      'Elastic Bee Swarm AI Tracking Barnaby with Continuous Proximity Chases',
+      '3-Star Ink Conservation Scoring System (Spend Less Ink for Maximum Rank)',
+      'Procedural Zero-Latency Web Audio (Pencil Sketch, Bee Swarms, Baas, and Fanfares)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Save the Sheep: Hive Defense 🐝🐑 — Draw & Protect Game | Pawcade',
+    metaDescription: 'Play Save the Sheep free online! Draw fence lines to protect Barnaby the sheep from buzzing bee swarms. Free physics puzzle with no download.',
+  },
 ];
+
