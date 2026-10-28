@@ -400,6 +400,45 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Wait for fruits to cluster near the peak of their flight! Slicing right as they pause in mid-air lets you grab easy 3x and 4x combos without touching bombs!',
   },
+  'barnyard-peg-pop': {
+    title: 'Barnyard Peg Pop: Acorn Bounce',
+    subtitle: 'Tactile Acorn Cannon & Peg Bouncing Arcade',
+    mascot: '🌰🎯',
+    themeColor: 'from-amber-600 via-orange-600 to-indigo-900',
+    goal: 'Aim your acorn cannon to bounce off colorful pegs, eliminate every orange target, and catch extra shots in the farm cart!',
+    steps: [
+      {
+        icon: '🎯',
+        title: '1. Aim & Fire Cannon',
+        desc: 'Drag to adjust the dotted aim guide. Release or tap FIRE to launch a bouncy acorn nut down across the pegboard.',
+      },
+      {
+        icon: '🟠',
+        title: '2. Clear Orange Target Pegs',
+        desc: 'Hit every orange target peg on the board to clear the stage and activate the festive Extreme Fever celebration.',
+      },
+      {
+        icon: '🛒',
+        title: '3. Catch in Moving Hay Cart',
+        desc: 'Time your shot so the falling acorn drops straight into the sliding bottom cart to earn a free extra ball!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Move / Pointer: Aim cannon angle smoothly',
+        'Left Click / Spacebar: Fire bouncy acorn nut',
+        'Arrow Keys Left / Right: Fine-tune cannon aim',
+        'R Key: Quick restart current pegboard',
+        'M Key: Toggle melodic chime sounds',
+      ],
+      mobile: [
+        'Touch & Drag: Aim cannon angle anywhere on screen',
+        'FIRE Button: Launch acorn toward pegs',
+        'Restart Button: Reset level anytime',
+      ],
+    },
+    proTip: 'Aim for the green magic pegs early! Green pegs trigger an explosive upward rebound boost, allowing one ball to clear dozens of pegs on its return descent!',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

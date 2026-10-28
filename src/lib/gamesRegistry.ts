@@ -1547,6 +1547,45 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Barnyard Fruit Slicer: Farm Juice 🍉⚔️ — No Download | Pawcade',
     metaDescription: 'Play Barnyard Fruit Slicer free online! Slice flying apples, watermelons, and berries in mid-air. Dodge thistle bombs and build combo streaks. Free no download.',
   },
+  {
+    id: 'barnyard-peg-pop',
+    slug: 'barnyard-peg-pop',
+    title: 'Barnyard Peg Pop: Acorn Bounce 🌰🎯',
+    tagline: 'Aim your acorn cannon, bounce off colorful farm pegs, and clear all golden targets for rainbow celebrations!',
+    description: 'Help Sammy the squirrel bounce shiny acorns across pegboards! Aim your wooden cannon to hit blue pegs, golden targets, and bonus bells. Land balls in the moving farm cart for extra shots. Clear every golden peg across four orchard stages to trigger rainbow fanfare.',
+    category: 'arcade',
+    categories: ['arcade', 'puzzle', 'farm'],
+    route: '/games/barnyard-peg-pop/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '27.3K',
+    badge: '🌰 Peg Pop',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-peg-pop.svg',
+    controls: {
+      desktop: [
+        'Mouse Move / Pointer: Aim cannon angle smoothly',
+        'Left Click / Spacebar: Fire bouncing acorn nut',
+        'Arrow Keys Left / Right: Fine-tune cannon aiming',
+        'R Key: Restart current pegboard',
+        'M Key: Toggle melodic chime sounds',
+      ],
+      mobile: [
+        'Touch & Drag: Aim cannon angle anywhere on screen',
+        'FIRE Button: Launch acorn toward pegs',
+        'Restart Button: Reset level anytime',
+      ],
+    },
+    features: [
+      '4 Handcrafted Pegboard Stages: Acorn Hollow, Orchard Grove, Autumn Ridge, and Golden Sanctuary',
+      '4 Unique Peg Types: Blue Acorns (100 pts), Orange Targets (250 pts), Purple Bonus (500 pts), and Green Magic Launchers (Super Bounce)',
+      'Sub-Stepped 60 FPS Circle Rebounding Physics with Restitution Damping',
+      'Sliding Farm Hay Cart at Bottom for Free Ball Catches (+1 Extra Shot)',
+      'Procedural Web Audio Chimes (Melodic Pentatonic Scale Arpeggios, Cork Pops, Cart Catches, and Beethoven Ode to Joy Fever Fanfare)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Barnyard Peg Pop: Acorn Bounce 🌰🎯 — No Download | Pawcade',
+    metaDescription: 'Play Barnyard Peg Pop free online! Aim the acorn cannon, bounce off colorful pegs, and clear golden targets in Peggle style. Free casual game with no download.',
+  },
 ];
 
 

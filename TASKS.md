@@ -73,10 +73,11 @@
 | TASK-069 | P0 | DONE | Barnyard Pin Pull: Rescue & Loot (Game #37) | Pull-the-pin physical puzzle: horizontal and vertical locking pins, water vs burning lava quenching with steam clouds, thief fox AI, Barnaby the puppy rescue, 5 handcrafted chambers, 9 unit tests. |
 | TASK-070 | P0 | DONE | Hamster Cookie Stack: Sweet Bakery (Game #38) | Wobbly dessert stacking arcade: conveyor drop, 6 sweet treats (cookies, cupcakes, macarons, donuts, waffles, cakes), center-of-mass tilt physics with spring damping, perfect catch multiplier streaks, Mochi baker hamster reactions, 4 pastry stages, 7 unit tests. |
 | TASK-071 | P0 | DONE | Barnyard Fruit Slicer: Farm Juice (Game #39) | Tactile airborne fruit slicing arcade: parabolic arcs, line-segment raycast slicing, halving separation physics, juice particle splatters, combo multipliers (3x-5x), thistle bomb evasion, 4 harvest stages, 9 unit tests. |
+| TASK-072 | P0 | DONE | Barnyard Peg Pop: Acorn Bounce (Game #40) | Peggle & Pachinko acorn cannon arcade: circle collision restitution, melodic pentatonic chime scale, moving hay cart free-ball catches, extreme fever celebrations, 4 handcrafted pegboards, 7 unit tests. |
 
 ## Completed Sprint Summary
 - All backlog tasks completed.
-- Definition of Done met: **39 complete playable games** with pure TypeScript logic engines, Web Audio procedural synthesizers, 419 automated tests passing across 41 test suites (4548 assertions), zero type errors, lightweight code-split bundles, single-screen zero-scroll mobile responsiveness, 100/100 7-pillar Agentic SEO audit with 0/100 slop, and live deployment.
+- Definition of Done met: **40 complete playable games** with pure TypeScript logic engines, Web Audio procedural synthesizers, 426 automated tests passing across 42 test suites (4575 assertions), zero type errors, lightweight code-split bundles, single-screen zero-scroll mobile responsiveness, 100/100 7-pillar Agentic SEO audit with 0/100 slop, and live deployment.
 
 
 

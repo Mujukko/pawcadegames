@@ -408,7 +408,7 @@ export const BarnyardFruitSlicerContainer: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[520px] sm:h-[620px] rounded-3xl overflow-hidden bg-slate-950 border border-emerald-500/30 shadow-2xl select-none"
+      className="relative w-full max-w-lg mx-auto h-[520px] sm:h-[620px] max-h-[82vh] min-h-[460px] rounded-3xl overflow-hidden bg-slate-950 border border-emerald-500/30 shadow-2xl select-none touch-none overscroll-none"
       style={{ touchAction: 'none' }}
     >
       {/* 60 FPS Canvas */}
@@ -423,18 +423,18 @@ export const BarnyardFruitSlicerContainer: React.FC = () => {
       />
 
       {/* Top Header HUD */}
-      <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 right-2.5 sm:right-3 flex items-center justify-between pointer-events-none">
+      <div className="absolute top-2 sm:top-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between pointer-events-none gap-1 sm:gap-2">
         {/* Stage & Target */}
-        <div className="bg-slate-900/90 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-emerald-500/30 shadow-lg flex items-center gap-2">
-          <div className="text-xs font-black text-emerald-300">
-            Stage {uiStage}: {currentStageName} 🍉
-          </div>
+        <div className="bg-slate-900/90 backdrop-blur-md px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-2xl border border-emerald-500/30 shadow-lg flex items-center gap-1.5 shrink min-w-0">
+          <span className="text-[11px] sm:text-xs font-black text-emerald-300 truncate">
+            S{uiStage}: {currentStageName} 🍉
+          </span>
         </div>
 
-        {/* Score & Lives */}
-        <div className="flex items-center gap-2.5 pointer-events-auto">
+        {/* Score & Lives & Controls */}
+        <div className="flex items-center gap-1 sm:gap-2 pointer-events-auto shrink-0">
           {/* Hearts */}
-          <div className="bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-2xl border border-red-500/30 shadow-lg text-sm font-black flex items-center gap-1">
+          <div className="bg-slate-900/90 backdrop-blur-md px-2 sm:px-2.5 py-1.5 rounded-2xl border border-red-500/30 shadow-lg text-xs sm:text-sm font-black flex items-center gap-0.5 select-none">
             {Array.from({ length: 3 }).map((_, i) => (
               <span key={i} className={i < uiLives ? 'opacity-100 scale-100' : 'opacity-25 grayscale scale-90'}>
                 ❤️
@@ -443,9 +443,9 @@ export const BarnyardFruitSlicerContainer: React.FC = () => {
           </div>
 
           {/* Score Counter */}
-          <div className="bg-slate-900/90 backdrop-blur-md px-3.5 py-1.5 rounded-2xl border border-amber-500/30 shadow-lg">
-            <div className="text-[10px] uppercase font-bold text-slate-400">Score</div>
-            <div className="text-base font-black text-amber-300 leading-none">{uiScore}</div>
+          <div className="bg-slate-900/90 backdrop-blur-md px-2 sm:px-3 py-1 rounded-2xl border border-amber-500/30 shadow-lg text-center">
+            <div className="text-[9px] uppercase font-bold text-slate-400 leading-none">Score</div>
+            <div className="text-xs sm:text-base font-black text-amber-300 leading-tight">{uiScore}</div>
           </div>
 
           {/* Mute Button */}
@@ -454,7 +454,7 @@ export const BarnyardFruitSlicerContainer: React.FC = () => {
               const muted = fruitSlicerAudio.toggleMute();
               setIsMuted(muted);
             }}
-            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-2xl bg-slate-900/90 backdrop-blur-md border border-emerald-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform cursor-pointer"
+            className="w-10 h-10 sm:w-11 sm:h-11 min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] rounded-2xl bg-slate-900/90 backdrop-blur-md border border-emerald-500/30 flex items-center justify-center text-base sm:text-lg shadow-lg active:scale-95 transition-transform cursor-pointer"
             aria-label={isMuted ? 'Unmute' : 'Mute'}
           >
             {isMuted ? '🔇' : '🔊'}
@@ -463,7 +463,7 @@ export const BarnyardFruitSlicerContainer: React.FC = () => {
           {/* Restart Button */}
           <button
             onClick={handleRestart}
-            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-2xl bg-slate-900/90 backdrop-blur-md border border-emerald-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform cursor-pointer"
+            className="w-10 h-10 sm:w-11 sm:h-11 min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] rounded-2xl bg-slate-900/90 backdrop-blur-md border border-emerald-500/30 flex items-center justify-center text-base sm:text-lg shadow-lg active:scale-95 transition-transform cursor-pointer"
             aria-label="Restart game"
           >
             🔄
