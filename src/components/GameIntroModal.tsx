@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'capybara-spa-rush': {
+    title: 'Capybara Spa: Hot Springs',
+    subtitle: 'Cozy Japanese Onsen Simulator',
+    mascot: '🍊🛁',
+    themeColor: 'from-amber-500 via-orange-600 to-emerald-600',
+    goal: 'Serve visiting capybaras and animal friends with yuzu citrus, sponges, and warm tea until they reach full bliss!',
+    steps: [
+      {
+        icon: '🦫',
+        title: '1. Seat Waiting Animals',
+        desc: 'Tap a waiting animal on the bench, then tap an open wooden tub to seat them in warm water.',
+      },
+      {
+        icon: '🍊',
+        title: '2. Fulfill Special Requests',
+        desc: 'Watch thought bubbles! Add yellow yuzu citrus, scrub with bamboo sponges, or pour hot herbal tea.',
+      },
+      {
+        icon: '💰',
+        title: '3. Collect Coins & Expand',
+        desc: 'When an animal reaches 100% bliss, tap the golden coin button. Reinvest profits to unlock tubs 3 and 4!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Tap waiting animals, open tubs, and service buttons',
+        'U Key: Open Onsen Spa Upgrades menu',
+        'M Key: Toggle soothing hot spring sound effects',
+      ],
+      mobile: [
+        'Tap Animal: Select guest from arrival bench',
+        'Tap Open Tub: Seat guest into warm cedar bath',
+        'Tap Service Buttons: Add yuzu, scrub sponges, or serve tea',
+        'Tap COLLECT COINS: Cash in on full bliss rewards',
+      ],
+    },
+    proTip: 'Add floating yuzu citrus early to tubs. Each yuzu boosts bliss accumulation and increases your final coin payout!',
+  },
   'save-the-sheep': {
     title: 'Save the Sheep: Hive Defense',
     subtitle: 'Draw & Protect Physics Puzzle',

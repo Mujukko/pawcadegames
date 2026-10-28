@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient: Soothing Japanese Garden Dusk -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#312e81" />
+      <stop offset="40%" stop-color="#4338ca" />
+      <stop offset="80%" stop-color="#065f46" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+
+    <!-- Cedar Tub Gradient -->
+    <linearGradient id="woodGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="25%" stop-color="#92400e" />
+      <stop offset="50%" stop-color="#b45309" />
+      <stop offset="75%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <!-- Metal Hoop Gradient -->
+    <linearGradient id="hoopGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="50%" stop-color="#94a3b8" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+
+    <!-- Onsen Water Gradient -->
+    <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#0891b2" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Capybara Fur Gradient -->
+    <linearGradient id="capyBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a16207" />
+      <stop offset="40%" stop-color="#854d0e" />
+      <stop offset="100%" stop-color="#713f12" />
+    </linearGradient>
+
+    <!-- Capybara Snout -->
+    <linearGradient id="capySnout" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <!-- Yuzu Citrus Gradient -->
+    <linearGradient id="yuzuGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+
+    <!-- Gold Coin Gradient -->
+    <linearGradient id="goldCoin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="40" fill="url(#bgGrad)" />
+
+  <!-- Distant Bamboo Grove -->
+  <g opacity="0.35">
+    <rect x="25" y="40" width="16" height="340" rx="8" fill="#15803d" />
+    <rect x="55" y="20" width="20" height="360" rx="10" fill="#166534" />
+    <rect x="435" y="30" width="18" height="350" rx="9" fill="#166534" />
+    <rect x="468" y="50" width="16" height="330" rx="8" fill="#15803d" />
+  </g>
+
+  <!-- Steam Clouds Floating Upward -->
+  <path d="M 180 200 C 170 160, 200 130, 190 90" stroke="#ffffff" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.45" />
+  <path d="M 256 180 C 270 140, 240 110, 260 70" stroke="#ffffff" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.55" />
+  <path d="M 330 200 C 320 160, 350 130, 340 85" stroke="#ffffff" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.45" />
+
+  <!-- Cedar Hot Tub (Back Wall) -->
+  <ellipse cx="256" cy="350" rx="195" ry="55" fill="#451a03" />
+
+  <!-- Hot Spring Water Bath -->
+  <ellipse cx="256" cy="345" rx="185" ry="48" fill="url(#waterGrad)" />
+
+  <!-- Water Ripples -->
+  <ellipse cx="256" cy="345" rx="145" ry="32" fill="none" stroke="#a5f3fc" stroke-width="3" opacity="0.7" />
+  <ellipse cx="256" cy="345" rx="100" ry="20" fill="none" stroke="#cffafe" stroke-width="2.5" opacity="0.8" />
+
+  <!-- Capybara Torso in Water -->
+  <ellipse cx="256" cy="330" rx="95" ry="65" fill="url(#capyBody)" />
+
+  <!-- Capybara Big Round Head -->
+  <rect x="186" y="180" width="140" height="135" rx="55" fill="url(#capyBody)" />
+
+  <!-- Capybara Cute Round Ears -->
+  <circle cx="180" cy="190" r="18" fill="#713f12" />
+  <circle cx="180" cy="190" r="10" fill="#a16207" />
+  <circle cx="332" cy="190" r="18" fill="#713f12" />
+  <circle cx="332" cy="190" r="10" fill="#a16207" />
+
+  <!-- Capybara Chubby Snout -->
+  <rect x="206" y="235" width="100" height="75" rx="36" fill="url(#capySnout)" />
+  <!-- Nostrils -->
+  <ellipse cx="240" cy="272" rx="4" ry="6" fill="#1c1917" />
+  <ellipse cx="272" cy="272" rx="4" ry="6" fill="#1c1917" />
+
+  <!-- Blissful Closed Eyes (Happy Arc) -->
+  <path d="M 205 220 Q 218 208 230 220" stroke="#1c1917" stroke-width="5" stroke-linecap="round" fill="none" />
+  <path d="M 282 220 Q 295 208 307 220" stroke="#1c1917" stroke-width="5" stroke-linecap="round" fill="none" />
+
+  <!-- Blushing Cheeks -->
+  <circle cx="198" cy="245" r="13" fill="#f43f5e" opacity="0.45" />
+  <circle cx="314" cy="245" r="13" fill="#f43f5e" opacity="0.45" />
+
+  <!-- Cute Towel on Head -->
+  <rect x="226" y="165" width="60" height="20" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
+
+  <!-- Iconic Balanced Yuzu Citrus on Head -->
+  <circle cx="256" cy="148" r="22" fill="url(#yuzuGrad)" filter="url(#glow)" />
+  <!-- Yuzu Leaf -->
+  <path d="M 256 128 C 265 118, 275 125, 272 135 Z" fill="#22c55e" />
+  <circle cx="250" cy="142" r="5" fill="#fef9c3" opacity="0.75" />
+
+  <!-- Floating Yuzu in Water (Left & Right) -->
+  <circle cx="130" cy="340" r="18" fill="url(#yuzuGrad)" />
+  <path d="M 130 324 C 137 316, 144 321, 141 329 Z" fill="#22c55e" />
+  <circle cx="125" cy="336" r="4" fill="#fef9c3" opacity="0.7" />
+
+  <circle cx="380" cy="348" r="16" fill="url(#yuzuGrad)" />
+  <circle cx="376" cy="344" r="3.5" fill="#fef9c3" opacity="0.7" />
+
+  <!-- Cute Companion Duckling Floating -->
+  <g transform="translate(340, 305) scale(0.85)">
+    <circle cx="25" cy="25" r="18" fill="#facc15" />
+    <ellipse cx="18" cy="36" rx="22" ry="14" fill="#eab308" />
+    <circle cx="30" cy="22" r="3" fill="#0f172a" />
+    <path d="M 40 24 Q 50 26 40 32 Z" fill="#f97316" />
+  </g>
+
+  <!-- Cedar Hot Tub Front Wall -->
+  <path d="M 61 350 C 61 430, 145 475, 256 475 C 367 475, 451 430, 451 350 L 451 385 C 451 465, 367 500, 256 500 C 145 500, 61 465, 61 385 Z" fill="url(#woodGrad)" />
+
+  <!-- Tub Planks Details -->
+  <path d="M 125 365 L 125 488" stroke="#451a03" stroke-width="3" opacity="0.4" />
+  <path d="M 190 376 L 190 497" stroke="#451a03" stroke-width="3" opacity="0.4" />
+  <path d="M 256 380 L 256 500" stroke="#451a03" stroke-width="3" opacity="0.4" />
+  <path d="M 322 376 L 322 497" stroke="#451a03" stroke-width="3" opacity="0.4" />
+  <path d="M 387 365 L 387 488" stroke="#451a03" stroke-width="3" opacity="0.4" />
+
+  <!-- Metal Hoops binding the tub -->
+  <path d="M 63 395 C 105 440, 200 455, 256 455 C 312 455, 407 440, 449 395" stroke="url(#hoopGrad)" stroke-width="8" fill="none" />
+  <path d="M 75 445 C 115 480, 200 492, 256 492 C 312 492, 397 480, 437 445" stroke="url(#hoopGrad)" stroke-width="8" fill="none" />
+
+  <!-- Floating Sakura Petals -->
+  <g fill="#f472b6" opacity="0.85">
+    <path d="M 80 140 C 90 135, 95 150, 85 155 C 75 160, 70 145, 80 140 Z" transform="rotate(25, 80, 140)" />
+    <path d="M 410 170 C 420 165, 425 180, 415 185 C 405 190, 400 175, 410 170 Z" transform="rotate(-35, 410, 170)" />
+    <path d="M 360 100 C 370 95, 375 110, 365 115 C 355 120, 350 105, 360 100 Z" transform="rotate(45, 360, 100)" />
+  </g>
+
+  <!-- Golden Reward Coins & Sparkles in the Air -->
+  <g transform="translate(100, 60)" filter="url(#glow)">
+    <circle cx="15" cy="15" r="16" fill="url(#goldCoin)" />
+    <text x="15" y="21" font-size="16" font-weight="900" text-anchor="middle" fill="#78350f">★</text>
+  </g>
+  <g transform="translate(370, 50)" filter="url(#glow)">
+    <circle cx="15" cy="15" r="18" fill="url(#goldCoin)" />
+    <text x="15" y="22" font-size="18" font-weight="900" text-anchor="middle" fill="#78350f">★</text>
+  </g>
+
+  <!-- Bliss Heart Sparkle -->
+  <path d="M 320 150 C 320 140, 305 135, 300 145 C 295 135, 280 140, 280 150 C 280 165, 300 175, 300 175 C 300 175, 320 165, 320 150 Z" fill="#fb7185" filter="url(#glow)" />
+</svg>

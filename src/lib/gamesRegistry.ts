@@ -1201,5 +1201,48 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Save the Sheep: Hive Defense 🐝🐑 — Draw & Protect Game | Pawcade',
     metaDescription: 'Play Save the Sheep free online! Draw fence lines to protect Barnaby the sheep from buzzing bee swarms. Free physics puzzle with no download.',
   },
+  {
+    id: 'capybara-spa-rush',
+    slug: 'capybara-spa-rush',
+    title: 'Capybara Spa: Hot Springs 🍊🛁',
+    tagline: 'Run a relaxing cedar onsen bath for visiting capybaras with floating yuzu and herbal tea!',
+    description: 'Run a cozy Japanese hot spring for cute animals in Capybara Spa! Friendly capybaras, ducklings, and turtles visit your wooden cedar tubs. Drop floating yellow yuzu citrus fruits into the warm water. Scrub dirty tubs with soft bamboo sponges to keep baths fresh. Serve hot herbal barley tea to earn generous coin tips. When a capybara reaches full bliss, collect your sparkling golden coins! Reinvest your spa profits to unlock luxury tubs and upgrades.',
+    category: 'pets',
+    categories: ['pets', 'farm', 'arcade'],
+    route: '/games/capybara-spa-rush/',
+    status: 'playable',
+    rating: 4.9,
+    playCount: '22.4K',
+    badge: '🆕 Daily Drop',
+    thumbnailUrl: '/assets/thumbnails/thumb-capybara-spa-rush.svg',
+    controls: {
+      desktop: [
+        'Left Click Guest: Select a waiting animal from the bench',
+        'Left Click Open Tub: Seat selected animal into the warm cedar bath',
+        'Action Buttons: Click Yuzu, Tea, or Scrub to fulfill animal requests',
+        'COLLECT COINS: Click glowing coin button when bliss gauge reaches 100%',
+        'U Key: Open Onsen Spa Upgrades drawer',
+        'M Key: Toggle soothing bath sounds and squeaks',
+      ],
+      mobile: [
+        'Tap Guest: Select waiting capybara, duckling, or turtle',
+        'Tap Open Tub: Seat guest into warm steaming bath',
+        'Tap Yuzu / Tea / Scrub: Service guest requests quickly',
+        'Tap COLLECT COINS: Cash in on full bliss for instant golden coins',
+        'UPGRADES Button: Unlock extra cedar tubs and chamomile baths',
+      ],
+    },
+    features: [
+      '4 Cedar Hot Spring Tubs with Dynamic Water Steam and Floating Yuzu Citrus',
+      '4 Visiting Cute Animal Species: Capybaras, Ducklings, Turtles, and Snow Monkeys',
+      'Interactive Guest Service Loop: Floating Yuzu Toss, Bamboo Scrubbing, and Barley Tea',
+      'Deep Onsen Progression Tree: Herbal Baths, Deluxe Sponges, and Tea Stations',
+      'Procedural Zero-Latency Web Audio (Warm Splashes, Squeaks, Bubbles, and Zen Chimes)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Capybara Spa: Hot Springs 🍊🛁 — Relaxing Onsen Game | Pawcade',
+    metaDescription: 'Play Capybara Spa free online! Run a cozy Japanese hot spring for cute capybaras and friend critters. Free relaxing game with no download.',
+  },
 ];
+
 
