@@ -156,6 +156,9 @@ const SheepSorterGateContainer = lazy(() =>
 const BarnyardPinballContainer = lazy(() =>
   import('../games/barnyard-pinball/BarnyardPinballContainer').then((m) => ({ default: m.BarnyardPinballContainer }))
 );
+const CropMowerHarvestContainer = lazy(() =>
+  import('../games/crop-mower-harvest/CropMowerHarvestContainer').then((m) => ({ default: m.CropMowerHarvestContainer }))
+);
 
 
 
@@ -188,6 +191,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isCropMower = gameId === 'crop-mower-harvest' || gameId === 'crop-mower' || gameId === 'lawn-mower';
   const isPinball = gameId === 'barnyard-pinball' || gameId === 'pinball' || gameId === 'flipper';
   const isSheepSorter = gameId === 'sheep-sorter-gate' || gameId === 'sheep-sorter' || gameId === 'sheep-gate';
   const isTriPeaks = gameId === 'farm-tripeaks-solitaire' || gameId === 'tripeaks' || gameId === 'solitaire';
@@ -529,7 +533,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isPinball ? (
+            {isCropMower ? (
+              <CropMowerHarvestContainer />
+            ) : isPinball ? (
               <BarnyardPinballContainer />
             ) : isSheepSorter ? (
               <SheepSorterGateContainer />

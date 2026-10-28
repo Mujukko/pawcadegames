@@ -812,6 +812,42 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Do not double-flip randomly! Cradle the ball on a raised flipper blade to pause, line up your shot toward the bumper triangle, and fire with precision.',
   },
+  'crop-mower-harvest': {
+    title: 'Crop Mower: Harvest Rush',
+    subtitle: 'Satisfying Field Mowing Arcade',
+    mascot: '🚜🌾',
+    themeColor: 'from-amber-600 via-lime-600 to-green-700',
+    goal: 'Drive a nimble red tractor to mow neat rows of tall golden wheat, fill your harvest basket, and clear 100% of the field!',
+    steps: [
+      {
+        icon: '🚜',
+        title: '1. Steer the Red Mower',
+        desc: 'Use swipe gestures or the bottom D-pad buttons to steer your tractor across neat field rows.',
+      },
+      {
+        icon: '🧺',
+        title: '2. Fill Basket & Empty Silo',
+        desc: 'Cut crops to fill your trailer basket, then drive over the red silo chute to bank bonus points!',
+      },
+      {
+        icon: '🌾',
+        title: '3. Harvest 100% of the Field',
+        desc: 'Clear every patch of golden crops without leaving stray stalks behind to unlock the next stage.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Arrow Keys or WASD: Drive tractor in any direction',
+        'Release Keys: Pause and stop mower',
+        'M Key: Toggle tractor sound effects',
+      ],
+      mobile: [
+        'Swipe on Field or D-Pad Arrows: Guide tractor smoothly',
+        'Top Silo: Drive over red silo chute to empty full basket',
+      ],
+    },
+    proTip: 'Mow in long continuous serpentines from one end of the paddock to the other! This prevents leaving isolated single tiles and maximizes your combo bonus.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

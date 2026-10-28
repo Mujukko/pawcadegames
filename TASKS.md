@@ -84,10 +84,11 @@
 | TASK-080 | P0 | DONE | Farm TriPeaks Solitaire: Harvest Peak (Game #48) | Classic countryside TriPeaks Solitaire card puzzle: 28-card 3-peak pyramid layout with wrap-around matching (Ace & King), streak combo multipliers with pitch-scaled marimba notes, lucky Four-Leaf Wildcard Clovers, full move history Undo, 4 handcrafted scenic stages, 8 unit tests. |
 | TASK-081 | P0 | DONE | Barnyard Sheep Sorter: Pasture Gate (Game #49) | Fast reflex color-sorting arcade: dual pasture gate flipper (white/pink -> left meadow, black/golden -> right paddock), combo streak multipliers, 5-second Golden Fever 2x mode every 15 combo, 3 hearts life system, dynamic speed scaling, procedural Web Audio synthesizer, 8 unit tests. |
 | TASK-082 | P0 | DONE | Barnyard Pinball: Flipper Farm (Game #50) | Classic retro arcade pinball: sub-stepped 60 FPS physics engine, dual mechanical flippers, spring-loaded plunger with launch power gauge, 3 illuminated mushroom bumpers (Barn, Corn, Milk), 4 F-A-R-M rollover lanes, slingshot kickers, multiball frenzy, procedural Web Audio synthesizer, 9 unit tests. |
+| TASK-083 | P0 | DONE | Crop Mower: Harvest Rush (Game #51) | Satisfying field mowing arcade: continuous tractor steering with rotating blade decks, 4 crop stages (wheat, corn, sunflower, grand ranch), basket trailer capacity, silo chute bonus dumps, flying straw chaff particles, procedural Web Audio synthesizer, 8 unit tests. |
 
 ## Completed Sprint Summary
 - All backlog tasks completed.
-- Definition of Done met: **50 complete playable games** with pure TypeScript logic engines, Web Audio procedural synthesizers, 523 automated tests passing across 52 test suites (5015 assertions), zero type errors, lightweight code-split bundles, single-screen zero-scroll mobile responsiveness, 100/100 7-pillar Agentic SEO audit with 0/100 slop, and live deployment.
+- Definition of Done met: **51 complete playable games** with pure TypeScript logic engines, Web Audio procedural synthesizers, 531 automated tests passing across 53 test suites (5043 assertions), zero type errors, lightweight code-split bundles, single-screen zero-scroll mobile responsiveness, 100/100 7-pillar Agentic SEO audit with 0/100 slop, and live deployment.
 
 
 

@@ -1968,6 +1968,43 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Barnyard Pinball: Flipper Farm 🕹️ — No Download | Pawcade',
     metaDescription: 'Play Barnyard Pinball free online! Launch chrome balls, hit glowing farm bumpers, light F-A-R-M lanes, and trigger multiball. Free arcade pinball with no download.',
   },
+  {
+    id: 'crop-mower-harvest',
+    slug: 'crop-mower-harvest',
+    title: 'Crop Mower: Harvest Rush 🚜🌾',
+    tagline: 'Drive a nimble red tractor to mow neat rows of tall golden wheat, fill your harvest basket, and clear 100% of the field!',
+    description: 'Drive a nimble red farm tractor to mow neat rows of tall golden wheat, sweet corn, and bright sunflowers! Fill your harvest basket as spinning blades slice clean stripes across the field. Empty your crop load at the red silo chute for bonus points, and steer around boulders and tree stumps. Clear 100% of every paddock across four scenic farm stages with zero downloads!',
+    category: 'arcade',
+    categories: ['arcade', 'farm'],
+    route: '/games/crop-mower-harvest/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '31.2K',
+    badge: '🚜 ASMR Mower',
+    thumbnailUrl: '/assets/thumbnails/thumb-crop-mower-harvest.svg',
+    controls: {
+      desktop: [
+        'Arrow Keys / WASD: Steer tractor across field rows',
+        'Release Keys: Stop tractor in place',
+        'M Key: Toggle motor and grass slicing sounds',
+      ],
+      mobile: [
+        'Swipe / Drag on Field: Guide tractor in any direction',
+        'Virtual D-Pad Buttons: Tap directional arrows at bottom of screen',
+        'Top Silo: Drive over red silo chute to empty full basket',
+      ],
+    },
+    features: [
+      'Satisfying ASMR Lawn Mowing Mechanics with Flying Straw Chaff Particles',
+      '4 Handcrafted Farm Stages: Sunny Wheat Paddock, Maize Maze, Sunflower Valley, and Grand Ranch',
+      'Harvest Basket Capacity and Silo Chute Score Deposit Bonuses',
+      'Smooth 60 FPS Canvas 2D Tractor Driving with Rotating Blade Decks',
+      'Procedural Web Audio Engine Chugs, Grass Snips, and Harvest Fanfares',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Crop Mower: Harvest Rush 🚜 — No Download | Pawcade',
+    metaDescription: 'Play Crop Mower Harvest Rush free online! Drive your tractor to mow golden wheat, fill your basket, and clear fields. Free casual farm game with no download.',
+  },
 ];
 
 

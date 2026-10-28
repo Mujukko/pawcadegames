@@ -87,11 +87,17 @@ export const App: React.FC = () => {
     const triPeaksGame = GAMES_REGISTRY.find(g => g.id === 'farm-tripeaks-solitaire');
     const sheepSorterGame = GAMES_REGISTRY.find(g => g.id === 'sheep-sorter-gate');
     const pinballGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-pinball');
+    const cropMowerGame = GAMES_REGISTRY.find(g => g.id === 'crop-mower-harvest');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/barnyard-pinball') || currentRoute.startsWith('/games/pinball') || currentRoute.startsWith('/games/flipper')) {
+    if (currentRoute.startsWith('/games/crop-mower-harvest') || currentRoute.startsWith('/games/crop-mower') || currentRoute.startsWith('/games/lawn-mower')) {
+      if (cropMowerGame) {
+        activeTitle = cropMowerGame.metaTitle;
+        activeDesc = cropMowerGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/barnyard-pinball') || currentRoute.startsWith('/games/pinball') || currentRoute.startsWith('/games/flipper')) {
       if (pinballGame) {
         activeTitle = pinballGame.metaTitle;
         activeDesc = pinballGame.metaDescription;
@@ -392,6 +398,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/crop-mower-harvest') || currentRoute.startsWith('/games/crop-mower') || currentRoute.startsWith('/games/lawn-mower')) {
+      return <GamePage navigate={navigate} gameId="crop-mower-harvest" />;
     }
     if (currentRoute.startsWith('/games/barnyard-pinball') || currentRoute.startsWith('/games/pinball') || currentRoute.startsWith('/games/flipper')) {
       return <GamePage navigate={navigate} gameId="barnyard-pinball" />;

@@ -129,6 +129,41 @@ export const BarnyardPinballContainer: React.FC = () => {
     popupsRef.current = [];
   };
 
+  const activePointersRef = useRef<Map<number, 'left' | 'right' | 'plunger'>>(new Map());
+
+  const handleCanvasPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const clickX = (e.clientX - rect.left) * (TABLE_WIDTH / rect.width);
+    const clickY = (e.clientY - rect.top) * (TABLE_HEIGHT / rect.height);
+
+    if (clickX > 360 && clickY > 350) {
+      activePointersRef.current.set(e.pointerId, 'plunger');
+      handlePlungerPress();
+      return;
+    }
+
+    const side: 'left' | 'right' = clickX < TABLE_WIDTH / 2 ? 'left' : 'right';
+    activePointersRef.current.set(e.pointerId, side);
+    handleFlipperEngage(side, true);
+  };
+
+  const handleCanvasPointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const action = activePointersRef.current.get(e.pointerId);
+    if (!action) return;
+    activePointersRef.current.delete(e.pointerId);
+
+    if (action === 'plunger') {
+      handlePlungerRelease();
+    } else {
+      const stillPressed = Array.from(activePointersRef.current.values()).includes(action);
+      if (!stillPressed) {
+        handleFlipperEngage(action, false);
+      }
+    }
+  };
+
   const toggleSound = () => {
     const next = pinballAudio.toggleMute();
     setIsMuted(next);
@@ -577,17 +612,24 @@ export const BarnyardPinballContainer: React.FC = () => {
         </div>
 
         {/* Controls / High Score */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1.5">
           <div className="text-right text-xs text-slate-400">
             <div>BEST</div>
             <div className="font-bold text-amber-200">{highScore.toLocaleString()}</div>
           </div>
           <button
             onClick={toggleSound}
-            className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 flex items-center justify-center text-lg border border-slate-700 transition"
+            className="w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 flex items-center justify-center text-base border border-slate-700 transition touch-manipulation"
             aria-label="Toggle Sound"
           >
             {isMuted ? '🔇' : '🔊'}
+          </button>
+          <button
+            onClick={handleRestart}
+            className="w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 flex items-center justify-center text-sm border border-slate-700 transition text-slate-300 hover:text-white touch-manipulation"
+            aria-label="Restart Machine"
+          >
+            🔄
           </button>
         </div>
       </div>
@@ -600,11 +642,15 @@ export const BarnyardPinballContainer: React.FC = () => {
       )}
 
       {/* Main Interactive Canvas Table */}
-      <div className="relative w-full aspect-[400/600] bg-slate-950 overflow-hidden shadow-2xl border-x border-slate-800">
+      <div className="relative w-full aspect-[400/600] bg-slate-950 overflow-hidden shadow-2xl border-x border-slate-800 touch-none">
         <canvas
           ref={canvasRef}
           width={TABLE_WIDTH}
           height={TABLE_HEIGHT}
+          onPointerDown={handleCanvasPointerDown}
+          onPointerUp={handleCanvasPointerUp}
+          onPointerCancel={handleCanvasPointerUp}
+          onPointerLeave={handleCanvasPointerUp}
           className="w-full h-full cursor-pointer touch-none select-none"
         />
 
@@ -625,7 +671,8 @@ export const BarnyardPinballContainer: React.FC = () => {
           onPointerDown={() => handleFlipperEngage('left', true)}
           onPointerUp={() => handleFlipperEngage('left', false)}
           onPointerLeave={() => handleFlipperEngage('left', false)}
-          className="flex-1 min-h-[54px] rounded-xl font-black text-sm transition-all duration-150 flex items-center justify-center space-x-1.5 border active:scale-95 bg-orange-600 hover:bg-orange-500 text-white border-orange-400 shadow-[0_0_15px_rgba(234,88,12,0.4)]"
+          onPointerCancel={() => handleFlipperEngage('left', false)}
+          className="flex-1 min-h-[54px] rounded-xl font-black text-xs sm:text-sm transition-all duration-150 flex items-center justify-center space-x-1 border active:scale-95 bg-orange-600 hover:bg-orange-500 text-white border-orange-400 shadow-[0_0_15px_rgba(234,88,12,0.4)] touch-manipulation"
         >
           <span>⬅️</span>
           <span>LEFT FLIPPER</span>
@@ -636,7 +683,8 @@ export const BarnyardPinballContainer: React.FC = () => {
           onPointerDown={handlePlungerPress}
           onPointerUp={handlePlungerRelease}
           onPointerLeave={handlePlungerRelease}
-          className={`px-4 min-h-[54px] rounded-xl font-black text-xs transition-all duration-150 flex flex-col items-center justify-center border active:scale-95 ${
+          onPointerCancel={handlePlungerRelease}
+          className={`px-3 sm:px-4 min-h-[54px] rounded-xl font-black text-xs transition-all duration-150 flex flex-col items-center justify-center border active:scale-95 touch-manipulation ${
             hudState.isPlungerCharging
               ? 'bg-red-600 text-white border-red-400 animate-pulse shadow-[0_0_15px_rgba(239,68,68,0.6)]'
               : 'bg-slate-800 text-amber-300 border-slate-700 hover:bg-slate-700'
@@ -651,7 +699,8 @@ export const BarnyardPinballContainer: React.FC = () => {
           onPointerDown={() => handleFlipperEngage('right', true)}
           onPointerUp={() => handleFlipperEngage('right', false)}
           onPointerLeave={() => handleFlipperEngage('right', false)}
-          className="flex-1 min-h-[54px] rounded-xl font-black text-sm transition-all duration-150 flex items-center justify-center space-x-1.5 border active:scale-95 bg-orange-600 hover:bg-orange-500 text-white border-orange-400 shadow-[0_0_15px_rgba(234,88,12,0.4)]"
+          onPointerCancel={() => handleFlipperEngage('right', false)}
+          className="flex-1 min-h-[54px] rounded-xl font-black text-xs sm:text-sm transition-all duration-150 flex items-center justify-center space-x-1 border active:scale-95 bg-orange-600 hover:bg-orange-500 text-white border-orange-400 shadow-[0_0_15px_rgba(234,88,12,0.4)] touch-manipulation"
         >
           <span>RIGHT FLIPPER</span>
           <span>➡️</span>
@@ -679,7 +728,7 @@ export const BarnyardPinballContainer: React.FC = () => {
 
             <button
               onClick={handleRestart}
-              className="w-full min-h-[48px] bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-black text-base rounded-xl shadow-lg active:scale-95 transition"
+              className="w-full min-h-[48px] bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-black text-base rounded-xl shadow-lg active:scale-95 transition touch-manipulation"
             >
               PLAY AGAIN 🔄
             </button>
