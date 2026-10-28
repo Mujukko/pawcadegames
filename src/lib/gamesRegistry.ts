@@ -1853,7 +1853,47 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Milk Bottle Plinko: Carnival Drop 🥛🎪 — No Download | Pawcade',
     metaDescription: 'Play Milk Bottle Plinko free online! Drop farm milk bottles through bouncy wooden pegs into the 100x jackpot bucket. Free casual carnival game with no download.',
   },
+  {
+    id: 'farm-tripeaks-solitaire',
+    slug: 'farm-tripeaks-solitaire',
+    title: 'Farm TriPeaks Solitaire: Harvest Peak 🌾🃏',
+    tagline: 'Clear 3 card pyramids, build harvest streak multipliers, and conquer farm peaks!',
+    description: 'Clear three card peaks in this relaxing countryside TriPeaks Solitaire! Tap cards one rank higher or lower than your waste card to clear rows. Uncover hidden cards beneath the peaks, build massive streak combo multipliers, and use lucky Wildcard Clovers to solve tricky boards. Play across four harvest stages with zero downloads!',
+    category: 'puzzle',
+    categories: ['puzzle', 'farm'],
+    route: '/games/farm-tripeaks-solitaire/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '38.9K',
+    badge: '🌾 TriPeaks Cards',
+    thumbnailUrl: '/assets/thumbnails/thumb-farm-tripeaks-solitaire.svg',
+    controls: {
+      desktop: [
+        'Left Click: Select cards on peaks (+/- 1 rank from active card)',
+        'Click Stock Pile: Draw a fresh card to reset waste card',
+        'Wildcard Button / W Key: Clear any card using a lucky clover',
+        'Undo Button / U Key: Step back your last move',
+      ],
+      mobile: [
+        'Tap Card: Clear valid cards into the waste pile',
+        'DRAW CARD Button: Flip new card from stock pile',
+        'WILD Button: Tap lucky clover to clear any selected card',
+        'Undo & Sound: Fast top header controls',
+      ],
+    },
+    features: [
+      'Classic 28-Card 3-Peak Pyramid Layout with Wrap-Around Matching (Ace & King)',
+      '4 Scenic Farm Stages: The Orchard Peak, Golden Silo Summit, Lush Pastures, and Barnyard Horizon',
+      'Streak Multipliers with Ascending Pentatonic Marimba & Harp Notes',
+      'Lucky Four-Leaf Wildcard Clovers and Full Move History Undo Support',
+      'Procedural Web Audio Card Slides, Chimes, and Harvest Fanfares',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Farm TriPeaks Solitaire: Harvest Peak 🌾 — No Download | Pawcade',
+    metaDescription: 'Play Farm TriPeaks Solitaire free online! Clear 3 card peaks, build streak multipliers, and uncover harvest crop cards. Free casual card game with no download.',
+  },
 ];
+
 
 
 

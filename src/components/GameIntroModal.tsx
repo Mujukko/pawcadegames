@@ -701,6 +701,45 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Drop bottles when the hopper aligns just slightly off-center! Deflecting inward off the outer pegs creates the cleanest angle into the 100x center jackpot.',
   },
+  'farm-tripeaks-solitaire': {
+    title: 'Farm TriPeaks Solitaire: Harvest Peak',
+    subtitle: 'Classic Countryside Card Solitaire',
+    mascot: '🌾🃏',
+    themeColor: 'from-emerald-600 via-green-700 to-amber-700',
+    goal: 'Clear 3 card pyramids, build harvest streak multipliers, and conquer farm peaks!',
+    steps: [
+      {
+        icon: '🃏',
+        title: '1. Match Next Card (+/- 1)',
+        desc: 'Tap any face-up card on the peaks that is one rank higher or lower than your active waste card.',
+      },
+      {
+        icon: '🔥',
+        title: '2. Build Streak Combos',
+        desc: 'Clear cards consecutively without drawing from your stock deck to multiply your score by up to 10x!',
+      },
+      {
+        icon: '🍀',
+        title: '3. Use Wildcards & Undo',
+        desc: 'Stuck on a tricky rank? Tap the lucky Wildcard Clover to remove any card, or use Undo to step back.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Tap matching card (+/- 1 rank)',
+        'Click Stock Pile: Flip next card to waste pile',
+        'Wildcard Button: Clear any card using lucky clover',
+        'Undo Button: Revert previous card move',
+      ],
+      mobile: [
+        'Tap Card: Instant play card to waste pile',
+        'DRAW CARD: Tap bottom button to flip new card',
+        'WILD: Tap lucky clover to remove any selected card',
+        'Undo & Restart: Header controls for quick retries',
+      ],
+    },
+    proTip: 'Look ahead before clearing cards! Choosing lines that uncover hidden face-down cards keeps your streak going without needing to draw.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

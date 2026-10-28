@@ -451,17 +451,17 @@ export const MilkBottlePlinkoContainer: React.FC = () => {
         </div>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <button
             onClick={toggleSound}
-            className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm active:scale-95 transition-transform touch-manipulation"
+            className="w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm sm:text-base active:scale-95 transition-transform touch-manipulation"
             aria-label="Toggle Sound"
           >
             {isMuted ? '🔇' : '🔊'}
           </button>
           <button
             onClick={handleResetGame}
-            className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm active:scale-95 transition-transform text-slate-300 hover:text-white touch-manipulation"
+            className="w-9 h-9 min-w-[36px] min-h-[36px] sm:w-10 sm:h-10 sm:min-w-[40px] sm:min-h-[40px] rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-sm sm:text-base active:scale-95 transition-transform text-slate-300 hover:text-white touch-manipulation"
             aria-label="Reset Board"
           >
             🔄
@@ -470,7 +470,7 @@ export const MilkBottlePlinkoContainer: React.FC = () => {
       </div>
 
       {/* Interactive 60 FPS Canvas Board */}
-      <div className="relative w-full aspect-[420/540] bg-slate-950 border-x border-slate-800 overflow-hidden shadow-2xl">
+      <div className="relative w-full aspect-[420/540] bg-slate-950 border-x border-slate-800 overflow-hidden shadow-2xl touch-none">
         <canvas
           ref={canvasRef}
           width={420}

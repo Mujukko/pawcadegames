@@ -84,11 +84,17 @@ export const App: React.FC = () => {
     const tangramGame = GAMES_REGISTRY.find(g => g.id === 'animal-tangram-fit');
     const coinPusherGame = GAMES_REGISTRY.find(g => g.id === 'piggy-coin-pusher');
     const milkPlinkoGame = GAMES_REGISTRY.find(g => g.id === 'milk-bottle-plinko');
+    const triPeaksGame = GAMES_REGISTRY.find(g => g.id === 'farm-tripeaks-solitaire');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/milk-bottle-plinko') || currentRoute.startsWith('/games/milk-plinko') || currentRoute.startsWith('/games/plinko')) {
+    if (currentRoute.startsWith('/games/farm-tripeaks-solitaire') || currentRoute.startsWith('/games/tripeaks') || currentRoute.startsWith('/games/solitaire')) {
+      if (triPeaksGame) {
+        activeTitle = triPeaksGame.metaTitle;
+        activeDesc = triPeaksGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/milk-bottle-plinko') || currentRoute.startsWith('/games/milk-plinko') || currentRoute.startsWith('/games/plinko')) {
       if (milkPlinkoGame) {
         activeTitle = milkPlinkoGame.metaTitle;
         activeDesc = milkPlinkoGame.metaDescription;
@@ -374,6 +380,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/farm-tripeaks-solitaire') || currentRoute.startsWith('/games/tripeaks') || currentRoute.startsWith('/games/solitaire')) {
+      return <GamePage navigate={navigate} gameId="farm-tripeaks-solitaire" />;
     }
     if (currentRoute.startsWith('/games/milk-bottle-plinko') || currentRoute.startsWith('/games/milk-plinko') || currentRoute.startsWith('/games/plinko')) {
       return <GamePage navigate={navigate} gameId="milk-bottle-plinko" />;

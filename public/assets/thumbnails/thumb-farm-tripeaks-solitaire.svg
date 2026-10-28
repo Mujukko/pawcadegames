@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Pasture & Sky Gradient -->
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="45%" stop-color="#38bdf8" />
+      <stop offset="75%" stop-color="#7dd3fc" />
+      <stop offset="100%" stop-color="#a7f3d0" />
+    </linearGradient>
+
+    <!-- Rolling Hills Gradient -->
+    <linearGradient id="hillGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#15803d" />
+      <stop offset="50%" stop-color="#166534" />
+      <stop offset="100%" stop-color="#14532d" />
+    </linearGradient>
+
+    <!-- Rustic Card Parchment Gradient -->
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#fefce8" />
+      <stop offset="100%" stop-color="#fef08a" />
+    </linearGradient>
+
+    <!-- Card Back Wood Plaid -->
+    <linearGradient id="cardBackGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="50%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <!-- Gold Streak Banner -->
+    <linearGradient id="goldBanner" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feOffset dx="2" dy="5" result="offset" />
+      <feComposite in="SourceGraphic" in2="offset" operator="over" />
+    </filter>
+
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Sky & Countryside Background -->
+  <rect width="512" height="512" fill="url(#skyGrad)" />
+
+  <!-- Rolling Meadow Hills in Distance -->
+  <path d="M 0,280 Q 120,230 256,260 Q 380,290 512,240 L 512,512 L 0,512 Z" fill="url(#hillGrad)" />
+  <path d="M 0,330 Q 180,300 340,320 Q 440,330 512,310 L 512,512 L 0,512 Z" fill="#14532d" />
+
+  <!-- Cozy Red Barn in Distance -->
+  <g transform="translate(380, 210) scale(0.65)">
+    <polygon points="40,10 70,30 70,80 10,80 10,30" fill="#dc2626" stroke="#991b1b" stroke-width="2" />
+    <polygon points="40,5 75,28 5,28" fill="#ffffff" />
+    <rect x="25" y="45" width="30" height="35" fill="#ffffff" stroke="#991b1b" stroke-width="2" />
+    <line x1="25" y1="45" x2="55" y2="80" stroke="#dc2626" stroke-width="2" />
+    <line x1="55" y1="45" x2="25" y2="80" stroke="#dc2626" stroke-width="2" />
+  </g>
+
+  <!-- Green Card Table Felt in Foreground -->
+  <ellipse cx="256" cy="460" rx="280" ry="120" fill="#064e3b" stroke="#047857" stroke-width="4" />
+
+  <!-- 3 TriPeaks Pyramids Formations (Cards) -->
+  <!-- Left Peak Base (Row 1) -->
+  <rect x="65" y="150" width="75" height="105" rx="8" fill="url(#cardBackGrad)" stroke="#fde047" stroke-width="2" filter="url(#cardShadow)" transform="rotate(-5 102 202)" />
+  <rect x="125" y="150" width="75" height="105" rx="8" fill="url(#cardBackGrad)" stroke="#fde047" stroke-width="2" filter="url(#cardShadow)" transform="rotate(4 162 202)" />
+
+  <!-- Center Peak Base (Row 1) -->
+  <rect x="218" y="145" width="75" height="105" rx="8" fill="url(#cardBackGrad)" stroke="#fde047" stroke-width="2" filter="url(#cardShadow)" />
+
+  <!-- Right Peak Base (Row 1) -->
+  <rect x="312" y="150" width="75" height="105" rx="8" fill="url(#cardBackGrad)" stroke="#fde047" stroke-width="2" filter="url(#cardShadow)" transform="rotate(-4 349 202)" />
+  <rect x="372" y="150" width="75" height="105" rx="8" fill="url(#cardBackGrad)" stroke="#fde047" stroke-width="2" filter="url(#cardShadow)" transform="rotate(5 409 202)" />
+
+  <!-- The 3 Peak Summit Cards (Face Up Highlights!) -->
+  <!-- Peak 1 Summit: Queen of Apples (Luna the Cat) -->
+  <g transform="translate(95, 80) rotate(-6)">
+    <rect x="0" y="0" width="80" height="112" rx="8" fill="url(#cardGrad)" stroke="#e2e8f0" stroke-width="2" filter="url(#cardShadow)" />
+    <!-- Rank & Suit Top-Left -->
+    <text x="8" y="20" font-family="sans-serif" font-weight="900" font-size="16" fill="#dc2626">Q</text>
+    <text x="8" y="36" font-size="12">🍎</text>
+    <!-- Center Luna Cat Portrait -->
+    <ellipse cx="40" cy="56" rx="22" ry="22" fill="#fbcfe8" />
+    <text x="40" y="63" font-size="24" text-anchor="middle">🐱</text>
+    <!-- Gold Rim -->
+    <rect x="3" y="3" width="74" height="106" rx="6" fill="none" stroke="#f59e0b" stroke-width="1.5" />
+  </g>
+
+  <!-- Peak 2 Summit: King of Wheat (Bessie the Cow) -->
+  <g transform="translate(216, 65)">
+    <rect x="0" y="0" width="84" height="118" rx="8" fill="url(#cardGrad)" stroke="#e2e8f0" stroke-width="2.5" filter="url(#cardShadow)" />
+    <!-- Rank & Suit Top-Left -->
+    <text x="10" y="22" font-family="sans-serif" font-weight="900" font-size="18" fill="#d97706">K</text>
+    <text x="10" y="40" font-size="14">🌾</text>
+    <!-- Center Bessie Cow Portrait -->
+    <ellipse cx="42" cy="62" rx="24" ry="24" fill="#fef08a" />
+    <text x="42" y="70" font-size="28" text-anchor="middle">🐮</text>
+    <!-- Gold Rim -->
+    <rect x="3.5" y="3.5" width="77" height="111" rx="6" fill="none" stroke="#eab308" stroke-width="2" />
+  </g>
+
+  <!-- Peak 3 Summit: Jack of Acorns (Buster the Pup) -->
+  <g transform="translate(340, 80) rotate(6)">
+    <rect x="0" y="0" width="80" height="112" rx="8" fill="url(#cardGrad)" stroke="#e2e8f0" stroke-width="2" filter="url(#cardShadow)" />
+    <!-- Rank & Suit Top-Left -->
+    <text x="8" y="20" font-family="sans-serif" font-weight="900" font-size="16" fill="#78350f">J</text>
+    <text x="8" y="36" font-size="12">🌰</text>
+    <!-- Center Buster Pup Portrait -->
+    <ellipse cx="40" cy="56" rx="22" ry="22" fill="#fed7aa" />
+    <text x="40" y="63" font-size="24" text-anchor="middle">🐶</text>
+    <!-- Gold Rim -->
+    <rect x="3" y="3" width="74" height="106" rx="6" fill="none" stroke="#f59e0b" stroke-width="1.5" />
+  </g>
+
+  <!-- Giant Active Waste Pile Card in Foreground: Ace of Clovers (Sunny the Corgi) -->
+  <g transform="translate(200, 260) rotate(-3)">
+    <rect x="0" y="0" width="112" height="156" rx="12" fill="url(#cardGrad)" stroke="#ffffff" stroke-width="3" filter="url(#cardShadow)" />
+    <!-- Rank & Suit -->
+    <text x="14" y="28" font-family="sans-serif" font-weight="900" font-size="24" fill="#15803d">A</text>
+    <text x="14" y="52" font-size="18">🍀</text>
+    <!-- Center Mascot Art: Sunny Corgi -->
+    <circle cx="56" cy="84" r="32" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" />
+    <text x="56" y="94" font-size="38" text-anchor="middle">🐕</text>
+    <!-- Border Ornament -->
+    <rect x="5" y="5" width="102" height="146" rx="9" fill="none" stroke="#22c55e" stroke-width="2" />
+  </g>
+
+  <!-- Glowing Golden Four-Leaf Clover (Wildcard) -->
+  <g transform="translate(350, 310)" filter="url(#goldGlow)">
+    <circle cx="35" cy="35" r="34" fill="#166534" stroke="#facc15" stroke-width="3" />
+    <text x="35" y="46" font-size="38" text-anchor="middle">🍀</text>
+    <circle cx="52" cy="18" r="6" fill="#fef08a" />
+  </g>
+
+  <!-- Stock Draw Deck on Left -->
+  <g transform="translate(60, 290) rotate(6)">
+    <!-- Stack effect -->
+    <rect x="-4" y="-4" width="96" height="136" rx="10" fill="#451a03" />
+    <rect x="-2" y="-2" width="96" height="136" rx="10" fill="#78350f" />
+    <rect x="0" y="0" width="96" height="136" rx="10" fill="url(#cardBackGrad)" stroke="#fde047" stroke-width="2.5" filter="url(#cardShadow)" />
+    <!-- Rustic Compass Plaid on card back -->
+    <circle cx="48" cy="68" r="24" fill="none" stroke="#fef08a" stroke-width="2" stroke-dasharray="4,3" />
+    <text x="48" y="76" font-size="26" text-anchor="middle">🌾</text>
+  </g>
+
+  <!-- Golden Streak Multiplier Banner -->
+  <g transform="translate(156, 440)">
+    <polygon points="0,0 200,0 188,38 12,38" fill="url(#goldBanner)" stroke="#fff" stroke-width="2" filter="url(#cardShadow)" />
+    <text x="100" y="26" font-family="sans-serif" font-weight="900" font-size="20" fill="#713f12" text-anchor="middle" letter-spacing="1">
+      STREAK x5 ⭐
+    </text>
+  </g>
+
+  <!-- Confetti / Harvest Sparkles -->
+  <circle cx="160" cy="80" r="4" fill="#facc15" />
+  <circle cx="310" cy="70" r="3.5" fill="#facc15" />
+  <circle cx="180" cy="220" r="4.5" fill="#f43f5e" />
+  <circle cx="330" cy="230" r="4" fill="#38bdf8" />
+  <circle cx="410" cy="400" r="3" fill="#fde047" />
+</svg>
