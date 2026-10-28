@@ -1624,6 +1624,45 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Duck Archery: Target Master 🎯🦆 — No Download | Pawcade',
     metaDescription: 'Play Duck Archery: Target Master free online! Pull back the bowstring, gauge wind gusts, and shoot bullseyes across 4 ranges. Free casual game with no download.',
   },
+  {
+    id: 'corgi-mini-golf',
+    slug: 'corgi-mini-golf',
+    title: 'Corgi Mini Golf: Pasture Putt 🐶⛳',
+    tagline: 'Putt, bank off wooden rails, dodge sand traps, and sink hole-in-ones with Sunny the Corgi!',
+    description: 'Help Sunny the Corgi sink putts across four handcrafted countryside mini golf holes! Drag to aim your putter, bank shots off wooden rails, dodge sand and mud hazards, and collect golden bones. Sink putts under par to earn Birdie, Eagle, and Hole-in-One trophies.',
+    category: 'arcade',
+    categories: ['arcade', 'pets'],
+    route: '/games/corgi-mini-golf/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '24.8K',
+    badge: '🐶 Mini Golf',
+    thumbnailUrl: '/assets/thumbnails/thumb-corgi-mini-golf.svg',
+    controls: {
+      desktop: [
+        'Mouse Drag & Release: Pull back to set putt power and direction',
+        'Aim Line: Dashed guide displays rolling angle and power percentage',
+        'R Key: Restart current golf hole',
+        'M Key: Toggle putter clink and ball cup sounds',
+      ],
+      mobile: [
+        'Touch & Drag: Pull back from ball to adjust power and direction',
+        'Release Finger: Putt the ball across the green',
+        'Restart Button: Reset current hole anytime',
+      ],
+    },
+    features: [
+      '4 Handcrafted Countryside Holes: Pasture Fairway, Windmill Dogleg, Mud Trap Chicane, and Barnyard Championship',
+      'Sub-Stepped 60 FPS Physics with Restitution Rail Bounces and Variable Surface Friction',
+      'Realistic Hole Suction Physics and Flagpin Cup Drop Animations',
+      'Bouncy Pinball-Style Wooden Bumpers and Collectible Golden Bones (+100 pts)',
+      'Authentic Golf Scoring: Hole-in-One, Eagle, Birdie, Par, and Bogey Ratings',
+      'Procedural Web Audio Synthesizer (Metallic Putts, Rail Thwacks, Bumper Boings, and Cup Drops)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Corgi Mini Golf: Pasture Putt 🐶⛳ — No Download | Pawcade',
+    metaDescription: 'Play Corgi Mini Golf free online! Aim your putter, bank off wooden rails, dodge sand traps, and sink hole-in-ones. Free casual game with no download.',
+  },
 ];
 
 

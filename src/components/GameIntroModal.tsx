@@ -476,6 +476,43 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Aim high when crosswinds push against your shot! The dotted arc preview reveals your initial trajectory, but wind will carry your arrow further sideways.',
   },
+  'corgi-mini-golf': {
+    title: 'Corgi Mini Golf: Pasture Putt',
+    subtitle: 'Countryside Mini Golf & Bank Shots',
+    mascot: '🐶⛳',
+    themeColor: 'from-emerald-600 via-teal-600 to-amber-700',
+    goal: 'Aim your putter, bank off wooden rails, dodge hazards, and sink putts with Sunny the Corgi!',
+    steps: [
+      {
+        icon: '🏌️',
+        title: '1. Pull to Aim Putter',
+        desc: 'Drag backward from the golf ball to adjust power and aim. Watch the dashed line to preview your shot.',
+      },
+      {
+        icon: '🧱',
+        title: '2. Bank Off Wooden Rails',
+        desc: 'Bounce balls off side rails to navigate sharp dogleg corners. Hit blue bumpers for extra speed bursts.',
+      },
+      {
+        icon: '⛳',
+        title: '3. Sink Into the Cup',
+        desc: 'Roll smoothly into the cup to complete each hole. Sink putts under par to earn Birdie and Eagle trophies.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Drag & Release: Pull back to set putt power and angle',
+        'R Key: Quick restart current hole',
+        'M Key: Toggle putter clink and cup sounds',
+      ],
+      mobile: [
+        'Touch & Drag: Pull back from ball to adjust power',
+        'Release Finger: Putt the ball forward',
+        'Restart Button: Reset hole anytime',
+      ],
+    },
+    proTip: 'Avoid sand traps and mud puddles at all costs! Rough hazards drain ball momentum instantly and cost extra strokes.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

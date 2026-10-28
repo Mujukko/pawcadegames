@@ -75,10 +75,12 @@
 | TASK-071 | P0 | DONE | Barnyard Fruit Slicer: Farm Juice (Game #39) | Tactile airborne fruit slicing arcade: parabolic arcs, line-segment raycast slicing, halving separation physics, juice particle splatters, combo multipliers (3x-5x), thistle bomb evasion, 4 harvest stages, 9 unit tests. |
 | TASK-072 | P0 | DONE | Barnyard Peg Pop: Acorn Bounce (Game #40) | Peggle & Pachinko acorn cannon arcade: circle collision restitution, melodic pentatonic chime scale, moving hay cart free-ball catches, extreme fever celebrations, 4 handcrafted pegboards, 7 unit tests. |
 | TASK-073 | P0 | DONE | Duck Archery: Target Master (Game #41) | Countryside archery bow & arrow arcade: Quacky the Robin Duck, drag & release string ballistics, gravity arc & crosswind gusts, concentric target scoring (100 pt Bullseye), bonus field apples (+150 pts) & bells (+1 arrow), 4 ranges, 11 unit tests. |
+| TASK-074 | P0 | DONE | Corgi Mini Golf: Pasture Putt (Game #42) | Countryside mini golf arcade: Sunny the Corgi, sub-stepped 60 FPS physics, restitution rail bounces, sand & mud hazards, bouncy pinball bumpers, collectible golden bones (+100 pts), authentic golf term ratings (Hole-in-One, Eagle, Birdie, Par), 4 holes, 12 unit tests. |
 
 ## Completed Sprint Summary
 - All backlog tasks completed.
-- Definition of Done met: **41 complete playable games** with pure TypeScript logic engines, Web Audio procedural synthesizers, 437 automated tests passing across 43 test suites (4621 assertions), zero type errors, lightweight code-split bundles, single-screen zero-scroll mobile responsiveness, 100/100 7-pillar Agentic SEO audit with 0/100 slop, and live deployment.
+- Definition of Done met: **42 complete playable games** with pure TypeScript logic engines, Web Audio procedural synthesizers, 449 automated tests passing across 44 test suites (4666 assertions), zero type errors, lightweight code-split bundles, single-screen zero-scroll mobile responsiveness, 100/100 7-pillar Agentic SEO audit with 0/100 slop, and live deployment.
+
 
 
 
