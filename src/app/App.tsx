@@ -73,11 +73,17 @@ export const App: React.FC = () => {
     const farmTileTripleGame = GAMES_REGISTRY.find(g => g.id === 'farm-tile-triple');
     const farmPipeFlowGame = GAMES_REGISTRY.find(g => g.id === 'farm-pipe-flow');
     const koiPondGame = GAMES_REGISTRY.find(g => g.id === 'koi-pond-zen');
+    const barnyardPinGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-pin-pull');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/koi-pond-zen') || currentRoute.startsWith('/games/koi-pond') || currentRoute.startsWith('/games/zen-pond')) {
+    if (currentRoute.startsWith('/games/barnyard-pin-pull') || currentRoute.startsWith('/games/pin-pull') || currentRoute.startsWith('/games/pull-the-pin')) {
+      if (barnyardPinGame) {
+        activeTitle = barnyardPinGame.metaTitle;
+        activeDesc = barnyardPinGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/koi-pond-zen') || currentRoute.startsWith('/games/koi-pond') || currentRoute.startsWith('/games/zen-pond')) {
       if (koiPondGame) {
         activeTitle = koiPondGame.metaTitle;
         activeDesc = koiPondGame.metaDescription;
@@ -308,6 +314,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/barnyard-pin-pull') || currentRoute.startsWith('/games/pin-pull') || currentRoute.startsWith('/games/pull-the-pin')) {
+      return <GamePage navigate={navigate} gameId="barnyard-pin-pull" />;
     }
     if (currentRoute.startsWith('/games/koi-pond-zen') || currentRoute.startsWith('/games/koi-pond') || currentRoute.startsWith('/games/zen-pond')) {
       return <GamePage navigate={navigate} gameId="koi-pond-zen" />;

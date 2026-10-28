@@ -3,6 +3,7 @@ import { KoiPondState, KoiFish } from './logic/types';
 import {
   initKoiPond,
   dropFoodPellet,
+  addWaterRipple,
   triggerSingingBowl,
   activatePetalShower,
   updateKoiPond,
@@ -25,6 +26,8 @@ export const KoiPondZenContainer: React.FC = () => {
   const [uiGameCompleted, setUiGameCompleted] = useState(false);
   const [isMuted, setIsMuted] = useState(koiPondAudio.getMuted());
   const [pelletMode, setPelletMode] = useState<'normal' | 'golden'>('normal');
+  const isPointerDownRef = useRef(false);
+  const lastRipplePosRef = useRef<{ x: number; y: number } | null>(null);
 
   // Sync canvas size
   const updatePondDimensions = useCallback(() => {
@@ -510,8 +513,28 @@ export const KoiPondZenContainer: React.FC = () => {
     ctx.restore();
   };
 
-  // Touch & Click Interaction
+  // Touch & Click Interaction with Fluid Pointer Gestures
   const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    isPointerDownRef.current = true;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {}
+
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    lastRipplePosRef.current = { x, y };
+    const isGolden = pelletMode === 'golden';
+    stateRef.current = dropFoodPellet(stateRef.current, x, y, isGolden);
+    koiPondAudio.playWaterPlink(isGolden);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!isPointerDownRef.current) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -519,9 +542,26 @@ export const KoiPondZenContainer: React.FC = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const isGolden = pelletMode === 'golden';
-    stateRef.current = dropFoodPellet(stateRef.current, x, y, isGolden);
-    koiPondAudio.playWaterPlink(isGolden);
+    if (lastRipplePosRef.current) {
+      const dx = x - lastRipplePosRef.current.x;
+      const dy = y - lastRipplePosRef.current.y;
+      const dist = Math.hypot(dx, dy);
+      // Fast tactile response: <= 14px threshold on touchmove creates smooth ripples
+      if (dist >= 14) {
+        stateRef.current = addWaterRipple(stateRef.current, x, y);
+        lastRipplePosRef.current = { x, y };
+      }
+    } else {
+      lastRipplePosRef.current = { x, y };
+    }
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    isPointerDownRef.current = false;
+    lastRipplePosRef.current = null;
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {}
   };
 
   // Singing Bowl Action
@@ -563,17 +603,20 @@ export const KoiPondZenContainer: React.FC = () => {
   const progressPct = Math.min(100, Math.floor((uiZen / uiTargetZen) * 100));
 
   return (
-    <div className="relative w-full h-[620px] max-w-lg mx-auto bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-teal-500/20 select-none touch-none">
+    <div className="relative w-full h-[540px] sm:h-[620px] max-h-[82vh] min-h-[460px] max-w-lg mx-auto bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-teal-500/20 select-none touch-none overscroll-none">
       {/* 60 FPS Interactive Pond Canvas */}
       <canvas
         ref={canvasRef}
         onPointerDown={handlePointerDown}
-        className="w-full h-full block cursor-pointer"
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        className="w-full h-full block cursor-pointer select-none"
         style={{ touchAction: 'none' }}
       />
 
       {/* Top Zen HUD */}
-      <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+      <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 right-2.5 sm:right-3 flex items-center justify-between pointer-events-none">
         {/* Stage & Zen Meter */}
         <div className="bg-slate-900/85 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-teal-500/30 shadow-lg">
           <div className="flex items-center gap-2">
@@ -606,7 +649,7 @@ export const KoiPondZenContainer: React.FC = () => {
               const muted = koiPondAudio.toggleMute();
               setIsMuted(muted);
             }}
-            className="w-10 h-10 rounded-2xl bg-slate-900/85 backdrop-blur-md border border-teal-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-2xl bg-slate-900/85 backdrop-blur-md border border-teal-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform cursor-pointer"
             aria-label={isMuted ? 'Unmute' : 'Mute'}
           >
             {isMuted ? '🔇' : '🔊'}
@@ -615,12 +658,12 @@ export const KoiPondZenContainer: React.FC = () => {
       </div>
 
       {/* Bottom Zen Tools & Boosters Tray */}
-      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-auto">
+      <div className="absolute bottom-2.5 sm:bottom-3 left-2.5 sm:left-3 right-2.5 sm:right-3 flex items-center justify-between pointer-events-auto gap-1.5 sm:gap-2">
         {/* Food Pellet Mode Toggle */}
         <div className="flex items-center bg-slate-900/90 backdrop-blur-md p-1 rounded-2xl border border-teal-500/30 shadow-lg">
           <button
             onClick={() => setPelletMode('normal')}
-            className={`px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 min-h-[44px] ${
+            className={`px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 min-h-[44px] min-w-[44px] cursor-pointer ${
               pelletMode === 'normal'
                 ? 'bg-teal-500 text-slate-950 shadow-md font-extrabold'
                 : 'text-teal-300 hover:bg-slate-800/60'
@@ -631,7 +674,7 @@ export const KoiPondZenContainer: React.FC = () => {
           </button>
           <button
             onClick={() => setPelletMode('golden')}
-            className={`px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 min-h-[44px] ${
+            className={`px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 min-h-[44px] min-w-[44px] cursor-pointer ${
               pelletMode === 'golden'
                 ? 'bg-amber-400 text-slate-950 shadow-md font-extrabold'
                 : 'text-amber-300 hover:bg-slate-800/60'
@@ -643,12 +686,12 @@ export const KoiPondZenContainer: React.FC = () => {
         </div>
 
         {/* Singing Bowl & Petal Shower Boosters */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Singing Bowl */}
           <button
             onClick={handleSingingBowl}
             disabled={uiBowlCooldown > 0}
-            className={`min-h-[44px] px-3.5 py-2 rounded-2xl font-bold text-xs backdrop-blur-md flex items-center gap-1.5 shadow-lg transition-transform active:scale-95 border ${
+            className={`min-h-[44px] min-w-[44px] px-2.5 sm:px-3.5 py-2 rounded-2xl font-bold text-xs backdrop-blur-md flex items-center justify-center gap-1.5 shadow-lg transition-transform active:scale-95 border cursor-pointer ${
               uiBowlCooldown > 0
                 ? 'bg-slate-800/80 border-slate-700 text-slate-400 cursor-not-allowed'
                 : 'bg-gradient-to-r from-amber-500/90 to-yellow-500/90 border-amber-400 text-slate-950'
@@ -661,7 +704,7 @@ export const KoiPondZenContainer: React.FC = () => {
           {/* Petal Shower */}
           <button
             onClick={handlePetalShower}
-            className="min-h-[44px] px-3.5 py-2 rounded-2xl font-bold text-xs backdrop-blur-md flex items-center gap-1.5 shadow-lg transition-transform active:scale-95 border border-pink-400/80 bg-pink-500/80 text-white"
+            className="min-h-[44px] min-w-[44px] px-2.5 sm:px-3.5 py-2 rounded-2xl font-bold text-xs backdrop-blur-md flex items-center justify-center gap-1.5 shadow-lg transition-transform active:scale-95 border cursor-pointer border-pink-400/80 bg-pink-500/80 text-white"
           >
             <span>🌸</span>
             <span>Sakura</span>
@@ -671,8 +714,8 @@ export const KoiPondZenContainer: React.FC = () => {
 
       {/* Stage Completed Modal */}
       {uiStageCompleted && !uiGameCompleted && (
-        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-6 z-20">
-          <div className="bg-slate-900 border border-teal-500/40 rounded-3xl p-6 text-center max-w-sm shadow-2xl animate-fade-in">
+        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 z-20">
+          <div className="bg-slate-900 border border-teal-500/40 rounded-3xl p-5 sm:p-6 text-center max-w-sm w-full shadow-2xl animate-fade-in max-h-[90vh] overflow-y-auto">
             <div className="text-5xl mb-3">🪷🎏</div>
             <h3 className="text-xl font-black text-teal-300">
               Zen Garden Flourishing!
@@ -683,7 +726,7 @@ export const KoiPondZenContainer: React.FC = () => {
             <div className="mt-5 flex flex-col gap-2.5">
               <button
                 onClick={handleNextStage}
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-teal-400 to-emerald-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px]"
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-teal-400 to-emerald-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer"
               >
                 Enter Next Sanctuary ({uiStage + 1}/{STAGES.length}) 🌿
               </button>
@@ -694,8 +737,8 @@ export const KoiPondZenContainer: React.FC = () => {
 
       {/* Grand Finale Victory Modal */}
       {uiGameCompleted && (
-        <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-6 z-30">
-          <div className="bg-slate-900 border border-amber-400/60 rounded-3xl p-6 text-center max-w-sm shadow-2xl animate-fade-in">
+        <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 z-30">
+          <div className="bg-slate-900 border border-amber-400/60 rounded-3xl p-5 sm:p-6 text-center max-w-sm w-full shadow-2xl animate-fade-in max-h-[90vh] overflow-y-auto">
             <div className="text-5xl mb-3">👑🎏🌸</div>
             <h3 className="text-2xl font-black text-amber-300">
               Master of Zen Waters!
@@ -706,7 +749,7 @@ export const KoiPondZenContainer: React.FC = () => {
             <div className="mt-5 flex flex-col gap-2.5">
               <button
                 onClick={handleRestart}
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px]"
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer"
               >
                 Relax in Gardens Again 🌸
               </button>

@@ -114,6 +114,9 @@ const FarmPipeFlowContainer = lazy(() =>
 const KoiPondZenContainer = lazy(() =>
   import('../games/koi-pond-zen/KoiPondZenContainer').then((m) => ({ default: m.KoiPondZenContainer }))
 );
+const BarnyardPinPullContainer = lazy(() =>
+  import('../games/barnyard-pin-pull/BarnyardPinPullContainer').then((m) => ({ default: m.BarnyardPinPullContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -143,6 +146,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isPinPull = gameId === 'barnyard-pin-pull' || gameId === 'pin-pull' || gameId === 'pull-the-pin';
   const isKoiPond = gameId === 'koi-pond-zen' || gameId === 'koi-pond' || gameId === 'zen-pond';
   const isFarmPipeFlow = gameId === 'farm-pipe-flow' || gameId === 'pipe-flow' || gameId === 'plumber';
   const isFarmTileTriple = gameId === 'farm-tile-triple' || gameId === 'tile-triple' || gameId === 'triple-match';
@@ -287,7 +291,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isKoiPond
+                isPinPull
+                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+                  : isKoiPond
                   ? 'bg-teal-500/20 text-teal-300 border-teal-500/30'
                   : isFarmPipeFlow
                   ? 'bg-sky-500/20 text-sky-300 border-sky-500/30'
@@ -367,7 +373,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isKoiPond
+                  isPinPull
+                    ? '🚜📌'
+                    : isKoiPond
                     ? '🎏🌸'
                     : isFarmPipeFlow
                     ? '🚜💧'
@@ -442,7 +450,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isKoiPond ? (
+            {isPinPull ? (
+              <BarnyardPinPullContainer />
+            ) : isKoiPond ? (
               <KoiPondZenContainer />
             ) : isFarmPipeFlow ? (
               <FarmPipeFlowContainer />

@@ -232,6 +232,33 @@ export function dropFoodPellet(
   };
 }
 
+export function addWaterRipple(
+  state: KoiPondState,
+  x: number,
+  y: number,
+  radius: number = 3,
+  maxRadius: number = 28,
+  color?: string
+): KoiPondState {
+  if (state.ripples.length > 25) {
+    return state;
+  }
+  const ripple: WaterRipple = {
+    id: `rip-drag-${Date.now()}-${Math.random()}`,
+    x: Math.max(10, Math.min(state.pondWidth - 10, x)),
+    y: Math.max(10, Math.min(state.pondHeight - 10, y)),
+    radius,
+    maxRadius,
+    speed: 38,
+    alpha: 0.6,
+    color: color || 'rgba(255, 255, 255, 0.45)',
+  };
+  return {
+    ...state,
+    ripples: [...state.ripples, ripple],
+  };
+}
+
 export function triggerSingingBowl(state: KoiPondState): {
   state: KoiPondState;
   success: boolean;

@@ -290,6 +290,42 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Group multiple food pellets in the center before ringing the singing bowl. All five koi will rush together and create a huge burst of zen points!',
   },
+  'barnyard-pin-pull': {
+    title: 'Barnyard Pin Pull: Rescue & Loot',
+    subtitle: 'Pull Pins to Quench Lava & Feed Pets',
+    mascot: '🚜📌',
+    themeColor: 'from-amber-600 via-orange-600 to-red-800',
+    goal: 'Pull golden pins in the correct order to extinguish burning lava with water, defeat sneaky foxes, and rescue Barnaby!',
+    steps: [
+      {
+        icon: '📌',
+        title: '1. Inspect Pin Sequence',
+        desc: 'Study the chamber layout carefully. See which pins hold water, lava, carrots, or enemies before pulling.',
+      },
+      {
+        icon: '💧',
+        title: '2. Quench Dangerous Lava',
+        desc: 'Drop water onto lava to solidify it into harmless cool stone. Never drop raw lava on Barnaby!',
+      },
+      {
+        icon: '🥕',
+        title: '3. Fill the Puppy Bowl',
+        desc: 'Once the path is safe and clear of traps, pull the bottom gate pin to slide golden carrots into the bowl.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Click pin pull ring to slide out',
+        'R Key: Quick restart level',
+        'M Key: Toggle sound effects',
+      ],
+      mobile: [
+        'Tap Pin Ring: Pull pin smoothly with your thumb',
+        'Restart Button: Reset level anytime',
+      ],
+    },
+    proTip: 'Always neutralize hazards first! Drop water onto lava or drop lava onto the fox before unlocking the food chamber, or your treats will get stolen or burned!',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

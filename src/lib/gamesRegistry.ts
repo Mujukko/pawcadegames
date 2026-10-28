@@ -1437,6 +1437,42 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Koi Pond: Zen Water Garden 🎏🌸 — No Download | Pawcade',
     metaDescription: 'Play Koi Pond Zen free online! Feed graceful Japanese koi, bloom lotus flowers, and create water ripples in a tranquil pond garden. Free relaxing game with no download.',
   },
+  {
+    id: 'barnyard-pin-pull',
+    slug: 'barnyard-pin-pull',
+    title: 'Barnyard Pin Pull: Rescue & Loot 🚜📌',
+    tagline: 'Pull golden pins to quench burning lava, defeat thieving foxes, and drop fresh carrots to rescue Barnaby!',
+    description: 'Pull golden locking pins in the right order to rescue cute farm animals. Quench burning lava with fresh water to make safe stones. Defeat sneaky foxes and drop golden carrots into Barnaby\'s bowl across five barnyard puzzle chambers.',
+    category: 'puzzle',
+    categories: ['puzzle', 'farm', 'arcade'],
+    route: '/games/barnyard-pin-pull/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '23.4K',
+    badge: '📌 Pin Rescue',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-pin-pull.svg',
+    controls: {
+      desktop: [
+        'Left Click Pin Ring: Pull pin smoothly out of socket',
+        'R Key: Quick restart current chamber',
+        'M Key: Toggle pin slide and steam sounds',
+      ],
+      mobile: [
+        'Tap Pin Ring: Pull pin with your finger',
+        'Restart Button: Reset chamber easily',
+      ],
+    },
+    features: [
+      '5 Handcrafted Chamber Levels: Granary Gateway, Steam Quencher, Fox in the Hayloft, Treasure Granary, and Barnyard Fortress',
+      'Dynamic Water vs Lava Quenching Physics with Expanding Steam Clouds',
+      'Tactile 60 FPS Particle Gravity Mechanics (Golden Carrots, Coins, Water, Lava, and Stone)',
+      'Sneaky Thief Fox AI and Barnaby the Hungry Puppy Reactions',
+      'Procedural Web Audio Synthesizer (Wooden Pin Slides, Lava Sizzles, Coin Clinks, and Victory Fanfare)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Barnyard Pin Pull: Rescue & Loot 🚜📌 — No Download | Pawcade',
+    metaDescription: 'Play Barnyard Pin Pull free online! Pull golden pins, quench lava with water, defeat sneaky foxes, and rescue cute farm animals. Free puzzle game with no download.',
+  },
 ];
 
 

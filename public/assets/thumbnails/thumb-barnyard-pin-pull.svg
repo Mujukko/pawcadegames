@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Barn Wall -->
+    <linearGradient id="barnWood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="50%" stop-color="#451a03" />
+      <stop offset="100%" stop-color="#1c1917" />
+    </linearGradient>
+
+    <!-- Golden Pin Gradient -->
+    <linearGradient id="goldPin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="35%" stop-color="#facc15" />
+      <stop offset="80%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Water Droplet Gradient -->
+    <linearGradient id="waterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#67e8f9" />
+      <stop offset="70%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#0e7490" />
+    </linearGradient>
+
+    <!-- Lava Gradient -->
+    <radialGradient id="lavaGrad" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="40%" stop-color="#f97316" />
+      <stop offset="85%" stop-color="#dc2626" />
+      <stop offset="100%" stop-color="#7f1d1d" />
+    </radialGradient>
+
+    <!-- Carrot Gradient -->
+    <linearGradient id="carrotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fb923c" />
+      <stop offset="70%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#c2410c" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="shadowFilter" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0c0a09" flood-opacity="0.65" />
+    </filter>
+
+    <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="512" height="512" rx="40" fill="url(#barnWood)" />
+
+  <!-- Wooden Planks Vertical Texture -->
+  <line x1="128" y1="0" x2="128" y2="512" stroke="#291206" stroke-width="4" stroke-opacity="0.4" />
+  <line x1="256" y1="0" x2="256" y2="512" stroke="#291206" stroke-width="4" stroke-opacity="0.4" />
+  <line x1="384" y1="0" x2="384" y2="512" stroke="#291206" stroke-width="4" stroke-opacity="0.4" />
+
+  <!-- Chamber Barrier Frame (Iron & Heavy Oak) -->
+  <g filter="url(#shadowFilter)">
+    <!-- Top Chamber Walls -->
+    <rect x="110" y="50" width="22" height="180" rx="6" fill="#713f12" stroke="#a16207" stroke-width="3" />
+    <rect x="380" y="50" width="22" height="180" rx="6" fill="#713f12" stroke="#a16207" stroke-width="3" />
+    <!-- Lower Chamber Walls -->
+    <rect x="110" y="240" width="22" height="220" rx="6" fill="#713f12" stroke="#a16207" stroke-width="3" />
+    <rect x="380" y="240" width="22" height="220" rx="6" fill="#713f12" stroke="#a16207" stroke-width="3" />
+    <!-- Bottom Floor -->
+    <rect x="110" y="450" width="292" height="24" rx="6" fill="#713f12" stroke="#a16207" stroke-width="3" />
+  </g>
+
+  <!-- Top Chamber: Golden Carrots & Corn -->
+  <g filter="url(#shadowFilter)">
+    <!-- Carrots -->
+    <path d="M190,95 L205,145 L175,145 Z" fill="url(#carrotGrad)" transform="rotate(-15 190 120)" />
+    <ellipse cx="190" cy="95" rx="14" ry="7" fill="#ea580c" />
+    <!-- Green carrot top -->
+    <path d="M190,92 Q185,75 178,72 M190,92 Q190,72 192,68 M190,92 Q195,75 204,74" stroke="#22c55e" stroke-width="3.5" fill="none" stroke-linecap="round" />
+
+    <path d="M260,110 L275,160 L245,160 Z" fill="url(#carrotGrad)" transform="rotate(20 260 135)" />
+    <ellipse cx="260" cy="110" rx="14" ry="7" fill="#ea580c" />
+    <path d="M260,107 Q255,90 248,88 M260,107 Q260,88 262,84 M260,107 Q265,90 274,89" stroke="#22c55e" stroke-width="3.5" fill="none" stroke-linecap="round" />
+
+    <path d="M320,95 L335,145 L305,145 Z" fill="url(#carrotGrad)" transform="rotate(-8 320 120)" />
+    <ellipse cx="320" cy="95" rx="14" ry="7" fill="#ea580c" />
+    <path d="M320,92 Q315,75 308,72 M320,92 Q320,72 322,68 M320,92 Q325,75 334,74" stroke="#22c55e" stroke-width="3.5" fill="none" stroke-linecap="round" />
+
+    <!-- Golden Coin Drops -->
+    <circle cx="225" cy="165" r="14" fill="#facc15" stroke="#ca8a04" stroke-width="2.5" />
+    <circle cx="285" cy="170" r="14" fill="#facc15" stroke="#ca8a04" stroke-width="2.5" />
+  </g>
+
+  <!-- ================= HORIZONTAL PULL PIN 1 (TOP) ================= -->
+  <g filter="url(#shadowFilter)">
+    <!-- Pin Shaft -->
+    <rect x="100" y="210" width="280" height="24" rx="12" fill="url(#goldPin)" stroke="#ca8a04" stroke-width="2" />
+    <!-- Pin Grip Ribs -->
+    <line x1="200" y1="214" x2="200" y2="230" stroke="#78350f" stroke-width="2.5" />
+    <line x1="240" y1="214" x2="240" y2="230" stroke="#78350f" stroke-width="2.5" />
+    <line x1="280" y1="214" x2="280" y2="230" stroke="#78350f" stroke-width="2.5" />
+
+    <!-- Big Pull Ring on Right -->
+    <circle cx="410" cy="222" r="28" fill="none" stroke="url(#goldPin)" stroke-width="12" filter="url(#glowFilter)" />
+    <circle cx="410" cy="222" r="28" fill="none" stroke="#78350f" stroke-width="2" />
+
+    <!-- Pull Action Motion Arrow -->
+    <path d="M445,222 L465,222 M458,212 L468,222 L458,232" stroke="#fde047" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glowFilter)" />
+  </g>
+
+  <!-- Middle Chamber: Liquid Water & Lava Stream -->
+  <g filter="url(#shadowFilter)">
+    <!-- Water Stream -->
+    <circle cx="160" cy="290" r="16" fill="url(#waterGrad)" />
+    <circle cx="195" cy="310" r="14" fill="url(#waterGrad)" />
+    <circle cx="170" cy="335" r="15" fill="url(#waterGrad)" />
+
+    <!-- Hot Lava Drops -->
+    <circle cx="330" cy="290" r="18" fill="url(#lavaGrad)" filter="url(#glowFilter)" />
+    <circle cx="300" cy="315" r="16" fill="url(#lavaGrad)" filter="url(#glowFilter)" />
+    <circle cx="340" cy="340" r="15" fill="url(#lavaGrad)" filter="url(#glowFilter)" />
+
+    <!-- Steam Collision Sizzle in Center -->
+    <circle cx="245" cy="320" r="22" fill="#e2e8f0" opacity="0.45" filter="url(#glowFilter)" />
+    <circle cx="260" cy="305" r="16" fill="#ffffff" opacity="0.6" filter="url(#glowFilter)" />
+  </g>
+
+  <!-- ================= HORIZONTAL PULL PIN 2 (BOTTOM) ================= -->
+  <g filter="url(#shadowFilter)">
+    <!-- Pin Shaft -->
+    <rect x="130" y="375" width="250" height="22" rx="11" fill="url(#goldPin)" stroke="#ca8a04" stroke-width="2" />
+    <!-- Big Pull Ring on Left -->
+    <circle cx="100" cy="386" r="26" fill="none" stroke="url(#goldPin)" stroke-width="11" filter="url(#glowFilter)" />
+    <circle cx="100" cy="386" r="26" fill="none" stroke="#78350f" stroke-width="2" />
+  </g>
+
+  <!-- ================= BOTTOM CHAMBER: BARNABY THE PUPPY ================= -->
+  <g transform="translate(256, 440)" filter="url(#shadowFilter)">
+    <!-- Dog Bowl -->
+    <path d="M-65,0 L-50,-24 L-15,-24 L0,0 Z" fill="#b45309" stroke="#78350f" stroke-width="2" />
+    <ellipse cx="-32" cy="-24" rx="20" ry="7" fill="#fbbf24" />
+
+    <!-- Cute Golden Puppy (Barnaby) Sitting -->
+    <!-- Puppy Body -->
+    <ellipse cx="25" cy="-22" rx="36" ry="28" fill="#f59e0b" />
+    <ellipse cx="25" cy="-22" rx="28" ry="20" fill="#fcd34d" />
+
+    <!-- Wagging Tail -->
+    <path d="M60,-24 Q78,-48 70,-60" stroke="#f59e0b" stroke-width="9" stroke-linecap="round" fill="none" />
+
+    <!-- Red Checkered Bandana -->
+    <path d="M-4,-42 L25,-18 L54,-42 Z" fill="#ef4444" />
+    <circle cx="25" cy="-18" r="4" fill="#ffffff" />
+
+    <!-- Puppy Head -->
+    <ellipse cx="20" cy="-55" rx="32" ry="28" fill="#f59e0b" />
+
+    <!-- Floppy Brown Ears -->
+    <path d="M-10,-65 C-28,-50 -26,-25 -15,-15 C-6,-15 -2,-35 -4,-65 Z" fill="#b45309" />
+    <path d="M50,-65 C68,-50 66,-25 55,-15 C46,-15 42,-35 44,-65 Z" fill="#b45309" />
+
+    <!-- White Snout Patch -->
+    <ellipse cx="20" cy="-48" rx="16" ry="12" fill="#fef08a" />
+    <!-- Shiny Black Nose -->
+    <ellipse cx="20" cy="-54" rx="6" ry="4.5" fill="#1c1917" />
+    <circle cx="18" cy="-55.5" r="1.5" fill="#ffffff" />
+
+    <!-- Happy Bark Mouth -->
+    <path d="M14,-46 Q20,-41 26,-46" stroke="#78350f" stroke-width="2.5" fill="none" stroke-linecap="round" />
+    <!-- Pink Tongue -->
+    <path d="M17,-43 Q20,-34 23,-43 Z" fill="#f43f5e" />
+
+    <!-- Big Shiny Cartoon Eyes Looking Up -->
+    <ellipse cx="8" cy="-62" rx="6" ry="8" fill="#1c1917" />
+    <circle cx="6" cy="-65" r="2.8" fill="#ffffff" />
+    <ellipse cx="32" cy="-62" rx="6" ry="8" fill="#1c1917" />
+    <circle cx="30" cy="-65" r="2.8" fill="#ffffff" />
+
+    <!-- Paws Resting Forward -->
+    <ellipse cx="0" cy="-3" rx="11" ry="8" fill="#fcd34d" stroke="#f59e0b" stroke-width="2" />
+    <ellipse cx="40" cy="-3" rx="11" ry="8" fill="#fcd34d" stroke="#f59e0b" stroke-width="2" />
+  </g>
+
+  <!-- Floating Sparkles & Heart for Puppy Rescue -->
+  <g filter="url(#glowFilter)">
+    <path d="M315,395 C310,388 300,388 295,395 C290,402 305,414 305,414 C305,414 320,402 315,395 Z" fill="#ef4444" />
+    <circle cx="180" cy="400" r="3.5" fill="#fef08a" />
+    <circle cx="340" cy="430" r="4.5" fill="#fef08a" />
+  </g>
+
+  <!-- Outer Golden Border -->
+  <rect width="512" height="512" rx="40" fill="none" stroke="#ca8a04" stroke-width="8" stroke-opacity="0.8" />
+  <rect width="506" height="506" x="3" y="3" rx="37" fill="none" stroke="#fef08a" stroke-width="2" stroke-opacity="0.6" />
+</svg>

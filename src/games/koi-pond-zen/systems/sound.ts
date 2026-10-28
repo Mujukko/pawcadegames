@@ -1,15 +1,12 @@
+import { getSharedAudioContext } from '../../../lib/audio/webAudioUnlocker';
+
 class KoiPondAudio {
   private ctx: AudioContext | null = null;
   private isMuted: boolean = false;
 
   private initCtx() {
     if (!this.ctx && typeof window !== 'undefined') {
-      const AudioCtxClass =
-        window.AudioContext ||
-        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (AudioCtxClass) {
-        this.ctx = new AudioCtxClass();
-      }
+      this.ctx = getSharedAudioContext();
     }
     if (this.ctx && this.ctx.state === 'suspended') {
       this.ctx.resume().catch(() => {});
