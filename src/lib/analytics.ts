@@ -4,7 +4,10 @@ export type AnalyticsEventName =
   | 'level_started'
   | 'level_completed'
   | 'level_failed'
+  | 'game_over'
+  | 'game_won'
   | 'game_restarted'
+  | 'score_milestone'
   | 'session_ended';
 
 export interface AnalyticsEventPayload {
@@ -82,6 +85,26 @@ class AnalyticsService {
         w.dataLayer.push(['event', event, data]);
       }
     }
+  }
+
+  public gameStarted(gameId: string, extra?: Record<string, unknown>): void {
+    this.track('game_started', { gameId, ...extra });
+  }
+
+  public levelCompleted(gameId: string, payload?: Partial<AnalyticsEventPayload>): void {
+    this.track('level_completed', { gameId, ...payload });
+  }
+
+  public levelFailed(gameId: string, payload?: Partial<AnalyticsEventPayload>): void {
+    this.track('level_failed', { gameId, ...payload });
+  }
+
+  public gameRestarted(gameId: string, payload?: Partial<AnalyticsEventPayload>): void {
+    this.track('game_restarted', { gameId, ...payload });
+  }
+
+  public scoreMilestone(gameId: string, score: number, milestone?: string): void {
+    this.track('score_milestone', { gameId, score, milestone });
   }
 
   public trackPageView(path: string, title?: string): void {

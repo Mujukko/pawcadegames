@@ -10,6 +10,7 @@ import {
   type FoodItem,
 } from './logic/engine';
 import { hungryPiggyAudio } from './systems/sound';
+import { analytics } from '../../lib/analytics';
 
 interface FloatingText {
   id: string;
@@ -65,6 +66,7 @@ export const HungryPiggyContainer: React.FC = () => {
   }, [game]);
 
   const handleRestart = useCallback(() => {
+    analytics.gameRestarted('hungry-piggy', { finalScore: gameStateRef.current.piggy.score });
     const saved = typeof window !== 'undefined' ? localStorage.getItem('pawcade_hungry_piggy_highscore') : null;
     const newGame = createInitialPiggyGame(saved ? parseInt(saved, 10) : 0);
     gameStateRef.current = newGame;
@@ -188,6 +190,7 @@ export const HungryPiggyContainer: React.FC = () => {
         if (ev.tierUp) {
           hungryPiggyAudio.playTierUp();
           hungryPiggyAudio.playOink();
+          analytics.scoreMilestone('hungry-piggy', currentGame.piggy.score, currentGame.piggy.tierTitle);
           spawnParticles(currentGame.piggy.x, currentGame.piggy.y, '#f472b6', 24);
           floatingTextsRef.current.push({
             id: Math.random().toString(),
@@ -206,6 +209,12 @@ export const HungryPiggyContainer: React.FC = () => {
       if (currentGame.gameOver && !isGameOver) {
         setIsGameOver(true);
         hungryPiggyAudio.playGameOver();
+        analytics.levelCompleted('hungry-piggy', {
+          score: currentGame.piggy.score,
+          highScore: currentGame.piggy.highScore,
+          tier: currentGame.piggy.tier,
+          itemsEaten: currentGame.itemsEatenCount,
+        });
         if (typeof window !== 'undefined') {
           localStorage.setItem('pawcade_hungry_piggy_highscore', currentGame.piggy.highScore.toString());
         }

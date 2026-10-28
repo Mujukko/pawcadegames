@@ -12,6 +12,7 @@ import {
   type DuckPondSortState,
 } from './logic/engine';
 import { duckPondSortAudio } from './systems/sound';
+import { analytics } from '../../lib/analytics';
 
 export const DuckPondSortContainer: React.FC = () => {
   const [level, setLevel] = useState(1);
@@ -29,14 +30,16 @@ export const DuckPondSortContainer: React.FC = () => {
   };
 
   const handleRestart = useCallback(() => {
+    analytics.gameRestarted('duck-pond-sort', { level, moves: game.movesCount });
     const saved = typeof window !== 'undefined' ? localStorage.getItem('pawcade_duck_pond_sort_highscore') : null;
     setGame(createInitialPondSortState(level, saved ? parseInt(saved, 10) : 0));
     setShakingColIndex(null);
-  }, [level]);
+  }, [level, game.movesCount]);
 
   const handleNextLevel = () => {
     const nextLvl = level + 1;
     setLevel(nextLvl);
+    analytics.track('level_started', { gameId: 'duck-pond-sort', levelId: nextLvl });
     const saved = typeof window !== 'undefined' ? localStorage.getItem('pawcade_duck_pond_sort_highscore') : null;
     setGame(createInitialPondSortState(nextLvl, saved ? parseInt(saved, 10) : 0));
     setShakingColIndex(null);
@@ -108,6 +111,11 @@ export const DuckPondSortContainer: React.FC = () => {
 
       if (result.won) {
         duckPondSortAudio.playVictory();
+        analytics.levelCompleted('duck-pond-sort', {
+          level: game.level,
+          moves: newState.movesCount,
+          score: newState.score,
+        });
         if (typeof window !== 'undefined') {
           localStorage.setItem('pawcade_duck_pond_sort_highscore', newState.highScore.toString());
         }

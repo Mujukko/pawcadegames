@@ -12,6 +12,7 @@ import {
 } from './logic/engine';
 import { mahjongAudio } from './systems/sound';
 import { RotateCcw, Volume2, VolumeX, Lightbulb, Shuffle, Undo2, Trophy, Star } from 'lucide-react';
+import { analytics } from '../../lib/analytics';
 
 interface FarmMahjongContainerProps {
   onBack?: () => void;
@@ -29,6 +30,10 @@ export const FarmMahjongContainer: React.FC<FarmMahjongContainerProps> = () => {
 
   const [isMuted, setIsMuted] = useState<boolean>(() => mahjongAudio.getMuted());
   const [particles, setParticles] = useState<{ id: string; x: number; y: number; text: string }[]>([]);
+
+  useEffect(() => {
+    analytics.track('level_started', { gameId: 'farm-mahjong', levelId: 1 });
+  }, []);
 
   // Update high score in local storage
   useEffect(() => {
@@ -72,7 +77,14 @@ export const FarmMahjongContainer: React.FC<FarmMahjongContainerProps> = () => {
       }, 1000);
 
       if (result.isGameComplete) {
+        analytics.levelCompleted('farm-mahjong', {
+          levelId: level,
+          score: nextState.score,
+          moves: nextState.matchesMade,
+        });
         mahjongAudio.playVictoryFanfare();
+      } else if (result.combo >= 3) {
+        analytics.scoreMilestone('farm-mahjong', nextState.score, `${result.combo}x streak`);
       }
     }
 
@@ -109,7 +121,12 @@ export const FarmMahjongContainer: React.FC<FarmMahjongContainerProps> = () => {
     }
   };
 
-  const handleRestart = (newLevel: number = level) => {
+  const handleRestart = (newLevel: number = level, isRestart = false) => {
+    if (isRestart) {
+      analytics.gameRestarted('farm-mahjong', { levelId: newLevel });
+    } else {
+      analytics.track('level_started', { gameId: 'farm-mahjong', levelId: newLevel });
+    }
     const nextState = createInitialMahjongState(newLevel, gameState.highScore);
     setLevel(newLevel);
     setGameState(nextState);
@@ -204,7 +221,7 @@ export const FarmMahjongContainer: React.FC<FarmMahjongContainerProps> = () => {
             {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
           </button>
           <button
-            onClick={() => handleRestart(level)}
+            onClick={() => handleRestart(level, true)}
             aria-label="Restart Board"
             className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 hover:text-white transition-colors cursor-pointer"
           >

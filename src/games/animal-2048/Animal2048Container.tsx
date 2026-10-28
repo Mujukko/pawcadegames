@@ -24,6 +24,7 @@ import {
 } from './logic/engine';
 import { Direction, GameState2048, ANIMAL_TIERS } from './logic/types';
 import { animal2048Sound } from './systems/sound';
+import { analytics } from '../../lib/analytics';
 
 const STORAGE_KEY_BEST = 'pawcade_animal_2048_best';
 const SWIPE_THRESHOLD = 14;
@@ -53,6 +54,10 @@ export const Animal2048Container: React.FC = () => {
   const boardRef = useRef<HTMLDivElement>(null);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
+  useEffect(() => {
+    analytics.gameStarted('animal-2048');
+  }, []);
+
   // Sync highest tier & best score to localStorage
   useEffect(() => {
     if (gameState.score > gameState.bestScore) {
@@ -71,6 +76,10 @@ export const Animal2048Container: React.FC = () => {
   // Handle Elephant Fanfare when Elephant 2048 is reached
   useEffect(() => {
     if (gameState.hasWon && !gameState.keepPlayingAfterWin) {
+      analytics.levelCompleted('animal-2048', {
+        score: gameState.score,
+        maxTier: gameState.maxTier,
+      });
       animal2048Sound.playElephantFanfare();
       try {
         confetti({
@@ -86,6 +95,10 @@ export const Animal2048Container: React.FC = () => {
   // Handle Game Over sound
   useEffect(() => {
     if (gameState.isGameOver && !gameState.hasWon) {
+      analytics.levelFailed('animal-2048', {
+        score: gameState.score,
+        maxTier: gameState.maxTier,
+      });
       animal2048Sound.playGameOver();
     }
   }, [gameState.isGameOver, gameState.hasWon]);
@@ -128,6 +141,10 @@ export const Animal2048Container: React.FC = () => {
         setMergedCells(new Set());
         setNewCells(new Set());
       }, 250);
+
+      if (result.state.maxTier > gameState.maxTier && result.state.maxTier >= 128) {
+        analytics.scoreMilestone('animal-2048', result.state.score, `tier_${result.state.maxTier}`);
+      }
 
       setGameState(result.state);
     },
@@ -225,6 +242,7 @@ export const Animal2048Container: React.FC = () => {
 
   const handleRestart = () => {
     animal2048Sound.playClick();
+    analytics.gameRestarted('animal-2048', { score: 0 });
     setGameState(createInitialGameState(gameState.bestScore));
     setMergedCells(new Set());
     setNewCells(new Set());

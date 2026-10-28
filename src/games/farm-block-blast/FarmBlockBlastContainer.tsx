@@ -21,6 +21,7 @@ import {
   placePiece,
 } from './logic/engine';
 import { farmBlockAudio } from './systems/sound';
+import { analytics } from '../../lib/analytics';
 
 const STORAGE_KEY_BEST = 'pawcade_farm_block_blast_best';
 
@@ -142,6 +143,11 @@ export const FarmBlockBlastContainer: React.FC = () => {
   useEffect(() => {
     if (gameState.isGameOver) {
       farmBlockAudio.playGameOver();
+      analytics.levelCompleted('farm-block-blast', {
+        score: gameState.score,
+        bestScore: gameState.bestScore,
+        combo: gameState.combo,
+      });
       if (gameState.score > 0 && gameState.score >= gameState.bestScore) {
         try {
           confetti({
@@ -153,7 +159,7 @@ export const FarmBlockBlastContainer: React.FC = () => {
         } catch {}
       }
     }
-  }, [gameState.isGameOver, gameState.score, gameState.bestScore]);
+  }, [gameState.isGameOver, gameState.score, gameState.bestScore, gameState.combo]);
 
   const toggleSound = useCallback(() => {
     const next = farmBlockAudio.toggleMute();
@@ -161,13 +167,14 @@ export const FarmBlockBlastContainer: React.FC = () => {
   }, []);
 
   const handleRestart = useCallback(() => {
+    analytics.gameRestarted('farm-block-blast', { finalScore: gameState.score });
     farmBlockAudio.playPick();
     setSelectedPieceIndex(null);
     setHoverTarget(null);
     setClearingEffect(null);
     setDragState(null);
     setGameState((prev) => createInitialGameState(prev.bestScore));
-  }, []);
+  }, [gameState.score]);
 
   // Keyboard controls (R: restart, M: mute, 1/2/3: select piece, Esc: deselect)
   useEffect(() => {
@@ -237,6 +244,7 @@ export const FarmBlockBlastContainer: React.FC = () => {
           setTimeout(() => setClearingEffect(null), 350);
 
           if (result.comboStreak >= 3) {
+            analytics.scoreMilestone('farm-block-blast', result.state.score, `Combo ${result.comboStreak}x`);
             try {
               confetti({
                 particleCount: 40,

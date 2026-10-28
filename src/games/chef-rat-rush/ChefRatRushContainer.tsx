@@ -34,6 +34,7 @@ import {
   updateEngineTick,
 } from './logic/engine';
 import { chefRatAudio } from './systems/sound';
+import { analytics } from '../../lib/analytics';
 
 const STORAGE_KEY_HIGHEST_SHIFT = 'pawcade_chef_rat_highest_shift';
 const STORAGE_KEY_BEST_TIPS = 'pawcade_chef_rat_best_tips';
@@ -52,6 +53,10 @@ export const ChefRatRushContainer: React.FC = () => {
   const [isMuted, setIsMuted] = useState<boolean>(() => chefRatAudio.getMuted());
   const [isRecipeBookOpen, setIsRecipeBookOpen] = useState<boolean>(false);
   const [feedbackMessage, setFeedbackMessage] = useState<{ text: string; type: 'success' | 'warning' | 'info' } | null>(null);
+
+  useEffect(() => {
+    analytics.track('level_started', { gameId: 'chef-rat-rush', levelId: currentShift });
+  }, []);
 
   // Time tracker for order spawning in engine tick
   const spawnTimerRef = useRef<number>(0);
@@ -111,6 +116,12 @@ export const ChefRatRushContainer: React.FC = () => {
 
         // Win / Loss fanfare
         if (prevState.status === 'playing' && nextState.status === 'shift-won') {
+          analytics.levelCompleted('chef-rat-rush', {
+            levelId: nextState.shiftNumber,
+            score: nextState.score,
+            ordersServed: nextState.ordersServed,
+            stars: nextState.stars,
+          });
           chefRatAudio.playShiftWon();
           try {
             confetti({
@@ -120,6 +131,12 @@ export const ChefRatRushContainer: React.FC = () => {
               colors: ['#f59e0b', '#ef4444', '#10b981', '#3b82f6', '#ec4899'],
             });
           } catch {}
+        } else if (prevState.status === 'playing' && nextState.status === 'shift-lost') {
+          analytics.levelFailed('chef-rat-rush', {
+            levelId: nextState.shiftNumber,
+            score: nextState.score,
+            ordersLost: nextState.ordersLost,
+          });
         }
 
         return nextState;
@@ -206,6 +223,9 @@ export const ChefRatRushContainer: React.FC = () => {
   const handleServe = () => {
     const res = serveDish(gameState);
     if (res.success) {
+      if (res.state.combo >= 3) {
+        analytics.scoreMilestone('chef-rat-rush', res.state.score, `${res.state.combo}x combo`);
+      }
       chefRatAudio.playBellDing();
       chefRatAudio.playCashTip();
       setGameState(res.state);
@@ -216,7 +236,12 @@ export const ChefRatRushContainer: React.FC = () => {
     }
   };
 
-  const handleRestartShift = (shiftNum = gameState.shiftNumber) => {
+  const handleRestartShift = (shiftNum = gameState.shiftNumber, isRestart = false) => {
+    if (isRestart) {
+      analytics.gameRestarted('chef-rat-rush', { levelId: shiftNum });
+    } else {
+      analytics.track('level_started', { gameId: 'chef-rat-rush', levelId: shiftNum });
+    }
     chefRatAudio.playChop();
     spawnTimerRef.current = 0;
     setGameState(createInitialGameState(shiftNum));
@@ -323,7 +348,7 @@ export const ChefRatRushContainer: React.FC = () => {
                 {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4 text-amber-400" />}
               </button>
               <button
-                onClick={() => handleRestartShift()}
+                onClick={() => handleRestartShift(undefined, true)}
                 title="Restart Shift"
                 aria-label="Restart Shift"
                 className="w-10 h-10 sm:w-9 sm:h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all active:scale-95 cursor-pointer flex items-center justify-center touch-manipulation"
@@ -828,7 +853,7 @@ export const ChefRatRushContainer: React.FC = () => {
             {/* CTAs */}
             <div className="flex gap-2 w-full">
               <button
-                onClick={() => handleRestartShift()}
+                onClick={() => handleRestartShift(undefined, true)}
                 className="py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs uppercase tracking-wider border border-slate-700 transition-colors cursor-pointer"
               >
                 Replay Shift
@@ -843,7 +868,7 @@ export const ChefRatRushContainer: React.FC = () => {
                 </button>
               ) : (
                 <button
-                  onClick={() => handleRestartShift(1)}
+                  onClick={() => handleRestartShift(1, false)}
                   className="flex-1 py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg transition-transform active:scale-95 cursor-pointer"
                 >
                   Play All Shifts Again!
@@ -878,7 +903,7 @@ export const ChefRatRushContainer: React.FC = () => {
             </div>
 
             <button
-              onClick={() => handleRestartShift()}
+              onClick={() => handleRestartShift(undefined, true)}
               className="w-full py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
             >
               <RotateCcw className="w-4 h-4" />

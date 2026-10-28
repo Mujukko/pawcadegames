@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Play, Sparkles, HelpCircle, Smartphone, Monitor } from 'lucide-react';
+import { analytics } from '../lib/analytics';
 
 export interface GameIntroContent {
   title: string;
@@ -997,6 +998,7 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
     } catch {
       // Ignore local storage write errors
     }
+    analytics.gameStarted(gameId, { source: 'intro_modal' });
     onClose();
   };
 

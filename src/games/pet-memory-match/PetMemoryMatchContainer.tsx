@@ -12,6 +12,7 @@ import {
 } from './logic/engine';
 import { memorySound } from './systems/sound';
 import { RotateCcw, Volume2, VolumeX, Eye, Snowflake, Star, Clock, Trophy } from 'lucide-react';
+import { analytics } from '../../lib/analytics';
 
 interface PetMemoryMatchContainerProps {
   onBack?: () => void;
@@ -34,6 +35,10 @@ export const PetMemoryMatchContainer: React.FC<PetMemoryMatchContainerProps> = (
   stateRef.current = gameState;
 
   const mismatchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    analytics.track('level_started', { gameId: 'pet-memory-match', levelId: 1 });
+  }, []);
 
   // Sync high score to localStorage
   useEffect(() => {
@@ -60,6 +65,11 @@ export const PetMemoryMatchContainer: React.FC<PetMemoryMatchContainerProps> = (
       updateMemoryTimer(state, dt);
 
       if (!prevGameOver && state.isGameOver) {
+        analytics.levelFailed('pet-memory-match', {
+          levelId: state.level,
+          score: state.score,
+          pairsMatched: state.pairsMatched,
+        });
         memorySound.playGameOverBuzzer();
       }
 
@@ -114,7 +124,15 @@ export const PetMemoryMatchContainer: React.FC<PetMemoryMatchContainerProps> = (
       }, 1000);
 
       if (result.isGameComplete) {
+        analytics.levelCompleted('pet-memory-match', {
+          levelId: level,
+          score: nextState.score,
+          moves: nextState.moves,
+          stars: nextState.stars,
+        });
         memorySound.playVictoryFanfare();
+      } else if (result.comboStreak >= 3) {
+        analytics.scoreMilestone('pet-memory-match', nextState.score, `${result.comboStreak}x streak`);
       }
     } else if (result.action === 'mismatch') {
       memorySound.playMismatch();
@@ -147,10 +165,15 @@ export const PetMemoryMatchContainer: React.FC<PetMemoryMatchContainerProps> = (
     setGameState({ ...state });
   };
 
-  const handleRestart = (newLevel: number = level) => {
+  const handleRestart = (newLevel: number = level, isRestart = false) => {
     if (mismatchTimeoutRef.current) {
       clearTimeout(mismatchTimeoutRef.current);
       mismatchTimeoutRef.current = null;
+    }
+    if (isRestart) {
+      analytics.gameRestarted('pet-memory-match', { levelId: newLevel });
+    } else {
+      analytics.track('level_started', { gameId: 'pet-memory-match', levelId: newLevel });
     }
     const nextState = createInitialMemoryState(newLevel, gameState.highScore);
     setLevel(newLevel);
@@ -243,7 +266,7 @@ export const PetMemoryMatchContainer: React.FC<PetMemoryMatchContainerProps> = (
             {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
           </button>
           <button
-            onClick={() => handleRestart(level)}
+            onClick={() => handleRestart(level, true)}
             aria-label="Restart Game"
             className="p-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 hover:text-white transition-colors cursor-pointer"
           >
@@ -393,7 +416,7 @@ export const PetMemoryMatchContainer: React.FC<PetMemoryMatchContainerProps> = (
               Matched {gameState.pairsMatched} of {gameState.config.totalPairs} pairs.
             </p>
             <button
-              onClick={() => handleRestart(level)}
+              onClick={() => handleRestart(level, true)}
               className="mt-4 px-6 py-2.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm shadow-xl transition-transform hover:scale-105 cursor-pointer"
             >
               TRY AGAIN 🔄

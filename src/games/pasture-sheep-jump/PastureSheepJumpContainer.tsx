@@ -11,6 +11,7 @@ import {
 } from './logic/engine';
 import { sheepAudio } from './systems/sound';
 import { Volume2, VolumeX, RotateCcw, Award, Bell } from 'lucide-react';
+import { analytics } from '../../lib/analytics';
 
 const HIGH_SCORE_KEY = 'pawcade_sheep_jump_highscore';
 
@@ -113,6 +114,7 @@ export const PastureSheepJumpContainer: React.FC = () => {
   }, []);
 
   const restartGame = useCallback(() => {
+    analytics.gameRestarted('pasture-sheep-jump', { finalScore: stateRef.current.score });
     const nextState = createInitialJumpState(highScore);
     stateRef.current = nextState;
     touchXPercentRef.current = 50;
@@ -165,9 +167,15 @@ export const PastureSheepJumpContainer: React.FC = () => {
           sheepAudio.playBell();
         } else if (step.event === 'milestone') {
           sheepAudio.playMilestone();
+          analytics.scoreMilestone('pasture-sheep-jump', state.score, `Altitude ${Math.floor(state.altitude / 10)}m`);
           confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
         } else if (step.event === 'gameover') {
           sheepAudio.playGameOver();
+          analytics.levelFailed('pasture-sheep-jump', {
+            score: state.score,
+            altitude: Math.floor(state.altitude / 10),
+            bells: state.bellsCollected,
+          });
           if (state.score > highScore) {
             setHighScore(state.score);
             if (typeof window !== 'undefined') {

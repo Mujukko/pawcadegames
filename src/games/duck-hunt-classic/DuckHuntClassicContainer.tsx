@@ -13,6 +13,7 @@ import {
 } from './logic/engine';
 import { duckHuntAudio } from './systems/sound';
 import { RotateCcw, Volume2, VolumeX, Crosshair, Award } from 'lucide-react';
+import { analytics } from '../../lib/analytics';
 
 interface DuckHuntClassicContainerProps {
   onBack?: () => void;
@@ -74,10 +75,24 @@ export const DuckHuntClassicContainer: React.FC<DuckHuntClassicContainerProps> =
       if (prevPhase !== state.phase) {
         if (state.phase === 'round_clear') {
           duckHuntAudio.playRoundClearFanfare();
+          analytics.levelCompleted('duck-hunt-classic', {
+            levelId: state.round,
+            score: state.score,
+            ducksHit: state.roundHits,
+          });
         } else if (state.phase === 'game_over') {
           duckHuntAudio.playGameOverJingle();
+          analytics.levelFailed('duck-hunt-classic', {
+            levelId: state.round,
+            score: state.score,
+            quota: state.quota,
+          });
         } else if (state.phase === 'intro') {
           duckHuntAudio.playRoundStartFanfare();
+          analytics.track('level_started', {
+            gameId: 'duck-hunt-classic',
+            levelId: state.round,
+          });
         }
       }
 
@@ -167,6 +182,7 @@ export const DuckHuntClassicContainer: React.FC<DuckHuntClassicContainerProps> =
 
   const handleRestart = () => {
     const state = stateRef.current;
+    analytics.gameRestarted('duck-hunt-classic', { levelId: state.round });
     restartGame(state);
     duckHuntAudio.playRoundStartFanfare();
     setGameState({ ...state });

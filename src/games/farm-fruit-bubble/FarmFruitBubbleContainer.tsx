@@ -18,6 +18,7 @@ import {
 } from './logic/engine';
 import { bubbleAudio } from './systems/sound';
 import { Volume2, VolumeX, RotateCcw, Award, Sparkles, RefreshCw } from 'lucide-react';
+import { analytics } from '../../lib/analytics';
 
 const HIGH_SCORE_KEY = 'pawcade_farm_fruit_bubble_highscore';
 
@@ -138,6 +139,7 @@ export const FarmFruitBubbleContainer: React.FC = () => {
   }, [shootBubble]);
 
   const restartGame = useCallback(() => {
+    analytics.gameRestarted('farm-fruit-bubble', { finalScore: stateRef.current.score, level: stateRef.current.level });
     const nextState = createInitialBubbleState(highScore, 1);
     stateRef.current = nextState;
     particlesRef.current = [];
@@ -154,6 +156,7 @@ export const FarmFruitBubbleContainer: React.FC = () => {
 
   const advanceLevel = useCallback(() => {
     const nextLevel = stateRef.current.level + 1;
+    analytics.track('level_started', { gameId: 'farm-fruit-bubble', levelId: nextLevel });
     const currentScore = stateRef.current.score;
     const nextState = createInitialBubbleState(Math.max(highScore, currentScore), nextLevel);
     nextState.score = currentScore;
@@ -211,6 +214,10 @@ export const FarmFruitBubbleContainer: React.FC = () => {
             });
           } else if (update.event === 'gameover') {
             bubbleAudio.playGameOver();
+            analytics.levelFailed('farm-fruit-bubble', {
+              score: state.score,
+              level: state.level,
+            });
             if (state.score > highScore) {
               setHighScore(state.score);
               if (typeof window !== 'undefined') {
@@ -219,6 +226,10 @@ export const FarmFruitBubbleContainer: React.FC = () => {
             }
           } else if (update.event === 'levelclear') {
             bubbleAudio.playLevelClear();
+            analytics.levelCompleted('farm-fruit-bubble', {
+              score: state.score,
+              level: state.level,
+            });
             confetti({ particleCount: 75, spread: 80, origin: { y: 0.6 } });
           }
 

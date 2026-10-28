@@ -19,6 +19,7 @@ import {
   ArrowLeft,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { analytics } from '../../lib/analytics';
 
 const VIEW_HEIGHT = 620;
 const FLOCK_BASE_Y = 480; // Screen Y where flock is rendered
@@ -38,8 +39,13 @@ export const SheepStampedeContainer: React.FC = () => {
   const stateRef = useRef<SheepStampedeState>(gameState);
   stateRef.current = gameState;
 
-  const startLevel = useCallback((lvl: number) => {
+  const startLevel = useCallback((lvl: number, isRestart = false) => {
     setLevelNum(lvl);
+    if (isRestart) {
+      analytics.gameRestarted('sheep-stampede', { levelId: lvl });
+    } else {
+      analytics.track('level_started', { gameId: 'sheep-stampede', levelId: lvl });
+    }
     const fresh = initializeSheepStampedeLevel(lvl);
     setGameState(fresh);
     stateRef.current = fresh;
@@ -53,6 +59,7 @@ export const SheepStampedeContainer: React.FC = () => {
 
   const handleStartGame = () => {
     if (gameState.status === 'ready') {
+      analytics.gameStarted('sheep-stampede', { levelId: gameState.level });
       sound.playBark();
       sound.playBaa();
       setGameState((prev) => ({ ...prev, status: 'running' }));
@@ -181,12 +188,25 @@ export const SheepStampedeContainer: React.FC = () => {
           sound.playSplash();
         }
         if (events.victory) {
+          analytics.levelCompleted('sheep-stampede', {
+            levelId: nextState.level,
+            score: nextState.score,
+            flockCount: nextState.flockCount,
+          });
           sound.playVictory();
           sound.playBark();
           confetti({
             particleCount: 80,
             spread: 70,
             origin: { y: 0.6 },
+          });
+        }
+
+        if (nextState.status === 'lost') {
+          analytics.levelFailed('sheep-stampede', {
+            levelId: nextState.level,
+            score: nextState.score,
+            flockCount: 0,
           });
         }
 
@@ -261,7 +281,7 @@ export const SheepStampedeContainer: React.FC = () => {
           </div>
 
           <button
-            onClick={() => startLevel(levelNum)}
+            onClick={() => startLevel(levelNum, true)}
             title="Restart Level (R)"
             className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center justify-center cursor-pointer transition-colors active:scale-95"
           >
@@ -497,7 +517,7 @@ export const SheepStampedeContainer: React.FC = () => {
             </div>
             <div className="flex gap-2">
               <button
-                onClick={() => startLevel(levelNum)}
+                onClick={() => startLevel(levelNum, true)}
                 className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs flex items-center gap-1.5 min-h-[44px] cursor-pointer"
               >
                 <RotateCcw className="w-4 h-4" />
@@ -533,7 +553,7 @@ export const SheepStampedeContainer: React.FC = () => {
               You lost all your sheep in the hazards. Avoid red divide gates and mud pits!
             </p>
             <button
-              onClick={() => startLevel(levelNum)}
+              onClick={() => startLevel(levelNum, true)}
               className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-red-500 to-amber-500 text-white font-black text-sm flex items-center gap-2 shadow-xl shadow-red-500/25 min-h-[44px] cursor-pointer"
             >
               <RotateCcw className="w-4 h-4" />

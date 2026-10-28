@@ -18,6 +18,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { analytics } from '../../lib/analytics';
 
 export const FarmPantrySortContainer: React.FC = () => {
   const [levelNum, setLevelNum] = useState<number>(1);
@@ -27,6 +28,7 @@ export const FarmPantrySortContainer: React.FC = () => {
 
   const startLevel = useCallback((lvl: number) => {
     setLevelNum(lvl);
+    analytics.track('level_started', { gameId: 'farm-pantry-sort', levelId: lvl });
     setGameState(initializePantryLevel(lvl));
   }, []);
 
@@ -45,6 +47,7 @@ export const FarmPantrySortContainer: React.FC = () => {
         const next = tickPantryTimer(prev, 1);
         if (next.isGameOver && !prev.isGameOver) {
           sound.playGameOver();
+          analytics.levelFailed('farm-pantry-sort', { level: next.level, score: next.score });
         }
         return next;
       });
@@ -77,6 +80,11 @@ export const FarmPantrySortContainer: React.FC = () => {
 
     // Win condition
     if (nextState.isWon && !gameState.isWon) {
+      analytics.levelCompleted('farm-pantry-sort', {
+        level: nextState.level,
+        score: nextState.score,
+        moves: nextState.moves,
+      });
       setTimeout(() => {
         sound.playVictory();
         confetti({

@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 import { FarmTetrisScene } from './scenes/FarmTetrisScene';
 import { TetrisGameState } from './logic/types';
 import { tetrisSoundManager } from './systems/sound';
+import { analytics } from '../../lib/analytics';
 import {
   RotateCcw,
   Volume2,
@@ -35,8 +36,15 @@ export const FarmTetrisContainer: React.FC = () => {
     lines: 0,
     silos: 0,
   });
+  const prevScoreRef = useRef<number>(0);
+  const prevSilosRef = useRef<number>(0);
 
   const handleGameOver = useCallback((score: number, lines: number, silos: number) => {
+    analytics.levelFailed('farm-tetris', {
+      score,
+      lines,
+      silos,
+    });
     setIsGameOver(true);
     setFinalStats({ score, lines, silos });
   }, []);
@@ -44,6 +52,8 @@ export const FarmTetrisContainer: React.FC = () => {
   // Initialize Phaser 3 Game Instance
   useEffect(() => {
     if (!containerRef.current) return;
+
+    analytics.gameStarted('farm-tetris');
 
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
@@ -68,6 +78,15 @@ export const FarmTetrisContainer: React.FC = () => {
         activeSceneRef.current = scene;
         scene.setCallbacks({
           onStateUpdate: (state) => {
+            if (state.silosFilled > prevSilosRef.current) {
+              analytics.scoreMilestone('farm-tetris', state.score, `silo_${state.silosFilled}`);
+              prevSilosRef.current = state.silosFilled;
+            }
+            if (state.score >= 1000 && Math.floor(state.score / 1000) > Math.floor(prevScoreRef.current / 1000)) {
+              analytics.scoreMilestone('farm-tetris', state.score, `${Math.floor(state.score / 1000) * 1000} pts`);
+            }
+            prevScoreRef.current = state.score;
+
             setGameState({ ...state });
             setIsPaused(state.isPaused);
             setIsGameOver(state.isGameOver);
@@ -85,6 +104,7 @@ export const FarmTetrisContainer: React.FC = () => {
   }, [handleGameOver]);
 
   const handleRestart = () => {
+    analytics.gameRestarted('farm-tetris', { score: 0 });
     setIsGameOver(false);
     setIsPaused(false);
     if (activeSceneRef.current) {

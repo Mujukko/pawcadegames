@@ -20,6 +20,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { analytics } from '../../lib/analytics';
 
 export const EggBusterContainer: React.FC = () => {
   const [levelNum, setLevelNum] = useState<number>(1);
@@ -33,8 +34,13 @@ export const EggBusterContainer: React.FC = () => {
   const animFrameRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number>(performance.now());
 
-  const startLevel = useCallback((lvl: number) => {
+  const startLevel = useCallback((lvl: number, isRestart = false) => {
     setLevelNum(lvl);
+    if (isRestart) {
+      analytics.gameRestarted('egg-buster', { levelId: lvl });
+    } else {
+      analytics.track('level_started', { gameId: 'egg-buster', levelId: lvl });
+    }
     setGameState(initializeEggBusterLevel(lvl));
     setIsPulling(false);
     setPullPos(null);
@@ -158,6 +164,11 @@ export const EggBusterContainer: React.FC = () => {
         }
 
         if (nextState.isWon && !prev.isWon) {
+          analytics.levelCompleted('egg-buster', {
+            levelId: nextState.level,
+            score: nextState.score,
+            moves: totalLevelEggs - nextState.eggsRemaining,
+          });
           setTimeout(() => {
             sound.playVictory();
             confetti({
@@ -167,6 +178,10 @@ export const EggBusterContainer: React.FC = () => {
             });
           }, 200);
         } else if (nextState.isGameOver && !prev.isGameOver) {
+          analytics.levelFailed('egg-buster', {
+            levelId: nextState.level,
+            score: nextState.score,
+          });
           sound.playGameOver();
         }
 
@@ -241,7 +256,7 @@ export const EggBusterContainer: React.FC = () => {
           </button>
 
           <button
-            onClick={() => startLevel(levelNum)}
+            onClick={() => startLevel(levelNum, true)}
             aria-label="Restart Level"
             className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors cursor-pointer"
           >
@@ -639,7 +654,7 @@ export const EggBusterContainer: React.FC = () => {
                   <div className="text-xl font-black text-amber-300 font-mono">{gameState.score}</div>
                 </div>
                 <button
-                  onClick={() => startLevel(levelNum)}
+                  onClick={() => startLevel(levelNum, true)}
                   className="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-yellow-400 to-amber-400 hover:from-yellow-300 text-slate-950 font-black text-sm uppercase tracking-wider shadow-lg shadow-yellow-400/30 flex items-center justify-center gap-2 cursor-pointer active:scale-95 transition-all"
                 >
                   <RotateCcw className="w-4 h-4" />

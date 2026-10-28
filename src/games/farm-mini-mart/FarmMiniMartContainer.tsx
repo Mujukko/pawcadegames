@@ -37,6 +37,7 @@ import {
   ArrowLeft,
   ArrowRight,
 } from 'lucide-react';
+import { analytics } from '../../lib/analytics';
 
 interface DustParticle {
   x: number;
@@ -88,9 +89,14 @@ export const FarmMiniMartContainer: React.FC = () => {
     } catch {}
   }, [isMuted]);
 
+  useEffect(() => {
+    analytics.gameStarted('farm-mini-mart', { coins: gameState.player.coins });
+  }, []);
+
   // Restart / Reset market
   const handleReset = useCallback(() => {
     if (window.confirm('Reset your farm mini mart and restart from scratch?')) {
+      analytics.gameRestarted('farm-mini-mart', { coins: 0 });
       const fresh = createInitialMartState();
       setGameState(fresh);
       saveMartState(fresh);
@@ -224,7 +230,10 @@ export const FarmMiniMartContainer: React.FC = () => {
         if (ev === 'harvest') farmMartAudio.playHarvestSound();
         else if (ev === 'stock') farmMartAudio.playStockSound();
         else if (ev === 'coin_deposit') farmMartAudio.playCoinDepositSound();
-        else if (ev === 'unlock_station') farmMartAudio.playUnlockSound();
+        else if (ev === 'unlock_station') {
+          farmMartAudio.playUnlockSound();
+          analytics.scoreMilestone('farm-mini-mart', nextState.player.coins, 'unlock_station');
+        }
         else if (ev === 'kaching') farmMartAudio.playKachingSound();
         else if (ev === 'coin_pickup') farmMartAudio.playCoinPickupSound();
       }
@@ -289,6 +298,7 @@ export const FarmMiniMartContainer: React.FC = () => {
     const res = upgradePlayerSpeed(stateRef.current);
     if (res.success) {
       farmMartAudio.playUnlockSound();
+      analytics.scoreMilestone('farm-mini-mart', res.nextState.player.coins, `speed_lvl_${res.nextState.player.speedLevel}`);
       setGameState(res.nextState);
       saveMartState(res.nextState);
     }
@@ -298,6 +308,7 @@ export const FarmMiniMartContainer: React.FC = () => {
     const res = upgradePlayerCapacity(stateRef.current);
     if (res.success) {
       farmMartAudio.playUnlockSound();
+      analytics.scoreMilestone('farm-mini-mart', res.nextState.player.coins, `capacity_lvl_${res.nextState.player.capacityLevel}`);
       setGameState(res.nextState);
       saveMartState(res.nextState);
     }

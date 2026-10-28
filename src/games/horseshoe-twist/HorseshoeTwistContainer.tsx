@@ -18,6 +18,7 @@ import {
   HelpCircle,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { analytics } from '../../lib/analytics';
 
 const SVG_SIZE = 380;
 const CENTER = SVG_SIZE / 2;
@@ -33,8 +34,13 @@ export const HorseshoeTwistContainer: React.FC = () => {
   const lastAngleRef = useRef<number | null>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  const startLevel = useCallback((lvl: number) => {
+  const startLevel = useCallback((lvl: number, isRestart = false) => {
     setLevelNum(lvl);
+    if (isRestart) {
+      analytics.gameRestarted('horseshoe-twist', { levelId: lvl });
+    } else {
+      analytics.track('level_started', { gameId: 'horseshoe-twist', levelId: lvl });
+    }
     const fresh = initializeHorseshoeTwistLevel(lvl);
     setGameState(fresh);
     setSelectedRingId(0);
@@ -84,7 +90,12 @@ export const HorseshoeTwistContainer: React.FC = () => {
         if (targetRing && isRingAlignedWithExit(targetRing, next.exitAngleDeg)) {
           sound.playAlignChime();
         }
-        if (next.status === 'won') {
+        if (next.status === 'won' && prev.status !== 'won') {
+          analytics.levelCompleted('horseshoe-twist', {
+            levelId: next.level,
+            moves: next.movesCount,
+            score: next.score,
+          });
           sound.playPinSlide();
           setTimeout(() => {
             sound.playVictory();
@@ -201,7 +212,7 @@ export const HorseshoeTwistContainer: React.FC = () => {
           </div>
 
           <button
-            onClick={() => startLevel(levelNum)}
+            onClick={() => startLevel(levelNum, true)}
             title="Restart Level (R)"
             className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center justify-center cursor-pointer"
           >
@@ -368,7 +379,7 @@ export const HorseshoeTwistContainer: React.FC = () => {
             </div>
             <div className="flex gap-2">
               <button
-                onClick={() => startLevel(levelNum)}
+                onClick={() => startLevel(levelNum, true)}
                 className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs flex items-center gap-1.5 min-h-[44px] cursor-pointer"
               >
                 <RotateCcw className="w-4 h-4" />

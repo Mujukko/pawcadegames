@@ -22,6 +22,7 @@ import {
   AlertCircle,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { analytics } from '../../lib/analytics';
 
 export const CritterTapAwayContainer: React.FC = () => {
   const [levelNum, setLevelNum] = useState<number>(1);
@@ -34,6 +35,7 @@ export const CritterTapAwayContainer: React.FC = () => {
 
   const startLevel = useCallback((lvl: number) => {
     setLevelNum(lvl);
+    analytics.track('level_started', { gameId: 'critter-tap-away', levelId: lvl });
     setGameState(initializeCritterLevel(lvl));
     setHistory([]);
     setShakeCritterId(null);
@@ -90,6 +92,11 @@ export const CritterTapAwayContainer: React.FC = () => {
       setEscapingId(null);
 
       if (nextState.isWon && !gameState.isWon) {
+        analytics.levelCompleted('critter-tap-away', {
+          level: gameState.level,
+          score: nextState.score,
+          moves: nextState.moves,
+        });
         setTimeout(() => {
           sound.playVictory();
           confetti({

@@ -20,6 +20,7 @@ import {
 } from './logic/engine';
 import { DEFAULT_DUCK_CONFIG, DuckRunnerState, Obstacle } from './logic/types';
 import { duckRunnerSound } from './systems/sound';
+import { analytics } from '../../lib/analytics';
 
 const STORAGE_HIGH_SCORE_KEY = 'pawcade_duck_runner_highscore';
 
@@ -80,6 +81,7 @@ export const DuckRunnerContainer: React.FC = () => {
   const handleJump = useCallback(() => {
     const current = gameStateRef.current;
     if (current.isGameOver) {
+      analytics.gameRestarted('duck-runner', { score: 0 });
       const restarted = resetGame(current);
       gameStateRef.current = restarted;
       duckRunnerSound.playJump();
@@ -154,14 +156,26 @@ export const DuckRunnerContainer: React.FC = () => {
       // 1. Advance Game Engine Logic
       const prevScore = gameStateRef.current.score;
       const prevGameOver = gameStateRef.current.isGameOver;
+      const prevStarted = gameStateRef.current.isStarted;
 
       const nextState = updateGame(gameStateRef.current, dt, DEFAULT_DUCK_CONFIG);
       gameStateRef.current = nextState;
 
+      if (nextState.isStarted && !prevStarted) {
+        analytics.gameStarted('duck-runner');
+      }
+
+      if (nextState.isGameOver && !prevGameOver) {
+        analytics.levelFailed('duck-runner', { score: nextState.score });
+      }
+
       // Consume pending sound events
       if (nextState.pendingSoundEvents.length > 0) {
         for (const evt of nextState.pendingSoundEvents) {
-          if (evt === 'milestone') duckRunnerSound.playMilestone();
+          if (evt === 'milestone') {
+            duckRunnerSound.playMilestone();
+            analytics.scoreMilestone('duck-runner', nextState.score, `${Math.floor(nextState.score / 100) * 100} pts`);
+          }
           if (evt === 'hit') duckRunnerSound.playHit();
           if (evt === 'quack') duckRunnerSound.playQuack();
         }
@@ -846,6 +860,7 @@ export const DuckRunnerContainer: React.FC = () => {
   };
 
   const handleRestart = () => {
+    analytics.gameRestarted('duck-runner', { score: 0 });
     const restarted = resetGame(gameStateRef.current);
     gameStateRef.current = restarted;
     duckRunnerSound.playJump();

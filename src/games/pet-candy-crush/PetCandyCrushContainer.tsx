@@ -33,6 +33,7 @@ import {
   TreatType,
 } from './logic/types';
 import { petCrushSound } from './systems/sound';
+import { analytics } from '../../lib/analytics';
 
 interface PoppingCellEffect {
   row: number;
@@ -131,6 +132,13 @@ export const PetCandyCrushContainer: React.FC = () => {
         return nextMax;
       });
 
+      analytics.levelCompleted('pet-candy-crush', {
+        levelId: currentLevel,
+        score: gameState.score,
+        movesRemaining: gameState.movesRemaining,
+        stars: gameState.stars,
+      });
+
       petCrushSound.playSugarCrush();
       try {
         confetti({
@@ -145,6 +153,10 @@ export const PetCandyCrushContainer: React.FC = () => {
 
   useEffect(() => {
     if (gameState.isGameOver && !gameState.hasWon) {
+      analytics.levelFailed('pet-candy-crush', {
+        levelId: currentLevel,
+        score: gameState.score,
+      });
       petCrushSound.playGameOver();
     }
   }, [gameState.isGameOver, gameState.hasWon]);
@@ -157,6 +169,8 @@ export const PetCandyCrushContainer: React.FC = () => {
         petCrushSound.playInvalid();
         return;
       }
+
+      analytics.track('level_started', { gameId: 'pet-candy-crush', levelId: clamped });
 
       clearScheduledTimeouts();
       const goal = getLevelGoal(clamped);
@@ -607,6 +621,7 @@ export const PetCandyCrushContainer: React.FC = () => {
 
   const handleRestart = () => {
     petCrushSound.playSelect();
+    analytics.gameRestarted('pet-candy-crush', { levelId: currentLevel });
     startLevel(currentLevel, true);
   };
 

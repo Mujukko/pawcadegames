@@ -12,6 +12,7 @@ import {
 } from './logic/engine';
 import { towerAudio } from './systems/sound';
 import { Volume2, VolumeX, RotateCcw, Award, Heart, Sparkles } from 'lucide-react';
+import { analytics } from '../../lib/analytics';
 
 const HIGH_SCORE_KEY = 'pawcade_barnyard_tower_highscore';
 const CANVAS_WIDTH = 400;
@@ -123,6 +124,7 @@ export const BarnyardTowerContainer: React.FC = () => {
 
   // Restart Game
   const restartGame = useCallback(() => {
+    analytics.gameRestarted('barnyard-tower', { finalScore: stateRef.current.score, height: stateRef.current.height });
     const nextState = createInitialTowerState(highScore);
     stateRef.current = nextState;
     camYRef.current = 0;
@@ -271,10 +273,16 @@ export const BarnyardTowerContainer: React.FC = () => {
               spawnJuice('miss', landX, currentScreenLandingY, 0);
             } else if (result.event === 'milestone') {
               towerAudio.playMilestone();
+              analytics.scoreMilestone('barnyard-tower', result.state.score, `Height ${result.state.height}m`);
               spawnJuice('perfect', landX, currentScreenLandingY, state.combo);
               confetti({ particleCount: 70, spread: 80, origin: { y: 0.6 } });
             } else if (result.event === 'gameover') {
               towerAudio.playGameOver();
+              analytics.levelFailed('barnyard-tower', {
+                score: result.state.score,
+                height: result.state.height,
+                combo: result.state.combo,
+              });
               if (result.state.score > highScore) {
                 setHighScore(result.state.score);
                 if (typeof window !== 'undefined') {

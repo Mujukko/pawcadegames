@@ -24,6 +24,7 @@ import {
   ArrowLeft,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { analytics } from '../../lib/analytics';
 
 export const SheepCartJamContainer: React.FC = () => {
   const [levelNum, setLevelNum] = useState<number>(1);
@@ -34,6 +35,7 @@ export const SheepCartJamContainer: React.FC = () => {
 
   const startLevel = useCallback((lvl: number) => {
     setLevelNum(lvl);
+    analytics.track('level_started', { gameId: 'sheep-cart-jam', levelId: lvl });
     setGameState(initializeLevel(lvl));
     setShakeCartId(null);
     setBlockedHintId(null);
@@ -89,6 +91,11 @@ export const SheepCartJamContainer: React.FC = () => {
 
     // Check Win
     if (nextState.isWon && !gameState.isWon) {
+      analytics.levelCompleted('sheep-cart-jam', {
+        level: gameState.level,
+        score: nextState.score,
+        departedCarts: nextState.departedCartsCount,
+      });
       setTimeout(() => {
         sound.playVictory();
         confetti({

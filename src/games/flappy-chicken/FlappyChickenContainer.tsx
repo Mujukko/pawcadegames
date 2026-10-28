@@ -17,6 +17,7 @@ import {
 import { FlappyChickenScene } from './scenes/FlappyChickenScene';
 import { FlappyGameState } from './logic/types';
 import { flappySoundManager } from './systems/sound';
+import { analytics } from '../../lib/analytics';
 
 export const FlappyChickenContainer: React.FC = () => {
   const gameRef = useRef<Phaser.Game | null>(null);
@@ -30,13 +31,23 @@ export const FlappyChickenContainer: React.FC = () => {
   const [isHelpOpen, setIsHelpOpen] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(() => flappySoundManager.isMuted());
 
+  const stateRef = useRef<FlappyGameState | null>(null);
+
   // Handle Game Over
   const handleGameOver = useCallback(() => {
+    analytics.levelFailed('flappy-chicken', {
+      score: stateRef.current?.score || 0,
+      grains: stateRef.current?.grains || 0,
+    });
     setIsGameOver(true);
   }, []);
 
   // Handle Wheat Victory (Reached Wheat!)
   const handleVictory = useCallback(() => {
+    analytics.levelCompleted('flappy-chicken', {
+      score: stateRef.current?.score || 0,
+      grains: stateRef.current?.grains || 0,
+    });
     setHasWon(true);
     try {
       confetti({
@@ -75,6 +86,14 @@ export const FlappyChickenContainer: React.FC = () => {
         activeSceneRef.current = scene;
         scene.setCallbacks({
           onStateUpdate: (state) => {
+            const prevState = stateRef.current;
+            if (state.status === 'playing' && prevState?.status === 'ready') {
+              analytics.gameStarted('flappy-chicken');
+            }
+            if (state.score > 0 && state.score % 10 === 0 && (!prevState || state.score > prevState.score)) {
+              analytics.scoreMilestone('flappy-chicken', state.score, `${state.score} pipes`);
+            }
+            stateRef.current = state;
             setGameState({ ...state });
             setIsPaused(scene.getIsPaused());
             setIsGameOver(state.isGameOver);
@@ -94,6 +113,7 @@ export const FlappyChickenContainer: React.FC = () => {
   }, [handleGameOver, handleVictory]);
 
   const handleRestart = () => {
+    analytics.gameRestarted('flappy-chicken', { score: 0 });
     setIsGameOver(false);
     setHasWon(false);
     setIsPaused(false);

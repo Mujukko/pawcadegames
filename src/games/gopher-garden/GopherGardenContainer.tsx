@@ -10,6 +10,7 @@ import {
 } from './logic/engine';
 import { gopherAudio } from './systems/sound';
 import { Volume2, VolumeX, RotateCcw, Clock, Award, Flame, Sparkles } from 'lucide-react';
+import { analytics } from '../../lib/analytics';
 
 const HIGH_SCORE_KEY = 'pawcade_gopher_garden_highscore';
 
@@ -48,6 +49,7 @@ export const GopherGardenContainer: React.FC = () => {
     if (result.hit) {
       if (result.type === 'golden') {
         gopherAudio.playGolden();
+        analytics.scoreMilestone('gopher-garden', result.state.score, 'Golden Gopher Frenzy');
         confetti({ particleCount: 35, spread: 60, origin: { y: 0.5 } });
       } else {
         gopherAudio.playWhack();
@@ -91,6 +93,7 @@ export const GopherGardenContainer: React.FC = () => {
   }, [handleTapMound]);
 
   const restartGame = useCallback(() => {
+    analytics.gameRestarted('gopher-garden', { finalScore: stateRef.current.score });
     const nextState = createInitialGardenState(highScore);
     setState(nextState);
   }, [highScore]);
@@ -109,6 +112,11 @@ export const GopherGardenContainer: React.FC = () => {
         const next = updateGardenState(curr, dt);
         if (next.gameOver && !curr.gameOver) {
           gopherAudio.playGameOver();
+          analytics.levelCompleted('gopher-garden', {
+            score: next.score,
+            highScore: Math.max(highScore, next.score),
+            totalWhacked: next.totalWhacked,
+          });
           if (next.score > highScore) {
             setHighScore(next.score);
             if (typeof window !== 'undefined') {

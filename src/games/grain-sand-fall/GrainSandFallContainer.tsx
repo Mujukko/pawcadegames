@@ -16,6 +16,7 @@ import {
   FallingShape,
 } from './logic/engine';
 import { sound } from './systems/sound';
+import { analytics } from '../../lib/analytics';
 import {
   Volume2,
   VolumeX,
@@ -97,6 +98,7 @@ export const GrainSandFallContainer: React.FC = () => {
 
   // Restart game
   const handleRestart = () => {
+    analytics.gameRestarted('grain-sand-fall', { finalScore: stateRef.current.score });
     particlesRef.current = [];
     shakeRef.current = 0;
     const next = initializeSandGame();
@@ -190,6 +192,9 @@ export const GrainSandFallContainer: React.FC = () => {
       const nextShape = spawnRandomShape(s.cols, s.nextColor);
       const nextCol = (Math.floor(Math.random() * 4) + 1) as GrainColor;
       const isOver = doesShapeCollide(nextShape, solidifiedGrid, s.cols, s.rows);
+      if (isOver) {
+        analytics.levelCompleted('grain-sand-fall', { score: s.score + 10 });
+      }
 
       setGameState({
         ...s,
