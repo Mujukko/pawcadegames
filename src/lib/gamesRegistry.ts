@@ -2155,7 +2155,45 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Barnyard Brick Breaker: Apple Bounce 🍎 — No Download | Pawcade',
     metaDescription: 'Play Barnyard Brick Breaker free online! Deflect bouncy apples with your harvester cart, smash fruit crates, and grab power-ups. Free arcade game with no download.',
   },
+  {
+    id: 'duck-water-slide',
+    slug: 'duck-water-slide',
+    title: 'Duck Water Slide: Splash Rush 🦆🌊',
+    tagline: 'Steer Quacky down twisting water flumes, grab rubber duckies, catch air on stunt ramps, and plunge into the farm splash pool!',
+    description: 'Ride giant rushing water slides with Quacky the duck! Steer your inflatable swim tube across turquoise flumes, collect yellow rubber duckies, and slice into juicy watermelon slices. Hit turbo water boosters, launch off stunt ramps, and splash into the finish pool with zero downloads.',
+    category: 'arcade',
+    categories: ['arcade', 'farm', 'pets'],
+    route: '/games/duck-water-slide/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '33.8K',
+    badge: '🦆 Water Slide',
+    thumbnailUrl: '/assets/thumbnails/thumb-duck-water-slide.svg',
+    controls: {
+      desktop: [
+        'Mouse Drag or Arrow Keys / A-D: Steer Quacky across the water flume',
+        'Spacebar: Advance to next flume course on victory',
+        'R Key: Reset and start a fresh flume run',
+        'M Key: Toggle rushing water splashes and squeak sounds',
+      ],
+      mobile: [
+        'Touch & Drag: Slide thumb across canvas to steer your tube smoothly',
+        'Bottom Buttons: Tap Left or Right for tactile steering',
+      ],
+    },
+    features: [
+      'Downhill Flume Racing Action with Realistic Water Flow and Rooster-Tail Spray',
+      'Exciting Stunt Jumps: Launch Off Wooden Water Ramps for Mid-Air Flips',
+      'Collectibles & Boosters: Yellow Rubber Duckies, Watermelons, and Turbo Jet Arrows',
+      '4 Handcrafted Water Park Courses: Meadow Creek, Orchard Rapids, Windmill Corkscrew, and Splashdown Canyon',
+      'Procedural Web Audio Synthesizer (Water Torrents, Rubber Squeaks, and Splashdowns)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Duck Water Slide: Splash Rush 🦆 — No Download | Pawcade',
+    metaDescription: 'Play Duck Water Slide free online! Steer Quacky down rushing water flumes, collect rubber ducks, and hit stunt ramps. Free arcade water racer with no download.',
+  },
 ];
+
 
 
 

@@ -171,6 +171,9 @@ const PiggyMudWashContainer = lazy(() =>
 const BarnyardBrickBreakerContainer = lazy(() =>
   import('../games/barnyard-brick-breaker/BarnyardBrickBreakerContainer').then((m) => ({ default: m.BarnyardBrickBreakerContainer }))
 );
+const DuckWaterSlideContainer = lazy(() =>
+  import('../games/duck-water-slide/DuckWaterSlideContainer').then((m) => ({ default: m.DuckWaterSlideContainer }))
+);
 
 
 
@@ -203,6 +206,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isWaterSlide = gameId === 'duck-water-slide' || gameId === 'water-slide' || gameId === 'splash-rush';
   const isBrickBreaker = gameId === 'barnyard-brick-breaker' || gameId === 'brick-breaker' || gameId === 'breakout';
   const isPiggyMudWash = gameId === 'piggy-mud-wash' || gameId === 'mud-wash' || gameId === 'pig-wash';
   const isEggCatcher = gameId === 'chicken-egg-catcher' || gameId === 'egg-catcher';
@@ -385,7 +389,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isBrickBreaker
+                isWaterSlide
+                  ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30'
+                  : isBrickBreaker
                   ? 'bg-red-500/20 text-red-300 border-red-500/30'
                   : isPiggyMudWash
                   ? 'bg-pink-500/20 text-pink-300 border-pink-500/30'
@@ -529,7 +535,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   <GameLoadingFallback
                     title={game.title}
                     mascot={
-                      isBrickBreaker
+                      isWaterSlide
+                        ? '🦆🌊'
+                        : isBrickBreaker
                         ? '🍎🧱'
                         : isPiggyMudWash
                         ? '🐷🧼'
@@ -626,7 +634,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   />
                 }
               >
-                {isBrickBreaker ? (
+                {isWaterSlide ? (
+                  <DuckWaterSlideContainer />
+                ) : isBrickBreaker ? (
                   <BarnyardBrickBreakerContainer />
                 ) : isPiggyMudWash ? (
                   <PiggyMudWashContainer />

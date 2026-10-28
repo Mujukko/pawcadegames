@@ -997,6 +997,42 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Angle your paddle shots! Hitting the apple near the left or right edge of your cart sends it slicing at sharp angles into hard-to-reach top corners.',
   },
+  'duck-water-slide': {
+    title: 'Duck Water Slide: Splash Rush',
+    subtitle: 'Fast Water Flume Racing Arcade',
+    mascot: '🦆🌊',
+    themeColor: 'from-cyan-600 via-sky-500 to-amber-500',
+    goal: 'Steer Quacky down twisting water flumes, dodge beach balls and soap, leap ramps, and splash into the pool!',
+    steps: [
+      {
+        icon: '🌊',
+        title: '1. Steer Flume Turns',
+        desc: 'Steer left and right along the flume water current to follow the flow and pick up juicy watermelon slices.',
+      },
+      {
+        icon: '⚡',
+        title: '2. Hit Turbo Boosts & Ramps',
+        desc: 'Ride glowing water speed pads for instant turbo speed, and launch off ramps to perform stunt jumps.',
+      },
+      {
+        icon: '🧼',
+        title: '3. Avoid Beach Balls & Soap',
+        desc: 'Steer clear of slippery soap bars and floating beach balls that slow your inner tube or cause spinouts.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left / Right Arrows or A / D: Steer duck left or right',
+        'Spacebar: Quick center or restart',
+        'M Key: Toggle splash sound effects and duck squeaks',
+      ],
+      mobile: [
+        'Touch & Drag / Left-Right Touch: Steer Quacky across the water slide',
+        'Bottom Arrow Buttons: Left and Right flume steering',
+      ],
+    },
+    proTip: 'Hit every water ramp you can! Stunt jumps award 200 bonus points each and keep your speed high while sailing safely over tricky soap hazards.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',
