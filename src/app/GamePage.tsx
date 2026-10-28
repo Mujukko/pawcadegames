@@ -102,6 +102,9 @@ const CapybaraSpaRushContainer = lazy(() =>
 const WoodNutsFarmContainer = lazy(() =>
   import('../games/wood-nuts-farm/WoodNutsFarmContainer').then((m) => ({ default: m.WoodNutsFarmContainer }))
 );
+const AnimalSuikaDropContainer = lazy(() =>
+  import('../games/animal-suika-drop/AnimalSuikaDropContainer').then((m) => ({ default: m.AnimalSuikaDropContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -131,6 +134,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isAnimalSuika = gameId === 'animal-suika-drop' || gameId === 'suika-game' || gameId === 'watermelon-merge';
   const isWoodNuts = gameId === 'wood-nuts-farm' || gameId === 'wood-nuts' || gameId === 'screw-puzzle';
   const isCapybaraSpa = gameId === 'capybara-spa-rush' || gameId === 'capybara-spa';
   const isSaveTheSheep = gameId === 'save-the-sheep' || gameId === 'save-sheep';
@@ -271,7 +275,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isMahjong
+                isAnimalSuika
+                  ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                  : isMahjong
                   ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
                   : isMemoryMatch
                   ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30'
@@ -343,7 +349,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isWoodNuts
+                  isAnimalSuika
+                    ? '🍉🐾'
+                    : isWoodNuts
                     ? '🔩🚜'
                     : isCapybaraSpa
                     ? '🍊🛁'
@@ -410,7 +418,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isWoodNuts ? (
+            {isAnimalSuika ? (
+              <AnimalSuikaDropContainer />
+            ) : isWoodNuts ? (
               <WoodNutsFarmContainer />
             ) : isCapybaraSpa ? (
               <CapybaraSpaRushContainer />
@@ -490,7 +500,18 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
 
             <div className="space-y-3 text-sm text-slate-300">
-              {isSheepStampede ? (
+              {isAnimalSuika ? (
+                <>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-emerald-400 min-w-24">Desktop:</span>
+                    <span>Move and drag your mouse along the top rail to aim your animal. Left click or release mouse to drop into the puzzle container! Watch matching animals merge and grow. Press <kbd className="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded text-xs font-mono border border-emerald-500/30">R</kbd> to restart, and <kbd className="bg-slate-800 text-emerald-300 px-1.5 py-0.5 rounded text-xs font-mono border border-emerald-500/30">M</kbd> to toggle Web Audio chimes.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-emerald-400 min-w-24">Mobile:</span>
+                    <span>Touch and drag your finger left or right along the top to aim the drop guide. Lift your finger to drop! Keep animal stacks below the red danger line.</span>
+                  </div>
+                </>
+              ) : isSheepStampede ? (
                 <>
                   <div className="flex items-start gap-2">
                     <span className="font-bold text-emerald-400 min-w-24">Desktop:</span>

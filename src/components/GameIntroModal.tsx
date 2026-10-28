@@ -134,6 +134,44 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Draw closed loop shapes (like a dome or box) around Barnaby so bees cannot slip through gaps from above or below!',
   },
+  'animal-suika-drop': {
+    title: 'Animal Drop: Watermelon Merge',
+    subtitle: 'Juicy Physics Evolution Puzzle',
+    mascot: '🍉🐾',
+    themeColor: 'from-emerald-500 via-green-600 to-amber-600',
+    goal: 'Drop and merge cute farm animals to grow the giant Watermelon Elephant without overflowing the danger line!',
+    steps: [
+      {
+        icon: '🎯',
+        title: '1. Aim & Drop Animals',
+        desc: 'Drag left and right across the top bar to choose where your cute animal drops into the wooden basket.',
+      },
+      {
+        icon: '✨',
+        title: '2. Merge Matching Pairs',
+        desc: 'When two identical animals bump into each other, they merge into the next bigger tier with bonus score.',
+      },
+      {
+        icon: '🍉',
+        title: '3. Watch the Danger Line',
+        desc: 'Keep animal stacks below the red danger line. Merge chains rapidly to create the giant Watermelon Elephant!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Move / Drag: Aim active animal along the top bar',
+        'Click / Release: Drop animal into the basket',
+        'R Key: Quick restart game',
+        'M Key: Toggle sound effects',
+      ],
+      mobile: [
+        'Touch & Drag: Slide finger left and right to aim',
+        'Release Finger: Drop animal into the box',
+        'Restart Button: Reset game for a new run',
+      ],
+    },
+    proTip: 'Drop small animals (chicks and ducklings) along the sides so they roll down toward their matching twins instead of blocking big animals in the center!',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

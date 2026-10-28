@@ -1281,6 +1281,44 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Wood Nuts & Bolts: Barnyard Jam 🔩🚜 — Free Screw Puzzle | Pawcade',
     metaDescription: 'Play Wood Nuts & Bolts free online! Unscrew bolts from wooden planks to clear barnyard puzzles. Free browser screw game with no download.',
   },
+  {
+    id: 'animal-suika-drop',
+    slug: 'animal-suika-drop',
+    title: 'Animal Drop: Watermelon Merge 🍉🐾',
+    tagline: 'Drop and merge cute farm animals to grow the giant Watermelon Elephant in this juicy physics puzzle!',
+    description: 'Drop and merge cute farm animals in this juicy physics puzzle. Aim your dropper to drop chicks, kittens, and puppies into the wooden box. When two matching animals touch, they merge into a bigger animal. Keep merging to grow the giant Watermelon Elephant. Watch the red danger line closely so your animals do not overflow the basket. Score big combo points and beat your personal record today!',
+    category: 'puzzle',
+    categories: ['puzzle', 'farm', 'arcade'],
+    route: '/games/animal-suika-drop/',
+    status: 'playable',
+    rating: 4.9,
+    playCount: '27.4K',
+    badge: '🍉 Suika Merge',
+    thumbnailUrl: '/assets/thumbnails/thumb-animal-suika-drop.svg',
+    controls: {
+      desktop: [
+        'Mouse Move / Drag: Aim the active animal along the top bar',
+        'Left Click / Release: Drop animal into the puzzle box',
+        'R Key: Quick restart game',
+        'M Key: Toggle bounce and merge sound effects',
+      ],
+      mobile: [
+        'Touch & Drag: Slide finger left and right to aim drop position',
+        'Release Finger: Drop animal into the wooden basket',
+        'Restart Button: Reset game and try for a higher score',
+      ],
+    },
+    features: [
+      '10 Cute Animal Evolution Tiers: Chick to Duckling, Kitten, Bunny, Puppy, Piglet, Sheep, Cow, Capybara, and Mega Watermelon Elephant',
+      'Sub-Stepped 60 FPS Physics Engine with Realistic Circle Stacking and Rolling',
+      'Juicy Merge Starburst Effects and Floating Score Badges',
+      'Red Danger Line Overflow Warning System with Countdown Timer',
+      'Procedural Web Audio Chimes Scaled to Merge Evolution Tiers',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Animal Drop: Watermelon Merge 🍉🐾 — No Download | Pawcade',
+    metaDescription: 'Play Animal Drop Watermelon Merge free online! Drop and merge cute farm animals to grow the giant Watermelon Elephant. Free puzzle game with no download.',
+  },
 ];
 
 
