@@ -122,7 +122,7 @@ export const CaterpillarFruitTrailContainer: React.FC = () => {
     const absX = Math.abs(dx);
     const absY = Math.abs(dy);
 
-    const minSwipeThreshold = 18; // px
+    const minSwipeThreshold = 14; // px <= 14px threshold for immediate tactile response
 
     if (absX > minSwipeThreshold || absY > minSwipeThreshold) {
       if (absX > absY) {
@@ -498,21 +498,21 @@ export const CaterpillarFruitTrailContainer: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-lg mx-auto flex flex-col items-center select-none overflow-hidden touch-none"
+      className="relative w-full max-w-lg mx-auto flex flex-col items-center select-none overflow-hidden touch-none overscroll-none rounded-3xl border border-amber-500/30 shadow-2xl bg-slate-950"
       style={{ touchAction: 'none', overscrollBehavior: 'none' }}
     >
       {/* COMPACT BALANCED MOBILE HUD (320px - 430px) */}
-      <div className="w-full flex items-center justify-between px-3 py-2 bg-slate-900/90 border-b border-amber-500/20 text-white z-20 shrink-0 text-xs sm:text-sm">
+      <div className="w-full flex items-center justify-between px-2 sm:px-3 py-1.5 sm:py-2 bg-slate-900/90 border-b border-amber-500/20 text-white z-20 shrink-0 text-xs sm:text-sm">
         {/* Left Cluster */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          <div className="flex items-center gap-1 font-black text-amber-400 bg-amber-950/60 px-2 py-1 rounded-lg border border-amber-500/30">
+        <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-1 font-black text-amber-400 bg-amber-950/60 px-1.5 sm:px-2 py-1 rounded-lg border border-amber-500/30 text-[11px] sm:text-xs">
             <span>STG {displayState.stage}/4</span>
           </div>
-          <div className="flex items-center gap-1 font-black text-emerald-400 bg-emerald-950/60 px-2 py-1 rounded-lg border border-emerald-500/30">
-            <Trophy className="w-3.5 h-3.5" />
+          <div className="flex items-center gap-1 font-black text-emerald-400 bg-emerald-950/60 px-1.5 sm:px-2 py-1 rounded-lg border border-emerald-500/30 text-[11px] sm:text-xs">
+            <Trophy className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             <span>{displayState.score}</span>
           </div>
-          <div className="flex items-center gap-1 font-bold text-amber-300 bg-slate-800/80 px-2 py-1 rounded-lg border border-slate-700">
+          <div className="flex items-center gap-1 font-bold text-amber-300 bg-slate-800/80 px-1.5 sm:px-2 py-1 rounded-lg border border-slate-700 text-[11px] sm:text-xs">
             <span>🍎</span>
             <span>
               {displayState.fruitsEaten}/{displayState.targetFruits}
@@ -521,10 +521,10 @@ export const CaterpillarFruitTrailContainer: React.FC = () => {
         </div>
 
         {/* Right Cluster */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1 sm:gap-2">
           {displayState.speedBoost > 0 && (
-            <div className="flex items-center gap-1 font-black text-yellow-300 bg-yellow-950/70 px-2 py-1 rounded-lg border border-yellow-500/40 animate-pulse">
-              <Zap className="w-3.5 h-3.5" />
+            <div className="flex items-center gap-1 font-black text-yellow-300 bg-yellow-950/70 px-1.5 sm:px-2 py-1 rounded-lg border border-yellow-500/40 animate-pulse text-[11px] sm:text-xs">
+              <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               <span>TURBO</span>
             </div>
           )}
@@ -533,7 +533,7 @@ export const CaterpillarFruitTrailContainer: React.FC = () => {
           <button
             onClick={handleToggleMute}
             aria-label={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-            className="w-8 h-8 min-w-[32px] min-h-[32px] sm:w-9 sm:h-9 sm:min-w-[36px] sm:min-h-[36px] rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 flex items-center justify-center text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="w-9 h-9 sm:w-10 sm:h-10 min-w-[38px] sm:min-w-[44px] min-h-[38px] sm:min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-600 flex items-center justify-center text-slate-300 hover:text-white transition-all cursor-pointer touch-manipulation relative after:absolute after:-inset-1.5 after:content-['']"
           >
             {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
           </button>
@@ -542,7 +542,7 @@ export const CaterpillarFruitTrailContainer: React.FC = () => {
           <button
             onClick={handleResetStage}
             aria-label="Restart Stage"
-            className="w-8 h-8 min-w-[32px] min-h-[32px] sm:w-9 sm:h-9 sm:min-w-[36px] sm:min-h-[36px] rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 flex items-center justify-center text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="w-9 h-9 sm:w-10 sm:h-10 min-w-[38px] sm:min-w-[44px] min-h-[38px] sm:min-h-[44px] rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 border border-slate-600 flex items-center justify-center text-slate-300 hover:text-white transition-all cursor-pointer touch-manipulation relative after:absolute after:-inset-1.5 after:content-['']"
           >
             <RotateCcw className="w-4 h-4" />
           </button>

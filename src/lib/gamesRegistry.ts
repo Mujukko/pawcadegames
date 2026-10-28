@@ -1700,6 +1700,42 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Caterpillar Garden: Fruit Trail Snake 🐛🍎 — No Download | Pawcade',
     metaDescription: 'Play Caterpillar Garden: Fruit Trail Snake free online! Crawl across garden tiles, eat sweet berries, grow your caterpillar body, and dodge thorns. Free no download.',
   },
+  {
+    id: 'carrot-target-throw',
+    slug: 'carrot-target-throw',
+    title: 'Carrot Target Throw: Barnyard Spin 🎯🥕',
+    tagline: 'Throw crunchy carrots into rotating farm targets, slice bonus fruit, and dodge obstacles!',
+    description: 'Test your timing in Carrot Target Throw! Tap to flick crisp carrots into spinning wooden stumps, waterwheel timbers, and windmill rotors. Dodge pre-stuck wood pegs and your own embedded carrots while slicing juicy apples and golden acorns. Master all four spinning stages to win!',
+    category: 'arcade',
+    categories: ['arcade', 'farm'],
+    route: '/games/carrot-target-throw/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '31.2K',
+    badge: '🎯 Target Spin',
+    thumbnailUrl: '/assets/thumbnails/thumb-carrot-target-throw.svg',
+    controls: {
+      desktop: [
+        'Spacebar / Left Click: Flick carrot upward toward the spinning target',
+        'R Key: Restart current target stage',
+        'M Key: Toggle crisp throw and stick sound effects',
+      ],
+      mobile: [
+        'Tap Screen / Throw Button: Tap anywhere to throw carrot instantly',
+        'Restart Button: Reset stage anytime',
+      ],
+    },
+    features: [
+      '4 Handcrafted Spinning Stages: Oak Tree Stump, Waterwheel Timber, Windmill Rotor, and Grand Barn Melon',
+      'Dynamic Rotation Patterns with Acceleration, Reversals, and Sudden Stutter Bursts',
+      'Bonus Orbiting Fruits: Sliced Crisp Apples (+250 pts) and Golden Acorns (+500 pts)',
+      'Responsive Sub-Stepped Collision Detection with Deflection Physics and Wood Chip Sparks',
+      'Procedural Web Audio Synthesizer (Whoosh Throws, Woody Thunks, Fruit Slices, and Victory Fanfare)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Carrot Target Throw: Barnyard Spin 🎯🥕 — No Download | Pawcade',
+    metaDescription: 'Play Carrot Target Throw free online! Flick crisp carrots into rotating farm targets, dodge obstacles, and slice bonus fruit across 4 stages. Free no download.',
+  },
 ];
 
 

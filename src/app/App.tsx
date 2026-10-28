@@ -80,11 +80,17 @@ export const App: React.FC = () => {
     const duckArcheryGame = GAMES_REGISTRY.find(g => g.id === 'duck-archery-range');
     const corgiGolfGame = GAMES_REGISTRY.find(g => g.id === 'corgi-mini-golf');
     const caterpillarGame = GAMES_REGISTRY.find(g => g.id === 'caterpillar-fruit-trail');
+    const carrotTargetGame = GAMES_REGISTRY.find(g => g.id === 'carrot-target-throw');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/caterpillar-fruit-trail') || currentRoute.startsWith('/games/caterpillar') || currentRoute.startsWith('/games/snake')) {
+    if (currentRoute.startsWith('/games/carrot-target-throw') || currentRoute.startsWith('/games/carrot-target') || currentRoute.startsWith('/games/knife-hit')) {
+      if (carrotTargetGame) {
+        activeTitle = carrotTargetGame.metaTitle;
+        activeDesc = carrotTargetGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/caterpillar-fruit-trail') || currentRoute.startsWith('/games/caterpillar') || currentRoute.startsWith('/games/snake')) {
       if (caterpillarGame) {
         activeTitle = caterpillarGame.metaTitle;
         activeDesc = caterpillarGame.metaDescription;
@@ -350,6 +356,18 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/carrot-target-throw') || currentRoute.startsWith('/games/carrot-target') || currentRoute.startsWith('/games/knife-hit')) {
+      return <GamePage navigate={navigate} gameId="carrot-target-throw" />;
+    }
+    if (currentRoute.startsWith('/games/caterpillar-fruit-trail') || currentRoute.startsWith('/games/caterpillar') || currentRoute.startsWith('/games/snake')) {
+      return <GamePage navigate={navigate} gameId="caterpillar-fruit-trail" />;
+    }
+    if (currentRoute.startsWith('/games/corgi-mini-golf') || currentRoute.startsWith('/games/mini-golf') || currentRoute.startsWith('/games/golf')) {
+      return <GamePage navigate={navigate} gameId="corgi-mini-golf" />;
+    }
+    if (currentRoute.startsWith('/games/duck-archery-range') || currentRoute.startsWith('/games/duck-archery') || currentRoute.startsWith('/games/archery')) {
+      return <GamePage navigate={navigate} gameId="duck-archery-range" />;
     }
     if (currentRoute.startsWith('/games/barnyard-peg-pop') || currentRoute.startsWith('/games/peg-pop') || currentRoute.startsWith('/games/peggle')) {
       return <GamePage navigate={navigate} gameId="barnyard-peg-pop" />;

@@ -550,6 +550,42 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Grab the green speed boost leaf whenever it spawns! Turbo crawl mode lets you sweep across the garden twice as fast without risk of tail tangles.',
   },
+  'carrot-target-throw': {
+    title: 'Carrot Target Throw: Barnyard Spin',
+    subtitle: 'Spinning Target Timing & Precision',
+    mascot: '🎯🥕',
+    themeColor: 'from-orange-500 via-amber-600 to-amber-700',
+    goal: 'Flick crunchy carrots into spinning farm targets, slice bonus fruit, and dodge obstacles!',
+    steps: [
+      {
+        icon: '🎯',
+        title: '1. Time Your Throw',
+        desc: 'Tap to launch a crisp carrot upward toward the rotating wooden stump.',
+      },
+      {
+        icon: '🚫',
+        title: '2. Avoid Existing Pegs',
+        desc: 'Never hit pre-stuck wooden obstacles or your own carrots; collisions cause a clash!',
+      },
+      {
+        icon: '🍎',
+        title: '3. Slice Bonus Fruit',
+        desc: 'Hit orbiting apples and golden acorns for huge bonus points and clear all 4 stages!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Spacebar / Left Click: Flick carrot toward target',
+        'R Key: Quick restart stage',
+        'M Key: Toggle crisp throw and stick sound effects',
+      ],
+      mobile: [
+        'Tap Screen / Throw Button: Instant carrot throw with zero delay',
+        'Restart Button: Reset stage anytime',
+      ],
+    },
+    proTip: 'Study the stump rotation pattern! When speed decelerates or hesitates, that is your golden window to flick your carrots safely into open gaps.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

@@ -77,10 +77,11 @@
 | TASK-073 | P0 | DONE | Duck Archery: Target Master (Game #41) | Countryside archery bow & arrow arcade: Quacky the Robin Duck, drag & release string ballistics, gravity arc & crosswind gusts, concentric target scoring (100 pt Bullseye), bonus field apples (+150 pts) & bells (+1 arrow), 4 ranges, 11 unit tests. |
 | TASK-074 | P0 | DONE | Corgi Mini Golf: Pasture Putt (Game #42) | Countryside mini golf arcade: Sunny the Corgi, sub-stepped 60 FPS physics, restitution rail bounces, sand & mud hazards, bouncy pinball bumpers, collectible golden bones (+100 pts), authentic golf term ratings (Hole-in-One, Eagle, Birdie, Par), 4 holes, 12 unit tests. |
 | TASK-075 | P0 | DONE | Caterpillar Garden: Fruit Trail Snake (Game #43) | Wavy caterpillar snake puzzle: Sammy the caterpillar, multi-segment smooth crawling, 5 garden fruits (cherries, strawberries, apples, golden apples, turbo leaves), hedge & rock obstacles, 4 garden plots, tactile touch swipe & virtual D-Pad, Web Audio bites & munch sounds, 11 unit tests. |
+| TASK-076 | P0 | DONE | Carrot Target Throw: Barnyard Spin (Game #44) | Precision timing & target throw arcade: flick crunchy carrots into rotating oak stump, waterwheel timber, and windmill rotor; dodge pre-stuck wood pegs and existing carrots; slice bonus apples (+250 pts) & golden acorns (+500 pts); sub-stepped deflection physics; 4 spinning stages, 10 unit tests. |
 
 ## Completed Sprint Summary
 - All backlog tasks completed.
-- Definition of Done met: **43 complete playable games** with pure TypeScript logic engines, Web Audio procedural synthesizers, 460 automated tests passing across 45 test suites (4700+ assertions), zero type errors, lightweight code-split bundles, single-screen zero-scroll mobile responsiveness, 100/100 7-pillar Agentic SEO audit with 0/100 slop, and live deployment.
+- Definition of Done met: **44 complete playable games** with pure TypeScript logic engines, Web Audio procedural synthesizers, 470 automated tests passing across 46 test suites (4750+ assertions), zero type errors, lightweight code-split bundles, single-screen zero-scroll mobile responsiveness, 100/100 7-pillar Agentic SEO audit with 0/100 slop, and live deployment.
 
 
 

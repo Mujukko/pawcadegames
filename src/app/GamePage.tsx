@@ -135,6 +135,9 @@ const CorgiMiniGolfContainer = lazy(() =>
 const CaterpillarFruitTrailContainer = lazy(() =>
   import('../games/caterpillar-fruit-trail/CaterpillarFruitTrailContainer').then((m) => ({ default: m.CaterpillarFruitTrailContainer }))
 );
+const CarrotTargetThrowContainer = lazy(() =>
+  import('../games/carrot-target-throw/CarrotTargetThrowContainer').then((m) => ({ default: m.CarrotTargetThrowContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -164,6 +167,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isCarrotTarget = gameId === 'carrot-target-throw' || gameId === 'carrot-target' || gameId === 'knife-hit';
   const isCaterpillar = gameId === 'caterpillar-fruit-trail' || gameId === 'caterpillar' || gameId === 'snake';
   const isMiniGolf = gameId === 'corgi-mini-golf' || gameId === 'mini-golf' || gameId === 'golf';
   const isDuckArchery = gameId === 'duck-archery-range' || gameId === 'duck-archery' || gameId === 'archery';
@@ -498,7 +502,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isCaterpillar ? (
+            {isCarrotTarget ? (
+              <CarrotTargetThrowContainer />
+            ) : isCaterpillar ? (
               <CaterpillarFruitTrailContainer />
             ) : isMiniGolf ? (
               <CorgiMiniGolfContainer />

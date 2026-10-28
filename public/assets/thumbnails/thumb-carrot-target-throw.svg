@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="45%" stop-color="#1e3a8a" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </radialGradient>
+
+    <!-- Orchard Glow -->
+    <radialGradient id="sunGlow" cx="50%" cy="30%" r="45%">
+      <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.45" />
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Wood Stump Bark -->
+    <linearGradient id="barkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="50%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <!-- Wood Log Center Face -->
+    <radialGradient id="woodFace" cx="45%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#fef3c7" />
+      <stop offset="55%" stop-color="#fde68a" />
+      <stop offset="85%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#92400e" />
+    </radialGradient>
+
+    <!-- Carrot Gradient -->
+    <linearGradient id="carrotGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ea580c" />
+      <stop offset="40%" stop-color="#f97316" />
+      <stop offset="80%" stop-color="#fb923c" />
+      <stop offset="100%" stop-color="#c2410c" />
+    </linearGradient>
+
+    <!-- Carrot Leaves -->
+    <linearGradient id="leafGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#15803d" />
+      <stop offset="60%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#4ade80" />
+    </linearGradient>
+
+    <!-- Apple Gradient -->
+    <radialGradient id="appleGrad" cx="35%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#f87171" />
+      <stop offset="50%" stop-color="#dc2626" />
+      <stop offset="100%" stop-color="#991b1b" />
+    </radialGradient>
+
+    <!-- Golden Acorn -->
+    <radialGradient id="goldGrad" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="45%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#a16207" />
+    </radialGradient>
+
+    <filter id="shadowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="512" height="512" rx="48" fill="url(#bgGrad)" />
+  <circle cx="256" cy="180" r="220" fill="url(#sunGlow)" />
+
+  <!-- Speed Radial Motion Lines -->
+  <g stroke="#ffffff" stroke-opacity="0.12" stroke-width="2.5" stroke-dasharray="14 18">
+    <circle cx="256" cy="200" r="160" fill="none" />
+    <circle cx="256" cy="200" r="190" fill="none" />
+  </g>
+
+  <!-- Central Target Stump -->
+  <g filter="url(#shadowFilter)">
+    <!-- Bark Outer Ring -->
+    <circle cx="256" cy="200" r="115" fill="url(#barkGrad)" stroke="#451a03" stroke-width="8" />
+
+    <!-- Wood Cross Section Face -->
+    <circle cx="256" cy="200" r="102" fill="url(#woodFace)" />
+
+    <!-- Annual Tree Growth Rings -->
+    <circle cx="256" cy="200" r="82" fill="none" stroke="#b45309" stroke-width="2.5" stroke-opacity="0.4" stroke-dasharray="45 10 30 15" />
+    <circle cx="256" cy="200" r="60" fill="none" stroke="#b45309" stroke-width="2" stroke-opacity="0.35" stroke-dasharray="25 8 40 12" />
+    <circle cx="256" cy="200" r="38" fill="none" stroke="#92400e" stroke-width="2.5" stroke-opacity="0.4" />
+    <circle cx="256" cy="200" r="16" fill="#92400e" opacity="0.3" />
+
+    <!-- Wood Bark Notches -->
+    <path d="M 256 98 L 256 122 M 256 302 L 256 278 M 154 200 L 178 200 M 358 200 L 334 200" stroke="#78350f" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- Embedded Projectiles (Radially Stuck) -->
+
+  <!-- Top-Left Stuck Carrot (Angle ~ 220 deg) -->
+  <g transform="translate(170, 114) rotate(-135)">
+    <!-- Carrot Body -->
+    <path d="M -8 0 Q -10 40 0 75 Q 10 40 8 0 Z" fill="url(#carrotGrad)" stroke="#9a3412" stroke-width="1.5" />
+    <!-- Ridge Lines -->
+    <path d="M -6 22 Q 0 25 5 22 M -5 45 Q 0 48 4 45" stroke="#ea580c" stroke-width="1.5" fill="none" stroke-linecap="round" />
+    <!-- Leaves -->
+    <path d="M 0 0 C -12 -18 -8 -32 -2 -38 C 0 -25 2 -18 0 0 Z" fill="url(#leafGrad)" />
+    <path d="M 0 0 C 12 -18 8 -32 2 -38 C 0 -25 -2 -18 0 0 Z" fill="url(#leafGrad)" />
+  </g>
+
+  <!-- Top-Right Stuck Carrot (Angle ~ 320 deg) -->
+  <g transform="translate(342, 114) rotate(135)">
+    <path d="M -8 0 Q -10 40 0 75 Q 10 40 8 0 Z" fill="url(#carrotGrad)" stroke="#9a3412" stroke-width="1.5" />
+    <path d="M -6 22 Q 0 25 5 22 M -5 45 Q 0 48 4 45" stroke="#ea580c" stroke-width="1.5" fill="none" stroke-linecap="round" />
+    <path d="M 0 0 C -12 -18 -8 -32 -2 -38 C 0 -25 2 -18 0 0 Z" fill="url(#leafGrad)" />
+    <path d="M 0 0 C 12 -18 8 -32 2 -38 C 0 -25 -2 -18 0 0 Z" fill="url(#leafGrad)" />
+  </g>
+
+  <!-- Left Stuck Wood Peg Obstacle (Angle ~ 180 deg) -->
+  <g transform="translate(142, 200) rotate(-90)">
+    <rect x="-6" y="0" width="12" height="50" rx="3" fill="#451a03" stroke="#291002" stroke-width="2" />
+    <line x1="-3" y1="12" x2="3" y2="12" stroke="#78350f" stroke-width="2" />
+    <line x1="-3" y1="28" x2="3" y2="28" stroke="#78350f" stroke-width="2" />
+  </g>
+
+  <!-- Right Bonus Shiny Apple (Sliced with sparkles) -->
+  <g transform="translate(365, 200)">
+    <circle cx="0" cy="0" r="22" fill="url(#appleGrad)" stroke="#7f1d1d" stroke-width="2" filter="url(#shadowFilter)" />
+    <path d="M -4 -22 Q 0 -30 6 -28" stroke="#15803d" stroke-width="3" fill="none" stroke-linecap="round" />
+    <!-- Leaf -->
+    <path d="M 2 -25 Q 14 -32 16 -24 Q 8 -20 2 -25" fill="#22c55e" />
+    <!-- Specular Glint -->
+    <circle cx="-7" cy="-7" r="5" fill="#ffffff" opacity="0.6" />
+    <!-- Sparkles -->
+    <path d="M 24 -15 L 28 -15 M 26 -17 L 26 -13" stroke="#fef08a" stroke-width="2.5" stroke-linecap="round" />
+  </g>
+
+  <!-- Golden Acorn (Top Edge) -->
+  <g transform="translate(256, 88)">
+    <path d="M -14 0 C -14 18 0 24 0 24 C 0 24 14 18 14 0 Z" fill="url(#goldGrad)" stroke="#713f12" stroke-width="1.5" />
+    <path d="M -16 0 C -16 -10 16 -10 16 0 Z" fill="#854d0e" stroke="#451a03" stroke-width="1.5" />
+    <path d="M 0 -8 L 0 -14" stroke="#451a03" stroke-width="2" stroke-linecap="round" />
+    <circle cx="-4" cy="6" r="3" fill="#ffffff" opacity="0.6" />
+  </g>
+
+  <!-- Dynamic Flying Carrot (Launching Upwards from Bottom) -->
+  <g transform="translate(256, 385)">
+    <!-- Motion Speed Streaks -->
+    <line x1="-14" y1="50" x2="-14" y2="110" stroke="#f97316" stroke-width="3" stroke-opacity="0.5" stroke-linecap="round" />
+    <line x1="14" y1="50" x2="14" y2="110" stroke="#f97316" stroke-width="3" stroke-opacity="0.5" stroke-linecap="round" />
+    <line x1="0" y1="65" x2="0" y2="130" stroke="#fdba74" stroke-width="4" stroke-opacity="0.7" stroke-linecap="round" />
+
+    <!-- Big Crisp Carrot Heading to Target -->
+    <g filter="url(#shadowFilter)">
+      <path d="M -14 30 Q -18 -30 0 -85 Q 18 -30 14 30 Z" fill="url(#carrotGrad)" stroke="#9a3412" stroke-width="2.5" />
+      <!-- Horizontal Grooves -->
+      <path d="M -10 -15 Q 0 -10 8 -15 M -8 -45 Q 0 -40 6 -45 M -11 12 Q 0 16 9 12" stroke="#ea580c" stroke-width="2" fill="none" stroke-linecap="round" />
+      <!-- Specular Highlight -->
+      <path d="M -6 -60 Q -9 -10 -8 18" stroke="#ffedd5" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.75" />
+      <!-- Big Fluffy Green Leaves at Bottom End -->
+      <path d="M 0 30 C -18 55 -12 80 -4 95 C 0 70 4 55 0 30 Z" fill="url(#leafGrad)" />
+      <path d="M 0 30 C 18 55 12 80 4 95 C 0 70 -4 55 0 30 Z" fill="url(#leafGrad)" />
+      <path d="M 0 30 C 0 65 0 85 0 100 C 0 75 0 55 0 30 Z" fill="#22c55e" stroke="#15803d" stroke-width="1.5" />
+    </g>
+  </g>
+
+  <!-- Impact Sparks at Bottom Edge of Stump -->
+  <g transform="translate(256, 305)">
+    <circle cx="0" cy="0" r="7" fill="#fbbf24" opacity="0.8" />
+    <circle cx="0" cy="0" r="14" fill="#f59e0b" opacity="0.3" />
+    <path d="M -18 -8 L -28 -14 M 18 -8 L 28 -14 M -12 12 L -20 20 M 12 12 L 20 20" stroke="#fde047" stroke-width="2.5" stroke-linecap="round" />
+  </g>
+
+  <!-- Golden Stars & Sparkles -->
+  <g fill="#fde047">
+    <path d="M 80 80 Q 90 90 100 80 Q 90 90 100 100 Q 90 90 80 100 Q 90 90 80 80 Z" />
+    <path d="M 420 90 Q 428 98 436 90 Q 428 98 436 106 Q 428 98 420 106 Q 428 98 420 90 Z" />
+    <path d="M 90 420 Q 96 426 102 420 Q 96 426 102 432 Q 96 426 90 432 Q 96 426 90 420 Z" />
+    <path d="M 420 380 Q 428 388 436 380 Q 428 388 436 396 Q 428 388 420 396 Q 428 388 420 380 Z" />
+  </g>
+</svg>
