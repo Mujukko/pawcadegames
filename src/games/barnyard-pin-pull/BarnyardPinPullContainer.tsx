@@ -529,17 +529,17 @@ export const BarnyardPinPullContainer: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-[620px] max-w-lg mx-auto bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-amber-500/20 select-none touch-none">
+    <div className="relative w-full h-[540px] sm:h-[620px] max-h-[82vh] min-h-[460px] max-w-lg mx-auto bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-amber-500/20 select-none touch-none overscroll-none">
       {/* 60 FPS Canvas */}
       <canvas
         ref={canvasRef}
         onPointerDown={handlePointerDown}
-        className="w-full h-full block cursor-pointer"
+        className="w-full h-full block cursor-pointer select-none"
         style={{ touchAction: 'none' }}
       />
 
       {/* Top Header HUD */}
-      <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+      <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 right-2.5 sm:right-3 flex items-center justify-between pointer-events-none">
         {/* Level & Food Target */}
         <div className="bg-slate-900/90 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-amber-500/30 shadow-lg">
           <div className="text-xs font-black text-amber-300">
@@ -562,7 +562,7 @@ export const BarnyardPinPullContainer: React.FC = () => {
         <div className="flex items-center gap-2 pointer-events-auto">
           <button
             onClick={handleRestart}
-            className="w-10 h-10 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-amber-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-2xl bg-slate-900/90 backdrop-blur-md border border-amber-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform cursor-pointer"
             aria-label="Restart level"
           >
             🔄
@@ -572,7 +572,7 @@ export const BarnyardPinPullContainer: React.FC = () => {
               const muted = pinPullAudio.toggleMute();
               setIsMuted(muted);
             }}
-            className="w-10 h-10 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-amber-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-2xl bg-slate-900/90 backdrop-blur-md border border-amber-500/30 flex items-center justify-center text-lg shadow-lg active:scale-95 transition-transform cursor-pointer"
             aria-label={isMuted ? 'Unmute' : 'Mute'}
           >
             {isMuted ? '🔇' : '🔊'}
@@ -582,8 +582,8 @@ export const BarnyardPinPullContainer: React.FC = () => {
 
       {/* Win Modal Overlay */}
       {uiStatus === 'won' && (
-        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-6 z-20">
-          <div className="bg-slate-900 border border-amber-400/50 rounded-3xl p-6 text-center max-w-sm shadow-2xl animate-fade-in">
+        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 z-20">
+          <div className="bg-slate-900 border border-amber-400/50 rounded-3xl p-5 sm:p-6 text-center max-w-sm w-full shadow-2xl animate-fade-in max-h-[90vh] overflow-y-auto">
             <div className="text-5xl mb-3">🐶🎉🥕</div>
             <h3 className="text-2xl font-black text-amber-300">
               Barnaby is Rescued!
@@ -595,14 +595,14 @@ export const BarnyardPinPullContainer: React.FC = () => {
               {uiLevel < PIN_LEVELS.length ? (
                 <button
                   onClick={handleNextLevel}
-                  className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px]"
+                  className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer"
                 >
                   Next Chamber ({uiLevel + 1}/{PIN_LEVELS.length}) 🚜
                 </button>
               ) : (
                 <button
                   onClick={handleRestart}
-                  className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px]"
+                  className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer"
                 >
                   Play All Chambers Again 👑
                 </button>
@@ -614,8 +614,8 @@ export const BarnyardPinPullContainer: React.FC = () => {
 
       {/* Loss Modal Overlay */}
       {uiStatus === 'lost' && (
-        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-6 z-20">
-          <div className="bg-slate-900 border border-red-500/50 rounded-3xl p-6 text-center max-w-sm shadow-2xl animate-fade-in">
+        <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 z-20">
+          <div className="bg-slate-900 border border-red-500/50 rounded-3xl p-5 sm:p-6 text-center max-w-sm w-full shadow-2xl animate-fade-in max-h-[90vh] overflow-y-auto">
             <div className="text-5xl mb-3">🔥💔</div>
             <h3 className="text-2xl font-black text-red-400">
               Chamber Trapped!
@@ -626,7 +626,7 @@ export const BarnyardPinPullContainer: React.FC = () => {
             <div className="mt-5 flex flex-col gap-2.5">
               <button
                 onClick={handleRestart}
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-red-500 to-orange-500 text-white font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px]"
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-red-500 to-orange-500 text-white font-black text-sm shadow-lg hover:brightness-110 active:scale-95 transition-all min-h-[44px] cursor-pointer"
               >
                 Try Chamber Again 🔄
               </button>

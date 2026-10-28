@@ -326,6 +326,43 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Always neutralize hazards first! Drop water onto lava or drop lava onto the fox before unlocking the food chamber, or your treats will get stolen or burned!',
   },
+  'hamster-cookie-stack': {
+    title: 'Hamster Cookie Stack: Sweet Bakery',
+    subtitle: 'Wobbly Dessert Stacking & Balancing Arcade',
+    mascot: '🐹🍪',
+    themeColor: 'from-amber-500 via-rose-500 to-amber-700',
+    goal: 'Help Mochi the baker hamster catch falling cookies, macarons, and donuts to build a giant wobbly dessert tower!',
+    steps: [
+      {
+        icon: '🍽️',
+        title: '1. Position Pastry Plate',
+        desc: 'Slide left and right to place your golden plate beneath sweet treats dropping from overhead conveyor belts.',
+      },
+      {
+        icon: '⚖️',
+        title: '2. Balance Center-of-Mass',
+        desc: 'Catch treats near the center to minimize wobble. Off-center catches make your tower tilt and lean precariously!',
+      },
+      {
+        icon: '👑',
+        title: '3. Complete Bakery Quota',
+        desc: 'Stack the required number of delicious desserts without dropping three sweets to clear the stage and advance.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left & Right Arrow Keys / A & D: Slide pastry plate smoothly',
+        'R Key: Quick restart bakery stage',
+        'M Key: Toggle dessert chime sounds',
+      ],
+      mobile: [
+        'Touch & Slide Anywhere: Steer plate under dropping treats',
+        'Left & Right On-Screen Buttons: Tap to nudge plate',
+        'Restart Button: Reset stage anytime',
+      ],
+    },
+    proTip: 'Aim for centered catches! Perfect centered catches stabilize the tower spring wobble and trigger massive 2x to 5x combo multipliers!',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

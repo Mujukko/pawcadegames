@@ -1473,6 +1473,43 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Barnyard Pin Pull: Rescue & Loot 🚜📌 — No Download | Pawcade',
     metaDescription: 'Play Barnyard Pin Pull free online! Pull golden pins, quench lava with water, defeat sneaky foxes, and rescue cute farm animals. Free puzzle game with no download.',
   },
+  {
+    id: 'hamster-cookie-stack',
+    slug: 'hamster-cookie-stack',
+    title: 'Hamster Cookie Stack: Sweet Bakery 🐹🍪',
+    tagline: 'Catch dropping sweet treats on a golden pastry plate and balance a giant wobbly dessert tower with Mochi!',
+    description: 'Help Mochi the baker hamster stack sweet desserts! Catch warm cookies, glazed donuts, and berry cakes dropped from belts above. Move left and right to keep the wobbly tower balanced. Clear four fun bakery stages without dropping three sweets to the floor.',
+    category: 'arcade',
+    categories: ['arcade', 'pets', 'puzzle'],
+    route: '/games/hamster-cookie-stack/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '24.2K',
+    badge: '🐹 Sweet Tower',
+    thumbnailUrl: '/assets/thumbnails/thumb-hamster-cookie-stack.svg',
+    controls: {
+      desktop: [
+        'Left & Right Arrow Keys / A & D: Slide pastry plate smoothly',
+        'R Key: Restart bakery stage',
+        'M Key: Toggle dessert pop and chimes',
+      ],
+      mobile: [
+        'Touch & Slide Anywhere: Steer plate under dropping treats',
+        'Left & Right On-Screen Buttons: Tap to nudge plate',
+        'Restart Button: Reset bakery level',
+      ],
+    },
+    features: [
+      '4 Handcrafted Bakery Stages: Sugar Shack, Macaron Meadow, Donut Deluxe, and Royal Patisserie',
+      '6 Delectable Sweet Treats: Chocolate Chip Cookies, Strawberry Cupcakes, French Macarons, Glazed Donuts, Belgian Waffles, and Birthday Cakes',
+      'Realistic Center-of-Mass Physics with Spring Damping and Tower Wobble',
+      'Perfect Catch Streak Multipliers (2x, 3x, 4x, 5x) and Star Sparkles',
+      'Procedural Web Audio Synthesizer (Marimba Chords, Sparkle Chimes, Hamster Squeaks, and Bakery Fanfare)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Hamster Cookie Stack: Sweet Bakery 🐹🍪 — No Download | Pawcade',
+    metaDescription: 'Play Hamster Cookie Stack free online! Catch dropping cookies, macarons, and donuts to balance a giant dessert tower with Mochi the hamster. Free no download.',
+  },
 ];
 
 

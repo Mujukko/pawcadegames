@@ -2,6 +2,7 @@ import { describe, expect, it } from 'bun:test';
 import {
   initKoiPond,
   dropFoodPellet,
+  addWaterRipple,
   triggerSingingBowl,
   activatePetalShower,
   updateKoiPond,
@@ -170,5 +171,22 @@ describe('Koi Pond: Zen Water Garden Engine', () => {
     // Target angle should be redirected away from edge (Math.PI)
     expect(newState.fish[0].targetAngle).toBe(Math.PI);
     expect(newState.fish[0].x).toBeLessThanOrEqual(480);
+  });
+
+  it('creates water ripples along touch drag path with bounding clamps', () => {
+    let pond = initKoiPond(1, 480, 640);
+    expect(pond.ripples.length).toBe(0);
+
+    pond = addWaterRipple(pond, 150, 220);
+    expect(pond.ripples.length).toBe(1);
+    expect(pond.ripples[0].x).toBe(150);
+    expect(pond.ripples[0].y).toBe(220);
+    expect(pond.ripples[0].radius).toBe(3);
+
+    // Out-of-bounds coordinates get clamped
+    pond = addWaterRipple(pond, -100, 9999);
+    expect(pond.ripples.length).toBe(2);
+    expect(pond.ripples[1].x).toBe(10);
+    expect(pond.ripples[1].y).toBe(630);
   });
 });
