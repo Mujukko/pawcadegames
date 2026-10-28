@@ -1359,6 +1359,44 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Barnyard Tile Match: Triple Pick 🧺🍎 — No Download | Pawcade',
     metaDescription: 'Play Barnyard Tile Match free online! Pick and match 3 cute farm crop tiles in your 7-slot tray to clear the board. Free cozy puzzle game with no download.',
   },
+  {
+    id: 'farm-pipe-flow',
+    slug: 'farm-pipe-flow',
+    title: 'Farm Pipe Flow: Barnyard Plumber 🚜💧',
+    tagline: 'Rotate water pipes to irrigate thirsty barnyard crops and animal troughs in this cozy plumber puzzle!',
+    description: 'Connect irrigation pipes in this relaxing farm plumber puzzle. Tap pipe joints to rotate them ninety degrees. Direct water from the red pump tank to every thirsty vegetable patch and animal trough. Solve each field with minimal turns to earn the highest score. Complete all four farm stages and master the barnyard water flow today!',
+    category: 'puzzle',
+    categories: ['puzzle', 'farm', 'arcade'],
+    route: '/games/farm-pipe-flow/',
+    status: 'playable',
+    rating: 4.9,
+    playCount: '17.3K',
+    badge: '🚜 Pipe Flow',
+    thumbnailUrl: '/assets/thumbnails/thumb-farm-pipe-flow.svg',
+    controls: {
+      desktop: [
+        'Left Click Pipe: Rotate pipe joint 90 degrees clockwise',
+        'U Key: Undo previous pipe rotation',
+        'R Key: Quick restart current irrigation stage',
+        'M Key: Toggle water bubbling and ratchet sounds',
+      ],
+      mobile: [
+        'Tap Pipe: Turn pipe section 90 degrees',
+        'Undo Button: Rewind previous turn easily',
+        'Restart Button: Reset stage to try with fewer turns',
+      ],
+    },
+    features: [
+      '4 Handcrafted Irrigation Stages: Carrot Patch, Strawberry Greenhouse, Apple Orchard, and Barnyard Dairy Trough',
+      'Multiple Pipe Varieties: Straight Sections, 90-Degree Elbows, 3-Way Tees, and 4-Way Cross Junctions',
+      'Real-Time BFS Fluid Simulation with Visual Flow Highlighting',
+      'Crop Blooming Feedback and Sparkling Victory Celebrations',
+      'Procedural Web Audio Synthesizer (Ratchet Turns, Water Gushes, and Garden Chimes)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Farm Pipe Flow: Barnyard Plumber 🚜💧 — No Download | Pawcade',
+    metaDescription: 'Play Farm Pipe Flow free online! Rotate water pipes to irrigate thirsty barnyard crops and animal troughs. Free casual plumber puzzle with no download.',
+  },
 ];
 
 

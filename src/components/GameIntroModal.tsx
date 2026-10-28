@@ -212,6 +212,44 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Focus on clearing tiles that uncover multiple covered tiles below them. Never pick random single tiles unless you have a path to their matching triplet!',
   },
+  'farm-pipe-flow': {
+    title: 'Farm Pipe Flow: Barnyard Plumber',
+    subtitle: 'Rotate Pipes & Water Thirsty Crops',
+    mascot: '🚜💧',
+    themeColor: 'from-sky-500 via-blue-600 to-emerald-600',
+    goal: 'Rotate water pipes to direct water from the pump tank to every thirsty crop and animal trough!',
+    steps: [
+      {
+        icon: '🚰',
+        title: '1. Trace from Pump Source',
+        desc: 'Look at the red water pump outlet direction to see where your pipeline must begin.',
+      },
+      {
+        icon: '↻',
+        title: '2. Tap to Rotate Pipes',
+        desc: 'Tap any loose pipe segment to rotate it 90 degrees clockwise until the ports click together.',
+      },
+      {
+        icon: '🌊',
+        title: '3. Watch Water Flow',
+        desc: 'Connected pipes light up with glowing blue water. Connect all target plots to complete the stage!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Rotate pipe section 90 degrees',
+        'U Key: Undo previous turn',
+        'R Key: Restart current irrigation stage',
+        'M Key: Toggle audio effects',
+      ],
+      mobile: [
+        'Tap Pipe: Turn pipe section with your finger',
+        'Undo Button: Rewind previous turn',
+        'Restart Button: Reset stage to try again',
+      ],
+    },
+    proTip: 'Work backwards from the thirsty crop targets as well as forward from the water pump to see where the pipe path must meet in the middle!',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

@@ -108,6 +108,9 @@ const AnimalSuikaDropContainer = lazy(() =>
 const FarmTileTripleContainer = lazy(() =>
   import('../games/farm-tile-triple/FarmTileTripleContainer').then((m) => ({ default: m.FarmTileTripleContainer }))
 );
+const FarmPipeFlowContainer = lazy(() =>
+  import('../games/farm-pipe-flow/FarmPipeFlowContainer').then((m) => ({ default: m.FarmPipeFlowContainer }))
+);
 
 const GameLoadingFallback: React.FC<{ title: string; mascot?: string }> = ({ title, mascot = '🎮' }) => (
   <div className="flex flex-col items-center justify-center min-h-[460px] sm:min-h-[580px] w-full bg-slate-950/80 rounded-2xl border border-orange-500/20 p-8 text-center animate-fade-in">
@@ -137,6 +140,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isFarmPipeFlow = gameId === 'farm-pipe-flow' || gameId === 'pipe-flow' || gameId === 'plumber';
   const isFarmTileTriple = gameId === 'farm-tile-triple' || gameId === 'tile-triple' || gameId === 'triple-match';
   const isAnimalSuika = gameId === 'animal-suika-drop' || gameId === 'suika-game' || gameId === 'watermelon-merge';
   const isWoodNuts = gameId === 'wood-nuts-farm' || gameId === 'wood-nuts' || gameId === 'screw-puzzle';
@@ -279,7 +283,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isFarmTileTriple
+                isFarmPipeFlow
+                  ? 'bg-sky-500/20 text-sky-300 border-sky-500/30'
+                  : isFarmTileTriple
                   ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
                   : isAnimalSuika
                   ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
@@ -355,7 +361,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <GameLoadingFallback
                 title={game.title}
                 mascot={
-                  isFarmTileTriple
+                  isFarmPipeFlow
+                    ? '🚜💧'
+                    : isFarmTileTriple
                     ? '🧺🍎'
                     : isAnimalSuika
                     ? '🍉🐾'
@@ -426,7 +434,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               />
             }
           >
-            {isFarmTileTriple ? (
+            {isFarmPipeFlow ? (
+              <FarmPipeFlowContainer />
+            ) : isFarmTileTriple ? (
               <FarmTileTripleContainer />
             ) : isAnimalSuika ? (
               <AnimalSuikaDropContainer />
@@ -510,7 +520,18 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
             </div>
 
             <div className="space-y-3 text-sm text-slate-300">
-              {isFarmTileTriple ? (
+              {isFarmPipeFlow ? (
+                <>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-sky-400 min-w-24">Desktop:</span>
+                    <span>Left-click any pipe tile on the grid to rotate it 90 degrees clockwise. Align pipes from the red pump station to all thirsty garden vegetable patches and animal troughs! Press <kbd className="bg-slate-800 text-sky-300 px-1.5 py-0.5 rounded text-xs font-mono border border-sky-500/30">U</kbd> to undo, <kbd className="bg-slate-800 text-sky-300 px-1.5 py-0.5 rounded text-xs font-mono border border-sky-500/30">R</kbd> to restart, and <kbd className="bg-slate-800 text-sky-300 px-1.5 py-0.5 rounded text-xs font-mono border border-sky-500/30">M</kbd> to toggle audio.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="font-bold text-sky-400 min-w-24">Mobile:</span>
+                    <span>Tap any pipe segment to rotate 90 degrees. Watch glowing water surge through connected pipes until all crops are watered!</span>
+                  </div>
+                </>
+              ) : isFarmTileTriple ? (
                 <>
                   <div className="flex items-start gap-2">
                     <span className="font-bold text-amber-400 min-w-24">Desktop:</span>

@@ -71,11 +71,17 @@ export const App: React.FC = () => {
     const woodNutsGame = GAMES_REGISTRY.find(g => g.id === 'wood-nuts-farm');
     const animalSuikaGame = GAMES_REGISTRY.find(g => g.id === 'animal-suika-drop');
     const farmTileTripleGame = GAMES_REGISTRY.find(g => g.id === 'farm-tile-triple');
+    const farmPipeFlowGame = GAMES_REGISTRY.find(g => g.id === 'farm-pipe-flow');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/farm-tile-triple') || currentRoute.startsWith('/games/tile-triple') || currentRoute.startsWith('/games/triple-match')) {
+    if (currentRoute.startsWith('/games/farm-pipe-flow') || currentRoute.startsWith('/games/pipe-flow') || currentRoute.startsWith('/games/plumber')) {
+      if (farmPipeFlowGame) {
+        activeTitle = farmPipeFlowGame.metaTitle;
+        activeDesc = farmPipeFlowGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/farm-tile-triple') || currentRoute.startsWith('/games/tile-triple') || currentRoute.startsWith('/games/triple-match')) {
       if (farmTileTripleGame) {
         activeTitle = farmTileTripleGame.metaTitle;
         activeDesc = farmTileTripleGame.metaDescription;
@@ -296,6 +302,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/farm-pipe-flow') || currentRoute.startsWith('/games/pipe-flow') || currentRoute.startsWith('/games/plumber')) {
+      return <GamePage navigate={navigate} gameId="farm-pipe-flow" />;
     }
     if (currentRoute.startsWith('/games/farm-tile-triple') || currentRoute.startsWith('/games/tile-triple') || currentRoute.startsWith('/games/triple-match')) {
       return <GamePage navigate={navigate} gameId="farm-tile-triple" />;
