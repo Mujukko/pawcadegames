@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { RotateCcw, Volume2, VolumeX } from 'lucide-react';
 import {
   BEE_RADIUS,
   createInitialSheepState,
@@ -88,10 +89,23 @@ export const SaveTheSheepContainer: React.FC = () => {
     syncHud();
   };
 
-  const handleToggleSound = () => {
+  const handleToggleSound = useCallback(() => {
     const muted = sheepDefenseAudio.toggleMute();
     setHudState((prev) => ({ ...prev, isMuted: muted }));
-  };
+  }, []);
+
+  // Desktop keyboard shortcuts (R: restart, M: mute)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'r' || e.key === 'R') {
+        handleRestartLevel();
+      } else if (e.key === 'm' || e.key === 'M') {
+        handleToggleSound();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleToggleSound]);
 
   // Pointer Drawing Handlers
   const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
@@ -434,26 +448,35 @@ export const SaveTheSheepContainer: React.FC = () => {
           </div>
         </div>
 
-        {/* Survival Timer & Sound */}
-        <div className="flex items-center gap-3">
+        {/* Controls: Timer / Draw Status, Restart & Sound */}
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {hudState.status === 'simulating' ? (
-            <div className="flex items-center gap-1 bg-amber-500/20 text-amber-300 px-3 py-1 rounded-xl border border-amber-400/50 text-xs font-black animate-pulse">
+            <div className="flex items-center gap-1 bg-amber-500/20 text-amber-300 px-2.5 py-1.5 rounded-xl border border-amber-400/50 text-xs font-black animate-pulse">
               <span>⏱️</span>
-              <span>{hudState.survivalTimer.toFixed(1)}s SURVIVE!</span>
+              <span>{hudState.survivalTimer.toFixed(1)}s</span>
             </div>
           ) : (
-            <div className="text-xs font-bold text-slate-400 bg-slate-700/60 px-2 py-1 rounded-lg">
+            <div className="text-[11px] font-bold text-slate-400 bg-slate-700/60 px-2 py-1 rounded-lg hidden sm:block">
               ✏️ DRAW FENCE
             </div>
           )}
 
           <button
+            onClick={handleRestartLevel}
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-slate-700/80 hover:bg-slate-600 active:scale-95 text-amber-300 border border-amber-500/20 flex items-center justify-center transition-all cursor-pointer"
+            title="Restart Stage (R)"
+            aria-label="Restart Stage"
+          >
+            <RotateCcw className="w-4 h-4" />
+          </button>
+
+          <button
             onClick={handleToggleSound}
-            className="w-8 h-8 rounded-lg bg-slate-700/80 hover:bg-slate-600 flex items-center justify-center text-sm transition-colors cursor-pointer"
-            title={hudState.isMuted ? 'Unmute' : 'Mute'}
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-slate-700/80 hover:bg-slate-600 active:scale-95 text-amber-300 border border-amber-500/20 flex items-center justify-center transition-all cursor-pointer"
+            title={hudState.isMuted ? 'Unmute (M)' : 'Mute (M)'}
             aria-label="Toggle Sound"
           >
-            {hudState.isMuted ? '🔇' : '🔊'}
+            {hudState.isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </button>
         </div>
       </div>

@@ -420,7 +420,7 @@ export const CapybaraSpaRushContainer: React.FC = () => {
               <button
                 onClick={() => setIsUpgradesOpen(false)}
                 aria-label="Close upgrades"
-                className="w-9 h-9 rounded-xl bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center cursor-pointer min-h-[44px]"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>

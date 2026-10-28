@@ -33,6 +33,20 @@ export const WoodNutsFarmContainer: React.FC = () => {
     analytics.track('level_started', { gameId: 'wood-nuts-farm', levelId: nextIdx + 1 });
   }, []);
 
+  // Desktop keyboard shortcuts (R: restart, M: mute)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'r' || e.key === 'R') {
+        handleLoadLevel(levelIdx);
+      } else if (e.key === 'm' || e.key === 'M') {
+        const muted = woodSound.toggleMute();
+        setIsMuted(muted);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleLoadLevel, levelIdx]);
+
   // Main 60 FPS Canvas Game Loop
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -252,8 +266,9 @@ export const WoodNutsFarmContainer: React.FC = () => {
         <div className="flex items-center gap-1.5">
           <button
             onClick={() => handleLoadLevel(levelIdx)}
-            aria-label="Restart Level"
-            className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/20 transition-all cursor-pointer min-h-[44px]"
+            aria-label="Restart Level (R)"
+            title="Restart Level (R)"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/20 transition-all cursor-pointer"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
@@ -262,8 +277,9 @@ export const WoodNutsFarmContainer: React.FC = () => {
               const muted = woodSound.toggleMute();
               setIsMuted(muted);
             }}
-            aria-label="Toggle Sound"
-            className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/20 transition-all cursor-pointer min-h-[44px]"
+            aria-label="Toggle Sound (M)"
+            title="Toggle Sound (M)"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/20 transition-all cursor-pointer"
           >
             {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
           </button>
