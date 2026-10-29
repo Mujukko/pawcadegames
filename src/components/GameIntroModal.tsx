@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'farm-animal-clicker': {
+    title: 'Farm Animal Idle Clicker',
+    subtitle: 'Cozy Idle Pet & Farm Clicker Game',
+    mascot: '🐾🌾',
+    themeColor: 'from-amber-500 via-orange-500 to-emerald-600',
+    goal: 'Tap your farm animals to harvest coins, build automated barns, catch golden butterflies, and dress pets in cute hats!',
+    steps: [
+      {
+        icon: '👆',
+        title: '1. Tap Your Pet Animal',
+        desc: 'Click or tap your pet to earn coins. Tap faster to build up big coin stacks quickly.',
+      },
+      {
+        icon: '🚜',
+        title: '2. Buy Farm Buildings',
+        desc: 'Unlock Auto Cluckers, Piggy Banks, Milk Silos, and Windmills to earn coins every second on auto-pilot.',
+      },
+      {
+        icon: '🦋',
+        title: '3. Catch Golden Butterflies',
+        desc: 'Tap the rare golden butterfly when it flutters across the screen for an instant 7x coin frenzy!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Tap animal to earn coins and purchase upgrades',
+        'Top Tabs: Switch between Buildings, Upgrades, and Hats',
+        'Spacebar: Tap active pet with your keyboard',
+        'M Key: Toggle clicker sounds and animal voices',
+      ],
+      mobile: [
+        'Tap Screen: Tap pet to produce coins and pop floating rewards',
+        'Tabs: Tap Buildings, Upgrades, or Hats at the bottom of the screen',
+        'Animal Switcher: Tap pet icons at the top to change active animals',
+      ],
+    },
+    proTip: 'Upgrade your Click Power first to boost manual income, then invest heavily in automated Windmills to rake in big idle earnings while you sleep!',
+  },
   'wood-nuts-farm': {
     title: 'Wood Nuts & Bolts: Barnyard Jam',
     subtitle: 'Tactile Wood Screw Physics Puzzle',

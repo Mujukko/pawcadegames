@@ -33,15 +33,19 @@ Build a high-retention, delightful browser puzzle game called **Dog Parking** an
 
 ## 6. Strategic Game Production Roadmap (Ahrefs US Verified Data)
 
-Targeting verified low-KD genre queries and high-traffic potential animal themes:
+Targeting verified low-KD genre queries and high-traffic competitor adaptations:
 
-| Priority | Proposed Game Title | Target Genre / Intent | Search Volume (US) | KD | Traffic Potential (TP) | Core Mechanics |
+| Priority | Proposed Game Title | Target Genre / Inspiration | Search Volume (US) | KD | Traffic Potential (TP) | Core Mechanics |
 | :---: | :--- | :--- | :---: | :---: | :---: | :--- |
-| **#1** | **Farm Animal Idle Clicker** | `clicker games` + `idle games` | **98,000** | **0 / 25** | **36,000** | Tap animals (Capybara/Corgi/Cow) for milk/wool/eggs, buy automatic farmhands, unlock golden barn upgrades & cosmetics. |
-| **#2** | **Barnyard Four in a Row** | `connect 4` (brand-safe) | **92,000** | **39** | **34,000** | 7x6 wooden barn grid, drop red apple & golden corn tokens, AI bot + local 2-player mode. |
-| **#3** | **Barnyard Egg Cart: Pasture Hill** | `eggy car` | **181,000** | **18** | **32,000** | 2D hill climbing driving physics with an egg in the vehicle basket. Balance speed and slopes without cracking the egg. |
-| **#4** | **Pasture Critter Run: Platformer Quest** | `platformer games` | **5,900** | **4** | **5,100** | Precision mini-stage animal platformer with collectibles and obstacle timing. |
-| **#5** | **Barnyard Spot the Difference** | `spot the difference` | **22,000** | **37** | **4,200** | Find 5 differences between two charming illustrated farmyard scenes before the timer expires. |
-| **#6** | **Barnyard Horse Derby & Care** | `horse racing game` + `horse games` | **10,300** | **20 / 30** | **3,600** | Grooming, obstacle hurdle jumps, and derby racing. |
+| **#1** | **Farm Animal Idle Clicker** | `clicker games` + `idle games` (Capybara Clicker) | **98,000** | **0 / 25** | **36,000** | Tap animals (Capybara/Corgi/Cow) for milk/wool/eggs, buy automatic farmhands, unlock golden barn upgrades & hats. |
+| **#2** | **Barnyard Egg Cart: Pasture Hill** | `eggy car` | **181,000** | **18** | **32,000** | Sensitive 2D hill climbing driving physics with an egg in the vehicle basket. Balance speed and slopes without cracking the egg. |
+| **#3** | **Barnyard Four in a Row** | `connect 4` (brand-safe) | **92,000** | **39** | **34,000** | 7x6 wooden barn grid, drop red apple & golden corn tokens, AI bot + local 2-player pass-and-play. |
+| **#4** | **Duckling River Rescue: Float & Flurry** | `ducklings.io` + `duck games` | **5,000+** | **28** | **2,500** | Mother duck swimming on peaceful river, rescuing lost ducklings into trailing line, avoiding rowboats to build cozy nest. |
+| **#5** | **Barnyard Cluster Jump: Stampede Sprint** | `Cluster Rush` | **21,000** | **1** | **8,000** | High-energy platforming jumping across the backs of galloping sheep, cows, and hay trucks without touching the dirt. |
+| **#6** | **Sushi Kitty: Pachinko Feast** | `Sushi Cat` | **3,100** | **22** | **1,300** | Peggle/Pachinko physics dropping round kitten that bounces on pegs, devours sushi snacks, and expands in size. |
+| **#7** | **Penguin Diner: Arctic Cafe** | `Penguin Diner` | **2,300** | **0** | **400** | Fast restaurant time management seating animal customers, taking orders, serving fish treats, collecting tips. |
+| **#8** | **Tiny Chick, Big Barn Tower** | `Big Tower Tiny Square` | **16,000** | **3** | **6,400** | Precision single-tower platformer guiding tiny baby chick up giant rustic barn tower dodging pitchforks and swinging ropes. |
+| **#9** | **Duck Training Champion: Barnyard Olympics** | `Duck Life` | **60,000** | **38** | **24,000** | Raising pet duckling across training mini-games (running, flying, swimming) leveling up energy/speed for tournament races. |
+
 
 

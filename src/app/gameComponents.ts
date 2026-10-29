@@ -68,4 +68,5 @@ export const GAME_COMPONENTS: Record<string, LazyExoticComponent<ComponentType>>
   'animal-farm-parking': lazy(() => import('../games/animal-farm-parking/AnimalFarmParkingContainer').then((m) => ({ default: m.AnimalFarmParkingContainer }))),
   'cat-parking': lazy(() => import('../games/cat-parking/CatParkingContainer').then((m) => ({ default: m.CatParkingContainer }))),
   'dog-parking': lazy(() => import('../games/dog-parking/DogParkingContainer').then((m) => ({ default: m.DogParkingContainer }))),
+  'farm-animal-clicker': lazy(() => import('../games/farm-animal-clicker/FarmAnimalClickerContainer').then((m) => ({ default: m.FarmAnimalClickerContainer }))),
 };

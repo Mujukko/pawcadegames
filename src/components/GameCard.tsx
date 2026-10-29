@@ -23,8 +23,8 @@ export const CATEGORY_CHIP: Record<GameCategory, { label: string; className: str
 export const GameCard: React.FC<GameCardProps> = ({ game, onClick, size = 'default', priority = false }) => {
   const name = shortTitle(game);
   const large = size === 'large';
-  const isJpg = game.thumbnailUrl.endsWith('.jpg');
-  const avifUrl = isJpg ? game.thumbnailUrl.replace(/\.jpg$/, '.avif') : null;
+  const isJpg = Boolean(game.thumbnailUrl?.endsWith('.jpg'));
+  const avifUrl = isJpg && game.thumbnailUrl ? game.thumbnailUrl.replace(/\.jpg$/, '.avif') : null;
 
   return (
     <a

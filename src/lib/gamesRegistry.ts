@@ -27,6 +27,48 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'farm-animal-clicker',
+    slug: 'farm-animal-clicker',
+    title: 'Farm Animal Idle Clicker 🐾🌾',
+    tagline: 'Tap cute farm animals, automate barns, catch golden butterflies, and earn millions of coins!',
+    description: 'Play Farm Animal Idle Clicker free online! Tap your favorite pets—from playful Corgis and chill Capybaras to dairy Cows, Hens, and Pigs. Purchase automated barns, silos, and windmills to collect passive idle coins every second. Catch golden butterflies for sudden 7x frenzy rushes, unlock fun festive hats, and switch animals as your barnyard empire grows in this cozy browser clicker game.',
+    category: 'farm',
+    categories: ['farm', 'arcade', 'pets'],
+    route: '/games/farm-animal-clicker/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '28.4K',
+    badge: '🔥 Idle Clicker',
+    thumbnailUrl: '/assets/thumbnails/thumb-farm-animal-clicker.svg',
+    featured: true,
+    tags: ['Clicker', 'Idle', 'Pets', 'Capybara', 'Farm'],
+    controls: {
+      desktop: [
+        'Left Click or Spacebar: Tap animal to earn coins',
+        'Click Buildings to purchase automated coin generators',
+        'Click Upgrades to multiply your tapping power',
+        'Click Hats to dress your animal for bonus multipliers',
+        'Catch fluttering Golden Butterflies for 7x Frenzy bonuses',
+        'M Key: Toggle sound effects and animal vocalizations',
+      ],
+      mobile: [
+        'Tap Pet: Tap rapidly with multiple fingers for maximum coins',
+        'Tabs Bar: Switch between Buildings, Upgrades, and Hats',
+        'Pet Strip: Tap any unlocked animal to switch active pets',
+      ],
+    },
+    features: [
+      '5 Unique Farm Pets: Buster Corgi, Barnaby Capybara, Bessie Cow, Clucky Hen, and Hamlet Pig',
+      'Pure Deterministic Idle Production with Offline Earnings up to 4 Hours',
+      'Dynamic 7x Golden Butterfly Rush Events with Floating Multipliers',
+      'Collectible Hats with Stat Bonuses (Straw Hat, Crown, Chef Toque, Bowtie, Party Cone)',
+      'Procedural Web Audio Synthesizer with Custom Animal Formants and Cha-Ching Chimes',
+      '100% Free Instant Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Farm Animal Idle Clicker 🐾🌾 — Free Online Clicker Game | Pawcade',
+    metaDescription: 'Play Farm Animal Idle Clicker free online! Tap cute pets, buy farm buildings, catch golden butterflies, and unlock fun hats in this cozy idle browser game with no download.',
+  },
+  {
     id: 'farm-mini-mart',
     slug: 'farm-mini-mart',
     title: 'Farm Mini Mart: Animal Market 🏪',
