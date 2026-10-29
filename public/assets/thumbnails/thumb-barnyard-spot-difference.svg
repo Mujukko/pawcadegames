@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="lens" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#BAE6FD" stop-opacity="0.1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Desk -->
+  <rect width="400" height="300" rx="16" fill="url(#bg)" />
+
+  <!-- Left Photo (Original) -->
+  <g transform="translate(30, 40)">
+    <rect width="160" height="190" rx="8" fill="#BAE6FD" stroke="#D97706" stroke-width="3" />
+    <!-- Mini Barn -->
+    <rect x="50" y="80" width="60" height="50" fill="#DC2626" />
+    <polygon points="40,80 80,45 120,80" fill="#78350F" />
+    <circle cx="125" cy="40" r="14" fill="#F59E0B" />
+    <!-- Grass -->
+    <rect y="130" width="160" height="60" rx="6" fill="#22C55E" />
+    <!-- Cow -->
+    <ellipse cx="60" cy="150" rx="20" ry="14" fill="#FFFFFF" />
+    <circle cx="50" cy="145" r="6" fill="#0F172A" />
+    <!-- Sun Yellow -->
+    <circle cx="130" cy="45" r="12" fill="#FDE047" />
+  </g>
+
+  <!-- Right Photo (Altered) -->
+  <g transform="translate(210, 40)">
+    <rect width="160" height="190" rx="8" fill="#BAE6FD" stroke="#D97706" stroke-width="3" />
+    <!-- Mini Barn -->
+    <rect x="50" y="80" width="60" height="50" fill="#DC2626" />
+    <polygon points="40,80 80,45 120,80" fill="#78350F" />
+    <!-- Cloud instead of Sun -->
+    <circle cx="120" cy="45" r="10" fill="#FFFFFF" />
+    <circle cx="135" cy="43" r="13" fill="#FFFFFF" />
+    <!-- Grass -->
+    <rect y="130" width="160" height="60" rx="6" fill="#22C55E" />
+    <!-- Cow with Bell -->
+    <ellipse cx="60" cy="150" rx="20" ry="14" fill="#FFFFFF" />
+    <circle cx="50" cy="145" r="6" fill="#0F172A" />
+    <circle cx="68" cy="155" r="4" fill="#F59E0B" /> <!-- Bell! -->
+
+    <!-- Difference Gold Circle on Cloud -->
+    <circle cx="130" cy="45" r="22" fill="none" stroke="#F59E0B" stroke-width="3.5" />
+    <polygon points="152,32 155,40 163,40 157,45 159,53 152,48 145,53 147,45 141,40 149,40" fill="#FEF08A" />
+  </g>
+
+  <!-- Giant Golden Magnifying Glass Across Center -->
+  <g transform="translate(200, 140) rotate(-25)">
+    <!-- Lens Frame & Glass -->
+    <circle cx="0" cy="0" r="46" fill="url(#lens)" stroke="#F59E0B" stroke-width="7" />
+    <circle cx="-12" cy="-12" r="30" fill="#FFFFFF" opacity="0.15" />
+    <!-- Handle -->
+    <rect x="-6" y="46" width="12" height="42" rx="4" fill="#78350F" stroke="#F59E0B" stroke-width="2" />
+    <circle cx="0" cy="90" r="8" fill="#F59E0B" />
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="45" y="250" width="310" height="40" rx="20" fill="#0F172A" stroke="#F59E0B" stroke-width="2" />
+  <text x="200" y="276" fill="#FEF3C7" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="900" text-anchor="middle" letter-spacing="1">
+    SPOT THE DIFFERENCE
+  </text>
+</svg>

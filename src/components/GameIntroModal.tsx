@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'barnyard-spot-difference': {
+    title: 'Barnyard Spot the Difference: Farm Detective',
+    subtitle: 'Cozy Countryside Observation & Difference Finding Puzzle',
+    mascot: '🔍🚜',
+    themeColor: 'from-amber-500 via-emerald-600 to-sky-700',
+    goal: 'Compare the two countryside pictures, spot all 5 subtle differences before the clock runs out, and earn detective stars!',
+    steps: [
+      {
+        icon: '👀',
+        title: '1. Scan Both Pictures',
+        desc: 'Look back and forth between the original left image and the altered right image.',
+      },
+      {
+        icon: '🎯',
+        title: '2. Tap to Spot',
+        desc: 'Tap anywhere you notice a difference. A golden ring will confirm your sharp eye!',
+      },
+      {
+        icon: '❤️',
+        title: '3. Avoid Misclicks',
+        desc: 'Careful tapping! You only have 3 heart lives per round before failing the case.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Click / Pointer: Tap differences on either picture',
+        '💡 Hint Button: Highlight the location of one hidden difference',
+        'R Key: Quick restart current scene',
+        'M Key: Toggle chime and bell sounds',
+      ],
+      mobile: [
+        'Tap Differences: Tap on either photo where you spot a change',
+        '💡 Hint Button: Reveal tricky differences',
+        'Hearts: 3 lives per round',
+      ],
+    },
+    proTip: 'Check tiny details first! Weather vanes, animal collars, tractor hubcaps, and apple counts are classic farm hiding spots!',
+  },
   'penguin-pasture-diner': {
     title: 'Penguin Pasture Diner: Cafe Dash',
     subtitle: 'Ice Skater Restaurant Tycoon & Table Service Dash',

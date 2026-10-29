@@ -27,6 +27,46 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'barnyard-spot-difference',
+    slug: 'barnyard-spot-difference',
+    title: 'Spot the Difference: Barnyard Detective 🔍🚜',
+    tagline: 'Compare sunny farm scenes, spot all 5 differences, and test your sharp detective eye!',
+    description: 'Play Spot the Difference: Barnyard Detective free online! Compare side-by-side pastoral farm illustrations and spot 5 subtle hidden differences. Scan red barn weather vanes, grazing cows, apple orchard trees, and duck pond picnics. Use hints when stuck and beat the clock across all 3 stages in this fun puzzle game!',
+    category: 'puzzle',
+    categories: ['puzzle', 'farm', 'pets'],
+    route: '/games/barnyard-spot-difference/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '58.3K',
+    badge: '🔍 Spot the Difference',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-spot-difference.svg',
+    featured: true,
+    tags: ['Spot the Difference', 'Find the Difference', 'Differences', 'Puzzle', 'Observation', 'Detective', 'Farm'],
+    controls: {
+      desktop: [
+        'Mouse / Pointer Click: Tap anywhere on either photo where you spot a difference',
+        '💡 Hint Button: Highlight the exact location of a tricky difference',
+        'R Key: Quick restart current pastoral scene',
+        'M Key: Toggle sparkling chime and buzzer sounds',
+      ],
+      mobile: [
+        'Tap Differences: Tap on either photo to circle a difference',
+        '💡 Hint Button: Reveal hard-to-find changes',
+        '3 Lives: Avoid random misclicks to protect your hearts',
+      ],
+    },
+    features: [
+      'Handcrafted Procedural Vector Countryside Scenes Rendered Natively on Canvas',
+      'Instant Dual-Image Tap Registration Allowing Detection on Either Photo',
+      'Sparkling Gold Reward Circles and Misclick Protection Life Hearts',
+      'Helpful Magnifying Glass Clue Tool for Tough Clues',
+      'Three Progressively Intricate Scenes Featuring Barns, Orchards, and Duck Ponds',
+      'Zero Downloads Required and Single-Screen Zero-Scroll Layout',
+    ],
+    metaTitle: 'Spot the Difference: Barnyard Detective - Free Puzzle (No Download)',
+    metaDescription: 'Play Spot the Difference: Barnyard Detective free in your browser! Find 5 subtle changes between farm pictures, use hints, and beat the clock with no download.',
+  },
+  {
     id: 'penguin-pasture-diner',
     slug: 'penguin-pasture-diner',
     title: 'Penguin Diner: Penguin Pasture Diner 🐧🍨',
