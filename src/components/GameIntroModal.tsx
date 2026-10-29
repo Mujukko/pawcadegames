@@ -21,6 +21,43 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'virtual-puppy-pet': {
+    title: 'Virtual Pet: Cozy Puppy Care',
+    subtitle: 'Cozy Puppy Care & Fetch Simulator',
+    mascot: '🐶🍼',
+    themeColor: 'from-amber-500 via-orange-500 to-rose-600',
+    goal: 'Adopt Buster the golden puppy, feed him crunchy kibble, wash away mud, and play fetch with a squeaky tennis ball!',
+    steps: [
+      {
+        icon: '🍗',
+        title: '1. Feed & Water',
+        desc: 'Keep Buster well-fed with crunchy kibble, cold milk bowls, and juicy bone treats.',
+      },
+      {
+        icon: '🛁',
+        title: '2. Wash & Groom',
+        desc: 'Rub soapy sponge bubbles across dirty fur, then rinse with a warm spray shower.',
+      },
+      {
+        icon: '🎾',
+        title: '3. Play & Rest',
+        desc: 'Toss tennis balls for happy fetch runs, pat his head, and tuck him in for bedtime naps.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Click: Tap action buttons to feed, soap, and throw balls',
+        'Click Puppy: Pat Buster to wag his tail and earn hearts',
+        'M Key: Toggle puppy yips and toy sounds',
+      ],
+      mobile: [
+        'Tap Action Buttons: Feed, groom, and play fetch',
+        'Tap Puppy: Pat your pup to show love and boost mood',
+        'Wardrobe: Dress up in hats, bandanas, and bowties',
+      ],
+    },
+    proTip: 'Earn golden bones with every care activity! Save bones to unlock cute outfits like the red bandana and detective hat!',
+  },
   'farm-mahjong-connect': {
     title: 'Farm Mahjong Connect: Crop Link',
     subtitle: 'Classic 2-Turn Tile Link Matching Puzzle',

@@ -86,4 +86,5 @@ export const GAME_COMPONENTS: Record<string, LazyExoticComponent<ComponentType>>
   'pyramid-solitaire-harvest': lazy(() => import('../games/pyramid-solitaire-harvest/PyramidSolitaireHarvestContainer').then((m) => ({ default: m.PyramidSolitaireHarvestContainer }))),
   'barnyard-horse-derby': lazy(() => import('../games/barnyard-horse-derby/BarnyardHorseDerbyContainer').then((m) => ({ default: m.BarnyardHorseDerbyContainer }))),
   'farm-mahjong-connect': lazy(() => import('../games/farm-mahjong-connect/FarmMahjongConnectContainer').then((m) => ({ default: m.FarmMahjongConnectContainer }))),
+  'virtual-puppy-pet': lazy(() => import('../games/virtual-puppy-pet/VirtualPuppyPetContainer').then((m) => ({ default: m.VirtualPuppyPetContainer }))),
 };

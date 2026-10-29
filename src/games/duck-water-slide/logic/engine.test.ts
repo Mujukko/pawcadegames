@@ -24,6 +24,7 @@ describe('Duck Water Slide Logic Engine', () => {
 
   it('steers duck left and right and clamps within flume walls', () => {
     let state = createInitialState();
+    state.items = []; // isolate from random hazards during steering test
 
     // Steer full left across frames
     for (let i = 0; i < 20; i++) {

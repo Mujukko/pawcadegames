@@ -27,6 +27,45 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'virtual-puppy-pet',
+    slug: 'virtual-puppy-pet',
+    title: 'Virtual Pet: Cozy Puppy Care 🐶🍼',
+    tagline: 'Feed, groom, play fetch, and dress up your cute golden puppy in this cozy pet simulator!',
+    description: 'Play Virtual Pet: Cozy Puppy Care free online! Adopt Buster the golden retriever puppy. Feed crunchy kibble and bone snacks, lather soapy sponge bubbles in the bath, and throw tennis balls for backyard fetch. Earn bone rewards, level up friendship, and dress your pup in hats and bandanas in this cozy puppy game!',
+    category: 'pets',
+    categories: ['pets', 'arcade', 'farm'],
+    route: '/games/virtual-puppy-pet/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '54.8K',
+    badge: '🐶 Virtual Pet',
+    thumbnailUrl: '/assets/thumbnails/thumb-virtual-puppy-pet.svg',
+    featured: true,
+    tags: ['Virtual Pet', 'Puppy Games', 'Pet Care', 'Dog Games', 'Tamagotchi', 'Puppy', 'Pets'],
+    controls: {
+      desktop: [
+        'Mouse Click / Pointer: Tap care buttons to feed, wash, and throw balls',
+        'Click Puppy: Pat your pup to wag his tail and show love',
+        'M Key: Toggle happy puppy yips and squeak sounds',
+      ],
+      mobile: [
+        'Tap Care Buttons: Feed, soap, rinse, and toss tennis balls',
+        'Tap Puppy: Pat your puppy to boost happiness',
+        '🎀 Wardrobe: Equip unlocked collars and hats',
+      ],
+    },
+    features: [
+      'Four Dynamic Pet Care Pillars: Hunger, Hygiene, Happiness, and Energy',
+      'Interactive Backyard Ball Physics with Live Tennis Ball Retrieval',
+      'Bathing Mini-Action with Responsive Foam Bubbles and Shower Rinse',
+      'Puppy Friendship Level Progression (Level 1 to 10) with Bone Rewards',
+      'Unlockable Pet Accessories (Red Bandana, Bell Collar, Detective Hat)',
+      'Single-Screen Zero-Scroll Viewport and Zero Downloads Required',
+    ],
+    metaTitle: 'Virtual Pet: Cozy Puppy Care - Free Puppy Games (No Download)',
+    metaDescription: 'Play free virtual pet puppy games online! Adopt a cute puppy, feed snacks, wash with soap, and play fetch in your browser. Zero downloads and instant pet fun.',
+  },
+  {
     id: 'farm-mahjong-connect',
     slug: 'farm-mahjong-connect',
     title: 'Mahjong Connect: Farm Crop Link 🧩🌽',

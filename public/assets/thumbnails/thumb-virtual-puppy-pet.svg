@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="60%" stop-color="#fed7aa"/>
+      <stop offset="100%" stop-color="#86efac"/>
+    </linearGradient>
+    <linearGradient id="pupGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  <rect y="420" width="800" height="180" fill="#15803d"/>
+
+  <!-- Red Cozy Rug -->
+  <ellipse cx="400" cy="460" rx="260" ry="90" fill="#ef4444" stroke="#b91c1c" stroke-width="8" filter="url(#shadow)"/>
+
+  <!-- Puppy Group -->
+  <g transform="translate(400, 360)" filter="url(#shadow)">
+    <!-- Tail Wagging -->
+    <path d="M-90,-10 C-130,-40 -150,-10 -120,10 C-105,8 -95,0 -90,-10 Z" fill="#d97706"/>
+
+    <!-- Puppy Body -->
+    <ellipse cx="0" cy="20" rx="95" ry="68" fill="#f59e0b"/>
+    <ellipse cx="15" cy="30" rx="55" ry="42" fill="#fef08a"/>
+
+    <!-- Paws -->
+    <ellipse cx="-55" cy="72" rx="24" ry="16" fill="#d97706"/>
+    <ellipse cx="55" cy="72" rx="24" ry="16" fill="#d97706"/>
+
+    <!-- Head -->
+    <circle cx="0" cy="-45" r="72" fill="#f59e0b"/>
+
+    <!-- Floppy Ears -->
+    <ellipse cx="-65" cy="-35" rx="24" ry="52" fill="#d97706" transform="rotate(20 -65 -35)"/>
+    <ellipse cx="65" cy="-35" rx="24" ry="52" fill="#d97706" transform="rotate(-20 65 -35)"/>
+
+    <!-- Snout & Nose -->
+    <ellipse cx="0" cy="-22" rx="32" ry="24" fill="#fef08a"/>
+    <ellipse cx="0" cy="-32" rx="14" ry="10" fill="#1c1917"/>
+    <!-- Smiling Mouth & Tongue -->
+    <path d="M-10,-14 Q0,-6 10,-14" stroke="#1c1917" stroke-width="4" fill="none"/>
+    <path d="M-8,-10 Q0,10 8,-10 Z" fill="#f43f5e"/>
+
+    <!-- Shiny Eyes -->
+    <circle cx="-26" cy="-56" r="14" fill="#451a03"/>
+    <circle cx="-30" cy="-60" r="5" fill="#ffffff"/>
+    <circle cx="26" cy="-56" r="14" fill="#451a03"/>
+    <circle cx="22" cy="-60" r="5" fill="#ffffff"/>
+
+    <!-- Red Bandana -->
+    <polygon points="-42,-6 42,-6 0,35" fill="#dc2626"/>
+  </g>
+
+  <!-- Dog Bowl with Bones -->
+  <g transform="translate(180, 480)" filter="url(#shadow)">
+    <ellipse cx="0" cy="0" rx="50" ry="20" fill="#0284c7" stroke="#0369a1" stroke-width="4"/>
+    <text x="0" y="6" font-size="28" text-anchor="middle">🦴</text>
+  </g>
+
+  <!-- Squeaky Tennis Ball -->
+  <g transform="translate(620, 470)" filter="url(#shadow)">
+    <circle cx="0" cy="0" r="28" fill="#84cc16"/>
+    <path d="M-20,-15 A22,22 0 0,0 20,15" stroke="#ffffff" stroke-width="4" fill="none"/>
+  </g>
+
+  <!-- Floating Hearts & Bubbles -->
+  <g font-size="34">
+    <text x="240" y="240">❤️</text>
+    <text x="540" y="220">💖</text>
+    <text x="320" y="160">🧼</text>
+    <text x="460" y="150">✨</text>
+  </g>
+
+  <!-- Title Banner -->
+  <g transform="translate(400, 85)" filter="url(#shadow)">
+    <rect x="-310" y="-50" width="620" height="90" rx="24" fill="#0f172a" stroke="#f59e0b" stroke-width="4"/>
+    <text x="0" y="8" font-family="system-ui, sans-serif" font-size="36" font-weight="900" fill="#fde047" text-anchor="middle" letter-spacing="1">
+      VIRTUAL PET: PUPPY CARE
+    </text>
+    <text x="0" y="32" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#38bdf8" text-anchor="middle" letter-spacing="2">
+      COZY PUPPY GAMES ONLINE 🐶🍼
+    </text>
+  </g>
+</svg>
