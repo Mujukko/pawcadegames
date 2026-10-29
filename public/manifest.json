@@ -7,19 +7,29 @@
   "orientation": "any",
   "background_color": "#0f172a",
   "theme_color": "#f97316",
-  "categories": ["games", "entertainment", "puzzle"],
+  "categories": [
+    "games",
+    "entertainment",
+    "puzzle"
+  ],
   "icons": [
     {
-      "src": "/assets/thumbnails/thumb-dog-parking.jpg",
-      "sizes": "512x512",
-      "type": "image/jpeg",
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/assets/branding/logo-pawcade.svg",
-      "sizes": "192x192 512x512",
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "maskable any"
+      "purpose": "any"
     }
   ]
 }

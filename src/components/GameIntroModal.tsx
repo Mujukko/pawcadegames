@@ -2059,7 +2059,7 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     proTip: 'Lock your highest-tier animal into a single corner (like bottom-right) and build your merge chain toward it!',
   },
   'farm-tetris': {
-    title: 'Farm Tetris: Haunted Harvest',
+    title: 'Farm Block Drop: Haunted Harvest',
     subtitle: 'Falling Blocks & Silo Fill',
     mascot: '🧱',
     themeColor: 'from-orange-600 via-red-600 to-amber-700',
@@ -2077,7 +2077,7 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
       },
       {
         icon: '🌾',
-        title: '3. Score 4-Line Tetris',
+        title: '3. Score a 4-Line Clear',
         desc: 'Clear 4 rows simultaneously for 800+ points and a joyful cheering reaction from the farmer!',
       },
     ],
@@ -2085,7 +2085,7 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
       desktop: ['A / D: Move left & right', 'W / Up Arrow: Rotate 90°', 'Spacebar: Hard drop / slam', 'C / Shift: Hold piece'],
       mobile: ['Touch Left/Right/Down arrows', 'ROTATE button', 'SLAM hard drop button', 'HOLD queue button'],
     },
-    proTip: 'Save the straight I-bar piece in your HOLD queue (C key) until you can drop it for an instant 4-line Tetris!',
+    proTip: 'Save the straight I-bar piece in your HOLD queue (C key) until you can drop it for an instant 4-line clear!',
   },
   'dog-parking': {
     title: 'Dog Parking: Yard Escape',
@@ -2478,176 +2478,113 @@ export const GameIntroModal: React.FC<GameIntroModalProps> = ({ gameId, isOpen, 
 
   if (!isOpen) return null;
 
+  const tabClass = (tab: 'guide' | 'controls') =>
+    `h-9 px-4 rounded-full text-sm font-bold transition-colors cursor-pointer ${
+      activeTab === tab ? 'bg-ink text-paper' : 'text-ink-soft hover:text-ink'
+    }`;
+
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-labelledby="intro-modal-title"
-      className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 animate-fade-in"
+      className="fixed inset-0 z-50 bg-ink/55 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in"
     >
-      <div className="relative w-full max-w-xl bg-slate-900 border-2 border-amber-400/50 rounded-3xl shadow-2xl shadow-black/80 flex flex-col max-h-[92vh] overflow-hidden text-slate-100">
-        {/* TOP GLOWING BANNER HEADER */}
-        <div className={`p-4 sm:p-5 bg-gradient-to-r ${intro.themeColor} text-white flex items-center justify-between relative`}>
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-black/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-3xl shadow-inner select-none shrink-0">
-              {intro.mascot}
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-black/40 text-amber-300 border border-amber-300/40">
-                  How to Play • Game Guide
-                </span>
-              </div>
-              <h2 id="intro-modal-title" className="text-lg sm:text-2xl font-black tracking-tight leading-tight mt-0.5">
-                {intro.title}
-              </h2>
-            </div>
+      <div className="relative w-full sm:max-w-lg bg-card rounded-t-3xl sm:rounded-3xl shadow-lift flex flex-col max-h-[92vh] overflow-hidden text-ink">
+        <div className="p-5 sm:p-6 pb-3 flex items-start gap-4">
+          <div className="w-14 h-14 rounded-2xl bg-brand-tint flex items-center justify-center text-3xl select-none shrink-0" aria-hidden="true">
+            {intro.mascot}
           </div>
-
+          <div className="min-w-0 flex-1">
+            <p className="text-xs font-bold text-brand-deep">How to play</p>
+            <h2 id="intro-modal-title" className="font-display text-xl sm:text-2xl font-semibold leading-tight">
+              {intro.title}
+            </h2>
+          </div>
           <button
             onClick={onClose}
-            aria-label="Close dialog"
-            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-black/40 hover:bg-black/60 border border-white/20 flex items-center justify-center text-slate-200 hover:text-white transition-colors cursor-pointer shrink-0"
+            aria-label="Close"
+            className="w-10 h-10 -mr-1 -mt-1 rounded-full text-ink-soft hover:text-ink hover:bg-paper flex items-center justify-center cursor-pointer shrink-0"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* NAVIGATION SUB-TABS */}
-        <div className="flex items-center border-b border-slate-800 bg-slate-950/60 px-4 pt-2 gap-2">
-          <button
-            onClick={() => setActiveTab('guide')}
-            className={`pb-2 px-3 text-xs sm:text-sm font-extrabold border-b-2 transition-all cursor-pointer flex items-center gap-1.5 ${
-              activeTab === 'guide'
-                ? 'border-amber-400 text-amber-300'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Gameplay Guide</span>
+        <div className="px-5 sm:px-6 flex gap-1" role="tablist">
+          <button role="tab" aria-selected={activeTab === 'guide'} onClick={() => setActiveTab('guide')} className={tabClass('guide')}>
+            Steps
           </button>
-
-          <button
-            onClick={() => setActiveTab('controls')}
-            className={`pb-2 px-3 text-xs sm:text-sm font-extrabold border-b-2 transition-all cursor-pointer flex items-center gap-1.5 ${
-              activeTab === 'controls'
-                ? 'border-amber-400 text-amber-300'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <HelpCircle className="w-3.5 h-3.5" />
-            <span>Controls & Tips</span>
+          <button role="tab" aria-selected={activeTab === 'controls'} onClick={() => setActiveTab('controls')} className={tabClass('controls')}>
+            Controls & tips
           </button>
         </div>
 
-        {/* SCROLLABLE BODY */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-4 text-slate-200">
-          {/* WIN GOAL BANNER */}
-          <div className="p-3.5 sm:p-4 rounded-2xl bg-amber-400/10 border border-amber-400/30 flex items-start gap-3">
-            <span className="text-2xl select-none shrink-0">🎯</span>
-            <div>
-              <span className="text-[11px] font-black uppercase text-amber-300 tracking-wider block">
-                Level Objective
-              </span>
-              <p className="text-xs sm:text-sm font-bold text-white mt-0.5 leading-snug">
-                {intro.goal}
-              </p>
-            </div>
-          </div>
+        <div className="p-5 sm:p-6 overflow-y-auto space-y-4">
+          <p className="text-sm leading-relaxed p-3.5 rounded-2xl bg-paper">
+            <span className="font-bold">Goal: </span>
+            {intro.goal}
+          </p>
 
           {activeTab === 'guide' ? (
-            /* 3-STEP VISUAL HOW TO PLAY */
-            <div className="space-y-3">
+            <ol className="space-y-3">
               {intro.steps.map((step, idx) => (
-                <div
-                  key={idx}
-                  className="p-3.5 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex items-start gap-3.5 hover:border-amber-400/40 transition-colors"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-xl shrink-0 select-none shadow">
-                    {step.icon}
-                  </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-black text-amber-300">
-                      {step.title}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-slate-300 mt-0.5 leading-relaxed font-medium">
-                      {step.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            /* CONTROLS & PRO TIPS */
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {/* Desktop Controls */}
-                <div className="p-3.5 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-black text-amber-300">
-                    <Monitor className="w-4 h-4" />
-                    <span>Desktop (Keyboard & Mouse)</span>
-                  </div>
-                  <ul className="text-xs text-slate-300 space-y-1">
-                    {intro.controls.desktop.map((ctrl, i) => (
-                      <li key={i} className="flex items-start gap-1.5">
-                        <span className="text-amber-400 font-bold">•</span>
-                        <span>{ctrl}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Mobile Controls */}
-                <div className="p-3.5 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-black text-amber-300">
-                    <Smartphone className="w-4 h-4" />
-                    <span>Mobile (Touch Screen)</span>
-                  </div>
-                  <ul className="text-xs text-slate-300 space-y-1">
-                    {intro.controls.mobile.map((ctrl, i) => (
-                      <li key={i} className="flex items-start gap-1.5">
-                        <span className="text-amber-400 font-bold">•</span>
-                        <span>{ctrl}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Pro Tip Card */}
-              <div className="p-3.5 rounded-2xl bg-gradient-to-r from-purple-950/60 to-indigo-950/60 border border-purple-500/40 flex items-start gap-3">
-                <span className="text-xl select-none shrink-0">💡</span>
-                <div>
-                  <span className="text-[11px] font-black uppercase text-purple-300 tracking-wider block">
-                    Pro Gamer Tip
+                <li key={idx} className="flex gap-3">
+                  <span className="shrink-0 w-8 h-8 rounded-full bg-brand-tint text-brand-deep font-display font-semibold flex items-center justify-center">
+                    {idx + 1}
                   </span>
-                  <p className="text-xs sm:text-sm text-slate-200 font-medium mt-0.5 leading-relaxed">
-                    {intro.proTip}
-                  </p>
-                </div>
+                  <span className="text-sm leading-relaxed">
+                    <span className="block font-bold">{step.title.replace(/^\d+\.\s*/, '')}</span>
+                    <span className="text-ink-soft">{step.desc}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <div className="space-y-4 text-sm">
+              <div>
+                <h3 className="flex items-center gap-2 font-bold mb-1.5">
+                  <Monitor className="w-4 h-4 text-ink-soft" /> Computer
+                </h3>
+                <ul className="space-y-1 text-ink-soft list-disc pl-5">
+                  {intro.controls.desktop.map((ctrl, i) => (
+                    <li key={i}>{ctrl}</li>
+                  ))}
+                </ul>
               </div>
+              <div>
+                <h3 className="flex items-center gap-2 font-bold mb-1.5">
+                  <Smartphone className="w-4 h-4 text-ink-soft" /> Phone & tablet
+                </h3>
+                <ul className="space-y-1 text-ink-soft list-disc pl-5">
+                  {intro.controls.mobile.map((ctrl, i) => (
+                    <li key={i}>{ctrl}</li>
+                  ))}
+                </ul>
+              </div>
+              <p className="flex gap-2 p-3 rounded-xl bg-paper leading-relaxed">
+                <Sparkles className="w-4 h-4 mt-0.5 shrink-0 text-brand" />
+                <span>{intro.proTip}</span>
+              </p>
             </div>
           )}
         </div>
 
-        {/* BOTTOM ACTION BAR */}
-        <div className="p-4 sm:p-5 border-t border-slate-800 bg-slate-950/95 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
-          <label className="flex items-center gap-2 text-xs text-slate-400 cursor-pointer select-none">
+        <div className="p-4 sm:p-5 border-t border-line flex items-center justify-between gap-3 shrink-0">
+          <label className="flex items-center gap-2 text-xs text-ink-soft cursor-pointer select-none">
             <input
               type="checkbox"
               checked={dontShowAgain}
               onChange={(e) => setDontShowAgain(e.target.checked)}
-              className="w-4 h-4 rounded border-slate-700 text-amber-400 focus:ring-amber-400 bg-slate-800"
+              className="w-4 h-4 rounded accent-brand"
             />
-            <span>Don't show again on start</span>
+            <span>Don't show again</span>
           </label>
-
           <button
             onClick={handleStartGame}
-            className="w-full sm:w-auto px-7 py-3 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-slate-950 font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg shadow-amber-400/30 transform hover:scale-103 active:scale-98 transition-all cursor-pointer"
+            className="h-12 px-7 rounded-full bg-brand hover:bg-brand-deep text-white font-display font-semibold text-lg flex items-center gap-2 cursor-pointer transition-colors"
           >
             <Play className="w-5 h-5 fill-current" />
-            <span>LET'S PLAY!</span>
+            <span>Play</span>
           </button>
         </div>
       </div>

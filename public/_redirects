@@ -1,0 +1,9 @@
+# Permanent redirects served by Cloudflare Workers Static Assets.
+# Renamed game URLs (trademark cleanup, 2026-10-29)
+/games/farm-tetris/ /games/farm-block-drop/ 301
+/games/farm-tetris /games/farm-block-drop/ 301
+/games/pet-candy-crush/ /games/farm-animal-match/ 301
+/games/pet-candy-crush /games/farm-animal-match/ 301
+# Single URL for the popular hub
+/category/popular/ /popular/ 301
+/category/popular /popular/ 301

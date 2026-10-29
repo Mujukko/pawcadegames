@@ -51,7 +51,7 @@ const REQUIRED_US_KEYWORDS = ['free', 'online', 'game', 'play', 'browser'];
 
 export function runUnifiedAudit(): { passed: boolean; results: UnifiedAuditResult[]; summary: string } {
   const rootDir = resolve(__dirname, '..');
-  const sitemapPath = resolve(rootDir, 'public/sitemap.xml');
+  const sitemapPath = resolve(rootDir, 'dist/sitemap.xml');
   let sitemapContent = '';
   if (existsSync(sitemapPath)) {
     sitemapContent = readFileSync(sitemapPath, 'utf-8');
@@ -102,12 +102,6 @@ export function runUnifiedAudit(): { passed: boolean; results: UnifiedAuditResul
         '@type': 'Offer',
         price: '0',
         priceCurrency: 'USD',
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: game.rating.toString(),
-        bestRating: '5.0',
-        ratingCount: '150',
       },
     };
     const schemaValid = Boolean(

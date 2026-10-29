@@ -78,9 +78,9 @@ export const INITIAL_BUILDING_CONFIGS: Record<
 > = {
   barn: {
     name: 'Red Barn',
-    gameTitle: 'Farm Tetris',
+    gameTitle: 'Farm Block Drop',
     gameId: 'farm-tetris',
-    gameRoute: '/games/farm-tetris/',
+    gameRoute: '/games/farm-block-drop/',
     mascot: '🐮',
     brokenVisual: {
       emoji: '🏚️',
@@ -117,9 +117,9 @@ export const INITIAL_BUILDING_CONFIGS: Record<
   },
   silo: {
     name: 'Harvest Silo',
-    gameTitle: 'Farm Tetris',
+    gameTitle: 'Farm Block Drop',
     gameId: 'farm-tetris',
-    gameRoute: '/games/farm-tetris/',
+    gameRoute: '/games/farm-block-drop/',
     mascot: '🌾',
     brokenVisual: {
       emoji: '📦',
@@ -392,7 +392,7 @@ export const INITIAL_BUILDING_CONFIGS: Record<
     name: 'Sweet Mill',
     gameTitle: 'Farm Animal Match',
     gameId: 'pet-candy-crush',
-    gameRoute: '/games/pet-candy-crush/',
+    gameRoute: '/games/farm-animal-match/',
     mascot: '🍬',
     brokenVisual: {
       emoji: '🪨',

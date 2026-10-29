@@ -1,5 +1,7 @@
 import { GAMES_REGISTRY } from '../src/lib/gamesRegistry';
 import { GAME_INTROS } from '../src/components/GameIntroModal';
+import { CATEGORY_LABELS, buildGameFaqs, getRelatedGames, stripEmoji } from '../src/lib/gameSeo';
+import { INFO_PAGES } from '../src/lib/sitePages';
 import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from 'fs';
 import { resolve } from 'path';
 
@@ -42,7 +44,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   popular: {
     name: 'Popular Hits',
     slug: 'popular',
-    metaTitle: 'Most Popular Free Online Games 🌟 — Top Browser Hits (No Download) | Pawcade',
+    metaTitle: 'Most Popular Free Online Games — Top Browser Hits | Pawcade',
     metaDescription: 'Play the most popular free online browser games on Pawcade! Enjoy top trending hits like Farm Mini Mart, Farm Block Blast, Dog Parking, and Duck Hunt with zero downloads.',
     h1: 'Most Popular Free Online Games 🌟',
     description: 'The most played, highest-rated casual browser games on Pawcade. Zero downloads, instant play on mobile and desktop.',
@@ -66,7 +68,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   puzzle: {
     name: 'Puzzles & Brain',
     slug: 'puzzle',
-    metaTitle: 'Free Online Puzzle Games 🧩 — Brain Teasers & Spatial Puzzles (No Download) | Pawcade',
+    metaTitle: 'Free Online Puzzle Games — Brain Teasers, No Download | Pawcade',
     metaDescription: 'Play free online puzzle games with zero downloads! Enjoy Farm Mahjong, Farm Block Blast, Sheep Cart Jam, and Critter Tap Away. Instant play on mobile and PC.',
     h1: 'Free Online Puzzle Games 🧩',
     description: 'Challenge your mind with handcrafted spatial puzzles, sliding block challenges, and logic teasers. Instant play with zero downloads.',
@@ -90,7 +92,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   farm: {
     name: 'Farm & Barnyard',
     slug: 'farm',
-    metaTitle: 'Free Online Farm Games 🚜 — Barnyard Puzzles & Farm Tycoons (No Download) | Pawcade',
+    metaTitle: 'Free Online Farm Games — Barnyard Puzzles & Tycoons | Pawcade',
     metaDescription: 'Play free casual farm games online at Pawcade! Manage farm markets, drive tractors, herd sheep, and harvest crops directly in your browser with no installs.',
     h1: 'Free Online Farm & Barnyard Games 🚜',
     description: 'Experience cozy agricultural life! Run village markets, herd lively sheep, harvest golden crops, and drive tractors in zero-install browser games.',
@@ -114,7 +116,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   arcade: {
     name: 'Arcade & Action',
     slug: 'arcade',
-    metaTitle: 'Free Online Arcade Games 🕹️ — Retro Reflex & Tap Games (No Download) | Pawcade',
+    metaTitle: 'Free Online Arcade Games — Quick Reflex & Tap Games | Pawcade',
     metaDescription: 'Enjoy free retro-style casual arcade web games on Pawcade! Tap, dodge, flap, and jump in Duck Runner, Flappy Chicken, Egg Buster, and more with zero downloads.',
     h1: 'Free Online Arcade & Tap Games 🕹️',
     description: 'Fast-paced casual reflex games for quick breaks! Dodge obstacles, slingshot eggs, and flap through pastures with instant keyboard and touch controls.',
@@ -138,9 +140,9 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   pets: {
     name: 'Pets & Animals',
     slug: 'pets',
-    metaTitle: 'Cute Pet Games Online 🐾 — Free Animal Puzzles & Care Games (No Download) | Pawcade',
-    metaDescription: 'Play free cute pet games in your browser on Pawcade! Enjoy Pet Memory Match, Dog Parking, Cat Parking, and cozy animal puzzles with zero downloads on mobile and PC.',
-    h1: 'Cute Pet & Animal Games Online 🐾',
+    metaTitle: 'Cat & Dog Games Online — Free Cute Pet Games | Pawcade',
+    metaDescription: 'Play free cat games, dog games, and cute pet puzzles in your browser. Slide corgis in Dog Parking, rescue kittens in Cat Parking, and match pets with zero downloads.',
+    h1: 'Cute Cat, Dog & Pet Games Online 🐾',
     description: 'Meet playful corgis, mischievous cats, fluffy sheep, and barnyard animals! Cozy, family-friendly browser games designed for animal lovers of all ages.',
     directAnswer: 'Pawcade pet games feature cute dogs, cats, hamsters, and barn critters in family-friendly challenges. Test your memory in Pet Memory Match, slide friendly corgis in Dog Parking, untangle felines in Cat Parking, or roll through obstacle courses in Hamster Ball Dash.',
     filter: (g) => g.category === 'pets' || Boolean(g.categories?.includes('pets')),
@@ -155,7 +157,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
       },
       {
         question: 'Are these pet games free to play on mobile?',
-        answer: 'Yes. All pet games are free with zero ads during gameplay, responsive touch layouts, and native Web Audio sounds.',
+        answer: 'Yes. All pet games are free with responsive touch layouts and work on iPhone, Android, tablets, and Chromebooks.',
       },
     ],
   },
@@ -175,7 +177,10 @@ for (const game of playableGames) {
     : 'https://pawcadegames.com/og-pawcade.png';
 
   const categorySlug = game.category.toLowerCase();
-  const categoryName = game.category.toUpperCase();
+  const categoryName = CATEGORY_LABELS[game.category];
+  const plainTitle = stripEmoji(game.title);
+  const relatedGames = getRelatedGames(game, GAMES_REGISTRY, 8);
+  const faqs = buildGameFaqs(game, intro, relatedGames);
   const gameKeywords = `${game.tags?.join(', ') || ''}, ${game.title.toLowerCase()}, free online games, unblocked casual game, browser game no download`;
 
   // Semantic Schema.org JSON-LD (@graph with VideoGame, BreadcrumbList, FAQPage)
@@ -184,8 +189,10 @@ for (const game of playableGames) {
     '@graph': [
       {
         '@type': ['WebApplication', 'VideoGame'],
-        name: game.title,
+        name: plainTitle,
+        url: `https://pawcadegames.com${game.route}`,
         description: game.metaDescription,
+        genre: game.tags?.slice(0, 3),
         applicationCategory: 'Game',
         operatingSystem: 'Web Browser',
         browserRequirements: 'Requires JavaScript. Requires HTML5.',
@@ -195,12 +202,6 @@ for (const game of playableGames) {
           '@type': 'Offer',
           price: '0',
           priceCurrency: 'USD',
-        },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: game.rating.toString(),
-          bestRating: '5.0',
-          ratingCount: '150',
         },
       },
       {
@@ -221,39 +222,18 @@ for (const game of playableGames) {
           {
             '@type': 'ListItem',
             position: 3,
-            name: game.title,
+            name: plainTitle,
             item: `https://pawcadegames.com${game.route}`,
           },
         ],
       },
       {
         '@type': 'FAQPage',
-        mainEntity: [
-          {
-            '@type': 'Question',
-            name: `What is the main objective of ${game.title}?`,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: `${intro ? intro.goal : game.description}`,
-            },
-          },
-          {
-            '@type': 'Question',
-            name: `How do I control and play ${game.title}?`,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: `On desktop, ${game.controls.desktop[0]}. On mobile devices, ${game.controls.mobile[0]}.`,
-            },
-          },
-          {
-            '@type': 'Question',
-            name: `What is the top strategy or pro tip for ${game.title}?`,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: `${intro ? intro.proTip : 'Focus on steady rhythm, observe obstacle patterns, and practice smooth controls.'}`,
-            },
-          },
-        ],
+        mainEntity: faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: { '@type': 'Answer', text: f.answer },
+        })),
       },
     ],
   });
@@ -261,78 +241,67 @@ for (const game of playableGames) {
   // Semantic HTML content that OAI-SearchBot, Bingbot & non-JS engines read on raw HTTP response
   const semanticContent = `
   <div id="root">
-    <main class="min-h-screen bg-slate-900 text-slate-100 p-4 sm:p-8 max-w-5xl mx-auto">
-      <nav aria-label="Breadcrumb" class="text-xs font-semibold text-slate-400 mb-4 flex items-center gap-2">
-        <a href="/" class="hover:text-amber-400">Home</a> &gt; 
-        <a href="/category/${categorySlug}/" class="hover:text-amber-400">${categoryName}</a> &gt; 
-        <span class="text-amber-400">${game.title}</span>
+    <main class="text-ink p-4 sm:p-8 max-w-5xl mx-auto">
+      <nav aria-label="Breadcrumb" class="text-xs font-semibold text-ink-soft mb-4 flex items-center gap-2">
+        <a href="/" class="hover:text-ink">Home</a> &gt; 
+        <a href="/category/${categorySlug}/" class="hover:text-ink">${categoryName}</a> &gt; 
+        <span class="text-brand-deep">${game.title}</span>
       </nav>
 
       <header class="mb-6">
         <div class="flex items-center gap-2 mb-2">
-          <span class="text-[11px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/30">
+          <span class="text-[11px] font-semibold font-display uppercase tracking-wider px-2.5 py-1 rounded-md bg-brand-tint text-brand-deep border border-line">
             ${game.badge || 'Playable Game'}
           </span>
-          <span class="text-xs text-slate-400 font-bold">Category: ${categoryName}</span>
+          <span class="text-xs text-ink-soft font-bold">Category: ${categoryName}</span>
         </div>
-        <h1 class="text-3xl sm:text-4xl font-black text-white mb-2">${game.title}</h1>
-        <p class="text-slate-300 text-base max-w-2xl">${game.tagline}</p>
-        <div class="mt-2 text-xs font-bold text-amber-400">Rating: ${game.rating} / 5.0 | ${game.playCount || '50K+'} Plays | Free Instant Browser Play (No Download)</div>
+        <h1 class="text-3xl sm:text-4xl font-semibold font-display text-ink mb-2">${game.title}</h1>
+        <p class="text-ink-soft text-base max-w-2xl">${game.tagline}</p>
+        <div class="mt-2 text-xs font-bold text-brand-deep">Free to play &bull; No download &bull; Works on phone, tablet &amp; computer</div>
       </header>
 
-      <!-- Interactive Playable Game Showcase Frame (Signals WebApplication / Playable Game to Crawlers) -->
-      <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] max-w-4xl mx-auto bg-slate-950 rounded-2xl sm:rounded-3xl border-2 border-amber-500/40 overflow-hidden mb-8 shadow-2xl flex flex-col items-center justify-center p-6 text-center group">
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent z-10"></div>
-        <img src="${game.thumbnailUrl}" alt="${game.title}" class="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:scale-105 transition-transform duration-500" loading="eager" />
-        <div class="relative z-20 flex flex-col items-center max-w-md">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 flex items-center justify-center text-3xl sm:text-4xl shadow-2xl shadow-amber-500/40 mb-3 cursor-pointer hover:scale-110 active:scale-95 transition-transform">
-            ▶
-          </div>
-          <span class="text-[11px] uppercase tracking-widest text-amber-300 font-extrabold mb-1">Interactive Web Game</span>
-          <h2 class="text-xl sm:text-2xl font-black text-white mb-2">Play ${game.title} Online</h2>
-          <p class="text-xs text-slate-300 mb-3 line-clamp-2">${game.description}</p>
-          <div class="flex items-center gap-2 text-xs font-bold text-emerald-400 bg-slate-900/80 px-3 py-1.5 rounded-xl border border-emerald-500/30">
-            <span>✓ Instant Loading</span>
-            <span>•</span>
-            <span>✓ 100% Free</span>
-            <span>•</span>
-            <span>✓ Mobile & PC</span>
-          </div>
+      <!-- Game stage placeholder: replaced by the live game when JS loads -->
+      <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] max-w-4xl mx-auto bg-stage rounded-[28px] ring-4 ring-white overflow-hidden mb-8 shadow-tile flex items-center justify-center">
+        <img src="${game.thumbnailUrl}" alt="${plainTitle} gameplay screenshot" class="absolute inset-0 w-full h-full object-cover opacity-50" loading="eager" />
+        <div class="relative flex flex-col items-center text-center px-6">
+          <span class="w-20 h-20 rounded-full bg-brand text-white flex items-center justify-center text-3xl shadow-tile mb-3" aria-hidden="true">▶</span>
+          <h2 class="font-display text-2xl font-semibold text-white drop-shadow">Play ${plainTitle} online</h2>
+          <p class="mt-1 text-sm font-bold text-white/90 drop-shadow">Free &bull; No download &bull; Phone &amp; computer</p>
         </div>
       </div>
 
-      <section id="game-overview" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
-        <h2 class="text-xl font-bold text-white mb-3">About ${game.title}</h2>
-        <p class="text-slate-300 text-sm leading-relaxed mb-4">${game.description}</p>
-        <p class="text-emerald-400 text-xs font-bold">✓ 100% Free Browser Play &bull; Zero Installs &bull; Mobile & Desktop Compatible</p>
+      <section id="game-overview" class="mb-8 p-6 bg-white rounded-[22px] border border-line">
+        <h2 class="text-xl font-bold text-ink mb-3">About ${game.title}</h2>
+        <p class="text-ink-soft text-sm leading-relaxed mb-4">${game.description}</p>
+        <p class="text-farm-deep text-xs font-bold">✓ 100% Free Browser Play &bull; Zero Installs &bull; Mobile & Desktop Compatible</p>
       </section>
 
-      <section id="how-to-play" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
-        <h2 class="text-xl font-bold text-white mb-3">How to Play ${game.title}</h2>
+      <section id="how-to-play" class="mb-8 p-6 bg-white rounded-[22px] border border-line">
+        <h2 class="text-xl font-bold text-ink mb-3">How to Play ${game.title}</h2>
         ${
           intro
-            ? `<p class="text-sm text-slate-300 mb-4"><strong>Objective:</strong> ${intro.goal}</p>
-               <ol class="list-decimal pl-5 space-y-2 text-sm text-slate-300 mb-4">
+            ? `<p class="text-sm text-ink-soft mb-4"><strong>Objective:</strong> ${intro.goal}</p>
+               <ol class="list-decimal pl-5 space-y-2 text-sm text-ink-soft mb-4">
                  ${intro.steps.map((s) => `<li><strong>${s.title}:</strong> ${s.desc}</li>`).join('')}
                </ol>
-               <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-xs text-amber-300">
+               <div class="p-3 bg-brand-tint border border-line rounded-xl text-xs text-brand-deep">
                  <strong>Pro Tip:</strong> ${intro.proTip}
                </div>`
-            : `<p class="text-sm text-slate-300">Play directly in your browser. Complete objectives and progress through handcrafted levels.</p>`
+            : `<p class="text-sm text-ink-soft">Play directly in your browser. Complete objectives and progress through handcrafted levels.</p>`
         }
       </section>
 
-      <section id="controls" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
-        <h2 class="text-xl font-bold text-white mb-3">Controls & Shortcuts</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-300">
-          <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
-            <h3 class="font-bold text-amber-400 mb-2">Desktop Keyboard & Mouse:</h3>
+      <section id="controls" class="mb-8 p-6 bg-white rounded-[22px] border border-line">
+        <h2 class="text-xl font-bold text-ink mb-3">Controls & Shortcuts</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-ink-soft">
+          <div class="p-4 bg-white rounded-xl border border-line">
+            <h3 class="font-bold text-brand-deep mb-2">Desktop Keyboard & Mouse:</h3>
             <ul class="list-disc pl-4 space-y-1">
               ${game.controls.desktop.map((c) => `<li>${c}</li>`).join('')}
             </ul>
           </div>
-          <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
-            <h3 class="font-bold text-amber-400 mb-2">Mobile Touch Gestures:</h3>
+          <div class="p-4 bg-white rounded-xl border border-line">
+            <h3 class="font-bold text-brand-deep mb-2">Mobile Touch Gestures:</h3>
             <ul class="list-disc pl-4 space-y-1">
               ${game.controls.mobile.map((c) => `<li>${c}</li>`).join('')}
             </ul>
@@ -340,54 +309,49 @@ for (const game of playableGames) {
         </div>
       </section>
 
-      <section id="faq" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
-        <h2 class="text-xl font-bold text-white mb-4">Frequently Asked Questions</h2>
-        <div class="space-y-4 text-sm text-slate-300">
-          <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
-            <h3 class="font-bold text-amber-400 mb-1">What is the main objective of ${game.title}?</h3>
-            <p>${intro ? intro.goal : game.description}</p>
-          </div>
-          <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
-            <h3 class="font-bold text-amber-400 mb-1">How do I control and play ${game.title}?</h3>
-            <p>On desktop: ${game.controls.desktop.slice(0, 2).join(' ')}. On mobile: ${game.controls.mobile[0]}.</p>
-          </div>
-          <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
-            <h3 class="font-bold text-amber-400 mb-1">What is the top strategy or pro tip for ${game.title}?</h3>
-            <p>${intro ? intro.proTip : 'Observe patterns carefully, maintain a steady rhythm, and practice the core controls.'}</p>
-          </div>
+      <section id="faq" class="mb-8 p-6 bg-white rounded-[22px] border border-line">
+        <h2 class="text-xl font-bold text-ink mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4 text-sm text-ink-soft">
+          ${faqs
+            .map(
+              (f) => `
+          <div class="p-4 bg-white rounded-xl border border-line">
+            <h3 class="font-bold text-brand-deep mb-1">${f.question}</h3>
+            <p>${f.answer}</p>
+          </div>`
+            )
+            .join('')}
         </div>
       </section>
 
-      <section id="features" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
-        <h2 class="text-xl font-bold text-white mb-3">Game Features</h2>
-        <ul class="list-disc pl-5 space-y-1 text-sm text-slate-300">
+      <section id="features" class="mb-8 p-6 bg-white rounded-[22px] border border-line">
+        <h2 class="text-xl font-bold text-ink mb-3">Game Features</h2>
+        <ul class="list-disc pl-5 space-y-1 text-sm text-ink-soft">
           ${game.features.map((f) => `<li>${f}</li>`).join('')}
         </ul>
       </section>
 
       <!-- Category Navigation Hubs (Crawl Depth Booster) -->
-      <section class="mb-8 p-4 bg-slate-950/60 rounded-2xl border border-slate-800 text-center">
-        <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-2">Explore Pawcade Game Categories</span>
+      <section class="mb-8 p-4 bg-white rounded-[22px] border border-line text-center">
+        <span class="text-xs uppercase tracking-wider text-ink-soft font-bold block mb-2">Explore Pawcade Game Categories</span>
         <div class="flex flex-wrap justify-center gap-2 text-xs font-bold">
-          <a href="/popular/" class="px-3 py-1 bg-amber-400 text-slate-950 rounded-lg hover:bg-amber-300">🌟 Popular Hits</a>
-          <a href="/category/puzzle/" class="px-3 py-1 bg-slate-900 text-slate-200 border border-slate-700 rounded-lg hover:border-amber-400">🧩 Puzzle Games</a>
-          <a href="/category/farm/" class="px-3 py-1 bg-slate-900 text-slate-200 border border-slate-700 rounded-lg hover:border-amber-400">🌾 Farm Games</a>
-          <a href="/category/arcade/" class="px-3 py-1 bg-slate-900 text-slate-200 border border-slate-700 rounded-lg hover:border-amber-400">⚡ Arcade Games</a>
-          <a href="/category/pets/" class="px-3 py-1 bg-slate-900 text-slate-200 border border-slate-700 rounded-lg hover:border-amber-400">🐾 Pet Games</a>
+          <a href="/popular/" class="px-3 py-1 bg-brand text-white rounded-lg hover:bg-brand-deep">🌟 Popular Hits</a>
+          <a href="/category/puzzle/" class="px-3 py-1 bg-white text-ink border border-line rounded-lg hover:border-ink-faint">🧩 Puzzle Games</a>
+          <a href="/category/farm/" class="px-3 py-1 bg-white text-ink border border-line rounded-lg hover:border-ink-faint">🌾 Farm Games</a>
+          <a href="/category/arcade/" class="px-3 py-1 bg-white text-ink border border-line rounded-lg hover:border-ink-faint">⚡ Arcade Games</a>
+          <a href="/category/pets/" class="px-3 py-1 bg-white text-ink border border-line rounded-lg hover:border-ink-faint">🐾 Pet Games</a>
         </div>
       </section>
 
-      <section id="related-games" class="p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
-        <h2 class="text-xl font-bold text-white mb-3">More Free Browser Games on Pawcade</h2>
+      <section id="related-games" class="p-6 bg-white rounded-[22px] border border-line">
+        <h2 class="text-xl font-bold text-ink mb-3">More Free Browser Games on Pawcade</h2>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-          ${playableGames
-            .filter((r) => r.id !== game.id)
-            .slice(0, 8)
+          ${relatedGames
             .map(
               (r) => `
-            <a href="${r.route}" class="p-3 bg-slate-900 hover:bg-slate-800 rounded-xl border border-slate-800 text-slate-200 block transition-colors">
-              <div class="font-bold text-amber-400 truncate">${r.title}</div>
-              <div class="text-slate-400 line-clamp-1 mt-0.5">${r.tagline}</div>
+            <a href="${r.route}" class="p-3 bg-white hover:bg-paper rounded-xl border border-line text-ink block transition-colors">
+              <div class="font-bold text-brand-deep truncate">${r.title}</div>
+              <div class="text-ink-soft line-clamp-1 mt-0.5">${r.tagline}</div>
             </a>`
             )
             .join('')}
@@ -421,7 +385,9 @@ for (const game of playableGames) {
 
 // 3. Generate Pre-rendered Category Hub Pages (GEO / AEO Enhanced)
 for (const [key, cat] of Object.entries(CATEGORIES)) {
-  const catDir = resolve(DIST_DIR, `category/${cat.slug}`);
+  // /popular/ is the single URL for the popular hub; /category/popular/ 301s to it (public/_redirects)
+  const catPath = cat.slug === 'popular' ? '/popular/' : `/category/${cat.slug}/`;
+  const catDir = resolve(DIST_DIR, catPath.slice(1, -1));
   mkdirSync(catDir, { recursive: true });
 
   const targetFile = resolve(catDir, 'index.html');
@@ -433,10 +399,10 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
     '@graph': [
       {
         '@type': 'CollectionPage',
-        '@id': `https://pawcadegames.com/category/${cat.slug}/#collection`,
+        '@id': `https://pawcadegames.com${catPath}#collection`,
         name: cat.metaTitle,
         description: cat.metaDescription,
-        url: `https://pawcadegames.com/category/${cat.slug}/`,
+        url: `https://pawcadegames.com${catPath}`,
         inLanguage: 'en-US',
         mainEntity: {
           '@type': 'ItemList',
@@ -450,7 +416,7 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
       },
       {
         '@type': 'FAQPage',
-        '@id': `https://pawcadegames.com/category/${cat.slug}/#faq`,
+        '@id': `https://pawcadegames.com${catPath}#faq`,
         mainEntity: cat.faqs.map((f) => ({
           '@type': 'Question',
           name: f.question,
@@ -465,42 +431,42 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
 
   const catSemanticContent = `
   <div id="root">
-    <main class="min-h-screen bg-slate-900 text-slate-100 p-4 sm:p-8 max-w-6xl mx-auto">
-      <nav aria-label="Breadcrumb" class="text-xs font-semibold text-slate-400 mb-4 flex items-center gap-2">
-        <a href="/" class="hover:text-orange-400">Home</a> &gt; 
-        <span class="text-orange-400">${cat.name}</span>
+    <main class="text-ink p-4 sm:p-8 max-w-6xl mx-auto">
+      <nav aria-label="Breadcrumb" class="text-xs font-semibold text-ink-soft mb-4 flex items-center gap-2">
+        <a href="/" class="hover:text-ink">Home</a> &gt; 
+        <span class="text-brand-deep">${cat.name}</span>
       </nav>
 
       <header class="text-center mb-8">
-        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3">${cat.h1}</h1>
-        <p class="text-slate-300 text-base max-w-2xl mx-auto leading-relaxed mb-4">${cat.description}</p>
+        <h1 class="text-3xl sm:text-4xl font-semibold font-display text-ink mb-3">${cat.h1}</h1>
+        <p class="text-ink-soft text-base max-w-2xl mx-auto leading-relaxed mb-4">${cat.description}</p>
         
         <!-- GEO / AEO Direct Answer Hook for AI Search Engines -->
-        <div class="p-4 bg-slate-950/90 rounded-2xl border border-amber-400/30 text-left max-w-3xl mx-auto mb-4">
-          <div class="text-[11px] font-black uppercase tracking-wider text-amber-400 mb-1">Quick Answer & Overview</div>
-          <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">${cat.directAnswer}</p>
+        <div class="p-4 bg-white rounded-[22px] border border-line text-left max-w-3xl mx-auto mb-4">
+          <div class="text-[11px] font-semibold font-display uppercase tracking-wider text-brand-deep mb-1">Quick Answer & Overview</div>
+          <p class="text-xs sm:text-sm text-ink leading-relaxed">${cat.directAnswer}</p>
         </div>
 
-        <div class="mt-2 text-xs font-bold text-amber-400">Showing ${catGames.length} free games &bull; 100% Free Browser Play &bull; No Download Required</div>
+        <div class="mt-2 text-xs font-bold text-brand-deep">Showing ${catGames.length} free games &bull; 100% Free Browser Play &bull; No Download Required</div>
       </header>
 
       <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
         ${catGames
           .map(
             (g) => `
-          <article class="p-5 bg-slate-950/80 rounded-2xl border border-orange-500/20 hover:border-orange-500/50 transition-all flex flex-col justify-between">
+          <article class="p-5 bg-white rounded-[22px] border border-line hover:border-ink-faint transition-all flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between mb-2">
-                <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-900 text-amber-400 border border-slate-800">★ ${g.rating}</span>
-                <span class="text-[10px] font-bold text-emerald-400">Instant Play</span>
+                <span class="text-[10px] font-semibold font-display uppercase tracking-wider px-2 py-0.5 rounded-full bg-white text-brand-deep border border-line">${CATEGORY_LABELS[g.category]}</span>
+                <span class="text-[10px] font-bold text-farm-deep">Instant Play</span>
               </div>
-              <h2 class="text-lg font-bold text-white mb-1">
-                <a href="${g.route}" class="hover:text-amber-400 transition-colors">${g.title}</a>
+              <h2 class="text-lg font-bold text-ink mb-1">
+                <a href="${g.route}" class="hover:text-ink transition-colors">${g.title}</a>
               </h2>
-              <p class="text-xs text-slate-300 mb-3">${g.tagline}</p>
-              <p class="text-xs text-slate-400 leading-relaxed mb-4">${g.description.slice(0, 110)}...</p>
+              <p class="text-xs text-ink-soft mb-3">${g.tagline}</p>
+              <p class="text-xs text-ink-soft leading-relaxed mb-4">${g.description.slice(0, 110)}...</p>
             </div>
-            <a href="${g.route}" class="w-full text-center py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 rounded-xl text-xs font-black hover:brightness-110 transition-all block">
+            <a href="${g.route}" class="w-full text-center py-2 text-white rounded-xl text-xs font-semibold font-display hover:brightness-110 transition-all block">
               PLAY NOW 🎮
             </a>
           </article>`
@@ -509,34 +475,32 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
       </section>
 
       <!-- GEO / AEO Structured Comparative Matrix for AI Citations -->
-      <section class="mt-10 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
-        <h2 class="text-xl font-bold text-white mb-2">${cat.name} Games Comparison</h2>
-        <p class="text-xs text-slate-400 mb-4">Compare key gameplay mechanics, player ratings, and controls across our top free ${cat.name.toLowerCase()} browser games.</p>
+      <section class="mt-10 p-6 bg-white rounded-[22px] border border-line">
+        <h2 class="text-xl font-bold text-ink mb-2">${cat.name} Games Comparison</h2>
+        <p class="text-xs text-ink-soft mb-4">Compare key gameplay mechanics and controls across our top free ${cat.name.toLowerCase()} browser games.</p>
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs border-collapse">
             <thead>
-              <tr class="border-b border-slate-800 text-slate-400">
-                <th class="py-2.5 px-3 font-bold text-amber-400">Game</th>
+              <tr class="border-b border-line text-ink-soft">
+                <th class="py-2.5 px-3 font-bold text-brand-deep">Game</th>
                 <th class="py-2.5 px-3 font-bold">Genre</th>
                 <th class="py-2.5 px-3 font-bold">Core Mechanic</th>
-                <th class="py-2.5 px-3 font-bold">Rating</th>
                 <th class="py-2.5 px-3 font-bold">Controls</th>
                 <th class="py-2.5 px-3 font-bold">Platform</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-slate-900 text-slate-300">
+            <tbody class="divide-y divide-line text-ink-soft">
               ${catGames
                 .map(
                   (g) => `
-                <tr class="hover:bg-slate-900/50">
-                  <td class="py-2.5 px-3 font-bold text-white">
-                    <a href="${g.route}" class="hover:text-amber-400 underline decoration-amber-400/40">${g.title}</a>
+                <tr class="hover:bg-paper">
+                  <td class="py-2.5 px-3 font-bold text-ink">
+                    <a href="${g.route}" class="hover:text-brand-deep underline decoration-line">${g.title}</a>
                   </td>
                   <td class="py-2.5 px-3 capitalize">${g.category}</td>
-                  <td class="py-2.5 px-3 text-slate-400">${g.tagline}</td>
-                  <td class="py-2.5 px-3 text-amber-400 font-bold">★ ${g.rating}</td>
-                  <td class="py-2.5 px-3 text-slate-400">${g.controls.touch ? 'Touch / ' : ''}${g.controls.keyboard ? 'Keys' : 'Mouse'}</td>
-                  <td class="py-2.5 px-3 text-emerald-400 font-semibold">Web / Mobile</td>
+                  <td class="py-2.5 px-3 text-ink-soft">${g.tagline}</td>
+                  <td class="py-2.5 px-3 text-ink-soft">${g.controls.touch ? 'Touch / ' : ''}${g.controls.keyboard ? 'Keys' : 'Mouse'}</td>
+                  <td class="py-2.5 px-3 text-farm-deep font-semibold">Web / Mobile</td>
                 </tr>`
                 )
                 .join('')}
@@ -546,23 +510,23 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
       </section>
 
       <!-- GEO / AEO Semantic Q&A for Answer Engine Extraction -->
-      <section class="mt-8 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
-        <h2 class="text-xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+      <section class="mt-8 p-6 bg-white rounded-[22px] border border-line">
+        <h2 class="text-xl font-bold text-ink mb-4">Frequently Asked Questions</h2>
         <div class="space-y-4">
           ${cat.faqs
             .map(
               (faq) => `
-            <div class="border-b border-slate-800/80 pb-3 last:border-0 last:pb-0">
-              <h3 class="text-sm font-bold text-amber-300 mb-1">${faq.question}</h3>
-              <p class="text-xs text-slate-300 leading-relaxed">${faq.answer}</p>
+            <div class="border-b border-line pb-3 last:border-0 last:pb-0">
+              <h3 class="text-sm font-bold text-brand-deep mb-1">${faq.question}</h3>
+              <p class="text-xs text-ink-soft leading-relaxed">${faq.answer}</p>
             </div>`
             )
             .join('')}
         </div>
       </section>
 
-      <footer class="mt-12 text-center text-xs text-slate-400 border-t border-slate-800 pt-6">
-        <a href="/" class="text-amber-400 hover:underline font-bold">← Back to All Pawcade Games</a>
+      <footer class="mt-12 text-center text-xs text-ink-soft border-t border-line pt-6">
+        <a href="/" class="text-brand-deep hover:underline font-bold">← Back to All Pawcade Games</a>
       </footer>
     </main>
   </div>`;
@@ -572,48 +536,36 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
     .replace(/<meta name="title" content=".*?" \/>/, `<meta name="title" content="${cat.metaTitle}" />`)
     .replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${cat.metaDescription}" />`)
     .replace(/<meta name="keywords" content=".*?" \/>/, `<meta name="keywords" content="${cat.slug} games, free online ${cat.slug} games, browser games no download, unblocked casual games" />`)
-    .replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="https://pawcadegames.com/category/${cat.slug}/" />`)
-    .replace(/<link rel="alternate" hreflang="en-US" href=".*?" \/>/, `<link rel="alternate" hreflang="en-US" href="https://pawcadegames.com/category/${cat.slug}/" />`)
-    .replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/, `<link rel="alternate" hreflang="x-default" href="https://pawcadegames.com/category/${cat.slug}/" />`)
+    .replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="https://pawcadegames.com${catPath}" />`)
+    .replace(/<link rel="alternate" hreflang="en-US" href=".*?" \/>/, `<link rel="alternate" hreflang="en-US" href="https://pawcadegames.com${catPath}" />`)
+    .replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/, `<link rel="alternate" hreflang="x-default" href="https://pawcadegames.com${catPath}" />`)
     .replace(/<meta property="og:title" content=".*?" \/>/, `<meta property="og:title" content="${cat.metaTitle}" />`)
     .replace(/<meta property="og:description" content=".*?" \/>/, `<meta property="og:description" content="${cat.metaDescription}" />`)
-    .replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="https://pawcadegames.com/category/${cat.slug}/" />`)
+    .replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="https://pawcadegames.com${catPath}" />`)
     .replace(/<meta property="twitter:title" content=".*?" \/>/, `<meta property="twitter:title" content="${cat.metaTitle}" />`)
     .replace(/<meta property="twitter:description" content=".*?" \/>/, `<meta property="twitter:description" content="${cat.metaDescription}" />`)
-    .replace(/<meta property="twitter:url" content=".*?" \/>/, `<meta property="twitter:url" content="https://pawcadegames.com/category/${cat.slug}/" />`)
+    .replace(/<meta property="twitter:url" content=".*?" \/>/, `<meta property="twitter:url" content="https://pawcadegames.com${catPath}" />`)
     .replace('</head>', `  <script type="application/ld+json">${catSchema}</script>\n  </head>`)
     .replace('<div id="root"></div>', catSemanticContent);
 
   writeFileSync(targetFile, catHtml, 'utf-8');
 
-  // Also pre-render /popular/ root alias if cat.slug is popular
-  if (cat.slug === 'popular') {
-    const popDir = resolve(DIST_DIR, 'popular');
-    mkdirSync(popDir, { recursive: true });
-    const popHtml = catHtml
-      .replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="https://pawcadegames.com/popular/" />`)
-      .replace(/<link rel="alternate" hreflang="en-US" href=".*?" \/>/, `<link rel="alternate" hreflang="en-US" href="https://pawcadegames.com/popular/" />`)
-      .replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/, `<link rel="alternate" hreflang="x-default" href="https://pawcadegames.com/popular/" />`)
-      .replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="https://pawcadegames.com/popular/" />`)
-      .replace(/<meta property="twitter:url" content=".*?" \/>/, `<meta property="twitter:url" content="https://pawcadegames.com/popular/" />`);
-    writeFileSync(resolve(popDir, 'index.html'), popHtml, 'utf-8');
-  }
 }
 
 // 4. Enhance Root dist/index.html with pre-rendered semantic directory and categories for crawlers
 const homeSemanticContent = `
   <div id="root">
-    <main class="min-h-screen bg-slate-900 text-slate-100 p-4 sm:p-8 max-w-6xl mx-auto">
+    <main class="text-ink p-4 sm:p-8 max-w-6xl mx-auto">
       <header class="text-center mb-8">
-        <h1 class="text-4xl font-black text-white mb-2">Pawcade Games 🎮 — Free Online Browser Games</h1>
-        <p class="text-slate-300 text-base max-w-2xl mx-auto">Instant play animal & farm casual web games. No downloads, no installations, 100% free on desktop, mobile, and Chromebook.</p>
+        <h1 class="text-4xl font-semibold font-display text-ink mb-2">Pawcade Games 🎮 — Free Online Browser Games</h1>
+        <p class="text-ink-soft text-base max-w-2xl mx-auto">Instant play animal & farm casual web games. No downloads, no installations, 100% free on desktop, mobile, and Chromebook.</p>
         
         <nav aria-label="Quick Category Hubs" class="mt-4 flex flex-wrap justify-center gap-2 text-xs font-bold">
-          <a href="/popular/" class="px-3 py-1.5 bg-amber-400 text-slate-950 hover:bg-amber-300 rounded-xl font-black">🌟 Popular Hits</a>
-          <a href="/category/puzzle/" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-amber-300 border border-slate-700">🧩 Puzzle Games</a>
-          <a href="/category/farm/" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-amber-300 border border-slate-700">🌾 Farm Games</a>
-          <a href="/category/arcade/" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-amber-300 border border-slate-700">⚡ Arcade Games</a>
-          <a href="/category/pets/" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-amber-300 border border-slate-700">🐾 Pet Games</a>
+          <a href="/popular/" class="px-3 py-1.5 bg-brand text-white hover:bg-brand-deep rounded-xl font-semibold font-display">🌟 Popular Hits</a>
+          <a href="/category/puzzle/" class="px-3 py-1.5 bg-white hover:bg-paper rounded-xl text-brand-deep border border-line">🧩 Puzzle Games</a>
+          <a href="/category/farm/" class="px-3 py-1.5 bg-white hover:bg-paper rounded-xl text-brand-deep border border-line">🌾 Farm Games</a>
+          <a href="/category/arcade/" class="px-3 py-1.5 bg-white hover:bg-paper rounded-xl text-brand-deep border border-line">⚡ Arcade Games</a>
+          <a href="/category/pets/" class="px-3 py-1.5 bg-white hover:bg-paper rounded-xl text-brand-deep border border-line">🐾 Pet Games</a>
         </nav>
       </header>
 
@@ -621,13 +573,13 @@ const homeSemanticContent = `
         ${playableGames
           .map(
             (g) => `
-          <article class="p-4 bg-slate-950/80 rounded-2xl border border-orange-500/20">
-            <h2 class="text-lg font-bold text-amber-400 mb-1">
+          <article class="p-4 bg-white rounded-[22px] border border-line">
+            <h2 class="text-lg font-bold text-brand-deep mb-1">
               <a href="${g.route}" class="hover:underline">${g.title}</a>
             </h2>
-            <p class="text-xs text-slate-300 mb-2">${g.tagline}</p>
-            <div class="text-[11px] text-slate-400 font-semibold mb-3">${g.description.slice(0, 120)}...</div>
-            <a href="${g.route}" class="inline-block px-3 py-1.5 bg-amber-500 text-slate-950 rounded-lg text-xs font-black">PLAY NOW</a>
+            <p class="text-xs text-ink-soft mb-2">${g.tagline}</p>
+            <div class="text-[11px] text-ink-soft font-semibold mb-3">${g.description.slice(0, 120)}...</div>
+            <a href="${g.route}" class="inline-block px-3 py-1.5 bg-brand text-white rounded-lg text-xs font-semibold font-display">PLAY NOW</a>
           </article>`
           )
           .join('')}
@@ -638,4 +590,96 @@ const homeSemanticContent = `
 const updatedHomeHtml = template.replace('<div id="root"></div>', homeSemanticContent);
 writeFileSync(TEMPLATE_PATH, updatedHomeHtml, 'utf-8');
 
-console.log(`[Pre-render] Successfully pre-rendered ${playableGames.length} game routes + 5 category/popular hubs + root homepage!`);
+// 5. Pre-render static info pages (About, Contact, Privacy, Terms) from src/lib/sitePages.ts
+const escapeHtml = (text: string) =>
+  text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+for (const page of INFO_PAGES) {
+  const url = `https://pawcadegames.com${page.route}`;
+  const body = `
+  <div id="root">
+    <main class="text-ink p-4 sm:p-8 max-w-3xl mx-auto">
+      <nav aria-label="Breadcrumb" class="text-xs font-semibold text-ink-soft mb-4 flex items-center gap-2">
+        <a href="/" class="hover:text-ink">Home</a> &gt;
+        <span class="text-brand-deep">${escapeHtml(page.navLabel)}</span>
+      </nav>
+      <h1 class="text-3xl sm:text-4xl font-semibold font-display text-ink mb-4">${escapeHtml(page.h1)}</h1>
+      <p class="text-ink-soft text-base leading-relaxed mb-8">${escapeHtml(page.intro)}</p>
+      ${page.sections
+        .map(
+          (sec) => `
+      <section class="mb-6">
+        <h2 class="text-xl font-bold text-ink mb-2">${escapeHtml(sec.heading)}</h2>
+        ${sec.paragraphs.map((para) => `<p class="text-sm text-ink-soft leading-relaxed mb-3">${escapeHtml(para)}</p>`).join('')}
+      </section>`
+        )
+        .join('')}
+      <nav aria-label="Site information" class="mt-10 pt-6 border-t border-line flex flex-wrap gap-4 text-xs">
+        <a href="/" class="text-brand-deep hover:underline font-bold">← All games</a>
+        ${INFO_PAGES.map((p) => `<a href="${p.route}" class="text-ink-soft hover:text-ink">${escapeHtml(p.navLabel)}</a>`).join('')}
+      </nav>
+    </main>
+  </div>`;
+
+  const schema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': page.id === 'about' ? 'AboutPage' : page.id === 'contact' ? 'ContactPage' : 'WebPage',
+    name: page.metaTitle,
+    url,
+    description: page.metaDescription,
+    inLanguage: 'en-US',
+    isPartOf: { '@type': 'WebSite', name: 'Pawcade Games', url: 'https://pawcadegames.com/' },
+  });
+
+  const title = escapeHtml(page.metaTitle);
+  const desc = escapeHtml(page.metaDescription);
+  const html = template
+    .replace(/<title>.*?<\/title>/, () => `<title>${title}</title>`)
+    .replace(/<meta name="title" content=".*?" \/>/, () => `<meta name="title" content="${title}" />`)
+    .replace(/<meta name="description" content=".*?" \/>/, () => `<meta name="description" content="${desc}" />`)
+    .replace(/<link rel="canonical" href=".*?" \/>/, () => `<link rel="canonical" href="${url}" />`)
+    .replace(/<link rel="alternate" hreflang="en-US" href=".*?" \/>/, () => `<link rel="alternate" hreflang="en-US" href="${url}" />`)
+    .replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/, () => `<link rel="alternate" hreflang="x-default" href="${url}" />`)
+    .replace(/<meta property="og:title" content=".*?" \/>/, () => `<meta property="og:title" content="${title}" />`)
+    .replace(/<meta property="og:description" content=".*?" \/>/, () => `<meta property="og:description" content="${desc}" />`)
+    .replace(/<meta property="og:url" content=".*?" \/>/, () => `<meta property="og:url" content="${url}" />`)
+    .replace(/<meta property="twitter:title" content=".*?" \/>/, () => `<meta property="twitter:title" content="${title}" />`)
+    .replace(/<meta property="twitter:description" content=".*?" \/>/, () => `<meta property="twitter:description" content="${desc}" />`)
+    .replace(/<meta property="twitter:url" content=".*?" \/>/, () => `<meta property="twitter:url" content="${url}" />`)
+    .replace('</head>', () => `  <script type="application/ld+json">${schema}</script>\n  </head>`)
+    .replace('<div id="root"></div>', () => body);
+
+  const dir = resolve(DIST_DIR, page.route.slice(1, -1));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(resolve(dir, 'index.html'), html, 'utf-8');
+}
+
+// 6. Generate dist/sitemap.xml from the same sources (never edit by hand)
+const today = new Date().toISOString().slice(0, 10);
+const sitemapEntries: Array<{ path: string; changefreq: string; priority: string }> = [
+  { path: '/', changefreq: 'daily', priority: '1.0' },
+  ...playableGames.map((g) => ({ path: g.route, changefreq: 'weekly', priority: g.featured ? '0.9' : '0.8' })),
+  ...Object.values(CATEGORIES).map((c) => ({
+    path: c.slug === 'popular' ? '/popular/' : `/category/${c.slug}/`,
+    changefreq: 'weekly',
+    priority: '0.8',
+  })),
+  ...INFO_PAGES.map((p) => ({ path: p.route, changefreq: 'yearly', priority: '0.3' })),
+];
+const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapEntries
+  .map(
+    (e) => `  <url>
+    <loc>https://pawcadegames.com${e.path}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${e.changefreq}</changefreq>
+    <priority>${e.priority}</priority>
+  </url>`
+  )
+  .join('\n')}
+</urlset>
+`;
+writeFileSync(resolve(DIST_DIR, 'sitemap.xml'), sitemapXml, 'utf-8');
+
+console.log(`[Pre-render] Successfully pre-rendered ${playableGames.length} game routes + ${Object.keys(CATEGORIES).length} hubs + ${INFO_PAGES.length} info pages + root homepage + sitemap (${sitemapEntries.length} URLs)!`);

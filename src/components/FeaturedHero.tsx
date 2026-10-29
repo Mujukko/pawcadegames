@@ -61,10 +61,6 @@ export const FeaturedHero: React.FC<FeaturedHeroProps> = ({ game, onClick }) => 
               <span>#1 Trending Casual Game</span>
             </span>
 
-            <span className="px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-amber-300 text-xs font-bold flex items-center gap-1">
-              <Star className="w-3.5 h-3.5 fill-amber-300" />
-              <span>{game.rating.toFixed(1)} Rating ({game.playCount || '18K+'} Plays)</span>
-            </span>
           </div>
 
           <div>

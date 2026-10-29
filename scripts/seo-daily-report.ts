@@ -48,7 +48,7 @@ export async function generateDailyExecutiveReport(): Promise<DailyExecutiveRepo
   const aiBots = ['OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'Bingbot'];
   const allowedAiBots = aiBots.filter((bot) => robotsTxt.includes(`User-agent: ${bot}\nAllow: /`));
 
-  const sitemapPath = resolve(rootDir, 'public/sitemap.xml');
+  const sitemapPath = resolve(rootDir, 'dist/sitemap.xml');
   const sitemapTxt = existsSync(sitemapPath) ? readFileSync(sitemapPath, 'utf-8') : '';
   const popularInSitemap = sitemapTxt.includes('/popular/');
 

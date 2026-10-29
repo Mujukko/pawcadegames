@@ -4,6 +4,8 @@ import { Footer } from '../components/Footer';
 import { HomePage } from './HomePage';
 import { GamePage } from './GamePage';
 import { NotFoundPage } from './NotFoundPage';
+import { InfoPage } from './InfoPage';
+import { INFO_PAGES } from '../lib/sitePages';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
 import { analytics } from '../lib/analytics';
 
@@ -104,10 +106,15 @@ export const App: React.FC = () => {
     const crossyChickenGame = GAMES_REGISTRY.find(g => g.id === 'crossy-chicken');
     const tractorHillClimbGame = GAMES_REGISTRY.find(g => g.id === 'tractor-hill-climb');
 
+    const infoPage = INFO_PAGES.find((p) => currentRoute === p.route || currentRoute === p.route.slice(0, -1));
+
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/tractor-hill-climb') || currentRoute.startsWith('/games/hill-climb') || currentRoute.startsWith('/games/tractor-climb')) {
+    if (infoPage) {
+      activeTitle = infoPage.metaTitle;
+      activeDesc = infoPage.metaDescription;
+    } else if (currentRoute.startsWith('/games/tractor-hill-climb') || currentRoute.startsWith('/games/hill-climb') || currentRoute.startsWith('/games/tractor-climb')) {
       if (tractorHillClimbGame) {
         activeTitle = tractorHillClimbGame.metaTitle;
         activeDesc = tractorHillClimbGame.metaDescription;
@@ -398,7 +405,7 @@ export const App: React.FC = () => {
     } else if (currentRoute.startsWith('/games/duck-runner') && duckRunnerGame) {
       activeTitle = duckRunnerGame.metaTitle;
       activeDesc = duckRunnerGame.metaDescription;
-    } else if ((currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) && petCrushGame) {
+    } else if ((currentRoute.startsWith('/games/farm-animal-match') || currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) && petCrushGame) {
       activeTitle = petCrushGame.metaTitle;
       activeDesc = petCrushGame.metaDescription;
     } else if (currentRoute.startsWith('/games/flappy-chicken') && flappyChickenGame) {
@@ -407,7 +414,7 @@ export const App: React.FC = () => {
     } else if (currentRoute.startsWith('/games/animal-2048') && animal2048Game) {
       activeTitle = animal2048Game.metaTitle;
       activeDesc = animal2048Game.metaDescription;
-    } else if (currentRoute.startsWith('/games/farm-tetris') && farmTetrisGame) {
+    } else if ((currentRoute.startsWith('/games/farm-block-drop') || currentRoute.startsWith('/games/farm-tetris')) && farmTetrisGame) {
       activeTitle = farmTetrisGame.metaTitle;
       activeDesc = farmTetrisGame.metaDescription;
     } else if (currentRoute.startsWith('/games/dog-parking') && dogParkingGame) {
@@ -420,23 +427,23 @@ export const App: React.FC = () => {
       activeTitle = farmParkingGame.metaTitle;
       activeDesc = farmParkingGame.metaDescription;
     } else if (currentRoute.startsWith('/category/popular') || currentRoute.startsWith('/popular')) {
-      activeTitle = 'Most Popular Free Online Games 🌟 — Top Browser Hits (No Download) | Pawcade';
+      activeTitle = 'Most Popular Free Online Games — Top Browser Hits | Pawcade';
       activeDesc = 'Play the most popular free online browser games on Pawcade! Enjoy top trending hits like Farm Mini Mart, Farm Block Blast, Dog Parking, and Duck Hunt with zero downloads.';
     } else if (currentRoute.startsWith('/category/puzzle')) {
-      activeTitle = 'Free Online Puzzle Games 🧩 — Brain Teasers & Spatial Puzzles (No Download) | Pawcade';
+      activeTitle = 'Free Online Puzzle Games — Brain Teasers, No Download | Pawcade';
       activeDesc = 'Play free online puzzle games with zero downloads on Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, Critter Tap Away, and more.';
     } else if (currentRoute.startsWith('/category/farm')) {
-      activeTitle = 'Free Online Farm Games 🚜 — Barnyard Puzzles & Farm Tycoons (No Download) | Pawcade';
+      activeTitle = 'Free Online Farm Games — Barnyard Puzzles & Tycoons | Pawcade';
       activeDesc = 'Play free casual farm games online at Pawcade! Manage farm markets, drive tractors, herd sheep, and harvest crops directly in your browser.';
     } else if (currentRoute.startsWith('/category/arcade')) {
-      activeTitle = 'Free Online Arcade Games 🕹️ — Retro Reflex & Tap Games (No Download) | Pawcade';
+      activeTitle = 'Free Online Arcade Games — Quick Reflex & Tap Games | Pawcade';
       activeDesc = 'Enjoy free retro-style casual arcade web games on Pawcade! Tap, dodge, flap, and jump in Duck Runner, Flappy Chicken, Egg Buster, and more.';
     } else if (currentRoute.startsWith('/category/pets')) {
-      activeTitle = 'Cute Pet Games Online 🐾 — Free Animal Puzzles & Care Games (No Download) | Pawcade';
+      activeTitle = 'Cat & Dog Games Online — Free Cute Pet Games | Pawcade';
       activeDesc = 'Play free cute pet games in your browser on Pawcade! Slide corgis in Dog Parking, save cats in Cat Parking, feed cute critters, and solve cozy puzzles.';
     } else if (currentRoute === '/' || currentRoute === '' || currentRoute === '/games' || currentRoute === '/games/') {
       activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games | No Download';
-      activeDesc = 'Play free casual browser games online at Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, Duck Runner, Pet Candy Crush, and more. Zero downloads, mobile & desktop compatible.';
+      activeDesc = 'Play free casual browser games online at Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, Duck Runner, Farm Animal Match, and more. Zero downloads, mobile & desktop compatible.';
     } else {
       activeTitle = 'Page Not Found (404) | Pawcade Games';
     }
@@ -463,6 +470,10 @@ export const App: React.FC = () => {
   };
 
   const renderCurrentView = () => {
+    const infoPage = INFO_PAGES.find((p) => currentRoute === p.route || currentRoute === p.route.slice(0, -1));
+    if (infoPage) {
+      return <InfoPage page={infoPage} navigate={navigate} />;
+    }
     if (
       currentRoute === '/' ||
       currentRoute === '' ||
@@ -666,7 +677,7 @@ export const App: React.FC = () => {
     if (currentRoute.startsWith('/games/duck-runner')) {
       return <GamePage navigate={navigate} gameId="duck-runner" />;
     }
-    if (currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) {
+    if (currentRoute.startsWith('/games/farm-animal-match') || currentRoute.startsWith('/games/pet-candy-crush') || currentRoute.startsWith('/games/farm-animal-crush')) {
       return <GamePage navigate={navigate} gameId="pet-candy-crush" />;
     }
     if (currentRoute.startsWith('/games/flappy-chicken')) {
@@ -675,7 +686,7 @@ export const App: React.FC = () => {
     if (currentRoute.startsWith('/games/animal-2048')) {
       return <GamePage navigate={navigate} gameId="animal-2048" />;
     }
-    if (currentRoute.startsWith('/games/farm-tetris')) {
+    if (currentRoute.startsWith('/games/farm-block-drop') || currentRoute.startsWith('/games/farm-tetris')) {
       return <GamePage navigate={navigate} gameId="farm-tetris" />;
     }
     if (currentRoute.startsWith('/games/dog-parking')) {
@@ -691,7 +702,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-900 text-slate-100 selection:bg-orange-500 selection:text-slate-950">
+    <div className="flex flex-col min-h-screen text-ink">
       <Header
         currentRoute={currentRoute}
         navigate={navigate}

@@ -3,164 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Page Not Found (404) | Pawcade Games 🎮</title>
+    <title>Page Not Found (404) | Pawcade Games</title>
     <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="Oops! The page or game you are looking for does not exist on Pawcade Games. Return to the arcade to play free browser games." />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐕</text></svg>" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <meta name="description" content="The page you are looking for does not exist on Pawcade Games. Head back to play free browser games." />
+    <link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <style>
-      *, *::before, *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+      @font-face {
+        font-family: 'Fredoka';
+        font-weight: 300 700;
+        font-display: optional;
+        src: url('/fonts/fredoka-latin.woff2') format('woff2');
       }
+      @font-face {
+        font-family: 'Nunito';
+        font-weight: 200 1000;
+        font-display: optional;
+        src: url('/fonts/nunito-latin.woff2') format('woff2');
+      }
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       body {
-        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        background-color: #0f172a;
-        color: #f8fafc;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 1.5rem;
-        text-align: center;
+        padding: 24px 16px;
+        font-family: 'Nunito', system-ui, sans-serif;
+        color: #1b2a4b;
+        background: #cbe7ff;
       }
       .card {
-        background-color: rgba(2, 6, 23, 0.85);
-        border: 1px solid rgba(249, 115, 22, 0.25);
-        border-radius: 1.5rem;
-        padding: 2.5rem 2rem;
-        max-width: 32rem;
         width: 100%;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        max-width: 440px;
+        background: #fff;
+        border-radius: 28px;
+        padding: 32px 24px;
+        text-align: center;
+        box-shadow: 0 5px 0 rgb(27 60 110 / 0.16), 0 12px 22px -10px rgb(27 60 110 / 0.4);
       }
-      .emoji-badge {
-        font-size: 4rem;
-        margin-bottom: 1rem;
-        display: inline-block;
-        animation: float 3s ease-in-out infinite;
+      .paw { font-size: 56px; margin-bottom: 12px; }
+      .code { font-size: 14px; font-weight: 800; color: #d9500a; margin-bottom: 4px; }
+      h1 { font-family: 'Fredoka', 'Nunito', system-ui, sans-serif; font-weight: 600; font-size: 30px; line-height: 1.15; margin-bottom: 8px; }
+      p { font-size: 15px; line-height: 1.55; color: #4b5b7c; margin-bottom: 22px; }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        height: 48px; padding: 0 24px; border-radius: 16px;
+        background: #ff6b1a; color: #fff; text-decoration: none;
+        font-family: 'Fredoka', 'Nunito', system-ui, sans-serif; font-weight: 600; font-size: 17px;
+        box-shadow: 0 4px 0 #c2470a;
       }
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-8px); }
+      .btn:active { transform: translateY(4px); box-shadow: none; }
+      .picks { margin-top: 24px; padding-top: 18px; border-top: 1px solid #d9e7f5; }
+      .picks-title { font-size: 13px; font-weight: 700; color: #8796b2; margin-bottom: 10px; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .grid a {
+        display: block; padding: 10px; border-radius: 14px;
+        background: #cbe7ff; color: #1b2a4b; text-decoration: none; font-weight: 800; font-size: 14px;
       }
-      h1 {
-        font-family: 'Fredoka', cursive, sans-serif;
-        font-size: 2.25rem;
-        font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 0.5rem;
-      }
-      .error-code {
-        color: #f97316;
-        font-weight: 800;
-      }
-      p {
-        color: #94a3b8;
-        font-size: 1rem;
-        line-height: 1.6;
-        margin-bottom: 1.75rem;
-      }
-      .btn-primary {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        background: linear-gradient(135deg, #f97316, #eab308);
-        color: #020617;
-        font-weight: 800;
-        font-size: 0.95rem;
-        padding: 0.875rem 1.75rem;
-        border-radius: 0.875rem;
-        text-decoration: none;
-        transition: transform 0.15s ease, filter 0.15s ease;
-        margin-bottom: 2rem;
-      }
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.1);
-      }
-      .recommendations {
-        border-top: 1px solid #1e293b;
-        padding-top: 1.5rem;
-      }
-      .rec-title {
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        font-weight: 700;
-        color: #cbd5e1;
-        margin-bottom: 1rem;
-      }
-      .game-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-      }
-      .game-pill {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        background-color: #1e293b;
-        border: 1px solid #334155;
-        border-radius: 0.75rem;
-        padding: 0.625rem 0.75rem;
-        color: #f8fafc;
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 700;
-        transition: all 0.15s ease;
-        text-align: left;
-      }
-      .game-pill:hover {
-        background-color: #334155;
-        border-color: #f97316;
-        color: #fb923c;
-      }
-      .footer-note {
-        margin-top: 2rem;
-        font-size: 0.8rem;
-        color: #64748b;
-      }
+      .grid a:hover { background: #b3dafc; }
     </style>
   </head>
   <body>
     <div class="card">
-      <div class="emoji-badge">🐶🚜</div>
-      <h1>Lost in the Barnyard? <span class="error-code">404</span></h1>
-      <p>We couldn't find the page or game you're looking for. The animals might have moved it to another pasture!</p>
-      
-      <a href="/" class="btn-primary">
-        🎮 Return to All Games
-      </a>
-
-      <div class="recommendations">
-        <div class="rec-title">Or jump straight into popular free games:</div>
-        <div class="game-grid">
-          <a href="/games/dog-parking/" class="game-pill">
-            <span>🐕</span>
-            <span>Dog Parking</span>
-          </a>
-          <a href="/games/farm-block-blast/" class="game-pill">
-            <span>🐶</span>
-            <span>Farm Block Blast</span>
-          </a>
-          <a href="/games/sheep-cart-jam/" class="game-pill">
-            <span>🐑</span>
-            <span>Sheep Cart Jam</span>
-          </a>
-          <a href="/games/farm-mini-mart/" class="game-pill">
-            <span>🏪</span>
-            <span>Farm Mini Mart</span>
-          </a>
+      <div class="paw" aria-hidden="true">🐾</div>
+      <div class="code">Error 404</div>
+      <h1>This page wandered off</h1>
+      <p>We looked all over the barn and couldn't find it. Pick a game instead!</p>
+      <a href="/" class="btn">All games</a>
+      <div class="picks">
+        <div class="picks-title">Popular right now</div>
+        <div class="grid">
+          <a href="/games/dog-parking/">Dog Parking</a>
+          <a href="/games/farm-block-blast/">Farm Block Blast</a>
+          <a href="/games/sheep-cart-jam/">Sheep Cart Jam</a>
+          <a href="/games/farm-mini-mart/">Farm Mini Mart</a>
         </div>
       </div>
-    </div>
-    <div class="footer-note">
-      Pawcade Games &bull; 100% Free Browser Games &bull; No Download Required
     </div>
   </body>
 </html>
