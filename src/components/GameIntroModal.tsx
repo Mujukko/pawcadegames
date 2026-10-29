@@ -21,6 +21,45 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'barnyard-ninja-chick': {
+    title: 'Barnyard Ninja Chick: Silo Parkour',
+    subtitle: 'Precision Platformer & Wall Jump Acrobatics',
+    mascot: '🥷🐥',
+    themeColor: 'from-amber-500 via-rose-500 to-slate-800',
+    goal: 'Run, jump, slide, and wall-climb through tricky silo parkour acts to reach the green exit door!',
+    steps: [
+      {
+        icon: '🦘',
+        title: '1. Scale Wall Shafts',
+        desc: 'Jump toward vertical walls and tap Jump again to kick off surfaces and climb high shafts.',
+      },
+      {
+        icon: '⬇️',
+        title: '2. Slide Under Buzzsaws',
+        desc: 'Hold Slide while running to duck beneath rotating steel saws and low wooden rafters.',
+      },
+      {
+        icon: '🚩',
+        title: '3. Claim Checkpoints',
+        desc: 'Touch checkpoint flags to save your spot. If you touch spikes, you instantly respawn at the flag.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'A / D or Arrow Keys: Run left and right',
+        'W, Up Arrow, or Spacebar: Jump and wall-jump off surfaces',
+        'S or Down Arrow: Slide under obstacles',
+        'R Key: Quick restart act',
+        'M Key: Toggle ninja sound effects',
+      ],
+      mobile: [
+        'Left & Right Arrows: Run left and right across platforms',
+        'JUMP Button: Tap to leap across pits and perform wall climbs',
+        'SLIDE Button: Duck and slide under hazard blades',
+      ],
+    },
+    proTip: 'Chain your wall jumps quickly! The faster you tap Jump as you hit a vertical wall, the higher your acrobatic leap will be.',
+  },
   'duck-training-champion': {
     title: 'Duck Life: Barnyard Champion',
     subtitle: 'Athletic Duckling Training & Olympic Racing',

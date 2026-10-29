@@ -27,6 +27,47 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'barnyard-ninja-chick',
+    slug: 'barnyard-ninja-chick',
+    title: 'Vex Platformer: Barnyard Ninja Chick 🥷🐥',
+    tagline: 'Wall-jump, slide under buzzsaws, and conquer tricky silo obstacle acts as an agile ninja chick!',
+    description: 'Play Vex Platformer: Barnyard Ninja Chick free online! Guide Chirpy the acrobatic ninja chick through vertical silo obstacle courses filled with spinning steel buzzsaws, spikes, and hay trampolines. Master tight wall jumps, slide under low beams, activate checkpoint flags, and sprint toward the exit door in this fast-paced 2D precision platformer inspired by Vex!',
+    category: 'arcade',
+    categories: ['arcade', 'puzzle', 'pets'],
+    route: '/games/barnyard-ninja-chick/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '52.7K',
+    badge: '🥷 Vex Platformer',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-ninja-chick.svg',
+    featured: true,
+    tags: ['Vex', 'Platformer', 'Ninja', 'Parkour', 'Speedrun'],
+    controls: {
+      desktop: [
+        'A / D or Left/Right Arrow Keys: Run left and right',
+        'W, Up Arrow, or Spacebar: Jump and wall-jump off surfaces',
+        'S or Down Arrow: Slide under low obstacles',
+        'R Key: Quick restart current act',
+        'M Key: Toggle ninja sound effects',
+      ],
+      mobile: [
+        'Left & Right Arrows: Run across wooden platforms',
+        'JUMP Button: Leap over spikes and wall-climb vertical shafts',
+        'SLIDE Button: Duck beneath spinning buzzsaw blades',
+      ],
+    },
+    features: [
+      'Precision 2D Platformer Physics with Coyote Time and Jump Buffering',
+      'Acrobatic Wall-Jumping and Sliding Mechanics across Vertical Shafts',
+      '3 Handcrafted Silo Acts: Lower Barn Loft, Windmill Cogs, and Silo Pinnacle',
+      'Rotating Buzzsaws, Floor Spikes, Bouncy Hay Trampolines, and Checkpoints',
+      'Procedural Web Audio Engine with Crisp Ninja Jumps and Victory Fanfares',
+      '100% Free Instant Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Vex Platformer: Barnyard Ninja Chick 🥷🐥 — Free Online Game | Pawcade',
+    metaDescription: 'Play Vex Platformer free online! Wall-jump up vertical shafts, slide under buzzsaws, and beat challenging parkour acts as a ninja chick with no download needed.',
+  },
+  {
     id: 'duck-training-champion',
     slug: 'duck-training-champion',
     title: 'Duck Life: Barnyard Champion 🦆🏅',
