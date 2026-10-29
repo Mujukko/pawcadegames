@@ -100,11 +100,17 @@ export const App: React.FC = () => {
     const piggyCannonGame = GAMES_REGISTRY.find(g => g.id === 'piggy-cannon-blast');
     const barnyardRopeGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-rope-cut');
     const barnyardPopcornGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-popcorn-popper');
+    const barnyardWordGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-word-connect');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/barnyard-popcorn-popper') || currentRoute.startsWith('/games/popcorn-popper') || currentRoute.startsWith('/games/popcorn-burst')) {
+    if (currentRoute.startsWith('/games/barnyard-word-connect') || currentRoute.startsWith('/games/word-connect') || currentRoute.startsWith('/games/corgi-cross')) {
+      if (barnyardWordGame) {
+        activeTitle = barnyardWordGame.metaTitle;
+        activeDesc = barnyardWordGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/barnyard-popcorn-popper') || currentRoute.startsWith('/games/popcorn-popper') || currentRoute.startsWith('/games/popcorn-burst')) {
       if (barnyardPopcornGame) {
         activeTitle = barnyardPopcornGame.metaTitle;
         activeDesc = barnyardPopcornGame.metaDescription;
@@ -470,6 +476,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/barnyard-word-connect') || currentRoute.startsWith('/games/word-connect') || currentRoute.startsWith('/games/corgi-cross')) {
+      return <GamePage navigate={navigate} gameId="barnyard-word-connect" />;
     }
     if (currentRoute.startsWith('/games/barnyard-popcorn-popper') || currentRoute.startsWith('/games/popcorn-popper') || currentRoute.startsWith('/games/popcorn-burst')) {
       return <GamePage navigate={navigate} gameId="barnyard-popcorn-popper" />;

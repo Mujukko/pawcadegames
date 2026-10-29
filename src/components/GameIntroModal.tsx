@@ -1307,6 +1307,44 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Stop pouring slightly before the target line! When kernels pop, their volume expands rapidly and lifts the top popcorn upward.',
   },
+  'barnyard-word-connect': {
+    title: 'Barnyard Word Connect: Corgi Cross',
+    subtitle: 'Circular Dial Word Connection Puzzle',
+    mascot: '🐶📖',
+    themeColor: 'from-sky-600 via-indigo-600 to-blue-700',
+    goal: 'Swipe across wooden letter tiles to find farm words and solve crossword puzzles with Sunny Corgi!',
+    steps: [
+      {
+        icon: '🔤',
+        title: '1. Swipe to Connect',
+        desc: 'Drag across circular letter tiles on the dial to spell valid English farm words.',
+      },
+      {
+        icon: '📖',
+        title: '2. Fill the Crossword',
+        desc: 'Matching words fly into empty grid slots to reveal letters for intersecting words.',
+      },
+      {
+        icon: '🦴',
+        title: '3. Find Bonus Words',
+        desc: 'Spell valid bonus words not on the grid to fill Sunny Corgi\'s treat jar for extra points!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Click & Drag: Swipe across letter tiles on the circular dial',
+        'Release: Submit your word guess to the crossword grid',
+        'Shuffle (🔀): Re-arrange letter tiles for a new view',
+        'Hint (💡): Reveal a hidden letter in the grid',
+      ],
+      mobile: [
+        'Touch & Swipe: Drag your finger across letter tiles to connect them',
+        'Release: Submit your word guess into the crossword',
+        'Level Buttons: Tap top pills to switch levels anytime',
+      ],
+    },
+    proTip: 'Look for short 3-letter words first! Finding the root word often opens up longer 4-letter and 5-letter crossword answers.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

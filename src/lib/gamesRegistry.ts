@@ -2467,6 +2467,44 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Barnyard Popcorn Popper: Kernel Burst 🍿🌽 — No Download | Pawcade',
     metaDescription: 'Play Barnyard Popcorn Popper free online! Pour golden corn kernels into copper kettles and pop buttery popcorn to the fill line. Free arcade game no download.',
   },
+  {
+    id: 'barnyard-word-connect',
+    slug: 'barnyard-word-connect',
+    title: 'Barnyard Word Connect: Corgi Cross 🐶📖',
+    tagline: 'Swipe across wooden letter tiles to connect farm words and solve crosswords!',
+    description: 'Connect letters on the wooden dial to solve barnyard crossword puzzles! Swipe across letter tiles to form words with Sunny Corgi. Discover bonus words to fill the treat jar, unlock hints, and clear harvest levels. Free word search brain puzzle with no download.',
+    category: 'puzzle',
+    categories: ['puzzle', 'farm', 'pets'],
+    route: '/games/barnyard-word-connect/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '53.8K',
+    badge: '📖 Word Cross',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-word-connect.svg',
+    controls: {
+      desktop: [
+        'Mouse Click & Drag: Swipe across letter tiles on dial to spell words',
+        'Release: Submit your word guess to the crossword grid',
+        'Shuffle Button: Mix up letter tiles for a fresh angle',
+        'Hint Button: Reveal a hidden letter in the crossword grid',
+      ],
+      mobile: [
+        'Touch & Swipe: Drag your finger across letter tiles to connect them',
+        'Release: Automatically submit word guess into the grid',
+        'Level Buttons: Tap top pills to switch levels anytime',
+      ],
+    },
+    features: [
+      'Interactive Circular Letter Dial with Real-Time Glowing Trail Swipe',
+      '4 Handcrafted Farm Crossword Levels: Meadow, Orchard, Windmill, and Harvest',
+      'Hidden Bonus Word Detection and Sunny Corgi Treat Jar Rewards',
+      'Hint System and Letter Tile Shuffle for Smooth Puzzling',
+      'Procedural Web Audio Engine (Ascending Pentatonic Letter Picks, Fanfares, and Chimes)',
+      '100% Free Instant Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Barnyard Word Connect: Corgi Cross 🐶📖 — No Download | Pawcade',
+    metaDescription: 'Play Barnyard Word Connect free online! Swipe across letter dials to solve crossword puzzles with Sunny Corgi. Free word connect puzzle game no download.',
+  },
 ];
 
 
