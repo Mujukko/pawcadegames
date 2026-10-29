@@ -262,7 +262,16 @@ for (const game of playableGames) {
 
       <!-- Game stage placeholder: replaced by the live game when JS loads -->
       <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] max-w-4xl mx-auto bg-stage rounded-[28px] ring-4 ring-white overflow-hidden mb-8 shadow-tile flex items-center justify-center">
-        <img src="${game.thumbnailUrl}" alt="${plainTitle} gameplay screenshot" class="absolute inset-0 w-full h-full object-cover opacity-50" loading="eager" fetchpriority="high" width="768" height="432" />
+        ${
+          game.thumbnailUrl.endsWith('.jpg')
+            ? `
+        <picture class="absolute inset-0 w-full h-full">
+          <source srcset="${game.thumbnailUrl.replace(/\.jpg$/, '.avif')}" type="image/avif" />
+          <img src="${game.thumbnailUrl}" alt="${plainTitle} gameplay screenshot" class="w-full h-full object-cover opacity-50" loading="eager" fetchpriority="high" width="768" height="432" />
+        </picture>`
+            : `
+        <img src="${game.thumbnailUrl}" alt="${plainTitle} gameplay screenshot" class="absolute inset-0 w-full h-full object-cover opacity-50" loading="eager" fetchpriority="high" width="768" height="432" />`
+        }
         <div class="relative flex flex-col items-center text-center px-6">
           <span class="w-20 h-20 rounded-full bg-brand text-white flex items-center justify-center text-3xl shadow-tile mb-3" aria-hidden="true">▶</span>
           <h2 class="font-display text-2xl font-semibold text-white drop-shadow">Play ${plainTitle} online</h2>
@@ -360,6 +369,10 @@ for (const game of playableGames) {
     </main>
   </div>`;
 
+  const isJpg = game.thumbnailUrl.endsWith('.jpg');
+  const preloadThumb = isJpg ? game.thumbnailUrl.replace(/\.jpg$/, '.avif') : game.thumbnailUrl;
+  const preloadType = isJpg ? ' type="image/avif"' : '';
+
   // Inject meta tags, canonical, schema, and pre-rendered content into HTML template
   let pageHtml = template
     .replace(/<title>.*?<\/title>/, `<title>${game.metaTitle}</title>`)
@@ -377,7 +390,7 @@ for (const game of playableGames) {
     .replace(/<meta property="twitter:description" content=".*?" \/>/, `<meta property="twitter:description" content="${game.metaDescription}" />`)
     .replace(/<meta property="twitter:url" content=".*?" \/>/, `<meta property="twitter:url" content="https://pawcadegames.com${game.route}" />`)
     .replace(/<meta property="twitter:image" content=".*?" \/>/, `<meta property="twitter:image" content="${ogImage}" />`)
-    .replace(/<link rel="preload" as="image" href=".*?" fetchpriority="high" \/>/, `<link rel="preload" as="image" href="${game.thumbnailUrl}" fetchpriority="high" />`)
+    .replace(/<link rel="preload" as="image" href=".*?" (type="image\/avif" )?fetchpriority="high" \/>/, `<link rel="preload" as="image" href="${preloadThumb}"${preloadType} fetchpriority="high" />`)
     .replace('</head>', `  <script type="application/ld+json">${schemaLd}</script>\n  </head>`)
     .replace('<div id="root"></div>', semanticContent);
 
@@ -559,34 +572,67 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
 // 4. Enhance Root dist/index.html with pre-rendered semantic directory and categories for crawlers
 const homeSemanticContent = `
   <div id="root">
-    <main class="text-ink p-4 sm:p-8 max-w-6xl mx-auto">
-      <header class="text-center mb-8">
-        <h1 class="text-4xl font-semibold font-display text-ink mb-2">Pawcade Games 🎮 — Free Online Browser Games</h1>
-        <p class="text-ink-soft text-base max-w-2xl mx-auto">Instant play animal & farm casual web games. No downloads, no installations, 100% free on desktop, mobile, and Chromebook.</p>
-        
-        <nav aria-label="Quick Category Hubs" class="mt-4 flex flex-wrap justify-center gap-2 text-xs font-bold">
-          <a href="/popular/" class="px-3 py-1.5 bg-brand text-white hover:bg-brand-deep rounded-xl font-semibold font-display">🌟 Popular Hits</a>
-          <a href="/category/puzzle/" class="px-3 py-1.5 bg-white hover:bg-paper rounded-xl text-brand-deep border border-line">🧩 Puzzle Games</a>
-          <a href="/category/farm/" class="px-3 py-1.5 bg-white hover:bg-paper rounded-xl text-brand-deep border border-line">🌾 Farm Games</a>
-          <a href="/category/arcade/" class="px-3 py-1.5 bg-white hover:bg-paper rounded-xl text-brand-deep border border-line">⚡ Arcade Games</a>
-          <a href="/category/pets/" class="px-3 py-1.5 bg-white hover:bg-paper rounded-xl text-brand-deep border border-line">🐾 Pet Games</a>
-        </nav>
-      </header>
+    <main class="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
+      <nav aria-label="Game categories" class="-mx-3 px-3 sm:mx-0 sm:px-0 pb-2 mb-4 sm:mb-6 flex gap-2.5 sm:gap-3 overflow-x-auto scrollbar-none">
+        <a href="/" class="shrink-0 inline-flex items-center gap-2 h-11 sm:h-12 px-4 sm:px-5 rounded-2xl font-display font-semibold text-[15px] sm:text-base bg-white text-ink shadow-[0_4px_0_rgb(27_60_110/0.18)] ring-2 ring-white">
+          <span>All games</span>
+          <span class="text-xs font-bold px-1.5 rounded-full bg-paper">${playableGames.length}</span>
+        </a>
+        <a href="/popular/" class="shrink-0 inline-flex items-center gap-2 h-11 sm:h-12 px-4 sm:px-5 rounded-2xl font-display font-semibold text-[15px] sm:text-base bg-brand shadow-[0_4px_0_#c2470a] text-white">Popular</a>
+        <a href="/category/puzzle/" class="shrink-0 inline-flex items-center gap-2 h-11 sm:h-12 px-4 sm:px-5 rounded-2xl font-display font-semibold text-[15px] sm:text-base bg-puzzle shadow-[0_4px_0_#1f62ab] text-white">Puzzle</a>
+        <a href="/category/farm/" class="shrink-0 inline-flex items-center gap-2 h-11 sm:h-12 px-4 sm:px-5 rounded-2xl font-display font-semibold text-[15px] sm:text-base bg-farm shadow-[0_4px_0_#1f7c41] text-white">Farm</a>
+        <a href="/category/arcade/" class="shrink-0 inline-flex items-center gap-2 h-11 sm:h-12 px-4 sm:px-5 rounded-2xl font-display font-semibold text-[15px] sm:text-base bg-arcade shadow-[0_4px_0_#b8303f] text-white">Arcade</a>
+        <a href="/category/pets/" class="shrink-0 inline-flex items-center gap-2 h-11 sm:h-12 px-4 sm:px-5 rounded-2xl font-display font-semibold text-[15px] sm:text-base bg-pets shadow-[0_4px_0_#6c41bd] text-white">Pets</a>
+      </nav>
 
-      <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        ${playableGames
-          .map(
-            (g) => `
-          <article class="p-4 bg-white rounded-[22px] border border-line">
-            <h2 class="text-lg font-bold text-brand-deep mb-1">
-              <a href="${g.route}" class="hover:underline">${g.title}</a>
-            </h2>
-            <p class="text-xs text-ink-soft mb-2">${g.tagline}</p>
-            <div class="text-[11px] text-ink-soft font-semibold mb-3">${g.description.slice(0, 120)}...</div>
-            <a href="${g.route}" class="inline-block px-3 py-1.5 bg-brand text-white rounded-lg text-xs font-semibold font-display">PLAY NOW</a>
-          </article>`
-          )
-          .join('')}
+      <section aria-label="Games">
+        <div class="grid grid-flow-dense grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 gap-3 sm:gap-4">
+          <div class="col-span-3 sm:col-span-4 md:col-span-3 md:row-span-1 lg:row-span-2 bg-white rounded-[22px] shadow-tile p-4 sm:p-6 flex flex-col justify-center">
+            <h1 class="font-display text-2xl sm:text-[2rem] lg:text-4xl font-semibold text-ink leading-[1.1] tracking-tight">
+              Free Online Animal &amp; Farm Games
+            </h1>
+            <p class="mt-2 sm:mt-3 text-sm sm:text-[15px] text-ink-soft leading-relaxed">
+              Puzzles, farm sims, and quick arcade games starring corgis, cats, sheep, and friends. Every game plays instantly in your browser, on phone or computer.
+            </p>
+            <p class="mt-3 sm:mt-4 flex flex-wrap gap-2 text-xs font-bold">
+              <span class="px-2.5 py-1 rounded-full bg-farm-tint text-farm-deep">Free</span>
+              <span class="px-2.5 py-1 rounded-full bg-puzzle-tint text-puzzle-deep">No download</span>
+              <span class="px-2.5 py-1 rounded-full bg-pets-tint text-pets-deep">Phone &amp; computer</span>
+            </p>
+          </div>
+
+          <!-- Featured Hero LCP Card: Farm Mini Mart -->
+          <a href="/games/farm-mini-mart/" aria-label="Play Farm Mini Mart" class="group relative block aspect-square rounded-[18px] sm:rounded-[22px] overflow-hidden bg-card ring-[3px] sm:ring-4 ring-white shadow-tile col-span-2 row-span-2">
+            <picture>
+              <source srcset="/assets/thumbnails/thumb-farm-mini-mart.avif" type="image/avif" />
+              <img src="/assets/thumbnails/thumb-farm-mini-mart.jpg" alt="Farm Mini Mart" loading="eager" fetchpriority="high" decoding="sync" width="384" height="384" class="w-full h-full object-cover" />
+            </picture>
+            <span class="absolute inset-x-0 bottom-0 px-2.5 pb-2 pt-8 bg-gradient-to-t from-black/75 via-black/35 to-transparent text-white font-display font-semibold leading-tight drop-shadow text-xl sm:text-2xl px-4 pb-3">
+              Farm Mini Mart
+            </span>
+          </a>
+
+          ${playableGames
+            .slice(1)
+            .map((g, idx) => {
+              const isJpg = g.thumbnailUrl.endsWith('.jpg');
+              const avif = isJpg ? g.thumbnailUrl.replace(/\.jpg$/, '.avif') : null;
+              const isEager = idx < 3;
+              const titleClean = stripEmoji(g.title);
+              return `
+          <a href="${g.route}" aria-label="Play ${titleClean}" class="group relative block aspect-square rounded-[18px] sm:rounded-[22px] overflow-hidden bg-card ring-[3px] sm:ring-4 ring-white shadow-tile">
+            ${
+              avif
+                ? `<picture><source srcset="${avif}" type="image/avif" /><img src="${g.thumbnailUrl}" alt="${titleClean}" loading="${isEager ? 'eager' : 'lazy'}" width="384" height="384" class="w-full h-full object-cover" /></picture>`
+                : `<img src="${g.thumbnailUrl}" alt="${titleClean}" loading="${isEager ? 'eager' : 'lazy'}" width="384" height="384" class="w-full h-full object-cover" />`
+            }
+            <span class="absolute inset-x-0 bottom-0 px-2.5 pb-2 pt-8 bg-gradient-to-t from-black/75 via-black/35 to-transparent text-white font-display font-semibold leading-tight drop-shadow text-[13px] sm:text-sm">
+              ${titleClean}
+            </span>
+          </a>`;
+            })
+            .join('')}
+        </div>
       </section>
     </main>
   </div>`;

@@ -23,6 +23,8 @@ export const CATEGORY_CHIP: Record<GameCategory, { label: string; className: str
 export const GameCard: React.FC<GameCardProps> = ({ game, onClick, size = 'default', priority = false }) => {
   const name = shortTitle(game);
   const large = size === 'large';
+  const isJpg = game.thumbnailUrl.endsWith('.jpg');
+  const avifUrl = isJpg ? game.thumbnailUrl.replace(/\.jpg$/, '.avif') : null;
 
   return (
     <a
@@ -33,16 +35,32 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onClick, size = 'defau
         large ? 'col-span-2 row-span-2' : ''
       }`}
     >
-      <img
-        src={game.thumbnailUrl}
-        alt=""
-        loading={priority ? 'eager' : 'lazy'}
-        fetchPriority={priority ? 'high' : 'auto'}
-        decoding={priority ? 'sync' : 'async'}
-        width={384}
-        height={384}
-        className="w-full h-full object-cover"
-      />
+      {avifUrl ? (
+        <picture>
+          <source srcSet={avifUrl} type="image/avif" />
+          <img
+            src={game.thumbnailUrl}
+            alt=""
+            loading={priority ? 'eager' : 'lazy'}
+            fetchPriority={priority ? 'high' : 'auto'}
+            decoding={priority ? 'sync' : 'async'}
+            width={384}
+            height={384}
+            className="w-full h-full object-cover"
+          />
+        </picture>
+      ) : (
+        <img
+          src={game.thumbnailUrl}
+          alt=""
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          decoding={priority ? 'sync' : 'async'}
+          width={384}
+          height={384}
+          className="w-full h-full object-cover"
+        />
+      )}
       <span
         className={`absolute inset-x-0 bottom-0 px-2.5 pb-2 pt-8 bg-gradient-to-t from-black/75 via-black/35 to-transparent text-white font-display font-semibold leading-tight drop-shadow translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0 [@media(hover:none)]:translate-y-0 transition-transform duration-200 ${
           large ? 'text-xl sm:text-2xl px-4 pb-3' : 'text-[13px] sm:text-sm'
