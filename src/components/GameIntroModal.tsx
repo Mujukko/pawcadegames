@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'duck-training-champion': {
+    title: 'Duck Life: Barnyard Champion',
+    subtitle: 'Athletic Duckling Training & Olympic Racing',
+    mascot: '🦆🏅',
+    themeColor: 'from-amber-500 via-sky-500 to-emerald-600',
+    goal: 'Train your farm duckling in running, flying, and swimming to become the Olympic champion!',
+    steps: [
+      {
+        icon: '🏃',
+        title: '1. Train Running Hurdles',
+        desc: 'Jump over rocks and fences to increase sprint speed and build athletic stamina.',
+      },
+      {
+        icon: '🪽',
+        title: '2. Train Flying and Swimming',
+        desc: 'Flap wings to soar between winds and dive underwater to dodge floating logs.',
+      },
+      {
+        icon: '🏆',
+        title: '3. Win Olympic Races',
+        desc: 'Enter championship races against farm rivals to take first place, win gold medals, and earn coins.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Spacebar or Up Arrow: Jump hurdles, flap wings, and dive underwater',
+        'Spacebar during Races: Trigger energy speed burst',
+        'Top Buttons: Open Boutique to buy hats and energy seeds',
+        'M Key: Toggle quack vocalizations and athletic sounds',
+      ],
+      mobile: [
+        'Large Action Button: Tap to jump, flap, dive, or boost',
+        'Training Cards: Tap Running, Flying, or Swimming to start session',
+        'Boutique: Spend race coins on cool athletic headbands and caps',
+      ],
+    },
+    proTip: 'Collect floating corn seeds during every training session. Each seed gives extra bonus XP to level up your duckling faster!',
+  },
   'barnyard-connect-four': {
     title: 'Barnyard Four in a Row',
     subtitle: 'Classic Vertical Disc Drop Strategy Game',

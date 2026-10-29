@@ -27,6 +27,46 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'duck-training-champion',
+    slug: 'duck-training-champion',
+    title: 'Duck Life: Barnyard Champion 🦆🏅',
+    tagline: 'Train your baby duckling in running, flying, and swimming to win Olympic farm championships!',
+    description: 'Play Duck Life: Barnyard Champion free online! Adopt a baby duckling and train athletic skills across three action mini-games: hurdle jumping, sky gliding, and underwater diving. Collect golden corn seeds to level up your stats, visit the boutique to equip stylish hats, and enter high-stakes Olympic races against rival ducks to take home gold medals in this beloved sports pet simulator.',
+    category: 'pets',
+    categories: ['pets', 'arcade', 'farm'],
+    route: '/games/duck-training-champion/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '47.9K',
+    badge: '🦆 Duck Life',
+    thumbnailUrl: '/assets/thumbnails/thumb-duck-training-champion.svg',
+    featured: true,
+    tags: ['Duck Life', 'Pet Simulator', 'Training', 'Racing', 'Animals'],
+    controls: {
+      desktop: [
+        'Spacebar or Up Arrow: Jump hurdles, flap wings, and dive underwater',
+        'Spacebar during Races: Trigger energy speed burst',
+        'Top Buttons: Visit the Boutique for stylish hats and energy snacks',
+        'M Key: Toggle duck quack vocalizations and athletic sounds',
+      ],
+      mobile: [
+        'Touch Action Button: Tap to jump, flap wings, dive, or boost',
+        'Training Cards: Tap Running, Flying, or Swimming to begin training',
+        'Boutique: Spend race coins on athletic headbands, caps, and crowns',
+      ],
+    },
+    features: [
+      '3 Distinct Athletic Training Mini-Games: Hurdle Sprint, Sky Glider, and River Diver',
+      'RPG Skill Progression System with Dynamic Leveling (Running, Flying, Swimming, Energy)',
+      'Olympic Championship Races with 4-Lane Track Stadium and Finish Line Ribbons',
+      'Duck Boutique with 6 Collectible Hats and Energy Stamina Snacks',
+      'Procedural Web Audio Engine with Dual Formant Duck Quacks and Fanfares',
+      '100% Free Instant Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Duck Life: Barnyard Champion 🦆🏅 — Free Online Game | Pawcade',
+    metaDescription: 'Play Duck Life free online! Train your pet duckling in running, flying, and swimming, compete in Olympic races, and win gold medals with no download needed.',
+  },
+  {
     id: 'barnyard-connect-four',
     slug: 'barnyard-connect-four',
     title: 'Connect 4: Barnyard Four in a Row 🟡🔴',
