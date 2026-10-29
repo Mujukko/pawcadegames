@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'pyramid-solitaire-harvest': {
+    title: 'Pyramid Solitaire: Barnyard Harvest',
+    subtitle: 'Classic 13-Sum Harvest Card Puzzle',
+    mascot: '🌾🃏',
+    themeColor: 'from-amber-600 via-yellow-600 to-emerald-700',
+    goal: 'Pair uncovered cards that add up to 13 to clear the 28-card pyramid before your stock deck runs dry!',
+    steps: [
+      {
+        icon: '🃏',
+        title: '1. Match Pairs Summing to 13',
+        desc: 'Select two open cards that total 13. King clears solo, Queen pairs with Ace, and Jack pairs with 2.',
+      },
+      {
+        icon: '🌾',
+        title: '2. Clear the Card Pyramid',
+        desc: 'Removing lower cards frees the blocked cards above them. Work your way up to the top peak.',
+      },
+      {
+        icon: '📦',
+        title: '3. Draw from Stock & Waste',
+        desc: 'Flip stock cards to find matching partners. You get two full redeals per hand.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Select uncovered card or draw from stock',
+        '💡 Hint Button: Highlight an available pair summing to 13',
+        'R Key: Deal a fresh pyramid solitaire hand',
+        'M Key: Toggle card flip sound effects',
+      ],
+      mobile: [
+        'Tap Cards: Select open cards to pair and clear them',
+        'Tap Stock: Draw the next card into the waste pile',
+        '💡 Hint Button: Reveal matching card pairs',
+      ],
+    },
+    proTip: 'Kings have a value of 13 and clear instantly with one tap! Remove kings early to unlock the cards behind them!',
+  },
   'barnyard-spot-difference': {
     title: 'Barnyard Spot the Difference: Farm Detective',
     subtitle: 'Cozy Countryside Observation & Difference Finding Puzzle',

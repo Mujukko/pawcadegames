@@ -27,6 +27,46 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'pyramid-solitaire-harvest',
+    slug: 'pyramid-solitaire-harvest',
+    title: 'Pyramid Solitaire: Barnyard Harvest 🌾🃏',
+    tagline: 'Match cards summing to 13, clear the harvest pyramid, and master cozy card solitaire!',
+    description: 'Play Pyramid Solitaire: Barnyard Harvest free online! Match open card pairs totaling 13 to clear all 28 cards from the pyramid. Tap Kings to discard solo, combine Queens with Aces, and draw extra stock cards across 2 redeals. Enjoy fast hints, streak bonuses, and zero downloads in this cozy classic card puzzle!',
+    category: 'farm',
+    categories: ['farm', 'puzzle', 'arcade'],
+    route: '/games/pyramid-solitaire-harvest/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '61.4K',
+    badge: '🌾 Pyramid Solitaire',
+    thumbnailUrl: '/assets/thumbnails/thumb-pyramid-solitaire-harvest.svg',
+    featured: true,
+    tags: ['Pyramid Solitaire', 'Solitaire', 'Card Games', 'Patience', 'Puzzle', 'Harvest', 'Farm'],
+    controls: {
+      desktop: [
+        'Mouse Click / Pointer: Select uncovered card or draw from deck',
+        '💡 Hint Button: Highlight an available pair summing to 13',
+        'R Key: Deal a fresh pyramid solitaire hand',
+        'M Key: Toggle card flip sound effects',
+      ],
+      mobile: [
+        'Tap Cards: Select open cards to pair and clear them',
+        'Tap Stock: Draw next card into waste pile',
+        '💡 Hint: Highlight matching card pairs',
+      ],
+    },
+    features: [
+      'Classic 28-Card 7-Row Solitaire Pyramid with Uncovered Card Logic',
+      'True Sum-to-13 Matching: King Solo, Queen+Ace, Jack+2, 10+3, and 9+4',
+      'Stock Deck with Waste Pile and 2 Generous Table Redeals',
+      'Smart Solver Hint Tool and Combo Streak Score Multipliers',
+      '100% Procedural Native Canvas Card Graphics with High-Contrast Rank Badges',
+      'Single-Screen Zero-Scroll Viewport and Zero Downloads Required',
+    ],
+    metaTitle: 'Pyramid Solitaire: Barnyard Harvest - Free Card Game (No Download)',
+    metaDescription: 'Play free Pyramid Solitaire online! Pair cards totaling 13 to harvest 28 pyramid cards. Zero downloads, instant card deals, and full mobile support in browser.',
+  },
+  {
     id: 'barnyard-spot-difference',
     slug: 'barnyard-spot-difference',
     title: 'Spot the Difference: Barnyard Detective 🔍🚜',
