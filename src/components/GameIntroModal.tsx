@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'barnyard-frog-hop': {
+    title: 'Barnyard Pond Hop: Frog Jump',
+    subtitle: 'Floating Lily Pad & Insect Catching Arcade',
+    mascot: '🐸🪷',
+    themeColor: 'from-emerald-600 via-teal-600 to-sky-700',
+    goal: 'Hop Barnaby the green tree frog across floating lily pads, snatch buzzing flies with your sticky tongue, and reach the victory bank!',
+    steps: [
+      {
+        icon: '🐸',
+        title: '1. Hop Across Pads',
+        desc: 'Use directional buttons or arrow keys to leap onto drifting lily pads and wooden logs.',
+      },
+      {
+        icon: '🪷',
+        title: '2. Watch Sinking Flowers',
+        desc: 'Red lily pads sink after two seconds! Keep moving forward before you plunge into the water.',
+      },
+      {
+        icon: '👅',
+        title: '3. Catch Buzzing Flies',
+        desc: 'Tap the Sticky Tongue button to grab flies and dragonflies for massive combo score bonuses!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Arrow Keys / WASD: Leap up, down, left, or right',
+        'Spacebar: Flick sticky tongue to catch nearby insects',
+        'R Key: Reset current pond crossing',
+        'M Key: Toggle frog croak and splash sounds',
+      ],
+      mobile: [
+        'D-Pad: Tap directional arrows to leap between pads',
+        '👅 TONGUE: Flick tongue to catch flying bugs',
+        'Hearts: 3 lives per pond stage',
+      ],
+    },
+    proTip: 'Logs drift smoothly across the current! Rest in the center of logs to plan your next leap toward floating dragonflies!',
+  },
   'virtual-puppy-pet': {
     title: 'Virtual Pet: Cozy Puppy Care',
     subtitle: 'Cozy Puppy Care & Fetch Simulator',

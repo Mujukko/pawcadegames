@@ -27,6 +27,46 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'barnyard-frog-hop',
+    slug: 'barnyard-frog-hop',
+    title: 'Frog Games: Barnyard Pond Hop 🐸🪷',
+    tagline: 'Leap across drifting lily pads, snatch buzzing flies with your tongue, and cross the pond!',
+    description: 'Play Frog Games: Barnyard Pond Hop free online! Hop Barnaby the green tree frog across drifting river logs, avoid sinking pink water lilies, and flick your sticky tongue to catch buzzing flies. Beat Sunny Duck Pond, Misty Marsh, and Sunset Lagoon with zero downloads in this fun casual frog game!',
+    category: 'arcade',
+    categories: ['arcade', 'farm', 'pets'],
+    route: '/games/barnyard-frog-hop/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '51.2K',
+    badge: '🐸 Frog Games',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-frog-hop.svg',
+    featured: true,
+    tags: ['Frog Games', 'Frog Jump', 'Lily Pad', 'Arcade', 'Reflex', 'Animals', 'Farm', 'Pond'],
+    controls: {
+      desktop: [
+        'Arrow Keys / WASD: Leap up, down, left, or right across pads',
+        'Spacebar: Flick sticky tongue to catch nearby flies',
+        'R Key: Reset current pond crossing',
+        'M Key: Toggle frog croak and water sounds',
+      ],
+      mobile: [
+        'D-Pad: Leap in four directions',
+        '👅 TONGUE Button: Catch buzzing flies',
+        'Hearts: 3 lives per pond stage',
+      ],
+    },
+    features: [
+      'Dynamic Parabolic Jump Physics with Moving Pad Snapping and Drift Mechanics',
+      'Sticky Tongue Insect Catching System for Flying Dragonflies and Fireflies',
+      'Multiple Pad Hazards: Sinking Water Lilies and Drifting Wooden River Logs',
+      'Three Progressive Pond Environments: Duck Pond, Misty Marsh, and Sunset Lagoon',
+      '100% Native Procedural Audio Synthesizer (Frog Croaks, Splashes, Tongue Snaps)',
+      'Single-Screen Zero-Scroll Viewport and Zero Downloads Required',
+    ],
+    metaTitle: 'Frog Games: Barnyard Pond Hop - Free Jump Arcade (No Download)',
+    metaDescription: 'Play free frog games online! Hop Barnaby the green tree frog across floating lily pads, snatch buzzing flies with your tongue, and reach the victory pond bank.',
+  },
+  {
     id: 'virtual-puppy-pet',
     slug: 'virtual-puppy-pet',
     title: 'Virtual Pet: Cozy Puppy Care 🐶🍼',
