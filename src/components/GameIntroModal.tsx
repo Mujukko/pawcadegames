@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'barnyard-horse-derby': {
+    title: 'Barnyard Derby: Horse Racing Champion',
+    subtitle: 'Fast-Paced Steeplechase & Hurdle Racing',
+    mascot: '🐎🏆',
+    themeColor: 'from-amber-600 via-emerald-600 to-sky-700',
+    goal: 'Gallop down the turf track, time your hurdle jumps over fences, and cross the wire first to win the championship cup!',
+    steps: [
+      {
+        icon: '🐎',
+        title: '1. Gallop & Steer Lanes',
+        desc: 'Use Up and Down buttons or arrow keys to switch between three turf lanes and avoid crowded rivals.',
+      },
+      {
+        icon: '🚧',
+        title: '2. Time Hurdle Jumps',
+        desc: 'Tap Jump right before wooden fences and water ponds. Perfect timing grants an instant speed surge!',
+      },
+      {
+        icon: '🥕',
+        title: '3. Collect Carrots & Shoes',
+        desc: 'Snatch crisp carrots to restore your stamina gauge and grab shiny golden horseshoes for big bonus points.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Spacebar / Right Arrow: Jump over steeplechase hurdles',
+        'Up / Down Arrows (W / S): Switch between running lanes',
+        'R Key: Quick restart race track',
+        'M Key: Toggle gallop and bugle sounds',
+      ],
+      mobile: [
+        '🐎 JUMP Button: Jump over hurdles and water hazards',
+        '⬆️ / ⬇️ Buttons: Switch turf lanes to dodge obstacles',
+        'Carrots & Shoes: Tap lanes to steer into collectibles',
+      ],
+    },
+    proTip: 'Look ahead at fence distances! Jumping right at four meters triggers a Perfect Jump, giving you top speed without burning stamina!',
+  },
   'pyramid-solitaire-harvest': {
     title: 'Pyramid Solitaire: Barnyard Harvest',
     subtitle: 'Classic 13-Sum Harvest Card Puzzle',

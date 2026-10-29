@@ -111,9 +111,20 @@ export const App: React.FC = () => {
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
+    const cleanRoute = currentRoute.replace(/\/$/, '');
+    const matchedGame = GAMES_REGISTRY.find(
+      (g) =>
+        cleanRoute === g.route.replace(/\/$/, '') ||
+        cleanRoute.startsWith(`/games/${g.id}`) ||
+        cleanRoute.startsWith(`/games/${g.slug}`)
+    );
+
     if (infoPage) {
       activeTitle = infoPage.metaTitle;
       activeDesc = infoPage.metaDescription;
+    } else if (matchedGame) {
+      activeTitle = matchedGame.metaTitle;
+      activeDesc = matchedGame.metaDescription;
     } else if (currentRoute.startsWith('/games/tractor-hill-climb') || currentRoute.startsWith('/games/hill-climb') || currentRoute.startsWith('/games/tractor-climb')) {
       if (tractorHillClimbGame) {
         activeTitle = tractorHillClimbGame.metaTitle;
@@ -439,8 +450,8 @@ export const App: React.FC = () => {
       activeTitle = 'Free Online Arcade Games — Quick Reflex & Tap Games | Pawcade';
       activeDesc = 'Enjoy free retro-style casual arcade web games on Pawcade! Tap, dodge, flap, and jump in Duck Runner, Flappy Chicken, Egg Buster, and more.';
     } else if (currentRoute.startsWith('/category/pets')) {
-      activeTitle = 'Cat & Dog Games Online — Free Cute Pet Games | Pawcade';
-      activeDesc = 'Play free cute pet games in your browser on Pawcade! Slide corgis in Dog Parking, save cats in Cat Parking, feed cute critters, and solve cozy puzzles.';
+      activeTitle = 'Pet Games Online — Free Cute Cat & Dog Games | Pawcade';
+      activeDesc = 'Play free pet games online in your browser on Pawcade! Slide corgis in Dog Parking, save cats in Cat Parking, feed cute critters, and solve cozy puzzles with no downloads.';
     } else if (currentRoute === '/' || currentRoute === '' || currentRoute === '/games' || currentRoute === '/games/') {
       activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games | No Download';
       activeDesc = 'Play free casual browser games online at Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, Duck Runner, Farm Animal Match, and more. Zero downloads, mobile & desktop compatible.';
@@ -499,6 +510,16 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    const cleanRoute = currentRoute.replace(/\/$/, '');
+    const matchedGame = GAMES_REGISTRY.find(
+      (g) =>
+        cleanRoute === g.route.replace(/\/$/, '') ||
+        cleanRoute.startsWith(`/games/${g.id}`) ||
+        cleanRoute.startsWith(`/games/${g.slug}`)
+    );
+    if (matchedGame) {
+      return <GamePage navigate={navigate} gameId={matchedGame.id} />;
     }
     if (currentRoute.startsWith('/games/tractor-hill-climb') || currentRoute.startsWith('/games/hill-climb') || currentRoute.startsWith('/games/tractor-climb')) {
       return <GamePage navigate={navigate} gameId="tractor-hill-climb" />;

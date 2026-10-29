@@ -84,4 +84,5 @@ export const GAME_COMPONENTS: Record<string, LazyExoticComponent<ComponentType>>
   'penguin-pasture-diner': lazy(() => import('../games/penguin-pasture-diner/PenguinPastureDinerContainer').then((m) => ({ default: m.PenguinPastureDinerContainer }))),
   'barnyard-spot-difference': lazy(() => import('../games/barnyard-spot-difference/BarnyardSpotDifferenceContainer').then((m) => ({ default: m.BarnyardSpotDifferenceContainer }))),
   'pyramid-solitaire-harvest': lazy(() => import('../games/pyramid-solitaire-harvest/PyramidSolitaireHarvestContainer').then((m) => ({ default: m.PyramidSolitaireHarvestContainer }))),
+  'barnyard-horse-derby': lazy(() => import('../games/barnyard-horse-derby/BarnyardHorseDerbyContainer').then((m) => ({ default: m.BarnyardHorseDerbyContainer }))),
 };

@@ -27,6 +27,46 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'barnyard-horse-derby',
+    slug: 'barnyard-horse-derby',
+    title: 'Horse Racing Game: Barnyard Derby 🐎🏆',
+    tagline: 'Gallop on turf tracks, time hurdle jumps over farm fences, and win championship cups!',
+    description: 'Play Horse Racing Game: Barnyard Derby free online! Gallop down turf lanes, switch paths to dodge rivals, and jump over wooden fences and water ponds. Collect crisp carrots to recharge stamina and grab golden horseshoes for high scores. Win Meadow Sprint, Autumn Steeplechase, and Sunset Derby in this fun horse game!',
+    category: 'farm',
+    categories: ['farm', 'pets', 'arcade'],
+    route: '/games/barnyard-horse-derby/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '64.2K',
+    badge: '🐎 Horse Racing',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-horse-derby.svg',
+    featured: true,
+    tags: ['Horse Racing Game', 'Horse Games', 'Derby', 'Steeplechase', 'Hurdles', 'Farm', 'Pets', 'Arcade'],
+    controls: {
+      desktop: [
+        'Spacebar / Right Arrow: Jump over steeplechase hurdles',
+        'Up / Down Arrows (W / S): Switch between running lanes',
+        'R Key: Quick restart race track',
+        'M Key: Toggle gallop and bugle sounds',
+      ],
+      mobile: [
+        '🐎 JUMP Button: Jump over hurdles and water hazards',
+        '⬆️ / ⬇️ Buttons: Switch turf lanes to dodge obstacles',
+        'Collectibles: Steer into carrots and horseshoes',
+      ],
+    },
+    features: [
+      '3-Lane Steeplechase Racing with Smooth Vertical Lane Transitions',
+      'Parabolic Jump Physics with Precision Timing Grades (OK, Great, Perfect)',
+      'Real-Time Stamina Management and Turbo Speed Boost Surges',
+      'Three Unique Derby Cups: Green Meadow, Autumn Pasture, and Sunset Derby',
+      'Procedural Web Audio with Hoof Gallops, Whinnies, and Bugle Fanfares',
+      'Single-Screen Zero-Scroll Viewport and Zero Downloads Required',
+    ],
+    metaTitle: 'Horse Racing Game: Barnyard Derby - Free Online (No Download)',
+    metaDescription: 'Play free horse games online! Gallop in Barnyard Derby, time hurdle jumps over hay fences, collect golden horseshoes, and win championship cups in your browser.',
+  },
+  {
     id: 'pyramid-solitaire-harvest',
     slug: 'pyramid-solitaire-harvest',
     title: 'Pyramid Solitaire: Barnyard Harvest 🌾🃏',
