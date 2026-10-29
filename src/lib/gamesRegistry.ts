@@ -27,6 +27,47 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'barnyard-egg-cart',
+    slug: 'barnyard-egg-cart',
+    title: 'Egg Car: Barnyard Egg Cart 🥚🚗',
+    tagline: 'Balance a fragile egg in your farm truck, tackle rolling pasture hills, and collect golden coins!',
+    description: 'Play Egg Car: Barnyard Egg Cart free online! Drive a bouncy vintage farm truck over rolling green pasture hills, wooden bridges, and steep mountain dips with a delicate giant egg sitting in the rear basket. Feather your gas and brake pedals with precision to keep the egg from flying out or cracking on the rocks. Collect shiny golden coins, grab protective shields, magnets, and turbo boosters, and visit the Garage to upgrade suspension, straw cushions, grip tires, and deeper baskets in this addictive 2D physics balancing racer!',
+    category: 'farm',
+    categories: ['farm', 'arcade', 'pets'],
+    route: '/games/barnyard-egg-cart/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '42.1K',
+    badge: '🥚 Egg Car',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-egg-cart.svg',
+    featured: true,
+    tags: ['Egg Car', 'Physics', 'Hill Climb', 'Balancing', 'Farm'],
+    controls: {
+      desktop: [
+        'D, Right Arrow, or Spacebar: Accelerate gas and tilt cart backward',
+        'A, Left Arrow, or S: Brake, reverse, and tilt cart forward',
+        'Feather the throttle on hill crests to keep the egg inside the basket',
+        'R Key: Quick restart run',
+        'M Key: Toggle motor and suspension sound effects',
+      ],
+      mobile: [
+        'Right Pedal (GAS): Hold to accelerate and climb steep pasture hills',
+        'Left Pedal (BRAKE): Hold to slow down and steady the truck on declines',
+        'GARAGE Button: Spend collected coins on suspension, tires, and basket upgrades',
+      ],
+    },
+    features: [
+      '2D Spring-Damper Vehicle & Egg Balance Physics with Dynamic Inertia',
+      'Expressive Animated Egg with Happy, Nervous, Screaming, and Splat Reactions',
+      'Power-Up Pickups: Impact Shield Bubbles, Coin Magnets, and Turbo Boosters',
+      'Pasture Garage with 4 Upgrade Trees: Air Springs, Hay Cushion, Grip Tires, and Deep Basket',
+      'Procedural Web Audio Engine with Variable Pitch Motor Rumble and Egg Cracks',
+      '100% Free Instant Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Egg Car: Barnyard Egg Cart 🥚🚗 — Free Online Physics Game | Pawcade',
+    metaDescription: 'Play Egg Car online free! Drive a farm cart over rolling pasture hills, balance a fragile egg, collect coins, and upgrade your truck with no download needed.',
+  },
+  {
     id: 'farm-animal-clicker',
     slug: 'farm-animal-clicker',
     title: 'Farm Animal Idle Clicker 🐾🌾',

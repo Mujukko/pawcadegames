@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'barnyard-egg-cart': {
+    title: 'Barnyard Egg Cart: Pasture Hill',
+    subtitle: 'Fragile Egg Balance Physics Hill Racer',
+    mascot: '🥚🚜',
+    themeColor: 'from-amber-500 via-emerald-500 to-sky-600',
+    goal: 'Drive your farm cart across bumpy pasture hills without cracking or losing the fragile egg!',
+    steps: [
+      {
+        icon: '⚡',
+        title: '1. Feather the Gas Pedal',
+        desc: 'Hold Gas to climb steep grassy hills. Ease off the throttle before ridge crests so the egg stays in the basket.',
+      },
+      {
+        icon: '🛑',
+        title: '2. Tap the Brakes on Slopes',
+        desc: 'Tap Brake on downhill slopes to level the truck and prevent the egg from rolling over the front rim.',
+      },
+      {
+        icon: '🛡️',
+        title: '3. Collect Coins and Shields',
+        desc: 'Grab Blue Shields to survive hard ground impacts, Yellow Magnets to collect coins, and visit the Garage for upgrades.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'D, Right Arrow, or Space: Gas and tilt cart backward',
+        'A, Left Arrow, or S: Brake and tilt cart forward',
+        'R Key: Quick restart run',
+        'M Key: Toggle motor rumble sound effects',
+      ],
+      mobile: [
+        'Right Pedal (GAS): Hold to accelerate and climb pasture hills',
+        'Left Pedal (BRAKE): Hold to slow down and tilt down on slopes',
+        'GARAGE Button: Open truck upgrades with collected gold coins',
+      ],
+    },
+    proTip: 'Upgrade the Hay Cushion and Deep Basket first in the Garage. They absorb bumpy shocks and prevent the egg from bouncing out!',
+  },
   'farm-animal-clicker': {
     title: 'Farm Animal Idle Clicker',
     subtitle: 'Cozy Idle Pet & Farm Clicker Game',
