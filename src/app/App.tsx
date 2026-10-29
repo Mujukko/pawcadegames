@@ -101,11 +101,17 @@ export const App: React.FC = () => {
     const barnyardRopeGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-rope-cut');
     const barnyardPopcornGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-popcorn-popper');
     const barnyardWordGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-word-connect');
+    const crossyChickenGame = GAMES_REGISTRY.find(g => g.id === 'crossy-chicken');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/barnyard-word-connect') || currentRoute.startsWith('/games/word-connect') || currentRoute.startsWith('/games/corgi-cross')) {
+    if (currentRoute.startsWith('/games/crossy-chicken') || currentRoute.startsWith('/games/crossy-road') || currentRoute.startsWith('/games/chicken-cross')) {
+      if (crossyChickenGame) {
+        activeTitle = crossyChickenGame.metaTitle;
+        activeDesc = crossyChickenGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/barnyard-word-connect') || currentRoute.startsWith('/games/word-connect') || currentRoute.startsWith('/games/corgi-cross')) {
       if (barnyardWordGame) {
         activeTitle = barnyardWordGame.metaTitle;
         activeDesc = barnyardWordGame.metaDescription;
@@ -476,6 +482,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/crossy-chicken') || currentRoute.startsWith('/games/crossy-road') || currentRoute.startsWith('/games/chicken-cross')) {
+      return <GamePage navigate={navigate} gameId="crossy-chicken" />;
     }
     if (currentRoute.startsWith('/games/barnyard-word-connect') || currentRoute.startsWith('/games/word-connect') || currentRoute.startsWith('/games/corgi-cross')) {
       return <GamePage navigate={navigate} gameId="barnyard-word-connect" />;

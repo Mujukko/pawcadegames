@@ -1345,6 +1345,44 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Look for short 3-letter words first! Finding the root word often opens up longer 4-letter and 5-letter crossword answers.',
   },
+  'crossy-chicken': {
+    title: 'Crossy Chicken: Farm Highway Run',
+    subtitle: 'Infinite Road & River Arcade Hopper',
+    mascot: '🐔🛣️',
+    themeColor: 'from-amber-500 via-orange-600 to-red-600',
+    goal: 'Hop Clucky across speeding farm highways, rushing river logs, and railroad tracks as far as possible!',
+    steps: [
+      {
+        icon: '▲',
+        title: '1. Hop Across Lanes',
+        desc: 'Tap the screen or press Up / Space to hop Clucky forward across traffic and train tracks.',
+      },
+      {
+        icon: '🪵',
+        title: '2. Ride Floating Logs',
+        desc: 'Leap onto moving river logs to cross rushing waters without falling in.',
+      },
+      {
+        icon: '🦅',
+        title: '3. Keep Moving',
+        desc: 'Do not stand still too long! A circling hawk will swoop down if you hesitate.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Arrow Keys or WASD: Hop forward, left, right, or back',
+        'Spacebar: Quick forward hop',
+        'R Key: Restart run immediately',
+        'M Key: Toggle sound effects and clucks',
+      ],
+      mobile: [
+        'Tap Screen: Hop forward immediately',
+        'Swipe: Hop in swipe direction',
+        'Bottom Buttons: Dedicated touch D-Pad controls',
+      ],
+    },
+    proTip: 'Look ahead two lanes before hopping! Timing your leap onto a river log is easier if you watch the current direction early.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

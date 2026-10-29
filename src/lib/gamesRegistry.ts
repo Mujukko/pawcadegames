@@ -2505,6 +2505,44 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Barnyard Word Connect: Corgi Cross 🐶📖 — No Download | Pawcade',
     metaDescription: 'Play Barnyard Word Connect free online! Swipe across letter dials to solve crossword puzzles with Sunny Corgi. Free word connect puzzle game no download.',
   },
+  {
+    id: 'crossy-chicken',
+    slug: 'crossy-chicken',
+    title: 'Crossy Chicken: Farm Highway Run 🐔🛣️',
+    tagline: 'Hop Clucky across busy farm highways, rushing river logs, and railroad tracks!',
+    description: 'Guide Clucky the chicken across speeding farm roads, rushing rivers, and train tracks! Dodge pickup trucks, leap onto floating wooden logs, and collect golden star coins. Keep hopping forward before the circling hawk swoops down. Free infinite arcade hopper with no download.',
+    category: 'arcade',
+    categories: ['arcade', 'farm', 'pets'],
+    route: '/games/crossy-chicken/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '58.4K',
+    badge: '🐔 Highway Hop',
+    thumbnailUrl: '/assets/thumbnails/thumb-crossy-chicken.svg',
+    controls: {
+      desktop: [
+        'Arrow Keys or W/A/S/D: Hop forward, left, right, or down',
+        'Spacebar: Quick forward hop',
+        'R Key: Quick restart run',
+        'M Key: Toggle sound effects and clucks',
+      ],
+      mobile: [
+        'Tap Screen: Hop forward immediately',
+        'Swipe Left / Right / Down: Hop in swipe direction',
+        'Bottom D-Pad: Tap dedicated buttons to hop and steer',
+      ],
+    },
+    features: [
+      'Infinite Procedural Road, River, and Railroad Track Generation',
+      'Floating River Raft Physics with Log Drift Mechanics',
+      'Speeding Freight Trains with Blinking Signal Warnings',
+      'Predatory Hawk Patrol Timer (Keep Moving to Stay Safe!)',
+      'Procedural Web Audio Engine (Chicken Clucks, Horn Beeps, River Splashes, and Train Horns)',
+      '100% Free Instant Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Crossy Chicken: Farm Highway Run 🐔🛣️ — No Download | Pawcade',
+    metaDescription: 'Play Crossy Chicken free online! Hop Clucky across busy farm highways, floating river logs, and train tracks. Free arcade crossy road game with no download.',
+  },
 ];
 
 

@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <linearGradient id="roadGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="truckGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="50%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+    <linearGradient id="riverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <linearGradient id="logGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="50%" stop-color="#92400e"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Background / Sky -->
+  <rect width="512" height="512" rx="36" fill="url(#skyGrad)"/>
+
+  <!-- Rolling Green Meadow in Horizon -->
+  <path d="M 0 160 Q 140 130, 260 150 Q 380 170, 512 140 L 512 240 L 0 240 Z" fill="#22c55e"/>
+  <path d="M 0 180 Q 180 160, 340 180 Q 440 190, 512 170 L 512 240 L 0 240 Z" fill="#16a34a"/>
+
+  <!-- Rushing Blue River Lane -->
+  <rect x="0" y="200" width="512" height="70" fill="url(#riverGrad)"/>
+  <!-- Water Waves -->
+  <path d="M 20 220 Q 50 215, 80 220 T 140 220" fill="none" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 240 240 Q 270 235, 300 240 T 360 240" fill="none" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 380 220 Q 410 215, 440 220 T 500 220" fill="none" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Floating Wooden Log -->
+  <g transform="translate(60, 215)" filter="url(#shadow)">
+    <rect width="130" height="40" rx="20" fill="url(#logGrad)" stroke="#451a03" stroke-width="3"/>
+    <!-- Wood Bark Rings -->
+    <ellipse cx="20" cy="20" rx="10" ry="14" fill="#a16207" stroke="#78350f" stroke-width="2"/>
+    <ellipse cx="20" cy="20" rx="5" ry="7" fill="#ca8a04"/>
+    <line x1="32" y1="12" x2="115" y2="12" stroke="#451a03" stroke-width="2"/>
+    <line x1="32" y1="28" x2="120" y2="28" stroke="#451a03" stroke-width="2"/>
+  </g>
+
+  <!-- Asphalt Highway Lane -->
+  <rect x="0" y="270" width="512" height="190" fill="url(#roadGrad)"/>
+  <!-- Curbs -->
+  <rect x="0" y="266" width="512" height="6" fill="#cbd5e1"/>
+  <rect x="0" y="458" width="512" height="6" fill="#cbd5e1"/>
+
+  <!-- Yellow Dashed Highway Centerline -->
+  <line x1="20" y1="365" x2="80" y2="365" stroke="#facc15" stroke-width="8" stroke-linecap="round"/>
+  <line x1="120" y1="365" x2="180" y2="365" stroke="#facc15" stroke-width="8" stroke-linecap="round"/>
+  <line x1="220" y1="365" x2="280" y2="365" stroke="#facc15" stroke-width="8" stroke-linecap="round"/>
+  <line x1="320" y1="365" x2="380" y2="365" stroke="#facc15" stroke-width="8" stroke-linecap="round"/>
+  <line x1="420" y1="365" x2="480" y2="365" stroke="#facc15" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Safe Green Grass Bottom Lane -->
+  <rect x="0" y="464" width="512" height="48" fill="#22c55e"/>
+
+  <!-- Speeding Red Farm Pickup Truck (Driving Left to Right on Upper Road Lane) -->
+  <g transform="translate(18, 280)" filter="url(#shadow)">
+    <!-- Exhaust Smoke Puffs -->
+    <circle cx="-15" cy="40" r="10" fill="#cbd5e1" opacity="0.6"/>
+    <circle cx="-32" cy="35" r="14" fill="#94a3b8" opacity="0.4"/>
+    <!-- Truck Cab & Bed -->
+    <rect x="0" y="10" width="160" height="50" rx="8" fill="url(#truckGrad)" stroke="#7f1d1d" stroke-width="3"/>
+    <rect x="90" y="-8" width="60" height="40" rx="6" fill="url(#truckGrad)" stroke="#7f1d1d" stroke-width="3"/>
+    <!-- Windshield -->
+    <path d="M 100 24 L 142 24 L 135 0 L 105 0 Z" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+    <!-- Headlight Beam -->
+    <polygon points="160,20 280,-10 280,60 160,45" fill="#fef08a" opacity="0.3"/>
+    <circle cx="160" cy="32" r="8" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+    <!-- Black Rubber Tires with Chrome Hubs -->
+    <circle cx="35" cy="60" r="16" fill="#0f172a" stroke="#334155" stroke-width="3"/>
+    <circle cx="35" cy="60" r="6" fill="#cbd5e1"/>
+    <circle cx="130" cy="60" r="16" fill="#0f172a" stroke="#334155" stroke-width="3"/>
+    <circle cx="130" cy="60" r="6" fill="#cbd5e1"/>
+  </g>
+
+  <!-- Hero Mascot: Clucky the White Chicken (Mid-Hop, Jumping Forward) -->
+  <g transform="translate(256, 385)" filter="url(#shadow)">
+    <!-- Shadow under chicken (smaller to show mid-air altitude) -->
+    <ellipse cx="0" cy="50" rx="28" ry="12" fill="#000" opacity="0.3"/>
+
+    <!-- Chicken Body (Mid-Hop Elevation) -->
+    <g transform="translate(0, -18)">
+      <!-- Main White Feathery Body -->
+      <ellipse cx="0" cy="0" rx="36" ry="32" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+      <!-- Tail Feathers -->
+      <path d="M -30 -10 Q -50 -35, -25 -25 Q -45 -50, -15 -35 Q -30 -60, -5 -40 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+
+      <!-- Wing Flapping -->
+      <path d="M -10 0 Q -25 25, 10 15 Q 5 -5, -10 0 Z" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+
+      <!-- Red Comb on Top -->
+      <path d="M 10 -32 C 8 -46, 20 -48, 22 -35 C 26 -48, 38 -45, 34 -32 C 40 -40, 48 -35, 42 -24 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/>
+
+      <!-- Red Wattle under Beak -->
+      <ellipse cx="36" cy="-2" rx="6" ry="10" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/>
+
+      <!-- Golden Orange Beak -->
+      <polygon points="36,-16 52,-8 36,0" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+
+      <!-- Big Expressive Eye -->
+      <circle cx="24" cy="-14" r="8" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+      <circle cx="26" cy="-14" r="4.5" fill="#0f172a"/>
+      <circle cx="28" cy="-16" r="1.5" fill="#ffffff"/>
+
+      <!-- Yellow Feet in Mid-Air Hop -->
+      <path d="M -10 30 L -12 44 L -4 46" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 10 30 L 14 44 L 22 46" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- Flying White Feather Particles -->
+  <g fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" opacity="0.85">
+    <path d="M 200 420 Q 185 410, 195 400 Q 210 410, 200 420 Z"/>
+    <path d="M 330 410 Q 345 395, 335 390 Q 320 405, 330 410 Z"/>
+    <path d="M 230 350 Q 215 340, 225 330 Q 240 340, 230 350 Z"/>
+  </g>
+
+  <!-- Floating Golden Coin Pickups -->
+  <g transform="translate(390, 310)" filter="url(#shadow)">
+    <circle cx="0" cy="0" r="18" fill="#facc15" stroke="#ca8a04" stroke-width="3"/>
+    <circle cx="0" cy="0" r="13" fill="#fef08a"/>
+    <text x="0" y="6" font-family="sans-serif" font-weight="900" font-size="16" fill="#854d0e" text-anchor="middle">★</text>
+  </g>
+  <g transform="translate(140, 410)" filter="url(#shadow)">
+    <circle cx="0" cy="0" r="15" fill="#facc15" stroke="#ca8a04" stroke-width="2.5"/>
+    <circle cx="0" cy="0" r="10" fill="#fef08a"/>
+    <text x="0" y="5" font-family="sans-serif" font-weight="900" font-size="13" fill="#854d0e" text-anchor="middle">★</text>
+  </g>
+
+  <!-- Railroad Signal Post on Right -->
+  <g transform="translate(470, 190)" filter="url(#shadow)">
+    <rect x="-4" y="0" width="8" height="90" fill="#64748b"/>
+    <!-- Crossbuck X -->
+    <path d="M -16 20 L 16 40 M -16 40 L 16 20" stroke="#f8fafc" stroke-width="6"/>
+    <path d="M -16 20 L 16 40 M -16 40 L 16 20" stroke="#0f172a" stroke-width="2"/>
+    <!-- Blinking Red Lights -->
+    <circle cx="-14" cy="50" r="7" fill="#ef4444" stroke="#7f1d1d" stroke-width="2"/>
+    <circle cx="14" cy="50" r="7" fill="#ef4444" stroke="#7f1d1d" stroke-width="2"/>
+  </g>
+</svg>
