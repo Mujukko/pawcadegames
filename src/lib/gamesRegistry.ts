@@ -2543,6 +2543,45 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Crossy Chicken: Farm Highway Run 🐔🛣️ — No Download | Pawcade',
     metaDescription: 'Play Crossy Chicken free online! Hop Clucky across busy farm highways, floating river logs, and train tracks. Free arcade crossy road game with no download.',
   },
+  {
+    id: 'tractor-hill-climb',
+    slug: 'tractor-hill-climb',
+    title: 'Tractor Hill Climb: Barnyard Ridge 🚜⛰️',
+    tagline: 'Drive a bouncy farm tractor over steep hills, perform air flips, and collect diesel!',
+    description: 'Drive a classic farm tractor over rolling pasture hills and steep mountain ridges. Balance your speed with gas and brake pedals to conquer bumpy trails, hay ramps, and wooden bridges. Perform 360-degree air flips to earn bonus points. Collect shiny golden coins and red diesel cans to keep your tank full. Free 2D physics tractor hill climb game with no download.',
+    category: 'farm',
+    categories: ['farm', 'arcade', 'pets'],
+    route: '/games/tractor-hill-climb/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '63.5K',
+    badge: '🚜 Hill Climb',
+    thumbnailUrl: '/assets/thumbnails/thumb-tractor-hill-climb.svg',
+    controls: {
+      desktop: [
+        'Right Arrow, D, or Space: Gas and tilt backward',
+        'Left Arrow, A, or S: Brake and tilt forward',
+        'Perform 360-degree flips in the air for +500 bonus points',
+        'R Key: Quick restart run',
+        'M Key: Toggle tractor sound effects',
+      ],
+      mobile: [
+        'Right Pedal (GAS): Hold to accelerate and tilt backward',
+        'Left Pedal (BRAKE): Hold to slow down, reverse, and tilt forward',
+        'Top Buttons: Refuel at diesel cans and track distance progress',
+      ],
+    },
+    features: [
+      '2D Vehicle Physics with Realistic Suspension and Knobby Tires',
+      'Air Stunt Detection with 360-Degree Backflips and Frontflips',
+      '4 Pastoral Hill Stages: Clover Pasture, Autumn Orchard, Windmill Ridge, and Muddy Mountain',
+      'Diesel Fuel Gauge Management and Golden Star Coin Pickups',
+      'Procedural Web Audio Engine with Engine Throttle Rumble, Stunts, and Fanfares',
+      '100% Free Instant Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Tractor Hill Climb: Barnyard Ridge 🚜⛰️ — No Download | Pawcade',
+    metaDescription: 'Play Tractor Hill Climb free online! Drive a farm tractor over rolling hills, pull off air flips, and collect diesel cans. Free physics game with no download.',
+  },
 ];
 
 

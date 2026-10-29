@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="60%" stop-color="#bae6fd"/>
+      <stop offset="100%" stop-color="#fef08a"/>
+    </linearGradient>
+    <linearGradient id="hillBackGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+    <linearGradient id="hillFrontGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80"/>
+      <stop offset="35%" stop-color="#16a34a"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <linearGradient id="tractorRedGrad" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="40%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+    <linearGradient id="tireGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Sky Canvas -->
+  <rect width="512" height="512" rx="36" fill="url(#skyGrad)"/>
+
+  <!-- Warm Sun Rays -->
+  <circle cx="430" cy="80" r="50" fill="#fef08a" opacity="0.9"/>
+  <circle cx="430" cy="80" r="70" fill="#fef08a" opacity="0.3"/>
+
+  <!-- Fluffy Cartoon Clouds -->
+  <g fill="#ffffff" opacity="0.85">
+    <ellipse cx="90" cy="95" rx="45" ry="22"/>
+    <ellipse cx="120" cy="85" rx="30" ry="24"/>
+    <ellipse cx="65" cy="100" rx="25" ry="16"/>
+
+    <ellipse cx="300" cy="120" rx="55" ry="25"/>
+    <ellipse cx="335" cy="110" rx="38" ry="26"/>
+    <ellipse cx="270" cy="125" rx="30" ry="18"/>
+  </g>
+
+  <!-- Distant Barn & Silo -->
+  <g transform="translate(60, 230)">
+    <!-- Silo -->
+    <rect x="0" y="20" width="30" height="60" rx="4" fill="#cbd5e1"/>
+    <path d="M 0 20 Q 15 5, 30 20 Z" fill="#94a3b8"/>
+    <!-- Barn -->
+    <polygon points="35,35 65,10 95,35" fill="#dc2626"/>
+    <rect x="40" y="35" width="50" height="45" fill="#b91c1c"/>
+    <rect x="52" y="55" width="26" height="25" fill="#450a0a"/>
+    <line x1="52" y1="55" x2="78" y2="80" stroke="#fff" stroke-width="2"/>
+    <line x1="78" y1="55" x2="52" y2="80" stroke="#fff" stroke-width="2"/>
+  </g>
+
+  <!-- Distant Rolling Hills -->
+  <path d="M 0 290 Q 140 230, 290 270 Q 420 300, 512 250 L 512 512 L 0 512 Z" fill="url(#hillBackGrad)"/>
+
+  <!-- Foreground Steep Ridge Hill with Mud Subsoil -->
+  <path d="M 0 380 Q 150 280, 280 340 Q 400 390, 512 320 L 512 512 L 0 512 Z" fill="url(#hillFrontGrad)"/>
+  <!-- Grass Edge Highlight -->
+  <path d="M 0 380 Q 150 280, 280 340 Q 400 390, 512 320" fill="none" stroke="#86efac" stroke-width="6"/>
+
+  <!-- Wooden Fence Posts along Ridge -->
+  <g stroke="#78350f" stroke-width="4" stroke-linecap="round">
+    <line x1="330" y1="365" x2="330" y2="395"/>
+    <line x1="380" y1="375" x2="380" y2="405"/>
+    <line x1="430" y1="365" x2="430" y2="395"/>
+    <line x1="320" y1="375" x2="440" y2="375" stroke-width="3"/>
+    <line x1="320" y1="385" x2="440" y2="385" stroke-width="3"/>
+  </g>
+
+  <!-- Floating Golden Coin -->
+  <g transform="translate(390, 190)" filter="url(#dropShadow)">
+    <circle cx="20" cy="20" r="22" fill="url(#goldGrad)" stroke="#b45309" stroke-width="3"/>
+    <!-- Star Emblem inside Coin -->
+    <polygon points="20,7 24,15 33,16 26,22 28,31 20,26 12,31 14,22 7,16 16,15" fill="#fef08a"/>
+    <circle cx="34" cy="10" r="3" fill="#ffffff"/>
+  </g>
+
+  <!-- Floating Red Diesel Jerry Can -->
+  <g transform="translate(440, 250)" filter="url(#dropShadow)">
+    <rect x="0" y="8" width="32" height="38" rx="6" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+    <rect x="8" y="0" width="16" height="10" rx="3" fill="#ef4444"/>
+    <circle cx="16" cy="27" r="8" fill="#fef08a"/>
+    <path d="M 16 22 L 13 29 L 19 29 Z" fill="#b45309"/>
+    <!-- Yellow Diesel Drop -->
+    <path d="M 16 22 Q 13 27, 13 29 A 3 3 0 0 0 19 29 Q 19 27, 16 22 Z" fill="#eab308"/>
+  </g>
+
+  <!-- MID-AIR JUMPING TRACTOR (Tilted 15 degrees back) -->
+  <g transform="translate(210, 250) rotate(-16)" filter="url(#dropShadow)">
+    <!-- Exhaust Smoke Rings -->
+    <g fill="#e2e8f0" opacity="0.8">
+      <circle cx="-50" cy="-65" r="14"/>
+      <circle cx="-75" cy="-85" r="18"/>
+      <circle cx="-105" cy="-110" r="24"/>
+    </g>
+
+    <!-- Chrome Exhaust Pipe -->
+    <rect x="-24" y="-62" width="7" height="38" rx="3" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/>
+    <polygon points="-26,-62 -15,-62 -17,-56 -24,-56" fill="#64748b"/>
+
+    <!-- Driver: Barnaby the Puppy -->
+    <g transform="translate(-12, -44)">
+      <!-- Straw Farmer Hat -->
+      <ellipse cx="0" cy="-12" rx="20" ry="6" fill="#fde047" stroke="#ca8a04" stroke-width="2"/>
+      <path d="M -10 -12 Q 0 -24, 10 -12 Z" fill="#eab308" stroke="#ca8a04" stroke-width="2"/>
+      <rect x="-10" y="-14" width="20" height="3" fill="#ef4444"/>
+
+      <!-- Puppy Face -->
+      <circle cx="0" cy="0" r="14" fill="#f59e0b"/>
+      <!-- Floppy Brown Ears -->
+      <ellipse cx="-13" cy="2" rx="5" ry="9" fill="#b45309" transform="rotate(-15, -13, 2)"/>
+      <ellipse cx="13" cy="2" rx="5" ry="9" fill="#b45309" transform="rotate(15, 13, 2)"/>
+      <!-- Snout & Nose -->
+      <ellipse cx="0" cy="4" rx="7" ry="5" fill="#fef3c7"/>
+      <polygon points="0,2 -3,0 3,0" fill="#1e293b"/>
+      <!-- Cheerful Grin -->
+      <path d="M -3 5 Q 0 8, 3 5" fill="none" stroke="#1e293b" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Wide Sparkle Eyes -->
+      <circle cx="-5" cy="-2" r="2.5" fill="#0f172a"/>
+      <circle cx="-4" cy="-3" r="1" fill="#ffffff"/>
+      <circle cx="5" cy="-2" r="2.5" fill="#0f172a"/>
+      <circle cx="6" cy="-3" r="1" fill="#ffffff"/>
+
+      <!-- Blue Denim Overalls & Paws on Steering Wheel -->
+      <rect x="-8" y="12" width="16" height="15" rx="3" fill="#2563eb"/>
+      <line x1="-5" y1="12" x2="-5" y2="22" stroke="#fbbf24" stroke-width="2"/>
+      <line x1="5" y1="12" x2="5" y2="22" stroke="#fbbf24" stroke-width="2"/>
+      <!-- Steering Wheel -->
+      <ellipse cx="10" cy="14" rx="4" ry="10" fill="none" stroke="#1e293b" stroke-width="3"/>
+    </g>
+
+    <!-- Tractor Hood & Body -->
+    <!-- Rear Mudguard Fender -->
+    <path d="M -48 10 A 32 32 0 0 1 0 -15 L 6 0 L -22 15 Z" fill="#991b1b"/>
+    <path d="M -46 8 A 30 30 0 0 1 -2 -14 L 4 0 L -22 13 Z" fill="url(#tractorRedGrad)"/>
+
+    <!-- Engine Hood -->
+    <rect x="-4" y="-12" width="56" height="26" rx="5" fill="url(#tractorRedGrad)" stroke="#991b1b" stroke-width="2"/>
+    <!-- Yellow Racing Stripe -->
+    <rect x="-4" y="-2" width="56" height="5" fill="#facc15"/>
+    <!-- Front Radiator Grill -->
+    <rect x="42" y="-10" width="8" height="22" rx="2" fill="#334155"/>
+    <line x1="44" y1="-6" x2="48" y2="-6" stroke="#94a3b8" stroke-width="1.5"/>
+    <line x1="44" y1="-2" x2="48" y2="-2" stroke="#94a3b8" stroke-width="1.5"/>
+    <line x1="44" y1="2" x2="48" y2="2" stroke="#94a3b8" stroke-width="1.5"/>
+    <line x1="44" y1="6" x2="48" y2="6" stroke="#94a3b8" stroke-width="1.5"/>
+
+    <!-- Front Headlight & Yellow Light Cone -->
+    <circle cx="50" cy="-6" r="6" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
+    <polygon points="56,-9 110,-24 115,12 56,-3" fill="#fef08a" opacity="0.35"/>
+
+    <!-- LARGE REAR TRACTOR TIRE -->
+    <g transform="translate(-28, 16)">
+      <!-- Outer Knobby Tire -->
+      <circle cx="0" cy="0" r="28" fill="url(#tireGrad)" stroke="#020617" stroke-width="3"/>
+      <!-- Heavy Tractor Treads (Chevron Lugs) -->
+      <g stroke="#475569" stroke-width="3" stroke-linecap="round">
+        <line x1="0" y1="-26" x2="6" y2="-22"/>
+        <line x1="18" y1="-18" x2="22" y2="-12"/>
+        <line x1="26" y1="0" x2="22" y2="6"/>
+        <line x1="18" y1="18" x2="12" y2="22"/>
+        <line x1="0" y1="26" x2="-6" y2="22"/>
+        <line x1="-18" y1="18" x2="-22" y2="12"/>
+        <line x1="-26" y1="0" x2="-22" y2="-6"/>
+        <line x1="-18" y1="-18" x2="-12" y2="-22"/>
+      </g>
+      <!-- Bright Yellow Steel Rim -->
+      <circle cx="0" cy="0" r="16" fill="#facc15" stroke="#ca8a04" stroke-width="2"/>
+      <circle cx="0" cy="0" r="6" fill="#713f12"/>
+      <!-- Rim Lug Bolts -->
+      <circle cx="-9" cy="0" r="2" fill="#ca8a04"/>
+      <circle cx="9" cy="0" r="2" fill="#ca8a04"/>
+      <circle cx="0" cy="-9" r="2" fill="#ca8a04"/>
+      <circle cx="0" cy="9" r="2" fill="#ca8a04"/>
+    </g>
+
+    <!-- FRONT SMALL TRACTOR TIRE -->
+    <g transform="translate(36, 18)">
+      <circle cx="0" cy="0" r="18" fill="url(#tireGrad)" stroke="#020617" stroke-width="2.5"/>
+      <!-- Treads -->
+      <g stroke="#475569" stroke-width="2.5" stroke-linecap="round">
+        <line x1="0" y1="-16" x2="4" y2="-13"/>
+        <line x1="12" y1="-10" x2="14" y2="-6"/>
+        <line x1="16" y1="0" x2="13" y2="4"/>
+        <line x1="10" y1="12" x2="6" y2="14"/>
+        <line x1="0" y1="16" x2="-4" y2="13"/>
+        <line x1="-12" y1="10" x2="-14" y2="6"/>
+        <line x1="-16" y1="0" x2="-13" y2="-4"/>
+        <line x1="-10" y1="-12" x2="-6" y2="-14"/>
+      </g>
+      <!-- Yellow Rim -->
+      <circle cx="0" cy="0" r="9" fill="#facc15" stroke="#ca8a04" stroke-width="1.5"/>
+      <circle cx="0" cy="0" r="4" fill="#713f12"/>
+    </g>
+  </g>
+</svg>

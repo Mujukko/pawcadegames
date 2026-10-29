@@ -1383,6 +1383,44 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Look ahead two lanes before hopping! Timing your leap onto a river log is easier if you watch the current direction early.',
   },
+  'tractor-hill-climb': {
+    title: 'Tractor Hill Climb: Barnyard Ridge',
+    subtitle: '2D Physics Ridge Racer & Air Stunt Arcade',
+    mascot: '🚜⛰️',
+    themeColor: 'from-emerald-500 via-amber-500 to-red-600',
+    goal: 'Drive Farmer Barnaby’s bouncy red tractor across steep hills, land mid-air flips, and reach the finish flag without rolling over!',
+    steps: [
+      {
+        icon: '⛽',
+        title: '1. Throttle & Climb',
+        desc: 'Hold Gas to surge up steep pasture crests, hay ramps, and wooden bridges.',
+      },
+      {
+        icon: '🔄',
+        title: '2. Balance Air Flips',
+        desc: 'In mid-air, use Gas to tilt backward and Brake to tilt forward for 360-degree flip combos.',
+      },
+      {
+        icon: '🛑',
+        title: '3. Watch Fuel & Head',
+        desc: 'Collect red diesel cans to keep moving and avoid tipping upside down.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Right Arrow / D / Space: Gas (Accelerate & Tilt Back)',
+        'Left Arrow / A / S: Brake (Slow down & Tilt Forward)',
+        'R Key: Quick restart run',
+        'M Key: Toggle tractor sound effects',
+      ],
+      mobile: [
+        'Right Pedal (GAS): Hold to accelerate and tilt backward',
+        'Left Pedal (BRAKE): Hold to slow down and tilt forward',
+        'Top Pills: Select stages and track distance progress',
+      ],
+    },
+    proTip: 'Ease off the gas right as you crest high hill peaks! Keeping your tractor level ensures a smooth two-wheel landing with zero rollover risk.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

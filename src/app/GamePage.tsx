@@ -201,6 +201,9 @@ const BarnyardWordConnectContainer = lazy(() =>
 const CrossyChickenContainer = lazy(() =>
   import('../games/crossy-chicken/CrossyChickenContainer').then((m) => ({ default: m.CrossyChickenContainer }))
 );
+const TractorHillClimbContainer = lazy(() =>
+  import('../games/tractor-hill-climb/TractorHillClimbContainer').then((m) => ({ default: m.TractorHillClimbContainer }))
+);
 
 
 
@@ -233,6 +236,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
+  const isTractorHillClimb = gameId === 'tractor-hill-climb' || gameId === 'hill-climb' || gameId === 'tractor-climb';
   const isCrossyChicken = gameId === 'crossy-chicken' || gameId === 'crossy-road' || gameId === 'chicken-cross';
   const isBarnyardWord = gameId === 'barnyard-word-connect' || gameId === 'word-connect' || gameId === 'corgi-cross';
   const isBarnyardPopcorn = gameId === 'barnyard-popcorn-popper' || gameId === 'popcorn-popper' || gameId === 'popcorn-burst';
@@ -425,7 +429,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                isCrossyChicken
+                isTractorHillClimb
+                  ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                  : isCrossyChicken
                   ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
                   : isBarnyardWord
                   ? 'bg-sky-500/20 text-sky-300 border-sky-500/30'
@@ -589,7 +595,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   <GameLoadingFallback
                     title={game.title}
                     mascot={
-                      isCrossyChicken
+                      isTractorHillClimb
+                        ? '🚜⛰️'
+                        : isCrossyChicken
                         ? '🐔🛣️'
                         : isBarnyardWord
                         ? '🐶📖'
@@ -706,7 +714,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
                   />
                 }
               >
-                {isCrossyChicken ? (
+                {isTractorHillClimb ? (
+                  <TractorHillClimbContainer />
+                ) : isCrossyChicken ? (
                   <CrossyChickenContainer />
                 ) : isBarnyardWord ? (
                   <BarnyardWordConnectContainer />

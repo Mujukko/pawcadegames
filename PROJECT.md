@@ -7,11 +7,11 @@ Build a high-retention, delightful browser puzzle game called **Dog Parking** an
 - **Target Audience:** Casual puzzle gamers, pet lovers, commuter/break players seeking instant-play, zero-install 2-5 minute puzzle sessions.
 - **Initial Market:** United States (desktop & mobile web).
 
-## 3. Game Portfolio (64 Playable Games)
-- **Classic Hits & Driving:** Dog Parking, Cat Parking, Animal Farm Parking, Barnyard Kart: Tractor Grand Prix
+## 3. Game Portfolio (66 Playable Games)
+- **Classic Hits & Driving:** Dog Parking, Cat Parking, Animal Farm Parking, Barnyard Kart: Tractor Grand Prix, Tractor Hill Climb: Barnyard Ridge
 - **Physics & Launch:** Piggy Cannon Blast, Barnyard Rope Cut, Barnyard Popcorn Popper, Egg Buster, Grain Sand Fall, Wood Nuts & Bolts, Save the Sheep, Barnyard Tower, Barnyard Pinball, Barnyard Brick Breaker, Milk Bottle Plinko, Barnyard Peg Pop, Barnyard Fruit Slicer, Barnyard Pin Pull
 - **Puzzles & Logic:** Barnyard Word Connect, Farm Block Blast, Sheep Cart Jam, Farm Pantry Sort, Critter Tap Away, Horseshoe Twist, Farm Mahjong, Pet Memory Match, Farm Fruit Bubble, Duck Pond Sort, Animal Suika Drop, Farm Tile Triple, Farm Pipe Flow, Hamster Cookie Stack, Animal Tangram Fit, Sheep Sorter Gate, Hamster Maze Runner
-- **Arcade & Action:** Duck Hunt Classic, Duck Runner, Flappy Chicken, Farm Tetris, Animal 2048, Pasture Sheep Jump, Hungry Piggy, Hamster Ball Dash, Duck Archery Range, Corgi Mini Golf, Caterpillar Fruit Trail, Carrot Target Throw, Piggy Coin Pusher, Crop Mower Harvest, Chicken Egg Catcher, Duck Water Slide, Bunny Hop Cross
+- **Arcade & Action:** Crossy Chicken: Farm Highway Run, Duck Hunt Classic, Duck Runner, Flappy Chicken, Farm Tetris, Animal 2048, Pasture Sheep Jump, Hungry Piggy, Hamster Ball Dash, Duck Archery Range, Corgi Mini Golf, Caterpillar Fruit Trail, Carrot Target Throw, Piggy Coin Pusher, Crop Mower Harvest, Chicken Egg Catcher, Duck Water Slide, Bunny Hop Cross
 - **Cozy Sim & Tycoon:** Farm Mini Mart, Chef Rat Rush, Cat Cafe Rush, Capybara Spa, Koi Pond Zen, Piggy Mud Wash, Farm Boba Tea, Barnyard Ice Cream, Gopher Garden, Farm TriPeaks Solitaire, Sheep Stampede
 
 ## 4. Technology Stack
@@ -25,9 +25,9 @@ Build a high-retention, delightful browser puzzle game called **Dog Parking** an
 - **Persistence:** Browser `localStorage` for progress, high scores, audio preferences, and tutorial dismissals.
 
 ## 5. Current Implementation Status
-- **Total Playable Catalog:** 64 fully playable, mathematically verified games.
-- **Test Suite:** 665 automated unit tests passing across 66 test files (5561 assertions).
-- **SEO & Readability:** 64/64 games scored 100/100 on the unified 7-pillar Agentic SEO audit with 0/100 AI slop.
-- **Build & Pre-rendering:** Vite production bundle passes cleanly with static HTML pre-rendered for all 64 games and category hubs.
+- **Total Playable Catalog:** 66 fully playable, mathematically verified games.
+- **Test Suite:** 687 automated unit tests passing across 68 test files (5641 assertions).
+- **SEO & Readability:** 66/66 games scored 100/100 on the unified 7-pillar Agentic SEO audit with 0/100 AI slop.
+- **Build & Pre-rendering:** Vite production bundle passes cleanly with static HTML pre-rendered for all 66 games and category hubs.
 - **Continuous Deployment:** All code committed and pushed to `main` (`Mujukko/pawcadegames`).
 
