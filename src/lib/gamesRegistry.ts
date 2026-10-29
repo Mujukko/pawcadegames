@@ -27,6 +27,46 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'barnyard-connect-four',
+    slug: 'barnyard-connect-four',
+    title: 'Connect 4: Barnyard Four in a Row 🟡🔴',
+    tagline: 'Drop tokens into the 7x6 grid, outsmart the clever farm AI, and connect four in a line!',
+    description: 'Play Connect 4 free online! Challenge the clever Barn Owl AI or play with a friend in 2-player pass and play mode. Drop your golden chick and red apple tokens into the classic 7x6 vertical grid. Plan ahead, block opponent threats, and connect four discs horizontally, vertically, or diagonally in this beloved strategy board game.',
+    category: 'puzzle',
+    categories: ['puzzle', 'arcade'],
+    route: '/games/barnyard-connect-four/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '58.3K',
+    badge: '🟡 Connect 4',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-connect-four.svg',
+    featured: true,
+    tags: ['Connect 4', 'Four in a Row', 'Board Game', 'Strategy', '2 Player'],
+    controls: {
+      desktop: [
+        'Click any of the 7 column arrows to drop a token',
+        'Press 1 to 7 keys on your keyboard for quick drops',
+        'R Key: Clear board for a new match',
+        'M Key: Toggle wooden disc sound effects',
+      ],
+      mobile: [
+        'Tap any column arrow to slide a disc into the grid',
+        'Pass & Play: Take turns with a friend on the same screen',
+        'Difficulty: Select Easy Calf, Medium Fox, or Master Barn Owl',
+      ],
+    },
+    features: [
+      'Classic 7x6 Vertical Drop Grid with Realistic Gravity and Bounce Animations',
+      'Clever Minimax AI with 3 Difficulties: Easy Calf, Clever Fox, and Master Barn Owl',
+      'Local 2-Player Pass and Play Mode for Friends on Mobile and Tablet',
+      'Winning 4-in-a-Row Golden Line Raycast Detection and Confetti Celebrations',
+      'Procedural Web Audio Engine with Tactile Wooden Clacks and Fanfares',
+      '100% Free Instant Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Connect 4: Barnyard Four in a Row 🟡🔴 — Free Online Game | Pawcade',
+    metaDescription: 'Play Connect 4 free online! Drop tokens into the 7x6 grid, block opponent moves, and connect four in a row against clever AI or with a friend with no download.',
+  },
+  {
     id: 'barnyard-egg-cart',
     slug: 'barnyard-egg-cart',
     title: 'Egg Car: Barnyard Egg Cart 🥚🚗',

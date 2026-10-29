@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'barnyard-connect-four': {
+    title: 'Barnyard Four in a Row',
+    subtitle: 'Classic Vertical Disc Drop Strategy Game',
+    mascot: '🟡🔴',
+    themeColor: 'from-blue-600 via-indigo-600 to-amber-500',
+    goal: 'Connect four of your farm tokens in a horizontal, vertical, or diagonal line before your opponent does!',
+    steps: [
+      {
+        icon: '👇',
+        title: '1. Drop Tokens into Columns',
+        desc: 'Tap any of the 7 column arrows to slide a token down to the lowest open slot on the board.',
+      },
+      {
+        icon: '🛡️',
+        title: '2. Block Opponent Three-in-a-Row',
+        desc: 'Keep an eye on enemy lines. If your opponent gets three discs lined up, drop your disc to block them.',
+      },
+      {
+        icon: '🏆',
+        title: '3. Connect Four to Win',
+        desc: 'Create open-ended lines with multiple winning paths to force a four-in-a-row victory!',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Click or 1-7 Number Keys: Select column to drop token',
+        'Top Tabs: Switch between solo AI matches and local 2-player pass and play',
+        'R Key: Reset and start a fresh match',
+        'M Key: Toggle wooden clack sound effects',
+      ],
+      mobile: [
+        'Tap Column Arrow: Drop your disc into any open vertical slot',
+        'Pass & Play: Hand phone or tablet to friend for local 2-player fun',
+        'Difficulty Pills: Select Easy Calf, Medium Fox, or Master Owl',
+      ],
+    },
+    proTip: 'Control the middle column first! The center column connects to the highest number of winning horizontal, vertical, and diagonal lines.',
+  },
   'barnyard-egg-cart': {
     title: 'Barnyard Egg Cart: Pasture Hill',
     subtitle: 'Fragile Egg Balance Physics Hill Racer',
