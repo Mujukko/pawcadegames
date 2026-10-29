@@ -27,6 +27,47 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'farm-mahjong-connect',
+    slug: 'farm-mahjong-connect',
+    title: 'Mahjong Connect: Farm Crop Link 🧩🌽',
+    tagline: 'Link identical crop tiles with at most 2 turns to clear the farm board before time runs out!',
+    description: 'Play Mahjong Connect: Farm Crop Link free online! Link pairs of carrots, pumpkins, strawberries, and sunflowers with 2 or fewer turns. Travel through open cells or around the board border to clear every tile. Enjoy classic link matching with hints, shuffles, and zero downloads in this fun puzzle game!',
+    category: 'puzzle',
+    categories: ['puzzle', 'farm', 'arcade'],
+    route: '/games/farm-mahjong-connect/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '56.7K',
+    badge: '🧩 Mahjong Connect',
+    thumbnailUrl: '/assets/thumbnails/thumb-farm-mahjong-connect.svg',
+    featured: true,
+    tags: ['Mahjong Connect', 'Link Mahjong', 'Onet', 'Connect 2', 'Tile Matching', 'Puzzle', 'Farm'],
+    controls: {
+      desktop: [
+        'Mouse Click / Pointer: Select crop tiles and connect matching pairs',
+        '💡 Hint Button (H Key): Highlight an available pair connection',
+        '🔀 Shuffle Button (S Key): Mix remaining tiles',
+        'R Key: Reset current level board',
+        'M Key: Toggle bamboo tap and match sounds',
+      ],
+      mobile: [
+        'Tap Tiles: Select and link matching farm crops',
+        '💡 Hint: Spot open tile connections',
+        '🔀 Shuffle: Rearrange blocked tiles',
+      ],
+    },
+    features: [
+      'Classic Mahjong Connect 2-Turn Pathfinding (Straight, 1-Turn, and 2-Turn Links)',
+      'Outer Border Path Travel Allowing Free Perimeter Connections',
+      'Four Progressive Levels with Fall-Down and Slide-Left Tile Gravity Mechanics',
+      'Dynamic Time Bonuses (+5s Per Match) and Integrated Hint & Shuffle Tools',
+      '100% Native Procedural Audio Synthesizer (Bamboo Taps, Chimes, and Fanfare)',
+      'Single-Screen Zero-Scroll Viewport and Zero Downloads Required',
+    ],
+    metaTitle: 'Mahjong Connect: Farm Crop Link - Free Puzzle Game (No Download)',
+    metaDescription: 'Play free Mahjong Connect online! Match crop tiles using paths with at most 2 turns. Zero downloads, four levels, hint assistance, and instant browser play.',
+  },
+  {
     id: 'barnyard-horse-derby',
     slug: 'barnyard-horse-derby',
     title: 'Horse Racing Game: Barnyard Derby 🐎🏆',

@@ -21,6 +21,45 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'farm-mahjong-connect': {
+    title: 'Farm Mahjong Connect: Crop Link',
+    subtitle: 'Classic 2-Turn Tile Link Matching Puzzle',
+    mascot: '🧩🌽',
+    themeColor: 'from-emerald-600 via-teal-600 to-amber-600',
+    goal: 'Connect matching pairs of crop tiles using a path with at most two turns to clear the entire farm board before time runs out!',
+    steps: [
+      {
+        icon: '👆',
+        title: '1. Select Matching Crops',
+        desc: 'Tap an unblocked crop tile, then tap another identical tile to test for a clear connection.',
+      },
+      {
+        icon: '⚡',
+        title: '2. Connect in 2 Turns',
+        desc: 'Matching tiles only clear if an open path links them with two or fewer ninety-degree turns.',
+      },
+      {
+        icon: '💡',
+        title: '3. Use Hints & Shuffles',
+        desc: 'Stuck on a tricky board? Tap the Hint bulb to spot a pair, or hit Shuffle to rearrange all tiles.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Select tiles and connect pairs',
+        '💡 Hint Button (H Key): Highlight an available tile link',
+        '🔀 Shuffle Button (S Key): Mix remaining tiles',
+        'R Key: Reset current level board',
+        'M Key: Toggle bamboo tap sounds',
+      ],
+      mobile: [
+        'Tap Tiles: Select and connect matching farm crops',
+        '💡 Hint Button: Reveal hidden tile connections',
+        '🔀 Shuffle Button: Rearrange blocked tiles',
+      ],
+    },
+    proTip: 'Tiles along the outer edge can connect around the outside perimeter! Scan the borders first to clear outer paths for inside tiles!',
+  },
   'barnyard-horse-derby': {
     title: 'Barnyard Derby: Horse Racing Champion',
     subtitle: 'Fast-Paced Steeplechase & Hurdle Racing',

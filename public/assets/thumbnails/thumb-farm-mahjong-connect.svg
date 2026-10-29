@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="feltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="50%" stop-color="#065f46"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="tileGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#ffedd5"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-opacity="0.4"/>
+    </filter>
+    <filter id="laserGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Table Felt Background -->
+  <rect width="800" height="600" fill="url(#feltGrad)"/>
+  <rect x="25" y="25" width="750" height="550" rx="16" fill="none" stroke="#78350f" stroke-width="12"/>
+
+  <!-- Matrix of Mahjong Tiles -->
+  <g transform="translate(180, 200)">
+    <!-- Tile Grid Background Placeholders -->
+    <!-- Tile 1 (Carrot - Match A) -->
+    <g transform="translate(0, 0)" filter="url(#shadow)">
+      <rect x="0" y="0" width="85" height="110" rx="12" fill="url(#tileGrad)" stroke="#f59e0b" stroke-width="4"/>
+      <text x="42" y="70" font-size="44" text-anchor="middle">🥕</text>
+    </g>
+
+    <!-- Adjacent Obstacle Tile (Corn) -->
+    <g transform="translate(110, 0)" filter="url(#shadow)">
+      <rect x="0" y="0" width="85" height="110" rx="12" fill="#fef9c3" stroke="#e2e8f0" stroke-width="2"/>
+      <text x="42" y="70" font-size="44" text-anchor="middle">🌽</text>
+    </g>
+
+    <!-- Adjacent Obstacle Tile (Pumpkin) -->
+    <g transform="translate(220, 0)" filter="url(#shadow)">
+      <rect x="0" y="0" width="85" height="110" rx="12" fill="#ffedd5" stroke="#e2e8f0" stroke-width="2"/>
+      <text x="42" y="70" font-size="44" text-anchor="middle">🎃</text>
+    </g>
+
+    <!-- Target Tile 2 (Carrot - Match B) at row 1, col 3 -->
+    <g transform="translate(330, 130)" filter="url(#shadow)">
+      <rect x="0" y="0" width="85" height="110" rx="12" fill="url(#tileGrad)" stroke="#f59e0b" stroke-width="4"/>
+      <text x="42" y="70" font-size="44" text-anchor="middle">🥕</text>
+    </g>
+
+    <!-- Other board tiles for depth -->
+    <g transform="translate(110, 130)" filter="url(#shadow)">
+      <rect x="0" y="0" width="85" height="110" rx="12" fill="#ffe4e6" stroke="#e2e8f0" stroke-width="2"/>
+      <text x="42" y="70" font-size="44" text-anchor="middle">🍓</text>
+    </g>
+    <g transform="translate(220, 130)" filter="url(#shadow)">
+      <rect x="0" y="0" width="85" height="110" rx="12" fill="#e0f2fe" stroke="#e2e8f0" stroke-width="2"/>
+      <text x="42" y="70" font-size="44" text-anchor="middle">🥛</text>
+    </g>
+    <g transform="translate(330, 0)" filter="url(#shadow)">
+      <rect x="0" y="0" width="85" height="110" rx="12" fill="#fef08a" stroke="#e2e8f0" stroke-width="2"/>
+      <text x="42" y="70" font-size="44" text-anchor="middle">🌻</text>
+    </g>
+  </g>
+
+  <!-- Glowing Connect Path Beam (2 turns!) -->
+  <!-- Starts at (180+42, 200+55) = (222, 255) -->
+  <!-- Goes left to (130, 255), down to (130, 485), right to (552, 485), up to (552, 385) -->
+  <path d="M 222,255 L 120,255 L 120,500 L 552,500 L 552,385"
+        fill="none"
+        stroke="#f59e0b"
+        stroke-width="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        filter="url(#laserGlow)"/>
+  <path d="M 222,255 L 120,255 L 120,500 L 552,500 L 552,385"
+        fill="none"
+        stroke="#ffffff"
+        stroke-width="4"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- Sparkle Stars along beam -->
+  <g fill="#fde047">
+    <circle cx="120" cy="255" r="7"/>
+    <circle cx="120" cy="500" r="7"/>
+    <circle cx="552" cy="500" r="7"/>
+    <circle cx="222" cy="255" r="9" fill="#ffffff"/>
+    <circle cx="552" cy="385" r="9" fill="#ffffff"/>
+  </g>
+
+  <!-- Big Title Banner -->
+  <g transform="translate(400, 85)" filter="url(#shadow)">
+    <rect x="-310" y="-50" width="620" height="90" rx="24" fill="#0f172a" stroke="#10b981" stroke-width="4"/>
+    <text x="0" y="8" font-family="system-ui, sans-serif" font-size="38" font-weight="900" fill="#a7f3d0" text-anchor="middle" letter-spacing="1">
+      MAHJONG CONNECT
+    </text>
+    <text x="0" y="32" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#fde047" text-anchor="middle" letter-spacing="2">
+      BARNYARD LINK MATCH 2 🧩
+    </text>
+  </g>
+</svg>
