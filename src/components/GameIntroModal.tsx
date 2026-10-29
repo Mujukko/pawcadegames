@@ -1269,6 +1269,44 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Look at the arc of the swing! Cutting one rope while another is stretched transfers immense swing speed across the puzzle.',
   },
+  'barnyard-popcorn-popper': {
+    title: 'Barnyard Popcorn Popper: Kernel Burst',
+    subtitle: 'Hold to Pour Corn & Burst Kettle Popcorn',
+    mascot: '🍿🌽',
+    themeColor: 'from-amber-600 via-orange-600 to-amber-700',
+    goal: 'Hold down to pour golden corn into the kettle and fill the bucket right to the target line without spilling past the brim!',
+    steps: [
+      {
+        icon: '🌽',
+        title: '1. Hold to Pour Corn',
+        desc: 'Press and hold the screen or bottom button to stream golden corn kernels from the silo hopper.',
+      },
+      {
+        icon: '🍿',
+        title: '2. Pop and Expand',
+        desc: 'When kernels hit the heated kettle, they burst into fluffy butter popcorn with triple the volume!',
+      },
+      {
+        icon: '🎯',
+        title: '3. Reach the Target Line',
+        desc: 'Fill past the dashed green target line without letting popped corn spill over the red brim.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Click & Hold / Space: Hold to pour golden corn kernels',
+        'Release: Stop pouring to let kernels heat and pop',
+        'R Key: Quick restart current kettle stage',
+        'M Key: Toggle sound effects and popping snaps',
+      ],
+      mobile: [
+        'Touch & Hold: Press screen or big bottom button to pour corn',
+        'Release Touch: Stop pouring to start popping phase',
+        'Stage Buttons: Tap top pills to switch stages anytime',
+      ],
+    },
+    proTip: 'Stop pouring slightly before the target line! When kernels pop, their volume expands rapidly and lifts the top popcorn upward.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

@@ -99,11 +99,17 @@ export const App: React.FC = () => {
     const barnyardKartGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-kart-drift');
     const piggyCannonGame = GAMES_REGISTRY.find(g => g.id === 'piggy-cannon-blast');
     const barnyardRopeGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-rope-cut');
+    const barnyardPopcornGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-popcorn-popper');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/barnyard-rope-cut') || currentRoute.startsWith('/games/rope-cut') || currentRoute.startsWith('/games/cut-the-rope')) {
+    if (currentRoute.startsWith('/games/barnyard-popcorn-popper') || currentRoute.startsWith('/games/popcorn-popper') || currentRoute.startsWith('/games/popcorn-burst')) {
+      if (barnyardPopcornGame) {
+        activeTitle = barnyardPopcornGame.metaTitle;
+        activeDesc = barnyardPopcornGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/barnyard-rope-cut') || currentRoute.startsWith('/games/rope-cut') || currentRoute.startsWith('/games/cut-the-rope')) {
       if (barnyardRopeGame) {
         activeTitle = barnyardRopeGame.metaTitle;
         activeDesc = barnyardRopeGame.metaDescription;
@@ -464,6 +470,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/barnyard-popcorn-popper') || currentRoute.startsWith('/games/popcorn-popper') || currentRoute.startsWith('/games/popcorn-burst')) {
+      return <GamePage navigate={navigate} gameId="barnyard-popcorn-popper" />;
     }
     if (currentRoute.startsWith('/games/barnyard-rope-cut') || currentRoute.startsWith('/games/rope-cut') || currentRoute.startsWith('/games/cut-the-rope')) {
       return <GamePage navigate={navigate} gameId="barnyard-rope-cut" />;

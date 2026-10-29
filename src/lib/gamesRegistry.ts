@@ -2429,6 +2429,44 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Barnyard Rope Cut: Feed the Piggy 🍎🐷 — No Download | Pawcade',
     metaDescription: 'Play Barnyard Rope Cut free online! Slice swinging ropes, collect golden stars, and feed juicy apples to Penny the piglet. Free physics game with no download.',
   },
+  {
+    id: 'barnyard-popcorn-popper',
+    slug: 'barnyard-popcorn-popper',
+    title: 'Barnyard Popcorn Popper: Kernel Burst 🍿🌽',
+    tagline: 'Hold to pour golden corn into the kettle and pop fluffy butter popcorn!',
+    description: 'Pour golden corn kernels into the farm kettle and pop warm buttery popcorn! Fill the bucket right to the target line without spilling kernels past the brim. Time your pour past spinning paddles and narrow chutes. Free browser physics arcade with no download.',
+    category: 'arcade',
+    categories: ['arcade', 'farm', 'puzzle'],
+    route: '/games/barnyard-popcorn-popper/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '51.3K',
+    badge: '🍿 Kernel Burst',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-popcorn-popper.svg',
+    controls: {
+      desktop: [
+        'Mouse Hold / Spacebar: Hold down to pour golden corn kernels',
+        'Release: Stop pouring to start popping and heating phase',
+        'R Key: Quick restart current kettle stage',
+        'M Key: Toggle sound effects and popping snaps',
+      ],
+      mobile: [
+        'Touch & Hold: Press screen or big bottom button to pour corn',
+        'Release Touch: Stop pouring to let kernels pop and fill the bucket',
+        'Stage Buttons: Tap top pills to switch between 4 handcrafted stages',
+      ],
+    },
+    features: [
+      'Realistic Granular Physics and Dynamic Heat Popcorn Volume Expansion',
+      '4 Handcrafted Stages: Butter Barn Kettle, Caramel Funnel, Windmill Paddle, and Cinema Tub',
+      'Moving Obstacles: Rotating Wooden Paddles and Chute Funnels',
+      '3-Star Precision Rating and Target Fill Line Accuracy Scoring',
+      'Procedural Web Audio Engine (Seed Drops, Popcorn Snaps, Kettle Sizzle, and Fanfares)',
+      '100% Free Instant Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Barnyard Popcorn Popper: Kernel Burst 🍿🌽 — No Download | Pawcade',
+    metaDescription: 'Play Barnyard Popcorn Popper free online! Pour golden corn kernels into copper kettles and pop buttery popcorn to the fill line. Free arcade game no download.',
+  },
 ];
 
 
