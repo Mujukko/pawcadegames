@@ -73,4 +73,5 @@ export const GAME_COMPONENTS: Record<string, LazyExoticComponent<ComponentType>>
   'barnyard-connect-four': lazy(() => import('../games/barnyard-connect-four/BarnyardConnectFourContainer').then((m) => ({ default: m.BarnyardConnectFourContainer }))),
   'duck-training-champion': lazy(() => import('../games/duck-training-champion/DuckTrainingChampionContainer').then((m) => ({ default: m.DuckTrainingChampionContainer }))),
   'barnyard-ninja-chick': lazy(() => import('../games/barnyard-ninja-chick/BarnyardNinjaChickContainer').then((m) => ({ default: m.BarnyardNinjaChickContainer }))),
+  'tractor-stunt-trials': lazy(() => import('../games/tractor-stunt-trials/TractorStuntTrialsContainer').then((m) => ({ default: m.TractorStuntTrialsContainer }))),
 };

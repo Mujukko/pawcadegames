@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'tractor-stunt-trials': {
+    title: 'Tractor Stunt Trials: Pasture Splash',
+    subtitle: 'Physics Bike Stunts & Water Splash Racing',
+    mascot: '🚜🐷',
+    themeColor: 'from-amber-500 via-emerald-600 to-sky-700',
+    goal: 'Race your stunt tractor across steep hills, loop ramps, and splash ponds while landing 360-degree flips for time bonuses!',
+    steps: [
+      {
+        icon: '⚡',
+        title: '1. Throttle & Balance',
+        desc: 'Accelerate forward and tilt your tractor to land squarely on both rubber tires across bumpy pasture slopes.',
+      },
+      {
+        icon: '🔄',
+        title: '2. Spin Stunt Flips',
+        desc: 'Launch off wooden kickers and spin full 360-degree frontflips or backflips to shave 0.5 seconds off your clock.',
+      },
+      {
+        icon: '🏁',
+        title: '3. Beat Target Times',
+        desc: 'Hit yellow scarecrow checkpoints and cross the chequered finish gate to earn gold stars and unlock new tracks.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'W / Up Arrow: Accelerate drive wheels',
+        'S / Down Arrow: Brake and reverse',
+        'A / Left Arrow: Tilt tractor backward (backflip)',
+        'D / Right Arrow: Tilt tractor forward (frontflip)',
+        'R Key: Restart from active checkpoint',
+      ],
+      mobile: [
+        'TILT LEFT / RIGHT: Lean backward or forward in mid-air',
+        'GAS / BRAKE: Throttle forward and tap brake for tight stops',
+      ],
+    },
+    proTip: 'Land backflips cleanly on downslope ramps! Each flip deducts 0.5s from your total time to help secure a 3-star trophy.',
+  },
   'barnyard-ninja-chick': {
     title: 'Barnyard Ninja Chick: Silo Parkour',
     subtitle: 'Precision Platformer & Wall Jump Acrobatics',

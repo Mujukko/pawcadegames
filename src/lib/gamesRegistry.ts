@@ -27,6 +27,47 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'tractor-stunt-trials',
+    slug: 'tractor-stunt-trials',
+    title: 'Moto X3M Trials: Tractor Stunt Trials 🚜💥',
+    tagline: 'Perform 360-degree backflips, launch off timber ramps, and race across splash hazards in a high-octane farm stunt trial!',
+    description: 'Play Moto X3M Trials: Tractor Stunt Trials free online! Pilot a bouncy farm tractor across rolling pasture hills, wooden springboard ramps, and splash ponds. Pull off acrobatic 360-degree frontflips and backflips in mid-air to earn time deduction bonuses, avoid explosive TNT hay bales, hit scarecrow checkpoints, and race against the clock to score 3 gold stars in this fast-paced physics trial game!',
+    category: 'arcade',
+    categories: ['arcade', 'farm'],
+    route: '/games/tractor-stunt-trials/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '48.9K',
+    badge: '🚜 Moto Stunts',
+    thumbnailUrl: '/assets/thumbnails/thumb-tractor-stunt-trials.svg',
+    featured: true,
+    tags: ['Moto X3M', 'Stunts', 'Tractor', 'Physics', 'Trials', 'Racing'],
+    controls: {
+      desktop: [
+        'W or Up Arrow: Accelerate drive wheels',
+        'S or Down Arrow: Brake and reverse',
+        'A or Left Arrow: Tilt tractor backward (backflip)',
+        'D or Right Arrow: Tilt tractor forward (frontflip)',
+        'R Key: Quick restart from active checkpoint',
+        'M Key: Toggle procedural engine audio',
+      ],
+      mobile: [
+        'TILT LEFT / RIGHT Buttons: Lean backward or forward in air',
+        'GAS / BRAKE Buttons: Throttle forward and stop quickly',
+      ],
+    },
+    features: [
+      '2D Spring-Damper Suspension Physics with Realistic Chassis Inertia',
+      'Airborne Stunt System: Land 360-degree flips for -0.5s time deductions',
+      '3 Handcrafted Stunt Courses: Pasture Meadows, Timber Bridge, and Barnyard Rooftops',
+      'Interactive Hazards: Splash Ponds, High Springboards, Speed Boosters, and TNT Bales',
+      'Scarecrow Checkpoint System and 3-Star Time Trial Ratings',
+      '100% Free Instant Browser Play with No Download or Install Required',
+    ],
+    metaTitle: 'Moto X3M Trials: Tractor Stunt Trials 🚜💥 — Free Online Game | Pawcade',
+    metaDescription: 'Play Moto X3M Trials free online! Pull off backflips, launch over water splash ponds, and race against the clock in this 2D farm stunt trial game with no download.',
+  },
+  {
     id: 'barnyard-ninja-chick',
     slug: 'barnyard-ninja-chick',
     title: 'Vex Platformer: Barnyard Ninja Chick 🥷🐥',
