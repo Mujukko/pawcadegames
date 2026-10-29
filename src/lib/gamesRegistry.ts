@@ -27,6 +27,46 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'duckling-pond-rescue',
+    slug: 'duckling-pond-rescue',
+    title: 'Ducklings.io: Duckling Pond Rescue 🦆🌾',
+    tagline: 'Gather crying baby ducklings into a follow-the-leader chain and lead them safely to the reeds nest!',
+    description: 'Play Ducklings.io: Duckling Pond Rescue free online! Swim across a peaceful farm pond as Mama Duck to rescue crying baby ducklings. Build an adorable follow-the-leader duckling chain, dodge speeding wooden rowboats and basking turtles, guide your ducklings back to the shoreline nest, and upgrade your reeds sanctuary into a grand straw castle in this charming web game inspired by Ducklings.io!',
+    category: 'pets',
+    categories: ['pets', 'arcade', 'farm'],
+    route: '/games/duckling-pond-rescue/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '38.5K',
+    badge: '🦆 Ducklings.io',
+    thumbnailUrl: '/assets/thumbnails/thumb-duckling-pond-rescue.svg',
+    featured: true,
+    tags: ['Ducklings.io', 'Ducklings', 'Duck', 'Pond', 'Sanctuary', 'Pets', 'Tycoon'],
+    controls: {
+      desktop: [
+        'Pointer / Mouse Drag: Steer Mama Duck across the pond water',
+        'WASD or Arrow Keys: Alternative keyboard swimming control',
+        'Spacebar: Engage paddle turbo boost',
+        'R Key: Quick restart pond rescue wave',
+        'M Key: Toggle pond chimes and duck quacks',
+      ],
+      mobile: [
+        'Touch & Drag: Steer Mama Duck anywhere on screen',
+        'TURBO Button: Activate fast swimming boost',
+      ],
+    },
+    features: [
+      'Follow-the-Leader Duckling Chain Physics with Smooth Wake Waves',
+      'Pond Navigation with Dynamic Rowboat Traffic and Basking Turtles',
+      'Reeds Nest Upgrade Progression: Level 1 Reed Bowl to Level 5 Straw Castle',
+      'Collectible Cosmetic Hats: Flower Crowns, Straw Sunhats, and Golden Crowns',
+      'Procedural Web Audio Engine with Quacks, Baby Peeps, and Water Splashes',
+      '100% Free Instant Browser Play with No Download or Install Required',
+    ],
+    metaTitle: 'Ducklings.io: Duckling Pond Rescue 🦆🌾 — Free Online Game | Pawcade',
+    metaDescription: 'Play Ducklings.io free online! Rescue crying baby ducklings, build a follow-the-leader chain, and upgrade your pond nest as Mama Duck with no download required.',
+  },
+  {
     id: 'tiny-pig-big-tower',
     slug: 'tiny-pig-big-tower',
     title: 'Big Tower Tiny Square: Tiny Pig 🐷🏰',

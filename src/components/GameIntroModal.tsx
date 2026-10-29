@@ -21,6 +21,43 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'duckling-pond-rescue': {
+    title: 'Ducklings.io: Duckling Pond Rescue',
+    subtitle: 'Follow-the-Leader Pond Sanctuary & Nest Tycoon',
+    mascot: '🦆🐥',
+    themeColor: 'from-sky-500 via-amber-500 to-emerald-700',
+    goal: 'Gather lost baby ducklings into a follow-the-leader chain and lead them safely back to the reeds nest on the shore!',
+    steps: [
+      {
+        icon: '🐥',
+        title: '1. Gather Lost Ducklings',
+        desc: 'Swim near crying ducklings to scoop them into your follow line behind Mama Duck.',
+      },
+      {
+        icon: '🛶',
+        title: '2. Dodge Rowboats & Turtles',
+        desc: 'Watch out for speeding rowboats and turtles that sever your duckling chain or capsize Mama Duck.',
+      },
+      {
+        icon: '🌾',
+        title: '3. Upgrade Shoreline Nest',
+        desc: 'Deposit rescued ducklings in the reeds nest to earn combo points and build a royal straw castle.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse / Pointer Drag: Steer Mama Duck across the pond',
+        'WASD or Arrow Keys: Alternative keyboard steering',
+        'Spacebar: Activate paddle turbo boost',
+        'R Key: Quick restart pond wave',
+      ],
+      mobile: [
+        'Touch & Drag: Steer Mama Duck anywhere on the water',
+        'TURBO Button: Activate fast swimming boost',
+      ],
+    },
+    proTip: 'Deposit ducklings in large groups! Delivering 5 or more ducklings at once awards massive combo multipliers and unlocks cute cosmetic hats.',
+  },
   'tiny-pig-big-tower': {
     title: 'Big Tower Tiny Pig: Silo Clamber',
     subtitle: 'Precision Platformer & Vertical Wall Jump Ascent',
