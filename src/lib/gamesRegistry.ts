@@ -27,6 +27,45 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'tiny-pig-big-tower',
+    slug: 'tiny-pig-big-tower',
+    title: 'Big Tower Tiny Square: Tiny Pig 🐷🏰',
+    tagline: 'Climb a giant grain silo tower, wall-kick up narrow shafts, and reclaim your Golden Acorn as a tiny square pig!',
+    description: 'Play Big Tower Tiny Square: Tiny Pig free online! Guide Pip the tiny square piglet up a massive 500-meter grain silo tower. Master ultra-precise wall jumps and wall slides, dodge moving cyan laser beams, leap across crumbling hay platforms, bounce on spring trampolines, and reach the pinnacle to snatch the Golden Acorn back from the thief raccoon in this addictive precision platformer!',
+    category: 'arcade',
+    categories: ['arcade', 'puzzle', 'pets'],
+    route: '/games/tiny-pig-big-tower/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '41.2K',
+    badge: '🐷 Big Tower',
+    thumbnailUrl: '/assets/thumbnails/thumb-tiny-pig-big-tower.svg',
+    featured: true,
+    tags: ['Big Tower Tiny Square', 'Tiny Square', 'Platformer', 'Wall Jump', 'Parkour', 'Pig'],
+    controls: {
+      desktop: [
+        'A / D or Left/Right Arrow Keys: Move left and right across platforms',
+        'Spacebar, W, or Up Arrow: Jump and wall-kick off surfaces',
+        'R Key: Quick respawn at active checkpoint flagpole',
+        'M Key: Toggle tower audio effects',
+      ],
+      mobile: [
+        'LEFT / RIGHT Buttons: Run across platforms',
+        'JUMP Button: Leap across hazards and kick off walls',
+      ],
+    },
+    features: [
+      'Single Seamless Vertical Silo Mega-Tower with Zero Loading Screens',
+      'Momentum-Based Precision Wall-Sliding and Wall-Kicking Physics',
+      'Interactive Obstacles: Moving Lasers, Hot Syrup Lava, and Crumbling Hay',
+      'Generous Instant-Respawn Checkpoint Flagpoles (Zero Reload Delay)',
+      'Procedural Web Audio Engine with Crisp Squeaks, Wall Pops, and Fanfares',
+      '100% Free Instant Browser Play with No Download or Install Required',
+    ],
+    metaTitle: 'Big Tower Tiny Square: Tiny Pig 🐷🏰 — Free Online Game | Pawcade',
+    metaDescription: 'Play Big Tower Tiny Square free online! Wall-kick up a massive grain silo tower, dodge cyan lasers, and grab the Golden Acorn as a tiny pig with no download.',
+  },
+  {
     id: 'barnyard-truck-jumper',
     slug: 'barnyard-truck-jumper',
     title: 'Cluster Rush: Barnyard Truck Jumper 🐐🚛',

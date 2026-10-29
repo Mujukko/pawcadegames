@@ -76,4 +76,5 @@ export const GAME_COMPONENTS: Record<string, LazyExoticComponent<ComponentType>>
   'tractor-stunt-trials': lazy(() => import('../games/tractor-stunt-trials/TractorStuntTrialsContainer').then((m) => ({ default: m.TractorStuntTrialsContainer }))),
   'barnyard-stealth-fox': lazy(() => import('../games/barnyard-stealth-fox/BarnyardStealthFoxContainer').then((m) => ({ default: m.BarnyardStealthFoxContainer }))),
   'barnyard-truck-jumper': lazy(() => import('../games/barnyard-truck-jumper/BarnyardTruckJumperContainer').then((m) => ({ default: m.BarnyardTruckJumperContainer }))),
+  'tiny-pig-big-tower': lazy(() => import('../games/tiny-pig-big-tower/TinyPigBigTowerContainer').then((m) => ({ default: m.TinyPigBigTowerContainer }))),
 };

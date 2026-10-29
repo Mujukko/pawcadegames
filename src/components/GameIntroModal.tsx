@@ -21,6 +21,42 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'tiny-pig-big-tower': {
+    title: 'Big Tower Tiny Pig: Silo Clamber',
+    subtitle: 'Precision Platformer & Vertical Wall Jump Ascent',
+    mascot: '🐷🏰',
+    themeColor: 'from-pink-500 via-sky-600 to-slate-900',
+    goal: 'Climb a giant grain silo tower as tiny square pig Pip and reclaim your Golden Acorn from the mischievous raccoon!',
+    steps: [
+      {
+        icon: '🦘',
+        title: '1. Scale Wall Shafts',
+        desc: 'Jump toward vertical walls and tap Jump to kick back and forth up narrow vertical shafts.',
+      },
+      {
+        icon: '⚡',
+        title: '2. Dodge Laser Beams',
+        desc: 'Time your jumps past moving cyan lasers and crumbling hay blocks that shatter underfoot.',
+      },
+      {
+        icon: '🚩',
+        title: '3. Claim Checkpoints',
+        desc: 'Touch yellow flagpoles for instant respawns if you touch syrup or laser hazards.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'A / D or Left / Right Arrows: Run left and right',
+        'Spacebar, W, or Up Arrow: Jump and wall-kick off surfaces',
+        'R Key: Quick respawn at current checkpoint',
+      ],
+      mobile: [
+        'LEFT / RIGHT Buttons: Run across platforms',
+        'JUMP Button: Leap over hazards and kick off walls',
+      ],
+    },
+    proTip: 'Tap Jump immediately as your piglet slides down a vertical wall to execute maximum-height wall kicks up tight shafts.',
+  },
   'barnyard-truck-jumper': {
     title: 'Cluster Rush: Barnyard Truck Jumper',
     subtitle: 'Highway Convoy Runner & Roof Leaping Arcade',
