@@ -231,26 +231,26 @@ for (const game of playableGames) {
         mainEntity: [
           {
             '@type': 'Question',
-            name: `Is ${game.title} free to play without downloading?`,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: `Yes! ${game.title} is 100% free to play directly in your web browser on desktop, mobile, and Chromebook with zero downloads or installations.`,
-            },
-          },
-          {
-            '@type': 'Question',
-            name: `Can I play ${game.title} on school Chromebooks or mobile?`,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: `Yes. Pawcade games are lightweight HTML5 games optimized for mobile touch and school Chromebooks without lag or download restrictions.`,
-            },
-          },
-          {
-            '@type': 'Question',
-            name: `How do I win or progress in ${game.title}?`,
+            name: `What is the main objective of ${game.title}?`,
             acceptedAnswer: {
               '@type': 'Answer',
               text: `${intro ? intro.goal : game.description}`,
+            },
+          },
+          {
+            '@type': 'Question',
+            name: `How do I control and play ${game.title}?`,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: `On desktop, ${game.controls.desktop[0]}. On mobile devices, ${game.controls.mobile[0]}.`,
+            },
+          },
+          {
+            '@type': 'Question',
+            name: `What is the top strategy or pro tip for ${game.title}?`,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: `${intro ? intro.proTip : 'Focus on steady rhythm, observe obstacle patterns, and practice smooth controls.'}`,
             },
           },
         ],
@@ -258,28 +258,56 @@ for (const game of playableGames) {
     ],
   });
 
-  // Semantic HTML content that OAI-SearchBot & non-JS engines read on raw HTTP response
+  // Semantic HTML content that OAI-SearchBot, Bingbot & non-JS engines read on raw HTTP response
   const semanticContent = `
   <div id="root">
     <main class="min-h-screen bg-slate-900 text-slate-100 p-4 sm:p-8 max-w-5xl mx-auto">
       <nav aria-label="Breadcrumb" class="text-xs font-semibold text-slate-400 mb-4 flex items-center gap-2">
-        <a href="/" class="hover:text-orange-400">Home</a> &gt; 
-        <a href="/category/${categorySlug}/" class="hover:text-orange-400">${categoryName}</a> &gt; 
-        <span class="text-orange-400">${game.title}</span>
+        <a href="/" class="hover:text-amber-400">Home</a> &gt; 
+        <a href="/category/${categorySlug}/" class="hover:text-amber-400">${categoryName}</a> &gt; 
+        <span class="text-amber-400">${game.title}</span>
       </nav>
+
       <header class="mb-6">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-[11px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/30">
+            ${game.badge || 'Playable Game'}
+          </span>
+          <span class="text-xs text-slate-400 font-bold">Category: ${categoryName}</span>
+        </div>
         <h1 class="text-3xl sm:text-4xl font-black text-white mb-2">${game.title}</h1>
         <p class="text-slate-300 text-base max-w-2xl">${game.tagline}</p>
-        <div class="mt-2 text-xs font-bold text-amber-400">Rating: ${game.rating} / 5.0 | Free Online Instant Play (No Download)</div>
+        <div class="mt-2 text-xs font-bold text-amber-400">Rating: ${game.rating} / 5.0 | ${game.playCount || '50K+'} Plays | Free Instant Browser Play (No Download)</div>
       </header>
 
-      <section id="game-overview" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-orange-500/20">
+      <!-- Interactive Playable Game Showcase Frame (Signals WebApplication / Playable Game to Crawlers) -->
+      <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] max-w-4xl mx-auto bg-slate-950 rounded-2xl sm:rounded-3xl border-2 border-amber-500/40 overflow-hidden mb-8 shadow-2xl flex flex-col items-center justify-center p-6 text-center group">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent z-10"></div>
+        <img src="${game.thumbnailUrl}" alt="${game.title}" class="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:scale-105 transition-transform duration-500" loading="eager" />
+        <div class="relative z-20 flex flex-col items-center max-w-md">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 flex items-center justify-center text-3xl sm:text-4xl shadow-2xl shadow-amber-500/40 mb-3 cursor-pointer hover:scale-110 active:scale-95 transition-transform">
+            ▶
+          </div>
+          <span class="text-[11px] uppercase tracking-widest text-amber-300 font-extrabold mb-1">Interactive Web Game</span>
+          <h2 class="text-xl sm:text-2xl font-black text-white mb-2">Play ${game.title} Online</h2>
+          <p class="text-xs text-slate-300 mb-3 line-clamp-2">${game.description}</p>
+          <div class="flex items-center gap-2 text-xs font-bold text-emerald-400 bg-slate-900/80 px-3 py-1.5 rounded-xl border border-emerald-500/30">
+            <span>✓ Instant Loading</span>
+            <span>•</span>
+            <span>✓ 100% Free</span>
+            <span>•</span>
+            <span>✓ Mobile & PC</span>
+          </div>
+        </div>
+      </div>
+
+      <section id="game-overview" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
         <h2 class="text-xl font-bold text-white mb-3">About ${game.title}</h2>
         <p class="text-slate-300 text-sm leading-relaxed mb-4">${game.description}</p>
         <p class="text-emerald-400 text-xs font-bold">✓ 100% Free Browser Play &bull; Zero Installs &bull; Mobile & Desktop Compatible</p>
       </section>
 
-      <section id="how-to-play" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-orange-500/20">
+      <section id="how-to-play" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
         <h2 class="text-xl font-bold text-white mb-3">How to Play ${game.title}</h2>
         ${
           intro
@@ -294,7 +322,7 @@ for (const game of playableGames) {
         }
       </section>
 
-      <section id="controls" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-orange-500/20">
+      <section id="controls" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
         <h2 class="text-xl font-bold text-white mb-3">Controls & Shortcuts</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-300">
           <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
@@ -312,32 +340,44 @@ for (const game of playableGames) {
         </div>
       </section>
 
-      <section id="faq" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-orange-500/20">
+      <section id="faq" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
         <h2 class="text-xl font-bold text-white mb-4">Frequently Asked Questions</h2>
         <div class="space-y-4 text-sm text-slate-300">
           <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
-            <h3 class="font-bold text-amber-400 mb-1">Is ${game.title} free to play without downloading?</h3>
-            <p>Yes! ${game.title} is 100% free to play directly in your web browser on desktop, mobile (iOS & Android), and Chromebook with zero downloads, no installations, and no account required.</p>
+            <h3 class="font-bold text-amber-400 mb-1">What is the main objective of ${game.title}?</h3>
+            <p>${intro ? intro.goal : game.description}</p>
           </div>
           <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
-            <h3 class="font-bold text-amber-400 mb-1">Can I play ${game.title} on school Chromebooks or mobile?</h3>
-            <p>Absolutely. Pawcade games are built with lightweight HTML5 and native Web Audio, making them fast-loading, smooth, and classroom-safe for school breaks and mobile touchscreens.</p>
+            <h3 class="font-bold text-amber-400 mb-1">How do I control and play ${game.title}?</h3>
+            <p>On desktop: ${game.controls.desktop.slice(0, 2).join(' ')}. On mobile: ${game.controls.mobile[0]}.</p>
           </div>
           <div class="p-4 bg-slate-900 rounded-xl border border-slate-800">
-            <h3 class="font-bold text-amber-400 mb-1">How do I win or progress in ${game.title}?</h3>
-            <p>${intro ? intro.goal : game.description} Follow the on-screen instructions, master the controls, and enjoy endless replayable fun!</p>
+            <h3 class="font-bold text-amber-400 mb-1">What is the top strategy or pro tip for ${game.title}?</h3>
+            <p>${intro ? intro.proTip : 'Observe patterns carefully, maintain a steady rhythm, and practice the core controls.'}</p>
           </div>
         </div>
       </section>
 
-      <section id="features" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-orange-500/20">
+      <section id="features" class="mb-8 p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
         <h2 class="text-xl font-bold text-white mb-3">Game Features</h2>
         <ul class="list-disc pl-5 space-y-1 text-sm text-slate-300">
           ${game.features.map((f) => `<li>${f}</li>`).join('')}
         </ul>
       </section>
 
-      <section id="related-games" class="p-6 bg-slate-950/80 rounded-2xl border border-orange-500/20">
+      <!-- Category Navigation Hubs (Crawl Depth Booster) -->
+      <section class="mb-8 p-4 bg-slate-950/60 rounded-2xl border border-slate-800 text-center">
+        <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-2">Explore Pawcade Game Categories</span>
+        <div class="flex flex-wrap justify-center gap-2 text-xs font-bold">
+          <a href="/popular/" class="px-3 py-1 bg-amber-400 text-slate-950 rounded-lg hover:bg-amber-300">🌟 Popular Hits</a>
+          <a href="/category/puzzle/" class="px-3 py-1 bg-slate-900 text-slate-200 border border-slate-700 rounded-lg hover:border-amber-400">🧩 Puzzle Games</a>
+          <a href="/category/farm/" class="px-3 py-1 bg-slate-900 text-slate-200 border border-slate-700 rounded-lg hover:border-amber-400">🌾 Farm Games</a>
+          <a href="/category/arcade/" class="px-3 py-1 bg-slate-900 text-slate-200 border border-slate-700 rounded-lg hover:border-amber-400">⚡ Arcade Games</a>
+          <a href="/category/pets/" class="px-3 py-1 bg-slate-900 text-slate-200 border border-slate-700 rounded-lg hover:border-amber-400">🐾 Pet Games</a>
+        </div>
+      </section>
+
+      <section id="related-games" class="p-6 bg-slate-950/80 rounded-2xl border border-slate-800">
         <h2 class="text-xl font-bold text-white mb-3">More Free Browser Games on Pawcade</h2>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
           ${playableGames
