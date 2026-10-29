@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E122A" />
+      <stop offset="60%" stop-color="#341A47" />
+      <stop offset="100%" stop-color="#14091C" />
+    </linearGradient>
+    <linearGradient id="catBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDF9" />
+      <stop offset="100%" stop-color="#FDE8D0" />
+    </linearGradient>
+    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FDE047" stop-opacity="0.9" />
+      <stop offset="60%" stop-color="#F59E0B" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" rx="16" fill="url(#bg)" />
+
+  <!-- Wooden Pegs Grid -->
+  <circle cx="80" cy="70" r="7" fill="#E2B887" stroke="#8B5A2B" stroke-width="2" />
+  <circle cx="160" cy="70" r="7" fill="#E2B887" stroke="#8B5A2B" stroke-width="2" />
+  <circle cx="240" cy="70" r="7" fill="#E2B887" stroke="#8B5A2B" stroke-width="2" />
+  <circle cx="320" cy="70" r="7" fill="#E2B887" stroke="#8B5A2B" stroke-width="2" />
+
+  <circle cx="120" cy="120" r="8" fill="#F59E0B" stroke="#FEF3C7" stroke-width="2" />
+  <circle cx="280" cy="120" r="8" fill="#F59E0B" stroke="#FEF3C7" stroke-width="2" />
+
+  <circle cx="70" cy="175" r="7" fill="#E2B887" stroke="#8B5A2B" stroke-width="2" />
+  <circle cx="330" cy="175" r="7" fill="#E2B887" stroke="#8B5A2B" stroke-width="2" />
+
+  <!-- Nigiri Sushi Floating Left -->
+  <g transform="translate(95, 115) rotate(-15)">
+    <ellipse cx="0" cy="4" rx="16" ry="10" fill="#FFFFFF" />
+    <ellipse cx="0" cy="-2" rx="19" ry="9" fill="#FA8072" />
+    <rect x="-4" y="-11" width="8" height="22" rx="2" fill="#1A2E1A" />
+  </g>
+
+  <!-- Maki Roll Floating Right -->
+  <g transform="translate(305, 115) rotate(20)">
+    <circle cx="0" cy="0" r="17" fill="#152515" />
+    <circle cx="0" cy="0" r="13" fill="#FFFFFF" />
+    <circle cx="0" cy="0" r="6" fill="#EF4444" />
+  </g>
+
+  <!-- Golden Maki Center -->
+  <circle cx="200" cy="240" r="28" fill="url(#goldGlow)" />
+  <circle cx="200" cy="240" r="16" fill="#F59E0B" stroke="#FEF08A" stroke-width="3" />
+  <circle cx="200" cy="240" r="8" fill="#FEF08A" />
+
+  <!-- Large Happy Calico Kitty Center -->
+  <g transform="translate(200, 140)">
+    <!-- Ears -->
+    <polygon points="-42,-35 -24,-75 -4,-40" fill="#F97316" />
+    <polygon points="-36,-38 -24,-65 -12,-42" fill="#F472B6" />
+    <polygon points="4,-40 24,-75 42,-35" fill="#78350F" />
+    <polygon points="12,-42 24,-65 36,-38" fill="#F472B6" />
+
+    <!-- Body -->
+    <circle cx="0" cy="0" r="54" fill="url(#catBody)" stroke="#E2E8F0" stroke-width="2" />
+
+    <!-- Calico Patches -->
+    <path d="M-40,-25 A38,38 0 0,1 -5, -45 A54,54 0 0,0 -40, 20 Z" fill="#F97316" />
+    <path d="M25,-40 A30,30 0 0,1 48, -10 A54,54 0 0,0 35, -42 Z" fill="#78350F" />
+
+    <!-- Cute Face -->
+    <path d="M-22,-4 Q-14,4 -6,-4" fill="none" stroke="#1E1B4B" stroke-width="3.5" stroke-linecap="round" />
+    <path d="M6,-4 Q14,4 22,-4" fill="none" stroke="#1E1B4B" stroke-width="3.5" stroke-linecap="round" />
+    <ellipse cx="0" cy="8" rx="5" ry="3.5" fill="#FB7185" />
+    <path d="M-5,11 Q0,16 5,11" fill="none" stroke="#FB7185" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Whiskers -->
+    <line x1="-25" y1="6" x2="-48" y2="0" stroke="#64748B" stroke-width="2" stroke-linecap="round" />
+    <line x1="-25" y1="12" x2="-48" y2="16" stroke="#64748B" stroke-width="2" stroke-linecap="round" />
+    <line x1="25" y1="6" x2="48" y2="0" stroke="#64748B" stroke-width="2" stroke-linecap="round" />
+    <line x1="25" y1="12" x2="48" y2="16" stroke="#64748B" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Rosy Cheeks -->
+    <circle cx="-28" cy="12" r="6" fill="#FDA4AF" opacity="0.6" />
+    <circle cx="28" cy="12" r="6" fill="#FDA4AF" opacity="0.6" />
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="50" y="250" width="300" height="40" rx="20" fill="#2E103E" stroke="#F59E0B" stroke-width="2" />
+  <text x="200" y="276" fill="#FEF3C7" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="900" text-anchor="middle" letter-spacing="1">
+    SUSHI KITTY PACHINKO
+  </text>
+</svg>

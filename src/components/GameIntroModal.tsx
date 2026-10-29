@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'sushi-kitty-pachinko': {
+    title: 'Sushi Kitty: Pachinko Feast',
+    subtitle: 'Bouncy Kitten Pachinko & Sushi Buffet Arcade',
+    mascot: '🍣🐱',
+    themeColor: 'from-pink-500 via-amber-500 to-purple-800',
+    goal: 'Drop a bouncy kitten through sushi pins, fill its tummy to the target line, and score big in bottom lacquer baskets!',
+    steps: [
+      {
+        icon: '🎯',
+        title: '1. Aim & Drop',
+        desc: 'Slide the top basket left and right, then release to drop your cat through the pegboard.',
+      },
+      {
+        icon: '🍣',
+        title: '2. Chomp Tasty Rolls',
+        desc: 'Bounce into fresh nigiri, tuna sashimi, and golden maki rolls to fatten your kitten.',
+      },
+      {
+        icon: '🐾',
+        title: '3. Fill the Tummy',
+        desc: 'Hit the target fullness meter before running out of drops to unlock the next feast stage.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse / Pointer Drag: Slide top dropper horizontally',
+        'Spacebar / Left Click / DROP Button: Drop kitten',
+        'Arrow Keys Left / Right: Fine-tune dropper aim',
+        'M Key: Toggle chime sounds',
+      ],
+      mobile: [
+        'Touch & Drag Top Slider: Aim dropper position',
+        'DROP Button: Launch bouncy kitten',
+        'Mute Button: Toggle sound effects',
+      ],
+    },
+    proTip: 'Bigger cats bounce wider! Eat high-value golden maki rolls early to swell your kitten and sweep up all remaining sushi in one drop!',
+  },
   'duckling-pond-rescue': {
     title: 'Ducklings.io: Duckling Pond Rescue',
     subtitle: 'Follow-the-Leader Pond Sanctuary & Nest Tycoon',

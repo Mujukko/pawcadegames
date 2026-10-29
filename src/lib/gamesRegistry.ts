@@ -27,6 +27,47 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'sushi-kitty-pachinko',
+    slug: 'sushi-kitty-pachinko',
+    title: 'Sushi Kitty: Pachinko Feast 🍣🐱',
+    tagline: 'Drop a bouncy chubby kitten through pins, eat delicious sushi, and fill its belly to win!',
+    description: 'Play Sushi Kitty: Pachinko Feast free online! Drop a bouncy kitten through a Japanese sushi buffet pachinko board. Munch salmon nigiri, nori maki rolls, and golden egg rolls to fill your kitty\'s belly and swell its size. Land in lacquer baskets below to clear all 3 stages in this fun game inspired by Sushi Cat!',
+    category: 'pets',
+    categories: ['pets', 'arcade', 'puzzle'],
+    route: '/games/sushi-kitty-pachinko/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '31.2K',
+    badge: '🍣 Sushi Cat',
+    thumbnailUrl: '/assets/thumbnails/thumb-sushi-kitty-pachinko.svg',
+    featured: true,
+    tags: ['Sushi Cat', 'Sushi Kitty', 'Pachinko', 'Cat Games', 'Plinko', 'Arcade', 'Pets'],
+    controls: {
+      desktop: [
+        'Mouse Drag / Pointer: Slide top dropper horizontally',
+        'Spacebar / Left Click / DROP Button: Drop bouncy kitten',
+        'Arrow Keys Left / Right: Fine-tune dropper aim',
+        'R Key: Quick restart current sushi stage',
+        'M Key: Toggle melodic pin and chomp sounds',
+      ],
+      mobile: [
+        'Touch & Drag Top Slider: Aim dropper position across board',
+        'DROP Button: Launch bouncy kitten down pegboard',
+        'Restart Button: Reset current stage anytime',
+      ],
+    },
+    features: [
+      'Authentic Pachinko Peg Physics with Elastic Bumper Bounce Boosts',
+      'Dynamic Cat Swelling Engine as Kitty Consumes Floating Sushi Platters',
+      'Multiple Sushi Delicacies Including Nigiri, Nori Maki, Tuna Sashimi, and Golden Rolls',
+      'Five Multiplier Lacquer Score Baskets at the Board Base',
+      'Three Progressively Challenging Stages with Moving Sushi Platters',
+      'Zero Downloads Required and Instant Single-Screen Mobile Touch Controls',
+    ],
+    metaTitle: 'Sushi Cat: Sushi Kitty Feast - Free Online Cat Game (No Download)',
+    metaDescription: 'Play Sushi Cat: Sushi Kitty Pachinko Feast free in your browser! Drop a bouncy cat through pins, chomp tasty sushi to fill its tummy, and score big with no download.',
+  },
+  {
     id: 'duckling-pond-rescue',
     slug: 'duckling-pond-rescue',
     title: 'Ducklings.io: Duckling Pond Rescue 🦆🌾',
