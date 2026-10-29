@@ -27,6 +27,47 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'barnyard-truck-jumper',
+    slug: 'barnyard-truck-jumper',
+    title: 'Cluster Rush: Barnyard Truck Jumper 🐐🚛',
+    tagline: 'Leap across runaway highway trucks, dodge low signs, and chain double jump combos as a daredevil goat!',
+    description: 'Play Cluster Rush: Barnyard Truck Jumper free online! Sprint and leap across the roofs of speeding livestock trucks, milk tankers, and hay trailers on highway Route 66. Time precision jumps and acrobatic double jumps over highway gaps, slide flat under low clearance signs, and chain roof leaps without touching the asphalt in this adrenaline-pumping 3D runner inspired by Cluster Rush!',
+    category: 'arcade',
+    categories: ['arcade', 'farm'],
+    route: '/games/barnyard-truck-jumper/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '46.3K',
+    badge: '🐐 Cluster Rush',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-truck-jumper.svg',
+    featured: true,
+    tags: ['Cluster Rush', 'Truck Jumper', 'Parkour', 'Runner', 'Highway', 'Arcade'],
+    controls: {
+      desktop: [
+        'A / D or Left/Right Arrow Keys: Strafe across highway lanes',
+        'Spacebar, W, or Up Arrow: Jump and double jump in mid-air',
+        'S or Down Arrow: Slide flat under low overhead signs',
+        'R Key: Quick restart convoy run',
+        'M Key: Toggle highway sounds',
+      ],
+      mobile: [
+        'STRAFE Buttons: Move between highway lanes',
+        'JUMP Button: Leap across truck gaps and double jump',
+        'SLIDE Button: Duck under low clearance signboards',
+      ],
+    },
+    features: [
+      'Dynamic 2.5D Highway Perspective with Moving Multi-Lane Convoy Trucks',
+      'Acrobatic Jump & Double Jump Physics with Roof Impact Feedback',
+      'Low Overhead Highway Signs and Clearance Sliding Mechanics',
+      'Roof-to-Roof Combo Multiplier System and Gold Clover Collectibles',
+      '3 Handcrafted Highway Convoys: Route 66, Canyon Switchback, and Interstate Storm',
+      '100% Free Instant Browser Play with No Download or Install Required',
+    ],
+    metaTitle: 'Cluster Rush: Barnyard Truck Jumper 🐐🚛 — Free Online Game | Pawcade',
+    metaDescription: 'Play Cluster Rush free online! Leap across speeding truck roofs, slide under low highway signs, and chain double jump combos as a daredevil goat with no download.',
+  },
+  {
     id: 'barnyard-stealth-fox',
     slug: 'barnyard-stealth-fox',
     title: 'Bob the Robber: Barnyard Stealth Fox 🦊🕶️',

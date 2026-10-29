@@ -21,6 +21,44 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'barnyard-truck-jumper': {
+    title: 'Cluster Rush: Barnyard Truck Jumper',
+    subtitle: 'Highway Convoy Runner & Roof Leaping Arcade',
+    mascot: '🐐🚛',
+    themeColor: 'from-amber-500 via-sky-600 to-slate-900',
+    goal: 'Leap across speeding trucks on highway Route 66 without falling onto the pavement below!',
+    steps: [
+      {
+        icon: '🦘',
+        title: '1. Jump & Double Jump',
+        desc: 'Time your leaps from roof to roof. Press Jump a second time in mid-air to reach distant trucks.',
+      },
+      {
+        icon: '🛡️',
+        title: '2. Slide Under Signs',
+        desc: 'Hold Slide when approaching low overhead highway signs to duck flat on the truck roof.',
+      },
+      {
+        icon: '🔥',
+        title: '3. Chain Leap Combos',
+        desc: 'Hop between different truck roofs without touching the ground to build huge multiplier combos.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'A / D or Left / Right Arrows: Strafe left and right',
+        'Spacebar or W / Up Arrow: Jump and double jump',
+        'S or Down Arrow: Slide under low overhead signs',
+        'R Key: Quick restart convoy',
+      ],
+      mobile: [
+        'STRAFE Buttons: Move between highway lanes',
+        'JUMP Button: Leap across gaps and double jump',
+        'SLIDE Button: Duck beneath low overhead signs',
+      ],
+    },
+    proTip: 'Save your double jump for mid-air corrections! If a truck sways away from your landing spot, use the second jump to steer safely back onto the roof.',
+  },
   'barnyard-stealth-fox': {
     title: 'Barnyard Sly Fox: Stealth Heist',
     subtitle: 'Side-Scrolling Stealth Puzzle & Vault Infiltration',
