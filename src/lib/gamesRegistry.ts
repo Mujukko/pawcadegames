@@ -27,6 +27,47 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'barnyard-roof-duel',
+    slug: 'barnyard-roof-duel',
+    title: 'Rooftop Snipers: Barnyard Roof Duel 🐓🦊',
+    tagline: 'Floppy 2-button ragdoll sniper showdown on barn roofs! Play vs AI or with a friend!',
+    description: 'Play Rooftop Snipers: Barnyard Roof Duel free online! Jump, aim floppy ragdoll arms, and fire cork rifles in high-stakes barn rooftop duels. Challenge smart AI or play 2-player local mode across red barns and spinning windmills. Knock your rival off the edge to score 5 points first in this fun duel inspired by Rooftop Snipers!',
+    category: 'arcade',
+    categories: ['arcade', 'pets', 'farm'],
+    route: '/games/barnyard-roof-duel/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '49.1K',
+    badge: '🐓 Rooftop Snipers',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-roof-duel.svg',
+    featured: true,
+    tags: ['Rooftop Snipers', 'Ragdoll', '2 Player', 'Duel', 'Shooter', 'Arcade', 'Physics'],
+    controls: {
+      desktop: [
+        'P1 Controls: W Key to Jump, E Key or Spacebar to Shoot',
+        'P2 Controls: Up Arrow to Jump, Down Arrow or Enter to Shoot',
+        'Map Buttons: Select Red Barn, Windmill, or Silo Catwalk',
+        'R Key: Quick restart duel round',
+        'M Key: Toggle rifle pops and ricochet chimes',
+      ],
+      mobile: [
+        'P1: Left Green JUMP and Orange SHOOT touch buttons',
+        'P2: Right Indigo JUMP and Orange SHOOT touch buttons (2P mode)',
+        'Mode Toggle: Switch between VS AI and 2-Player Local at top',
+      ],
+    },
+    features: [
+      'Authentic Floppy Ragdoll Physics with Kinetic Bullet Recoil and Stumble Spins',
+      'Both Single-Player VS AI and Two-Player Local Same-Screen Multiplayer Modes',
+      'Three Dynamic Barnyard Rooftop Battlegrounds Including Rotating Windmills',
+      'First to 5 Points Tournament Match Structure with Instant Zero-Scroll Restart',
+      'Bullet Ricochets Off Cedar Shingles and Metal Silo Domes',
+      'Zero Downloads Required and Responsive Mobile Touch-Optimized Layout',
+    ],
+    metaTitle: 'Rooftop Snipers: Barnyard Roof Duel - Free Game (No Download)',
+    metaDescription: 'Play Rooftop Snipers: Barnyard Roof Duel free in your browser! Jump floppy ragdolls, fire rifles with recoil, and knock rivals off barn roofs with no download.',
+  },
+  {
     id: 'frozen-pasture-dash',
     slug: 'frozen-pasture-dash',
     title: 'Frozen Pasture Dash: Ice Dodo 🦤❄️',

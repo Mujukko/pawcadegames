@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="70%" stop-color="#BAE6FD" />
+      <stop offset="100%" stop-color="#E0F2FE" />
+    </linearGradient>
+    <linearGradient id="barnRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DC2626" />
+      <stop offset="100%" stop-color="#991B1B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="400" height="300" rx="16" fill="url(#skyGrad)" />
+
+  <!-- Fluffy Clouds -->
+  <circle cx="80" cy="50" r="25" fill="#FFFFFF" opacity="0.8" />
+  <circle cx="110" cy="45" r="32" fill="#FFFFFF" opacity="0.8" />
+  <circle cx="140" cy="52" r="22" fill="#FFFFFF" opacity="0.8" />
+  <circle cx="310" cy="70" r="28" fill="#FFFFFF" opacity="0.8" />
+  <circle cx="340" cy="65" r="35" fill="#FFFFFF" opacity="0.8" />
+
+  <!-- Red Barn Rooftop Body -->
+  <polygon points="50,225 200,165 350,225 350,300 50,300" fill="url(#barnRed)" />
+  <!-- Barn Door Trim -->
+  <line x1="160" y1="230" x2="240" y2="300" stroke="#FFFFFF" stroke-width="4" opacity="0.5" />
+  <line x1="240" y1="230" x2="160" y2="300" stroke="#FFFFFF" stroke-width="4" opacity="0.5" />
+
+  <!-- Cedar Roof Edge -->
+  <polygon points="35,230 200,160 365,230 350,240 200,172 50,240" fill="#78350F" />
+  <!-- Weather Vane -->
+  <line x1="200" y1="160" x2="200" y2="130" stroke="#0F172A" stroke-width="3" />
+  <polygon points="190,135 200,122 210,135" fill="#F59E0B" />
+
+  <!-- Sheriff Rooster (Left, Jumping with Rifle) -->
+  <g transform="translate(115, 175) rotate(-12)">
+    <!-- Overalls Body -->
+    <ellipse cx="0" cy="0" rx="12" ry="16" fill="#FFFFFF" />
+    <rect x="-8" y="2" width="16" height="14" fill="#2563EB" />
+    <!-- Tail -->
+    <polygon points="-8,-4 -22,-14 -12,2" fill="#047857" />
+    <!-- Head & Comb -->
+    <circle cx="0" cy="-18" r="10" fill="#FFFFFF" />
+    <circle cx="0" cy="-28" r="4.5" fill="#DC2626" />
+    <circle cx="4" cy="-29" r="3.5" fill="#DC2626" />
+    <!-- Beak -->
+    <polygon points="6,-20 16,-17 6,-14" fill="#F59E0B" />
+    <!-- Eye -->
+    <circle cx="3" cy="-20" r="2.5" fill="#0F172A" />
+    <!-- Rifle pointing right -->
+    <rect x="0" y="-8" width="28" height="5" rx="1" fill="#451A03" />
+    <rect x="22" y="-7" width="14" height="3" fill="#1E293B" />
+    <!-- Muzzle Flash -->
+    <circle cx="38" cy="-5" r="6" fill="#FDE047" opacity="0.9" />
+  </g>
+
+  <!-- Bullet Flying Across -->
+  <circle cx="215" cy="165" r="4" fill="#F59E0B" />
+  <line x1="165" y1="167" x2="210" y2="165" stroke="#FBBF24" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Bandit Fox (Right, Ragdoll Recoiling with Rifle) -->
+  <g transform="translate(285, 185) rotate(16)">
+    <!-- Orange Body -->
+    <ellipse cx="0" cy="0" rx="13" ry="16" fill="#EA580C" />
+    <ellipse cx="-2" cy="0" rx="7" ry="10" fill="#FFF7ED" />
+    <!-- Tail -->
+    <polygon points="8,4 24,-6 14,10" fill="#EA580C" />
+    <circle cx="23" cy="-6" r="4" fill="#FFFFFF" />
+    <!-- Head -->
+    <circle cx="0" cy="-18" r="10" fill="#EA580C" />
+    <!-- Fox Ears -->
+    <polygon points="-6,-26 -3,-35 2,-27" fill="#EA580C" />
+    <polygon points="2,-27 7,-35 10,-26" fill="#EA580C" />
+    <!-- Eye Mask -->
+    <rect x="-9" y="-22" width="18" height="5" rx="1" fill="#1E293B" />
+    <circle cx="-3" cy="-19" r="2" fill="#FEF08A" />
+    <!-- Rifle pointing left -->
+    <rect x="-24" y="-8" width="24" height="5" rx="1" fill="#451A03" />
+    <rect x="-34" y="-7" width="12" height="3" fill="#1E293B" />
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="50" y="250" width="300" height="40" rx="20" fill="#0F172A" stroke="#F59E0B" stroke-width="2" />
+  <text x="200" y="276" fill="#FEF3C7" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="900" text-anchor="middle" letter-spacing="1">
+    BARNYARD ROOF DUEL
+  </text>
+</svg>

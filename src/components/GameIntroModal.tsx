@@ -21,6 +21,45 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'barnyard-roof-duel': {
+    title: 'Barnyard Roof Duel: Ragdoll Showdown',
+    subtitle: 'Floppy 2-Button Ragdoll Sniper Duel & Rooftop Brawl',
+    mascot: '🐓🦊',
+    themeColor: 'from-amber-500 via-rose-600 to-indigo-900',
+    goal: 'Leap into the air, time your rifle shots, and knock your rival off the barn rooftop to score 5 points first!',
+    steps: [
+      {
+        icon: '🦘',
+        title: '1. Jump to Dodge',
+        desc: 'Tap Jump to hop high over incoming bullets and adjust your floppy ragdoll aim angle.',
+      },
+      {
+        icon: '🎯',
+        title: '2. Shoot with Recoil',
+        desc: 'Press Shoot to fire cork rifle rounds. Bullet recoil will push your body backward!',
+      },
+      {
+        icon: '💥',
+        title: '3. Knock Rival Off',
+        desc: 'Land direct hits or use ricochets to fling your opponent over the edge to score points.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'P1: W Key to Jump, E Key or Spacebar to Shoot',
+        'P2: Up Arrow to Jump, Down Arrow or Enter to Shoot',
+        'Map Buttons: Switch between Barn, Windmill, and Silo Catwalk',
+        'R Key: Quick restart duel match',
+        'M Key: Toggle cork pops and ricochet sounds',
+      ],
+      mobile: [
+        'P1 Buttons: Left Green JUMP and Orange SHOOT',
+        'P2 Buttons: Right Indigo JUMP and Orange SHOOT (in 2P mode)',
+        'Mode & Map: Toggle VS AI or 2-Player at top',
+      ],
+    },
+    proTip: 'Use your gun recoil to save yourself! If you get knocked off the roof edge, quickly shoot forward to boost yourself back onto the shingles!',
+  },
   'frozen-pasture-dash': {
     title: 'Frozen Pasture Dash: Ice Dodo',
     subtitle: 'High-Speed Alpine Glacier Runner & Chasm Jumper',
