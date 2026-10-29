@@ -7,39 +7,12 @@ Build a high-retention, delightful browser puzzle game called **Dog Parking** an
 - **Target Audience:** Casual puzzle gamers, pet lovers, commuter/break players seeking instant-play, zero-install 2-5 minute puzzle sessions.
 - **Initial Market:** United States (desktop & mobile web).
 
-## 3. Game Portfolio (32 Playable Games)
-1. **Dog Parking (`/games/dog-parking/`):** Rush Hour / Parking Jam hybrid with 12 verified levels and procedural dog barks.
-2. **Cat Parking (`/games/cat-parking/`):** Feline sliding puzzle with 12 verified levels and procedural purrs/meows.
-3. **Animal Farm Parking (`/games/animal-farm-parking/`):** Precision tractor driving, pasture milk collection, and docking stalls.
-4. **Farm Tetris (`/games/farm-tetris/`):** Farm crop tetrominoes with filling hay silo and cheering animated farmer.
-5. **Animal 2048 (`/games/animal-2048/`):** 12-tier animal evolution ladder (Mouse to Elephant) with undo and swipe controls.
-6. **Flappy Chicken (`/games/flappy-chicken/`):** Distance flight through fence gates to the grand golden wheat field.
-7. **Farm Animal Match (`/games/pet-candy-crush/`):** 8x8 match-3 with striped runners, party animals, and golden barn stars.
-8. **Duck Runner (`/games/duck-runner/`):** Offline infinite runner with day/night cycle and vampire bats.
-9. **Farm Mini Mart (`/games/farm-mini-mart/`):** 3D arcade idle tycoon with crops, shelves, cash register, and farmhand helpers.
-10. **Chef Rat Rush (`/games/chef-rat-rush/`):** Parisian gourmet animal kitchen with orders, chopping boards, and brass service bells.
-11. **Farm Block Blast (`/games/farm-block-blast/`):** 8x8 wood polyomino blast with banjo combos and line clears.
-12. **Sheep Cart Jam (`/games/sheep-cart-jam/`):** Meadow tractor escape with color-matching sheep trailers and station bays.
-13. **Grain Sand Fall (`/games/grain-sand-fall/`):** Sand Tetris fluid granular physics with multi-crop sand dissolution.
-14. **Farm Pantry Sort (`/games/farm-pantry-sort/`):** Triple Goods match puzzle with wooden kitchen cupboards and jam jars.
-15. **Critter Tap Away (`/games/critter-tap-away/`):** 3D arrow-cube barn escape with clear directional raycasting.
-16. **Egg Buster (`/games/egg-buster/`):** Slingshot trajectory physics destroying wooden crates and mischievous foxes.
-17. **Sheep Stampede (`/games/sheep-stampede/`):** Colony multiplier gates (x2, x3, +20) leading Buster's flock safely into the red barn.
-18. **Horseshoe Twist (`/games/horseshoe-twist/`):** Concentric rotating rings with exit notches to free the lucky golden horseshoe.
-19. **Duck Hunt Classic (`/games/duck-hunt-classic/`):** Retro arcade clay & duck shooter with laughing dog and round quotas.
-20. **Farm Mahjong (`/games/farm-mahjong/`):** Multi-layer 3D tile solitaire with free-tile BFS detection and farm crops.
-21. **Pet Memory Match (`/games/pet-memory-match/`):** Concentration card flipping with flip multipliers and golden pairs.
-22. **Barnyard Tower (`/games/barnyard-tower/`):** 60 FPS Canvas 2D swinging crane stacker with center-of-mass physics.
-23. **Gopher Garden (`/games/gopher-garden/`):** 3x3 whack-a-mole orchard frenzy with golden king gophers and combo streaks.
-24. **Farm Fruit Bubble (`/games/farm-fruit-bubble/`):** Hexagonal bubble shooter with bouncing aiming guide and fruit bursts.
-25. **Pasture Sheep Jump (`/games/pasture-sheep-jump/`):** Vertical endless jumping with bouncy hay springs and cloud platforms.
-26. **Hungry Piggy (`/games/hungry-piggy/`):** Arena chomper growing through 4 size tiers eating farm produce.
-27. **Duck Pond Sort (`/games/duck-pond-sort/`):** Water sort logic puzzle sorting colored ducklings into matching water lily docks.
-28. **Hamster Ball Dash (`/games/hamster-ball-dash/`):** High-speed stunt sphere arcade with ramps, tubes, and sunflower seeds.
-29. **Cat Cafe Rush (`/games/cat-cafe-rush/`):** Cozy bakery tycoon baking taiyaki waffles and frothing matcha for visiting cats.
-30. **Save the Sheep (`/games/save-the-sheep/`):** Physics line drawing puzzle drawing wooden barrier fences to deflect bee swarms.
-31. **Capybara Spa (`/games/capybara-spa-rush/`):** Japanese cedar onsen tycoon tossing floating yuzu, scrubbing baths, and serving tea.
-32. **Wood Nuts & Bolts (`/games/wood-nuts-farm/`):** Tactile screw & bolt puzzle unfastening pegs to drop heavy wooden planks.
+## 3. Game Portfolio (64 Playable Games)
+- **Classic Hits & Driving:** Dog Parking, Cat Parking, Animal Farm Parking, Barnyard Kart: Tractor Grand Prix
+- **Physics & Launch:** Piggy Cannon Blast, Barnyard Rope Cut, Barnyard Popcorn Popper, Egg Buster, Grain Sand Fall, Wood Nuts & Bolts, Save the Sheep, Barnyard Tower, Barnyard Pinball, Barnyard Brick Breaker, Milk Bottle Plinko, Barnyard Peg Pop, Barnyard Fruit Slicer, Barnyard Pin Pull
+- **Puzzles & Logic:** Barnyard Word Connect, Farm Block Blast, Sheep Cart Jam, Farm Pantry Sort, Critter Tap Away, Horseshoe Twist, Farm Mahjong, Pet Memory Match, Farm Fruit Bubble, Duck Pond Sort, Animal Suika Drop, Farm Tile Triple, Farm Pipe Flow, Hamster Cookie Stack, Animal Tangram Fit, Sheep Sorter Gate, Hamster Maze Runner
+- **Arcade & Action:** Duck Hunt Classic, Duck Runner, Flappy Chicken, Farm Tetris, Animal 2048, Pasture Sheep Jump, Hungry Piggy, Hamster Ball Dash, Duck Archery Range, Corgi Mini Golf, Caterpillar Fruit Trail, Carrot Target Throw, Piggy Coin Pusher, Crop Mower Harvest, Chicken Egg Catcher, Duck Water Slide, Bunny Hop Cross
+- **Cozy Sim & Tycoon:** Farm Mini Mart, Chef Rat Rush, Cat Cafe Rush, Capybara Spa, Koi Pond Zen, Piggy Mud Wash, Farm Boba Tea, Barnyard Ice Cream, Gopher Garden, Farm TriPeaks Solitaire, Sheep Stampede
 
 ## 4. Technology Stack
 - **Language:** TypeScript 5.x (`strict: true`)
@@ -52,9 +25,9 @@ Build a high-retention, delightful browser puzzle game called **Dog Parking** an
 - **Persistence:** Browser `localStorage` for progress, high scores, audio preferences, and tutorial dismissals.
 
 ## 5. Current Implementation Status
-- **Total Playable Catalog:** 32 fully playable, mathematically verified games.
-- **Test Suite:** 353 automated unit tests passing across 34 test files (4201 assertions).
-- **SEO & Readability:** 32/32 games scored 100/100 on the unified 7-pillar Agentic SEO audit with 0/100 AI slop.
-- **Build & Pre-rendering:** Vite production bundle passes cleanly with static HTML pre-rendered for all 32 games and category hubs.
+- **Total Playable Catalog:** 64 fully playable, mathematically verified games.
+- **Test Suite:** 665 automated unit tests passing across 66 test files (5561 assertions).
+- **SEO & Readability:** 64/64 games scored 100/100 on the unified 7-pillar Agentic SEO audit with 0/100 AI slop.
+- **Build & Pre-rendering:** Vite production bundle passes cleanly with static HTML pre-rendered for all 64 games and category hubs.
 - **Continuous Deployment:** All code committed and pushed to `main` (`Mujukko/pawcadegames`).
 
