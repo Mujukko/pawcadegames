@@ -79,4 +79,5 @@ export const GAME_COMPONENTS: Record<string, LazyExoticComponent<ComponentType>>
   'tiny-pig-big-tower': lazy(() => import('../games/tiny-pig-big-tower/TinyPigBigTowerContainer').then((m) => ({ default: m.TinyPigBigTowerContainer }))),
   'duckling-pond-rescue': lazy(() => import('../games/duckling-pond-rescue/DucklingPondRescueContainer').then((m) => ({ default: m.DucklingPondRescueContainer }))),
   'sushi-kitty-pachinko': lazy(() => import('../games/sushi-kitty-pachinko/SushiKittyPachinkoContainer').then((m) => ({ default: m.SushiKittyPachinkoContainer }))),
+  'frozen-pasture-dash': lazy(() => import('../games/frozen-pasture-dash/FrozenPastureDashContainer').then((m) => ({ default: m.FrozenPastureDashContainer }))),
 };

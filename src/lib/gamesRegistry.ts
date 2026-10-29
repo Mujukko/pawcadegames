@@ -27,6 +27,47 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'frozen-pasture-dash',
+    slug: 'frozen-pasture-dash',
+    title: 'Frozen Pasture Dash: Ice Dodo 🦤❄️',
+    tagline: 'Skate down treacherous alpine glacier slopes at breakneck speeds and jump deep crevasses!',
+    description: 'Play Frozen Pasture Dash: Ice Dodo free online! Steer a clumsy skater dodo down icy alpine pasture slopes. Dodge sharp ice cones, swerve around rolling snow boulders, slingshot across green turbo booster pads, and leap over bottomless crevasses. Conquer all 3 high-speed alpine tracks in this fast browser arcade runner inspired by Ice Dodo!',
+    category: 'arcade',
+    categories: ['arcade', 'pets', 'farm'],
+    route: '/games/frozen-pasture-dash/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '44.8K',
+    badge: '🦤 Ice Dodo',
+    thumbnailUrl: '/assets/thumbnails/thumb-frozen-pasture-dash.svg',
+    featured: true,
+    tags: ['Ice Dodo', 'Dodo', 'Ice Runner', 'Speed Runner', 'Arcade', 'Glacier', 'Pets'],
+    controls: {
+      desktop: [
+        'Mouse Drag / Pointer: Steer skater dodo laterally across the ice',
+        'Arrow Keys Left / Right: Alternative precise lateral steering',
+        'Spacebar / Up Arrow: Jump over deep ice chasms and cones',
+        'R Key: Quick restart glacial downhill run',
+        'M Key: Toggle ice skate carving sounds',
+      ],
+      mobile: [
+        'Touch & Drag: Steer dodo across ice runway',
+        'JUMP Button: Hop into the air over chasms',
+        'Restart Button: Reset current track anytime',
+      ],
+    },
+    features: [
+      'High-Speed 2.5D Glacial Track Engine with Perspective Depth Scaling',
+      'Realistic Ice Skating Carve Inertia and Dynamic Body Lean Tilt',
+      'Green Speed Booster Slingshot Pads for Explosive Acceleration',
+      'Wooden Ski-Jump Ramps to Soar Over Bottomless Glacial Crevasses',
+      'Collectible Frost Berries that Unlock Protective Crystal Shield Bubbles',
+      'Three Progressively Demanding Alpine Tracks with Instant Zero-Scroll Restart',
+    ],
+    metaTitle: 'Ice Dodo: Frozen Pasture Dash - Free Online Game (No Download)',
+    metaDescription: 'Play Ice Dodo: Frozen Pasture Dash free in your browser! Steer a skater dodo down icy slopes, dodge sharp cones, hit turbo pads, and leap crevasses with no download.',
+  },
+  {
     id: 'sushi-kitty-pachinko',
     slug: 'sushi-kitty-pachinko',
     title: 'Sushi Kitty: Pachinko Feast 🍣🐱',

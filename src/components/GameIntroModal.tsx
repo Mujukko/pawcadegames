@@ -21,6 +21,45 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'frozen-pasture-dash': {
+    title: 'Frozen Pasture Dash: Ice Dodo',
+    subtitle: 'High-Speed Alpine Glacier Runner & Chasm Jumper',
+    mascot: '🦤❄️',
+    themeColor: 'from-cyan-500 via-blue-600 to-slate-900',
+    goal: 'Steer your skater dodo down steep glacial slopes, hit booster pads, and leap over crevasses to conquer the mountain!',
+    steps: [
+      {
+        icon: '⛸️',
+        title: '1. Steer Fast',
+        desc: 'Drag left and right across the ice track to carve around sharp stalagmites and rolling snow boulders.',
+      },
+      {
+        icon: '⚡',
+        title: '2. Hit Speed Pads',
+        desc: 'Slingshot over green turbo arrows to build high speed and collect glowing frost berries.',
+      },
+      {
+        icon: '🦘',
+        title: '3. Leap Crevasses',
+        desc: 'Time your jumps over ramps to fly across bottomless icy fissures before reaching the finish gate.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Drag / Pointer: Steer skater dodo laterally',
+        'Arrow Keys Left / Right: Fine-tune steering angle',
+        'Spacebar / Up Arrow: Jump over fissures and cones',
+        'R Key: Quick restart glacial run',
+        'M Key: Toggle skate carving sounds',
+      ],
+      mobile: [
+        'Touch & Drag: Steer dodo across ice runway',
+        'JUMP Button: Hop into the air',
+        'Restart Button: Reset current track anytime',
+      ],
+    },
+    proTip: 'Grab 5 frost berries to trigger a protective ice crystal shield! The shield absorbs one obstacle crash without wiping out!',
+  },
   'sushi-kitty-pachinko': {
     title: 'Sushi Kitty: Pachinko Feast',
     subtitle: 'Bouncy Kitten Pachinko & Sushi Buffet Arcade',
