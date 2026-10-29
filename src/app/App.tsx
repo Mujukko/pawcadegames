@@ -98,11 +98,17 @@ export const App: React.FC = () => {
     const barnyardIceCreamGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-ice-cream');
     const barnyardKartGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-kart-drift');
     const piggyCannonGame = GAMES_REGISTRY.find(g => g.id === 'piggy-cannon-blast');
+    const barnyardRopeGame = GAMES_REGISTRY.find(g => g.id === 'barnyard-rope-cut');
 
     let activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games (No Downloads)';
     let activeDesc = 'Play free browser games on Pawcade! Instant play casual web games, pet and farm puzzles on mobile and desktop with zero downloads.';
 
-    if (currentRoute.startsWith('/games/piggy-cannon-blast') || currentRoute.startsWith('/games/piggy-launch') || currentRoute.startsWith('/games/cannon-blast')) {
+    if (currentRoute.startsWith('/games/barnyard-rope-cut') || currentRoute.startsWith('/games/rope-cut') || currentRoute.startsWith('/games/cut-the-rope')) {
+      if (barnyardRopeGame) {
+        activeTitle = barnyardRopeGame.metaTitle;
+        activeDesc = barnyardRopeGame.metaDescription;
+      }
+    } else if (currentRoute.startsWith('/games/piggy-cannon-blast') || currentRoute.startsWith('/games/piggy-launch') || currentRoute.startsWith('/games/cannon-blast')) {
       if (piggyCannonGame) {
         activeTitle = piggyCannonGame.metaTitle;
         activeDesc = piggyCannonGame.metaDescription;
@@ -458,6 +464,9 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/games/barnyard-rope-cut') || currentRoute.startsWith('/games/rope-cut') || currentRoute.startsWith('/games/cut-the-rope')) {
+      return <GamePage navigate={navigate} gameId="barnyard-rope-cut" />;
     }
     if (currentRoute.startsWith('/games/piggy-cannon-blast') || currentRoute.startsWith('/games/piggy-launch') || currentRoute.startsWith('/games/cannon-blast')) {
       return <GamePage navigate={navigate} gameId="piggy-cannon-blast" />;

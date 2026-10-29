@@ -1231,6 +1231,44 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Save your rocket nitro thrusters for when you begin losing altitude! Firing nitro at the peak of a bounce gives maximum glide distance.',
   },
+  'barnyard-rope-cut': {
+    title: 'Barnyard Rope Cut: Feed the Piggy',
+    subtitle: 'Physics Pendulum Rope Slicing Puzzle',
+    mascot: '🍎🐷',
+    themeColor: 'from-amber-600 via-rose-600 to-red-700',
+    goal: 'Cut swinging ropes to guide ripe apples through golden stars directly into Penny\'s hungry mouth!',
+    steps: [
+      {
+        icon: '✂️',
+        title: '1. Swipe to Cut Ropes',
+        desc: 'Drag your finger or cursor blade across ropes to sever them and release the swinging apple.',
+      },
+      {
+        icon: '⭐',
+        title: '2. Collect 3 Golden Stars',
+        desc: 'Time your cuts so pendulum momentum carries the apple through all three floating stars.',
+      },
+      {
+        icon: '🫧',
+        title: '3. Pop Bubbles & Bounce',
+        desc: 'Tap milk bubbles to pop them when the apple reaches the ideal drop height above trampolines.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Click & Drag: Slice blade across ropes',
+        'Left Click Bubble: Tap bubble to pop and release fruit',
+        'R Key: Quick restart current level',
+        'M Key: Toggle rope slice and bubble sounds',
+      ],
+      mobile: [
+        'Finger Swipe: Slice smoothly through ropes',
+        'Tap Bubble: Pop floating bubble to drop apple',
+        'Level Pills: Jump between 4 stages anytime',
+      ],
+    },
+    proTip: 'Look at the arc of the swing! Cutting one rope while another is stretched transfers immense swing speed across the puzzle.',
+  },
   'cat-cafe-rush': {
     title: 'Cat Cafe Rush: Cozy Bakery',
     subtitle: 'Cozy Time-Management Bakery',

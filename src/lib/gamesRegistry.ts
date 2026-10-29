@@ -2391,6 +2391,44 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     metaTitle: 'Piggy Cannon Blast: Barnyard Launch 🚀🐷 — No Download | Pawcade',
     metaDescription: 'Play Piggy Cannon Blast free online! Blast Penny the piglet from circus cannons, grab rocket soda, and bounce across farm clouds. Free arcade game no download.',
   },
+  {
+    id: 'barnyard-rope-cut',
+    slug: 'barnyard-rope-cut',
+    title: 'Barnyard Rope Cut: Feed the Piggy 🍎🐷',
+    tagline: 'Slice swinging ropes, collect golden stars, and feed juicy apples to hungry Penny!',
+    description: 'Cut ropes to swing ripe apples into Penny the piglet\'s bowl! Solve physics pendulum puzzles, collect three golden stars on each stage, bounce across farm trampolines, and float through milk bubbles. Free brain puzzle with zero downloads.',
+    category: 'puzzle',
+    categories: ['puzzle', 'farm', 'pets'],
+    route: '/games/barnyard-rope-cut/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '49.1K',
+    badge: '✂️ Rope Cut',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-rope-cut.svg',
+    controls: {
+      desktop: [
+        'Click & Drag Blade: Swipe smoothly across ropes to cut them',
+        'Left Click Bubble: Tap floating milk bubbles to pop them',
+        'R Key: Quick restart current puzzle',
+        'M Key: Toggle rope slice and bubble audio',
+      ],
+      mobile: [
+        'Finger Swipe: Slice across ropes with instant responsive blade trail',
+        'Tap Bubble: Pop floating bubble to release apple into downward gravity',
+        'Level Pills: Jump between 4 handcrafted farm stages anytime',
+      ],
+    },
+    features: [
+      'Realistic Verlet Physics Rope Pendulums and Dynamic Swing Gravity',
+      '4 Handcrafted Farm Puzzle Stages: Barnyard Kitchen, Apple Orchard, Windmill Loft, and Grand Silo',
+      'Interactive Physics Obstacles: Floating Milk Bubbles, Spring Trampolines, and Spiky Thistles',
+      '3-Star Collection Rating System for Mastery and Replayability',
+      'Procedural Web Audio Engine (Blade Slices, Plucked String Snaps, Bubble Pops, and Piggy Chews)',
+      '100% Free Browser Play with No Download or Install',
+    ],
+    metaTitle: 'Barnyard Rope Cut: Feed the Piggy 🍎🐷 — No Download | Pawcade',
+    metaDescription: 'Play Barnyard Rope Cut free online! Slice swinging ropes, collect golden stars, and feed juicy apples to Penny the piglet. Free physics game with no download.',
+  },
 ];
 
 
