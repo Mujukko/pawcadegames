@@ -8,6 +8,8 @@ interface GameCardProps {
   onClick: () => void;
   /** 'large' spans 2x2 grid cells (featured games in the mosaic). */
   size?: 'default' | 'large';
+  /** Priority cards above the fold: eager loaded with high fetch priority to optimize LCP. */
+  priority?: boolean;
 }
 
 export const CATEGORY_CHIP: Record<GameCategory, { label: string; className: string }> = {
@@ -18,7 +20,7 @@ export const CATEGORY_CHIP: Record<GameCategory, { label: string; className: str
 };
 
 /** Thumbnail-first game tile. The name slides up on hover and is always shown on touch screens. */
-export const GameCard: React.FC<GameCardProps> = ({ game, onClick, size = 'default' }) => {
+export const GameCard: React.FC<GameCardProps> = ({ game, onClick, size = 'default', priority = false }) => {
   const name = shortTitle(game);
   const large = size === 'large';
 
@@ -34,9 +36,11 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onClick, size = 'defau
       <img
         src={game.thumbnailUrl}
         alt=""
-        loading="lazy"
-        width={512}
-        height={512}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
+        decoding={priority ? 'sync' : 'async'}
+        width={384}
+        height={384}
         className="w-full h-full object-cover"
       />
       <span

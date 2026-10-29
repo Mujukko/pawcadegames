@@ -2,17 +2,55 @@
 
 **Target Market:** United States (Desktop & Mobile Web)  
 **Target Domain:** `https://pawcadegames.com/`  
-**Updated:** 2026-10-23  
+**Updated:** 2026-10-29 (Ahrefs US Verified Metrics)
 
 ---
 
-## 1. Executive Summary & US Search Landscape
+## 1. Verified Ahrefs US Keyword Intelligence (Genre-Targeted Strategy)
 
-The US online gaming market for browser/casual games is driven by four primary search intents:
-1. **Zero-Friction / Instant Gratification:** Queries containing *"no download"*, *"instant play"*, *"in browser"*, *"free online"*.
-2. **Access / Unblocked Search Intent:** Queries containing *"unblocked games"*, *"games to play at school/work"*, *"classroom safe games"*.
-3. **Cozy / Cute Animal Puzzles:** Fast-growing niche for relaxing, aesthetic games (*"cute dog puzzle"*, *"cat sorting/parking"*, *"farm match 3"*, *"idle farm mart"*).
-4. **Classic Arcade Remakes:** Nostalgic search queries (*"dino runner offline remake"*, *"farm tetris"*, *"animal 2048"*).
+> **Golden Rule:** When building original games, **target genre search queries rather than specific game titles**. This eliminates trademark infringement risks, avoids direct competition against established brand owners, and captures massive organic search demand.
+
+### A. High-Value New Game Production Candidates (Ahrefs US Monthly Data)
+| Target Genre Search | US Volume | Keyword Difficulty (KD) | Traffic Potential (TP) | Proposed Pawcade Game | Existing Category | Status / Notes |
+| :--- | :---: | :---: | :---: | :--- | :--- | :--- |
+| **`clicker games` + `idle games`** | **68,000 + 30,000** | **0 / 25** | **22,000 + 14,000 (36,000 TP)** | **Farm Animal Idle Clicker** (Tap, collect milk/eggs, upgrade barn) | Tycoon / Farm | **#1 Priority Candidate** — KD 0, highest TP, easiest to engineer |
+| **`connect 4`** | **92,000** | **39** | **34,000** | **Barnyard Four in a Row** (Vs AI bot + 2-player local) | Puzzle | **#2 Priority Candidate** — Must use brand-safe title ("Barnyard Four in a Row") |
+| **`pyramid solitaire`** | 26,000 | 52 | 13,000 | Farm Pyramid Solitaire | Card / Puzzle | Complements Farm TriPeaks |
+| **`platformer games`** | 5,900 | 4 | 5,100 | Pasture Critter Run: Platformer Quest | Arcade | Low KD (4), strong intent match |
+| **`spot the difference`** | 22,000 | 37 | 4,200 | Barnyard Spot the Difference | Puzzle | Countryside farm scenes |
+| **`mahjong connect`** | 6,000 | 47 | 2,100 | Farm Mahjong Connect (Link tiles) | Puzzle | Complements Farm Mahjong Solitaire |
+| **`horse racing game` + `horse games`** | 2,400 + 7,900 | 20 / 30 | 1,800 + 1,800 (3,600 TP) | Barnyard Horse Derby & Care | Farm + Pets | Steeplechase jumps & grooming |
+| **`virtual pet`** | 1,200 | 2 | 800 | Farm Animal Virtual Pet Care | Pets | Tamagotchi-style pet care |
+| **`puppy games`** | 900 | 1 | 600 | Barnaby Puppy Play & Care | Pets | Ultra low KD (1) |
+| **`frog games`** | 800 | 1 | 500 | Lily Pad Frog Leap Arcade | Arcade | Ultra low KD (1) |
+
+### B. High-Performing Competitor Benchmarks (Viral Web Hits)
+| Competitor Game | US Volume | KD | Traffic Potential (TP) | Pawcade Fit & Potential Adaptation |
+| :--- | :---: | :---: | :---: | :--- |
+| **Eggy Car** | **181,000** | **18** | **32,000** | **Barnyard Egg Cart: Pasture Hill** (Egg balance hill driving physics — Top candidate) |
+| **Capybara Clicker** | 57,000 | 34 | 21,000 | Animal clicker with unlockable hats/skins |
+| **Duck Life** | 60,000 | 38 | 24,000 | Duck training, stamina, and race progression |
+| **Vex 5** | 30,000 | 35 | 14,000 | Precision obstacle platformer |
+| **Moto X3M Pool Party**| 11,000 | 10 | 12,000 | Stunt obstacle obstacle course |
+| **Cluster Rush** | 21,000 | 1 | 8,000 | Truck hopping runner |
+| **Big Tower Tiny Square**| 16,000 | 3 | 6,400 | Single-screen precision platformer |
+| **Penguin Diner** | 2,300 | 0 | 400 | Cozy animal diner time-management |
+
+### C. Immediate Quick-Win Title Optimizations (No New Code Required)
+1. **`tile matching game` (KD 0, TP 5,000):** Update `Farm Tile Triple` meta title and H1 to front-load `Tile Matching Game`.
+2. **`pet games` (KD 4, TP 1,200):** Update `/category/pets/` meta title and H1 to front-load `Pet Games Online`.
+
+### D. Keyword Blacklist / Traps to Avoid
+* **Ultra-High KD Traps (KD 65+):** `solitaire`, `sudoku`, `minesweeper`, `spider solitaire`, `freecell`, `checkers`, `crossword`, `word search`, `jigsaw puzzles online`. (Requires DR 80+ backlink authority).
+* **Zero-SERP Traffic Traps (Google Widget Dominance or Misleading Intent):**
+  - `klondike solitaire` (136K volume, but TP only 500 — Google's interactive widget steals 99% of clicks).
+  - `dominoes` (39K volume — 98% of users are searching for Domino's Pizza delivery!).
+  - `jigsaw puzzle` (161K volume, but TP only 100).
+  - `chess` (1.3M volume, but TP only 350 — Chess.com and Google widget absorb all traffic).
+* **Specific Query Mismatch Traps:**
+  - `pig games`: High TP, but intent is strictly searching for the game "Iron Snout".
+  - `egg games`: High TP, but intent is searching for the multiplayer FPS "Shell Shockers".
+* **Low-Volume Animal Modifiers:** `cow games`, `sheep games`, `goat games`, `bird games`, `penguin games`, `hamster games` have low US TP (20–150 clicks). Category/genre terms (`clicker games`, `idle games`, `tile matching game`, `pet games`) drive 50x-100x more traffic.
 
 ---
 

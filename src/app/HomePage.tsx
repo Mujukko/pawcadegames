@@ -218,11 +218,12 @@ export const HomePage: React.FC<HomePageProps> = ({
               )}
             </div>
 
-            {displayedGames.map((game) => (
+            {displayedGames.map((game, idx) => (
               <GameCard
                 key={game.id}
                 game={game}
                 size={largeIds.has(game.id) ? 'large' : 'default'}
+                priority={idx < 4}
                 onClick={() => navigate(game.route)}
               />
             ))}

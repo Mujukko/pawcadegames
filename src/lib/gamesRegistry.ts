@@ -1322,7 +1322,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
   {
     id: 'farm-tile-triple',
     slug: 'farm-tile-triple',
-    title: 'Barnyard Tile Match: Triple Pick 🧺🍎',
+    title: 'Tile Matching Game: Farm Tile Triple 🍓🧩',
     tagline: 'Pick and match 3 cute farm crop tiles in your 7-slot tray to clear the board in this cozy puzzle!',
     description: 'Match cute crop tiles in this relaxing farm puzzle. Tap unblocked tiles from the board to move them into your tray. When you collect three identical tiles, they clear instantly for bonus points. Keep your seven tray slots from filling up as you dig through layered tiles. Clear every crop from the garden table to complete all four handcrafted stages today!',
     category: 'puzzle',
@@ -1356,7 +1356,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       'Procedural Web Audio Synthesizer (Wooden Taps, Harp Chimes, Shuffle Whooshes, and Victory Fanfare)',
       '100% Free Browser Play with No Download or Install',
     ],
-    metaTitle: 'Barnyard Tile Match: Triple Pick 🧺🍎 — No Download | Pawcade',
+    metaTitle: 'Tile Matching Game: Farm Tile Triple 🍓🧩 — Free Online | Pawcade',
     metaDescription: 'Play Barnyard Tile Match free online! Pick and match 3 cute farm crop tiles in your 7-slot tray to clear the board. Free cozy puzzle game with no download.',
   },
   {

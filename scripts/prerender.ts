@@ -140,9 +140,9 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   pets: {
     name: 'Pets & Animals',
     slug: 'pets',
-    metaTitle: 'Cat & Dog Games Online — Free Cute Pet Games | Pawcade',
+    metaTitle: 'Pet Games Online — Free Cute Cat & Dog Games | Pawcade',
     metaDescription: 'Play free cat games, dog games, and cute pet puzzles in your browser. Slide corgis in Dog Parking, rescue kittens in Cat Parking, and match pets with zero downloads.',
-    h1: 'Cute Cat, Dog & Pet Games Online 🐾',
+    h1: 'Free Pet Games Online — Cute Dogs & Cats 🐾',
     description: 'Meet playful corgis, mischievous cats, fluffy sheep, and barnyard animals! Cozy, family-friendly browser games designed for animal lovers of all ages.',
     directAnswer: 'Pawcade pet games feature cute dogs, cats, hamsters, and barn critters in family-friendly challenges. Test your memory in Pet Memory Match, slide friendly corgis in Dog Parking, untangle felines in Cat Parking, or roll through obstacle courses in Hamster Ball Dash.',
     filter: (g) => g.category === 'pets' || Boolean(g.categories?.includes('pets')),
@@ -262,7 +262,7 @@ for (const game of playableGames) {
 
       <!-- Game stage placeholder: replaced by the live game when JS loads -->
       <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] max-w-4xl mx-auto bg-stage rounded-[28px] ring-4 ring-white overflow-hidden mb-8 shadow-tile flex items-center justify-center">
-        <img src="${game.thumbnailUrl}" alt="${plainTitle} gameplay screenshot" class="absolute inset-0 w-full h-full object-cover opacity-50" loading="eager" />
+        <img src="${game.thumbnailUrl}" alt="${plainTitle} gameplay screenshot" class="absolute inset-0 w-full h-full object-cover opacity-50" loading="eager" fetchpriority="high" width="768" height="432" />
         <div class="relative flex flex-col items-center text-center px-6">
           <span class="w-20 h-20 rounded-full bg-brand text-white flex items-center justify-center text-3xl shadow-tile mb-3" aria-hidden="true">▶</span>
           <h2 class="font-display text-2xl font-semibold text-white drop-shadow">Play ${plainTitle} online</h2>
@@ -377,6 +377,7 @@ for (const game of playableGames) {
     .replace(/<meta property="twitter:description" content=".*?" \/>/, `<meta property="twitter:description" content="${game.metaDescription}" />`)
     .replace(/<meta property="twitter:url" content=".*?" \/>/, `<meta property="twitter:url" content="https://pawcadegames.com${game.route}" />`)
     .replace(/<meta property="twitter:image" content=".*?" \/>/, `<meta property="twitter:image" content="${ogImage}" />`)
+    .replace(/<link rel="preload" as="image" href=".*?" fetchpriority="high" \/>/, `<link rel="preload" as="image" href="${game.thumbnailUrl}" fetchpriority="high" />`)
     .replace('</head>', `  <script type="application/ld+json">${schemaLd}</script>\n  </head>`)
     .replace('<div id="root"></div>', semanticContent);
 
@@ -531,8 +532,11 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
     </main>
   </div>`;
 
+  const firstGameThumb = catGames[0]?.thumbnailUrl || '/assets/thumbnails/thumb-farm-mini-mart.jpg';
+
   let catHtml = template
     .replace(/<title>.*?<\/title>/, `<title>${cat.metaTitle}</title>`)
+    .replace(/<link rel="preload" as="image" href=".*?" fetchpriority="high" \/>/, `<link rel="preload" as="image" href="${firstGameThumb}" fetchpriority="high" />`)
     .replace(/<meta name="title" content=".*?" \/>/, `<meta name="title" content="${cat.metaTitle}" />`)
     .replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${cat.metaDescription}" />`)
     .replace(/<meta name="keywords" content=".*?" \/>/, `<meta name="keywords" content="${cat.slug} games, free online ${cat.slug} games, browser games no download, unblocked casual games" />`)
@@ -634,6 +638,7 @@ for (const page of INFO_PAGES) {
   const title = escapeHtml(page.metaTitle);
   const desc = escapeHtml(page.metaDescription);
   const html = template
+    .replace(/<link rel="preload" as="image" href=".*?" fetchpriority="high" \/>/, '')
     .replace(/<title>.*?<\/title>/, () => `<title>${title}</title>`)
     .replace(/<meta name="title" content=".*?" \/>/, () => `<meta name="title" content="${title}" />`)
     .replace(/<meta name="description" content=".*?" \/>/, () => `<meta name="description" content="${desc}" />`)

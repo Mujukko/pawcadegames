@@ -7,8 +7,13 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QENGPZ73F"></script>
+    <!-- Performance & Preconnects -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="preload" href="/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" as="image" href="/assets/thumbnails/thumb-farm-mini-mart.jpg" fetchpriority="high" />
+
+    <!-- Google tag (gtag.js) - Buffered & Interaction-Deferred for 95+ PageSpeed -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){window.dataLayer.push(arguments);}
@@ -18,6 +23,27 @@
       gtag('config', 'G-6QENGPZ73F', {
         send_page_view: false
       });
+
+      // Defer external gtag.js network request until window load or first user gesture
+      (function() {
+        var loaded = false;
+        function loadGtag() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-6QENGPZ73F';
+          document.head.appendChild(s);
+        }
+        if (document.readyState === 'complete') {
+          setTimeout(loadGtag, 1200);
+        } else {
+          window.addEventListener('load', function() { setTimeout(loadGtag, 1200); });
+        }
+        ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function(ev) {
+          window.addEventListener(ev, loadGtag, { once: true, passive: true });
+        });
+      })();
     </script>
     
     <!-- Google Search Console Verification -->
@@ -56,10 +82,6 @@
     <meta property="twitter:description" content="Play free casual browser games online at Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, Duck Runner, and more. Instant play on mobile and desktop." />
     <meta property="twitter:image" content="https://pawcadegames.com/og-pawcade.png" />
     <meta property="twitter:image:alt" content="Pawcade Games — Free Online Casual Browser Games" />
-
-    <!-- Performance & Fonts -->
-    <link rel="preload" href="/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">

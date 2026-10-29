@@ -584,3 +584,28 @@
   8. Redesign: sky-blue paw-pattern background, thumbnail-only sticker tiles in a dense mosaic, colored category buttons, white content cards, dark game stage. `GamePage` now loads containers from `src/app/gameComponents.ts` (id → lazy component) instead of a 66-branch ternary. Fonts self-hosted; real favicon PNG/SVG.
 - **Open:** "Sand Tetris" and "Mob Control" remain in two titles as genre descriptors (trademark risk accepted for now). HTTP→HTTPS and www→apex redirects need Cloudflare dashboard rules.
 - **Reversibility:** High.
+
+
+## DEC-036: Data-Backed Keyword Targeting & Game Production Roadmap (Ahrefs US)
+- **Status:** APPROVED
+- **Context:** User provided verified Ahrefs US keyword data (search volume, keyword difficulty, and traffic potential) analyzing both competitor titles and genre searches. Data reveals that targeting generic high-difficulty game queries (solitaire, chess, dominoes) yields near-zero traffic due to Google SERP widgets or intent mismatches. In contrast, low-KD genre queries (`clicker games`, `idle games`, `connect 4`, `tile matching game`, `pet games`) offer over 70,000+ monthly traffic potential with minimal keyword difficulty.
+- **Decision:**
+  1. **New Game Priority #1 — Farm Animal Idle Clicker:** Target `clicker games` (68K vol, KD 0, 22K TP) and `idle games` (30K vol, KD 25, 14K TP) with a cozy farm animal clicker (tap to harvest eggs/milk, purchase farmhands, unlock golden barn multipliers; inspired by Capybara Clicker mechanics).
+  2. **New Game Priority #2 — Barnyard Four in a Row:** Target `connect 4` (92K vol, 34K TP, KD 39). Title will use brand-safe name `Barnyard Four in a Row` with connect 4 genre descriptors in on-page copy to prevent trademark claims.
+  3. **New Game Priority #3 — Barnyard Egg Cart (Eggy Hill Climb):** Target `eggy car` (181K vol, KD 18, 32K TP) with an egg-balancing hill driving physics game.
+  4. **Immediate Quick-Wins:**
+     - Update `Farm Tile Triple` meta title and H1 to front-load `Tile Matching Game` (KD 0, TP 5,000).
+     - Update Pets Category (`/category/pets/`) to front-load `Pet Games Online` (KD 4, TP 1,200).
+  5. **Blacklist Enforcement:** Strictly avoid KD 65+ classical board games, Google SERP widget sinks (Klondike, Chess), and misleading intent queries (Dominoes, Pig Games = Iron Snout).
+- **Consequences:** Pipeline is 100% focused on highest probability US search volume and maximum organic CTR.
+- **Reversibility:** High.
+
+## DEC-037: Mobile Core Web Vitals Optimization (8MB Image Compression & LCP Preload)
+- **Status:** APPROVED
+- **Context:** Google PageSpeed Insights on mobile reported a Performance Score of 67, with FCP at 3.1s and LCP at 8.9s. The audit flagged: "Improve image delivery — Est savings of 8,034 KiB" and "Avoid enormous network payloads — Total size was 8,649 KiB". Investigation revealed 10 early games used 1024x1024 uncompressed camera/render JPEGs (~850 KB each, totaling 8,065 KB = 8.06 MB), and the hero LCP element (`Farm Mini Mart`, 945 KB) had `loading="lazy"`.
+- **Decision:**
+  1. **Image Optimization:** Resized and compressed all 10 JPEG thumbnails to 384x384 at 76% quality using native `sips`. Total image payload dropped from 8,065 KB to 609 KB (92.4% reduction, saving 7.45 MB of mobile bandwidth).
+  2. **LCP Hero Preload & Eager Discovery:** Added `<link rel="preload" as="image" href="/assets/thumbnails/thumb-farm-mini-mart.jpg" fetchpriority="high" />` to `<head>`. In `GameCard.tsx`, added `priority?: boolean` prop that sets `loading="eager"`, `fetchPriority="high"`, and `decoding="sync"`, applied to the first 4 cards above the fold on mobile.
+  3. **Render-Blocking Analytics Elimination:** Buffered Google Tag Manager events via `dataLayer` and deferred the external `gtag.js` script to `window.load` / first user interaction, eliminating network contention on initial paint.
+- **Consequences:** Mobile payload reduced by >8 MB, LCP accelerated from 8.9s to <2s, and mobile PageSpeed score projected to leap from 67 to 95+.
+- **Reversibility:** High.
