@@ -21,6 +21,43 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'penguin-pasture-diner': {
+    title: 'Penguin Pasture Diner: Cafe Dash',
+    subtitle: 'Ice Skater Restaurant Tycoon & Table Service Dash',
+    mascot: '🐧🍨',
+    themeColor: 'from-sky-500 via-blue-600 to-indigo-900',
+    goal: 'Seat cute Antarctic guests, take orders, serve fish pies and milkshakes, and collect cash tips to reach daily goals!',
+    steps: [
+      {
+        icon: '🪑',
+        title: '1. Seat Waiting Guests',
+        desc: 'Tap a waiting animal at the door, then tap an empty clean table to seat them.',
+      },
+      {
+        icon: '🛎️',
+        title: '2. Take Orders & Cook',
+        desc: 'When a customer rings their bell, tap the table to send the meal ticket to the kitchen.',
+      },
+      {
+        icon: '💵',
+        title: '3. Serve Dishes & Collect Tips',
+        desc: 'Pick up steaming plates from the counter, serve hungry guests, and collect cash tips.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse / Pointer Click: Tap guests, tables, and kitchen counter',
+        'R Key: Quick restart daily shift',
+        'M Key: Toggle order bells and register chimes',
+      ],
+      mobile: [
+        'Tap Guest at Door -> Tap Empty Table to seat',
+        'Tap Order Bell -> Cooks meal in kitchen',
+        'Tap Kitchen Counter -> Tap Table to serve & collect tips',
+      ],
+    },
+    proTip: 'Clear dirty tables fast! Waiting guests at the door will lose patience and leave if all four tables remain uncleaned!',
+  },
   'barnyard-roof-duel': {
     title: 'Barnyard Roof Duel: Ragdoll Showdown',
     subtitle: 'Floppy 2-Button Ragdoll Sniper Duel & Rooftop Brawl',

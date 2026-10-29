@@ -27,6 +27,45 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'penguin-pasture-diner',
+    slug: 'penguin-pasture-diner',
+    title: 'Penguin Diner: Penguin Pasture Diner 🐧🍨',
+    tagline: 'Seat cute Antarctic guests, serve fish sundaes, and collect tips on ice skates!',
+    description: 'Play Penguin Diner: Penguin Pasture Diner free online! Glide on ice skates as Penny the Penguin in a cozy Antarctic restaurant. Seat waiting polar bears and seals, take kitchen orders, serve kelp shakes and clam pies, and pocket cash tips. Upgrade skates and plush booths to clear all 3 shifts in this fun tycoon game inspired by Penguin Diner!',
+    category: 'pets',
+    categories: ['pets', 'farm', 'arcade'],
+    route: '/games/penguin-pasture-diner/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '52.4K',
+    badge: '🐧 Penguin Diner',
+    thumbnailUrl: '/assets/thumbnails/thumb-penguin-pasture-diner.svg',
+    featured: true,
+    tags: ['Penguin Diner', 'Penguin', 'Diner', 'Restaurant', 'Tycoon', 'Time Management', 'Pets'],
+    controls: {
+      desktop: [
+        'Mouse / Pointer Click: Select waiting guests, tables, and kitchen counter',
+        'R Key: Quick restart current restaurant shift',
+        'M Key: Toggle order bells and register ka-chings',
+      ],
+      mobile: [
+        'Tap Guest at Door -> Tap Empty Table to seat customer',
+        'Tap Table with Bell -> Sends order ticket to chef station',
+        'Tap Kitchen Counter -> Tap Table to serve meal and collect tips',
+      ],
+    },
+    features: [
+      'Authentic Restaurant Time-Management Tycoon Loop with Multi-Table Service',
+      'Charming Animal Customer Species Including Polar Bears, Seals, and Penguins',
+      'Dynamic Kitchen Cooking Station with Active Preparation Timers',
+      'In-Game Diner Upgrade Catalog Featuring Speed Skates and Plush Booths',
+      'Three Progressively Demanding Daily Shifts with Tip Target Quotas',
+      'Instant Zero-Scroll Single-Screen Responsive Layout for Mobile and Desktop',
+    ],
+    metaTitle: 'Penguin Diner: Penguin Pasture Cafe - Free Online Game (No Download)',
+    metaDescription: 'Play Penguin Diner: Penguin Pasture Cafe free in your browser! Seat cute guests, serve dishes on ice skates, collect tips, and upgrade booths with no download.',
+  },
+  {
     id: 'barnyard-roof-duel',
     slug: 'barnyard-roof-duel',
     title: 'Rooftop Snipers: Barnyard Roof Duel 🐓🦊',
