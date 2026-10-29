@@ -21,6 +21,45 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'barnyard-stealth-fox': {
+    title: 'Barnyard Sly Fox: Stealth Heist',
+    subtitle: 'Side-Scrolling Stealth Puzzle & Vault Infiltration',
+    mascot: '🦊🕶️',
+    themeColor: 'from-amber-600 via-rose-700 to-slate-900',
+    goal: 'Slip into the farm manor as Sly the fox, hide in doorway shadows, pick locked coop doors, and steal the master golden egg!',
+    steps: [
+      {
+        icon: '🚪',
+        title: '1. Duck in Shadows',
+        desc: 'Hold Down or tap Hide when near dark doorways or haystacks to vanish from guard dog flashlights.',
+      },
+      {
+        icon: '💥',
+        title: '2. Knockout Guards',
+        desc: 'Sneak behind patrolling hounds or sleeping bulldogs and press Action to knock them out cold.',
+      },
+      {
+        icon: '🔑',
+        title: '3. Plunder & Escape',
+        desc: 'Pick padlocked doors, grab hidden keys and glittering golden eggs, then reach the burrow exit.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'A / D or Left / Right Arrows: Sneak left and right',
+        'W / S or Up / Down Arrows: Climb wooden ladders',
+        'S or Down Arrow in doorway: Duck into shadows to hide',
+        'Spacebar or E: Pick locks and knock out guards',
+        'R Key: Quick restart heist level',
+      ],
+      mobile: [
+        'Arrow Pad: Sneak left and right or climb ladders',
+        'HIDE Button: Duck into dark shadow doorways',
+        'ACTION Button: Pick locks or strike guards from behind',
+      ],
+    },
+    proTip: 'Watch guard vision cones closely! If a guard spots you, dash to a dark doorway immediately to break line of sight before the alarm countdown ends.',
+  },
   'tractor-stunt-trials': {
     title: 'Tractor Stunt Trials: Pasture Splash',
     subtitle: 'Physics Bike Stunts & Water Splash Racing',

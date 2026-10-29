@@ -27,6 +27,48 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'barnyard-stealth-fox',
+    slug: 'barnyard-stealth-fox',
+    title: 'Bob the Robber: Barnyard Stealth Fox 🦊🕶️',
+    tagline: 'Sneak past guard dogs, duck into shadow doorways, and pick locked safes in this side-scrolling heist puzzle!',
+    description: 'Play Bob the Robber: Barnyard Stealth Fox free online! Infiltrate Farmer MacDonald\'s manor barn as Sly the master thief fox. Duck into dark doorways to vanish from sweeping flashlight cones, knock out snoozing bulldog guards from behind, pick locked hencoop doors, dodge red laser tripwires, and escape with shiny golden eggs in this addictive stealth puzzle inspired by Bob the Robber!',
+    category: 'puzzle',
+    categories: ['puzzle', 'arcade', 'pets'],
+    route: '/games/barnyard-stealth-fox/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '44.8K',
+    badge: '🦊 Stealth Heist',
+    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-stealth-fox.svg',
+    featured: true,
+    tags: ['Bob the Robber', 'Stealth', 'Heist', 'Puzzle', 'Fox', 'Escape'],
+    controls: {
+      desktop: [
+        'A / D or Arrow Keys: Sneak left and right across timber floors',
+        'W / S or Up / Down Keys: Climb wooden ladders between floors',
+        'S or Down Arrow in doorway: Duck into shadows to hide from guards',
+        'Spacebar or E: Pick locks or strike guards from behind',
+        'R Key: Quick restart current heist level',
+        'M Key: Toggle stealth audio and sirens',
+      ],
+      mobile: [
+        'Arrow Pad: Sneak horizontally or climb up and down ladders',
+        'HIDE Button: Duck into shadow doorways and haystacks',
+        'ACTION Button: Pick door locks and knock out guards',
+      ],
+    },
+    features: [
+      'Dynamic Guard AI with Flashlight Vision Cones and Snoozing Patrols',
+      'Shadow Stealth System: Hide in doorways and haystacks to vanish from sight',
+      'Multi-Floor Barn Levels with Wooden Climbing Ladders and Laser Tripwires',
+      'Interactive Lockpicking, Key Collecting, and Master Safe Cracking',
+      'Procedural Web Audio Engine with Sneak Footsteps and Blaring Sirens',
+      '100% Free Instant Browser Play with No Download or Install Required',
+    ],
+    metaTitle: 'Bob the Robber: Barnyard Stealth Fox 🦊🕶️ — Free Online Game | Pawcade',
+    metaDescription: 'Play Bob the Robber free online! Sneak past guard dogs, hide in doorway shadows, pick coop locks, and steal golden eggs in this stealth puzzle with no download.',
+  },
+  {
     id: 'tractor-stunt-trials',
     slug: 'tractor-stunt-trials',
     title: 'Moto X3M Trials: Tractor Stunt Trials 🚜💥',
