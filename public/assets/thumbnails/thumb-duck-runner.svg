@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgDusk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#fed7aa"/>
+    </linearGradient>
+    <linearGradient id="trackGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#15803d"/>
+      <stop offset="30%" stop-color="#16a34a"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+    <linearGradient id="hayGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#a16207"/>
+    </linearGradient>
+    <linearGradient id="duckGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="60%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#eab308"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="36" fill="url(#bgDusk)"/>
+
+  <!-- Distant Farm Silo & Windmill -->
+  <polygon points="410,240 430,170 450,240" fill="#93c5fd" opacity="0.6"/>
+  <rect x="420" y="240" width="20" height="40" fill="#93c5fd" opacity="0.6"/>
+
+  <!-- Running Track Dirt & Grass -->
+  <rect x="0" y="340" width="512" height="172" fill="url(#trackGrad)"/>
+  <!-- Running Path Stripes (speed dashes) -->
+  <g stroke="#86efac" stroke-width="4" stroke-linecap="round" opacity="0.6">
+    <line x1="20" y1="380" x2="100" y2="380"/>
+    <line x1="160" y1="380" x2="260" y2="380"/>
+    <line x1="320" y1="380" x2="420" y2="380"/>
+    <line x1="60" y1="430" x2="180" y2="430"/>
+    <line x1="240" y1="430" x2="380" y2="430"/>
+  </g>
+
+  <!-- Hay Bale Obstacle (Right side) -->
+  <g filter="url(#shadow)">
+    <ellipse cx="400" cy="350" rx="36" ry="46" fill="url(#hayGrad)" stroke="#713f12" stroke-width="3"/>
+    <ellipse cx="420" cy="350" rx="20" ry="44" fill="#ca8a04"/>
+    <!-- Twine bands around hay -->
+    <path d="M 370 330 Q 400 336 430 330" stroke="#451a03" stroke-width="3" fill="none"/>
+    <path d="M 370 370 Q 400 376 430 370" stroke="#451a03" stroke-width="3" fill="none"/>
+  </g>
+
+  <!-- Speed Dust Behind Duck -->
+  <ellipse cx="140" cy="360" rx="30" ry="14" fill="#ffffff" opacity="0.7"/>
+  <ellipse cx="100" cy="350" rx="20" ry="10" fill="#ffffff" opacity="0.5"/>
+  <ellipse cx="70" cy="340" rx="14" ry="7" fill="#ffffff" opacity="0.3"/>
+
+  <!-- Athletic Yellow Duck Leaping in Sprint -->
+  <g filter="url(#shadow)" transform="rotate(-6 230 270)">
+    <!-- Body -->
+    <ellipse cx="230" cy="270" rx="54" ry="42" fill="url(#duckGrad)" stroke="#ca8a04" stroke-width="3"/>
+
+    <!-- Wing (streamlined sprint) -->
+    <path d="M 200 270 Q 160 250 140 230 Q 180 270 240 280 Z" fill="#eab308" stroke="#ca8a04" stroke-width="2"/>
+
+    <!-- Head -->
+    <circle cx="280" cy="225" r="32" fill="url(#duckGrad)" stroke="#ca8a04" stroke-width="3"/>
+
+    <!-- Beak (Long flat runner duck beak) -->
+    <ellipse cx="320" cy="235" rx="24" ry="12" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+    <circle cx="316" cy="230" r="2" fill="#7c2d12"/>
+
+    <!-- Eye (Determined runner look) -->
+    <circle cx="284" cy="216" r="10" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>
+    <circle cx="288" cy="216" r="6" fill="#0f172a"/>
+    <circle cx="286" cy="213" r="2" fill="#ffffff"/>
+
+    <!-- Red Sweatband on head -->
+    <rect x="254" y="202" width="52" height="10" rx="4" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5"/>
+
+    <!-- Webbed Feet Sprinting -->
+    <!-- Front foot stretched -->
+    <polygon points="260,305 285,340 260,345 250,310" fill="#f97316"/>
+    <!-- Back foot trailing -->
+    <polygon points="190,300 170,335 150,330 180,295" fill="#ea580c"/>
+  </g>
+
+  <!-- Top Title Badge -->
+  <g filter="url(#shadow)">
+    <rect x="130" y="14" width="252" height="48" rx="16" fill="#0284c7" stroke="#ffffff" stroke-width="3"/>
+    <text x="256" y="46" font-family="'Fredoka', Nunito, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">DUCK RUNNER</text>
+  </g>
+</svg>

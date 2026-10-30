@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgPasture" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="40%" stop-color="#86efac"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </linearGradient>
+    <linearGradient id="penGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="fenceGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#064e3b" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="36" fill="url(#bgPasture)"/>
+
+  <!-- Farm Pen Ground with Grid Slots -->
+  <g filter="url(#shadow)">
+    <rect x="64" y="90" width="384" height="360" rx="24" fill="url(#penGrad)" stroke="#d97706" stroke-width="6"/>
+
+    <!-- Grid lines -->
+    <line x1="192" y1="90" x2="192" y2="450" stroke="#fcd34d" stroke-width="4" stroke-dasharray="8 8"/>
+    <line x1="320" y1="90" x2="320" y2="450" stroke="#fcd34d" stroke-width="4" stroke-dasharray="8 8"/>
+    <line x1="64" y1="210" x2="448" y2="210" stroke="#fcd34d" stroke-width="4" stroke-dasharray="8 8"/>
+    <line x1="64" y1="330" x2="448" y2="330" stroke="#fcd34d" stroke-width="4" stroke-dasharray="8 8"/>
+
+    <!-- Exit Gate Opening at top-center -->
+    <rect x="180" y="74" width="152" height="28" rx="8" fill="#22c55e" stroke="#ffffff" stroke-width="3"/>
+    <text x="256" y="94" font-family="'Fredoka', sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">EXIT ➔</text>
+  </g>
+
+  <!-- Animals in Slots (Like cars in parking jam) -->
+  <!-- Cute Pink Pig Cart (Vertical 1x2 in left lane) -->
+  <g filter="url(#shadow)">
+    <rect x="80" y="110" width="94" height="190" rx="28" fill="#f472b6" stroke="#db2777" stroke-width="4"/>
+    <!-- Pig snout -->
+    <ellipse cx="127" cy="150" rx="24" ry="18" fill="#fbcfe8"/>
+    <circle cx="119" cy="150" r="4" fill="#9d174d"/><circle cx="135" cy="150" r="4" fill="#9d174d"/>
+    <!-- Pig eyes -->
+    <circle cx="112" cy="126" r="6" fill="#1e293b"/><circle cx="142" cy="126" r="6" fill="#1e293b"/>
+    <!-- Pig ears -->
+    <polygon points="90,110 84,94 106,104" fill="#db2777"/>
+    <polygon points="164,110 170,94 148,104" fill="#db2777"/>
+    <!-- Wheels/feet -->
+    <rect x="74" y="140" width="8" height="24" rx="4" fill="#831843"/>
+    <rect x="172" y="140" width="8" height="24" rx="4" fill="#831843"/>
+    <rect x="74" y="240" width="8" height="24" rx="4" fill="#831843"/>
+    <rect x="172" y="240" width="8" height="24" rx="4" fill="#831843"/>
+  </g>
+
+  <!-- Fluffy White Sheep (Horizontal 2x1 in bottom lane) -->
+  <g filter="url(#shadow)">
+    <rect x="110" y="348" width="190" height="84" rx="26" fill="#ffffff" stroke="#cbd5e1" stroke-width="4"/>
+    <!-- Sheep wool puffs -->
+    <circle cx="140" cy="354" r="16" fill="#f1f5f9"/>
+    <circle cx="170" cy="350" r="18" fill="#f1f5f9"/>
+    <circle cx="205" cy="350" r="18" fill="#f1f5f9"/>
+    <circle cx="240" cy="354" r="16" fill="#f1f5f9"/>
+    <!-- Sheep face -->
+    <ellipse cx="270" cy="390" rx="20" ry="16" fill="#475569"/>
+    <circle cx="274" cy="386" r="4" fill="#ffffff"/>
+    <ellipse cx="288" cy="380" rx="8" ry="5" fill="#334155"/>
+  </g>
+
+  <!-- Spotted Cow (Vertical 1x2 in center aiming for Exit) -->
+  <g filter="url(#shadow)">
+    <rect x="208" y="130" width="96" height="190" rx="28" fill="#f8fafc" stroke="#334155" stroke-width="4"/>
+    <!-- Cow spots -->
+    <ellipse cx="236" cy="180" rx="16" ry="12" fill="#1e293b"/>
+    <ellipse cx="276" cy="230" rx="18" ry="22" fill="#1e293b"/>
+    <!-- Cow horns & ears -->
+    <polygon points="220,130 212,112 228,124" fill="#f59e0b"/>
+    <polygon points="292,130 300,112 284,124" fill="#f59e0b"/>
+    <!-- Cow muzzle -->
+    <ellipse cx="256" cy="154" rx="22" ry="16" fill="#fbcfe8"/>
+    <circle cx="248" cy="154" r="4" fill="#9d174d"/><circle cx="264" cy="154" r="4" fill="#9d174d"/>
+    <!-- Cow eyes -->
+    <circle cx="238" cy="136" r="5" fill="#0f172a"/><circle cx="274" cy="136" r="5" fill="#0f172a"/>
+
+    <!-- Green Guidance Arrow pointing out the gate -->
+    <path d="M 256 100 L 256 60 M 244 74 L 256 60 L 268 74" stroke="#16a34a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Top Title Badge -->
+  <g filter="url(#shadow)">
+    <rect x="110" y="14" width="292" height="48" rx="16" fill="#16a34a" stroke="#ffffff" stroke-width="3"/>
+    <text x="256" y="46" font-family="'Fredoka', Nunito, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">FARM PARKING JAM</text>
+  </g>
+</svg>

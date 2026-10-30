@@ -21,6 +21,42 @@ export interface GameIntroContent {
 }
 
 export const GAME_INTROS: Record<string, GameIntroContent> = {
+  'capybara-clicker': {
+    title: 'Capybara Clicker: Cozy Farm Tap',
+    subtitle: 'Viral Idle Rodent Tap & Warm Onsen Simulator',
+    mascot: '🍊🦫',
+    themeColor: 'from-amber-600 via-orange-500 to-emerald-600',
+    goal: 'Tap the relaxed capybara in warm onsen baths, buy passive helpers, and unlock royal hats to grow the happiest rodent colony!',
+    steps: [
+      {
+        icon: '🦫',
+        title: '1. Tap to Harvest Friends',
+        desc: 'Every tap or click grants capybaras. Tap as fast as you can to trigger cheerful bounce animations and floaters.',
+      },
+      {
+        icon: '🧺',
+        title: '2. Hire Passive Producers',
+        desc: 'Spend your capybaras on Guinea Pig Pals, Warm Yuzu Baths, and Onsen Resorts to generate passive capybaras every second.',
+      },
+      {
+        icon: '👑',
+        title: '3. Collect Stylish Hats',
+        desc: 'Reach lifetime capybara milestones to unlock yuzu fruits, cool sunglasses, gentleman top hats, and golden crowns in the Wardrobe.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Tap capybara and purchase shop upgrades',
+        'Tabs: Switch between Friends, Upgrades, and Wardrobe',
+        'Weather: Click weather to shift atmosphere and music vibes',
+      ],
+      mobile: [
+        'Quick Tap: Rapid thumb tapping on central capybara',
+        'Bottom Drawer: Scroll shop items to purchase with ease',
+      ],
+    },
+    proTip: 'Invest in Warm Yuzu Baths early! Passive earnings continue working for you even when you take a break, awarding up to 2 hours of welcome-back bonus!',
+  },
   'barnyard-frog-hop': {
     title: 'Barnyard Pond Hop: Frog Jump',
     subtitle: 'Floating Lily Pad & Insect Catching Arcade',

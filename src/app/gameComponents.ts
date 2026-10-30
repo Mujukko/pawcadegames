@@ -88,4 +88,5 @@ export const GAME_COMPONENTS: Record<string, LazyExoticComponent<ComponentType>>
   'farm-mahjong-connect': lazy(() => import('../games/farm-mahjong-connect/FarmMahjongConnectContainer').then((m) => ({ default: m.FarmMahjongConnectContainer }))),
   'virtual-puppy-pet': lazy(() => import('../games/virtual-puppy-pet/VirtualPuppyPetContainer').then((m) => ({ default: m.VirtualPuppyPetContainer }))),
   'barnyard-frog-hop': lazy(() => import('../games/barnyard-frog-hop/BarnyardFrogHopContainer').then((m) => ({ default: m.BarnyardFrogHopContainer }))),
+  'capybara-clicker': lazy(() => import('../games/capybara-clicker/CapybaraClickerContainer').then((m) => ({ default: m.CapybaraClickerContainer }))),
 };

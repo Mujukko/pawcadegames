@@ -39,6 +39,7 @@ describe('Ducklings.io: Duckling Pond Rescue Logic Engine', () => {
   it('picks up lost ducklings and adds them to the follow line', () => {
     const state = initRescueGame(1);
     state.status = 'playing';
+    state.boats = [];
     const duckling = state.ducklings[0];
 
     // Position Mama Duck right next to duckling
@@ -88,6 +89,7 @@ describe('Ducklings.io: Duckling Pond Rescue Logic Engine', () => {
   it('breaks following duckling line when rowboat hits trailing duckling', () => {
     const state = initRescueGame(1);
     state.status = 'playing';
+    state.boats = [state.boats[0]]; // Keep single boat for isolation
     state.ducksInLine = 3;
     state.ducklings[0].isFollowing = true;
     state.ducklings[0].followIndex = 0;

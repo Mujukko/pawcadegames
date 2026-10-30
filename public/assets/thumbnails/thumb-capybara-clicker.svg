@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient (Sunny Warm Day) -->
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#bae6fd"/>
+      <stop offset="100%" stop-color="#fef08a"/>
+    </linearGradient>
+
+    <!-- Warm Onsen Tub & Grass -->
+    <linearGradient id="grassGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+    <linearGradient id="tubGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+
+    <!-- Capybara Fur Gradient -->
+    <linearGradient id="capyFur" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="50%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+
+    <radialGradient id="sunGlow" cx="20%" cy="20%" r="35%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Sky & Meadow Background -->
+  <rect width="512" height="512" rx="36" fill="url(#skyGrad)"/>
+  <circle cx="80" cy="80" r="90" fill="url(#sunGlow)"/>
+  <ellipse cx="256" cy="460" rx="360" ry="140" fill="url(#grassGrad)"/>
+
+  <!-- Golden Tap Ripple Rings around Capybara -->
+  <g fill="none" stroke="#facc15" stroke-width="4" opacity="0.6">
+    <ellipse cx="256" cy="300" rx="180" ry="100"/>
+    <ellipse cx="256" cy="300" rx="210" ry="120" stroke-dasharray="8 8"/>
+  </g>
+
+  <!-- Wooden Cedar Tub Basin -->
+  <g filter="url(#shadow)">
+    <!-- Tub outer rim -->
+    <ellipse cx="256" cy="400" rx="190" ry="60" fill="url(#tubGrad)"/>
+    <rect x="66" y="360" width="380" height="70" fill="url(#tubGrad)"/>
+    <ellipse cx="256" cy="430" rx="190" ry="50" fill="#451a03"/>
+
+    <!-- Tub metal bands -->
+    <rect x="66" y="380" width="380" height="8" rx="2" fill="#d97706"/>
+    <rect x="66" y="410" width="380" height="8" rx="2" fill="#d97706"/>
+
+    <!-- Warm Onsen Water Basin Surface -->
+    <ellipse cx="256" cy="360" rx="170" ry="46" fill="url(#waterGrad)"/>
+    <!-- Water Highlight Ring -->
+    <ellipse cx="256" cy="360" rx="150" ry="38" fill="none" stroke="#5eead4" stroke-width="3" opacity="0.7"/>
+  </g>
+
+  <!-- Giant Chill Capybara Sitting in Tub -->
+  <g filter="url(#shadow)">
+    <!-- Broad Shoulders & Torso -->
+    <ellipse cx="256" cy="300" rx="110" ry="80" fill="url(#capyFur)"/>
+
+    <!-- Capybara Head -->
+    <rect x="186" y="180" width="140" height="110" rx="46" fill="url(#capyFur)"/>
+
+    <!-- Muzzle / Snout -->
+    <rect x="210" y="230" width="92" height="64" rx="28" fill="#78350f"/>
+    <!-- Nostrils -->
+    <circle cx="240" cy="254" r="5" fill="#1c1917"/>
+    <circle cx="272" cy="254" r="5" fill="#1c1917"/>
+    <!-- Smiling Mouth -->
+    <path d="M 246 274 Q 256 280 266 274" stroke="#1c1917" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+    <!-- Relaxed Closed Sleepy Eyes -->
+    <path d="M 204 210 Q 218 218 230 210" stroke="#451a03" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    <path d="M 282 210 Q 294 218 308 210" stroke="#451a03" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+
+    <!-- Cute Rounded Capybara Ears -->
+    <circle cx="188" cy="180" r="18" fill="#78350f"/>
+    <circle cx="188" cy="180" r="11" fill="#fbcfe8"/>
+    <circle cx="324" cy="180" r="18" fill="#78350f"/>
+    <circle cx="324" cy="180" r="11" fill="#fbcfe8"/>
+
+    <!-- Ripe Yuzu Citrus Fruit on Head -->
+    <circle cx="256" cy="155" r="26" fill="#facc15" stroke="#ca8a04" stroke-width="3"/>
+    <ellipse cx="260" cy="128" rx="6" ry="12" fill="#15803d" transform="rotate(25 260 128)"/>
+    <circle cx="252" cy="152" r="3" fill="#eab308"/>
+  </g>
+
+  <!-- Golden Floating Coins & Sparkles (Tapping Rewards) -->
+  <g filter="url(#shadow)">
+    <!-- Golden Coin 1 Left -->
+    <circle cx="120" cy="220" r="24" fill="#facc15" stroke="#ca8a04" stroke-width="3"/>
+    <text x="120" y="228" font-family="'Fredoka', sans-serif" font-size="20" font-weight="900" fill="#78350f" text-anchor="middle">🍊</text>
+
+    <!-- Golden Coin 2 Right -->
+    <circle cx="390" cy="210" r="28" fill="#facc15" stroke="#ca8a04" stroke-width="3"/>
+    <text x="390" y="220" font-family="'Fredoka', sans-serif" font-size="24" font-weight="900" fill="#78350f" text-anchor="middle">🍊</text>
+
+    <!-- +1 Floater Text -->
+    <text x="380" y="150" font-family="'Fredoka', Nunito, sans-serif" font-size="34" font-weight="900" fill="#ea580c" stroke="#ffffff" stroke-width="2">+1</text>
+    <text x="130" y="160" font-family="'Fredoka', Nunito, sans-serif" font-size="28" font-weight="900" fill="#ea580c" stroke="#ffffff" stroke-width="2">+5</text>
+  </g>
+
+  <!-- Top Title Badge -->
+  <g filter="url(#shadow)">
+    <rect x="100" y="14" width="312" height="48" rx="16" fill="#ea580c" stroke="#ffffff" stroke-width="3"/>
+    <text x="256" y="46" font-family="'Fredoka', Nunito, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">CAPYBARA CLICKER</text>
+  </g>
+</svg>

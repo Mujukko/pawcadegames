@@ -27,6 +27,47 @@ export interface GameMetadata {
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
+    id: 'capybara-clicker',
+    slug: 'capybara-clicker',
+    title: 'Capybara Clicker: Cozy Farm Tap 🍊🦫',
+    tagline: 'Tap the chill capybara, brew warm yuzu baths, and multiply your rodent colony in this viral idle clicker!',
+    description: 'Play Capybara Clicker free online! Tap your relaxed capybara in warm hot springs to harvest friends. Unlock guinea pig buddies, cedar tubs, and sunny citrus groves. Dress your capybara in cute yuzu hats and shades. Enjoy cozy idle clicking with zero downloads right in your browser!',
+    category: 'pets',
+    categories: ['pets', 'farm', 'arcade'],
+    route: '/games/capybara-clicker/',
+    status: 'playable',
+    rating: 5.0,
+    playCount: '58.4K',
+    badge: '🔥 Trending',
+    thumbnailUrl: '/assets/thumbnails/thumb-capybara-clicker.svg',
+    featured: true,
+    tags: ['Capybara Clicker', 'Clicker', 'Idle', 'Pets', 'Capybara', 'Animals'],
+    controls: {
+      desktop: [
+        'Left Click: Tap capybara to earn capybaras',
+        'Friends Tab: Buy passive idle helpers and hot spring tubs',
+        'Upgrades Tab: Purchase click multipliers',
+        'Wardrobe Tab: Equip unlocked hats and costumes',
+      ],
+      mobile: [
+        'Tap Capybara: Quick thumb taps to harvest friends',
+        'Shop Drawer: Scroll and tap to purchase helpers and upgrades',
+        'Weather Button: Toggle sunny, cherry blossom, or golden mist',
+      ],
+    },
+    features: [
+      'Authentic Capybara Clicker Idle Progression with Geometric Cost Scaling',
+      '6 Tier Passive Producers: Guinea Pigs, Yuzu Baths, Groves, and Sun Sanctuaries',
+      '4 Click Multiplier Upgrades & 5 Collectible Capybara Outfits',
+      'Dynamic Weather Engine: Sunny Meadows, Sakura Blossom Rain, and Golden Hour',
+      'Procedural Pentatonic Marimba Sound Synthesis & Haptic Tap Feedback',
+      'Automatic LocalStorage Save & 2-Hour Offline Welcome-Back Bonus',
+      '100% Free Browser Play with Zero Ads or Downloads',
+    ],
+    metaTitle: 'Capybara Clicker: Cozy Farm Tap 🍊🦫 — Free Online Game | Pawcade',
+    metaDescription: 'Play Capybara Clicker free online! Tap the chill capybara in warm onsen baths, upgrade helpers, and unlock costumes. 100% free casual browser game with no download.',
+  },
+  {
     id: 'barnyard-frog-hop',
     slug: 'barnyard-frog-hop',
     title: 'Frog Games: Barnyard Pond Hop 🐸🪷',
@@ -755,19 +796,19 @@ export const GAMES_REGISTRY: GameMetadata[] = [
   {
     id: 'barnyard-egg-cart',
     slug: 'barnyard-egg-cart',
-    title: 'Egg Car: Barnyard Egg Cart 🥚🚗',
-    tagline: 'Balance a fragile egg in your farm truck, tackle rolling pasture hills, and collect golden coins!',
-    description: 'Play Egg Car: Barnyard Egg Cart free online! Drive a bouncy vintage farm truck over rolling green pasture hills, wooden bridges, and steep mountain dips with a delicate giant egg sitting in the rear basket. Feather your gas and brake pedals with precision to keep the egg from flying out or cracking on the rocks. Collect shiny golden coins, grab protective shields, magnets, and turbo boosters, and visit the Garage to upgrade suspension, straw cushions, grip tires, and deeper baskets in this addictive 2D physics balancing racer!',
+    title: 'Eggy Car: Barnyard Egg Dash 🥚🚗',
+    tagline: 'Balance a fragile egg in your farm truck, tackle steep rolling hills, and collect golden coins without cracking!',
+    description: 'Play Eggy Car: Barnyard Egg Dash free online! Drive a bouncy vintage farm truck over rolling green pasture hills, wooden bridges, and steep mountain dips with a delicate giant egg sitting in the rear basket. Feather your gas and brake pedals with precision to keep the egg from flying out or cracking on the rocks. Collect shiny golden coins, grab protective shields, magnets, and turbo boosters, and upgrade your truck in this addictive 2D physics balancing racer inspired by Eggy Car!',
     category: 'farm',
     categories: ['farm', 'arcade', 'pets'],
     route: '/games/barnyard-egg-cart/',
     status: 'playable',
     rating: 5.0,
     playCount: '42.1K',
-    badge: '🥚 Egg Car',
+    badge: '🥚 Eggy Car',
     thumbnailUrl: '/assets/thumbnails/thumb-barnyard-egg-cart.svg',
     featured: true,
-    tags: ['Egg Car', 'Physics', 'Hill Climb', 'Balancing', 'Farm'],
+    tags: ['Eggy Car', 'Egg Car', 'Physics', 'Hill Climb', 'Balancing', 'Farm'],
     controls: {
       desktop: [
         'D, Right Arrow, or Spacebar: Accelerate gas and tilt cart backward',
@@ -790,8 +831,8 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       'Procedural Web Audio Engine with Variable Pitch Motor Rumble and Egg Cracks',
       '100% Free Instant Browser Play with No Download or Install',
     ],
-    metaTitle: 'Egg Car: Barnyard Egg Cart 🥚🚗 — Free Online Physics Game | Pawcade',
-    metaDescription: 'Play Egg Car online free! Drive a farm cart over rolling pasture hills, balance a fragile egg, collect coins, and upgrade your truck with no download needed.',
+    metaTitle: 'Eggy Car: Barnyard Egg Dash 🥚🚗 — Free Online Eggy Car Game | Pawcade',
+    metaDescription: 'Play Eggy Car online free! Drive a farm cart over rolling hills, balance a fragile egg without cracking it, collect coins, and upgrade your truck with no download.',
   },
   {
     id: 'farm-animal-clicker',
@@ -848,7 +889,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '16.8K',
     badge: '🔥 Flagship Hit',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-mini-mart.jpg',
+    thumbnailUrl: '/assets/thumbnails/thumb-farm-mini-mart.svg',
     featured: true,
     tags: ['Tycoon', 'Idle', 'Farm', 'Market', 'Animals'],
     controls: {
@@ -1209,7 +1250,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 4.9,
     playCount: '12.4K',
     badge: '🐕 Top Rated',
-    thumbnailUrl: '/assets/thumbnails/thumb-dog-parking.jpg',
+    thumbnailUrl: '/assets/thumbnails/thumb-dog-parking.svg',
     featured: true,
     tags: ['Puzzle', 'Dogs', 'Unblock', 'Traffic', 'Animals'],
     controls: {
@@ -1247,7 +1288,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '9.8K',
     badge: '🐈‍⬛ Top Rated',
-    thumbnailUrl: '/assets/thumbnails/thumb-cat-parking.jpg',
+    thumbnailUrl: '/assets/thumbnails/thumb-cat-parking.svg',
     tags: ['Puzzle', 'Cats', 'Unblock', 'Animals'],
     controls: {
       desktop: [
@@ -1447,7 +1488,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '24.8K',
     badge: '🍬 Match-3',
-    thumbnailUrl: '/assets/thumbnails/thumb-pet-candy-crush.jpg',
+    thumbnailUrl: '/assets/thumbnails/thumb-pet-candy-crush.svg',
     tags: ['Match-3', 'Puzzle', 'Farm', 'Animals'],
     controls: {
       desktop: [
@@ -1488,7 +1529,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '21.4K',
     badge: '🐔 Classic Flight',
-    thumbnailUrl: '/assets/thumbnails/thumb-flappy-chicken.jpg',
+    thumbnailUrl: '/assets/thumbnails/thumb-flappy-chicken.svg',
     tags: ['Arcade', 'Flight', 'Reflex', 'Farm', 'Animals'],
     controls: {
       desktop: [
@@ -1527,7 +1568,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '19.4K',
     badge: '🦆 Retro Runner',
-    thumbnailUrl: '/assets/thumbnails/thumb-duck-runner.jpg',
+    thumbnailUrl: '/assets/thumbnails/thumb-duck-runner.svg',
     tags: ['Runner', 'Arcade', 'Reflex', 'Animals'],
     controls: {
       desktop: [
@@ -1566,7 +1607,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '18.2K',
     badge: '🐘 2048 Merge',
-    thumbnailUrl: '/assets/thumbnails/thumb-animal-2048.jpg',
+    thumbnailUrl: '/assets/thumbnails/thumb-animal-2048.svg',
     tags: ['Puzzle', 'Evolution', '2048', 'Animals', 'Brain'],
     controls: {
       desktop: [
@@ -1605,7 +1646,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 5.0,
     playCount: '15.6K',
     badge: '🧱 Harvest Block',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-tetris.jpg',
+    thumbnailUrl: '/assets/thumbnails/thumb-farm-tetris.svg',
     tags: ['Falling Blocks', 'Puzzle', 'Blocks', 'Farm'],
     controls: {
       desktop: [
@@ -1649,7 +1690,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 4.9,
     playCount: '8.2K',
     badge: '🚜 Tractor Drive',
-    thumbnailUrl: '/assets/thumbnails/thumb-animal-farm-parking.jpg',
+    thumbnailUrl: '/assets/thumbnails/thumb-animal-farm-parking.svg',
     tags: ['Driving', 'Farm', 'Casual', 'Cow', 'Animals'],
     controls: {
       desktop: [
@@ -1911,7 +1952,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     rating: 4.9,
     playCount: '18.8K',
     badge: '🆕 Daily Drop',
-    thumbnailUrl: '/assets/thumbnails/thumb-hamster-ball-dash.jpg',
+    thumbnailUrl: '/assets/thumbnails/thumb-hamster-ball-dash.svg',
     controls: {
       desktop: [
         'Left / Right Arrows or A / D: Steer Pip left and right across the track',

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrid2048" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <!-- Tile Gradients -->
+    <linearGradient id="tile2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fef08a"/><stop offset="100%" stop-color="#fde047"/>
+    </linearGradient>
+    <linearGradient id="tile8" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fbcfe8"/><stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+    <linearGradient id="tile64" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fdba74"/><stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="tile2048" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="36" fill="url(#bgGrid2048)"/>
+
+  <!-- Board Container (Wood Frame) -->
+  <rect x="66" y="76" width="380" height="380" rx="22" fill="#334155" stroke="#64748b" stroke-width="4" filter="url(#shadow)"/>
+
+  <!-- 2048 Tile Matrix (4x4 Slots) -->
+  <!-- Row 1 -->
+  <!-- Slot 1: Tile 2 (Little Chick) -->
+  <g filter="url(#shadow)">
+    <rect x="82" y="92" width="76" height="76" rx="12" fill="url(#tile2)"/>
+    <circle cx="120" cy="122" r="18" fill="#facc15"/>
+    <polygon points="120,124 130,126 120,130" fill="#ea580c"/>
+    <circle cx="116" cy="118" r="3" fill="#000"/>
+    <text x="120" y="158" font-family="'Fredoka', sans-serif" font-size="16" font-weight="bold" fill="#713f12" text-anchor="middle">2</text>
+  </g>
+
+  <!-- Slot 2: Tile 8 (Cute Pig) -->
+  <g filter="url(#shadow)">
+    <rect x="170" y="92" width="76" height="76" rx="12" fill="url(#tile8)"/>
+    <circle cx="208" cy="122" r="18" fill="#f472b6"/>
+    <ellipse cx="208" cy="124" rx="8" ry="6" fill="#fbcfe8"/>
+    <circle cx="206" cy="124" r="1.5" fill="#9d174d"/><circle cx="210" cy="124" r="1.5" fill="#9d174d"/>
+    <text x="208" y="158" font-family="'Fredoka', sans-serif" font-size="16" font-weight="bold" fill="#831843" text-anchor="middle">8</text>
+  </g>
+
+  <!-- Slot 3 & 4 empty background cells -->
+  <rect x="258" y="92" width="76" height="76" rx="12" fill="#1e293b" opacity="0.6"/>
+  <rect x="346" y="92" width="76" height="76" rx="12" fill="#1e293b" opacity="0.6"/>
+
+  <!-- Row 2 -->
+  <rect x="82" y="180" width="76" height="76" rx="12" fill="#1e293b" opacity="0.6"/>
+
+  <!-- Slot (2, 2): Tile 64 (Fox) -->
+  <g filter="url(#shadow)">
+    <rect x="170" y="180" width="76" height="76" rx="12" fill="url(#tile64)"/>
+    <polygon points="196,200 208,188 220,200" fill="#ffffff"/>
+    <polygon points="192,192 196,204 186,204" fill="#c2410c"/>
+    <polygon points="224,192 220,204 230,204" fill="#c2410c"/>
+    <text x="208" y="246" font-family="'Fredoka', sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">64</text>
+  </g>
+
+  <!-- Big Hero Merged Tile 2048 (Spans Bottom Right 2x2 cells!) -->
+  <g filter="url(#shadow)">
+    <rect x="258" y="180" width="164" height="164" rx="18" fill="url(#tile2048)" stroke="#fef08a" stroke-width="4"/>
+
+    <!-- Royal Golden Crown on 2048 King Capybara -->
+    <polygon points="314,210 324,192 340,204 356,192 366,210" fill="#facc15" stroke="#ca8a04" stroke-width="2"/>
+    <circle cx="340" cy="192" r="3" fill="#ef4444"/>
+
+    <!-- Capybara Face -->
+    <rect x="314" y="210" width="52" height="42" rx="14" fill="#a16207"/>
+    <ellipse cx="340" cy="232" rx="18" ry="12" fill="#78350f"/>
+    <!-- Closed chill eyes -->
+    <line x1="324" y1="222" x2="332" y2="222" stroke="#fef08a" stroke-width="2" stroke-linecap="round"/>
+    <line x1="348" y1="222" x2="356" y2="222" stroke="#fef08a" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- 2048 Golden Typography -->
+    <text x="340" y="310" font-family="'Fredoka', Nunito, sans-serif" font-size="38" font-weight="900" fill="#ffffff" text-anchor="middle" filter="url(#shadow)">2048</text>
+  </g>
+
+  <!-- Row 4 Bottom -->
+  <rect x="82" y="356" width="76" height="76" rx="12" fill="#1e293b" opacity="0.6"/>
+  <rect x="170" y="356" width="76" height="76" rx="12" fill="#1e293b" opacity="0.6"/>
+
+  <!-- Top Title Badge -->
+  <g filter="url(#shadow)">
+    <rect x="130" y="14" width="252" height="48" rx="16" fill="#f59e0b" stroke="#ffffff" stroke-width="3"/>
+    <text x="256" y="46" font-family="'Fredoka', Nunito, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">ANIMAL 2048</text>
+  </g>
+</svg>

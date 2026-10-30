@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgCandy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="50%" stop-color="#701a75"/>
+      <stop offset="100%" stop-color="#be185d"/>
+    </linearGradient>
+
+    <!-- Candy Shines -->
+    <linearGradient id="boneCandy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+    <linearGradient id="fishCandy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="pawCandy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fb7185"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+    <linearGradient id="heartCandy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <radialGradient id="sparkleGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#f43f5e" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="36" fill="url(#bgCandy)"/>
+
+  <!-- Candy Board Grid Container -->
+  <rect x="76" y="80" width="360" height="380" rx="22" fill="#2e1065" stroke="#a855f7" stroke-width="4" stroke-opacity="0.5" filter="url(#shadow)"/>
+
+  <!-- Match-3 Burst Glow at center -->
+  <circle cx="256" cy="270" r="140" fill="url(#sparkleGlow)"/>
+
+  <!-- Candies on Grid -->
+  <!-- Center Big Paw Print Candy (Being matched!) -->
+  <g filter="url(#shadow)">
+    <circle cx="256" cy="270" r="50" fill="url(#pawCandy)" stroke="#ffffff" stroke-width="4"/>
+    <!-- Paw pads -->
+    <ellipse cx="256" cy="285" rx="22" ry="16" fill="#ffffff"/>
+    <circle cx="236" cy="256" r="8" fill="#ffffff"/>
+    <circle cx="256" cy="248" r="8" fill="#ffffff"/>
+    <circle cx="276" cy="256" r="8" fill="#ffffff"/>
+
+    <!-- Rainbow Sparkle Stars around center match -->
+    <polygon points="256,200 260,214 274,214 263,222 267,236 256,227 245,236 249,222 238,214 252,214" fill="#fde047"/>
+    <polygon points="330,270 333,280 344,280 335,286 338,296 330,290 322,296 325,286 316,280 327,280" fill="#fde047"/>
+    <polygon points="180,270 183,280 194,280 185,286 188,296 180,290 172,296 175,286 166,280 177,280" fill="#fde047"/>
+  </g>
+
+  <!-- Blue Fish Candy (Top Left) -->
+  <g filter="url(#shadow)">
+    <!-- Fish body -->
+    <ellipse cx="140" cy="150" rx="36" ry="22" fill="url(#fishCandy)" stroke="#bae6fd" stroke-width="3"/>
+    <!-- Tail -->
+    <polygon points="110,150 90,130 90,170" fill="url(#fishCandy)"/>
+    <circle cx="160" cy="144" r="5" fill="#ffffff"/>
+    <circle cx="162" cy="144" r="3" fill="#0f172a"/>
+  </g>
+
+  <!-- Golden Bone Candy (Top Right) -->
+  <g filter="url(#shadow)">
+    <rect x="330" y="142" width="56" height="18" rx="6" fill="url(#boneCandy)" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="330" cy="140" r="12" fill="url(#boneCandy)"/>
+    <circle cx="330" cy="162" r="12" fill="url(#boneCandy)"/>
+    <circle cx="386" cy="140" r="12" fill="url(#boneCandy)"/>
+    <circle cx="386" cy="162" r="12" fill="url(#boneCandy)"/>
+  </g>
+
+  <!-- Yellow Heart Candy (Bottom Left) -->
+  <g filter="url(#shadow)">
+    <path d="M 140 370 A 18 18 0 0 0 122 352 A 18 18 0 0 0 104 370 Q 104 394 122 410 Q 140 394 140 370 Z" transform="translate(18, -10)" fill="url(#heartCandy)" stroke="#fef08a" stroke-width="3"/>
+  </g>
+
+  <!-- Golden Star Candy (Bottom Right) -->
+  <g filter="url(#shadow)">
+    <polygon points="360,350 368,372 392,372 372,386 380,408 360,394 340,408 348,386 328,372 352,372" fill="#facc15" stroke="#fef08a" stroke-width="3"/>
+  </g>
+
+  <!-- Top Title Badge -->
+  <g filter="url(#shadow)">
+    <rect x="120" y="14" width="272" height="48" rx="16" fill="#ec4899" stroke="#ffffff" stroke-width="3"/>
+    <text x="256" y="46" font-family="'Fredoka', Nunito, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">PET CANDY CRUSH</text>
+  </g>
+</svg>

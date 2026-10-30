@@ -14,7 +14,20 @@ if (!existsSync(TEMPLATE_PATH)) {
   process.exit(1);
 }
 
-const template = readFileSync(TEMPLATE_PATH, 'utf-8');
+const rawTemplate = readFileSync(TEMPLATE_PATH, 'utf-8');
+
+// Defer CSS loading to eliminate render-blocking stylesheet penalty without bloating HTML
+let template = rawTemplate;
+const cssMatch = rawTemplate.match(/<link rel="stylesheet"[^>]+href="([^">]+\.css)"[^>]*>/);
+if (cssMatch && cssMatch[1]) {
+  const cssHref = cssMatch[1];
+  template = rawTemplate.replace(
+    cssMatch[0],
+    `<link rel="preload" href="${cssHref}" as="style" />\n    <link rel="stylesheet" href="${cssHref}" media="print" onload="this.media='all'" />\n    <noscript><link rel="stylesheet" href="${cssHref}" /></noscript>`
+  );
+  console.log(`[Pre-render] Transformed CSS link to non-blocking preload+onload to eliminate render-blocking penalty.`);
+}
+
 const playableGames = GAMES_REGISTRY.filter((g) => g.status === 'playable');
 
 console.log(`[Pre-render] Generating static semantic HTML for ${playableGames.length} games and 4 category hubs...`);
@@ -262,16 +275,7 @@ for (const game of playableGames) {
 
       <!-- Game stage placeholder: replaced by the live game when JS loads -->
       <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] max-w-4xl mx-auto bg-stage rounded-[28px] ring-4 ring-white overflow-hidden mb-8 shadow-tile flex items-center justify-center">
-        ${
-          game.thumbnailUrl.endsWith('.jpg')
-            ? `
-        <picture class="absolute inset-0 w-full h-full">
-          <source srcset="${game.thumbnailUrl.replace(/\.jpg$/, '.avif')}" type="image/avif" />
-          <img src="${game.thumbnailUrl}" alt="${plainTitle} gameplay screenshot" class="w-full h-full object-cover opacity-50" loading="eager" fetchpriority="high" width="768" height="432" />
-        </picture>`
-            : `
-        <img src="${game.thumbnailUrl}" alt="${plainTitle} gameplay screenshot" class="absolute inset-0 w-full h-full object-cover opacity-50" loading="eager" fetchpriority="high" width="768" height="432" />`
-        }
+        <img src="${game.thumbnailUrl}" alt="${plainTitle} gameplay screenshot" class="absolute inset-0 w-full h-full object-cover opacity-50" loading="eager" fetchpriority="high" width="768" height="432" />
         <div class="relative flex flex-col items-center text-center px-6">
           <span class="w-20 h-20 rounded-full bg-brand text-white flex items-center justify-center text-3xl shadow-tile mb-3" aria-hidden="true">▶</span>
           <h2 class="font-display text-2xl font-semibold text-white drop-shadow">Play ${plainTitle} online</h2>
@@ -545,7 +549,7 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
     </main>
   </div>`;
 
-  const firstGameThumb = catGames[0]?.thumbnailUrl || '/assets/thumbnails/thumb-farm-mini-mart.jpg';
+  const firstGameThumb = catGames[0]?.thumbnailUrl || '/assets/thumbnails/thumb-farm-mini-mart.svg';
 
   let catHtml = template
     .replace(/<title>.*?<\/title>/, `<title>${cat.metaTitle}</title>`)
@@ -603,10 +607,7 @@ const homeSemanticContent = `
 
           <!-- Featured Hero LCP Card: Farm Mini Mart -->
           <a href="/games/farm-mini-mart/" aria-label="Play Farm Mini Mart" class="group relative block aspect-square rounded-[18px] sm:rounded-[22px] overflow-hidden bg-card ring-[3px] sm:ring-4 ring-white shadow-tile col-span-2 row-span-2">
-            <picture>
-              <source srcset="/assets/thumbnails/thumb-farm-mini-mart.avif" type="image/avif" />
-              <img src="/assets/thumbnails/thumb-farm-mini-mart.jpg" alt="Farm Mini Mart" loading="eager" fetchpriority="high" decoding="sync" width="384" height="384" class="w-full h-full object-cover" />
-            </picture>
+            <img src="/assets/thumbnails/thumb-farm-mini-mart.svg" alt="Farm Mini Mart" loading="eager" fetchpriority="high" decoding="sync" width="384" height="384" class="w-full h-full object-cover" />
             <span class="absolute inset-x-0 bottom-0 px-2.5 pb-2 pt-8 bg-gradient-to-t from-black/75 via-black/35 to-transparent text-white font-display font-semibold leading-tight drop-shadow text-xl sm:text-2xl px-4 pb-3">
               Farm Mini Mart
             </span>
@@ -615,17 +616,11 @@ const homeSemanticContent = `
           ${playableGames
             .slice(1)
             .map((g, idx) => {
-              const isJpg = g.thumbnailUrl.endsWith('.jpg');
-              const avif = isJpg ? g.thumbnailUrl.replace(/\.jpg$/, '.avif') : null;
               const isEager = idx < 3;
               const titleClean = stripEmoji(g.title);
               return `
           <a href="${g.route}" aria-label="Play ${titleClean}" class="group relative block aspect-square rounded-[18px] sm:rounded-[22px] overflow-hidden bg-card ring-[3px] sm:ring-4 ring-white shadow-tile">
-            ${
-              avif
-                ? `<picture><source srcset="${avif}" type="image/avif" /><img src="${g.thumbnailUrl}" alt="${titleClean}" loading="${isEager ? 'eager' : 'lazy'}" width="384" height="384" class="w-full h-full object-cover" /></picture>`
-                : `<img src="${g.thumbnailUrl}" alt="${titleClean}" loading="${isEager ? 'eager' : 'lazy'}" width="384" height="384" class="w-full h-full object-cover" />`
-            }
+            <img src="${g.thumbnailUrl}" alt="${titleClean}" loading="${isEager ? 'eager' : 'lazy'}" width="384" height="384" class="w-full h-full object-cover" />
             <span class="absolute inset-x-0 bottom-0 px-2.5 pb-2 pt-8 bg-gradient-to-t from-black/75 via-black/35 to-transparent text-white font-display font-semibold leading-tight drop-shadow text-[13px] sm:text-sm">
               ${titleClean}
             </span>

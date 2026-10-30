@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="asphalt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="corgiGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="36" fill="url(#bgSky)"/>
+
+  <!-- Dog Parking Lot -->
+  <g filter="url(#shadow)">
+    <rect x="64" y="80" width="384" height="380" rx="26" fill="url(#asphalt)" stroke="#64748b" stroke-width="4"/>
+
+    <!-- Parking Lines (Yellow) -->
+    <g stroke="#facc15" stroke-width="5" stroke-linecap="round">
+      <line x1="84" y1="180" x2="220" y2="180"/>
+      <line x1="84" y1="280" x2="220" y2="280"/>
+      <line x1="84" y1="380" x2="220" y2="380"/>
+
+      <line x1="292" y1="180" x2="428" y2="180"/>
+      <line x1="292" y1="280" x2="428" y2="280"/>
+      <line x1="292" y1="380" x2="428" y2="380"/>
+    </g>
+
+    <!-- White Paw Prints in Central Driving Lane -->
+    <g fill="#94a3b8" opacity="0.6">
+      <ellipse cx="256" cy="180" rx="6" ry="8"/>
+      <circle cx="248" cy="170" r="3"/><circle cx="256" cy="167" r="3"/><circle cx="264" cy="170" r="3"/>
+
+      <ellipse cx="256" cy="270" rx="6" ry="8"/>
+      <circle cx="248" cy="260" r="3"/><circle cx="256" cy="257" r="3"/><circle cx="264" cy="260" r="3"/>
+
+      <ellipse cx="256" cy="360" rx="6" ry="8"/>
+      <circle cx="248" cy="350" r="3"/><circle cx="256" cy="347" r="3"/><circle cx="264" cy="350" r="3"/>
+    </g>
+  </g>
+
+  <!-- Corgi Car (Exiting into central lane) -->
+  <g filter="url(#shadow)">
+    <!-- Body -->
+    <rect x="180" y="210" width="152" height="92" rx="30" fill="url(#corgiGrad)" stroke="#7c2d12" stroke-width="3"/>
+    <!-- Corgi white tummy blaze -->
+    <ellipse cx="270" cy="256" rx="20" ry="24" fill="#ffffff"/>
+    <!-- Corgi Head -->
+    <circle cx="316" cy="256" r="34" fill="#fb923c" stroke="#7c2d12" stroke-width="3"/>
+    <ellipse cx="324" cy="256" rx="14" ry="12" fill="#ffffff"/>
+    <!-- Nose & Eyes -->
+    <circle cx="334" cy="256" r="5" fill="#1e293b"/>
+    <circle cx="310" cy="242" r="5" fill="#1e293b"/><circle cx="310" cy="270" r="5" fill="#1e293b"/>
+    <!-- Ears -->
+    <polygon points="296,224 314,196 324,226" fill="#f97316"/>
+    <polygon points="296,288 314,316 324,286" fill="#f97316"/>
+    <!-- Tail (stubby corgi heart butt) -->
+    <circle cx="178" cy="256" r="10" fill="#ffffff"/>
+    <!-- Headlight collar tag -->
+    <circle cx="304" cy="256" r="7" fill="#facc15"/>
+  </g>
+
+  <!-- Pug Car (Parked at top left) -->
+  <g filter="url(#shadow)">
+    <rect x="94" y="100" width="110" height="70" rx="24" fill="#d6d3d1" stroke="#57534e" stroke-width="3"/>
+    <circle cx="184" cy="135" r="24" fill="#78716c"/>
+    <circle cx="178" cy="130" r="4" fill="#000"/><circle cx="190" cy="130" r="4" fill="#000"/>
+    <ellipse cx="184" cy="142" rx="8" ry="6" fill="#1c1917"/>
+  </g>
+
+  <!-- Golden Retriever Car (Parked at right) -->
+  <g filter="url(#shadow)">
+    <rect x="308" y="310" width="112" height="70" rx="24" fill="#fde047" stroke="#ca8a04" stroke-width="3"/>
+    <circle cx="328" cy="345" r="26" fill="#facc15"/>
+    <circle cx="320" cy="340" r="4" fill="#000"/><circle cx="332" cy="340" r="4" fill="#000"/>
+    <ellipse cx="326" cy="350" rx="7" ry="5" fill="#713f12"/>
+  </g>
+
+  <!-- Top Title Badge -->
+  <g filter="url(#shadow)">
+    <rect x="130" y="14" width="252" height="48" rx="16" fill="#ea580c" stroke="#ffffff" stroke-width="3"/>
+    <text x="256" y="46" font-family="'Fredoka', Nunito, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">DOG PARKING</text>
+  </g>
+</svg>

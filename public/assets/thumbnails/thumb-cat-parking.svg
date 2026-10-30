@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgCozy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fbcfe8"/>
+      <stop offset="50%" stop-color="#f472b6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="rugGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#fae8ff"/>
+    </linearGradient>
+    <linearGradient id="gingerCat" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fdba74"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="yarnGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#831843" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="36" fill="url(#bgCozy)"/>
+
+  <!-- Play Area Rug with Grid Slots -->
+  <g filter="url(#shadow)">
+    <rect x="64" y="80" width="384" height="380" rx="26" fill="url(#rugGrad)" stroke="#d946ef" stroke-width="4"/>
+
+    <!-- Cute Paw Print Accents on Rug -->
+    <g fill="#f0abfc" opacity="0.6">
+      <circle cx="100" cy="116" r="6"/><circle cx="94" cy="106" r="3"/><circle cx="100" cy="103" r="3"/><circle cx="106" cy="106" r="3"/>
+      <circle cx="410" cy="420" r="6"/><circle cx="404" cy="410" r="3"/><circle cx="410" cy="407" r="3"/><circle cx="416" cy="410" r="3"/>
+    </g>
+
+    <!-- Parking Lines -->
+    <line x1="64" y1="200" x2="448" y2="200" stroke="#e879f9" stroke-width="3" stroke-dasharray="6 6"/>
+    <line x1="64" y1="320" x2="448" y2="320" stroke="#e879f9" stroke-width="3" stroke-dasharray="6 6"/>
+    <line x1="192" y1="80" x2="192" y2="460" stroke="#e879f9" stroke-width="3" stroke-dasharray="6 6"/>
+    <line x1="320" y1="80" x2="320" y2="460" stroke="#e879f9" stroke-width="3" stroke-dasharray="6 6"/>
+  </g>
+
+  <!-- Ginger Tabby Cat (Horizontal 2x1 sliding towards Exit) -->
+  <g filter="url(#shadow)">
+    <rect x="150" y="215" width="180" height="90" rx="30" fill="url(#gingerCat)" stroke="#9a3412" stroke-width="3"/>
+    <!-- Stripes -->
+    <path d="M 200 215 L 195 240 M 230 215 L 225 240 M 260 215 L 255 240" stroke="#c2410c" stroke-width="4" stroke-linecap="round"/>
+    <!-- Cat Head -->
+    <circle cx="310" cy="260" r="34" fill="#fb923c" stroke="#9a3412" stroke-width="3"/>
+    <!-- Ears -->
+    <polygon points="296,232 310,202 322,234" fill="#ea580c"/>
+    <polygon points="302,230 310,212 318,232" fill="#fed7aa"/>
+    <polygon points="330,236 348,210 348,242" fill="#ea580c"/>
+    <!-- Eyes -->
+    <ellipse cx="304" cy="254" rx="5" ry="7" fill="#15803d"/>
+    <ellipse cx="324" cy="254" rx="5" ry="7" fill="#15803d"/>
+    <!-- Nose & Whiskers -->
+    <polygon points="314,264 311,268 317,268" fill="#fda4af"/>
+    <line x1="288" y1="266" x2="270" y2="262" stroke="#ffffff" stroke-width="2"/>
+    <line x1="288" y1="272" x2="270" y2="276" stroke="#ffffff" stroke-width="2"/>
+    <line x1="340" y1="266" x2="358" y2="262" stroke="#ffffff" stroke-width="2"/>
+    <line x1="340" y1="272" x2="358" y2="276" stroke="#ffffff" stroke-width="2"/>
+    <!-- Curled Tail -->
+    <path d="M 152 260 C 130 260 125 220 140 210" stroke="#ea580c" stroke-width="8" stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- Tuxedo Black & White Cat (Vertical 1x2 in right lane) -->
+  <g filter="url(#shadow)">
+    <rect x="335" y="95" width="90" height="150" rx="28" fill="#1e293b" stroke="#0f172a" stroke-width="3"/>
+    <ellipse cx="380" cy="170" rx="22" ry="30" fill="#ffffff"/>
+    <circle cx="380" cy="115" r="26" fill="#1e293b"/>
+    <!-- Ears -->
+    <polygon points="360,98 368,78 378,98" fill="#1e293b"/>
+    <polygon points="382,98 392,78 400,98" fill="#1e293b"/>
+    <!-- Yellow Eyes -->
+    <circle cx="372" cy="115" r="5" fill="#facc15"/><circle cx="388" cy="115" r="5" fill="#facc15"/>
+  </g>
+
+  <!-- Blue Yarn Ball (Bottom Left) -->
+  <g filter="url(#shadow)">
+    <circle cx="120" cy="380" r="32" fill="url(#yarnGrad)"/>
+    <path d="M 100 370 Q 120 350 140 375 Q 120 400 105 385" stroke="#bae6fd" stroke-width="3" fill="none"/>
+    <path d="M 140 380 Q 155 410 180 405" stroke="#0284c7" stroke-width="4" fill="none"/>
+  </g>
+
+  <!-- Top Title Badge -->
+  <g filter="url(#shadow)">
+    <rect x="130" y="14" width="252" height="48" rx="16" fill="#c026d3" stroke="#ffffff" stroke-width="3"/>
+    <text x="256" y="46" font-family="'Fredoka', Nunito, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">CAT PARKING</text>
+  </g>
+</svg>
