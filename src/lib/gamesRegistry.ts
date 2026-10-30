@@ -1,3 +1,6 @@
+// Central registry of all Pawcade browser games (canonical source for routes, SEO metadata, and category filters).
+// Single Source of Truth for game identification, titles, descriptions, and category hubs.
+
 export type GameCategory = 'puzzle' | 'farm' | 'arcade' | 'pets';
 
 export interface GameMetadata {
@@ -9,10 +12,13 @@ export interface GameMetadata {
   category: GameCategory;
   categories?: GameCategory[];
   route: string;
-  status: 'playable' | 'coming-soon';
+  status: 'playable' | 'coming-soon' | 'beta';
   rating: number;
   playCount: string;
   badge?: string;
+  thumbnailUrl: string;
+  featured?: boolean;
+  tags?: string[];
   controls: {
     desktop: string[];
     mobile: string[];
@@ -20,3425 +26,4036 @@ export interface GameMetadata {
   features: string[];
   metaTitle: string;
   metaDescription: string;
-  thumbnailUrl?: string;
-  featured?: boolean;
-  tags?: string[];
 }
 
 export const GAMES_REGISTRY: GameMetadata[] = [
   {
-    id: 'capybara-clicker',
-    slug: 'capybara-clicker',
-    title: 'Capybara Clicker: Cozy Farm Tap 🍊🦫',
-    tagline: 'Tap the chill capybara, brew warm yuzu baths, and multiply your rodent colony in this viral idle clicker!',
-    description: 'Play Capybara Clicker free online! Tap your relaxed capybara in warm hot springs to harvest friends. Unlock guinea pig buddies, cedar tubs, and sunny citrus groves. Dress your capybara in cute yuzu hats and shades. Enjoy cozy idle clicking with zero downloads right in your browser!',
-    category: 'pets',
-    categories: ['pets', 'farm', 'arcade'],
-    route: '/games/capybara-clicker/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '58.4K',
-    badge: '🔥 Trending',
-    thumbnailUrl: '/assets/thumbnails/thumb-capybara-clicker.svg',
-    featured: true,
-    tags: ['Capybara Clicker', 'Clicker', 'Idle', 'Pets', 'Capybara', 'Animals'],
-    controls: {
-      desktop: [
-        'Left Click: Tap capybara to earn capybaras',
-        'Friends Tab: Buy passive idle helpers and hot spring tubs',
-        'Upgrades Tab: Purchase click multipliers',
-        'Wardrobe Tab: Equip unlocked hats and costumes',
-      ],
-      mobile: [
-        'Tap Capybara: Quick thumb taps to harvest friends',
-        'Shop Drawer: Scroll and tap to purchase helpers and upgrades',
-        'Weather Button: Toggle sunny, cherry blossom, or golden mist',
-      ],
-    },
-    features: [
-      'Authentic Capybara Clicker Idle Progression with Geometric Cost Scaling',
-      '6 Tier Passive Producers: Guinea Pigs, Yuzu Baths, Groves, and Sun Sanctuaries',
-      '4 Click Multiplier Upgrades & 5 Collectible Capybara Outfits',
-      'Dynamic Weather Engine: Sunny Meadows, Sakura Blossom Rain, and Golden Hour',
-      'Procedural Pentatonic Marimba Sound Synthesis & Haptic Tap Feedback',
-      'Automatic LocalStorage Save & 2-Hour Offline Welcome-Back Bonus',
-      '100% Free Browser Play with Zero Ads or Downloads',
-    ],
-    metaTitle: 'Capybara Clicker: Cozy Farm Tap 🍊🦫 — Free Online Game | Pawcade',
-    metaDescription: 'Play Capybara Clicker free online! Tap the chill capybara in warm onsen baths, upgrade helpers, and unlock costumes. 100% free casual browser game with no download.',
-  },
-  {
-    id: 'barnyard-frog-hop',
-    slug: 'barnyard-frog-hop',
-    title: 'Frog Games: Barnyard Pond Hop 🐸🪷',
-    tagline: 'Leap across drifting lily pads, snatch buzzing flies with your tongue, and cross the pond!',
-    description: 'Play Frog Games: Barnyard Pond Hop free online! Hop Barnaby the green tree frog across drifting river logs, avoid sinking pink water lilies, and flick your sticky tongue to catch buzzing flies. Beat Sunny Duck Pond, Misty Marsh, and Sunset Lagoon with zero downloads in this fun casual frog game!',
-    category: 'arcade',
-    categories: ['arcade', 'farm', 'pets'],
-    route: '/games/barnyard-frog-hop/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '51.2K',
-    badge: '🐸 Frog Games',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-frog-hop.svg',
-    featured: true,
-    tags: ['Frog Games', 'Frog Jump', 'Lily Pad', 'Arcade', 'Reflex', 'Animals', 'Farm', 'Pond'],
-    controls: {
-      desktop: [
-        'Arrow Keys / WASD: Leap up, down, left, or right across pads',
-        'Spacebar: Flick sticky tongue to catch nearby flies',
-        'R Key: Reset current pond crossing',
-        'M Key: Toggle frog croak and water sounds',
-      ],
-      mobile: [
-        'D-Pad: Leap in four directions',
-        '👅 TONGUE Button: Catch buzzing flies',
-        'Hearts: 3 lives per pond stage',
-      ],
-    },
-    features: [
-      'Dynamic Parabolic Jump Physics with Moving Pad Snapping and Drift Mechanics',
-      'Sticky Tongue Insect Catching System for Flying Dragonflies and Fireflies',
-      'Multiple Pad Hazards: Sinking Water Lilies and Drifting Wooden River Logs',
-      'Three Progressive Pond Environments: Duck Pond, Misty Marsh, and Sunset Lagoon',
-      '100% Native Procedural Audio Synthesizer (Frog Croaks, Splashes, Tongue Snaps)',
-      'Single-Screen Zero-Scroll Viewport and Zero Downloads Required',
-    ],
-    metaTitle: 'Frog Games: Barnyard Pond Hop - Free Jump Arcade (No Download)',
-    metaDescription: 'Play free frog games online! Hop Barnaby the green tree frog across floating lily pads, snatch buzzing flies with your tongue, and reach the victory pond bank.',
-  },
-  {
-    id: 'virtual-puppy-pet',
-    slug: 'virtual-puppy-pet',
-    title: 'Virtual Pet: Cozy Puppy Care 🐶🍼',
-    tagline: 'Feed, groom, play fetch, and dress up your cute golden puppy in this cozy pet simulator!',
-    description: 'Play Virtual Pet: Cozy Puppy Care free online! Adopt Buster the golden retriever puppy. Feed crunchy kibble and bone snacks, lather soapy sponge bubbles in the bath, and throw tennis balls for backyard fetch. Earn bone rewards, level up friendship, and dress your pup in hats and bandanas in this cozy puppy game!',
-    category: 'pets',
-    categories: ['pets', 'arcade', 'farm'],
-    route: '/games/virtual-puppy-pet/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '54.8K',
-    badge: '🐶 Virtual Pet',
-    thumbnailUrl: '/assets/thumbnails/thumb-virtual-puppy-pet.svg',
-    featured: true,
-    tags: ['Virtual Pet', 'Puppy Games', 'Pet Care', 'Dog Games', 'Tamagotchi', 'Puppy', 'Pets'],
-    controls: {
-      desktop: [
-        'Mouse Click / Pointer: Tap care buttons to feed, wash, and throw balls',
-        'Click Puppy: Pat your pup to wag his tail and show love',
-        'M Key: Toggle happy puppy yips and squeak sounds',
-      ],
-      mobile: [
-        'Tap Care Buttons: Feed, soap, rinse, and toss tennis balls',
-        'Tap Puppy: Pat your puppy to boost happiness',
-        '🎀 Wardrobe: Equip unlocked collars and hats',
-      ],
-    },
-    features: [
-      'Four Dynamic Pet Care Pillars: Hunger, Hygiene, Happiness, and Energy',
-      'Interactive Backyard Ball Physics with Live Tennis Ball Retrieval',
-      'Bathing Mini-Action with Responsive Foam Bubbles and Shower Rinse',
-      'Puppy Friendship Level Progression (Level 1 to 10) with Bone Rewards',
-      'Unlockable Pet Accessories (Red Bandana, Bell Collar, Detective Hat)',
-      'Single-Screen Zero-Scroll Viewport and Zero Downloads Required',
-    ],
-    metaTitle: 'Virtual Pet: Cozy Puppy Care - Free Puppy Games (No Download)',
-    metaDescription: 'Play free virtual pet puppy games online! Adopt a cute puppy, feed snacks, wash with soap, and play fetch in your browser. Zero downloads and instant pet fun.',
-  },
-  {
-    id: 'farm-mahjong-connect',
-    slug: 'farm-mahjong-connect',
-    title: 'Mahjong Connect: Farm Crop Link 🧩🌽',
-    tagline: 'Link identical crop tiles with at most 2 turns to clear the farm board before time runs out!',
-    description: 'Play Mahjong Connect: Farm Crop Link free online! Link pairs of carrots, pumpkins, strawberries, and sunflowers with 2 or fewer turns. Travel through open cells or around the board border to clear every tile. Enjoy classic link matching with hints, shuffles, and zero downloads in this fun puzzle game!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm', 'arcade'],
-    route: '/games/farm-mahjong-connect/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '56.7K',
-    badge: '🧩 Mahjong Connect',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-mahjong-connect.svg',
-    featured: true,
-    tags: ['Mahjong Connect', 'Link Mahjong', 'Onet', 'Connect 2', 'Tile Matching', 'Puzzle', 'Farm'],
-    controls: {
-      desktop: [
-        'Mouse Click / Pointer: Select crop tiles and connect matching pairs',
-        '💡 Hint Button (H Key): Highlight an available pair connection',
-        '🔀 Shuffle Button (S Key): Mix remaining tiles',
-        'R Key: Reset current level board',
-        'M Key: Toggle bamboo tap and match sounds',
-      ],
-      mobile: [
-        'Tap Tiles: Select and link matching farm crops',
-        '💡 Hint: Spot open tile connections',
-        '🔀 Shuffle: Rearrange blocked tiles',
-      ],
-    },
-    features: [
-      'Classic Mahjong Connect 2-Turn Pathfinding (Straight, 1-Turn, and 2-Turn Links)',
-      'Outer Border Path Travel Allowing Free Perimeter Connections',
-      'Four Progressive Levels with Fall-Down and Slide-Left Tile Gravity Mechanics',
-      'Dynamic Time Bonuses (+5s Per Match) and Integrated Hint & Shuffle Tools',
-      '100% Native Procedural Audio Synthesizer (Bamboo Taps, Chimes, and Fanfare)',
-      'Single-Screen Zero-Scroll Viewport and Zero Downloads Required',
-    ],
-    metaTitle: 'Mahjong Connect: Farm Crop Link - Free Puzzle Game (No Download)',
-    metaDescription: 'Play free Mahjong Connect online! Match crop tiles using paths with at most 2 turns. Zero downloads, four levels, hint assistance, and instant browser play.',
-  },
-  {
-    id: 'barnyard-horse-derby',
-    slug: 'barnyard-horse-derby',
-    title: 'Horse Racing Game: Barnyard Derby 🐎🏆',
-    tagline: 'Gallop on turf tracks, time hurdle jumps over farm fences, and win championship cups!',
-    description: 'Play Horse Racing Game: Barnyard Derby free online! Gallop down turf lanes, switch paths to dodge rivals, and jump over wooden fences and water ponds. Collect crisp carrots to recharge stamina and grab golden horseshoes for high scores. Win Meadow Sprint, Autumn Steeplechase, and Sunset Derby in this fun horse game!',
-    category: 'farm',
-    categories: ['farm', 'pets', 'arcade'],
-    route: '/games/barnyard-horse-derby/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '64.2K',
-    badge: '🐎 Horse Racing',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-horse-derby.svg',
-    featured: true,
-    tags: ['Horse Racing Game', 'Horse Games', 'Derby', 'Steeplechase', 'Hurdles', 'Farm', 'Pets', 'Arcade'],
-    controls: {
-      desktop: [
-        'Spacebar / Right Arrow: Jump over steeplechase hurdles',
-        'Up / Down Arrows (W / S): Switch between running lanes',
-        'R Key: Quick restart race track',
-        'M Key: Toggle gallop and bugle sounds',
-      ],
-      mobile: [
-        '🐎 JUMP Button: Jump over hurdles and water hazards',
-        '⬆️ / ⬇️ Buttons: Switch turf lanes to dodge obstacles',
-        'Collectibles: Steer into carrots and horseshoes',
-      ],
-    },
-    features: [
-      '3-Lane Steeplechase Racing with Smooth Vertical Lane Transitions',
-      'Parabolic Jump Physics with Precision Timing Grades (OK, Great, Perfect)',
-      'Real-Time Stamina Management and Turbo Speed Boost Surges',
-      'Three Unique Derby Cups: Green Meadow, Autumn Pasture, and Sunset Derby',
-      'Procedural Web Audio with Hoof Gallops, Whinnies, and Bugle Fanfares',
-      'Single-Screen Zero-Scroll Viewport and Zero Downloads Required',
-    ],
-    metaTitle: 'Horse Racing Game: Barnyard Derby - Free Online (No Download)',
-    metaDescription: 'Play free horse games online! Gallop in Barnyard Derby, time hurdle jumps over hay fences, collect golden horseshoes, and win championship cups in your browser.',
-  },
-  {
-    id: 'pyramid-solitaire-harvest',
-    slug: 'pyramid-solitaire-harvest',
-    title: 'Pyramid Solitaire: Barnyard Harvest 🌾🃏',
-    tagline: 'Match cards summing to 13, clear the harvest pyramid, and master cozy card solitaire!',
-    description: 'Play Pyramid Solitaire: Barnyard Harvest free online! Match open card pairs totaling 13 to clear all 28 cards from the pyramid. Tap Kings to discard solo, combine Queens with Aces, and draw extra stock cards across 2 redeals. Enjoy fast hints, streak bonuses, and zero downloads in this cozy classic card puzzle!',
-    category: 'farm',
-    categories: ['farm', 'puzzle', 'arcade'],
-    route: '/games/pyramid-solitaire-harvest/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '61.4K',
-    badge: '🌾 Pyramid Solitaire',
-    thumbnailUrl: '/assets/thumbnails/thumb-pyramid-solitaire-harvest.svg',
-    featured: true,
-    tags: ['Pyramid Solitaire', 'Solitaire', 'Card Games', 'Patience', 'Puzzle', 'Harvest', 'Farm'],
-    controls: {
-      desktop: [
-        'Mouse Click / Pointer: Select uncovered card or draw from deck',
-        '💡 Hint Button: Highlight an available pair summing to 13',
-        'R Key: Deal a fresh pyramid solitaire hand',
-        'M Key: Toggle card flip sound effects',
-      ],
-      mobile: [
-        'Tap Cards: Select open cards to pair and clear them',
-        'Tap Stock: Draw next card into waste pile',
-        '💡 Hint: Highlight matching card pairs',
-      ],
-    },
-    features: [
-      'Classic 28-Card 7-Row Solitaire Pyramid with Uncovered Card Logic',
-      'True Sum-to-13 Matching: King Solo, Queen+Ace, Jack+2, 10+3, and 9+4',
-      'Stock Deck with Waste Pile and 2 Generous Table Redeals',
-      'Smart Solver Hint Tool and Combo Streak Score Multipliers',
-      '100% Procedural Native Canvas Card Graphics with High-Contrast Rank Badges',
-      'Single-Screen Zero-Scroll Viewport and Zero Downloads Required',
-    ],
-    metaTitle: 'Pyramid Solitaire: Barnyard Harvest - Free Card Game (No Download)',
-    metaDescription: 'Play free Pyramid Solitaire online! Pair cards totaling 13 to harvest 28 pyramid cards. Zero downloads, instant card deals, and full mobile support in browser.',
-  },
-  {
-    id: 'barnyard-spot-difference',
-    slug: 'barnyard-spot-difference',
-    title: 'Spot the Difference: Barnyard Detective 🔍🚜',
-    tagline: 'Compare sunny farm scenes, spot all 5 differences, and test your sharp detective eye!',
-    description: 'Play Spot the Difference: Barnyard Detective free online! Compare side-by-side pastoral farm illustrations and spot 5 subtle hidden differences. Scan red barn weather vanes, grazing cows, apple orchard trees, and duck pond picnics. Use hints when stuck and beat the clock across all 3 stages in this fun puzzle game!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm', 'pets'],
-    route: '/games/barnyard-spot-difference/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '58.3K',
-    badge: '🔍 Spot the Difference',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-spot-difference.svg',
-    featured: true,
-    tags: ['Spot the Difference', 'Find the Difference', 'Differences', 'Puzzle', 'Observation', 'Detective', 'Farm'],
-    controls: {
-      desktop: [
-        'Mouse / Pointer Click: Tap anywhere on either photo where you spot a difference',
-        '💡 Hint Button: Highlight the exact location of a tricky difference',
-        'R Key: Quick restart current pastoral scene',
-        'M Key: Toggle sparkling chime and buzzer sounds',
-      ],
-      mobile: [
-        'Tap Differences: Tap on either photo to circle a difference',
-        '💡 Hint Button: Reveal hard-to-find changes',
-        '3 Lives: Avoid random misclicks to protect your hearts',
-      ],
-    },
-    features: [
-      'Handcrafted Procedural Vector Countryside Scenes Rendered Natively on Canvas',
-      'Instant Dual-Image Tap Registration Allowing Detection on Either Photo',
-      'Sparkling Gold Reward Circles and Misclick Protection Life Hearts',
-      'Helpful Magnifying Glass Clue Tool for Tough Clues',
-      'Three Progressively Intricate Scenes Featuring Barns, Orchards, and Duck Ponds',
-      'Zero Downloads Required and Single-Screen Zero-Scroll Layout',
-    ],
-    metaTitle: 'Spot the Difference: Barnyard Detective - Free Puzzle (No Download)',
-    metaDescription: 'Play Spot the Difference: Barnyard Detective free in your browser! Find 5 subtle changes between farm pictures, use hints, and beat the clock with no download.',
-  },
-  {
-    id: 'penguin-pasture-diner',
-    slug: 'penguin-pasture-diner',
-    title: 'Penguin Diner: Penguin Pasture Diner 🐧🍨',
-    tagline: 'Seat cute Antarctic guests, serve fish sundaes, and collect tips on ice skates!',
-    description: 'Play Penguin Diner: Penguin Pasture Diner free online! Glide on ice skates as Penny the Penguin in a cozy Antarctic restaurant. Seat waiting polar bears and seals, take kitchen orders, serve kelp shakes and clam pies, and pocket cash tips. Upgrade skates and plush booths to clear all 3 shifts in this fun tycoon game inspired by Penguin Diner!',
-    category: 'pets',
-    categories: ['pets', 'farm', 'arcade'],
-    route: '/games/penguin-pasture-diner/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '52.4K',
-    badge: '🐧 Penguin Diner',
-    thumbnailUrl: '/assets/thumbnails/thumb-penguin-pasture-diner.svg',
-    featured: true,
-    tags: ['Penguin Diner', 'Penguin', 'Diner', 'Restaurant', 'Tycoon', 'Time Management', 'Pets'],
-    controls: {
-      desktop: [
-        'Mouse / Pointer Click: Select waiting guests, tables, and kitchen counter',
-        'R Key: Quick restart current restaurant shift',
-        'M Key: Toggle order bells and register ka-chings',
-      ],
-      mobile: [
-        'Tap Guest at Door -> Tap Empty Table to seat customer',
-        'Tap Table with Bell -> Sends order ticket to chef station',
-        'Tap Kitchen Counter -> Tap Table to serve meal and collect tips',
-      ],
-    },
-    features: [
-      'Authentic Restaurant Time-Management Tycoon Loop with Multi-Table Service',
-      'Charming Animal Customer Species Including Polar Bears, Seals, and Penguins',
-      'Dynamic Kitchen Cooking Station with Active Preparation Timers',
-      'In-Game Diner Upgrade Catalog Featuring Speed Skates and Plush Booths',
-      'Three Progressively Demanding Daily Shifts with Tip Target Quotas',
-      'Instant Zero-Scroll Single-Screen Responsive Layout for Mobile and Desktop',
-    ],
-    metaTitle: 'Penguin Diner: Penguin Pasture Cafe - Free Online Game (No Download)',
-    metaDescription: 'Play Penguin Diner: Penguin Pasture Cafe free in your browser! Seat cute guests, serve dishes on ice skates, collect tips, and upgrade booths with no download.',
-  },
-  {
-    id: 'barnyard-roof-duel',
-    slug: 'barnyard-roof-duel',
-    title: 'Rooftop Snipers: Barnyard Roof Duel 🐓🦊',
-    tagline: 'Floppy 2-button ragdoll sniper showdown on barn roofs! Play vs AI or with a friend!',
-    description: 'Play Rooftop Snipers: Barnyard Roof Duel free online! Jump, aim floppy ragdoll arms, and fire cork rifles in high-stakes barn rooftop duels. Challenge smart AI or play 2-player local mode across red barns and spinning windmills. Knock your rival off the edge to score 5 points first in this fun duel inspired by Rooftop Snipers!',
-    category: 'arcade',
-    categories: ['arcade', 'pets', 'farm'],
-    route: '/games/barnyard-roof-duel/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '49.1K',
-    badge: '🐓 Rooftop Snipers',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-roof-duel.svg',
-    featured: true,
-    tags: ['Rooftop Snipers', 'Ragdoll', '2 Player', 'Duel', 'Shooter', 'Arcade', 'Physics'],
-    controls: {
-      desktop: [
-        'P1 Controls: W Key to Jump, E Key or Spacebar to Shoot',
-        'P2 Controls: Up Arrow to Jump, Down Arrow or Enter to Shoot',
-        'Map Buttons: Select Red Barn, Windmill, or Silo Catwalk',
-        'R Key: Quick restart duel round',
-        'M Key: Toggle rifle pops and ricochet chimes',
-      ],
-      mobile: [
-        'P1: Left Green JUMP and Orange SHOOT touch buttons',
-        'P2: Right Indigo JUMP and Orange SHOOT touch buttons (2P mode)',
-        'Mode Toggle: Switch between VS AI and 2-Player Local at top',
-      ],
-    },
-    features: [
-      'Authentic Floppy Ragdoll Physics with Kinetic Bullet Recoil and Stumble Spins',
-      'Both Single-Player VS AI and Two-Player Local Same-Screen Multiplayer Modes',
-      'Three Dynamic Barnyard Rooftop Battlegrounds Including Rotating Windmills',
-      'First to 5 Points Tournament Match Structure with Instant Zero-Scroll Restart',
-      'Bullet Ricochets Off Cedar Shingles and Metal Silo Domes',
-      'Zero Downloads Required and Responsive Mobile Touch-Optimized Layout',
-    ],
-    metaTitle: 'Rooftop Snipers: Barnyard Roof Duel - Free Game (No Download)',
-    metaDescription: 'Play Rooftop Snipers: Barnyard Roof Duel free in your browser! Jump floppy ragdolls, fire rifles with recoil, and knock rivals off barn roofs with no download.',
-  },
-  {
-    id: 'frozen-pasture-dash',
-    slug: 'frozen-pasture-dash',
-    title: 'Frozen Pasture Dash: Ice Dodo 🦤❄️',
-    tagline: 'Skate down treacherous alpine glacier slopes at breakneck speeds and jump deep crevasses!',
-    description: 'Play Frozen Pasture Dash: Ice Dodo free online! Steer a clumsy skater dodo down icy alpine pasture slopes. Dodge sharp ice cones, swerve around rolling snow boulders, slingshot across green turbo booster pads, and leap over bottomless crevasses. Conquer all 3 high-speed alpine tracks in this fast browser arcade runner inspired by Ice Dodo!',
-    category: 'arcade',
-    categories: ['arcade', 'pets', 'farm'],
-    route: '/games/frozen-pasture-dash/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '44.8K',
-    badge: '🦤 Ice Dodo',
-    thumbnailUrl: '/assets/thumbnails/thumb-frozen-pasture-dash.svg',
-    featured: true,
-    tags: ['Ice Dodo', 'Dodo', 'Ice Runner', 'Speed Runner', 'Arcade', 'Glacier', 'Pets'],
-    controls: {
-      desktop: [
-        'Mouse Drag / Pointer: Steer skater dodo laterally across the ice',
-        'Arrow Keys Left / Right: Alternative precise lateral steering',
-        'Spacebar / Up Arrow: Jump over deep ice chasms and cones',
-        'R Key: Quick restart glacial downhill run',
-        'M Key: Toggle ice skate carving sounds',
-      ],
-      mobile: [
-        'Touch & Drag: Steer dodo across ice runway',
-        'JUMP Button: Hop into the air over chasms',
-        'Restart Button: Reset current track anytime',
-      ],
-    },
-    features: [
-      'High-Speed 2.5D Glacial Track Engine with Perspective Depth Scaling',
-      'Realistic Ice Skating Carve Inertia and Dynamic Body Lean Tilt',
-      'Green Speed Booster Slingshot Pads for Explosive Acceleration',
-      'Wooden Ski-Jump Ramps to Soar Over Bottomless Glacial Crevasses',
-      'Collectible Frost Berries that Unlock Protective Crystal Shield Bubbles',
-      'Three Progressively Demanding Alpine Tracks with Instant Zero-Scroll Restart',
-    ],
-    metaTitle: 'Ice Dodo: Frozen Pasture Dash - Free Online Game (No Download)',
-    metaDescription: 'Play Ice Dodo: Frozen Pasture Dash free in your browser! Steer a skater dodo down icy slopes, dodge sharp cones, hit turbo pads, and leap crevasses with no download.',
-  },
-  {
-    id: 'sushi-kitty-pachinko',
-    slug: 'sushi-kitty-pachinko',
-    title: 'Sushi Kitty: Pachinko Feast 🍣🐱',
-    tagline: 'Drop a bouncy chubby kitten through pins, eat delicious sushi, and fill its belly to win!',
-    description: 'Play Sushi Kitty: Pachinko Feast free online! Drop a bouncy kitten through a Japanese sushi buffet pachinko board. Munch salmon nigiri, nori maki rolls, and golden egg rolls to fill your kitty\'s belly and swell its size. Land in lacquer baskets below to clear all 3 stages in this fun game inspired by Sushi Cat!',
-    category: 'pets',
-    categories: ['pets', 'arcade', 'puzzle'],
-    route: '/games/sushi-kitty-pachinko/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '31.2K',
-    badge: '🍣 Sushi Cat',
-    thumbnailUrl: '/assets/thumbnails/thumb-sushi-kitty-pachinko.svg',
-    featured: true,
-    tags: ['Sushi Cat', 'Sushi Kitty', 'Pachinko', 'Cat Games', 'Plinko', 'Arcade', 'Pets'],
-    controls: {
-      desktop: [
-        'Mouse Drag / Pointer: Slide top dropper horizontally',
-        'Spacebar / Left Click / DROP Button: Drop bouncy kitten',
-        'Arrow Keys Left / Right: Fine-tune dropper aim',
-        'R Key: Quick restart current sushi stage',
-        'M Key: Toggle melodic pin and chomp sounds',
-      ],
-      mobile: [
-        'Touch & Drag Top Slider: Aim dropper position across board',
-        'DROP Button: Launch bouncy kitten down pegboard',
-        'Restart Button: Reset current stage anytime',
-      ],
-    },
-    features: [
-      'Authentic Pachinko Peg Physics with Elastic Bumper Bounce Boosts',
-      'Dynamic Cat Swelling Engine as Kitty Consumes Floating Sushi Platters',
-      'Multiple Sushi Delicacies Including Nigiri, Nori Maki, Tuna Sashimi, and Golden Rolls',
-      'Five Multiplier Lacquer Score Baskets at the Board Base',
-      'Three Progressively Challenging Stages with Moving Sushi Platters',
-      'Zero Downloads Required and Instant Single-Screen Mobile Touch Controls',
-    ],
-    metaTitle: 'Sushi Cat: Sushi Kitty Feast - Free Online Cat Game (No Download)',
-    metaDescription: 'Play Sushi Cat: Sushi Kitty Pachinko Feast free in your browser! Drop a bouncy cat through pins, chomp tasty sushi to fill its tummy, and score big with no download.',
-  },
-  {
-    id: 'duckling-pond-rescue',
-    slug: 'duckling-pond-rescue',
-    title: 'Ducklings.io: Duckling Pond Rescue 🦆🌾',
-    tagline: 'Gather crying baby ducklings into a follow-the-leader chain and lead them safely to the reeds nest!',
-    description: 'Play Ducklings.io: Duckling Pond Rescue free online! Swim across a peaceful farm pond as Mama Duck to rescue crying baby ducklings. Build an adorable follow-the-leader duckling chain, dodge speeding wooden rowboats and basking turtles, guide your ducklings back to the shoreline nest, and upgrade your reeds sanctuary into a grand straw castle in this charming web game inspired by Ducklings.io!',
-    category: 'pets',
-    categories: ['pets', 'arcade', 'farm'],
-    route: '/games/duckling-pond-rescue/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '38.5K',
-    badge: '🦆 Ducklings.io',
-    thumbnailUrl: '/assets/thumbnails/thumb-duckling-pond-rescue.svg',
-    featured: true,
-    tags: ['Ducklings.io', 'Ducklings', 'Duck', 'Pond', 'Sanctuary', 'Pets', 'Tycoon'],
-    controls: {
-      desktop: [
-        'Pointer / Mouse Drag: Steer Mama Duck across the pond water',
-        'WASD or Arrow Keys: Alternative keyboard swimming control',
-        'Spacebar: Engage paddle turbo boost',
-        'R Key: Quick restart pond rescue wave',
-        'M Key: Toggle pond chimes and duck quacks',
-      ],
-      mobile: [
-        'Touch & Drag: Steer Mama Duck anywhere on screen',
-        'TURBO Button: Activate fast swimming boost',
-      ],
-    },
-    features: [
-      'Follow-the-Leader Duckling Chain Physics with Smooth Wake Waves',
-      'Pond Navigation with Dynamic Rowboat Traffic and Basking Turtles',
-      'Reeds Nest Upgrade Progression: Level 1 Reed Bowl to Level 5 Straw Castle',
-      'Collectible Cosmetic Hats: Flower Crowns, Straw Sunhats, and Golden Crowns',
-      'Procedural Web Audio Engine with Quacks, Baby Peeps, and Water Splashes',
-      '100% Free Instant Browser Play with No Download or Install Required',
-    ],
-    metaTitle: 'Ducklings.io: Duckling Pond Rescue 🦆🌾 — Free Online Game | Pawcade',
-    metaDescription: 'Play Ducklings.io free online! Rescue crying baby ducklings, build a follow-the-leader chain, and upgrade your pond nest as Mama Duck with no download required.',
-  },
-  {
-    id: 'tiny-pig-big-tower',
-    slug: 'tiny-pig-big-tower',
-    title: 'Big Tower Tiny Square: Tiny Pig 🐷🏰',
-    tagline: 'Climb a giant grain silo tower, wall-kick up narrow shafts, and reclaim your Golden Acorn as a tiny square pig!',
-    description: 'Play Big Tower Tiny Square: Tiny Pig free online! Guide Pip the tiny square piglet up a massive 500-meter grain silo tower. Master ultra-precise wall jumps and wall slides, dodge moving cyan laser beams, leap across crumbling hay platforms, bounce on spring trampolines, and reach the pinnacle to snatch the Golden Acorn back from the thief raccoon in this addictive precision platformer!',
-    category: 'arcade',
-    categories: ['arcade', 'puzzle', 'pets'],
-    route: '/games/tiny-pig-big-tower/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '41.2K',
-    badge: '🐷 Big Tower',
-    thumbnailUrl: '/assets/thumbnails/thumb-tiny-pig-big-tower.svg',
-    featured: true,
-    tags: ['Big Tower Tiny Square', 'Tiny Square', 'Platformer', 'Wall Jump', 'Parkour', 'Pig'],
-    controls: {
-      desktop: [
-        'A / D or Left/Right Arrow Keys: Move left and right across platforms',
-        'Spacebar, W, or Up Arrow: Jump and wall-kick off surfaces',
-        'R Key: Quick respawn at active checkpoint flagpole',
-        'M Key: Toggle tower audio effects',
-      ],
-      mobile: [
-        'LEFT / RIGHT Buttons: Run across platforms',
-        'JUMP Button: Leap across hazards and kick off walls',
-      ],
-    },
-    features: [
-      'Single Seamless Vertical Silo Mega-Tower with Zero Loading Screens',
-      'Momentum-Based Precision Wall-Sliding and Wall-Kicking Physics',
-      'Interactive Obstacles: Moving Lasers, Hot Syrup Lava, and Crumbling Hay',
-      'Generous Instant-Respawn Checkpoint Flagpoles (Zero Reload Delay)',
-      'Procedural Web Audio Engine with Crisp Squeaks, Wall Pops, and Fanfares',
-      '100% Free Instant Browser Play with No Download or Install Required',
-    ],
-    metaTitle: 'Big Tower Tiny Square: Tiny Pig 🐷🏰 — Free Online Game | Pawcade',
-    metaDescription: 'Play Big Tower Tiny Square free online! Wall-kick up a massive grain silo tower, dodge cyan lasers, and grab the Golden Acorn as a tiny pig with no download.',
-  },
-  {
-    id: 'barnyard-truck-jumper',
-    slug: 'barnyard-truck-jumper',
-    title: 'Cluster Rush: Barnyard Truck Jumper 🐐🚛',
-    tagline: 'Leap across runaway highway trucks, dodge low signs, and chain double jump combos as a daredevil goat!',
-    description: 'Play Cluster Rush: Barnyard Truck Jumper free online! Sprint and leap across the roofs of speeding livestock trucks, milk tankers, and hay trailers on highway Route 66. Time precision jumps and acrobatic double jumps over highway gaps, slide flat under low clearance signs, and chain roof leaps without touching the asphalt in this adrenaline-pumping 3D runner inspired by Cluster Rush!',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/barnyard-truck-jumper/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '46.3K',
-    badge: '🐐 Cluster Rush',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-truck-jumper.svg',
-    featured: true,
-    tags: ['Cluster Rush', 'Truck Jumper', 'Parkour', 'Runner', 'Highway', 'Arcade'],
-    controls: {
-      desktop: [
-        'A / D or Left/Right Arrow Keys: Strafe across highway lanes',
-        'Spacebar, W, or Up Arrow: Jump and double jump in mid-air',
-        'S or Down Arrow: Slide flat under low overhead signs',
-        'R Key: Quick restart convoy run',
-        'M Key: Toggle highway sounds',
-      ],
-      mobile: [
-        'STRAFE Buttons: Move between highway lanes',
-        'JUMP Button: Leap across truck gaps and double jump',
-        'SLIDE Button: Duck under low clearance signboards',
-      ],
-    },
-    features: [
-      'Dynamic 2.5D Highway Perspective with Moving Multi-Lane Convoy Trucks',
-      'Acrobatic Jump & Double Jump Physics with Roof Impact Feedback',
-      'Low Overhead Highway Signs and Clearance Sliding Mechanics',
-      'Roof-to-Roof Combo Multiplier System and Gold Clover Collectibles',
-      '3 Handcrafted Highway Convoys: Route 66, Canyon Switchback, and Interstate Storm',
-      '100% Free Instant Browser Play with No Download or Install Required',
-    ],
-    metaTitle: 'Cluster Rush: Barnyard Truck Jumper 🐐🚛 — Free Online Game | Pawcade',
-    metaDescription: 'Play Cluster Rush free online! Leap across speeding truck roofs, slide under low highway signs, and chain double jump combos as a daredevil goat with no download.',
-  },
-  {
-    id: 'barnyard-stealth-fox',
-    slug: 'barnyard-stealth-fox',
-    title: 'Bob the Robber: Barnyard Stealth Fox 🦊🕶️',
-    tagline: 'Sneak past guard dogs, duck into shadow doorways, and pick locked safes in this side-scrolling heist puzzle!',
-    description: 'Play Bob the Robber: Barnyard Stealth Fox free online! Infiltrate Farmer MacDonald\'s manor barn as Sly the master thief fox. Duck into dark doorways to vanish from sweeping flashlight cones, knock out snoozing bulldog guards from behind, pick locked hencoop doors, dodge red laser tripwires, and escape with shiny golden eggs in this addictive stealth puzzle inspired by Bob the Robber!',
-    category: 'puzzle',
-    categories: ['puzzle', 'arcade', 'pets'],
-    route: '/games/barnyard-stealth-fox/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '44.8K',
-    badge: '🦊 Stealth Heist',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-stealth-fox.svg',
-    featured: true,
-    tags: ['Bob the Robber', 'Stealth', 'Heist', 'Puzzle', 'Fox', 'Escape'],
-    controls: {
-      desktop: [
-        'A / D or Arrow Keys: Sneak left and right across timber floors',
-        'W / S or Up / Down Keys: Climb wooden ladders between floors',
-        'S or Down Arrow in doorway: Duck into shadows to hide from guards',
-        'Spacebar or E: Pick locks or strike guards from behind',
-        'R Key: Quick restart current heist level',
-        'M Key: Toggle stealth audio and sirens',
-      ],
-      mobile: [
-        'Arrow Pad: Sneak horizontally or climb up and down ladders',
-        'HIDE Button: Duck into shadow doorways and haystacks',
-        'ACTION Button: Pick door locks and knock out guards',
-      ],
-    },
-    features: [
-      'Dynamic Guard AI with Flashlight Vision Cones and Snoozing Patrols',
-      'Shadow Stealth System: Hide in doorways and haystacks to vanish from sight',
-      'Multi-Floor Barn Levels with Wooden Climbing Ladders and Laser Tripwires',
-      'Interactive Lockpicking, Key Collecting, and Master Safe Cracking',
-      'Procedural Web Audio Engine with Sneak Footsteps and Blaring Sirens',
-      '100% Free Instant Browser Play with No Download or Install Required',
-    ],
-    metaTitle: 'Bob the Robber: Barnyard Stealth Fox 🦊🕶️ — Free Online Game | Pawcade',
-    metaDescription: 'Play Bob the Robber free online! Sneak past guard dogs, hide in doorway shadows, pick coop locks, and steal golden eggs in this stealth puzzle with no download.',
-  },
-  {
-    id: 'tractor-stunt-trials',
-    slug: 'tractor-stunt-trials',
-    title: 'Moto X3M Trials: Tractor Stunt Trials 🚜💥',
-    tagline: 'Perform 360-degree backflips, launch off timber ramps, and race across splash hazards in a high-octane farm stunt trial!',
-    description: 'Play Moto X3M Trials: Tractor Stunt Trials free online! Pilot a bouncy farm tractor across rolling pasture hills, wooden springboard ramps, and splash ponds. Pull off acrobatic 360-degree frontflips and backflips in mid-air to earn time deduction bonuses, avoid explosive TNT hay bales, hit scarecrow checkpoints, and race against the clock to score 3 gold stars in this fast-paced physics trial game!',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/tractor-stunt-trials/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '48.9K',
-    badge: '🚜 Moto Stunts',
-    thumbnailUrl: '/assets/thumbnails/thumb-tractor-stunt-trials.svg',
-    featured: true,
-    tags: ['Moto X3M', 'Stunts', 'Tractor', 'Physics', 'Trials', 'Racing'],
-    controls: {
-      desktop: [
-        'W or Up Arrow: Accelerate drive wheels',
-        'S or Down Arrow: Brake and reverse',
-        'A or Left Arrow: Tilt tractor backward (backflip)',
-        'D or Right Arrow: Tilt tractor forward (frontflip)',
-        'R Key: Quick restart from active checkpoint',
-        'M Key: Toggle procedural engine audio',
-      ],
-      mobile: [
-        'TILT LEFT / RIGHT Buttons: Lean backward or forward in air',
-        'GAS / BRAKE Buttons: Throttle forward and stop quickly',
-      ],
-    },
-    features: [
-      '2D Spring-Damper Suspension Physics with Realistic Chassis Inertia',
-      'Airborne Stunt System: Land 360-degree flips for -0.5s time deductions',
-      '3 Handcrafted Stunt Courses: Pasture Meadows, Timber Bridge, and Barnyard Rooftops',
-      'Interactive Hazards: Splash Ponds, High Springboards, Speed Boosters, and TNT Bales',
-      'Scarecrow Checkpoint System and 3-Star Time Trial Ratings',
-      '100% Free Instant Browser Play with No Download or Install Required',
-    ],
-    metaTitle: 'Moto X3M Trials: Tractor Stunt Trials 🚜💥 — Free Online Game | Pawcade',
-    metaDescription: 'Play Moto X3M Trials free online! Pull off backflips, launch over water splash ponds, and race against the clock in this 2D farm stunt trial game with no download.',
-  },
-  {
-    id: 'barnyard-ninja-chick',
-    slug: 'barnyard-ninja-chick',
-    title: 'Vex Platformer: Barnyard Ninja Chick 🥷🐥',
-    tagline: 'Wall-jump, slide under buzzsaws, and conquer tricky silo obstacle acts as an agile ninja chick!',
-    description: 'Play Vex Platformer: Barnyard Ninja Chick free online! Guide Chirpy the acrobatic ninja chick through vertical silo obstacle courses filled with spinning steel buzzsaws, spikes, and hay trampolines. Master tight wall jumps, slide under low beams, activate checkpoint flags, and sprint toward the exit door in this fast-paced 2D precision platformer inspired by Vex!',
-    category: 'arcade',
-    categories: ['arcade', 'puzzle', 'pets'],
-    route: '/games/barnyard-ninja-chick/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '52.7K',
-    badge: '🥷 Vex Platformer',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-ninja-chick.svg',
-    featured: true,
-    tags: ['Vex', 'Platformer', 'Ninja', 'Parkour', 'Speedrun'],
-    controls: {
-      desktop: [
-        'A / D or Left/Right Arrow Keys: Run left and right',
-        'W, Up Arrow, or Spacebar: Jump and wall-jump off surfaces',
-        'S or Down Arrow: Slide under low obstacles',
-        'R Key: Quick restart current act',
-        'M Key: Toggle ninja sound effects',
-      ],
-      mobile: [
-        'Left & Right Arrows: Run across wooden platforms',
-        'JUMP Button: Leap over spikes and wall-climb vertical shafts',
-        'SLIDE Button: Duck beneath spinning buzzsaw blades',
-      ],
-    },
-    features: [
-      'Precision 2D Platformer Physics with Coyote Time and Jump Buffering',
-      'Acrobatic Wall-Jumping and Sliding Mechanics across Vertical Shafts',
-      '3 Handcrafted Silo Acts: Lower Barn Loft, Windmill Cogs, and Silo Pinnacle',
-      'Rotating Buzzsaws, Floor Spikes, Bouncy Hay Trampolines, and Checkpoints',
-      'Procedural Web Audio Engine with Crisp Ninja Jumps and Victory Fanfares',
-      '100% Free Instant Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Vex Platformer: Barnyard Ninja Chick 🥷🐥 — Free Online Game | Pawcade',
-    metaDescription: 'Play Vex Platformer free online! Wall-jump up vertical shafts, slide under buzzsaws, and beat challenging parkour acts as a ninja chick with no download needed.',
-  },
-  {
-    id: 'duck-training-champion',
-    slug: 'duck-training-champion',
-    title: 'Duck Life: Barnyard Champion 🦆🏅',
-    tagline: 'Train your baby duckling in running, flying, and swimming to win Olympic farm championships!',
-    description: 'Play Duck Life: Barnyard Champion free online! Adopt a baby duckling and train athletic skills across three action mini-games: hurdle jumping, sky gliding, and underwater diving. Collect golden corn seeds to level up your stats, visit the boutique to equip stylish hats, and enter high-stakes Olympic races against rival ducks to take home gold medals in this beloved sports pet simulator.',
-    category: 'pets',
-    categories: ['pets', 'arcade', 'farm'],
-    route: '/games/duck-training-champion/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '47.9K',
-    badge: '🦆 Duck Life',
-    thumbnailUrl: '/assets/thumbnails/thumb-duck-training-champion.svg',
-    featured: true,
-    tags: ['Duck Life', 'Pet Simulator', 'Training', 'Racing', 'Animals'],
-    controls: {
-      desktop: [
-        'Spacebar or Up Arrow: Jump hurdles, flap wings, and dive underwater',
-        'Spacebar during Races: Trigger energy speed burst',
-        'Top Buttons: Visit the Boutique for stylish hats and energy snacks',
-        'M Key: Toggle duck quack vocalizations and athletic sounds',
-      ],
-      mobile: [
-        'Touch Action Button: Tap to jump, flap wings, dive, or boost',
-        'Training Cards: Tap Running, Flying, or Swimming to begin training',
-        'Boutique: Spend race coins on athletic headbands, caps, and crowns',
-      ],
-    },
-    features: [
-      '3 Distinct Athletic Training Mini-Games: Hurdle Sprint, Sky Glider, and River Diver',
-      'RPG Skill Progression System with Dynamic Leveling (Running, Flying, Swimming, Energy)',
-      'Olympic Championship Races with 4-Lane Track Stadium and Finish Line Ribbons',
-      'Duck Boutique with 6 Collectible Hats and Energy Stamina Snacks',
-      'Procedural Web Audio Engine with Dual Formant Duck Quacks and Fanfares',
-      '100% Free Instant Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Duck Life: Barnyard Champion 🦆🏅 — Free Online Game | Pawcade',
-    metaDescription: 'Play Duck Life free online! Train your pet duckling in running, flying, and swimming, compete in Olympic races, and win gold medals with no download needed.',
-  },
-  {
-    id: 'barnyard-connect-four',
-    slug: 'barnyard-connect-four',
-    title: 'Connect 4: Barnyard Four in a Row 🟡🔴',
-    tagline: 'Drop tokens into the 7x6 grid, outsmart the clever farm AI, and connect four in a line!',
-    description: 'Play Connect 4 free online! Challenge the clever Barn Owl AI or play with a friend in 2-player pass and play mode. Drop your golden chick and red apple tokens into the classic 7x6 vertical grid. Plan ahead, block opponent threats, and connect four discs horizontally, vertically, or diagonally in this beloved strategy board game.',
-    category: 'puzzle',
-    categories: ['puzzle', 'arcade'],
-    route: '/games/barnyard-connect-four/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '58.3K',
-    badge: '🟡 Connect 4',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-connect-four.svg',
-    featured: true,
-    tags: ['Connect 4', 'Four in a Row', 'Board Game', 'Strategy', '2 Player'],
-    controls: {
-      desktop: [
-        'Click any of the 7 column arrows to drop a token',
-        'Press 1 to 7 keys on your keyboard for quick drops',
-        'R Key: Clear board for a new match',
-        'M Key: Toggle wooden disc sound effects',
-      ],
-      mobile: [
-        'Tap any column arrow to slide a disc into the grid',
-        'Pass & Play: Take turns with a friend on the same screen',
-        'Difficulty: Select Easy Calf, Medium Fox, or Master Barn Owl',
-      ],
-    },
-    features: [
-      'Classic 7x6 Vertical Drop Grid with Realistic Gravity and Bounce Animations',
-      'Clever Minimax AI with 3 Difficulties: Easy Calf, Clever Fox, and Master Barn Owl',
-      'Local 2-Player Pass and Play Mode for Friends on Mobile and Tablet',
-      'Winning 4-in-a-Row Golden Line Raycast Detection and Confetti Celebrations',
-      'Procedural Web Audio Engine with Tactile Wooden Clacks and Fanfares',
-      '100% Free Instant Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Connect 4: Barnyard Four in a Row 🟡🔴 — Free Online Game | Pawcade',
-    metaDescription: 'Play Connect 4 free online! Drop tokens into the 7x6 grid, block opponent moves, and connect four in a row against clever AI or with a friend with no download.',
-  },
-  {
-    id: 'barnyard-egg-cart',
-    slug: 'barnyard-egg-cart',
-    title: 'Eggy Car: Barnyard Egg Dash 🥚🚗',
-    tagline: 'Balance a fragile egg in your farm truck, tackle steep rolling hills, and collect golden coins without cracking!',
-    description: 'Play Eggy Car: Barnyard Egg Dash free online! Drive a bouncy vintage farm truck over rolling green pasture hills, wooden bridges, and steep mountain dips with a delicate giant egg sitting in the rear basket. Feather your gas and brake pedals with precision to keep the egg from flying out or cracking on the rocks. Collect shiny golden coins, grab protective shields, magnets, and turbo boosters, and upgrade your truck in this addictive 2D physics balancing racer inspired by Eggy Car!',
-    category: 'farm',
-    categories: ['farm', 'arcade', 'pets'],
-    route: '/games/barnyard-egg-cart/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '42.1K',
-    badge: '🥚 Eggy Car',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-egg-cart.svg',
-    featured: true,
-    tags: ['Eggy Car', 'Egg Car', 'Physics', 'Hill Climb', 'Balancing', 'Farm'],
-    controls: {
-      desktop: [
-        'D, Right Arrow, or Spacebar: Accelerate gas and tilt cart backward',
-        'A, Left Arrow, or S: Brake, reverse, and tilt cart forward',
-        'Feather the throttle on hill crests to keep the egg inside the basket',
-        'R Key: Quick restart run',
-        'M Key: Toggle motor and suspension sound effects',
-      ],
-      mobile: [
-        'Right Pedal (GAS): Hold to accelerate and climb steep pasture hills',
-        'Left Pedal (BRAKE): Hold to slow down and steady the truck on declines',
-        'GARAGE Button: Spend collected coins on suspension, tires, and basket upgrades',
-      ],
-    },
-    features: [
-      '2D Spring-Damper Vehicle & Egg Balance Physics with Dynamic Inertia',
-      'Expressive Animated Egg with Happy, Nervous, Screaming, and Splat Reactions',
-      'Power-Up Pickups: Impact Shield Bubbles, Coin Magnets, and Turbo Boosters',
-      'Pasture Garage with 4 Upgrade Trees: Air Springs, Hay Cushion, Grip Tires, and Deep Basket',
-      'Procedural Web Audio Engine with Variable Pitch Motor Rumble and Egg Cracks',
-      '100% Free Instant Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Eggy Car: Barnyard Egg Dash 🥚🚗 — Free Online Eggy Car Game | Pawcade',
-    metaDescription: 'Play Eggy Car online free! Drive a farm cart over rolling hills, balance a fragile egg without cracking it, collect coins, and upgrade your truck with no download.',
-  },
-  {
-    id: 'farm-animal-clicker',
-    slug: 'farm-animal-clicker',
-    title: 'Farm Animal Idle Clicker 🐾🌾',
-    tagline: 'Tap cute farm animals, automate barns, catch golden butterflies, and earn millions of coins!',
-    description: 'Play Farm Animal Idle Clicker free online! Tap your favorite pets—from playful Corgis and chill Capybaras to dairy Cows, Hens, and Pigs. Purchase automated barns, silos, and windmills to collect passive idle coins every second. Catch golden butterflies for sudden 7x frenzy rushes, unlock fun festive hats, and switch animals as your barnyard empire grows in this cozy browser clicker game.',
-    category: 'farm',
-    categories: ['farm', 'arcade', 'pets'],
-    route: '/games/farm-animal-clicker/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '28.4K',
-    badge: '🔥 Idle Clicker',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-animal-clicker.svg',
-    featured: true,
-    tags: ['Clicker', 'Idle', 'Pets', 'Capybara', 'Farm'],
-    controls: {
-      desktop: [
-        'Left Click or Spacebar: Tap animal to earn coins',
-        'Click Buildings to purchase automated coin generators',
-        'Click Upgrades to multiply your tapping power',
-        'Click Hats to dress your animal for bonus multipliers',
-        'Catch fluttering Golden Butterflies for 7x Frenzy bonuses',
-        'M Key: Toggle sound effects and animal vocalizations',
-      ],
-      mobile: [
-        'Tap Pet: Tap rapidly with multiple fingers for maximum coins',
-        'Tabs Bar: Switch between Buildings, Upgrades, and Hats',
-        'Pet Strip: Tap any unlocked animal to switch active pets',
-      ],
-    },
-    features: [
-      '5 Unique Farm Pets: Buster Corgi, Barnaby Capybara, Bessie Cow, Clucky Hen, and Hamlet Pig',
-      'Pure Deterministic Idle Production with Offline Earnings up to 4 Hours',
-      'Dynamic 7x Golden Butterfly Rush Events with Floating Multipliers',
-      'Collectible Hats with Stat Bonuses (Straw Hat, Crown, Chef Toque, Bowtie, Party Cone)',
-      'Procedural Web Audio Synthesizer with Custom Animal Formants and Cha-Ching Chimes',
-      '100% Free Instant Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Farm Animal Idle Clicker 🐾🌾 — Free Online Clicker Game | Pawcade',
-    metaDescription: 'Play Farm Animal Idle Clicker free online! Tap cute pets, buy farm buildings, catch golden butterflies, and unlock fun hats in this cozy idle browser game with no download.',
-  },
-  {
-    id: 'farm-mini-mart',
-    slug: 'farm-mini-mart',
-    title: 'Farm Mini Mart: Animal Market 🏪',
-    tagline: 'Harvest fresh crops, stock market shelves, and serve cute animal customers in your own farm mart!',
-    description: 'Welcome to Farm Mini Mart! Run your very own bustling countryside mini mart! Harvest sweet tomatoes, golden corn, fresh eggs, dairy milk, and Halloween pumpkins. Stack items in your hands, stock market shelves, and serve adorable animal customers lining up at your Cash Register. Reinvest profits to expand plots, hire Barnaby the Farmhand Dog, hire a Cashier, and upgrade your speed and carry capacity in this addictive arcade idle tycoon game!',
-    category: 'farm',
-    categories: ['farm'],
-    route: '/games/farm-mini-mart/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '16.8K',
-    badge: '🔥 Flagship Hit',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-mini-mart.svg',
-    featured: true,
-    tags: ['Tycoon', 'Idle', 'Farm', 'Market', 'Animals'],
-    controls: {
-      desktop: [
-        'WASD or Arrow Keys: Walk & steer the farmer around the mart',
-        'Walk near plots to harvest fresh crops into your stack',
-        'Walk near shelves to unload and restock produce',
-        'Walk to Cash Register to checkout customers and collect coins',
-        'Walk on unlock pads to deposit coins and expand stations',
-        'U Key: Open Shop Upgrades modal',
-        'M Key: Toggle sound mute',
-      ],
-      mobile: [
-        'Touch & Drag Joystick: 360° fluid thumb steering anywhere on screen',
-        'Automatic Action: Walk up to any plot, shelf, pad or register to trigger',
-        'UPGRADES Button: Upgrade speed, capacity, and hire workers',
-      ],
-    },
-    features: [
-      '5 Harvest Crops: 🍅 Tomatoes, 🌽 Corn, 🥚 Fresh Eggs, 🥛 Dairy Milk & 🎃 Pumpkins',
-      'Satisfying 3D Stack Mechanics with Physics Sway & Capacity Upgrades',
-      'Cute Animal Customer AI (Bunnies, Cats, Dogs, Bears, Pigs & Casper Ghost)',
-      'Cash Register Counter Checkout with Gold Coin Drops & "Ka-Ching!" Chimes',
-      'Autonomous Farmhand Helper Dog 🐶 & Automated Cashier Worker 🧑‍💼',
-      'Fluid Touch 360° Floating Joystick & Responsive 60 FPS Canvas 2D Engine',
-      'Local Progress Save & 100% Free Instant Play with Zero Ads',
-    ],
-    metaTitle: 'Idle Tycoon Game Online — Farm Mini Mart | Pawcade',
-    metaDescription: 'Play Farm Mini Mart free in your browser! Harvest crops, stock shelves, serve cute animal customers, and expand your countryside mini mart in this fun arcade tycoon game.',
-  },
-  {
-    id: 'farm-block-blast',
-    slug: 'farm-block-blast',
-    title: 'Farm Block Blast: Barnyard Grid 🐶🧩',
-    tagline: 'Place wooden crop blocks on an 8x8 grid, blast full lines, and build massive combo streaks with Barnaby the pup!',
-    description: 'Welcome to Farm Block Blast: Barnyard Grid! Inspired by America\'s #1 mobile puzzle hits Block Blast! and Meowdoku, this relaxing yet brain-teasing wooden grid challenge tasks you with placing polyomino crop pieces on an 8x8 rustic farm board. Clear full horizontal rows or vertical columns to trigger explosive crop blasts! Keep clearing lines on consecutive placements to trigger high-voltage Combo Streaks (2x, 3x, 4x, 5x+), hear ascending banjo arpeggios, and rack up huge high scores before the barn fills up!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm'],
-    route: '/games/farm-block-blast/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '34.2K',
-    badge: '🔥 #1 Hit',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-block-blast.svg',
-    featured: true,
-    tags: ['Block Blast', 'Puzzle', 'Block', 'Woodoku', 'Farm', 'Dog', 'Meowdoku', 'Casual', 'Grid'],
-    controls: {
-      desktop: [
-        'Click & Place: Tap any piece in the barn tray, then click a target cell on the grid',
-        'Mouse Drag & Drop: Drag any piece directly onto the 8x8 grid',
-        'Spacebar / R: Quick restart game session',
-        'M Key: Toggle banjo and sound FX mute',
-      ],
-      mobile: [
-        'Tap to Select & Tap to Place: Tap a piece below, then tap target cell on the board',
-        'Touch Drag & Drop: Smooth touch drag with translucent placement preview',
-        'Clear Rows & Cols: Complete any 8-cell row or column to blast pieces away',
-      ],
-    },
-    features: [
-      '8x8 Rustic Wooden Farm Grid with 22 Classic & Polyomino Shape Varieties',
-      '6 Colorful Farm Crop Themes: 🌽 Golden Corn, 🍎 Crisp Apple, 🎃 Harvest Pumpkin, 🥕 Sweet Carrot, 🍆 Purple Eggplant, 🫐 Berry',
-      'True Block Blast Consecutive Combo Streak Multiplier (+80 pts × Combo Level)',
-      'Multi-Line Clear Bonuses (Double, Triple, & Quadruple Simultaneous Row/Col Blasts)',
-      '100% Procedural Web Audio Sound Synthesizers (Banjo Arpeggios, Placement Thuds, Line Whooshes, Dog Barks)',
-      'Tactile Mobile-First Single-Screen Layout with Ghost Placement Preview & Full Touch Support',
-      'Local Storage High Score Tracking & Instant Zero-Download Browser Play',
-    ],
-    metaTitle: 'Farm Block Blast — Free Block Blast Style Puzzle Online | Pawcade',
-    metaDescription: 'Play Farm Block Blast free in your browser! Place wooden crop blocks on an 8x8 grid, blast full rows and columns, and rack up combo streaks with Barnaby the pup.',
-  },
-  {
-    id: 'sheep-cart-jam',
-    slug: 'sheep-cart-jam',
-    title: 'Sheep Cart Jam: Meadow Escape 🐑🚜',
-    tagline: 'Untangle the farm parking maze, dock matching carts, and board waiting fluffy sheep to escape to the meadow!',
-    description: 'Welcome to Sheep Cart Jam: Meadow Escape! Inspired by America\'s chart-topping Bus Jam & Car Jam fever, this delightfully addictive farm puzzle puts you in charge of the countryside station. Fluffy colored sheep (Pink, Blue, Yellow, Green, Purple) are waiting in line at the barn gate. Unblock matching tractor hay carts from the tight farmyard maze and guide them to the 3 station loading bays. Once 3 matching sheep board their cart, they zoom off to the green meadow, freeing up the dock! Can you clear all carts before the bays jam?',
-    category: 'puzzle',
-    categories: ['puzzle', 'pets'],
-    route: '/games/sheep-cart-jam/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '28.5K',
-    badge: '🐑 Popular Hit',
-    thumbnailUrl: '/assets/thumbnails/thumb-sheep-cart-jam.svg',
-    featured: true,
-    tags: ['Bus Jam', 'Car Jam', 'Parking', 'Sheep', 'Puzzle', 'Animals', 'Farm', 'Casual'],
-    controls: {
-      desktop: [
-        'Click Cart: Drive unblocked tractor cart from yard to station loading dock',
-        'R Key: Quick restart level',
-        'M Key: Toggle sheep baa and tractor sound effects',
-      ],
-      mobile: [
-        'Tap Cart: Tap any unblocked cart to send it to the loading bay',
-        'Match Sheep: Watch front queue sheep jump into matching carts',
-        'Fill & Depart: 3/3 sheep departure opens bay for more carts',
-      ],
-    },
-    features: [
-      'Authentic Bus Jam & Car Jam Color Matching Mechanics with 3 Station Bays',
-      '5 Colorful Woolly Sheep Breeds: 🌸 Berry Pink, 🌊 Sky Blue, ☀️ Golden Sun, 🍀 Clover Green, 🍇 Lavender',
-      'Intricate Farm Maze Grid with Orientation Physics & Directional Exit Lanes',
-      '100% Procedural Web Audio Sound Synthesizers (Formant Sheep "Baa!", Tractor Revs, Departure Toot-Toots)',
-      'Multiple Progressive Challenge Levels & Single-Screen Responsive Layout',
-      '100% Free Browser Play with Zero Installs or Ads',
-    ],
-    metaTitle: 'Sheep Cart Jam — Free Bus Jam Style Puzzle Online | Pawcade',
-    metaDescription: 'Play Sheep Cart Jam free in your browser! Guide colored tractor carts out of the farm maze and board waiting sheep in this fun Bus Jam puzzle.',
-  },
-  {
-    id: 'horseshoe-twist',
-    slug: 'horseshoe-twist',
-    title: 'Horseshoe Twist: Barn Unlock 🐴🔓',
-    tagline: 'Rotate concentric wooden and iron rings to align escape notches and unlock Clover\'s Lucky Golden Horseshoe!',
-    description: 'Welcome to Horseshoe Twist: Barn Unlock! Inspired by America\'s chart-topping Rotate Rings & Ring Unlock puzzle craze, Clover the Horse has locked the Lucky Horseshoe inside Grandpa\'s ancient mechanical vault. Rotate 2 to 4 concentric circular rings clockwise and counter-clockwise to align open notches with the exit laser ray. Watch the lucky pins slide free and pop the vault open with satisfying mechanical clicks!',
-    category: 'puzzle',
-    categories: ['puzzle'],
-    route: '/games/horseshoe-twist/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '41.8K',
-    badge: '🧲 Puzzle Hit',
-    thumbnailUrl: '/assets/thumbnails/thumb-horseshoe-twist.svg',
-    featured: true,
-    tags: ['Rotate Rings', 'Ring Unlock', 'Screw Puzzle', 'Vault', 'Horse', 'Puzzle', 'Brain Teaser'],
-    controls: {
-      desktop: [
-        'Mouse Drag: Drag around rings to rotate dial angle',
-        'Arrow Keys / A & D: Rotate selected ring CW / CCW',
-        '1-4 Keys: Select concentric Ring 1, 2, 3, or 4',
-        'R Key: Quick restart level',
-        'M Key: Toggle mechanical ratchet audio',
-      ],
-      mobile: [
-        'Touch Drag: Rotate concentric rings directly around the vault dial',
-        'Step Buttons: Tap Rotate CCW (-30°) or Rotate CW (+30°)',
-        'Ring Tabs: Tap Ring 1, 2, 3, 4 to switch active tumbler',
-      ],
-    },
-    features: [
-      'Authentic Rotate Rings & Ring Unlock Concentric Notch Mechanics',
-      'Geared Ring Linkages (Turn one ring to rotate linked tumblers)',
-      '100% Procedural Web Audio Sound Synthesizers (Ratchet Clicks, Pin Slide, Victory Fanfare)',
-      '4 Handcrafted Mechanical Vault Puzzles with Progressive Difficulty',
-      '100% Free Browser Play with Zero Downloads or Ads',
-    ],
-    metaTitle: 'Horseshoe Twist — Free Rotate Rings Puzzle Online | Pawcade',
-    metaDescription: 'Play Horseshoe Twist free in your browser! Rotate concentric rings to align notches and unlock the Lucky Golden Horseshoe in this fun Rotate Rings casual puzzle.',
-  },
-  {
-    id: 'sheep-stampede',
-    slug: 'sheep-stampede',
-    title: 'Sheep Stampede: Pasture Rush 🐕🐑',
-    tagline: 'Steer Buster and your fluffy flock through math multiplier gates, dodge hazards, and stampede into the barn corral!',
-    description: 'Welcome to Sheep Stampede: Pasture Rush! Inspired by America\'s viral Colony Flow! & Mob Control runner sensation, join Buster the sheepdog on a thrilling meadow dash. Steer your flock left and right through positive multiplier gates (x2, x3, +20) to grow an unstoppable herd! Dodge mud pits and wool shearers, and stampede into the red barn corral for massive high-score rewards!',
-    category: 'arcade',
-    categories: ['arcade', 'pets'],
-    route: '/games/sheep-stampede/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '52.1K',
-    badge: '⚡ Action Hit',
-    thumbnailUrl: '/assets/thumbnails/thumb-sheep-stampede.svg',
-    featured: true,
-    tags: ['Colony Flow', 'Mob Control', 'Runner', 'Math Gates', 'Sheep', 'Dog', 'Arcade', 'Stampede'],
-    controls: {
-      desktop: [
-        'Arrow Keys / A & D: Steer flock left and right across pasture',
-        'Spacebar / Enter: Start stampede / Next level',
-        'R Key: Quick restart level',
-        'M Key: Toggle sheep vocals and sound effects',
-      ],
-      mobile: [
-        'Touch & Drag: Swipe horizontally across track to steer flock',
-        'Tap Buttons: Use on-screen Steer Left and Steer Right controls',
-        'Multiply Flock: Pass through blue gates to grow your herd',
-      ],
-    },
-    features: [
-      'Authentic Colony Flow & Mob Control Math Multiplier Crowd Dynamics',
-      'Positive Multipliers (+10, +20, x2, x3) & Strategic Hazard Avoidance',
-      '100% Procedural Web Audio Sound Synthesizers (Buster Barks, Herd Bleats, Chimes, Fanfare)',
-      'Handcrafted Meadow Tracks with Dynamic Obstacles & Big Red Barn Finish',
-      '100% Free Browser Play with Zero Downloads or Ads',
-    ],
-    metaTitle: 'Mob Control Style Crowd Runner — Sheep Stampede | Pawcade',
-    metaDescription: 'Play Sheep Stampede free in your browser! Steer Buster and your sheep flock through math multiplier gates in this addictive Colony Flow style meadow runner.',
-  },
-  {
-    id: 'duck-hunt-classic',
-    slug: 'duck-hunt-classic',
-    title: 'Duck Hunt Classic: Barnyard Shoot 🦆🎯',
-    tagline: 'Aim your arcade light gun, blast flying mallards across the reed marsh, and test your quick-draw reflexes with Buster the pup!',
-    description: 'Welcome to Duck Hunt Classic: Barnyard Shoot! Inspired by Nintendo\'s legendary NES & Atari arcade shooter sensation, take aim across the countryside marsh. Buster the hunting hound sniffs the grass and flushes wild ducks from behind the reeds! Track Mallards, swift Redheads, and elusive Golden Ducks as they flutter through the skies in unpredictable zig-zag arcs. You have 3 shotgun shells per flush—tap or click with laser precision before they fly away! Meet the quota each round to advance, and watch out for Buster\'s playful snicker when ducks escape!',
-    category: 'arcade',
-    categories: ['arcade', 'pets'],
-    route: '/games/duck-hunt-classic/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '58.4K',
-    badge: '🎯 NES Classic',
-    thumbnailUrl: '/assets/thumbnails/thumb-duck-hunt-classic.svg',
-    featured: true,
-    tags: ['Duck Hunt', 'Shooter', 'Atari', 'NES', 'Retro', 'Arcade', 'Light Gun', 'Mallard', 'Dog', 'Reflex'],
-    controls: {
-      desktop: [
-        'Mouse Aim & Left Click: Fire shotgun blast at target duck',
-        'Spacebar / R: Quick reload shells or restart level',
-        'M Key: Toggle retro sound effects and dog barks',
-      ],
-      mobile: [
-        'Tap Anywhere: Instantly fire at flying ducks on screen',
-        'Watch Shells: 3 shots per flush before ducks fly away',
-        'Pass Quota: Hit at least 6 out of 10 ducks to clear the round',
-      ],
-    },
-    features: [
-      'Authentic NES & Atari Retro Duck Hunt Shooting Mechanics with 3 Shells per Flush',
-      '3 Unique Duck Species: Emerald Mallard, Crimson Redhead, and Elusive Golden King Duck',
-      'Buster the Mascot Pup Animated Reactions (Proud Duck Trophy Retrieve & Classic Snicker)',
-      '100% Procedural Web Audio Sound Synthesizers (Booming Shotgun Blast, Wing Flutter, Quacks, 8-Bit Fanfares)',
-      'Progressive Day-to-Night Sky Transitions (Daylight, Sunset Amber, and Starlit Midnight)',
-      'Zero Downloads or Installs — 100% Free Instant Browser Play on PC and Mobile',
-    ],
-    metaTitle: 'Duck Hunt Classic 🦆🎯 — Free Online Retro Duck Shooting Game | Pawcade',
-    metaDescription: 'Play Duck Hunt Classic free in your browser! Aim your arcade light gun, blast flying mallards across the marsh, and test your reflexes with Buster in this free retro shooter.',
-  },
-  {
-    id: 'farm-mahjong',
-    slug: 'farm-mahjong',
-    title: 'Farm Mahjong Solitaire: Barnyard Tiles 🀄🌾',
-    tagline: 'Match pairs of free wooden farm tiles to clear the pyramid stack in this cozy puzzle!',
-    description: 'Farm Mahjong Solitaire brings classic tile matching to a sunny countryside barnyard. Match identical pairs of unblocked wooden tiles depicting sweet corn, ripe apples, carrots, sheep, cows, and cute chicks. Uncover layered pyramids, plan your moves, and clear the board before time runs out. Use hints, undos, and shuffles when you need a boost!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm'],
-    route: '/games/farm-mahjong/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '42.3K',
-    badge: '🀄 Mahjong Hit',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-mahjong.svg',
-    featured: true,
-    tags: ['Mahjong', 'Solitaire', 'Tile Match', 'Farm', 'Puzzle', 'Board Game', 'Casual', 'Animals'],
-    controls: {
-      desktop: [
-        'Click Tile: Select any unblocked tile with at least one free lateral side',
-        'Click Matching Tile: Clear the pair from the board and score points',
-        'H Key: Reveal a valid matching pair',
-        'U Key: Undo your last move',
-        'S Key: Shuffle remaining tiles on the board',
-      ],
-      mobile: [
-        'Tap Tile: Select an unblocked wooden tile (highlighted in gold)',
-        'Tap Matching Pair: Remove matched tiles and unlock deeper layers',
-        'Power-Up Buttons: Tap Hint, Undo, or Shuffle for quick assistance',
-      ],
-    },
-    features: [
-      'Handcrafted 3D Layered Mahjong Formations (Pyramid, Horseshoe, Mansion)',
-      'Guaranteed 100% Solvable Boards via Reverse-Construction Generation',
-      'Procedural Web Audio (Satisfying Wooden Clicks, Harmonic Chords, Chimes)',
-      'Helpful Power-Up Boosters: Smart Hints, Move Undos, and Tile Shuffles',
-      'Real-Time Combo Multiplier & Star Rating Evaluation',
-      'Zero Installs or Downloads — Instant Smooth Play on Mobile and PC',
-    ],
-    metaTitle: 'Farm Mahjong Solitaire 🀄🌾 — Free Online Tile Matching Puzzle | Pawcade',
-    metaDescription: 'Play Farm Mahjong Solitaire free in your browser! Match wooden crop and animal tiles to clear 3D pyramids in this relaxing zero-download puzzle game.',
-  },
-  {
-    id: 'pet-memory-match',
-    slug: 'pet-memory-match',
-    title: 'Pet Memory Match: Barnyard Cards 🃏🐾',
-    tagline: 'Flip cards, remember pet faces, and match adorable animal pairs before the timer ticks down!',
-    description: 'Test your memory and focus in Pet Memory Match! Flip rustic wooden barnyard cards to find matching pairs of friendly puppies, playful kittens, barn owls, woolly sheep, and squeaky mice. Chain quick matches to build massive combo streaks, earn 3-star ratings across progressive levels, and activate Peek or Freeze Time boosters when the pressure is on!',
-    category: 'pets',
-    categories: ['pets', 'puzzle'],
-    route: '/games/pet-memory-match/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '35.6K',
-    badge: '🃏 Memory Hit',
-    thumbnailUrl: '/assets/thumbnails/thumb-pet-memory-match.svg',
-    tags: ['Memory', 'Card Match', 'Concentration', 'Pets', 'Farm', 'Animals', 'Cards', 'Brain', 'Casual'],
-    controls: {
-      desktop: [
-        'Click Card: Flip card to reveal hidden pet face',
-        'Click Second Card: Reveal and check for matching pair',
-        'P Key: Peek booster (briefly reveal all hidden cards)',
-        'F Key: Freeze time booster (stop timer for 5 seconds)',
-      ],
-      mobile: [
-        'Tap Card: Flip and reveal cute pet portraits',
-        'Find Pairs: Match all identical cards to complete the stage',
-        'Booster Buttons: Tap Peek or Freeze for tactical help',
-      ],
-    },
-    features: [
-      'Smooth 3D Card Flip Perspective & Tactile Responsive Touch',
-      'Progressive Board Grids from 12 Cards up to 30 Cards',
-      'Combo Streak Scoring & 3-Star Level Rating System',
-      'Tactical Power-Ups: X-Ray Peek and 5-Second Time Freeze',
-      'Procedural Web Audio (Whooshes, Bell Chimes, Fanfares, Zero Delay)',
-      'Zero Installs or Downloads — 100% Free Instant Play on All Devices',
-    ],
-    metaTitle: 'Memory Match Game Online Free — Cute Pet Cards | Pawcade',
-    metaDescription: 'Play Pet Memory Match free in your browser! Flip barnyard cards, match cute pets and farm animals, and beat the clock in this fun free memory puzzle game.',
-  },
-
-  {
-    id: 'critter-tap-away',
-    slug: 'critter-tap-away',
-    title: 'Critter Tap Away: Barn Escape 🐮🐷🐰',
-    tagline: 'Tap trapped farm animals whose paths are clear to untangle the pen and help them escape into the clover pasture!',
-    description: 'Welcome to Critter Tap Away: Barn Escape! Inspired by America\'s viral sensation CubeAway & Arrows GO!, this delightful farm puzzle challenges you to untangle a crowded barnyard pen of interlocking animal cubes. Bessie the Cow, Barnaby Piglet, Woolly Sheep, Fluffy Bunny, and Pippin Chick are facing outward directions. Tap any animal whose path to the perimeter fence is unobstructed, and watch them zoom off into freedom! Clear all critters to solve each handcrafted puzzle!',
-    category: 'puzzle',
-    categories: ['puzzle', 'pets'],
-    route: '/games/critter-tap-away/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '38.9K',
-    badge: '🌟 Logic Hit',
-    thumbnailUrl: '/assets/thumbnails/thumb-critter-tap-away.svg',
-    tags: ['Tap Away', 'CubeAway', 'Arrows GO', 'Puzzle', 'Animals', 'Farm', 'Casual', 'Blocks'],
-    controls: {
-      desktop: [
-        'Click Critter: Tap an animal whose forward path is open to escape',
-        'R Key: Quick restart level',
-        'M Key: Toggle animal sound effects',
-      ],
-      mobile: [
-        'Tap Critter: Tap any unobstructed animal to let it escape',
-        'Watch Arrows: Green arrows point to clear exit lanes',
-        'Clear Pen: Free all farm animals to complete the level',
-      ],
-    },
-    features: [
-      'Authentic CubeAway & Arrows GO! Interlocking Grid Mechanics',
-      '5 Adorable 3D Farm Critters: Bessie Cow, Barnaby Pig, Woolly Sheep, Fluffy Bunny, Pippin Chick',
-      '4 Perimeter Meadow Gates with Directional Escape Lanes',
-      '100% Procedural Web Audio Sound Synthesizers (Animal Vocals, Whoosh Escapes, Bonk Thuds)',
-      'Handcrafted Progressive Puzzles from 4x4 to 6x6 Barnyard Clusters',
-      '100% Free Browser Play with Zero Downloads or Ads',
-    ],
-    metaTitle: 'Critter Tap Away — Free Tap Away Puzzle Online | Pawcade',
-    metaDescription: 'Play Critter Tap Away free in your browser! Untangle the barnyard pen and tap cute animal cubes with clear paths to help them escape in this fun Tap Away puzzle.',
-  },
-  {
-    id: 'dog-parking',
-    slug: 'dog-parking',
-    title: 'Dog Parking: Barnyard Escape 🐕‍🦺',
-    tagline: 'Guide adorable pups and Sunny the Corgi through crowded barnyard puzzle lanes!',
-    description: 'Dog Parking is a colorful, charming casual traffic puzzle game. Guide adorable breeds like Corgis, Pugs, Shibas, and Dachshunds through tight puzzle pens and clear the exit gate for Sunny the Star Corgi. Features 12 handcrafted levels with increasing spatial difficulty!',
-    category: 'pets',
-    categories: ['pets', 'puzzle'],
-    route: '/games/dog-parking/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '12.4K',
-    badge: '🐕 Top Rated',
-    thumbnailUrl: '/assets/thumbnails/thumb-dog-parking.svg',
-    featured: true,
-    tags: ['Puzzle', 'Dogs', 'Unblock', 'Traffic', 'Animals'],
-    controls: {
-      desktop: [
-        'Mouse Drag: Click and drag any dog forward/backward along its lane',
-        'R Key: Quick restart current level',
-        'Z Key: Undo previous move',
-      ],
-      mobile: [
-        'Touch Swipe: Slide dogs with your thumb along their natural orientation',
-        'Tap Buttons: Quick access to Restart, Undo, Mute, and Level Select',
-      ],
-    },
-    features: [
-      '12 Handcrafted & 100% Verified Solvable Levels',
-      'Cute Original Dog Breeds (Corgi, Pug, Shiba, Dachshund, Retriever, Dalmatian, Poodle)',
-      'Smooth 60FPS Physics & Sliding Tweens',
-      'Procedural Web Audio Sound Effects (Barks, Slides, Win Fanfare)',
-      'Star Rating System & Local Progress Save',
-      'Zero Downloads or Accounts Required',
-    ],
-    metaTitle: 'Dog Parking Jam — Free Unblock the Dog Puzzle Online | Pawcade',
-    metaDescription: 'Play Dog Parking free in your browser! Unblock the dogs and slide Sunny the Star Corgi to the exit gate. 100% free casual brain teaser game.',
-  },
-  {
-    id: 'cat-parking',
-    slug: 'cat-parking',
-    title: 'Cat Parking: Kitty Meadow Escape 🐈‍⬛',
-    tagline: 'Slide sleepy kitties and guide Luna the Star Cat through cozy meadow mazes!',
-    description: 'Cat Parking is a relaxing and purr-fect casual traffic puzzle game. Untangle sleepy kitties, fluffy Maine Coons, Siamese, and Calicos to open the exit path for Luna. Features 12 handcrafted levels, feline soundscapes, and intuitive touch controls!',
-    category: 'pets',
-    categories: ['pets', 'puzzle'],
-    route: '/games/cat-parking/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '9.8K',
-    badge: '🐈‍⬛ Top Rated',
-    thumbnailUrl: '/assets/thumbnails/thumb-cat-parking.svg',
-    tags: ['Puzzle', 'Cats', 'Unblock', 'Animals'],
-    controls: {
-      desktop: [
-        'Mouse Drag: Click and drag any cat forward/backward along its lane',
-        'R Key: Quick restart current level',
-        'Z Key: Undo previous move',
-      ],
-      mobile: [
-        'Touch Swipe: Slide cats with your finger along their natural orientation',
-        'Tap Buttons: Quick access to Restart, Undo, Mute, and Level Select',
-      ],
-    },
-    features: [
-      '12 Handcrafted & 100% Verified Solvable Levels',
-      'Charming Cat Breeds (Calico, Siamese, Tabby, Black Cat, Persian, Russian Blue, Maine Coon, Bengal)',
-      'Smooth 60FPS Physics & Sliding Tweens',
-      'Procedural Feline Web Audio (Meows, Purrs, Bell Chimes, Fanfare)',
-      'Star Rating System & Independent Local Progress Save',
-      'Zero Downloads or Accounts Required',
-    ],
-    metaTitle: 'Cat Parking Jam — Free Cat Escape Puzzle Game Online | Pawcade',
-    metaDescription: 'Play Cat Parking free in your browser! Slide the sleepy cats and guide Luna the Star Cat to the cozy exit gate. 100% free casual puzzle game.',
-  },
-  {
-    id: 'egg-buster',
-    slug: 'egg-buster',
-    title: 'Egg Buster: Barnyard Smash 🐥🥚',
-    tagline: 'Pull back Pippin\'s slingshot, bounce eggs off milk churns, and topple wooden crates to smash sneaky foxes!',
-    description: 'Welcome to Egg Buster: Barnyard Smash! Inspired by America\'s chart-topping Smash Fest! & Royal Smash! physics craze, join Pippin the Chick on a high-flying farm defense adventure. Sneaky foxes have invaded the barnyard and perched atop towers of wooden crates, hay bales, and bouncy metal milk cans. Drag back the slingshot to line up your trajectory, and release to fire bouncy farm eggs! Use real 2D bounce physics to shatter barricades and eliminate all foxes before running out of eggs!',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/egg-buster/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '45.2K',
-    badge: '🎯 Smash Hit',
-    thumbnailUrl: '/assets/thumbnails/thumb-egg-buster.svg',
-    featured: true,
-    tags: ['Smash Fest', 'Royal Smash', 'Slingshot', 'Physics', 'Angry Birds', 'Chick', 'Farm', 'Arcade'],
-    controls: {
-      desktop: [
-        'Mouse Drag: Pull back the slingshot on the left to set power and angle',
-        'Release: Launch the egg downrange',
-        'R Key: Quick restart level',
-        'M Key: Toggle physics sound effects',
-      ],
-      mobile: [
-        'Touch Drag: Pull back on slingshot with live dotted trajectory line',
-        'Release: Launch egg projectile',
-        'Smash Targets: Eliminate all foxes to clear the stage',
-      ],
-    },
-    features: [
-      'Authentic Smash Fest & Royal Smash 2D Gravity & Bounce Physics Engine',
-      'Realistic Multi-Material Collisions (Shatter Crates, Elastic Metal Churns, Soft Hay)',
-      '100% Procedural Web Audio Sound Synthesizers (Slingshot Tension, Snaps, Clangs, Fox Yelps)',
-      'Handcrafted Slingshot Trajectory Levels with Progressive Demolition Challenges',
-      '100% Free Browser Play with Zero Downloads or Ads',
-    ],
-    metaTitle: 'Egg Buster — Free Slingshot Physics Game Online | Pawcade',
-    metaDescription: 'Play Egg Buster free in your browser! Pull back Pippin\'s slingshot, bounce eggs off milk cans, and smash sneaky foxes in this fun Smash Fest physics puzzle.',
-  },
-  {
-    id: 'farm-pantry-sort',
-    slug: 'farm-pantry-sort',
-    title: 'Farm Pantry Sort: Triple Pick 🐿️🍯',
-    tagline: 'Organize Grandma\'s farm cupboard, slide honey jars, milk bottles, and fresh pies to match 3 and clear the shelves!',
-    description: 'Welcome to Farm Pantry Sort: Triple Pick! Inspired by America\'s chart-topping Goods Sort & Magic Sort casual puzzle craze, help Sammy the Squirrel organize Grandma\'s cozy countryside pantry. Cupboard shelves hold rustic jars of Clover Honey, fresh dairy milk, farm-fresh egg baskets, strawberry jam, country cheese, and baked apple pies. Tap any item to pick it up, then tap an open shelf slot to move it. Group 3 identical goods on any shelf to trigger a satisfying triple-clear burst! Clear front items to reveal hidden reserve batches and empty the pantry before time runs out!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm'],
-    route: '/games/farm-pantry-sort/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '41.6K',
-    badge: '✨ Triple Match',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-pantry-sort.svg',
-    featured: true,
-    tags: ['Goods Sort', 'Triple Match', 'Puzzle', 'Sort', 'Pantry', 'Animals', 'Casual', 'Farm', 'Matching'],
-    controls: {
-      desktop: [
-        'Click Item: Pick up a jar or crate from a shelf',
-        'Click Target Shelf: Move the selected item to an open slot',
-        'R Key: Quick restart level',
-        'M Key: Toggle pantry sound effects',
-      ],
-      mobile: [
-        'Tap to Select: Tap an item to lift it from the shelf',
-        'Tap Target Slot: Place the selected item into any open space',
-        'Triple Match: Group 3 identical goods together to clear the shelf',
-      ],
-    },
-    features: [
-      'Authentic Goods Sort & Triple Match Mechanics on Rustic Wooden Cupboard Shelves',
-      '6 Handcrafted Farm Pantry Delicacies: Clover Honey, Farm Milk, Pasture Eggs, Strawberry Jam, Country Cheese, Apple Pie',
-      'Multi-Layer Storage Shelves with Auto-Sliding Hidden Reserve Batches',
-      '100% Procedural Web Audio Sound Synthesizers (Jar Plucks, Wood Thuds, Glass Chimes, Banjo Arpeggios)',
-      'Multiple Progressive Challenge Levels & Single-Screen Responsive Layout',
-      '100% Free Browser Play with Zero Downloads or Ads',
-    ],
-    metaTitle: 'Farm Pantry Sort — Free Goods Sort Puzzle Online | Pawcade',
-    metaDescription: 'Play Farm Pantry Sort free in your browser! Organize Grandma\'s wooden cupboard, slide honey jars, milk bottles, and fresh pies to match 3 in this fun Goods Sort puzzle.',
-  },
-  {
-    id: 'grain-sand-fall',
-    slug: 'grain-sand-fall',
-    title: 'Grain Sand Fall: Farm Physics ⏳🌾',
-    tagline: 'Melt falling crop tetrominoes into realistic grains of sand, connecting matching colors wall-to-wall to clear the silo!',
-    description: 'Welcome to Grain Sand Fall: Farm Physics Puzzle! Inspired by the viral sensation Sand Blocks & Sand Tetris (Setris), this mesmerizing puzzle reimagines falling block puzzles with liquid-like granular physics. Steer polyominoes made of colorful farm crop sands—Golden Corn 🌽, Ruby Cranberry 🍓, Sky Berry 🫐, and Clover Green 🍀. The second a block touches bottom, it dissolves into thousands of individual physical grains that slide down slopes and pool into dunes. Connect a continuous path of matching color from the left wall to the right wall to dissolve the sand with sparkling particle explosions!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm'],
-    route: '/games/grain-sand-fall/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '21.4K',
-    badge: '⏳ Sand Physics',
-    thumbnailUrl: '/assets/thumbnails/thumb-grain-sand-fall.svg',
-    tags: ['Sand Tetris', 'Sand Blocks', 'Physics', 'Puzzle', 'Setris', 'Farm', 'Casual', 'Grains'],
-    controls: {
-      desktop: [
-        'Arrow Left / A: Move falling block left',
-        'Arrow Right / D: Move falling block right',
-        'Arrow Up / W: Rotate block 90 degrees',
-        'Arrow Down / S: Soft drop downward',
-        'Spacebar: Hard drop instantly to floor',
-        'R Key: Quick restart game',
-        'M Key: Toggle sand audio effects',
-      ],
-      mobile: [
-        'Left / Right Buttons: Steer block across silo',
-        'Rotate Button: Turn falling shape',
-        'Down Button: Instant hard drop to sand floor',
-      ],
-    },
-    features: [
-      '60 FPS Real-Time Cellular Automata Sand Granular Physics',
-      '4 Vibrant Crop Sand Colors: 🌽 Golden Corn, 🍓 Ruby Cranberry, 🫐 Sky Berry, 🍀 Clover Green',
-      'Continuous Left-to-Right Wall-to-Wall Color Strand Dissolve Mechanics',
-      'Realistic Angle-of-Repose Sand Slump & Sliding Dunes',
-      'Procedural Web Audio Synthesizer (Sand Trickles, Impact Thumps, Dissolution Chimes, Clucky Clucks)',
-      'Responsive Mobile-First Touch Controls & Local High Score Tracking',
-      '100% Free Browser Play with Zero Downloads or Installs',
-    ],
-    metaTitle: 'Sand Tetris Style Puzzle Online — Grain Sand Fall | Pawcade',
-    metaDescription: 'Play Grain Sand Fall free in your browser! Steer falling crop blocks that melt into realistic sand dunes and connect colors wall-to-wall in this fun Sand Blocks physics puzzle.',
-  },
-  {
-    id: 'chef-rat-rush',
-    slug: 'chef-rat-rush',
-    title: 'Chef Rat Rush: Ratatouille Bistro 🐭🍲',
-    tagline: 'Chop fresh produce, simmer gourmet ratatouille on stove, and ring the service bell for Paris food critics!',
-    description: 'Welcome to Chef Rat Rush! Step into the kitchen with Chef Pip the Mouse in this fast-paced culinary time-management rush inspired by Ratatouille! Customer order tickets arrive at your bistro rail with countdown patience bars. Chop eggplants, tomatoes, zucchini, artisan baguettes, Swiss cheese, and fresh berries. Simmer gourmet ratatouille stew and sweet berry crepes on the copper skillet stove—watch the cooking timer closely so it does not burn! Ring the brass Service Bell to fulfill tickets, rack up combo multipliers, impress VIP food critics, and master all 5 dinner shifts!',
-    category: 'farm',
-    categories: ['farm', 'pets'],
-    route: '/games/chef-rat-rush/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '14.6K',
-    badge: '🐭 Chef Rush',
-    thumbnailUrl: '/assets/thumbnails/thumb-chef-rat-rush.svg',
-    tags: ['Cooking', 'Time Management', 'Chef', 'Animals', 'Restaurant', 'Bistro', 'Cat Cafe Rush', 'Cat Cafe', 'Cafe'],
-    controls: {
-      desktop: [
-        '1 - 8 Number Keys: Rapidly chop pantry ingredients onto prep board',
-        'Spacebar: Ring brass Service Bell to serve dish to customer ticket',
-        'C Key: Simmer prepared hot recipe (Ratatouille / Crepe) on stove',
-        'X Key: Clear ingredients from prep cutting board',
-      ],
-      mobile: [
-        'Tap Pantry Ingredients (1-8) to add to cutting board',
-        'Tap "Simmer on Stove" for cookable hot dishes',
-        'Tap "SERVE DISH" brass bell to fulfill orders & collect tips',
-        'Tap "Discard Burnt" if a skillet stew burns',
-      ],
-    },
-    features: [
-      '5 Parisian Bistro Delicacies: 🍲 Ratatouille, 🥖 Cheese Baguette, 🥞 Berry Crepe, 🥗 Salad & 🥐 Croissant',
-      'Dynamic Stove Cooking Physics with Real-Time Cooking & Burning Thresholds',
-      'Active Customer Ticket Rail with Visual Patience Timers & VIP Critic Bonuses',
-      'Speed Tip System (+50% for fast serving) & Exponential Combo Multipliers',
-      'Procedural Web Audio Bistro Soundscape (Knife Chops, Skillet Sizzles, Brass Bell Rings & Cash Tips)',
-      '5 Progressive Dinner Rush Shifts with 3-Star Rating Gauge & Local Record Tracking',
-      '100% Free Browser Play with Zero Ads, Downloads, or Installs',
-    ],
-    metaTitle: 'Chef Rat Rush 🐭🍲 — Free Online Cooking Game | Pawcade',
-    metaDescription: 'Play Chef Rat Rush free in your browser! Chop ingredients, simmer gourmet ratatouille on the stove, and ring the service bell in this fun French bistro cooking game.',
-  },
-  {
-    id: 'pet-candy-crush',
-    slug: 'farm-animal-match',
-    title: 'Farm Animal Match: Barnyard Crush 🍬',
-    tagline: 'Match dynamite, rockets, and barrel bombs with cute farm animals!',
-    description: 'Farm Animal Match is a fun Match-3 game. Swap friendly pets to match three or more cows, pigs, or sheep. Make square dynamite bombs, striped rockets, and golden barn stars. Tap any booster to clear the board and score big combos!',
-    category: 'puzzle',
-    categories: ['puzzle', 'pets'],
-    route: '/games/farm-animal-match/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '24.8K',
-    badge: '🍬 Match-3',
-    thumbnailUrl: '/assets/thumbnails/thumb-pet-candy-crush.svg',
-    tags: ['Match-3', 'Puzzle', 'Farm', 'Animals'],
-    controls: {
-      desktop: [
-        'Click & Click: Tap an animal and an adjacent neighbor to swap',
-        'Double-Click Bomb: Detonate any bomb or rocket immediately',
-        'Mouse Drag / Swipe: Drag any animal in 4 directions to swap',
-        'Shuffle Button: Re-randomize board layout',
-        'R: Quick restart game',
-      ],
-      mobile: [
-        'Tap to Swap: Tap two adjacent animals',
-        'Double-Tap Bomb: Trigger bomb explosion in-place',
-        'Touch Swipe: Swipe across any animal with your thumb',
-      ],
-    },
-    features: [
-      '8x8 Match-3 Board with 6 Cute Farm Animals (Cows, Pigs, Sheep, Chickens, Ducks, Horses)',
-      '2×2 Square Dynamite Bomb (🧨): Blasts 3×3 + Cross (+) wave & launches 2 homing strikes',
-      '4-in-a-Line Striped Rocket (⚡), L/T 3×3 Barrel Bomb (💣) & 5-in-a-Line Golden Barn Star (🌟)',
-      'Mega Booster Combinations (Bomb + Bomb = 5×5 Crater, Rocket + Bomb = 3-Row/3-Col Giant Cross)',
-      'Procedural Animal Vocal Synthesizers (Moo, Oink, Baa, Bawk, Quack, Whinny) & Bomb Explosions',
-      'Barnyard Harvest Victory Celebration with 3-Star Rating Gauge',
-      '100% Free Browser Play with Zero Ads or Downloads',
-    ],
-    metaTitle: 'Farm Animal Match — Free Match-3 Game Online | Pawcade',
-    metaDescription: 'Play Farm Animal Match free in your browser! Craft 2x2 Square Dynamite Bombs, 4-in-a-row Striped Rockets, and L/T Barrel Bombs with cute farm animals.',
-  },
-  {
-    id: 'flappy-chicken',
-    slug: 'flappy-chicken',
-    title: 'Flappy Chicken: Barnyard Flight 🐔',
-    tagline: 'Flap through rustic farm gates under the sunny sky to reach the Golden Wheat Granary!',
-    description: 'Flappy Chicken is a feather-filled arcade flight game! Help Clucky the Chicken flap and cluck through rustic wooden farm fences and barn pillars. Collect floating golden grains and clear 15 gates to reach the grand Golden Wheat Granary! Features authentic cartoon chicken clucking audio, feather particle effects, wheat distance progress meter, and celebration fanfare.',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/flappy-chicken/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '21.4K',
-    badge: '🐔 Classic Flight',
-    thumbnailUrl: '/assets/thumbnails/thumb-flappy-chicken.svg',
-    tags: ['Arcade', 'Flight', 'Reflex', 'Farm', 'Animals'],
-    controls: {
-      desktop: [
-        'Spacebar / Up Arrow / W: Flap wings and cluck',
-        'Mouse Click: Flap anywhere on canvas',
-        'P: Pause flight',
-        'R: Quick restart run',
-      ],
-      mobile: [
-        'Tap Anywhere: Flap wings and cluck',
-        'Big Bottom Tap Button: Easy one-thumb flapping',
-      ],
-    },
-    features: [
-      'Adorable Clucky the Chicken with 3 Animated Wing Flap Frames & Falling Feathers',
-      'Procedural Cartoon Chicken Vocalizations ("Cluck-cluck! / Bok-bok-bawk!") with Formant Synthesis',
-      'Golden Wheat Distance Progress Meter (0% ➔ 100% Granary Goal)',
-      'Rustic Farm Obstacle Gates & Floating Golden Grain Pickups',
-      'Triumphant Golden Wheat Harvest Celebration & Fanfare',
-      'Instant 60 FPS Responsive Play on Mobile & Desktop',
-      '100% Free Browser Play with Zero Ads or Downloads',
-    ],
-    metaTitle: 'Flappy Chicken — Free Tap to Fly Game Online | Pawcade',
-    metaDescription: 'Play Flappy Chicken free in your browser! Help Clucky flap, cluck, and dodge farm fences to feast on the Golden Wheat. 100% free casual arcade game.',
-  },
-  {
-    id: 'duck-runner',
-    slug: 'duck-runner',
-    title: 'Duck Runner: Farm Pond Dash 🦆',
-    tagline: 'Leap over hay bales, rustic fences, and duck under flying swallows across the countryside!',
-    description: "Play Duck Runner free online! Inspired by Google Chrome's iconic offline runner with a cozy countryside twist! Guide Quacky the Duck across the countryside. Jump over wooden hay bales, leap rustic fence posts, and crouch low to slide under swooping swallows! Experience progressive speeds, day-to-night transitions, and retro milestone chimes.",
-    category: 'arcade',
-    categories: ['arcade', 'pets'],
-    route: '/games/duck-runner/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '19.4K',
-    badge: '🦆 Retro Runner',
-    thumbnailUrl: '/assets/thumbnails/thumb-duck-runner.svg',
-    tags: ['Runner', 'Arcade', 'Reflex', 'Animals'],
-    controls: {
-      desktop: [
-        'Space / ↑ / W: Jump over hay bales and fences',
-        '↓ / S: Duck / Crouch under flying birds (Fast fall in air)',
-        'Click: Tap screen to jump',
-        'R: Quick restart game',
-      ],
-      mobile: [
-        'Tap Screen / JUMP ⬆️: Jump over low obstacles',
-        'DUCK ⬇️: Hold to slide flat under swooping swallows',
-      ],
-    },
-    features: [
-      'Countryside Duck Adventure with Quacky the Duck and Farm Pasture Scenery',
-      'Rustic Wooden Fences and Farm Obstacles',
-      'Swooping Birds with Fluid Jumping and Fast-Fall Physics',
-      'Dynamic Day & Night Cycle: Shifts to twilight and night every 600 points',
-      'Retro 100-Point Milestone Chimes & High Score Tracking',
-      'Dual Mobile Thumb Controls (Left Duck / Right Jump) & 60 FPS HTML5 Canvas',
-      '100% Free Browser Play with Zero Installs or Ads',
-    ],
-    metaTitle: 'Duck Runner: Farm Pond Dash 🦆 — Free Online Casual Runner | Pawcade',
-    metaDescription: 'Play Duck Runner free in your browser! Jump over farm obstacles, duck under flying birds, and dash across the countryside in this cute duck runner.',
-  },
-  {
-    id: 'animal-2048',
-    slug: 'animal-2048',
-    title: 'Animal 2048: Safari Merge 🐘',
-    tagline: 'Slide & merge cute creatures from tiny mouse to the majestic elephant!',
-    description: 'Animal 2048 is an addictive animal evolution puzzle game! Slide the 4x4 grid in four directions to merge matching cute creatures. Watch tiny mice evolve into hamsters, bunnies, friendly cats, pups, foxes, deer, wild boars, grizzly bears, rhinos, and finally the majestic Elephant! Features smooth animations, procedural animal sounds, undo support, and endless mode.',
-    category: 'puzzle',
-    categories: ['puzzle', 'pets'],
-    route: '/games/animal-2048/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '18.2K',
-    badge: '🐘 2048 Merge',
-    thumbnailUrl: '/assets/thumbnails/thumb-animal-2048.svg',
-    tags: ['Puzzle', 'Evolution', '2048', 'Animals', 'Brain'],
-    controls: {
-      desktop: [
-        'Arrow Keys or W/A/S/D: Slide tiles in 4 directions',
-        'Ctrl + Z or Undo Button: Revert last move',
-        'R: Quick restart board',
-      ],
-      mobile: [
-        'Touch Swipe: Swipe anywhere on board to slide tiles',
-        'Virtual D-Pad: Tap directional arrow buttons',
-        'Undo Button: Step back one move',
-      ],
-    },
-    features: [
-      '12-Tier Animal Evolution Ladder (🐭 Mouse ➔ 🐹 Hamster ➔ 🐰 Bunny ➔ ... ➔ 🐘 Elephant ➔ 🐋 Blue Whale)',
-      'Pure Mathematical 2048 Engine with Responsive Sliding & Merging',
-      'Procedural Pitch-Scaled Animal Audio & Brass Elephant Trumpet Fanfare',
-      '1-Step History Undo System & Local High Score Tracking',
-      'Full Mobile Touch Swipe Gestures & On-Screen D-Pad',
-      'Endless Play Mode after Reaching 2048',
-      '100% Free Browser Play with Zero Ads or Downloads',
-    ],
-    metaTitle: 'Animal 2048: Safari Merge 🐘 — Free Online Puzzle Game | Pawcade',
-    metaDescription: 'Play Animal 2048 free in your browser! Slide and merge creatures from mouse to elephant. 100% free casual animal puzzle game.',
-  },
-  {
-    id: 'farm-tetris',
-    slug: 'farm-block-drop',
-    title: 'Farm Block Drop: Barnyard Harvest 🧱',
-    tagline: 'Stack fresh harvest crates, fill the glowing silo, and delight the friendly farmer!',
-    description: 'Farm Block Drop brings rustic charm to the classic falling block puzzle! Rotate and place harvest crops and fruit crates to clear rows. Watch golden hay fill up the rustic silo on the right as the smiling farmer cheers with delight when lines pop!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm'],
-    route: '/games/farm-block-drop/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '15.6K',
-    badge: '🧱 Harvest Block',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-tetris.svg',
-    tags: ['Falling Blocks', 'Puzzle', 'Blocks', 'Farm'],
-    controls: {
-      desktop: [
-        'A / D or Left / Right Arrows: Move piece left / right',
-        'W or Up Arrow: Rotate piece 90° clockwise',
-        'S or Down Arrow: Soft drop (faster fall)',
-        'Spacebar: Hard drop (instant drop & lock)',
-        'C or Shift: Hold piece for later',
-        'P: Pause game',
-        'R: Quick restart',
-      ],
-      mobile: [
-        'Left / Right / Down Touch Buttons: Steer falling crops',
-        'Rotate Button: Clockwise rotation',
-        'SLAM Button: Instant hard drop',
-        'HOLD Button: Swap current piece with hold queue',
-      ],
-    },
-    features: [
-      'Authentic 7-Bag Randomizer & Wall Kick Falling Block Engine',
-      'Rustic Golden Hay Silo with Progressive Fill Gauge',
-      'Cute Cheering Farmer Avatar with Speech Bubble & Voice Reactions ("WOW!")',
-      'Flying Golden Straw Particles Bursting into Silo',
-      'Rich Procedural Web Audio (Banjo Arpeggios, Formant Voice Synthesizer, Harvest Bells)',
-      'Desktop Keyboard DAS & Mobile Touch D-Pad Layout',
-      'Local High Score Tracking & 100% Free Instant Play',
-    ],
-    metaTitle: 'Farm Block Drop — Free Falling Block Puzzle Online | Pawcade',
-    metaDescription: 'Play Farm Block Drop free in your browser! Stack harvest crates, fill the golden hay silo, and delight the farmer. 100% free casual block puzzle game.',
-  },
-  {
-    id: 'animal-farm-parking',
-    slug: 'animal-farm-parking',
-    title: 'Animal Farm Parking: Countryside Tractor 🚜',
-    tagline: 'Steer Bessie the Cow and farm equipment into marked bays without crashing into obstacles!',
-    description: 'Animal Farm Parking is an entertaining precision driving puzzle game! Control Bessie the Cow using WASD or arrow keys to maneuver around fences, tractors, hay bales, and sheep into checkered parking bays. Watch your parking percentage accuracy (target >= 80%) and preserve your health!',
-    category: 'farm',
-    categories: ['farm'],
-    route: '/games/animal-farm-parking/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '8.2K',
-    badge: '🚜 Tractor Drive',
-    thumbnailUrl: '/assets/thumbnails/thumb-animal-farm-parking.svg',
-    tags: ['Driving', 'Farm', 'Casual', 'Cow', 'Animals'],
-    controls: {
-      desktop: [
-        'W / Up Arrow: Move Up',
-        'S / Down Arrow: Move Down',
-        'A / Left Arrow: Move Left',
-        'D / Right Arrow: Move Right',
-        'Spacebar: Brake / Stop',
-        'R Key: Restart level',
-      ],
-      mobile: [
-        'Touch D-Pad: 4-way direction buttons (Up, Down, Left, Right)',
-        'Center STOP button: Instant brake',
-        'Level Restart button: Quick level reset',
-      ],
-    },
-    features: [
-      '8 Handcrafted Challenging Farm Levels',
-      'Smooth WASD Cow Physics with Inertia & Steering',
-      'Continuous Collision Damage System with Health Gauge',
-      'Real-Time Precision Parking Percentage Meter',
-      'Web Audio Cow Moos, Cowbells & Hoof Trots',
-      '100% Free & Instant Browser Play',
-    ],
-    metaTitle: 'Animal Farm Parking — Free Tractor Parking Game Online | Pawcade',
-    metaDescription: 'Play Animal Farm Parking free in your browser! Drive Bessie the Cow with WASD keys into marked farm stalls. Avoid obstacles, maintain health, and aim for 100% accuracy.',
-  },
-  {
-    id: 'barnyard-tower',
-    slug: 'barnyard-tower',
-    title: 'Barnyard Tower: Animal Stack 🐮🏗️',
-    tagline: 'Drop cute farm animals from a swinging crane to build the tallest wobbling tower!',
-    description: 'Stack cute farm animals in Barnyard Tower! Drop pigs, chicks, fluffy sheep, and cows from a swinging crane. Land them squarely on the hay cart below. Perfect drops earn star combos and steady the stack. Off-center drops tilt the tower. Reach high altitude milestones and beat your best score!',
-    category: 'arcade',
-    categories: ['arcade', 'puzzle'],
-    route: '/games/barnyard-tower/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '11.4K',
-    badge: '🆕 Daily Drop',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-tower.svg',
-    controls: {
-      desktop: [
-        'Spacebar / Down Arrow / Mouse Click: Drop current animal from crane',
-        'M Key: Toggle audio sound',
-        'R Key: Restart game on game over',
-      ],
-      mobile: [
-        'Tap Anywhere on Screen: Release animal to drop',
-        'Audio Button: Toggle sound effects',
-      ],
-    },
-    features: [
-      'Smooth Sine-Wave Swinging Crane Physics',
-      '5 Adorable Farm Animals (Chick, Piglet, Sheep, Cat, Cow)',
-      'Dynamic Center-of-Mass Wobble & Balance Engine',
-      'Combo Streak Multipliers on Perfect Centered Drops',
-      'Milestone Confetti Celebrations at 5m, 10m, 20m, and 50m',
-      'Zero Download Instant Browser Play on Mobile & Desktop',
-    ],
-    metaTitle: 'Barnyard Tower: Animal Stack 🐮 — Free Stacking Game | Pawcade',
-    metaDescription: 'Play Barnyard Tower free online! Drop cute farm animals from a swinging crane to build the tallest wobbling tower. No download needed in your web browser.',
-  },
-  {
-    id: 'gopher-garden',
-    slug: 'gopher-garden',
-    title: 'Gopher Garden: Whack & Harvest 🥕🐾',
-    tagline: 'Protect your farm vegetables by tapping cheeky gophers before they steal your crop!',
-    description: 'Guard your vegetable patch in Gopher Garden! Sneaky gophers pop out of garden mounds to nibble prize carrots and pumpkins. Tap them fast to protect the harvest. Whack golden king gophers to start double-point Harvest Frenzy. Watch out for spiky thistles that cut your score. Score big before the timer expires!',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/gopher-garden/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '13.2K',
-    badge: '🆕 Daily Drop',
-    thumbnailUrl: '/assets/thumbnails/thumb-gopher-garden.svg',
-    controls: {
-      desktop: [
-        'Mouse Click: Whack gopher or vegetable mound',
-        'Keys 1-9: Quick number key tap corresponding to 3x3 grid',
-        'M Key: Toggle sound effects',
-        'R Key: Restart game when time expires',
-      ],
-      mobile: [
-        'Tap Any Mound: Whack gopher directly with your finger',
-        'Large 80px+ Touch Targets: Built for fast single-screen play',
-      ],
-    },
-    features: [
-      'Classic 3x3 Garden Dirt Patch Whack-a-Mole Action',
-      '3 Farm Vegetables: Crunchy Carrots, Sweetcorn & Prize Pumpkins',
-      'Golden King Gopher Triggering Double-Point Harvest Frenzy',
-      'Spiky Thistle Hazard Testing Reflex Precision',
-      '60-Second Timed Arcade High Score Challenge',
-      'Instant Mobile Touch Response with Zero Download',
-    ],
-    metaTitle: 'Gopher Garden: Whack & Harvest 🥕 — Free Whack Game | Pawcade',
-    metaDescription: 'Play Gopher Garden free online! Tap sneaky gophers to protect your farm vegetables in this fast arcade whack game. Free browser play with no download.',
-  },
-  {
-    id: 'farm-fruit-bubble',
-    slug: 'farm-fruit-bubble',
-    title: 'Farm Fruit Bubble: Orchard Pop 🍎🎈',
-    tagline: 'Aim and pop sweet orchard fruit bubbles in this crisp barnyard puzzle!',
-    description: 'Aim and pop sweet orchard fruit bubbles in Farm Fruit Bubble! Bounce juicy apples, golden pears, and plums off wooden barn walls to match three or more. Drop floating clusters into harvest baskets below for big combo points. Clear every fruit bubble before the branch descends to beat the level!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm'],
-    route: '/games/farm-fruit-bubble/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '15.4K',
-    badge: '🆕 Daily Drop',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-fruit-bubble.svg',
-    controls: {
-      desktop: [
-        'Mouse Move / Drag: Aim slingshot angle with dotted trajectory line',
-        'Left Click or Space: Release and shoot fruit bubble',
-        'Arrow Keys Left / Right: Fine-tune aiming trajectory',
-        'M Key: Toggle sound effects',
-      ],
-      mobile: [
-        'Touch & Drag: Pull back and aim trajectory line towards fruit clusters',
-        'Release Finger: Shoot fruit bubble instantly into the orchard',
-      ],
-    },
-    features: [
-      '5 Crisp Orchard Fruits: Apples, Pears, Plums, Lemons and Berries',
-      'Realistic Wooden Wall Bank Bounces for Trick Cluster Shots',
-      'Gravity Orphan Drops Falling into Woven Harvest Baskets (+120 pts)',
-      'Descent Countdown Adding Tension on Non-Popping Shots',
-      'Full 60 FPS Canvas 2D Engine with Zero Touch Input Delay',
-      '100% Free Instant Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Farm Fruit Bubble: Orchard Pop 🍎 — Free Bubble Shooter | Pawcade',
-    metaDescription: 'Play Farm Fruit Bubble free online! Aim and bounce sweet orchard fruit bubbles to match clusters and harvest crates. Free browser play with no download.',
-  },
-  {
-    id: 'pasture-sheep-jump',
-    slug: 'pasture-sheep-jump',
-    title: 'Pasture Sheep Jump: Cloud Leap 🐑☁️',
-    tagline: 'Bounce your fluffy sheep across floating hay bales and reach sunny skies!',
-    description: 'Leap into the clouds with Barnaby the sheep in Pasture Sheep Jump! Bounce across sturdy wooden planks, moving cloud platforms, and spring hay bales. Collect shiny golden bells as you climb into the stratosphere. Steer left and right to keep climbing and set a record altitude!',
-    category: 'arcade',
-    categories: ['arcade', 'farm', 'pets'],
-    route: '/games/pasture-sheep-jump/',
-    status: 'playable',
-    rating: 4.8,
-    playCount: '17.1K',
-    badge: '🆕 Daily Drop',
-    thumbnailUrl: '/assets/thumbnails/thumb-pasture-sheep-jump.svg',
-    controls: {
-      desktop: [
-        'Arrow Keys or A/D: Steer Barnaby left and right in mid-air',
-        'Screen Wraparound: Leap off one edge to reappear on the opposite side',
-        'M Key: Toggle sound effects',
-        'R Key: Restart jump when fallen',
-      ],
-      mobile: [
-        'Touch & Drag: Steer sheep smoothly towards floating platforms',
-        'Fluid 60 FPS Tilt and Drag Steering with Zero Delay',
-      ],
-    },
-    features: [
-      'Infinite Vertical Bouncing Climb through Multi-Layer Atmosphere',
-      'Spring-Loaded Hay Bales Launching Barnaby into Super High Leaps',
-      'Drifting Cloud Platforms & Brittle Twigs Testing Precision Footing',
-      'Shiny Golden Wool Bells Awarding Big Altitude Bonus Points',
-      'Dynamic Sky Gradient Changing from Morning Green to Twilight Stars',
-      'Zero Download Instant Browser Play on All Mobile & Desktop Browsers',
-    ],
-    metaTitle: 'Pasture Sheep Jump: Cloud Leap 🐑 — Free Jumping Game | Pawcade',
-    metaDescription: 'Play Pasture Sheep Jump free online! Bounce your fluffy sheep across floating hay bales and clouds into the sky. Free browser play with no download.',
-  },
-  {
-    id: 'hungry-piggy',
-    slug: 'hungry-piggy',
-    title: 'Hungry Piggy: Farmyard Chomper 🐷🍎',
-    tagline: 'Chomp farm apples, crates, and tractors to grow into the biggest pig in the pasture!',
-    description: 'Step into the pasture with Barnaby in Hungry Piggy! Steer your cute piglet around the farm and gobble up delicious treats. Start small by munching acorns and juicy apples. As you eat, your piggy grows bigger and bigger! Soon you can swallow wooden crates, hay bales, and giant green tractors. Gobble as much as you can before the 60-second timer runs out and set a personal best score!',
-    category: 'arcade',
-    categories: ['arcade', 'farm', 'pets'],
-    route: '/games/hungry-piggy/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '19.4K',
-    badge: '🆕 Daily Drop',
-    thumbnailUrl: '/assets/thumbnails/thumb-hungry-piggy.svg',
-    controls: {
-      desktop: [
-        'Arrow Keys or W/A/S/D: Steer Barnaby towards food in the farmyard',
-        'Mouse Pointer: Move cursor to steer piggy in any direction',
-        'Spacebar: Tap to restart after game over',
-        'M Key: Toggle Web Audio effects',
-      ],
-      mobile: [
-        'Touch & Drag: Steer piggy smoothly across the pasture with instant response',
-        'Dynamic Analog Vector Indicator showing steering angle',
-      ],
-    },
-    features: [
-      '4 Progressive Growth Tiers: Little Piglet, Chubby Porker, Big Hog, and Mega Boss',
-      'Dynamic Item Scale System: Apples, Pumpkins, Hay Bales, and Full-Sized Tractors',
-      'Rapid Chomp Combo Multipliers rewarding fast feeding streaks up to 4X',
-      'High-Energy 60-Second Timed Rush with Live Countdown and High-Score Record',
-      'Procedural Zero-Latency Web Audio (Crunch Munches, Piggy Oinks, and Fanfare Chimes)',
-      '100% Free Browser Play with Zero Ads, Downloads, or Installs',
-    ],
-    metaTitle: 'Hungry Piggy: Farmyard Chomper 🐷 — Free Online Game | Pawcade',
-    metaDescription: 'Play Hungry Piggy free online! Guide your cute piglet to eat apples, hay bales, and tractors to grow huge in 60 seconds. Free browser play with no download.',
-  },
-  {
-    id: 'duck-pond-sort',
-    slug: 'duck-pond-sort',
-    title: 'Duck Pond Sort: Water Lily Float 🦆🌸',
-    tagline: 'Sort adorable rubber duckies by color into calm farm pond docks!',
-    description: 'Relax by the meadow in Duck Pond Sort! Tap wooden docks to lift cute rubber ducks and sort them into matching ponds. Sunny yellows, rosy pinks, and mallard greens are all paddling together. Move matching ducks into empty bays or onto ducks of the same color. Clear each stage to hear a happy duck chorus and unlock new pond levels!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm', 'pets'],
-    route: '/games/duck-pond-sort/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '16.7K',
-    badge: '🆕 Daily Drop',
-    thumbnailUrl: '/assets/thumbnails/thumb-duck-pond-sort.svg',
-    controls: {
-      desktop: [
-        'Left Click: Tap source pond to lift top ducks, then tap target pond to swim over',
-        'U Key: Undo previous duck move',
-        'R Key: Restart current pond level',
-        'M Key: Toggle soothing pond sounds and quacks',
-      ],
-      mobile: [
-        'Tap Source Pond: Lifts matching top duckies into swimming hover',
-        'Tap Target Pond: Moves ducks smoothly into matching dock bay',
-        'Undo Button: Rewind any accidental moves instantly',
-      ],
-    },
-    features: [
-      '5 Cute Duck Breeds: Sunny Yellow, Feather White, Rosy Pink, Splash Blue, and Mallard Green',
-      'Peaceful Farm Pond Atmosphere with Ambient Water Ripples and Lotus Flowers',
-      'Progressive Multi-Level Sorting Puzzles with Unlimited Undo Support',
-      'Procedural Zero-Latency Web Audio (Water Splashes, Happy Quacks, and Victory Chimes)',
-      '100% Free Browser Play with Zero Ads, Downloads, or Installs',
-    ],
-    metaTitle: 'Water Sort Puzzle Online Free — Duck Pond Sort | Pawcade',
-    metaDescription: 'Play Duck Pond Sort free online! Sort cute rubber duckies by color into peaceful farm pond bays. Instant browser play with no download or install.',
-  },
-  {
-    id: 'hamster-ball-dash',
-    slug: 'hamster-ball-dash',
-    title: 'Hamster Ball Dash: Tube Roll 🐹⚡',
-    tagline: 'Roll your energetic hamster through transparent stunt tubes and collect golden sunflower seeds!',
-    description: 'Roll into high-speed stunts with Pip the hamster in Hamster Ball Dash! Steer your transparent stunt sphere along wooden boardwalks and clear silo tubes. Collect golden sunflower seeds and speed past barnyard obstacles. Hit boost pads for turbo speed and launch off ramps into big jumps. Steer carefully around sharp turns so you do not tumble off the bridge. Beat the target time to set a new course record!',
-    category: 'arcade',
-    categories: ['arcade', 'pets', 'farm'],
-    route: '/games/hamster-ball-dash/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '18.8K',
-    badge: '🆕 Daily Drop',
-    thumbnailUrl: '/assets/thumbnails/thumb-hamster-ball-dash.svg',
-    controls: {
-      desktop: [
-        'Left / Right Arrows or A / D: Steer Pip left and right across the track',
-        'Up Arrow / W: Roll forward faster into top speed',
-        'Down Arrow / S or Spacebar: Brake to make sharp turns safely',
-        'M Key: Toggle sound effects',
-      ],
-      mobile: [
-        'Touch & Drag on Screen: Steer Pip smoothly with instant response',
-        'On-Screen Steer Buttons: Tap Left or Right at the bottom of the screen',
-      ],
-    },
-    features: [
-      '3 Action-Packed Circuits: Barnyard Meadow Dash, Silo Tube Stunt, and Windmill Skyway',
-      'High-Speed Turbo Boost Pads and 3D Ramp Jump Launchers',
-      'Golden Sunflower Seed Pickups with Magnetic Seed Power-Ups',
-      'Checkpoint Respawn System with 3 Lives per Stage',
-      'Procedural Zero-Latency Web Audio (Speed Whistle, Seed Chimes, and Fanfares)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Hamster Ball Dash: Tube Roll 🐹⚡ — Free Online Stunt Game | Pawcade',
-    metaDescription: 'Play Hamster Ball Dash free online! Steer Pip the hamster inside a transparent sphere down tubes and ramps. Free browser play with no download.',
-  },
-  {
-    id: 'cat-cafe-rush',
-    slug: 'cat-cafe-rush',
-    title: 'Cat Cafe Rush: Cozy Bakery 🐱🍰',
-    tagline: 'Serve warm fish waffles, strawberry cakes, and matcha tea to visiting cats in your cozy bakery!',
-    description: 'Run your own cozy animal bakery in Cat Cafe Rush! Friendly cats visit your counter with sweet pastry orders. Pour batter into the waffle iron to bake warm fish taiyaki. Layer fresh sponge cake with sweet cream and ripe red strawberries. Froth steaming matcha lattes and grab glazed donuts from the shelf. Serve orders quickly to earn generous tips and build big combo streaks. Clear every daily shift to delight VIP cat critics!',
-    category: 'pets',
-    categories: ['pets', 'farm', 'arcade'],
-    route: '/games/cat-cafe-rush/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '19.2K',
-    badge: '🆕 Daily Drop',
-    thumbnailUrl: '/assets/thumbnails/thumb-cat-cafe-rush.svg',
-    controls: {
-      desktop: [
-        'Left Click: Tap bakery stations to bake waffles, froth milk, and assemble cakes',
-        'Click Serve: Tap customer SERVE button when matching order is on the platter',
-        'M Key: Toggle soothing cafe sounds and purrs',
-      ],
-      mobile: [
-        'Tap Stations: Quick touch to pour batter, steam matcha, and layer cakes',
-        'Tap SERVE: Deliver prepared pastry to waiting customer cat',
-        'Tap Platter Item: Discard an item if you need an open platter slot',
-      ],
-    },
-    features: [
-      '4 Handcrafted Cat Pastries: Fish Taiyaki Waffles, Cat Shortcake, Matcha Latte, and Purr Donuts',
-      '3 Progressive Cafe Shifts: Morning Meow, Sweet Afternoon, and VIP Critic Rush',
-      '6 Visiting Cat Breeds: Calico, Tabby, Tuxedo, Siamese, Persian, and King Whiskers',
-      'Speed Tip System rewarding fast service with +50% coin bonuses',
-      'Procedural Zero-Latency Web Audio (Baking Sizzles, Milk Froth, Meows, and Purrs)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Cat Cafe Rush: Cozy Bakery 🐱🍰 — Free Online Bakery Game | Pawcade',
-    metaDescription: 'Play Cat Cafe Rush free online! Bake fish waffles, steam matcha lattes, and serve cute cats in your cozy bakery. Free browser play with no download.',
-  },
-  {
-    id: 'save-the-sheep',
-    slug: 'save-the-sheep',
-    title: 'Save the Sheep: Hive Defense 🐝🐑',
-    tagline: 'Draw sturdy fences with ink to shield Barnaby the sheep from buzzing bee swarms!',
-    description: 'Protect cute sheep from angry bee swarms in Save the Sheep! Drag your finger or mouse across the screen to draw custom wooden barrier lines. Guard Barnaby from stinging bees, sharp cliff drops, and spiky brambles. Bees bounce off your drawn fences with elastic physics. Hold your defenses solid for five seconds to win each puzzle stage. Use minimal ink to score three golden stars on every level!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm', 'arcade'],
-    route: '/games/save-the-sheep/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '21.5K',
-    badge: '🆕 Daily Drop',
-    thumbnailUrl: '/assets/thumbnails/thumb-save-the-sheep.svg',
-    controls: {
-      desktop: [
-        'Click & Drag: Draw protective barrier lines around Barnaby the sheep',
-        'Release Mouse: Solidify the barrier fence and release the bee swarm',
-        'R Key: Clear ink and restart current puzzle stage',
-        'M Key: Toggle sound effects',
-      ],
-      mobile: [
-        'Touch & Drag: Draw wooden fence lines with your finger',
-        'Lift Finger: Lock fence in place and begin 5-second swarm test',
-        'Reset Button: Tap to erase lines and redraw with full ink',
-      ],
-    },
-    features: [
-      '4 Handcrafted Puzzle Stages: Meadow Perch, Dual Hives, The Crevasse, and Spike Canyon',
-      'Dynamic Line Drawing Physics with Real-Time Collision and Deflection',
-      'Elastic Bee Swarm AI Tracking Barnaby with Continuous Proximity Chases',
-      '3-Star Ink Conservation Scoring System (Spend Less Ink for Maximum Rank)',
-      'Procedural Zero-Latency Web Audio (Pencil Sketch, Bee Swarms, Baas, and Fanfares)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Save the Sheep: Hive Defense 🐝🐑 — Draw & Protect Game | Pawcade',
-    metaDescription: 'Play Save the Sheep free online! Draw fence lines to protect Barnaby the sheep from buzzing bee swarms. Free physics puzzle with no download.',
-  },
-  {
-    id: 'capybara-spa-rush',
-    slug: 'capybara-spa-rush',
-    title: 'Capybara Spa: Hot Springs 🍊🛁',
-    tagline: 'Run a relaxing cedar onsen bath for visiting capybaras with floating yuzu and herbal tea!',
-    description: 'Run a cozy Japanese hot spring for cute animals in Capybara Spa! Friendly capybaras, ducklings, and turtles visit your wooden cedar tubs. Drop floating yellow yuzu citrus fruits into the warm water. Scrub dirty tubs with soft bamboo sponges to keep baths fresh. Serve hot herbal barley tea to earn generous coin tips. When a capybara reaches full bliss, collect your sparkling golden coins! Reinvest your spa profits to unlock luxury tubs and upgrades.',
-    category: 'pets',
-    categories: ['pets', 'farm', 'arcade'],
-    route: '/games/capybara-spa-rush/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '22.4K',
-    badge: '🆕 Daily Drop',
-    thumbnailUrl: '/assets/thumbnails/thumb-capybara-spa-rush.svg',
-    controls: {
-      desktop: [
-        'Left Click Guest: Select a waiting animal from the bench',
-        'Left Click Open Tub: Seat selected animal into the warm cedar bath',
-        'Action Buttons: Click Yuzu, Tea, or Scrub to fulfill animal requests',
-        'COLLECT COINS: Click glowing coin button when bliss gauge reaches 100%',
-        'U Key: Open Onsen Spa Upgrades drawer',
-        'M Key: Toggle soothing bath sounds and squeaks',
-      ],
-      mobile: [
-        'Tap Guest: Select waiting capybara, duckling, or turtle',
-        'Tap Open Tub: Seat guest into warm steaming bath',
-        'Tap Yuzu / Tea / Scrub: Service guest requests quickly',
-        'Tap COLLECT COINS: Cash in on full bliss for instant golden coins',
-        'UPGRADES Button: Unlock extra cedar tubs and chamomile baths',
-      ],
-    },
-    features: [
-      '4 Cedar Hot Spring Tubs with Dynamic Water Steam and Floating Yuzu Citrus',
-      '4 Visiting Cute Animal Species: Capybaras, Ducklings, Turtles, and Snow Monkeys',
-      'Interactive Guest Service Loop: Floating Yuzu Toss, Bamboo Scrubbing, and Barley Tea',
-      'Deep Onsen Progression Tree: Herbal Baths, Deluxe Sponges, and Tea Stations',
-      'Procedural Zero-Latency Web Audio (Warm Splashes, Squeaks, Bubbles, and Zen Chimes)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Capybara Spa: Hot Springs 🍊🛁 — Relaxing Onsen Game | Pawcade',
-    metaDescription: 'Play Capybara Spa free online! Run a cozy Japanese hot spring for cute capybaras and friend critters. Free relaxing game with no download.',
-  },
-  {
-    id: 'wood-nuts-farm',
-    slug: 'wood-nuts-farm',
-    title: 'Wood Nuts & Bolts: Barnyard Jam 🔩🚜',
-    tagline: 'Unscrew metallic bolts from farm boards to drop colorful wooden planks in this physics puzzle!',
-    description: 'Test your puzzle logic in Wood Nuts & Bolts Barnyard Jam! Unscrew metallic bolts from wooden farm boards to drop colorful planks. Tap a screw to unfasten it, then tap an open hole to move it. Plan every move carefully so you do not run out of empty holes. Watch heavy cedar beams and pine rails tumble with realistic gravity physics. Clear all four workshop stages to become the ultimate farm craftsman!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm', 'arcade'],
-    route: '/games/wood-nuts-farm/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '23.8K',
-    badge: '🆕 Daily Drop',
-    thumbnailUrl: '/assets/thumbnails/thumb-wood-nuts-farm.svg',
-    controls: {
-      desktop: [
-        'Left Click Screw: Select a screw to unscrew from the wooden board',
-        'Left Click Empty Hole: Move selected screw into an open hole',
-        'R Key: Restart current workshop level',
-        'M Key: Toggle ratchet and wood clatter sounds',
-      ],
-      mobile: [
-        'Tap Screw: Select and loosen a bolt with your finger',
-        'Tap Empty Hole: Move the screw into any open peg slot',
-        'Restart Button: Reset current board if you run out of moves',
-      ],
-    },
-    features: [
-      '4 Handcrafted Workshop Stages: Garden Gate, Windmill Vane, Silo Ladder, and Barn Truss',
-      'Realistic Wood Plank Gravity Physics with Dynamic Rotations and Drops',
-      'Tactile Screw Selection and Board Pinning Mechanics',
-      'Move Counter and Star Scoring System for Efficient Solutions',
-      'Procedural Zero-Latency Web Audio (Ratchets, Metallic Snaps, and Wood Thuds)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Wood Nuts & Bolts: Barnyard Jam 🔩🚜 — Free Screw Puzzle | Pawcade',
-    metaDescription: 'Play Wood Nuts & Bolts free online! Unscrew bolts from wooden planks to clear barnyard puzzles. Free browser screw game with no download.',
-  },
-  {
-    id: 'animal-suika-drop',
-    slug: 'animal-suika-drop',
-    title: 'Animal Drop: Watermelon Merge 🍉🐾',
-    tagline: 'Drop and merge cute farm animals to grow the giant Watermelon Elephant in this juicy physics puzzle!',
-    description: 'Drop and merge cute farm animals in this juicy physics puzzle. Aim your dropper to drop chicks, kittens, and puppies into the wooden box. When two matching animals touch, they merge into a bigger animal. Keep merging to grow the giant Watermelon Elephant. Watch the red danger line closely so your animals do not overflow the basket. Score big combo points and beat your personal record today!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm', 'arcade'],
-    route: '/games/animal-suika-drop/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '27.4K',
-    badge: '🍉 Suika Merge',
-    thumbnailUrl: '/assets/thumbnails/thumb-animal-suika-drop.svg',
-    controls: {
-      desktop: [
-        'Mouse Move / Drag: Aim the active animal along the top bar',
-        'Left Click / Release: Drop animal into the puzzle box',
-        'R Key: Quick restart game',
-        'M Key: Toggle bounce and merge sound effects',
-      ],
-      mobile: [
-        'Touch & Drag: Slide finger left and right to aim drop position',
-        'Release Finger: Drop animal into the wooden basket',
-        'Restart Button: Reset game and try for a higher score',
-      ],
-    },
-    features: [
-      '10 Cute Animal Evolution Tiers: Chick to Duckling, Kitten, Bunny, Puppy, Piglet, Sheep, Cow, Capybara, and Mega Watermelon Elephant',
-      'Sub-Stepped 60 FPS Physics Engine with Realistic Circle Stacking and Rolling',
-      'Juicy Merge Starburst Effects and Floating Score Badges',
-      'Red Danger Line Overflow Warning System with Countdown Timer',
-      'Procedural Web Audio Chimes Scaled to Merge Evolution Tiers',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Animal Drop: Watermelon Merge 🍉🐾 — No Download | Pawcade',
-    metaDescription: 'Play Animal Drop Watermelon Merge free online! Drop and merge cute farm animals to grow the giant Watermelon Elephant. Free puzzle game with no download.',
-  },
-  {
-    id: 'farm-tile-triple',
-    slug: 'farm-tile-triple',
-    title: 'Tile Matching Game: Farm Tile Triple 🍓🧩',
-    tagline: 'Pick and match 3 cute farm crop tiles in your 7-slot tray to clear the board in this cozy puzzle!',
-    description: 'Match cute crop tiles in this relaxing farm puzzle. Tap unblocked tiles from the board to move them into your tray. When you collect three identical tiles, they clear instantly for bonus points. Keep your seven tray slots from filling up as you dig through layered tiles. Clear every crop from the garden table to complete all four handcrafted stages today!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm', 'arcade'],
-    route: '/games/farm-tile-triple/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '19.8K',
-    badge: '🧺 Tile Triple',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-tile-triple.svg',
-    controls: {
-      desktop: [
-        'Left Click Tile: Pick an unblocked crop tile into your 7-slot tray',
-        'U Key: Undo previous tile pick',
-        'S Key: Shuffle unpicked board tiles',
-        'R Key: Quick restart current stage',
-        'M Key: Toggle soothing wooden sound effects',
-      ],
-      mobile: [
-        'Tap Tile: Send top unblocked crop tile into your tray',
-        'Undo Button: Take back a misstep easily',
-        'Shuffle Button: Reorder tiles if stuck',
-        'Restart Button: Reset level for a fresh attempt',
-      ],
-    },
-    features: [
-      '4 Handcrafted Puzzle Stages: Garden Gate, Orchard Basket, Harvest Festival, and Barnyard Cornucopia',
-      '8 Charming Farm Crops & Animals: Apples, Corn, Pumpkins, Berries, Eggplants, Honey, Chicks, and Sunflowers',
-      'Layered 3D Tile Blocking System with Real-Time Unblock Updates',
-      'Dynamic 7-Slot Tray Mechanics with 3-Match Particle Burst Celebrations',
-      'Procedural Web Audio Synthesizer (Wooden Taps, Harp Chimes, Shuffle Whooshes, and Victory Fanfare)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Tile Matching Game: Farm Tile Triple 🍓🧩 — Free Online | Pawcade',
-    metaDescription: 'Play Barnyard Tile Match free online! Pick and match 3 cute farm crop tiles in your 7-slot tray to clear the board. Free cozy puzzle game with no download.',
-  },
-  {
-    id: 'farm-pipe-flow',
-    slug: 'farm-pipe-flow',
-    title: 'Farm Pipe Flow: Barnyard Plumber 🚜💧',
-    tagline: 'Rotate water pipes to irrigate thirsty barnyard crops and animal troughs in this cozy plumber puzzle!',
-    description: 'Connect irrigation pipes in this relaxing farm plumber puzzle. Tap pipe joints to rotate them ninety degrees. Direct water from the red pump tank to every thirsty vegetable patch and animal trough. Solve each field with minimal turns to earn the highest score. Complete all four farm stages and master the barnyard water flow today!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm', 'arcade'],
-    route: '/games/farm-pipe-flow/',
-    status: 'playable',
-    rating: 4.9,
-    playCount: '17.3K',
-    badge: '🚜 Pipe Flow',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-pipe-flow.svg',
-    controls: {
-      desktop: [
-        'Left Click Pipe: Rotate pipe joint 90 degrees clockwise',
-        'U Key: Undo previous pipe rotation',
-        'R Key: Quick restart current irrigation stage',
-        'M Key: Toggle water bubbling and ratchet sounds',
-      ],
-      mobile: [
-        'Tap Pipe: Turn pipe section 90 degrees',
-        'Undo Button: Rewind previous turn easily',
-        'Restart Button: Reset stage to try with fewer turns',
-      ],
-    },
-    features: [
-      '4 Handcrafted Irrigation Stages: Carrot Patch, Strawberry Greenhouse, Apple Orchard, and Barnyard Dairy Trough',
-      'Multiple Pipe Varieties: Straight Sections, 90-Degree Elbows, 3-Way Tees, and 4-Way Cross Junctions',
-      'Real-Time BFS Fluid Simulation with Visual Flow Highlighting',
-      'Crop Blooming Feedback and Sparkling Victory Celebrations',
-      'Procedural Web Audio Synthesizer (Ratchet Turns, Water Gushes, and Garden Chimes)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Pipe Puzzle Game Online Free — Farm Pipe Flow | Pawcade',
-    metaDescription: 'Play Farm Pipe Flow free online! Rotate water pipes to irrigate thirsty barnyard crops and animal troughs. Free casual plumber puzzle with no download.',
-  },
-  {
-    id: 'koi-pond-zen',
-    slug: 'koi-pond-zen',
-    title: 'Koi Pond: Zen Water Garden 🎏🌸',
-    tagline: 'Feed graceful Japanese koi fish, bloom pink lotus flowers, and create gentle water ripples in a peaceful zen pond garden.',
-    description: 'Feed graceful Japanese koi fish, bloom pink lotus flowers, and create gentle water ripples in a peaceful zen pond garden. Relax as Kohaku, Yamabuki, Showa, and Tancho koi swim smoothly through crystal clear waters. Ring the singing bowl to call all fish together, drop golden food pellets, and watch delicate lotus blossoms open across four serene sanctuary ponds.',
-    category: 'pets',
-    categories: ['pets', 'farm', 'arcade'],
-    route: '/games/koi-pond-zen/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '21.5K',
-    badge: '🎏 Zen Waters',
-    thumbnailUrl: '/assets/thumbnails/thumb-koi-pond-zen.svg',
-    controls: {
-      desktop: [
-        'Left Click Water: Drop fish food pellets and make gentle ripples',
-        'Spacebar / B Key: Ring Tibetan singing bowl to gather all koi',
-        'S Key: Activate falling sakura petal shower for 2x zen boost',
-        'R Key: Restart zen garden sanctuary',
-        'M Key: Toggle soothing water and chime sounds',
-      ],
-      mobile: [
-        'Tap Water: Drop food pellets and create expanding ripples',
-        'Food / Gold Toggle: Switch between standard and golden pellets',
-        'Chime Button: Ring singing bowl to guide all fish to center',
-        'Sakura Button: Trigger sakura petal shower for double points',
-      ],
-    },
-    features: [
-      '4 Handcrafted Zen Sanctuaries: Bamboo Grove Spring, Cherry Blossom Basin, Golden Pavilion Pool, and Moonlit Sanctuary',
-      '5 Japanese Koi Breeds: Kohaku (🔴⚪), Yamabuki (🟡✨), Showa (⚫🔴⚪), Tancho (⚪🔴), and Butterfly Sakura Koi (🌸🎏)',
-      'Autonomous Boid Schooling AI and Scent Tracking Food Navigation',
-      'Interactive 60 FPS Fluid Water Ripple Dynamics and Floating Lotus Lily Pads',
-      'Procedural Web Audio Soundscape (Water Plinks, Bamboo Clacks, Singing Bowl Gongs, and Zen Fanfare)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Koi Pond: Zen Water Garden 🎏🌸 — No Download | Pawcade',
-    metaDescription: 'Play Koi Pond Zen free online! Feed graceful Japanese koi, bloom lotus flowers, and create water ripples in a tranquil pond garden. Free relaxing game with no download.',
-  },
-  {
-    id: 'barnyard-pin-pull',
-    slug: 'barnyard-pin-pull',
-    title: 'Barnyard Pin Pull: Rescue & Loot 🚜📌',
-    tagline: 'Pull golden pins to quench burning lava, defeat thieving foxes, and drop fresh carrots to rescue Barnaby!',
-    description: 'Pull golden locking pins in the right order to rescue cute farm animals. Quench burning lava with fresh water to make safe stones. Defeat sneaky foxes and drop golden carrots into Barnaby\'s bowl across five barnyard puzzle chambers.',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm', 'arcade'],
-    route: '/games/barnyard-pin-pull/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '23.4K',
-    badge: '📌 Pin Rescue',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-pin-pull.svg',
-    controls: {
-      desktop: [
-        'Left Click Pin Ring: Pull pin smoothly out of socket',
-        'R Key: Quick restart current chamber',
-        'M Key: Toggle pin slide and steam sounds',
-      ],
-      mobile: [
-        'Tap Pin Ring: Pull pin with your finger',
-        'Restart Button: Reset chamber easily',
-      ],
-    },
-    features: [
-      '5 Handcrafted Chamber Levels: Granary Gateway, Steam Quencher, Fox in the Hayloft, Treasure Granary, and Barnyard Fortress',
-      'Dynamic Water vs Lava Quenching Physics with Expanding Steam Clouds',
-      'Tactile 60 FPS Particle Gravity Mechanics (Golden Carrots, Coins, Water, Lava, and Stone)',
-      'Sneaky Thief Fox AI and Barnaby the Hungry Puppy Reactions',
-      'Procedural Web Audio Synthesizer (Wooden Pin Slides, Lava Sizzles, Coin Clinks, and Victory Fanfare)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Barnyard Pin Pull: Rescue & Loot 🚜📌 — No Download | Pawcade',
-    metaDescription: 'Play Barnyard Pin Pull free online! Pull golden pins, quench lava with water, defeat sneaky foxes, and rescue cute farm animals. Free puzzle game with no download.',
-  },
-  {
-    id: 'hamster-cookie-stack',
-    slug: 'hamster-cookie-stack',
-    title: 'Hamster Cookie Stack: Sweet Bakery 🐹🍪',
-    tagline: 'Catch dropping sweet treats on a golden pastry plate and balance a giant wobbly dessert tower with Mochi!',
-    description: 'Help Mochi the baker hamster stack sweet desserts! Catch warm cookies, glazed donuts, and berry cakes dropped from belts above. Move left and right to keep the wobbly tower balanced. Clear four fun bakery stages without dropping three sweets to the floor.',
-    category: 'arcade',
-    categories: ['arcade', 'pets', 'puzzle'],
-    route: '/games/hamster-cookie-stack/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '24.2K',
-    badge: '🐹 Sweet Tower',
-    thumbnailUrl: '/assets/thumbnails/thumb-hamster-cookie-stack.svg',
-    controls: {
-      desktop: [
-        'Left & Right Arrow Keys / A & D: Slide pastry plate smoothly',
-        'R Key: Restart bakery stage',
-        'M Key: Toggle dessert pop and chimes',
-      ],
-      mobile: [
-        'Touch & Slide Anywhere: Steer plate under dropping treats',
-        'Left & Right On-Screen Buttons: Tap to nudge plate',
-        'Restart Button: Reset bakery level',
-      ],
-    },
-    features: [
-      '4 Handcrafted Bakery Stages: Sugar Shack, Macaron Meadow, Donut Deluxe, and Royal Patisserie',
-      '6 Delectable Sweet Treats: Chocolate Chip Cookies, Strawberry Cupcakes, French Macarons, Glazed Donuts, Belgian Waffles, and Birthday Cakes',
-      'Realistic Center-of-Mass Physics with Spring Damping and Tower Wobble',
-      'Perfect Catch Streak Multipliers (2x, 3x, 4x, 5x) and Star Sparkles',
-      'Procedural Web Audio Synthesizer (Marimba Chords, Sparkle Chimes, Hamster Squeaks, and Bakery Fanfare)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Hamster Cookie Stack: Sweet Bakery 🐹🍪 — No Download | Pawcade',
-    metaDescription: 'Play Hamster Cookie Stack free online! Catch dropping cookies, macarons, and donuts to balance a giant dessert tower with Mochi the hamster. Free no download.',
-  },
-  {
-    id: 'barnyard-fruit-slicer',
-    slug: 'barnyard-fruit-slicer',
-    title: 'Barnyard Fruit Slicer: Farm Juice 🍉⚔️',
-    tagline: 'Swipe your blade across flying apples, watermelons, and golden corn in mid-air to make fresh barnyard juice!',
-    description: 'Slice flying orchard fruits in mid-air with Barnaby! Swipe across juicy watermelons, crisp apples, and sweet strawberries. Dodge prickly thistle bombs and build massive slice combos. Clear four harvest stages and become the ultimate barnyard juice master.',
-    category: 'arcade',
-    categories: ['arcade', 'farm', 'puzzle'],
-    route: '/games/barnyard-fruit-slicer/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '25.8K',
-    badge: '🍉 Fruit Ninja',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-fruit-slicer.svg',
-    controls: {
-      desktop: [
-        'Mouse Drag / Swipe: Cut through flying fruits in mid-air',
-        'R Key: Quick restart orchard level',
-        'M Key: Toggle slicing and whoosh sounds',
-      ],
-      mobile: [
-        'Touch & Swipe Anywhere: Cut cleanly through fruits with your finger',
-        'Multi-Slice: Hit 3+ fruits in one stroke for bonus combos',
-        'Restart Button: Reset level anytime',
-      ],
-    },
-    features: [
-      '4 Handcrafted Harvest Stages: Orchard Sunrise, Berry Harvest, Pumpkin Festival, and Mega Juice Frenzy',
-      '7 Unique Farm Targets: Barnyard Apples, Sweet Watermelons, Wild Strawberries, Sweetcorn, Eggplants, Golden Pineapples, and Thistle Bombs',
-      'Dynamic 60 FPS Halving Physics with Realistic Angular Velocity and Juice Splatters',
-      'Satisfying Combo Streak System with Sparkling Floating Text Badges',
-      'Procedural Web Audio Synthesizer (Blade Whooshes, Juicy Chops, Bomb Blasts, and Combo Fanfares)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Barnyard Fruit Slicer: Farm Juice 🍉⚔️ — No Download | Pawcade',
-    metaDescription: 'Play Barnyard Fruit Slicer free online! Slice flying apples, watermelons, and berries in mid-air. Dodge thistle bombs and build combo streaks. Free no download.',
-  },
-  {
-    id: 'barnyard-peg-pop',
-    slug: 'barnyard-peg-pop',
-    title: 'Barnyard Peg Pop: Acorn Bounce 🌰🎯',
-    tagline: 'Aim your acorn cannon, bounce off colorful farm pegs, and clear all golden targets for rainbow celebrations!',
-    description: 'Help Sammy the squirrel bounce shiny acorns across pegboards! Aim your wooden cannon to hit blue pegs, golden targets, and bonus bells. Land balls in the moving farm cart for extra shots. Clear every golden peg across four orchard stages to trigger rainbow fanfare.',
-    category: 'arcade',
-    categories: ['arcade', 'puzzle', 'farm'],
-    route: '/games/barnyard-peg-pop/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '27.3K',
-    badge: '🌰 Peg Pop',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-peg-pop.svg',
-    controls: {
-      desktop: [
-        'Mouse Move / Pointer: Aim cannon angle smoothly',
-        'Left Click / Spacebar: Fire bouncing acorn nut',
-        'Arrow Keys Left / Right: Fine-tune cannon aiming',
-        'R Key: Restart current pegboard',
-        'M Key: Toggle melodic chime sounds',
-      ],
-      mobile: [
-        'Touch & Drag: Aim cannon angle anywhere on screen',
-        'FIRE Button: Launch acorn toward pegs',
-        'Restart Button: Reset level anytime',
-      ],
-    },
-    features: [
-      '4 Handcrafted Pegboard Stages: Acorn Hollow, Orchard Grove, Autumn Ridge, and Golden Sanctuary',
-      '4 Unique Peg Types: Blue Acorns (100 pts), Orange Targets (250 pts), Purple Bonus (500 pts), and Green Magic Launchers (Super Bounce)',
-      'Sub-Stepped 60 FPS Circle Rebounding Physics with Restitution Damping',
-      'Sliding Farm Hay Cart at Bottom for Free Ball Catches (+1 Extra Shot)',
-      'Procedural Web Audio Chimes (Melodic Pentatonic Scale Arpeggios, Cork Pops, Cart Catches, and Beethoven Ode to Joy Fever Fanfare)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Peg Bounce Game Online Free — Barnyard Peg Pop | Pawcade',
-    metaDescription: 'Play Barnyard Peg Pop free online! Aim the acorn cannon, bounce off colorful pegs, and clear golden targets in Peggle style. Free casual game with no download.',
-  },
-  {
-    id: 'duck-archery-range',
-    slug: 'duck-archery-range',
-    title: 'Duck Archery: Target Master 🎯🦆',
-    tagline: 'Pull back the bowstring, gauge prairie wind gusts, and shoot bullseyes with Quacky the Robin Duck!',
-    description: 'Help Quacky the Robin Duck master the countryside archery range! Pull back the bowstring, adjust your launch angle, and compensate for shifting wind gusts. Hit bullseyes, pop bonus apples, and ring golden bells across four challenging archery ranges to claim the trophy.',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/duck-archery-range/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '21.4K',
-    badge: '🎯 Target Master',
-    thumbnailUrl: '/assets/thumbnails/thumb-duck-archery-range.svg',
-    controls: {
-      desktop: [
-        'Mouse Drag & Release: Pull back bowstring to aim angle and power',
-        'Trajectory Preview: Follow the dotted guideline to gauge gravity',
-        'R Key: Restart current archery stage',
-        'M Key: Toggle bow and impact sound effects',
-      ],
-      mobile: [
-        'Touch & Drag: Pull back on the bow to aim and charge power',
-        'Release Finger: Fire arrow toward target field',
-        'Restart Button: Reset current stage anytime',
-      ],
-    },
-    features: [
-      '4 Handcrafted Archery Ranges: Pasture Warmup, Windmill Breeze, Orchard Trickshot, and Grand Championship',
-      'Realistic Ballistics Physics with Gravity Arc and Dynamic Crosswind Gusts',
-      'Multi-Zone Target Scoring: Bullseyes (100 pts), Red Rings (50 pts), Blue Rings (25 pts), and White Rings (10 pts)',
-      'Bonus Field Targets: Juicy Crisp Apples (+150 pts) and Golden Chime Bells (+1 Extra Arrow)',
-      'Procedural Web Audio Synthesizer (Bow Creaks, Twang Snaps, Wood Thuds, and Bullseye Chimes)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Archery Game Online Free — Duck Archery Range | Pawcade',
-    metaDescription: 'Play Duck Archery: Target Master free online! Pull back the bowstring, gauge wind gusts, and shoot bullseyes across 4 ranges. Free casual game with no download.',
-  },
-  {
-    id: 'corgi-mini-golf',
-    slug: 'corgi-mini-golf',
-    title: 'Corgi Mini Golf: Pasture Putt 🐶⛳',
-    tagline: 'Putt, bank off wooden rails, dodge sand traps, and sink hole-in-ones with Sunny the Corgi!',
-    description: 'Help Sunny the Corgi sink putts across four handcrafted countryside mini golf holes! Drag to aim your putter, bank shots off wooden rails, dodge sand and mud hazards, and collect golden bones. Sink putts under par to earn Birdie, Eagle, and Hole-in-One trophies.',
-    category: 'arcade',
-    categories: ['arcade', 'pets'],
-    route: '/games/corgi-mini-golf/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '24.8K',
-    badge: '🐶 Mini Golf',
-    thumbnailUrl: '/assets/thumbnails/thumb-corgi-mini-golf.svg',
-    controls: {
-      desktop: [
-        'Mouse Drag & Release: Pull back to set putt power and direction',
-        'Aim Line: Dashed guide displays rolling angle and power percentage',
-        'R Key: Restart current golf hole',
-        'M Key: Toggle putter clink and ball cup sounds',
-      ],
-      mobile: [
-        'Touch & Drag: Pull back from ball to adjust power and direction',
-        'Release Finger: Putt the ball across the green',
-        'Restart Button: Reset current hole anytime',
-      ],
-    },
-    features: [
-      '4 Handcrafted Countryside Holes: Pasture Fairway, Windmill Dogleg, Mud Trap Chicane, and Barnyard Championship',
-      'Sub-Stepped 60 FPS Physics with Restitution Rail Bounces and Variable Surface Friction',
-      'Realistic Hole Suction Physics and Flagpin Cup Drop Animations',
-      'Bouncy Pinball-Style Wooden Bumpers and Collectible Golden Bones (+100 pts)',
-      'Authentic Golf Scoring: Hole-in-One, Eagle, Birdie, Par, and Bogey Ratings',
-      'Procedural Web Audio Synthesizer (Metallic Putts, Rail Thwacks, Bumper Boings, and Cup Drops)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Mini Golf Game Online Free — Corgi Pasture Putt | Pawcade',
-    metaDescription: 'Play Corgi Mini Golf free online! Aim your putter, bank off wooden rails, dodge sand traps, and sink hole-in-ones. Free casual game with no download.',
-  },
-  {
-    id: 'caterpillar-fruit-trail',
-    slug: 'caterpillar-fruit-trail',
-    title: 'Caterpillar Garden: Fruit Trail Snake 🐛🍎',
-    tagline: 'Crawl through garden plots, eat sweet berries, dodge thorny hedges, and grow your fuzzy trail!',
-    description: 'Guide Sammy the friendly garden caterpillar across lush fruit patches! Crawl along garden tiles, munch on sweet cherries, strawberries, and golden apples to grow your wavy body. Dodge stone rocks, thorny brambles, and your own tail across four blooming garden plots.',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/caterpillar-fruit-trail/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '29.1K',
-    badge: '🐛 Fruit Snake',
-    thumbnailUrl: '/assets/thumbnails/thumb-caterpillar-fruit-trail.svg',
-    controls: {
-      desktop: [
-        'Arrow Keys / WASD: Steer Sammy up, down, left, and right',
-        'R Key: Restart current garden plot',
-        'M Key: Toggle fruit crunch and crawl sounds',
-      ],
-      mobile: [
-        'Touch & Swipe: Swipe anywhere on screen in four directions',
-        'On-Screen D-Pad: Tap directional arrows below the garden',
-        'Restart Button: Reset level anytime',
-      ],
-    },
-    features: [
-      '4 Handcrafted Garden Plots: Daisy Meadow, Strawberry Patch, Thorn Hedge Maze, and Butterfly Greenhouse',
-      'Smooth 60 FPS Multi-Segment Wavy Caterpillar Crawl Animations with Responsive Turning',
-      '5 Garden Treats: Sweet Cherries (25 pts), Strawberries (40 pts), Crisp Apples (60 pts), Golden Apples (150 pts), and Turbo Leaves',
-      'Dynamic Obstacles: Garden Stones, Wooden Hedges, and Prickly Blackberry Brambles',
-      'Procedural Web Audio Synthesizer (Crunchy Munches, Turbo Sweeps, Rustles, and Victory Fanfare)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Caterpillar Garden: Fruit Trail Snake 🐛🍎 — No Download | Pawcade',
-    metaDescription: 'Play Caterpillar Garden: Fruit Trail Snake free online! Crawl across garden tiles, eat sweet berries, grow your caterpillar body, and dodge thorns. Free no download.',
-  },
-  {
-    id: 'carrot-target-throw',
-    slug: 'carrot-target-throw',
-    title: 'Carrot Target Throw: Barnyard Spin 🎯🥕',
-    tagline: 'Throw crunchy carrots into rotating farm targets, slice bonus fruit, and dodge obstacles!',
-    description: 'Test your timing in Carrot Target Throw! Tap to flick crisp carrots into spinning wooden stumps, waterwheel timbers, and windmill rotors. Dodge pre-stuck wood pegs and your own embedded carrots while slicing juicy apples and golden acorns. Master all four spinning stages to win!',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/carrot-target-throw/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '31.2K',
-    badge: '🎯 Target Spin',
-    thumbnailUrl: '/assets/thumbnails/thumb-carrot-target-throw.svg',
-    controls: {
-      desktop: [
-        'Spacebar / Left Click: Flick carrot upward toward the spinning target',
-        'R Key: Restart current target stage',
-        'M Key: Toggle crisp throw and stick sound effects',
-      ],
-      mobile: [
-        'Tap Screen / Throw Button: Tap anywhere to throw carrot instantly',
-        'Restart Button: Reset stage anytime',
-      ],
-    },
-    features: [
-      '4 Handcrafted Spinning Stages: Oak Tree Stump, Waterwheel Timber, Windmill Rotor, and Grand Barn Melon',
-      'Dynamic Rotation Patterns with Acceleration, Reversals, and Sudden Stutter Bursts',
-      'Bonus Orbiting Fruits: Sliced Crisp Apples (+250 pts) and Golden Acorns (+500 pts)',
-      'Responsive Sub-Stepped Collision Detection with Deflection Physics and Wood Chip Sparks',
-      'Procedural Web Audio Synthesizer (Whoosh Throws, Woody Thunks, Fruit Slices, and Victory Fanfare)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Carrot Target Throw: Barnyard Spin 🎯🥕 — No Download | Pawcade',
-    metaDescription: 'Play Carrot Target Throw free online! Flick crisp carrots into rotating farm targets, dodge obstacles, and slice bonus fruit across 4 stages. Free no download.',
-  },
-  {
-    id: 'animal-tangram-fit',
-    slug: 'animal-tangram-fit',
-    title: 'Animal Tangram: Wooden Block Fit 🧩🐾',
-    tagline: 'Fit rustic wooden blocks into cute animal silhouettes without overlapping!',
-    description: 'Fit polished wooden blocks into cute animal silhouettes in this relaxing brain puzzle! Pick shapes from your tray, rotate pieces to match carved contours, and assemble roosters, puppies, lambs, and cows. Fill every cell without overlap across four handcrafted stages to win!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm', 'pets'],
-    route: '/games/animal-tangram-fit/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '33.4K',
-    badge: '🧩 Wood Fit',
-    thumbnailUrl: '/assets/thumbnails/thumb-animal-tangram-fit.svg',
-    controls: {
-      desktop: [
-        'Left Click Tray Piece: Select a wooden shape',
-        'Left Click Board Cell: Place selected shape onto carved silhouette',
-        'Rotate Button / R Key: Rotate selected shape 90 degrees',
-        'M Key: Toggle soothing wood clack sounds',
-      ],
-      mobile: [
-        'Tap Tray Piece: Select shape to place',
-        'Tap Board: Place shape into matching outline',
-        'Tap Placed Piece: Return piece back to tray',
-        'ROTATE Button: Turn shape 90 degrees',
-      ],
-    },
-    features: [
-      '4 Handcrafted Animal Silhouettes: Clucky the Rooster, Buster the Puppy, Daisy the Lamb, and Bessie the Cow',
-      '5 Authentic Polished Wood Grain Tones: Cherry, Walnut, Honey Oak, Pine, and Mahogany',
-      'Tactile Snap-to-Grid Placement with Instant Overlap Prevention',
-      'Full Piece Recall and 90-Degree In-Tray and On-Board Rotation',
-      'Procedural Web Audio Synthesizer (Oak Clacks, Wood Taps, Ratchet Turns, and Marimba Fanfare)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Tangram Puzzle Online Free — Animal Wood Block Fit | Pawcade',
-    metaDescription: 'Play Animal Tangram free online! Fit polished wooden blocks into cute animal silhouettes without overlapping. Relaxing farm brain puzzle with no download.',
-  },
-  {
-    id: 'piggy-coin-pusher',
-    slug: 'piggy-coin-pusher',
-    title: 'Piggy Coin Pusher: Barnyard Dozer 🐷🪙',
-    tagline: 'Drop shiny coins, trigger farm quakes, and push big prizes over the ledge!',
-    description: 'Drop shiny golden coins onto the barnyard pusher in this classic arcade dozer! Time your drops to slide moving coins forward. Push clover silvers, prize eggs, and milk bottles over the front ledge to collect bonus points. Trigger the Barn Quake to shake the table or raise Coin Walls to protect your loot from side gutters!',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/piggy-coin-pusher/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '34.8K',
-    badge: '🪙 Coin Dozer',
-    thumbnailUrl: '/assets/thumbnails/thumb-piggy-coin-pusher.svg',
-    controls: {
-      desktop: [
-        'Left Click Anywhere: Drop a coin at the cursor position',
-        'Spacebar / Drop Button: Drop coin down center chute',
-        'Quake Button: Trigger table tremor when power meter is full',
-        'Walls Button: Raise protective side barriers when meter is full',
-      ],
-      mobile: [
-        'Tap Anywhere: Drop coin at tapped screen position',
-        'DROP COIN Button: Large bottom button to drop coin instantly',
-        'BARN QUAKE Button: Shake table to push coins over edge',
-        'COIN WALLS Button: Shield side gutters from coin loss',
-      ],
-    },
-    features: [
-      'Sub-Stepped Multi-Coin Physics Engine with Smooth Circle-Circle Relaxation',
-      'Continuous Moving Chrome Pusher Blade with Red Ruby Bumper',
-      '5 Collectible Coin Types: Golden Corn, Clover Silver, Mega Coin, Prize Egg, and Milk Bottle',
-      'Dynamic Table Power-Ups: Barn Quake Tremor and Energy Shield Side Coin Walls',
-      'Procedural Web Audio Synthesizer (Coin Pings, Golden Chimes, Quake Rumbles, and Fanfares)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Piggy Coin Pusher: Barnyard Dozer 🐷🪙 — No Download | Pawcade',
-    metaDescription: 'Play Piggy Coin Pusher free online! Drop shiny coins into the barnyard dozer, trigger quakes, raise walls, and push big prizes over the ledge. Free no download.',
-  },
-  {
-    id: 'milk-bottle-plinko',
-    slug: 'milk-bottle-plinko',
-    title: 'Milk Bottle Plinko: Carnival Drop 🥛🎪',
-    tagline: 'Drop farm milk bottles through bouncy wooden pegs into the 100x jackpot bucket!',
-    description: 'Drop glass milk bottles from Bessie the Cow\'s moving hopper in this carnival plinko arcade! Watch bottles bounce through 10 rows of wooden pegs and rubber bumpers. Time your drops to hit the central 100x Golden Jackpot bucket or score corner multipliers. Charge your meter to trigger the Golden Milk Frenzy and multiply your carnival prize score!',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/milk-bottle-plinko/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '36.5K',
-    badge: '🎪 Carnival Plinko',
-    thumbnailUrl: '/assets/thumbnails/thumb-milk-bottle-plinko.svg',
-    controls: {
-      desktop: [
-        'Left Click: Drop a milk bottle from the moving dispenser',
-        'Spacebar / Drop Button: Drop bottle immediately',
-        'Frenzy Button: Activate Golden Milk Frenzy when meter is full',
-        'M Key: Toggle pentatonic chime and bell sound effects',
-      ],
-      mobile: [
-        'Tap Anywhere on Board: Drop bottle at tapped X position',
-        'DROP MILK BOTTLE: Large bottom button to drop bottle',
-        'GOLDEN FRENZY Button: Tap to start 5x bottle stream',
-        'Mute & Reset: Compact buttons on top HUD',
-      ],
-    },
-    features: [
-      'Sub-Stepped Multi-Row Plinko Physics with Elastic Bumper Restitution',
-      'Moving Top Dispenser Hopper with Direct Tap Drop Targeting',
-      '7 Multiplier Catch Buckets from 2x up to the 100x Golden Jackpot Corral',
-      '4 Bottle Varieties: Farm Milk, Strawberry Milk, Chocolate Milk, and Golden Star Milk',
-      'Pentatonic Note Web Audio Synthesizer with Ascending Peg Pings and Fanfares',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Milk Bottle Plinko: Carnival Drop 🥛🎪 — No Download | Pawcade',
-    metaDescription: 'Play Milk Bottle Plinko free online! Drop farm milk bottles through bouncy wooden pegs into the 100x jackpot bucket. Free casual carnival game with no download.',
-  },
-  {
-    id: 'farm-tripeaks-solitaire',
-    slug: 'farm-tripeaks-solitaire',
-    title: 'Farm TriPeaks Solitaire: Harvest Peak 🌾🃏',
-    tagline: 'Clear 3 card pyramids, build harvest streak multipliers, and conquer farm peaks!',
-    description: 'Clear three card peaks in this relaxing countryside TriPeaks Solitaire! Tap cards one rank higher or lower than your waste card to clear rows. Uncover hidden cards beneath the peaks, build massive streak combo multipliers, and use lucky Wildcard Clovers to solve tricky boards. Play across four harvest stages with zero downloads!',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm'],
-    route: '/games/farm-tripeaks-solitaire/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '38.9K',
-    badge: '🌾 TriPeaks Cards',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-tripeaks-solitaire.svg',
-    controls: {
-      desktop: [
-        'Left Click: Select cards on peaks (+/- 1 rank from active card)',
-        'Click Stock Pile: Draw a fresh card to reset waste card',
-        'Wildcard Button / W Key: Clear any card using a lucky clover',
-        'Undo Button / U Key: Step back your last move',
-      ],
-      mobile: [
-        'Tap Card: Clear valid cards into the waste pile',
-        'DRAW CARD Button: Flip new card from stock pile',
-        'WILD Button: Tap lucky clover to clear any selected card',
-        'Undo & Sound: Fast top header controls',
-      ],
-    },
-    features: [
-      'Classic 28-Card 3-Peak Pyramid Layout with Wrap-Around Matching (Ace & King)',
-      '4 Scenic Farm Stages: The Orchard Peak, Golden Silo Summit, Lush Pastures, and Barnyard Horizon',
-      'Streak Multipliers with Ascending Pentatonic Marimba & Harp Notes',
-      'Lucky Four-Leaf Wildcard Clovers and Full Move History Undo Support',
-      'Procedural Web Audio Card Slides, Chimes, and Harvest Fanfares',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'TriPeaks Solitaire Online Free — Farm Harvest Peak | Pawcade',
-    metaDescription: 'Play Farm TriPeaks Solitaire free online! Clear 3 card peaks, build streak multipliers, and uncover harvest crop cards. Free casual card game with no download.',
-  },
-  {
-    id: 'sheep-sorter-gate',
-    slug: 'sheep-sorter-gate',
-    title: 'Barnyard Sheep Sorter: Pasture Gate 🐑🚪',
-    tagline: 'Flip the pasture gate left or right to sort fluffy sheep into their meadows before time runs out!',
-    description: 'Flip the swinging wooden pasture gate left or right to sort incoming fluffy sheep! Guide white and pink sheep to the left meadow, and send black and golden sheep to the right paddock. Build rapid streak combos to trigger Golden Fever mode and earn double points. Test your quick reflexes across endless waves!',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/sheep-sorter-gate/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '19.2K',
-    badge: '🐑 Gate Reflex',
-    thumbnailUrl: '/assets/thumbnails/thumb-sheep-sorter-gate.svg',
-    controls: {
-      desktop: [
-        'Left Arrow / A Key: Flip pasture gate to the left corral',
-        'Right Arrow / D Key: Flip pasture gate to the right corral',
-        'Spacebar: Toggle gate direction instantly',
-        'M Key: Toggle gate thud and sheep sound effects',
-      ],
-      mobile: [
-        'Tap Left Screen / LEFT Button: Direct sheep to White & Pink meadow',
-        'Tap Right Screen / RIGHT Button: Direct sheep to Black & Gold paddock',
-        'Top Header: Check remaining hearts and combo multiplier',
-      ],
-    },
-    features: [
-      'Rapid Two-Way Reflex Sorting: White/Pink to Left, Black/Golden to Right',
-      'Golden Fever Mode with 2x Multiplier Every 15 Streak Combos',
-      'Dynamic Speed Scaling with Increasing Sheep Trot Paces',
-      'Fluffy Cloud Wool Physics with Bouncing Trot Animations',
-      'Procedural Web Audio Latch Snaps, Sheep Baas, and Chimes',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Barnyard Sheep Sorter: Pasture Gate 🐑 — No Download | Pawcade',
-    metaDescription: 'Play Barnyard Sheep Sorter free online! Flip the pasture gate left or right to sort fluffy sheep, build streak combos, and trigger Golden Fever mode.',
-  },
-  {
-    id: 'barnyard-pinball',
-    slug: 'barnyard-pinball',
-    title: 'Barnyard Pinball: Flipper Farm 🕹️🌾',
-    tagline: 'Launch chrome pinballs, hit glowing farm bumpers, and keep the ball in play with dual flippers!',
-    description: 'Launch chrome pinballs across a lively farm arcade table! Use dual flippers to deflect the steel ball into illuminated barn and corn bumpers. Light up all four F-A-R-M rollover lanes to boost your score multiplier up to 5x. Hit the red barn three times to trigger exciting multiball action. Test your timing and reflexes with zero downloads!',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/barnyard-pinball/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '44.8K',
-    badge: '🕹️ Pinball Arcade',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-pinball.svg',
-    controls: {
-      desktop: [
-        'Left Arrow / A / Z: Engage Left Flipper',
-        'Right Arrow / D / Slash: Engage Right Flipper',
-        'Down Arrow / Spacebar: Pull and release spring plunger to launch ball',
-        'M Key: Toggle mechanical flipper and chime sounds',
-      ],
-      mobile: [
-        'LEFT FLIPPER Button / Tap Left Screen: Flip left blade upward',
-        'RIGHT FLIPPER Button / Tap Right Screen: Flip right blade upward',
-        'LAUNCH Button: Hold to compress plunger spring and release to fire',
-      ],
-    },
-    features: [
-      'Sub-Stepped 60 FPS Pinball Physics with Authentic Restitution and Gravity',
-      '3 Illuminated Mushroom Bumpers: Red Barn, Golden Corn, and Fresh Milk',
-      '4 Rollover Lanes (F-A-R-M) with Multiplier Upgrades up to 5x',
-      'High-Speed Multiball Frenzy with Dual Chrome Steel Balls',
-      'Procedural Web Audio Solenoids, Spring Plunger Snaps, and Bumper Pings',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Barnyard Pinball: Flipper Farm 🕹️ — No Download | Pawcade',
-    metaDescription: 'Play Barnyard Pinball free online! Launch chrome balls, hit glowing farm bumpers, light F-A-R-M lanes, and trigger multiball. Free arcade pinball with no download.',
-  },
-  {
-    id: 'crop-mower-harvest',
-    slug: 'crop-mower-harvest',
-    title: 'Crop Mower: Harvest Rush 🚜🌾',
-    tagline: 'Drive a nimble red tractor to mow neat rows of tall golden wheat, fill your harvest basket, and clear 100% of the field!',
-    description: 'Drive a nimble red farm tractor to mow neat rows of tall golden wheat, sweet corn, and bright sunflowers! Fill your harvest basket as spinning blades slice clean stripes across the field. Empty your crop load at the red silo chute for bonus points, and steer around boulders and tree stumps. Clear 100% of every paddock across four scenic farm stages with zero downloads!',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/crop-mower-harvest/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '31.2K',
-    badge: '🚜 ASMR Mower',
-    thumbnailUrl: '/assets/thumbnails/thumb-crop-mower-harvest.svg',
-    controls: {
-      desktop: [
-        'Arrow Keys / WASD: Steer tractor across field rows',
-        'Release Keys: Stop tractor in place',
-        'M Key: Toggle motor and grass slicing sounds',
-      ],
-      mobile: [
-        'Swipe / Drag on Field: Guide tractor in any direction',
-        'Virtual D-Pad Buttons: Tap directional arrows at bottom of screen',
-        'Top Silo: Drive over red silo chute to empty full basket',
-      ],
-    },
-    features: [
-      'Satisfying ASMR Lawn Mowing Mechanics with Flying Straw Chaff Particles',
-      '4 Handcrafted Farm Stages: Sunny Wheat Paddock, Maize Maze, Sunflower Valley, and Grand Ranch',
-      'Harvest Basket Capacity and Silo Chute Score Deposit Bonuses',
-      'Smooth 60 FPS Canvas 2D Tractor Driving with Rotating Blade Decks',
-      'Procedural Web Audio Engine Chugs, Grass Snips, and Harvest Fanfares',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Lawn Mower Game Online Free — Crop Mower Harvest | Pawcade',
-    metaDescription: 'Play Crop Mower Harvest Rush free online! Drive your tractor to mow golden wheat, fill your basket, and clear fields. Free casual farm game with no download.',
-  },
-  {
-    id: 'hamster-maze-runner',
-    slug: 'hamster-maze-runner',
-    title: 'Hamster Maze: Nut Escape 🐹🌰',
-    tagline: 'Guide Pip the hungry hamster through timber mazes, gather golden acorns, find the brass key, and unlock the exit door!',
-    description: 'Guide Pip the hungry hamster through tricky farmyard mazes to gather golden acorns! Dodge dead ends, find the hidden brass key, and unlock the heavy barn door before dinner. Explore four handcrafted timber labyrinths, munch crispy sunflower seeds, and reach the glowing exit gate with zero downloads or delays.',
-    category: 'puzzle',
-    categories: ['puzzle', 'pets'],
-    route: '/games/hamster-maze-runner/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '34.8K',
-    badge: '🐹 Maze Escape',
-    thumbnailUrl: '/assets/thumbnails/thumb-hamster-maze-runner.svg',
-    controls: {
-      desktop: [
-        'Arrow Keys / WASD: Steer Pip through maze corridors',
-        'Spacebar / Enter: Advance to next stage or restart',
-        'R Key: Restart current maze stage',
-        'M Key: Toggle squeak and crunch audio sounds',
-      ],
-      mobile: [
-        'Swipe Gestures: Swipe anywhere on maze to steer Pip',
-        'Tactile D-Pad: Tap bottom direction buttons (Up, Down, Left, Right)',
-        'Next Stage Button: Advance after reaching the exit gate',
-      ],
-    },
-    features: [
-      '4 Handcrafted Wooden Labyrinths with Increasing Complexity',
-      'Crisp Grid Path Blocking and Smooth Sub-Pixel Hamster Animation',
-      'Brass Key Hunt and Locked Barn Gate Latch Mechanics',
-      'Golden Acorn Munching with Sparkling Particle FX',
-      'Procedural Web Audio Hamster Chirps, Seed Crunches, and Gate Clinks',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Hamster Maze: Nut Escape 🐹 — No Download | Pawcade',
-    metaDescription: 'Play Hamster Maze Nut Escape free online! Guide Pip the hungry hamster through timber mazes, gather golden acorns, and find the exit. Play free with no download.',
-  },
-  {
-    id: 'chicken-egg-catcher',
-    slug: 'chicken-egg-catcher',
-    title: 'Chicken Egg Catcher: Barnyard Rush 🐔🥚',
-    tagline: 'Slide your woven straw basket to catch falling golden eggs, dodge spoiled rotten eggs, and trigger fever mode!',
-    description: 'Catch tumbling farm eggs before they hit the wooden barn floor! Slide your woven straw basket left and right to scoop up white, speckled, and golden eggs. Avoid nasty rotten eggs, build high combo streaks, and trigger glowing golden fever mode with zero downloads.',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/chicken-egg-catcher/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '28.6K',
-    badge: '🐔 Egg Catcher',
-    thumbnailUrl: '/assets/thumbnails/thumb-chicken-egg-catcher.svg',
-    controls: {
-      desktop: [
-        'Left / Right Arrow Keys or A / D: Slide straw basket across barn floor',
-        'Spacebar: Quick restart game on game over',
-        'R Key: Reset and start a fresh run',
-        'M Key: Toggle egg catch and hen clucking audio',
-      ],
-      mobile: [
-        'Touch & Drag: Slide your thumb across the screen for instant basket tracking',
-        'Slide Left / Right Buttons: Tap large bottom buttons for tactile control',
-      ],
-    },
-    features: [
-      'Fast-Paced Reflex Egg Catching with Real-Time Physics and Wobble',
-      '4 Egg Types: Regular White, Speckled Brown, Golden Star, and Rotten Green',
-      '6-Second Golden Egg Fever Frenzy with 2x Score Multiplier',
-      'Dynamic Wave Scaling with Accelerating Hen Laying Rhythms',
-      'Procedural Web Audio Basket Thumps, Yolk Splats, and Hen Clucks',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Chicken Egg Catcher: Barnyard Rush 🐔 — No Download | Pawcade',
-    metaDescription: 'Play Chicken Egg Catcher free online! Catch falling farm eggs in your straw basket, dodge rotten eggs, and rack up combo points. Free arcade catch with no download.',
-  },
-  {
-    id: 'piggy-mud-wash',
-    slug: 'piggy-mud-wash',
-    title: 'Piggy Mud Wash: County Fair Spa 🐷🧼',
-    tagline: 'Scrub muddy farm pets with soap, rinse them with the hose, towel dry, and win the County Fair 1st prize ribbon!',
-    description: 'Wash dirty farm animals for the County Fair! Use bubbly sponge soap to loosen mud patches, spray water to rinse them away, and towel dry until their coats shine. Clean all four pets to earn the blue ribbon with zero downloads.',
-    category: 'pets',
-    categories: ['pets', 'farm', 'arcade'],
-    route: '/games/piggy-mud-wash/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '29.4K',
-    badge: '🐷 Mud Wash',
-    thumbnailUrl: '/assets/thumbnails/thumb-piggy-mud-wash.svg',
-    controls: {
-      desktop: [
-        'Mouse Drag: Scrub sponge, spray hose, or wipe towel over muddy patches',
-        '1, 2, 3 Keys: Switch between Soap Sponge, Water Hose, and Fluffy Towel',
-        'Spacebar: Advance to next farm animal upon winning ribbon',
-        'R Key: Reset muddy patches for a fresh wash',
-        'M Key: Toggle bubbly scrub and water splash sounds',
-      ],
-      mobile: [
-        'Touch & Drag: Slide finger across animal to scrub and wash mud away',
-        'Bottom Tool Dock: Tap large icons to switch Sponge, Hose, and Towel',
-      ],
-    },
-    features: [
-      '4 Adorable Farm Animals: Penny the Piglet, Barnaby Pup, Daisy Calf, and Woolly Lamb',
-      'Satisfying 3-Step Cleaning: Foaming Soap Sponge, Water Spray Rinse, and Towel Dry',
-      'Sub-Pixel Canvas 2D Physics with Sparkling Star Bursts and Foaming Bubbles',
-      'County Fair 1st Prize Blue Ribbon Awards and Grand Champion Ceremony',
-      'Procedural Web Audio Soap Lather, Water Jet Spray, and Cheerful Animal Vocals',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Piggy Mud Wash: County Fair Spa 🐷 — No Download | Pawcade',
-    metaDescription: 'Play Piggy Mud Wash free online! Scrub muddy farm animals with soap, rinse with water, and dry them for the County Fair. Free casual pet spa with no download.',
-  },
-  {
-    id: 'barnyard-brick-breaker',
-    slug: 'barnyard-brick-breaker',
-    title: 'Barnyard Brick Breaker: Apple Bounce 🍎🧱',
-    tagline: 'Steer your farm cart paddle, bounce crisp apples, smash wooden fruit crates, and grab golden honey power-ups!',
-    description: 'Smash through wooden fruit crates and stone barn walls in this retro arcade brick breaker! Steer your red harvester cart, deflect bouncy red apples, and collect golden honey drops. Trigger multi-ball splits and wide paddles across four handcrafted farm stages with zero downloads.',
-    category: 'arcade',
-    categories: ['arcade', 'farm'],
-    route: '/games/barnyard-brick-breaker/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '31.2K',
-    badge: '🍎 Brick Breaker',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-brick-breaker.svg',
-    controls: {
-      desktop: [
-        'Mouse Drag or Arrow Keys / A-D: Steer red harvester cart left and right',
-        'Spacebar or Click: Launch apple from cart to begin stage',
-        'R Key: Reset and start a fresh harvest run',
-        'M Key: Toggle bounce thuds and crate smash sound effects',
-      ],
-      mobile: [
-        'Touch & Drag: Slide thumb across canvas to steer harvester cart smoothly',
-        'Bottom Buttons: Tap Left, Right, or Launch for tactile control',
-      ],
-    },
-    features: [
-      'Classic Breakout & Arkanoid Action Reimagined in a Sunny Apple Orchard',
-      '3 Unique Brick Varieties: Wooden Fruit Crates, Stone Bricks, and Golden Honey',
-      'Exciting Power-Up Drops: Multi-Ball 3x Apple Splits, Wide Paddle, and Fireball Pierce',
-      '4 Handcrafted Agricultural Stages: Apple Orchard, Red Barn Gable, Windmill Rotor, and Silo Peak',
-      'Procedural Web Audio Synthesizer (Wood Crate Crunches, Paddle Pings, and Chimes)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Barnyard Brick Breaker: Apple Bounce 🍎 — No Download | Pawcade',
-    metaDescription: 'Play Barnyard Brick Breaker free online! Deflect bouncy apples with your harvester cart, smash fruit crates, and grab power-ups. Free arcade game with no download.',
-  },
-  {
-    id: 'duck-water-slide',
-    slug: 'duck-water-slide',
-    title: 'Duck Water Slide: Splash Rush 🦆🌊',
-    tagline: 'Steer Quacky down twisting water flumes, grab rubber duckies, catch air on stunt ramps, and plunge into the farm splash pool!',
-    description: 'Ride giant rushing water slides with Quacky the duck! Steer your inflatable swim tube across turquoise flumes, collect yellow rubber duckies, and slice into juicy watermelon slices. Hit turbo water boosters, launch off stunt ramps, and splash into the finish pool with zero downloads.',
-    category: 'arcade',
-    categories: ['arcade', 'farm', 'pets'],
-    route: '/games/duck-water-slide/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '33.8K',
-    badge: '🦆 Water Slide',
-    thumbnailUrl: '/assets/thumbnails/thumb-duck-water-slide.svg',
-    controls: {
-      desktop: [
-        'Mouse Drag or Arrow Keys / A-D: Steer Quacky across the water flume',
-        'Spacebar: Advance to next flume course on victory',
-        'R Key: Reset and start a fresh flume run',
-        'M Key: Toggle rushing water splashes and squeak sounds',
-      ],
-      mobile: [
-        'Touch & Drag: Slide thumb across canvas to steer your tube smoothly',
-        'Bottom Buttons: Tap Left or Right for tactile steering',
-      ],
-    },
-    features: [
-      'Downhill Flume Racing Action with Realistic Water Flow and Rooster-Tail Spray',
-      'Exciting Stunt Jumps: Launch Off Wooden Water Ramps for Mid-Air Flips',
-      'Collectibles & Boosters: Yellow Rubber Duckies, Watermelons, and Turbo Jet Arrows',
-      '4 Handcrafted Water Park Courses: Meadow Creek, Orchard Rapids, Windmill Corkscrew, and Splashdown Canyon',
-      'Procedural Web Audio Synthesizer (Water Torrents, Rubber Squeaks, and Splashdowns)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Duck Water Slide: Splash Rush 🦆 — No Download | Pawcade',
-    metaDescription: 'Play Duck Water Slide free online! Steer Quacky down rushing water flumes, collect rubber ducks, and hit stunt ramps. Free arcade water racer with no download.',
-  },
-  {
-    id: 'bunny-hop-cross',
-    slug: 'bunny-hop-cross',
-    title: 'Bunny Hop: Road & River Cross 🐰🥕',
-    tagline: 'Guide Barnaby Bunny across busy farm roads, floating river logs, and railroad tracks in this classic arcade hopper!',
-    description: 'Hop with Barnaby Bunny across country lanes, rushing creeks, and train tracks! Dodge moving tractors, leap onto floating wooden logs, and snap up crunchy carrots before the hawk sweeps down. Clear all four pastoral stages with zero downloads.',
-    category: 'arcade',
-    categories: ['arcade', 'pets', 'farm'],
-    route: '/games/bunny-hop-cross/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '35.2K',
-    badge: '🐰 Road Cross',
-    thumbnailUrl: '/assets/thumbnails/thumb-bunny-hop-cross.svg',
-    controls: {
-      desktop: [
-        'Arrow Keys or W/A/S/D: Hop forward, back, left, or right',
-        'Spacebar: Quick forward hop',
-        'R Key: Reset current stage',
-        'M Key: Toggle hop sounds and tractor horns',
-      ],
-      mobile: [
-        'Touch Swipe: Swipe in any direction for instant hopping',
-        'Tap Screen: Tap top half to hop forward, bottom half to hop back',
-        'Bottom D-Pad: On-screen tactile directional arrows',
-      ],
-    },
-    features: [
-      'Classic Crossy Arcade Mechanics with Smooth Sub-Pixel Animation',
-      'Multi-Hazard Farm World: Tractors, Grain Pickups, Creek Rapids, and Fast Express Trains',
-      'Sub-Stepped Log Floating Physics: Ride Moving Timber Across Deep Waters',
-      '4 Handcrafted Pastoral Stages: Peaceful Pasture, Autumn Orchard, Railroad Junction, and Jubilee',
-      'Procedural Web Audio Synthesizer (Bouncy Hops, Carrot Crunches, and River Splashes)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Bunny Hop: Road & River Cross 🐰 — No Download | Pawcade',
-    metaDescription: 'Play Bunny Hop free online! Hop Barnaby Bunny across farm roads, floating river logs, and train tracks. Free arcade animal hopper game with zero downloads.',
-  },
-  {
-    id: 'farm-boba-tea',
-    slug: 'farm-boba-tea',
-    title: 'Farm Boba Tea: Animal Cafe 🧋🐮',
-    tagline: 'Brew delicious boba bubble tea, scoop chewy tapioca pearls, and serve thirsty animal customers in your cozy farm cafe!',
-    description: 'Brew farm-fresh boba milk tea and serve visiting animal guests! Layer chewy tapioca pearls, scoop fruit jellies, pour creamy matcha, and poke colorful straws. Satisfy Daisy Calf, Sunny Corgi, and Whiskers Cat with zero downloads.',
-    category: 'arcade',
-    categories: ['arcade', 'pets', 'farm'],
-    route: '/games/farm-boba-tea/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '38.4K',
-    badge: '🧋 Boba Cafe',
-    thumbnailUrl: '/assets/thumbnails/thumb-farm-boba-tea.svg',
-    controls: {
-      desktop: [
-        'Left Click: Select teas, toppings, ice, and sweetness levels',
-        'S Key: Seal cup and poke colorful straw',
-        'Spacebar / Enter: Serve finished boba order',
-        'T Key: Trash mistake cup and start fresh',
-        'M Key: Toggle soothing cafe sounds and clinks',
-      ],
-      mobile: [
-        'Tap Buttons: Instant ingredient selection and boba scoops',
-        'Seal & Straw: Tap to cap drink and punch straw',
-        'Serve Order: Big bottom button for quick delivery',
-      ],
-    },
-    features: [
-      'Satisfying Drink Mixing Mechanics with Real-Time Fluid Fill and Layering',
-      '4 Farm Tea Bases: Fresh Pasture Milk, Matcha Green, Strawberry, and Thai Tea',
-      '4 Chewy Boba Toppings: Dark Tapioca, Strawberry Jelly, Mango Boba, and Honeycomb',
-      'Visiting Cute Animal Customers: Daisy Calf, Sunny Corgi, Whiskers Cat, and Woolly Lamb',
-      'Procedural Web Audio Synthesizer (Boba Drops, Ice Clinks, Milk Streams, and Straw Pokes)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Farm Boba Tea: Animal Cafe 🧋 — No Download | Pawcade',
-    metaDescription: 'Play Farm Boba Tea free online! Brew fresh milk tea, scoop chewy tapioca pearls, and serve cute animal cafe customers. Free bubble tea game with no download.',
-  },
-  {
-    id: 'barnyard-ice-cream',
-    slug: 'barnyard-ice-cream',
-    title: 'Barnyard Ice Cream: Scoop & Stack 🍦🍨',
-    tagline: 'Stack giant ice cream scoops on crispy waffle cones, drizzle hot fudge, and serve hungry farm pets!',
-    description: 'Run the sweetest ice cream cart in the meadow! Stack creamy vanilla, sweet strawberry, chocolate fudge, and mint chip scoops high onto waffle cones. Drizzle warm syrup, scatter rainbow sprinkles, and crown each order with whipped cream and a cherry for zero downloads.',
-    category: 'arcade',
-    categories: ['arcade', 'pets', 'farm'],
-    route: '/games/barnyard-ice-cream/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '41.2K',
-    badge: '🍦 Ice Cream',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-ice-cream.svg',
-    controls: {
-      desktop: [
-        'Left Click: Select cones, scoops, syrups, and toppings',
-        'W Key: Add fluffy whipped cream swirl',
-        'C Key: Crown order with bright red cherry',
-        'Spacebar / Enter: Serve ice cream order to customer',
-        'T Key: Trash mistake cone to start fresh',
-        'M Key: Toggle cheerful ice cream cart sounds',
-      ],
-      mobile: [
-        'Tap Buttons: Instant scoop stacking and toppings',
-        'Cone / Bowl Switch: Toggle between crispy waffle and sundae',
-        'Serve Button: Deliver finished ice cream to farm pets',
-      ],
-    },
-    features: [
-      'Satisfying Scoop Stacking Mechanics with Tactile Drop Physics',
-      '5 Farm-Fresh Flavors: Vanilla Cream, Strawberry, Chocolate Fudge, Mint Chip, and Caramel',
-      'Decadent Toppings: Hot Fudge, Strawberry Glaze, Rainbow Sprinkles, and Glazed Cherries',
-      'Visiting Cute Farm Customers: Penny Piglet, Barnaby Pup, Whiskers Cat, and Bessie Cow',
-      'Procedural Web Audio Synthesizer (Scoop Plops, Syrup Squeezes, and Sprinkle Rattles)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Barnyard Ice Cream: Scoop & Stack 🍦 — No Download | Pawcade',
-    metaDescription: 'Play Barnyard Ice Cream free online! Stack giant ice cream scoops on waffle cones, add syrups and sprinkles, and serve cute farm pets. Free arcade game no download.',
-  },
-  {
-    id: 'barnyard-kart-drift',
-    slug: 'barnyard-kart-drift',
-    title: 'Barnyard Kart: Tractor Grand Prix 🚜🏁',
-    tagline: 'Steer and drift your farm tractor around muddy championship tracks!',
-    description: 'Race customized farm tractors around four countryside grand prix tracks. Steer around sharp dirt curves, slide through tire smoke drifts, dodge deep mud puddles, and collect turbo corn to grab the checkered flag.',
-    category: 'arcade',
-    categories: ['arcade', 'farm', 'pets'],
-    route: '/games/barnyard-kart-drift/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '44.8K',
-    badge: '🚜 Tractor Kart',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-kart-drift.svg',
-    controls: {
-      desktop: [
-        'A / D or Left / Right Arrows: Steer tractor left and right',
-        'W / Up Arrow: Accelerate gas pedal',
-        'S / Down Arrow: Brake and reverse',
-        'Spacebar / Shift: Hold to drift around curves and charge mini-turbo',
-        'R Key: Quick restart current race',
-        'M Key: Toggle tractor engine and tire squeak audio',
-      ],
-      mobile: [
-        'Left & Right Arrows: Smooth responsive steering',
-        'GAS Button: Hold to accelerate full throttle',
-        'DRIFT Button: Hold into corners for sliding turns and turbo boosts',
-        'Circuit Pills: Switch between 4 grand prix tracks anytime',
-      ],
-    },
-    features: [
-      '4 Countryside Grand Prix Circuits: Clover Meadow, Autumn Orchard, Sunset Speedway, and Muddy Mountain',
-      'Realistic Arcade 2D Drift Mechanics with Mini-Turbo Boost Release',
-      'Track Obstacles & Hazards: Slowdown Mud Puddles, Spinning Oil Slicks, and Bouncy Hay Bales',
-      'Collectible Turbo Corn Nitro Pickups for Sudden Bursts of Top Speed',
-      'Procedural Web Audio Engine (Tractor Engine Revs, Tire Squeals, and Victory Brass Fanfare)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Barnyard Kart: Tractor Grand Prix 🚜🏁 — No Download | Pawcade',
-    metaDescription: 'Play Barnyard Kart Tractor Grand Prix free online! Drift tractors around muddy curves, grab turbo corn, and race farm animals for 1st place. Free game no download.',
-  },
-  {
-    id: 'piggy-cannon-blast',
-    slug: 'piggy-cannon-blast',
-    title: 'Piggy Cannon Blast: Barnyard Launch 🚀🐷',
-    tagline: 'Aim your circus cannon, blast Penny high into the sky, and upgrade your flight gear!',
-    description: 'Launch Penny the piglet high into the clouds! Set your cannon angle and blast power, bounce off sheep trampolines, collect golden balloons, and glide across four scenic farm zones. Earn coins each flight to buy rocket thrusters and bouncy shoes.',
-    category: 'arcade',
-    categories: ['arcade', 'farm', 'pets'],
-    route: '/games/piggy-cannon-blast/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '47.5K',
-    badge: '🚀 Cannon Launch',
-    thumbnailUrl: '/assets/thumbnails/thumb-piggy-cannon-blast.svg',
-    controls: {
-      desktop: [
-        'Spacebar / Click: Set launch angle, fire cannon, and activate rocket nitro',
-        'W / Up Arrow: Tilt nose up for air glide lift',
-        'S / Down Arrow: Tilt nose down for diving speed',
-        'U Key: Open flight upgrades shop',
-        'R Key: Quick restart flight',
-        'M Key: Toggle cannon boom and thruster audio',
-      ],
-      mobile: [
-        'Main Action Button: Tap to lock angle, fire cannon, and trigger rocket nitro',
-        'GLIDE Button: Pull up nose to catch gentle air thermals',
-        'DIVE Button: Point nose down to build forward momentum',
-        'Shop Button: Open flight gear upgrades menu',
-      ],
-    },
-    features: [
-      'Classic Distance Launch Arcade Loop Inspired by Learn to Fly and Burrito Bison',
-      'Two-Step Skill Launch: Oscillating Trajectory Needle and Pulse Power Meter',
-      'Interactive Air Flight Controls with Glide Thermals and Rocket Soda Nitro Thrusters',
-      'Bouncy Pasture Physics: Sheep Trampolines, Hay Bales, and Star Balloons',
-      '5 Deep Flight Upgrades: Bigger Gunpowder, Aviator Cape, Rocket Nitro, Spring Shoes, and Coin Magnet',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Piggy Cannon Blast: Barnyard Launch 🚀🐷 — No Download | Pawcade',
-    metaDescription: 'Play Piggy Cannon Blast free online! Blast Penny the piglet from circus cannons, grab rocket soda, and bounce across farm clouds. Free arcade game no download.',
-  },
-  {
-    id: 'barnyard-rope-cut',
-    slug: 'barnyard-rope-cut',
-    title: 'Barnyard Rope Cut: Feed the Piggy 🍎🐷',
-    tagline: 'Slice swinging ropes, collect golden stars, and feed juicy apples to hungry Penny!',
-    description: 'Cut ropes to swing ripe apples into Penny the piglet\'s bowl! Solve physics pendulum puzzles, collect three golden stars on each stage, bounce across farm trampolines, and float through milk bubbles. Free brain puzzle with zero downloads.',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm', 'pets'],
-    route: '/games/barnyard-rope-cut/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '49.1K',
-    badge: '✂️ Rope Cut',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-rope-cut.svg',
-    controls: {
-      desktop: [
-        'Click & Drag Blade: Swipe smoothly across ropes to cut them',
-        'Left Click Bubble: Tap floating milk bubbles to pop them',
-        'R Key: Quick restart current puzzle',
-        'M Key: Toggle rope slice and bubble audio',
-      ],
-      mobile: [
-        'Finger Swipe: Slice across ropes with instant responsive blade trail',
-        'Tap Bubble: Pop floating bubble to release apple into downward gravity',
-        'Level Pills: Jump between 4 handcrafted farm stages anytime',
-      ],
-    },
-    features: [
-      'Realistic Verlet Physics Rope Pendulums and Dynamic Swing Gravity',
-      '4 Handcrafted Farm Puzzle Stages: Barnyard Kitchen, Apple Orchard, Windmill Loft, and Grand Silo',
-      'Interactive Physics Obstacles: Floating Milk Bubbles, Spring Trampolines, and Spiky Thistles',
-      '3-Star Collection Rating System for Mastery and Replayability',
-      'Procedural Web Audio Engine (Blade Slices, Plucked String Snaps, Bubble Pops, and Piggy Chews)',
-      '100% Free Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Barnyard Rope Cut: Feed the Piggy 🍎🐷 — No Download | Pawcade',
-    metaDescription: 'Play Barnyard Rope Cut free online! Slice swinging ropes, collect golden stars, and feed juicy apples to Penny the piglet. Free physics game with no download.',
-  },
-  {
-    id: 'barnyard-popcorn-popper',
-    slug: 'barnyard-popcorn-popper',
-    title: 'Barnyard Popcorn Popper: Kernel Burst 🍿🌽',
-    tagline: 'Hold to pour golden corn into the kettle and pop fluffy butter popcorn!',
-    description: 'Pour golden corn kernels into the farm kettle and pop warm buttery popcorn! Fill the bucket right to the target line without spilling kernels past the brim. Time your pour past spinning paddles and narrow chutes. Free browser physics arcade with no download.',
-    category: 'arcade',
-    categories: ['arcade', 'farm', 'puzzle'],
-    route: '/games/barnyard-popcorn-popper/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '51.3K',
-    badge: '🍿 Kernel Burst',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-popcorn-popper.svg',
-    controls: {
-      desktop: [
-        'Mouse Hold / Spacebar: Hold down to pour golden corn kernels',
-        'Release: Stop pouring to start popping and heating phase',
-        'R Key: Quick restart current kettle stage',
-        'M Key: Toggle sound effects and popping snaps',
-      ],
-      mobile: [
-        'Touch & Hold: Press screen or big bottom button to pour corn',
-        'Release Touch: Stop pouring to let kernels pop and fill the bucket',
-        'Stage Buttons: Tap top pills to switch between 4 handcrafted stages',
-      ],
-    },
-    features: [
-      'Realistic Granular Physics and Dynamic Heat Popcorn Volume Expansion',
-      '4 Handcrafted Stages: Butter Barn Kettle, Caramel Funnel, Windmill Paddle, and Cinema Tub',
-      'Moving Obstacles: Rotating Wooden Paddles and Chute Funnels',
-      '3-Star Precision Rating and Target Fill Line Accuracy Scoring',
-      'Procedural Web Audio Engine (Seed Drops, Popcorn Snaps, Kettle Sizzle, and Fanfares)',
-      '100% Free Instant Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Barnyard Popcorn Popper: Kernel Burst 🍿🌽 — No Download | Pawcade',
-    metaDescription: 'Play Barnyard Popcorn Popper free online! Pour golden corn kernels into copper kettles and pop buttery popcorn to the fill line. Free arcade game no download.',
-  },
-  {
-    id: 'barnyard-word-connect',
-    slug: 'barnyard-word-connect',
-    title: 'Barnyard Word Connect: Corgi Cross 🐶📖',
-    tagline: 'Swipe across wooden letter tiles to connect farm words and solve crosswords!',
-    description: 'Connect letters on the wooden dial to solve barnyard crossword puzzles! Swipe across letter tiles to form words with Sunny Corgi. Discover bonus words to fill the treat jar, unlock hints, and clear harvest levels. Free word search brain puzzle with no download.',
-    category: 'puzzle',
-    categories: ['puzzle', 'farm', 'pets'],
-    route: '/games/barnyard-word-connect/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '53.8K',
-    badge: '📖 Word Cross',
-    thumbnailUrl: '/assets/thumbnails/thumb-barnyard-word-connect.svg',
-    controls: {
-      desktop: [
-        'Mouse Click & Drag: Swipe across letter tiles on dial to spell words',
-        'Release: Submit your word guess to the crossword grid',
-        'Shuffle Button: Mix up letter tiles for a fresh angle',
-        'Hint Button: Reveal a hidden letter in the crossword grid',
-      ],
-      mobile: [
-        'Touch & Swipe: Drag your finger across letter tiles to connect them',
-        'Release: Automatically submit word guess into the grid',
-        'Level Buttons: Tap top pills to switch levels anytime',
-      ],
-    },
-    features: [
-      'Interactive Circular Letter Dial with Real-Time Glowing Trail Swipe',
-      '4 Handcrafted Farm Crossword Levels: Meadow, Orchard, Windmill, and Harvest',
-      'Hidden Bonus Word Detection and Sunny Corgi Treat Jar Rewards',
-      'Hint System and Letter Tile Shuffle for Smooth Puzzling',
-      'Procedural Web Audio Engine (Ascending Pentatonic Letter Picks, Fanfares, and Chimes)',
-      '100% Free Instant Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Word Connect Online Free — Barnyard Corgi Cross | Pawcade',
-    metaDescription: 'Play Barnyard Word Connect free online! Swipe across letter dials to solve crossword puzzles with Sunny Corgi. Free word connect puzzle game no download.',
-  },
-  {
-    id: 'crossy-chicken',
-    slug: 'crossy-chicken',
-    title: 'Crossy Chicken: Farm Highway Run 🐔🛣️',
-    tagline: 'Hop Clucky across busy farm highways, rushing river logs, and railroad tracks!',
-    description: 'Guide Clucky the chicken across speeding farm roads, rushing rivers, and train tracks! Dodge pickup trucks, leap onto floating wooden logs, and collect golden star coins. Keep hopping forward before the circling hawk swoops down. Free infinite arcade hopper with no download.',
-    category: 'arcade',
-    categories: ['arcade', 'farm', 'pets'],
-    route: '/games/crossy-chicken/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '58.4K',
-    badge: '🐔 Highway Hop',
-    thumbnailUrl: '/assets/thumbnails/thumb-crossy-chicken.svg',
-    controls: {
-      desktop: [
-        'Arrow Keys or W/A/S/D: Hop forward, left, right, or down',
-        'Spacebar: Quick forward hop',
-        'R Key: Quick restart run',
-        'M Key: Toggle sound effects and clucks',
-      ],
-      mobile: [
-        'Tap Screen: Hop forward immediately',
-        'Swipe Left / Right / Down: Hop in swipe direction',
-        'Bottom D-Pad: Tap dedicated buttons to hop and steer',
-      ],
-    },
-    features: [
-      'Infinite Procedural Road, River, and Railroad Track Generation',
-      'Floating River Raft Physics with Log Drift Mechanics',
-      'Speeding Freight Trains with Blinking Signal Warnings',
-      'Predatory Hawk Patrol Timer (Keep Moving to Stay Safe!)',
-      'Procedural Web Audio Engine (Chicken Clucks, Horn Beeps, River Splashes, and Train Horns)',
-      '100% Free Instant Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Crossy Chicken: Farm Highway Run 🐔🛣️ — No Download | Pawcade',
-    metaDescription: 'Play Crossy Chicken free online! Hop Clucky across busy farm highways, floating river logs, and train tracks. Free arcade crossy road game with no download.',
-  },
-  {
-    id: 'tractor-hill-climb',
-    slug: 'tractor-hill-climb',
-    title: 'Tractor Hill Climb: Barnyard Ridge 🚜⛰️',
-    tagline: 'Drive a bouncy farm tractor over steep hills, perform air flips, and collect diesel!',
-    description: 'Drive a classic farm tractor over rolling pasture hills and steep mountain ridges. Balance your speed with gas and brake pedals to conquer bumpy trails, hay ramps, and wooden bridges. Perform 360-degree air flips to earn bonus points. Collect shiny golden coins and red diesel cans to keep your tank full. Free 2D physics tractor hill climb game with no download.',
-    category: 'farm',
-    categories: ['farm', 'arcade', 'pets'],
-    route: '/games/tractor-hill-climb/',
-    status: 'playable',
-    rating: 5.0,
-    playCount: '63.5K',
-    badge: '🚜 Hill Climb',
-    thumbnailUrl: '/assets/thumbnails/thumb-tractor-hill-climb.svg',
-    controls: {
-      desktop: [
-        'Right Arrow, D, or Space: Gas and tilt backward',
-        'Left Arrow, A, or S: Brake and tilt forward',
-        'Perform 360-degree flips in the air for +500 bonus points',
-        'R Key: Quick restart run',
-        'M Key: Toggle tractor sound effects',
-      ],
-      mobile: [
-        'Right Pedal (GAS): Hold to accelerate and tilt backward',
-        'Left Pedal (BRAKE): Hold to slow down, reverse, and tilt forward',
-        'Top Buttons: Refuel at diesel cans and track distance progress',
-      ],
-    },
-    features: [
-      '2D Vehicle Physics with Realistic Suspension and Knobby Tires',
-      'Air Stunt Detection with 360-Degree Backflips and Frontflips',
-      '4 Pastoral Hill Stages: Clover Pasture, Autumn Orchard, Windmill Ridge, and Muddy Mountain',
-      'Diesel Fuel Gauge Management and Golden Star Coin Pickups',
-      'Procedural Web Audio Engine with Engine Throttle Rumble, Stunts, and Fanfares',
-      '100% Free Instant Browser Play with No Download or Install',
-    ],
-    metaTitle: 'Tractor Hill Climb: Barnyard Ridge 🚜⛰️ — No Download | Pawcade',
-    metaDescription: 'Play Tractor Hill Climb free online! Drive a farm tractor over rolling hills, pull off air flips, and collect diesel cans. Free physics game with no download.',
-  },
+    "id": "barnyard-egg-cart",
+    "slug": "eggy-car",
+    "title": "Eggy Car 🥚🚗",
+    "tagline": "Balance a fragile egg in your hill-climbing car across steep country hills!",
+    "description": "Drive your cart over steep hills while balancing a loose egg. Tap the gas to climb ridges, and tap brakes to keep the egg safe. Collect shiny coins along the road to upgrade tires and springs. Can you set a new distance record without cracking the shell?",
+    "category": "farm",
+    "categories": [
+      "farm",
+      "arcade",
+      "pets"
+    ],
+    "route": "/games/eggy-car/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "42.1K",
+    "badge": "🔥 Viral Hit",
+    "thumbnailUrl": "/assets/thumbnails/thumb-eggy-car.svg",
+    "featured": true,
+    "tags": [
+      "Eggy Car",
+      "Egg Car",
+      "Physics",
+      "Hill Climb",
+      "Balancing",
+      "Farm"
+    ],
+    "controls": {
+      "desktop": [
+        "D, Right Arrow, or Spacebar: Accelerate gas and tilt cart backward",
+        "A, Left Arrow, or S: Brake, reverse, and tilt cart forward",
+        "Feather the throttle on hill crests to keep the egg inside the basket",
+        "R Key: Quick restart run",
+        "M Key: Toggle motor and suspension sound effects"
+      ],
+      "mobile": [
+        "Right Pedal (GAS): Hold to accelerate and climb steep pasture hills",
+        "Left Pedal (BRAKE): Hold to slow down and steady the truck on declines",
+        "GARAGE Button: Spend collected coins on suspension, tires, and basket upgrades"
+      ]
+    },
+    "features": [
+      "2D Spring-Damper Vehicle & Egg Balance Physics with Dynamic Inertia",
+      "Expressive Animated Egg with Happy, Nervous, Screaming, and Splat Reactions",
+      "Power-Up Pickups: Impact Shield Bubbles, Coin Magnets, and Turbo Boosters",
+      "Pasture Garage with 4 Upgrade Trees: Air Springs, Hay Cushion, Grip Tires, and Deep Basket",
+      "Procedural Web Audio Engine with Variable Pitch Motor Rumble and Egg Cracks",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Eggy Car Online: Hill Climb Driving Game | No Download",
+    "metaDescription": "Drive your car with an egg on top across steep hills. Balance your speed and avoid breaking the egg. Free browser driving game with no download."
+  },
+  {
+    "id": "barnyard-connect-four",
+    "slug": "connect-4",
+    "title": "Connect 4: Four in a Row 🟡🔴",
+    "tagline": "Drop colorful chips into the grid to connect four in a row against AI or a friend!",
+    "description": "Drop bright chips into the wooden frame. Block your opponent and connect four tokens in a straight row. Play solo against three smart computer skill levels, or pass the phone for two-player fun. Clean, fast turns make every duel exciting!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "arcade"
+    ],
+    "route": "/games/connect-4/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "58.3K",
+    "badge": "🟡 2-Player",
+    "thumbnailUrl": "/assets/thumbnails/thumb-connect-4.svg",
+    "featured": true,
+    "tags": [
+      "Connect 4",
+      "Four in a Row",
+      "Board Game",
+      "Strategy",
+      "2 Player"
+    ],
+    "controls": {
+      "desktop": [
+        "Click any of the 7 column arrows to drop a token",
+        "Press 1 to 7 keys on your keyboard for quick drops",
+        "R Key: Clear board for a new match",
+        "M Key: Toggle wooden disc sound effects"
+      ],
+      "mobile": [
+        "Tap any column arrow to slide a disc into the grid",
+        "Pass & Play: Take turns with a friend on the same screen",
+        "Difficulty: Select Easy Calf, Medium Fox, or Master Barn Owl"
+      ]
+    },
+    "features": [
+      "Classic 7x6 Vertical Drop Grid with Realistic Gravity and Bounce Animations",
+      "Clever Minimax AI with 3 Difficulties: Easy Calf, Clever Fox, and Master Barn Owl",
+      "Local 2-Player Pass and Play Mode for Friends on Mobile and Tablet",
+      "Winning 4-in-a-Row Golden Line Raycast Detection and Confetti Celebrations",
+      "Procedural Web Audio Engine with Tactile Wooden Clacks and Fanfares",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Connect 4 Online: Four in a Row 2-Player Game | No Download",
+    "metaDescription": "Drop chips into the 7x6 grid to connect four in a row before your rival. Play against smart AI or a friend in local 2-player mode. Free with no download."
+  },
+  {
+    "id": "capybara-clicker",
+    "slug": "capybara-clicker",
+    "title": "Capybara Clicker 🍊🦫",
+    "tagline": "Tap the chill capybara, brew warm yuzu baths, and grow a happy rodent colony!",
+    "description": "Tap your relaxed capybara in warm hot springs to harvest friends. Unlock guinea pig buddies, cedar tubs, and sunny citrus groves. Dress your capybara in cute yuzu hats and shades. Enjoy cozy idle clicking with zero downloads right in your browser!",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/capybara-clicker/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "58.4K",
+    "badge": "🍊 Viral Idle",
+    "thumbnailUrl": "/assets/thumbnails/thumb-capybara-clicker.svg",
+    "featured": true,
+    "tags": [
+      "Capybara Clicker",
+      "Clicker",
+      "Idle",
+      "Pets",
+      "Capybara",
+      "Animals"
+    ],
+    "controls": {
+      "desktop": [
+        "Left Click: Tap capybara to earn capybaras",
+        "Friends Tab: Buy passive idle helpers and hot spring tubs",
+        "Upgrades Tab: Purchase click multipliers",
+        "Wardrobe Tab: Equip unlocked hats and costumes"
+      ],
+      "mobile": [
+        "Tap Capybara: Quick thumb taps to harvest friends",
+        "Shop Drawer: Scroll and tap to purchase helpers and upgrades",
+        "Weather Button: Toggle sunny, cherry blossom, or golden mist"
+      ]
+    },
+    "features": [
+      "Authentic Capybara Clicker Idle Progression with Geometric Cost Scaling",
+      "6 Tier Passive Producers: Guinea Pigs, Yuzu Baths, Groves, and Sun Sanctuaries",
+      "4 Click Multiplier Upgrades & 5 Collectible Capybara Outfits",
+      "Dynamic Weather Engine: Sunny Meadows, Sakura Blossom Rain, and Golden Hour",
+      "Procedural Pentatonic Marimba Sound Synthesis & Haptic Tap Feedback",
+      "Automatic LocalStorage Save & 2-Hour Offline Welcome-Back Bonus",
+      "100% Free Browser Play with Zero Ads or Downloads"
+    ],
+    "metaTitle": "Capybara Clicker: Cozy Farm Tap Idle Game | No Download",
+    "metaDescription": "Tap the giant cute capybara to multiply citrus harvest. Unlock cozy guinea pig helpers, onsen baths, and golden weather. Free online idle clicker."
+  },
+  {
+    "id": "duck-training-champion",
+    "slug": "duck-life",
+    "title": "Duck Life: Train & Race 🦆🏅",
+    "tagline": "Train your duckling in running, flying, and swimming to win championship races!",
+    "description": "Train your little duckling to become a racing champion. Leap over hay bales in running drills, dodge tree branches in flight practice, and dive for coins in the pond. Feed energy seeds to boost stamina, then enter championship tournaments!",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/duck-life/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "47.9K",
+    "badge": "🦆 Training Sim",
+    "thumbnailUrl": "/assets/thumbnails/thumb-duck-life.svg",
+    "featured": true,
+    "tags": [
+      "Duck Life",
+      "Pet Simulator",
+      "Training",
+      "Racing",
+      "Animals"
+    ],
+    "controls": {
+      "desktop": [
+        "Spacebar or Up Arrow: Jump hurdles, flap wings, and dive underwater",
+        "Spacebar during Races: Trigger energy speed burst",
+        "Top Buttons: Visit the Boutique for stylish hats and energy snacks",
+        "M Key: Toggle duck quack vocalizations and athletic sounds"
+      ],
+      "mobile": [
+        "Touch Action Button: Tap to jump, flap wings, dive, or boost",
+        "Training Cards: Tap Running, Flying, or Swimming to begin training",
+        "Boutique: Spend race coins on athletic headbands, caps, and crowns"
+      ]
+    },
+    "features": [
+      "3 Distinct Athletic Training Mini-Games: Hurdle Sprint, Sky Glider, and River Diver",
+      "RPG Skill Progression System with Dynamic Leveling (Running, Flying, Swimming, Energy)",
+      "Olympic Championship Races with 4-Lane Track Stadium and Finish Line Ribbons",
+      "Duck Boutique with 6 Collectible Hats and Energy Stamina Snacks",
+      "Procedural Web Audio Engine with Dual Formant Duck Quacks and Fanfares",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Duck Life Online: Train & Race Duckling Game | No Download",
+    "metaDescription": "Train your duck in running, flying, and swimming mini-games. Feed energy seeds, buy cool hats, and win the championship trophy. Free with no download."
+  },
+  {
+    "id": "barnyard-ninja-chick",
+    "slug": "vex-5",
+    "title": "Vex 5: Ninja Chick 🥷🐥",
+    "tagline": "Run, slide, wall-jump, and dodge deadly buzzsaws across fast parkour courses!",
+    "description": "Guide a nimble ninja chick through brutal obstacle courses. Wall-jump between narrow wooden shafts, slide under spinning buzzsaws, and time your leaps across falling platforms. Hit checkpoints to save your run and beat every fast-paced act!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "puzzle",
+      "pets"
+    ],
+    "route": "/games/vex-5/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "52.7K",
+    "badge": "🥷 Parkour",
+    "thumbnailUrl": "/assets/thumbnails/thumb-vex-5.svg",
+    "featured": true,
+    "tags": [
+      "Vex",
+      "Platformer",
+      "Ninja",
+      "Parkour",
+      "Speedrun"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D or Left/Right Arrow Keys: Run left and right",
+        "W, Up Arrow, or Spacebar: Jump and wall-jump off surfaces",
+        "S or Down Arrow: Slide under low obstacles",
+        "R Key: Quick restart current act",
+        "M Key: Toggle ninja sound effects"
+      ],
+      "mobile": [
+        "Left & Right Arrows: Run across wooden platforms",
+        "JUMP Button: Leap over spikes and wall-climb vertical shafts",
+        "SLIDE Button: Duck beneath spinning buzzsaw blades"
+      ]
+    },
+    "features": [
+      "Precision 2D Platformer Physics with Coyote Time and Jump Buffering",
+      "Acrobatic Wall-Jumping and Sliding Mechanics across Vertical Shafts",
+      "3 Handcrafted Silo Acts: Lower Barn Loft, Windmill Cogs, and Silo Pinnacle",
+      "Rotating Buzzsaws, Floor Spikes, Bouncy Hay Trampolines, and Checkpoints",
+      "Procedural Web Audio Engine with Crisp Ninja Jumps and Victory Fanfares",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Vex 5 Online: Ninja Chick Platformer Game | No Download",
+    "metaDescription": "Run, jump, slide, and wall-kick through intense obstacle courses. Dodge sharp buzzsaws and spikes across fast levels. Free online with no download."
+  },
+  {
+    "id": "pyramid-solitaire-harvest",
+    "slug": "pyramid-solitaire",
+    "title": "Pyramid Solitaire: Harvest Cards 🌾🃏",
+    "tagline": "Pair cards that add up to 13 to clear the harvest pyramid before the deck runs out!",
+    "description": "Clear the 28-card harvest pyramid by pairing exposed cards that sum up to 13. Kings discard on their own, while queens pair with aces and jacks pair with twos. Draw cards from the stock deck and clear the board to win bonus crowns!",
+    "category": "farm",
+    "categories": [
+      "farm",
+      "puzzle",
+      "arcade"
+    ],
+    "route": "/games/pyramid-solitaire/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "61.4K",
+    "badge": "🃏 Classic Cards",
+    "thumbnailUrl": "/assets/thumbnails/thumb-pyramid-solitaire.svg",
+    "featured": true,
+    "tags": [
+      "Pyramid Solitaire",
+      "Solitaire",
+      "Card Games",
+      "Patience",
+      "Puzzle",
+      "Harvest",
+      "Farm"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse Click / Pointer: Select uncovered card or draw from deck",
+        "💡 Hint Button: Highlight an available pair summing to 13",
+        "R Key: Deal a fresh pyramid solitaire hand",
+        "M Key: Toggle card flip sound effects"
+      ],
+      "mobile": [
+        "Tap Cards: Select open cards to pair and clear them",
+        "Tap Stock: Draw next card into waste pile",
+        "💡 Hint: Highlight matching card pairs"
+      ]
+    },
+    "features": [
+      "Classic 28-Card 7-Row Solitaire Pyramid with Uncovered Card Logic",
+      "True Sum-to-13 Matching: King Solo, Queen+Ace, Jack+2, 10+3, and 9+4",
+      "Stock Deck with Waste Pile and 2 Generous Table Redeals",
+      "Smart Solver Hint Tool and Combo Streak Score Multipliers",
+      "100% Procedural Native Canvas Card Graphics with High-Contrast Rank Badges",
+      "Single-Screen Zero-Scroll Viewport and Zero Downloads Required"
+    ],
+    "metaTitle": "Pyramid Solitaire Online: Classic Harvest Cards | No Download",
+    "metaDescription": "Pair cards that sum up to 13 to dismantle the harvest pyramid. Clear the deck using kings and open cards. Free online card game with no download."
+  },
+  {
+    "id": "frozen-pasture-dash",
+    "slug": "ice-dodo",
+    "title": "Ice Dodo: Frozen Pasture Dash 🦤❄️",
+    "tagline": "Carve across narrow ice tracks, hit turbo boost pads, and dodge winter barriers!",
+    "description": "Skate a brave dodo across winding ice tracks suspended in the winter sky. Lean into fast curves, jump across deep crevasses, and blast through turbo boost pads. Avoid red snow barriers and guide your dodo safely to the checkered flag!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/ice-dodo/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "44.8K",
+    "badge": "🦤 3D Runner",
+    "thumbnailUrl": "/assets/thumbnails/thumb-ice-dodo.svg",
+    "featured": true,
+    "tags": [
+      "Ice Dodo",
+      "Dodo",
+      "Ice Runner",
+      "Speed Runner",
+      "Arcade",
+      "Glacier",
+      "Pets"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse Drag / Pointer: Steer skater dodo laterally across the ice",
+        "Arrow Keys Left / Right: Alternative precise lateral steering",
+        "Spacebar / Up Arrow: Jump over deep ice chasms and cones",
+        "R Key: Quick restart glacial downhill run",
+        "M Key: Toggle ice skate carving sounds"
+      ],
+      "mobile": [
+        "Touch & Drag: Steer dodo across ice runway",
+        "JUMP Button: Hop into the air over chasms",
+        "Restart Button: Reset current track anytime"
+      ]
+    },
+    "features": [
+      "High-Speed 2.5D Glacial Track Engine with Perspective Depth Scaling",
+      "Realistic Ice Skating Carve Inertia and Dynamic Body Lean Tilt",
+      "Green Speed Booster Slingshot Pads for Explosive Acceleration",
+      "Wooden Ski-Jump Ramps to Soar Over Bottomless Glacial Crevasses",
+      "Collectible Frost Berries that Unlock Protective Crystal Shield Bubbles",
+      "Three Progressively Demanding Alpine Tracks with Instant Zero-Scroll Restart"
+    ],
+    "metaTitle": "Ice Dodo Online: Frozen Track 3D Dash Game | No Download",
+    "metaDescription": "Guide your dodo across floating ice platforms at high velocity. Steer with precise skate drift to dodge barriers. Free online reflex game with no download."
+  },
+  {
+    "id": "barnyard-spot-difference",
+    "slug": "spot-the-difference",
+    "title": "Spot the Difference: Detective 🔍🚜",
+    "tagline": "Examine two side-by-side farm scenes and find 5 hidden differences before time expires!",
+    "description": "Test your sharp eyes on charming country farm pictures. Compare two side-by-side scenes and tap all 5 subtle differences before the clock ticks down. Look closely at tractor paint, barn weather vanes, and grazing sheep to earn 3 golden stars!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/spot-the-difference/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "58.3K",
+    "badge": "🔍 Puzzle",
+    "thumbnailUrl": "/assets/thumbnails/thumb-spot-the-difference.svg",
+    "featured": true,
+    "tags": [
+      "Spot the Difference",
+      "Find the Difference",
+      "Differences",
+      "Puzzle",
+      "Observation",
+      "Detective",
+      "Farm"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse / Pointer Click: Tap anywhere on either photo where you spot a difference",
+        "💡 Hint Button: Highlight the exact location of a tricky difference",
+        "R Key: Quick restart current pastoral scene",
+        "M Key: Toggle sparkling chime and buzzer sounds"
+      ],
+      "mobile": [
+        "Tap Differences: Tap on either photo to circle a difference",
+        "💡 Hint Button: Reveal hard-to-find changes",
+        "3 Lives: Avoid random misclicks to protect your hearts"
+      ]
+    },
+    "features": [
+      "Handcrafted Procedural Vector Countryside Scenes Rendered Natively on Canvas",
+      "Instant Dual-Image Tap Registration Allowing Detection on Either Photo",
+      "Sparkling Gold Reward Circles and Misclick Protection Life Hearts",
+      "Helpful Magnifying Glass Clue Tool for Tough Clues",
+      "Three Progressively Intricate Scenes Featuring Barns, Orchards, and Duck Ponds",
+      "Zero Downloads Required and Single-Screen Zero-Scroll Layout"
+    ],
+    "metaTitle": "Spot the Difference Online: Find 5 Farm Clues | No Download",
+    "metaDescription": "Spot 5 subtle differences between twin pictures before time runs out. Tap discrepancies to score points. Free visual puzzle game with no download."
+  },
+  {
+    "id": "barnyard-truck-jumper",
+    "slug": "cluster-rush",
+    "title": "Cluster Rush: Truck Jumper 🐐🚛",
+    "tagline": "Leap across speeding truck roofs, slide under road signs, and survive the convoy!",
+    "description": "Sprint and jump along the roofs of speeding cargo trucks. Time your leaps between moving trailers, use double jumps in mid-air, and slide under low highway signs. Keep your balance above the pavement and reach the convoy finish line safely!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/cluster-rush/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "46.3K",
+    "badge": "🚛 Convoy Parkour",
+    "thumbnailUrl": "/assets/thumbnails/thumb-cluster-rush.svg",
+    "featured": true,
+    "tags": [
+      "Cluster Rush",
+      "Truck Jumper",
+      "Parkour",
+      "Runner",
+      "Highway",
+      "Arcade"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D or Left/Right Arrow Keys: Strafe across highway lanes",
+        "Spacebar, W, or Up Arrow: Jump and double jump in mid-air",
+        "S or Down Arrow: Slide flat under low overhead signs",
+        "R Key: Quick restart convoy run",
+        "M Key: Toggle highway sounds"
+      ],
+      "mobile": [
+        "STRAFE Buttons: Move between highway lanes",
+        "JUMP Button: Leap across truck gaps and double jump",
+        "SLIDE Button: Duck under low clearance signboards"
+      ]
+    },
+    "features": [
+      "Dynamic 2.5D Highway Perspective with Moving Multi-Lane Convoy Trucks",
+      "Acrobatic Jump & Double Jump Physics with Roof Impact Feedback",
+      "Low Overhead Highway Signs and Clearance Sliding Mechanics",
+      "Roof-to-Roof Combo Multiplier System and Gold Clover Collectibles",
+      "3 Handcrafted Highway Convoys: Route 66, Canyon Switchback, and Interstate Storm",
+      "100% Free Instant Browser Play with No Download or Install Required"
+    ],
+    "metaTitle": "Cluster Rush Online: Truck Jumper Parkour Game | No Download",
+    "metaDescription": "Leap across moving truck roofs in high-speed highway convoy parkour. Double-jump and slide under road signs without falling. Free with no download."
+  },
+  {
+    "id": "barnyard-roof-duel",
+    "slug": "rooftop-snipers",
+    "title": "Rooftop Snipers: Roof Duel 🐓🦊",
+    "tagline": "Floppy two-button ragdoll duel! Jump and fire your rifle to knock rivals off the roof!",
+    "description": "Face off on high barn roofs in a chaotic ragdoll duel. Tap to jump and hold to tilt your rifle before firing. Use bullet recoil to hop backwards and blast your rival off the shingles. Play against smart computer rivals or challenge a friend!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/rooftop-snipers/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "49.1K",
+    "badge": "🔫 2-Player Ragdoll",
+    "thumbnailUrl": "/assets/thumbnails/thumb-rooftop-snipers.svg",
+    "featured": true,
+    "tags": [
+      "Rooftop Snipers",
+      "Ragdoll",
+      "2 Player",
+      "Duel",
+      "Shooter",
+      "Arcade",
+      "Physics"
+    ],
+    "controls": {
+      "desktop": [
+        "P1 Controls: W Key to Jump, E Key or Spacebar to Shoot",
+        "P2 Controls: Up Arrow to Jump, Down Arrow or Enter to Shoot",
+        "Map Buttons: Select Red Barn, Windmill, or Silo Catwalk",
+        "R Key: Quick restart duel round",
+        "M Key: Toggle rifle pops and ricochet chimes"
+      ],
+      "mobile": [
+        "P1: Left Green JUMP and Orange SHOOT touch buttons",
+        "P2: Right Indigo JUMP and Orange SHOOT touch buttons (2P mode)",
+        "Mode Toggle: Switch between VS AI and 2-Player Local at top"
+      ]
+    },
+    "features": [
+      "Authentic Floppy Ragdoll Physics with Kinetic Bullet Recoil and Stumble Spins",
+      "Both Single-Player VS AI and Two-Player Local Same-Screen Multiplayer Modes",
+      "Three Dynamic Barnyard Rooftop Battlegrounds Including Rotating Windmills",
+      "First to 5 Points Tournament Match Structure with Instant Zero-Scroll Restart",
+      "Bullet Ricochets Off Cedar Shingles and Metal Silo Domes",
+      "Zero Downloads Required and Responsive Mobile Touch-Optimized Layout"
+    ],
+    "metaTitle": "Rooftop Snipers Online: 2-Player Physics Duel | No Download",
+    "metaDescription": "Jump and shoot with floppy ragdoll physics to knock your rival off the barn roof. Play solo against AI or with a friend locally. Free with no download."
+  },
+  {
+    "id": "tiny-pig-big-tower",
+    "slug": "big-tower-tiny-square",
+    "title": "Big Tower Tiny Square: Tiny Pig 🐷🗼",
+    "tagline": "Climb a giant puzzle silo, dodge neon laser grids, and rescue the Golden Acorn!",
+    "description": "Guide a determined tiny piglet up an enormous silo tower. Wall-kick across narrow shafts, dodge glowing laser grids, and bounce on springy grain bags. Precision jumps and responsive controls help you conquer every challenging floor!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "puzzle",
+      "pets"
+    ],
+    "route": "/games/big-tower-tiny-square/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "41.2K",
+    "badge": "🐷 Tower Climb",
+    "thumbnailUrl": "/assets/thumbnails/thumb-big-tower-tiny-square.svg",
+    "featured": true,
+    "tags": [
+      "Big Tower Tiny Square",
+      "Tiny Square",
+      "Platformer",
+      "Wall Jump",
+      "Parkour",
+      "Pig"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D or Left/Right Arrow Keys: Move left and right across platforms",
+        "Spacebar, W, or Up Arrow: Jump and wall-kick off surfaces",
+        "R Key: Quick respawn at active checkpoint flagpole",
+        "M Key: Toggle tower audio effects"
+      ],
+      "mobile": [
+        "LEFT / RIGHT Buttons: Run across platforms",
+        "JUMP Button: Leap across hazards and kick off walls"
+      ]
+    },
+    "features": [
+      "Single Seamless Vertical Silo Mega-Tower with Zero Loading Screens",
+      "Momentum-Based Precision Wall-Sliding and Wall-Kicking Physics",
+      "Interactive Obstacles: Moving Lasers, Hot Syrup Lava, and Crumbling Hay",
+      "Generous Instant-Respawn Checkpoint Flagpoles (Zero Reload Delay)",
+      "Procedural Web Audio Engine with Crisp Squeaks, Wall Pops, and Fanfares",
+      "100% Free Instant Browser Play with No Download or Install Required"
+    ],
+    "metaTitle": "Big Tower Tiny Square Online: Giant Tower Climb | No Download",
+    "metaDescription": "Climb a giant puzzle tower with a tiny piggy. Wall-jump past laser beams and bounce on trampolines to reach the summit. Free with no download."
+  },
+  {
+    "id": "barnyard-stealth-fox",
+    "slug": "bob-the-robber",
+    "title": "Bob the Robber: Stealth Fox 🦊🕶️",
+    "tagline": "Sneak past guard dogs, hide in shadows, cut laser beams, and unlock county safes!",
+    "description": "Slip into heavily guarded farmhouses as a sneaky masked fox. Creep past snoozing guard dogs, hide in dark doorways, and cut security wires. Unlock hidden safes, collect shiny loot, and sneak away cleanly without sounding the alarm bell!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "arcade",
+      "pets"
+    ],
+    "route": "/games/bob-the-robber/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "44.8K",
+    "badge": "🕶️ Stealth Heist",
+    "thumbnailUrl": "/assets/thumbnails/thumb-bob-the-robber.svg",
+    "featured": true,
+    "tags": [
+      "Bob the Robber",
+      "Stealth",
+      "Heist",
+      "Puzzle",
+      "Fox",
+      "Escape"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D or Arrow Keys: Sneak left and right across timber floors",
+        "W / S or Up / Down Keys: Climb wooden ladders between floors",
+        "S or Down Arrow in doorway: Duck into shadows to hide from guards",
+        "Spacebar or E: Pick locks or strike guards from behind",
+        "R Key: Quick restart current heist level",
+        "M Key: Toggle stealth audio and sirens"
+      ],
+      "mobile": [
+        "Arrow Pad: Sneak horizontally or climb up and down ladders",
+        "HIDE Button: Duck into shadow doorways and haystacks",
+        "ACTION Button: Pick door locks and knock out guards"
+      ]
+    },
+    "features": [
+      "Dynamic Guard AI with Flashlight Vision Cones and Snoozing Patrols",
+      "Shadow Stealth System: Hide in doorways and haystacks to vanish from sight",
+      "Multi-Floor Barn Levels with Wooden Climbing Ladders and Laser Tripwires",
+      "Interactive Lockpicking, Key Collecting, and Master Safe Cracking",
+      "Procedural Web Audio Engine with Sneak Footsteps and Blaring Sirens",
+      "100% Free Instant Browser Play with No Download or Install Required"
+    ],
+    "metaTitle": "Bob the Robber Online: Stealth Fox Heist Game | No Download",
+    "metaDescription": "Sneak into guarded barns, hide in shadows, cut security lasers, and unlock safes. Outsmart guard dogs in this stealth puzzle. Free with no download."
+  },
+  {
+    "id": "tractor-stunt-trials",
+    "slug": "moto-x3m",
+    "title": "Moto X3M: Stunt Trials 🚜💥",
+    "tagline": "Perform 360-degree backflips, blast over ramps, and beat the clock on wild stunt tracks!",
+    "description": "Race a souped-up farm vehicle across thrilling stunt tracks. Launch off steep wooden ramps, spin full 360 flips in mid-air, and land cleanly to shave seconds off your clock. Beat tricky spike pits and water hazards to claim 3 gold stars!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/moto-x3m/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "48.9K",
+    "badge": "🚜 Stunt Trials",
+    "thumbnailUrl": "/assets/thumbnails/thumb-moto-x3m.svg",
+    "featured": true,
+    "tags": [
+      "Moto X3M",
+      "Stunts",
+      "Tractor",
+      "Physics",
+      "Trials",
+      "Racing"
+    ],
+    "controls": {
+      "desktop": [
+        "W or Up Arrow: Accelerate drive wheels",
+        "S or Down Arrow: Brake and reverse",
+        "A or Left Arrow: Tilt tractor backward (backflip)",
+        "D or Right Arrow: Tilt tractor forward (frontflip)",
+        "R Key: Quick restart from active checkpoint",
+        "M Key: Toggle procedural engine audio"
+      ],
+      "mobile": [
+        "TILT LEFT / RIGHT Buttons: Lean backward or forward in air",
+        "GAS / BRAKE Buttons: Throttle forward and stop quickly"
+      ]
+    },
+    "features": [
+      "2D Spring-Damper Suspension Physics with Realistic Chassis Inertia",
+      "Airborne Stunt System: Land 360-degree flips for -0.5s time deductions",
+      "3 Handcrafted Stunt Courses: Pasture Meadows, Timber Bridge, and Barnyard Rooftops",
+      "Interactive Hazards: Splash Ponds, High Springboards, Speed Boosters, and TNT Bales",
+      "Scarecrow Checkpoint System and 3-Star Time Trial Ratings",
+      "100% Free Instant Browser Play with No Download or Install Required"
+    ],
+    "metaTitle": "Moto X3M Online: Tractor Stunt Trials Bike Game | No Download",
+    "metaDescription": "Speed across crazy stunt loops, launch off ramps, and perform 360 flips without crashing. Race against the timer. Free with no download."
+  },
+  {
+    "id": "barnyard-horse-derby",
+    "slug": "horse-racing",
+    "title": "Horse Racing: Barnyard Derby 🐎🏆",
+    "tagline": "Gallop down the racetrack, time steeplechase jumps, and win the championship cup!",
+    "description": "Gallop your thoroughbred down scenic pasture tracks. Switch between three race lanes, time your jumps over wooden hurdles, and collect golden horseshoes for speed boosts. Outpace rival horses to win trophies across three prestigious derby cups!",
+    "category": "farm",
+    "categories": [
+      "farm",
+      "pets",
+      "arcade"
+    ],
+    "route": "/games/horse-racing/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "64.2K",
+    "badge": "🐎 Horse Racing",
+    "thumbnailUrl": "/assets/thumbnails/thumb-horse-racing.svg",
+    "featured": true,
+    "tags": [
+      "Horse Racing Game",
+      "Horse Games",
+      "Derby",
+      "Steeplechase",
+      "Hurdles",
+      "Farm",
+      "Pets",
+      "Arcade"
+    ],
+    "controls": {
+      "desktop": [
+        "Spacebar / Right Arrow: Jump over steeplechase hurdles",
+        "Up / Down Arrows (W / S): Switch between running lanes",
+        "R Key: Quick restart race track",
+        "M Key: Toggle gallop and bugle sounds"
+      ],
+      "mobile": [
+        "🐎 JUMP Button: Jump over hurdles and water hazards",
+        "⬆️ / ⬇️ Buttons: Switch turf lanes to dodge obstacles",
+        "Collectibles: Steer into carrots and horseshoes"
+      ]
+    },
+    "features": [
+      "3-Lane Steeplechase Racing with Smooth Vertical Lane Transitions",
+      "Parabolic Jump Physics with Precision Timing Grades (OK, Great, Perfect)",
+      "Real-Time Stamina Management and Turbo Speed Boost Surges",
+      "Three Unique Derby Cups: Green Meadow, Autumn Pasture, and Sunset Derby",
+      "Procedural Web Audio with Hoof Gallops, Whinnies, and Bugle Fanfares",
+      "Single-Screen Zero-Scroll Viewport and Zero Downloads Required"
+    ],
+    "metaTitle": "Horse Racing Game Online: Barnyard Derby Sprint | No Download",
+    "metaDescription": "Steer your thoroughbred, time hurdle jumps over wooden fences, and collect golden horseshoes. Win the 3-cup tournament. Free with no download."
+  },
+  {
+    "id": "farm-mahjong-connect",
+    "slug": "mahjong-connect",
+    "title": "Mahjong Connect: Farm Crop Link 🧩🌽",
+    "tagline": "Link matching crop and animal tiles with paths of two turns or fewer before time runs out!",
+    "description": "Connect matching farm tiles across a dense grid of crops and friendly critters. Draw link paths with no more than two right-angle turns to clear tiles from the board. Use helpful hints and shuffles to solve four challenging garden stages!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/mahjong-connect/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "56.7K",
+    "badge": "🌽 Mahjong Link",
+    "thumbnailUrl": "/assets/thumbnails/thumb-mahjong-connect.svg",
+    "featured": true,
+    "tags": [
+      "Mahjong Connect",
+      "Link Mahjong",
+      "Onet",
+      "Connect 2",
+      "Tile Matching",
+      "Puzzle",
+      "Farm"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse Click / Pointer: Select crop tiles and connect matching pairs",
+        "💡 Hint Button (H Key): Highlight an available pair connection",
+        "🔀 Shuffle Button (S Key): Mix remaining tiles",
+        "R Key: Reset current level board",
+        "M Key: Toggle bamboo tap and match sounds"
+      ],
+      "mobile": [
+        "Tap Tiles: Select and link matching farm crops",
+        "💡 Hint: Spot open tile connections",
+        "🔀 Shuffle: Rearrange blocked tiles"
+      ]
+    },
+    "features": [
+      "Classic Mahjong Connect 2-Turn Pathfinding (Straight, 1-Turn, and 2-Turn Links)",
+      "Outer Border Path Travel Allowing Free Perimeter Connections",
+      "Four Progressive Levels with Fall-Down and Slide-Left Tile Gravity Mechanics",
+      "Dynamic Time Bonuses (+5s Per Match) and Integrated Hint & Shuffle Tools",
+      "100% Native Procedural Audio Synthesizer (Bamboo Taps, Chimes, and Fanfare)",
+      "Single-Screen Zero-Scroll Viewport and Zero Downloads Required"
+    ],
+    "metaTitle": "Mahjong Connect Online: Farm Tile Link Game | No Download",
+    "metaDescription": "Link matching crop and animal tiles with a path of no more than two 90-degree turns. Clear the grid before time expires. Free with no download."
+  },
+  {
+    "id": "sushi-kitty-pachinko",
+    "slug": "sushi-cat",
+    "title": "Sushi Cat: Kitty Pachinko Feast 🍣🐱",
+    "tagline": "Drop a round bouncy kitty through pegs, gobble sushi rolls, and land in high-point baskets!",
+    "description": "Aim and drop a chubby kitty down a vibrant pachinko board. Bounce off pegs, gobble fresh sushi rolls to swell your belly, and land in bonus point baskets. Fill the tummy meter to complete each level and unlock tasty culinary delights!",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "arcade",
+      "puzzle"
+    ],
+    "route": "/games/sushi-cat/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "31.2K",
+    "badge": "🍣 Pachinko Drop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-sushi-cat.svg",
+    "featured": true,
+    "tags": [
+      "Sushi Cat",
+      "Sushi Kitty",
+      "Pachinko",
+      "Cat Games",
+      "Plinko",
+      "Arcade",
+      "Pets"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse Drag / Pointer: Slide top dropper horizontally",
+        "Spacebar / Left Click / DROP Button: Drop bouncy kitten",
+        "Arrow Keys Left / Right: Fine-tune dropper aim",
+        "R Key: Quick restart current sushi stage",
+        "M Key: Toggle melodic pin and chomp sounds"
+      ],
+      "mobile": [
+        "Touch & Drag Top Slider: Aim dropper position across board",
+        "DROP Button: Launch bouncy kitten down pegboard",
+        "Restart Button: Reset current stage anytime"
+      ]
+    },
+    "features": [
+      "Authentic Pachinko Peg Physics with Elastic Bumper Bounce Boosts",
+      "Dynamic Cat Swelling Engine as Kitty Consumes Floating Sushi Platters",
+      "Multiple Sushi Delicacies Including Nigiri, Nori Maki, Tuna Sashimi, and Golden Rolls",
+      "Five Multiplier Lacquer Score Baskets at the Board Base",
+      "Three Progressively Challenging Stages with Moving Sushi Platters",
+      "Zero Downloads Required and Instant Single-Screen Mobile Touch Controls"
+    ],
+    "metaTitle": "Sushi Cat Online: Kitty Pachinko Feast Drop Game | No Download",
+    "metaDescription": "Drop a round hungry cat through pegs, collect tasty sushi pieces to fatten up, and land in bonus point baskets. Free online with no download."
+  },
+  {
+    "id": "penguin-pasture-diner",
+    "slug": "penguin-diner",
+    "title": "Penguin Diner: Arctic Cafe 🐧🍨",
+    "tagline": "Seat hungry penguin guests, take orders, serve fish dishes, and upgrade your diner!",
+    "description": "Run a bustling ice cafe with Penny the penguin waitress. Seat hungry animal guests, take food orders, serve hot fish platters, and collect cash tips. Reinvest your daily earnings in faster roller skates and cozy booth upgrades!",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/penguin-diner/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "52.4K",
+    "badge": "🐧 Diner Tycoon",
+    "thumbnailUrl": "/assets/thumbnails/thumb-penguin-diner.svg",
+    "featured": true,
+    "tags": [
+      "Penguin Diner",
+      "Penguin",
+      "Diner",
+      "Restaurant",
+      "Tycoon",
+      "Time Management",
+      "Pets"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse / Pointer Click: Select waiting guests, tables, and kitchen counter",
+        "R Key: Quick restart current restaurant shift",
+        "M Key: Toggle order bells and register ka-chings"
+      ],
+      "mobile": [
+        "Tap Guest at Door -> Tap Empty Table to seat customer",
+        "Tap Table with Bell -> Sends order ticket to chef station",
+        "Tap Kitchen Counter -> Tap Table to serve meal and collect tips"
+      ]
+    },
+    "features": [
+      "Authentic Restaurant Time-Management Tycoon Loop with Multi-Table Service",
+      "Charming Animal Customer Species Including Polar Bears, Seals, and Penguins",
+      "Dynamic Kitchen Cooking Station with Active Preparation Timers",
+      "In-Game Diner Upgrade Catalog Featuring Speed Skates and Plush Booths",
+      "Three Progressively Demanding Daily Shifts with Tip Target Quotas",
+      "Instant Zero-Scroll Single-Screen Responsive Layout for Mobile and Desktop"
+    ],
+    "metaTitle": "Penguin Diner Online: Arctic Restaurant Tycoon | No Download",
+    "metaDescription": "Seat hungry animal guests, take orders, serve fresh dishes, and collect tips to upgrade your diner. Fast-paced restaurant sim with no download."
+  },
+  {
+    "id": "virtual-puppy-pet",
+    "slug": "virtual-pet",
+    "title": "Virtual Pet: Puppy Care 🐶🍼",
+    "tagline": "Feed, bathe, play fetch, and care for an adorable corgi puppy in your browser!",
+    "description": "Adopt and care for a cheerful corgi puppy. Feed crunchy kibble and bone treats, wash off garden mud with warm soapy suds, and toss tennis balls for backyard fetch. Keep your puppy happy and healthy across four caring daily activities!",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/virtual-pet/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "54.8K",
+    "badge": "🐶 Virtual Pet",
+    "thumbnailUrl": "/assets/thumbnails/thumb-virtual-pet.svg",
+    "featured": true,
+    "tags": [
+      "Virtual Pet",
+      "Puppy Games",
+      "Pet Care",
+      "Dog Games",
+      "Tamagotchi",
+      "Puppy",
+      "Pets"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse Click / Pointer: Tap care buttons to feed, wash, and throw balls",
+        "Click Puppy: Pat your pup to wag his tail and show love",
+        "M Key: Toggle happy puppy yips and squeak sounds"
+      ],
+      "mobile": [
+        "Tap Care Buttons: Feed, soap, rinse, and toss tennis balls",
+        "Tap Puppy: Pat your puppy to boost happiness",
+        "🎀 Wardrobe: Equip unlocked collars and hats"
+      ]
+    },
+    "features": [
+      "Four Dynamic Pet Care Pillars: Hunger, Hygiene, Happiness, and Energy",
+      "Interactive Backyard Ball Physics with Live Tennis Ball Retrieval",
+      "Bathing Mini-Action with Responsive Foam Bubbles and Shower Rinse",
+      "Puppy Friendship Level Progression (Level 1 to 10) with Bone Rewards",
+      "Unlockable Pet Accessories (Red Bandana, Bell Collar, Detective Hat)",
+      "Single-Screen Zero-Scroll Viewport and Zero Downloads Required"
+    ],
+    "metaTitle": "Virtual Pet Online: Cozy Puppy Care Pet Game | No Download",
+    "metaDescription": "Adopt and care for an adorable corgi puppy. Feed kibble, play tennis ball fetch, wash in warm bubbles, and tuck into bed. Free with no download."
+  },
+  {
+    "id": "duckling-pond-rescue",
+    "slug": "ducklings-io",
+    "title": "Ducklings.io: Pond Rescue 🦆🌾",
+    "tagline": "Rescue lost yellow ducklings, dodge speeding motorboats, and lead your brood home!",
+    "description": "Paddle across a busy pond as Mama Duck. Rescue lost baby ducklings and lead them in a trailing follow-the-leader chain behind you. Dodge fast motorboats and delivery rafts, then guide your duckling family safely home to expand your nest!",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/ducklings-io/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "38.5K",
+    "badge": "🦆 Pond Rescue",
+    "thumbnailUrl": "/assets/thumbnails/thumb-ducklings-io.svg",
+    "featured": true,
+    "tags": [
+      "Ducklings.io",
+      "Ducklings",
+      "Duck",
+      "Pond",
+      "Sanctuary",
+      "Pets",
+      "Tycoon"
+    ],
+    "controls": {
+      "desktop": [
+        "Pointer / Mouse Drag: Steer Mama Duck across the pond water",
+        "WASD or Arrow Keys: Alternative keyboard swimming control",
+        "Spacebar: Engage paddle turbo boost",
+        "R Key: Quick restart pond rescue wave",
+        "M Key: Toggle pond chimes and duck quacks"
+      ],
+      "mobile": [
+        "Touch & Drag: Steer Mama Duck anywhere on screen",
+        "TURBO Button: Activate fast swimming boost"
+      ]
+    },
+    "features": [
+      "Follow-the-Leader Duckling Chain Physics with Smooth Wake Waves",
+      "Pond Navigation with Dynamic Rowboat Traffic and Basking Turtles",
+      "Reeds Nest Upgrade Progression: Level 1 Reed Bowl to Level 5 Straw Castle",
+      "Collectible Cosmetic Hats: Flower Crowns, Straw Sunhats, and Golden Crowns",
+      "Procedural Web Audio Engine with Quacks, Baby Peeps, and Water Splashes",
+      "100% Free Instant Browser Play with No Download or Install Required"
+    ],
+    "metaTitle": "Ducklings.io Online: Pond Duckling Rescue Game | No Download",
+    "metaDescription": "Swim across the pond, rescue lost yellow ducklings, dodge speeding boats, and lead your brood back to the nest. Free online with no download."
+  },
+  {
+    "id": "barnyard-frog-hop",
+    "slug": "frog-games",
+    "title": "Frog Games: Barnyard Pond Hop 🐸🪷",
+    "tagline": "Leap across drifting lily pads, snatch buzzing flies with your tongue, and cross the pond!",
+    "description": "Hop Barnaby the green tree frog across drifting river logs, avoid sinking pink water lilies, and flick your sticky tongue to catch buzzing flies. Beat Sunny Duck Pond, Misty Marsh, and Sunset Lagoon with zero downloads in this fun casual frog game!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/frog-games/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "51.2K",
+    "badge": "🐸 Frog Games",
+    "thumbnailUrl": "/assets/thumbnails/thumb-frog-games.svg",
+    "featured": true,
+    "tags": [
+      "Frog Games",
+      "Frog Jump",
+      "Lily Pad",
+      "Arcade",
+      "Reflex",
+      "Animals",
+      "Farm",
+      "Pond"
+    ],
+    "controls": {
+      "desktop": [
+        "Arrow Keys / WASD: Leap up, down, left, or right across pads",
+        "Spacebar: Flick sticky tongue to catch nearby flies",
+        "R Key: Reset current pond crossing",
+        "M Key: Toggle frog croak and water sounds"
+      ],
+      "mobile": [
+        "D-Pad: Leap in four directions",
+        "👅 TONGUE Button: Catch buzzing flies",
+        "Hearts: 3 lives per pond stage"
+      ]
+    },
+    "features": [
+      "Dynamic Parabolic Jump Physics with Moving Pad Snapping and Drift Mechanics",
+      "Sticky Tongue Insect Catching System for Flying Dragonflies and Fireflies",
+      "Multiple Pad Hazards: Sinking Water Lilies and Drifting Wooden River Logs",
+      "Three Progressive Pond Environments: Duck Pond, Misty Marsh, and Sunset Lagoon",
+      "100% Native Procedural Audio Synthesizer (Frog Croaks, Splashes, Tongue Snaps)",
+      "Single-Screen Zero-Scroll Viewport and Zero Downloads Required"
+    ],
+    "metaTitle": "Frog Games Online: Pond Lily Pad Hop & Dash | No Download",
+    "metaDescription": "Hop between floating lily pads, snap up flying dragonflies with your sticky tongue, and avoid sinking. Free arcade hop game with no download."
+  },
+  {
+    "id": "farm-animal-clicker",
+    "slug": "farm-animal-clicker",
+    "title": "Farm Animal Idle Clicker 🐾🌾",
+    "tagline": "Tap cute farm animals, automate barns, catch golden butterflies, and earn millions of coins!",
+    "description": "Play Farm Animal Idle Clicker free online! Tap your favorite pets—from playful Corgis and chill Capybaras to dairy Cows, Hens, and Pigs. Purchase automated barns, silos, and windmills to collect passive idle coins every second. Catch golden butterflies for sudden 7x frenzy rushes, unlock fun festive hats, and switch animals as your barnyard empire grows in this cozy browser clicker game.",
+    "category": "farm",
+    "categories": [
+      "farm",
+      "arcade",
+      "pets"
+    ],
+    "route": "/games/farm-animal-clicker/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "28.4K",
+    "badge": "🔥 Idle Clicker",
+    "thumbnailUrl": "/assets/thumbnails/thumb-farm-animal-clicker.svg",
+    "featured": true,
+    "tags": [
+      "Clicker",
+      "Idle",
+      "Pets",
+      "Capybara",
+      "Farm"
+    ],
+    "controls": {
+      "desktop": [
+        "Left Click or Spacebar: Tap animal to earn coins",
+        "Click Buildings to purchase automated coin generators",
+        "Click Upgrades to multiply your tapping power",
+        "Click Hats to dress your animal for bonus multipliers",
+        "Catch fluttering Golden Butterflies for 7x Frenzy bonuses",
+        "M Key: Toggle sound effects and animal vocalizations"
+      ],
+      "mobile": [
+        "Tap Pet: Tap rapidly with multiple fingers for maximum coins",
+        "Tabs Bar: Switch between Buildings, Upgrades, and Hats",
+        "Pet Strip: Tap any unlocked animal to switch active pets"
+      ]
+    },
+    "features": [
+      "5 Unique Farm Pets: Buster Corgi, Barnaby Capybara, Bessie Cow, Clucky Hen, and Hamlet Pig",
+      "Pure Deterministic Idle Production with Offline Earnings up to 4 Hours",
+      "Dynamic 7x Golden Butterfly Rush Events with Floating Multipliers",
+      "Collectible Hats with Stat Bonuses (Straw Hat, Crown, Chef Toque, Bowtie, Party Cone)",
+      "Procedural Web Audio Synthesizer with Custom Animal Formants and Cha-Ching Chimes",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Farm Animal Idle Clicker 🐾🌾 — Free Online Clicker Game | Pawcade",
+    "metaDescription": "Play Farm Animal Idle Clicker free online! Tap cute pets, buy farm buildings, catch golden butterflies, and unlock fun hats in this cozy idle browser game with no download."
+  },
+  {
+    "id": "farm-mini-mart",
+    "slug": "farm-mini-mart",
+    "title": "Farm Mini Mart: Animal Market 🏪",
+    "tagline": "Harvest fresh crops, stock market shelves, and serve cute animal customers in your own farm mart!",
+    "description": "Welcome to Farm Mini Mart! Run your very own bustling countryside mini mart! Harvest sweet tomatoes, golden corn, fresh eggs, dairy milk, and Halloween pumpkins. Stack items in your hands, stock market shelves, and serve adorable animal customers lining up at your Cash Register. Reinvest profits to expand plots, hire Barnaby the Farmhand Dog, hire a Cashier, and upgrade your speed and carry capacity in this addictive arcade idle tycoon game!",
+    "category": "farm",
+    "categories": [
+      "farm"
+    ],
+    "route": "/games/farm-mini-mart/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "16.8K",
+    "badge": "🔥 Flagship Hit",
+    "thumbnailUrl": "/assets/thumbnails/thumb-farm-mini-mart.svg",
+    "featured": true,
+    "tags": [
+      "Tycoon",
+      "Idle",
+      "Farm",
+      "Market",
+      "Animals"
+    ],
+    "controls": {
+      "desktop": [
+        "WASD or Arrow Keys: Walk & steer the farmer around the mart",
+        "Walk near plots to harvest fresh crops into your stack",
+        "Walk near shelves to unload and restock produce",
+        "Walk to Cash Register to checkout customers and collect coins",
+        "Walk on unlock pads to deposit coins and expand stations",
+        "U Key: Open Shop Upgrades modal",
+        "M Key: Toggle sound mute"
+      ],
+      "mobile": [
+        "Touch & Drag Joystick: 360° fluid thumb steering anywhere on screen",
+        "Automatic Action: Walk up to any plot, shelf, pad or register to trigger",
+        "UPGRADES Button: Upgrade speed, capacity, and hire workers"
+      ]
+    },
+    "features": [
+      "5 Harvest Crops: 🍅 Tomatoes, 🌽 Corn, 🥚 Fresh Eggs, 🥛 Dairy Milk & 🎃 Pumpkins",
+      "Satisfying 3D Stack Mechanics with Physics Sway & Capacity Upgrades",
+      "Cute Animal Customer AI (Bunnies, Cats, Dogs, Bears, Pigs & Casper Ghost)",
+      "Cash Register Counter Checkout with Gold Coin Drops & \"Ka-Ching!\" Chimes",
+      "Autonomous Farmhand Helper Dog 🐶 & Automated Cashier Worker 🧑‍💼",
+      "Fluid Touch 360° Floating Joystick & Responsive 60 FPS Canvas 2D Engine",
+      "Local Progress Save & 100% Free Instant Play with Zero Ads"
+    ],
+    "metaTitle": "Idle Tycoon Game Online — Farm Mini Mart | Pawcade",
+    "metaDescription": "Play Farm Mini Mart free in your browser! Harvest crops, stock shelves, serve cute animal customers, and expand your countryside mini mart in this fun arcade tycoon game."
+  },
+  {
+    "id": "farm-block-blast",
+    "slug": "farm-block-blast",
+    "title": "Farm Block Blast: Barnyard Grid 🐶🧩",
+    "tagline": "Place wooden crop blocks on an 8x8 grid, blast full lines, and build massive combo streaks with Barnaby the pup!",
+    "description": "Welcome to Farm Block Blast: Barnyard Grid! Inspired by America's #1 mobile puzzle hits Block Blast! and Meowdoku, this relaxing yet brain-teasing wooden grid challenge tasks you with placing polyomino crop pieces on an 8x8 rustic farm board. Clear full horizontal rows or vertical columns to trigger explosive crop blasts! Keep clearing lines on consecutive placements to trigger high-voltage Combo Streaks (2x, 3x, 4x, 5x+), hear ascending banjo arpeggios, and rack up huge high scores before the barn fills up!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm"
+    ],
+    "route": "/games/farm-block-blast/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "34.2K",
+    "badge": "🔥 #1 Hit",
+    "thumbnailUrl": "/assets/thumbnails/thumb-farm-block-blast.svg",
+    "featured": true,
+    "tags": [
+      "Block Blast",
+      "Puzzle",
+      "Block",
+      "Woodoku",
+      "Farm",
+      "Dog",
+      "Meowdoku",
+      "Casual",
+      "Grid"
+    ],
+    "controls": {
+      "desktop": [
+        "Click & Place: Tap any piece in the barn tray, then click a target cell on the grid",
+        "Mouse Drag & Drop: Drag any piece directly onto the 8x8 grid",
+        "Spacebar / R: Quick restart game session",
+        "M Key: Toggle banjo and sound FX mute"
+      ],
+      "mobile": [
+        "Tap to Select & Tap to Place: Tap a piece below, then tap target cell on the board",
+        "Touch Drag & Drop: Smooth touch drag with translucent placement preview",
+        "Clear Rows & Cols: Complete any 8-cell row or column to blast pieces away"
+      ]
+    },
+    "features": [
+      "8x8 Rustic Wooden Farm Grid with 22 Classic & Polyomino Shape Varieties",
+      "6 Colorful Farm Crop Themes: 🌽 Golden Corn, 🍎 Crisp Apple, 🎃 Harvest Pumpkin, 🥕 Sweet Carrot, 🍆 Purple Eggplant, 🫐 Berry",
+      "True Block Blast Consecutive Combo Streak Multiplier (+80 pts × Combo Level)",
+      "Multi-Line Clear Bonuses (Double, Triple, & Quadruple Simultaneous Row/Col Blasts)",
+      "100% Procedural Web Audio Sound Synthesizers (Banjo Arpeggios, Placement Thuds, Line Whooshes, Dog Barks)",
+      "Tactile Mobile-First Single-Screen Layout with Ghost Placement Preview & Full Touch Support",
+      "Local Storage High Score Tracking & Instant Zero-Download Browser Play"
+    ],
+    "metaTitle": "Farm Block Blast — Free Block Blast Style Puzzle Online | Pawcade",
+    "metaDescription": "Play Farm Block Blast free in your browser! Place wooden crop blocks on an 8x8 grid, blast full rows and columns, and rack up combo streaks with Barnaby the pup."
+  },
+  {
+    "id": "sheep-cart-jam",
+    "slug": "sheep-cart-jam",
+    "title": "Sheep Cart Jam: Meadow Escape 🐑🚜",
+    "tagline": "Untangle the farm parking maze, dock matching carts, and board waiting fluffy sheep to escape to the meadow!",
+    "description": "Welcome to Sheep Cart Jam: Meadow Escape! Inspired by America's chart-topping Bus Jam & Car Jam fever, this delightfully addictive farm puzzle puts you in charge of the countryside station. Fluffy colored sheep (Pink, Blue, Yellow, Green, Purple) are waiting in line at the barn gate. Unblock matching tractor hay carts from the tight farmyard maze and guide them to the 3 station loading bays. Once 3 matching sheep board their cart, they zoom off to the green meadow, freeing up the dock! Can you clear all carts before the bays jam?",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "pets"
+    ],
+    "route": "/games/sheep-cart-jam/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "28.5K",
+    "badge": "🐑 Popular Hit",
+    "thumbnailUrl": "/assets/thumbnails/thumb-sheep-cart-jam.svg",
+    "featured": true,
+    "tags": [
+      "Bus Jam",
+      "Car Jam",
+      "Parking",
+      "Sheep",
+      "Puzzle",
+      "Animals",
+      "Farm",
+      "Casual"
+    ],
+    "controls": {
+      "desktop": [
+        "Click Cart: Drive unblocked tractor cart from yard to station loading dock",
+        "R Key: Quick restart level",
+        "M Key: Toggle sheep baa and tractor sound effects"
+      ],
+      "mobile": [
+        "Tap Cart: Tap any unblocked cart to send it to the loading bay",
+        "Match Sheep: Watch front queue sheep jump into matching carts",
+        "Fill & Depart: 3/3 sheep departure opens bay for more carts"
+      ]
+    },
+    "features": [
+      "Authentic Bus Jam & Car Jam Color Matching Mechanics with 3 Station Bays",
+      "5 Colorful Woolly Sheep Breeds: 🌸 Berry Pink, 🌊 Sky Blue, ☀️ Golden Sun, 🍀 Clover Green, 🍇 Lavender",
+      "Intricate Farm Maze Grid with Orientation Physics & Directional Exit Lanes",
+      "100% Procedural Web Audio Sound Synthesizers (Formant Sheep \"Baa!\", Tractor Revs, Departure Toot-Toots)",
+      "Multiple Progressive Challenge Levels & Single-Screen Responsive Layout",
+      "100% Free Browser Play with Zero Installs or Ads"
+    ],
+    "metaTitle": "Sheep Cart Jam — Free Bus Jam Style Puzzle Online | Pawcade",
+    "metaDescription": "Play Sheep Cart Jam free in your browser! Guide colored tractor carts out of the farm maze and board waiting sheep in this fun Bus Jam puzzle."
+  },
+  {
+    "id": "horseshoe-twist",
+    "slug": "horseshoe-twist",
+    "title": "Horseshoe Twist: Barn Unlock 🐴🔓",
+    "tagline": "Rotate concentric wooden and iron rings to align escape notches and unlock Clover's Lucky Golden Horseshoe!",
+    "description": "Welcome to Horseshoe Twist: Barn Unlock! Inspired by America's chart-topping Rotate Rings & Ring Unlock puzzle craze, Clover the Horse has locked the Lucky Horseshoe inside Grandpa's ancient mechanical vault. Rotate 2 to 4 concentric circular rings clockwise and counter-clockwise to align open notches with the exit laser ray. Watch the lucky pins slide free and pop the vault open with satisfying mechanical clicks!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle"
+    ],
+    "route": "/games/horseshoe-twist/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "41.8K",
+    "badge": "🧲 Puzzle Hit",
+    "thumbnailUrl": "/assets/thumbnails/thumb-horseshoe-twist.svg",
+    "featured": true,
+    "tags": [
+      "Rotate Rings",
+      "Ring Unlock",
+      "Screw Puzzle",
+      "Vault",
+      "Horse",
+      "Puzzle",
+      "Brain Teaser"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse Drag: Drag around rings to rotate dial angle",
+        "Arrow Keys / A & D: Rotate selected ring CW / CCW",
+        "1-4 Keys: Select concentric Ring 1, 2, 3, or 4",
+        "R Key: Quick restart level",
+        "M Key: Toggle mechanical ratchet audio"
+      ],
+      "mobile": [
+        "Touch Drag: Rotate concentric rings directly around the vault dial",
+        "Step Buttons: Tap Rotate CCW (-30°) or Rotate CW (+30°)",
+        "Ring Tabs: Tap Ring 1, 2, 3, 4 to switch active tumbler"
+      ]
+    },
+    "features": [
+      "Authentic Rotate Rings & Ring Unlock Concentric Notch Mechanics",
+      "Geared Ring Linkages (Turn one ring to rotate linked tumblers)",
+      "100% Procedural Web Audio Sound Synthesizers (Ratchet Clicks, Pin Slide, Victory Fanfare)",
+      "4 Handcrafted Mechanical Vault Puzzles with Progressive Difficulty",
+      "100% Free Browser Play with Zero Downloads or Ads"
+    ],
+    "metaTitle": "Horseshoe Twist — Free Rotate Rings Puzzle Online | Pawcade",
+    "metaDescription": "Play Horseshoe Twist free in your browser! Rotate concentric rings to align notches and unlock the Lucky Golden Horseshoe in this fun Rotate Rings casual puzzle."
+  },
+  {
+    "id": "sheep-stampede",
+    "slug": "sheep-stampede",
+    "title": "Sheep Stampede: Pasture Rush 🐕🐑",
+    "tagline": "Steer Buster and your fluffy flock through math multiplier gates, dodge hazards, and stampede into the barn corral!",
+    "description": "Welcome to Sheep Stampede: Pasture Rush! Inspired by America's viral Colony Flow! & Mob Control runner sensation, join Buster the sheepdog on a thrilling meadow dash. Steer your flock left and right through positive multiplier gates (x2, x3, +20) to grow an unstoppable herd! Dodge mud pits and wool shearers, and stampede into the red barn corral for massive high-score rewards!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets"
+    ],
+    "route": "/games/sheep-stampede/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "52.1K",
+    "badge": "⚡ Action Hit",
+    "thumbnailUrl": "/assets/thumbnails/thumb-sheep-stampede.svg",
+    "featured": true,
+    "tags": [
+      "Colony Flow",
+      "Mob Control",
+      "Runner",
+      "Math Gates",
+      "Sheep",
+      "Dog",
+      "Arcade",
+      "Stampede"
+    ],
+    "controls": {
+      "desktop": [
+        "Arrow Keys / A & D: Steer flock left and right across pasture",
+        "Spacebar / Enter: Start stampede / Next level",
+        "R Key: Quick restart level",
+        "M Key: Toggle sheep vocals and sound effects"
+      ],
+      "mobile": [
+        "Touch & Drag: Swipe horizontally across track to steer flock",
+        "Tap Buttons: Use on-screen Steer Left and Steer Right controls",
+        "Multiply Flock: Pass through blue gates to grow your herd"
+      ]
+    },
+    "features": [
+      "Authentic Colony Flow & Mob Control Math Multiplier Crowd Dynamics",
+      "Positive Multipliers (+10, +20, x2, x3) & Strategic Hazard Avoidance",
+      "100% Procedural Web Audio Sound Synthesizers (Buster Barks, Herd Bleats, Chimes, Fanfare)",
+      "Handcrafted Meadow Tracks with Dynamic Obstacles & Big Red Barn Finish",
+      "100% Free Browser Play with Zero Downloads or Ads"
+    ],
+    "metaTitle": "Mob Control Style Crowd Runner — Sheep Stampede | Pawcade",
+    "metaDescription": "Play Sheep Stampede free in your browser! Steer Buster and your sheep flock through math multiplier gates in this addictive Colony Flow style meadow runner."
+  },
+  {
+    "id": "duck-hunt-classic",
+    "slug": "duck-hunt-classic",
+    "title": "Duck Hunt Classic: Barnyard Shoot 🦆🎯",
+    "tagline": "Aim your arcade light gun, blast flying mallards across the reed marsh, and test your quick-draw reflexes with Buster the pup!",
+    "description": "Welcome to Duck Hunt Classic: Barnyard Shoot! Inspired by Nintendo's legendary NES & Atari arcade shooter sensation, take aim across the countryside marsh. Buster the hunting hound sniffs the grass and flushes wild ducks from behind the reeds! Track Mallards, swift Redheads, and elusive Golden Ducks as they flutter through the skies in unpredictable zig-zag arcs. You have 3 shotgun shells per flush—tap or click with laser precision before they fly away! Meet the quota each round to advance, and watch out for Buster's playful snicker when ducks escape!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets"
+    ],
+    "route": "/games/duck-hunt-classic/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "58.4K",
+    "badge": "🎯 NES Classic",
+    "thumbnailUrl": "/assets/thumbnails/thumb-duck-hunt-classic.svg",
+    "featured": true,
+    "tags": [
+      "Duck Hunt",
+      "Shooter",
+      "Atari",
+      "NES",
+      "Retro",
+      "Arcade",
+      "Light Gun",
+      "Mallard",
+      "Dog",
+      "Reflex"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse Aim & Left Click: Fire shotgun blast at target duck",
+        "Spacebar / R: Quick reload shells or restart level",
+        "M Key: Toggle retro sound effects and dog barks"
+      ],
+      "mobile": [
+        "Tap Anywhere: Instantly fire at flying ducks on screen",
+        "Watch Shells: 3 shots per flush before ducks fly away",
+        "Pass Quota: Hit at least 6 out of 10 ducks to clear the round"
+      ]
+    },
+    "features": [
+      "Authentic NES & Atari Retro Duck Hunt Shooting Mechanics with 3 Shells per Flush",
+      "3 Unique Duck Species: Emerald Mallard, Crimson Redhead, and Elusive Golden King Duck",
+      "Buster the Mascot Pup Animated Reactions (Proud Duck Trophy Retrieve & Classic Snicker)",
+      "100% Procedural Web Audio Sound Synthesizers (Booming Shotgun Blast, Wing Flutter, Quacks, 8-Bit Fanfares)",
+      "Progressive Day-to-Night Sky Transitions (Daylight, Sunset Amber, and Starlit Midnight)",
+      "Zero Downloads or Installs — 100% Free Instant Browser Play on PC and Mobile"
+    ],
+    "metaTitle": "Duck Hunt Classic 🦆🎯 — Free Online Retro Duck Shooting Game | Pawcade",
+    "metaDescription": "Play Duck Hunt Classic free in your browser! Aim your arcade light gun, blast flying mallards across the marsh, and test your reflexes with Buster in this free retro shooter."
+  },
+  {
+    "id": "farm-mahjong",
+    "slug": "farm-mahjong",
+    "title": "Farm Mahjong Solitaire: Barnyard Tiles 🀄🌾",
+    "tagline": "Match pairs of free wooden farm tiles to clear the pyramid stack in this cozy puzzle!",
+    "description": "Farm Mahjong Solitaire brings classic tile matching to a sunny countryside barnyard. Match identical pairs of unblocked wooden tiles depicting sweet corn, ripe apples, carrots, sheep, cows, and cute chicks. Uncover layered pyramids, plan your moves, and clear the board before time runs out. Use hints, undos, and shuffles when you need a boost!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm"
+    ],
+    "route": "/games/farm-mahjong/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "42.3K",
+    "badge": "🀄 Mahjong Hit",
+    "thumbnailUrl": "/assets/thumbnails/thumb-farm-mahjong.svg",
+    "featured": true,
+    "tags": [
+      "Mahjong",
+      "Solitaire",
+      "Tile Match",
+      "Farm",
+      "Puzzle",
+      "Board Game",
+      "Casual",
+      "Animals"
+    ],
+    "controls": {
+      "desktop": [
+        "Click Tile: Select any unblocked tile with at least one free lateral side",
+        "Click Matching Tile: Clear the pair from the board and score points",
+        "H Key: Reveal a valid matching pair",
+        "U Key: Undo your last move",
+        "S Key: Shuffle remaining tiles on the board"
+      ],
+      "mobile": [
+        "Tap Tile: Select an unblocked wooden tile (highlighted in gold)",
+        "Tap Matching Pair: Remove matched tiles and unlock deeper layers",
+        "Power-Up Buttons: Tap Hint, Undo, or Shuffle for quick assistance"
+      ]
+    },
+    "features": [
+      "Handcrafted 3D Layered Mahjong Formations (Pyramid, Horseshoe, Mansion)",
+      "Guaranteed 100% Solvable Boards via Reverse-Construction Generation",
+      "Procedural Web Audio (Satisfying Wooden Clicks, Harmonic Chords, Chimes)",
+      "Helpful Power-Up Boosters: Smart Hints, Move Undos, and Tile Shuffles",
+      "Real-Time Combo Multiplier & Star Rating Evaluation",
+      "Zero Installs or Downloads — Instant Smooth Play on Mobile and PC"
+    ],
+    "metaTitle": "Farm Mahjong Solitaire 🀄🌾 — Free Online Tile Matching Puzzle | Pawcade",
+    "metaDescription": "Play Farm Mahjong Solitaire free in your browser! Match wooden crop and animal tiles to clear 3D pyramids in this relaxing zero-download puzzle game."
+  },
+  {
+    "id": "pet-memory-match",
+    "slug": "pet-memory-match",
+    "title": "Pet Memory Match: Barnyard Cards 🃏🐾",
+    "tagline": "Flip cards, remember pet faces, and match adorable animal pairs before the timer ticks down!",
+    "description": "Test your memory and focus in Pet Memory Match! Flip rustic wooden barnyard cards to find matching pairs of friendly puppies, playful kittens, barn owls, woolly sheep, and squeaky mice. Chain quick matches to build massive combo streaks, earn 3-star ratings across progressive levels, and activate Peek or Freeze Time boosters when the pressure is on!",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "puzzle"
+    ],
+    "route": "/games/pet-memory-match/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "35.6K",
+    "badge": "🃏 Memory Hit",
+    "thumbnailUrl": "/assets/thumbnails/thumb-pet-memory-match.svg",
+    "tags": [
+      "Memory",
+      "Card Match",
+      "Concentration",
+      "Pets",
+      "Farm",
+      "Animals",
+      "Cards",
+      "Brain",
+      "Casual"
+    ],
+    "controls": {
+      "desktop": [
+        "Click Card: Flip card to reveal hidden pet face",
+        "Click Second Card: Reveal and check for matching pair",
+        "P Key: Peek booster (briefly reveal all hidden cards)",
+        "F Key: Freeze time booster (stop timer for 5 seconds)"
+      ],
+      "mobile": [
+        "Tap Card: Flip and reveal cute pet portraits",
+        "Find Pairs: Match all identical cards to complete the stage",
+        "Booster Buttons: Tap Peek or Freeze for tactical help"
+      ]
+    },
+    "features": [
+      "Smooth 3D Card Flip Perspective & Tactile Responsive Touch",
+      "Progressive Board Grids from 12 Cards up to 30 Cards",
+      "Combo Streak Scoring & 3-Star Level Rating System",
+      "Tactical Power-Ups: X-Ray Peek and 5-Second Time Freeze",
+      "Procedural Web Audio (Whooshes, Bell Chimes, Fanfares, Zero Delay)",
+      "Zero Installs or Downloads — 100% Free Instant Play on All Devices"
+    ],
+    "metaTitle": "Memory Match Game Online Free — Cute Pet Cards | Pawcade",
+    "metaDescription": "Play Pet Memory Match free in your browser! Flip barnyard cards, match cute pets and farm animals, and beat the clock in this fun free memory puzzle game."
+  },
+  {
+    "id": "critter-tap-away",
+    "slug": "critter-tap-away",
+    "title": "Critter Tap Away: Barn Escape 🐮🐷🐰",
+    "tagline": "Tap trapped farm animals whose paths are clear to untangle the pen and help them escape into the clover pasture!",
+    "description": "Welcome to Critter Tap Away: Barn Escape! Inspired by America's viral sensation CubeAway & Arrows GO!, this delightful farm puzzle challenges you to untangle a crowded barnyard pen of interlocking animal cubes. Bessie the Cow, Barnaby Piglet, Woolly Sheep, Fluffy Bunny, and Pippin Chick are facing outward directions. Tap any animal whose path to the perimeter fence is unobstructed, and watch them zoom off into freedom! Clear all critters to solve each handcrafted puzzle!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "pets"
+    ],
+    "route": "/games/critter-tap-away/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "38.9K",
+    "badge": "🌟 Logic Hit",
+    "thumbnailUrl": "/assets/thumbnails/thumb-critter-tap-away.svg",
+    "tags": [
+      "Tap Away",
+      "CubeAway",
+      "Arrows GO",
+      "Puzzle",
+      "Animals",
+      "Farm",
+      "Casual",
+      "Blocks"
+    ],
+    "controls": {
+      "desktop": [
+        "Click Critter: Tap an animal whose forward path is open to escape",
+        "R Key: Quick restart level",
+        "M Key: Toggle animal sound effects"
+      ],
+      "mobile": [
+        "Tap Critter: Tap any unobstructed animal to let it escape",
+        "Watch Arrows: Green arrows point to clear exit lanes",
+        "Clear Pen: Free all farm animals to complete the level"
+      ]
+    },
+    "features": [
+      "Authentic CubeAway & Arrows GO! Interlocking Grid Mechanics",
+      "5 Adorable 3D Farm Critters: Bessie Cow, Barnaby Pig, Woolly Sheep, Fluffy Bunny, Pippin Chick",
+      "4 Perimeter Meadow Gates with Directional Escape Lanes",
+      "100% Procedural Web Audio Sound Synthesizers (Animal Vocals, Whoosh Escapes, Bonk Thuds)",
+      "Handcrafted Progressive Puzzles from 4x4 to 6x6 Barnyard Clusters",
+      "100% Free Browser Play with Zero Downloads or Ads"
+    ],
+    "metaTitle": "Critter Tap Away — Free Tap Away Puzzle Online | Pawcade",
+    "metaDescription": "Play Critter Tap Away free in your browser! Untangle the barnyard pen and tap cute animal cubes with clear paths to help them escape in this fun Tap Away puzzle."
+  },
+  {
+    "id": "dog-parking",
+    "slug": "dog-parking",
+    "title": "Dog Parking: Barnyard Escape 🐕‍🦺",
+    "tagline": "Guide adorable pups and Sunny the Corgi through crowded barnyard puzzle lanes!",
+    "description": "Dog Parking is a colorful, charming casual traffic puzzle game. Guide adorable breeds like Corgis, Pugs, Shibas, and Dachshunds through tight puzzle pens and clear the exit gate for Sunny the Star Corgi. Features 12 handcrafted levels with increasing spatial difficulty!",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "puzzle"
+    ],
+    "route": "/games/dog-parking/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "12.4K",
+    "badge": "🐕 Top Rated",
+    "thumbnailUrl": "/assets/thumbnails/thumb-dog-parking.svg",
+    "featured": true,
+    "tags": [
+      "Puzzle",
+      "Dogs",
+      "Unblock",
+      "Traffic",
+      "Animals"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse Drag: Click and drag any dog forward/backward along its lane",
+        "R Key: Quick restart current level",
+        "Z Key: Undo previous move"
+      ],
+      "mobile": [
+        "Touch Swipe: Slide dogs with your thumb along their natural orientation",
+        "Tap Buttons: Quick access to Restart, Undo, Mute, and Level Select"
+      ]
+    },
+    "features": [
+      "12 Handcrafted & 100% Verified Solvable Levels",
+      "Cute Original Dog Breeds (Corgi, Pug, Shiba, Dachshund, Retriever, Dalmatian, Poodle)",
+      "Smooth 60FPS Physics & Sliding Tweens",
+      "Procedural Web Audio Sound Effects (Barks, Slides, Win Fanfare)",
+      "Star Rating System & Local Progress Save",
+      "Zero Downloads or Accounts Required"
+    ],
+    "metaTitle": "Dog Parking Jam — Free Unblock the Dog Puzzle Online | Pawcade",
+    "metaDescription": "Play Dog Parking free in your browser! Unblock the dogs and slide Sunny the Star Corgi to the exit gate. 100% free casual brain teaser game."
+  },
+  {
+    "id": "cat-parking",
+    "slug": "cat-parking",
+    "title": "Cat Parking: Kitty Meadow Escape 🐈‍⬛",
+    "tagline": "Slide sleepy kitties and guide Luna the Star Cat through cozy meadow mazes!",
+    "description": "Cat Parking is a relaxing and purr-fect casual traffic puzzle game. Untangle sleepy kitties, fluffy Maine Coons, Siamese, and Calicos to open the exit path for Luna. Features 12 handcrafted levels, feline soundscapes, and intuitive touch controls!",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "puzzle"
+    ],
+    "route": "/games/cat-parking/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "9.8K",
+    "badge": "🐈‍⬛ Top Rated",
+    "thumbnailUrl": "/assets/thumbnails/thumb-cat-parking.svg",
+    "tags": [
+      "Puzzle",
+      "Cats",
+      "Unblock",
+      "Animals"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse Drag: Click and drag any cat forward/backward along its lane",
+        "R Key: Quick restart current level",
+        "Z Key: Undo previous move"
+      ],
+      "mobile": [
+        "Touch Swipe: Slide cats with your finger along their natural orientation",
+        "Tap Buttons: Quick access to Restart, Undo, Mute, and Level Select"
+      ]
+    },
+    "features": [
+      "12 Handcrafted & 100% Verified Solvable Levels",
+      "Charming Cat Breeds (Calico, Siamese, Tabby, Black Cat, Persian, Russian Blue, Maine Coon, Bengal)",
+      "Smooth 60FPS Physics & Sliding Tweens",
+      "Procedural Feline Web Audio (Meows, Purrs, Bell Chimes, Fanfare)",
+      "Star Rating System & Independent Local Progress Save",
+      "Zero Downloads or Accounts Required"
+    ],
+    "metaTitle": "Cat Parking Jam — Free Cat Escape Puzzle Game Online | Pawcade",
+    "metaDescription": "Play Cat Parking free in your browser! Slide the sleepy cats and guide Luna the Star Cat to the cozy exit gate. 100% free casual puzzle game."
+  },
+  {
+    "id": "egg-buster",
+    "slug": "egg-buster",
+    "title": "Egg Buster: Barnyard Smash 🐥🥚",
+    "tagline": "Pull back Pippin's slingshot, bounce eggs off milk churns, and topple wooden crates to smash sneaky foxes!",
+    "description": "Welcome to Egg Buster: Barnyard Smash! Inspired by America's chart-topping Smash Fest! & Royal Smash! physics craze, join Pippin the Chick on a high-flying farm defense adventure. Sneaky foxes have invaded the barnyard and perched atop towers of wooden crates, hay bales, and bouncy metal milk cans. Drag back the slingshot to line up your trajectory, and release to fire bouncy farm eggs! Use real 2D bounce physics to shatter barricades and eliminate all foxes before running out of eggs!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/egg-buster/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "45.2K",
+    "badge": "🎯 Smash Hit",
+    "thumbnailUrl": "/assets/thumbnails/thumb-egg-buster.svg",
+    "featured": true,
+    "tags": [
+      "Smash Fest",
+      "Royal Smash",
+      "Slingshot",
+      "Physics",
+      "Angry Birds",
+      "Chick",
+      "Farm",
+      "Arcade"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse Drag: Pull back the slingshot on the left to set power and angle",
+        "Release: Launch the egg downrange",
+        "R Key: Quick restart level",
+        "M Key: Toggle physics sound effects"
+      ],
+      "mobile": [
+        "Touch Drag: Pull back on slingshot with live dotted trajectory line",
+        "Release: Launch egg projectile",
+        "Smash Targets: Eliminate all foxes to clear the stage"
+      ]
+    },
+    "features": [
+      "Authentic Smash Fest & Royal Smash 2D Gravity & Bounce Physics Engine",
+      "Realistic Multi-Material Collisions (Shatter Crates, Elastic Metal Churns, Soft Hay)",
+      "100% Procedural Web Audio Sound Synthesizers (Slingshot Tension, Snaps, Clangs, Fox Yelps)",
+      "Handcrafted Slingshot Trajectory Levels with Progressive Demolition Challenges",
+      "100% Free Browser Play with Zero Downloads or Ads"
+    ],
+    "metaTitle": "Egg Buster — Free Slingshot Physics Game Online | Pawcade",
+    "metaDescription": "Play Egg Buster free in your browser! Pull back Pippin's slingshot, bounce eggs off milk cans, and smash sneaky foxes in this fun Smash Fest physics puzzle."
+  },
+  {
+    "id": "farm-pantry-sort",
+    "slug": "farm-pantry-sort",
+    "title": "Farm Pantry Sort: Triple Pick 🐿️🍯",
+    "tagline": "Organize Grandma's farm cupboard, slide honey jars, milk bottles, and fresh pies to match 3 and clear the shelves!",
+    "description": "Welcome to Farm Pantry Sort: Triple Pick! Inspired by America's chart-topping Goods Sort & Magic Sort casual puzzle craze, help Sammy the Squirrel organize Grandma's cozy countryside pantry. Cupboard shelves hold rustic jars of Clover Honey, fresh dairy milk, farm-fresh egg baskets, strawberry jam, country cheese, and baked apple pies. Tap any item to pick it up, then tap an open shelf slot to move it. Group 3 identical goods on any shelf to trigger a satisfying triple-clear burst! Clear front items to reveal hidden reserve batches and empty the pantry before time runs out!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm"
+    ],
+    "route": "/games/farm-pantry-sort/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "41.6K",
+    "badge": "✨ Triple Match",
+    "thumbnailUrl": "/assets/thumbnails/thumb-farm-pantry-sort.svg",
+    "featured": true,
+    "tags": [
+      "Goods Sort",
+      "Triple Match",
+      "Puzzle",
+      "Sort",
+      "Pantry",
+      "Animals",
+      "Casual",
+      "Farm",
+      "Matching"
+    ],
+    "controls": {
+      "desktop": [
+        "Click Item: Pick up a jar or crate from a shelf",
+        "Click Target Shelf: Move the selected item to an open slot",
+        "R Key: Quick restart level",
+        "M Key: Toggle pantry sound effects"
+      ],
+      "mobile": [
+        "Tap to Select: Tap an item to lift it from the shelf",
+        "Tap Target Slot: Place the selected item into any open space",
+        "Triple Match: Group 3 identical goods together to clear the shelf"
+      ]
+    },
+    "features": [
+      "Authentic Goods Sort & Triple Match Mechanics on Rustic Wooden Cupboard Shelves",
+      "6 Handcrafted Farm Pantry Delicacies: Clover Honey, Farm Milk, Pasture Eggs, Strawberry Jam, Country Cheese, Apple Pie",
+      "Multi-Layer Storage Shelves with Auto-Sliding Hidden Reserve Batches",
+      "100% Procedural Web Audio Sound Synthesizers (Jar Plucks, Wood Thuds, Glass Chimes, Banjo Arpeggios)",
+      "Multiple Progressive Challenge Levels & Single-Screen Responsive Layout",
+      "100% Free Browser Play with Zero Downloads or Ads"
+    ],
+    "metaTitle": "Farm Pantry Sort — Free Goods Sort Puzzle Online | Pawcade",
+    "metaDescription": "Play Farm Pantry Sort free in your browser! Organize Grandma's wooden cupboard, slide honey jars, milk bottles, and fresh pies to match 3 in this fun Goods Sort puzzle."
+  },
+  {
+    "id": "grain-sand-fall",
+    "slug": "grain-sand-fall",
+    "title": "Grain Sand Fall: Farm Physics ⏳🌾",
+    "tagline": "Melt falling crop tetrominoes into realistic grains of sand, connecting matching colors wall-to-wall to clear the silo!",
+    "description": "Welcome to Grain Sand Fall: Farm Physics Puzzle! Inspired by the viral sensation Sand Blocks & Sand Tetris (Setris), this mesmerizing puzzle reimagines falling block puzzles with liquid-like granular physics. Steer polyominoes made of colorful farm crop sands—Golden Corn 🌽, Ruby Cranberry 🍓, Sky Berry 🫐, and Clover Green 🍀. The second a block touches bottom, it dissolves into thousands of individual physical grains that slide down slopes and pool into dunes. Connect a continuous path of matching color from the left wall to the right wall to dissolve the sand with sparkling particle explosions!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm"
+    ],
+    "route": "/games/grain-sand-fall/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "21.4K",
+    "badge": "⏳ Sand Physics",
+    "thumbnailUrl": "/assets/thumbnails/thumb-grain-sand-fall.svg",
+    "tags": [
+      "Sand Tetris",
+      "Sand Blocks",
+      "Physics",
+      "Puzzle",
+      "Setris",
+      "Farm",
+      "Casual",
+      "Grains"
+    ],
+    "controls": {
+      "desktop": [
+        "Arrow Left / A: Move falling block left",
+        "Arrow Right / D: Move falling block right",
+        "Arrow Up / W: Rotate block 90 degrees",
+        "Arrow Down / S: Soft drop downward",
+        "Spacebar: Hard drop instantly to floor",
+        "R Key: Quick restart game",
+        "M Key: Toggle sand audio effects"
+      ],
+      "mobile": [
+        "Left / Right Buttons: Steer block across silo",
+        "Rotate Button: Turn falling shape",
+        "Down Button: Instant hard drop to sand floor"
+      ]
+    },
+    "features": [
+      "60 FPS Real-Time Cellular Automata Sand Granular Physics",
+      "4 Vibrant Crop Sand Colors: 🌽 Golden Corn, 🍓 Ruby Cranberry, 🫐 Sky Berry, 🍀 Clover Green",
+      "Continuous Left-to-Right Wall-to-Wall Color Strand Dissolve Mechanics",
+      "Realistic Angle-of-Repose Sand Slump & Sliding Dunes",
+      "Procedural Web Audio Synthesizer (Sand Trickles, Impact Thumps, Dissolution Chimes, Clucky Clucks)",
+      "Responsive Mobile-First Touch Controls & Local High Score Tracking",
+      "100% Free Browser Play with Zero Downloads or Installs"
+    ],
+    "metaTitle": "Sand Tetris Style Puzzle Online — Grain Sand Fall | Pawcade",
+    "metaDescription": "Play Grain Sand Fall free in your browser! Steer falling crop blocks that melt into realistic sand dunes and connect colors wall-to-wall in this fun Sand Blocks physics puzzle."
+  },
+  {
+    "id": "chef-rat-rush",
+    "slug": "chef-rat-rush",
+    "title": "Chef Rat Rush: Ratatouille Bistro 🐭🍲",
+    "tagline": "Chop fresh produce, simmer gourmet ratatouille on stove, and ring the service bell for Paris food critics!",
+    "description": "Welcome to Chef Rat Rush! Step into the kitchen with Chef Pip the Mouse in this fast-paced culinary time-management rush inspired by Ratatouille! Customer order tickets arrive at your bistro rail with countdown patience bars. Chop eggplants, tomatoes, zucchini, artisan baguettes, Swiss cheese, and fresh berries. Simmer gourmet ratatouille stew and sweet berry crepes on the copper skillet stove—watch the cooking timer closely so it does not burn! Ring the brass Service Bell to fulfill tickets, rack up combo multipliers, impress VIP food critics, and master all 5 dinner shifts!",
+    "category": "farm",
+    "categories": [
+      "farm",
+      "pets"
+    ],
+    "route": "/games/chef-rat-rush/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "14.6K",
+    "badge": "🐭 Chef Rush",
+    "thumbnailUrl": "/assets/thumbnails/thumb-chef-rat-rush.svg",
+    "tags": [
+      "Cooking",
+      "Time Management",
+      "Chef",
+      "Animals",
+      "Restaurant",
+      "Bistro",
+      "Cat Cafe Rush",
+      "Cat Cafe",
+      "Cafe"
+    ],
+    "controls": {
+      "desktop": [
+        "1 - 8 Number Keys: Rapidly chop pantry ingredients onto prep board",
+        "Spacebar: Ring brass Service Bell to serve dish to customer ticket",
+        "C Key: Simmer prepared hot recipe (Ratatouille / Crepe) on stove",
+        "X Key: Clear ingredients from prep cutting board"
+      ],
+      "mobile": [
+        "Tap Pantry Ingredients (1-8) to add to cutting board",
+        "Tap \"Simmer on Stove\" for cookable hot dishes",
+        "Tap \"SERVE DISH\" brass bell to fulfill orders & collect tips",
+        "Tap \"Discard Burnt\" if a skillet stew burns"
+      ]
+    },
+    "features": [
+      "5 Parisian Bistro Delicacies: 🍲 Ratatouille, 🥖 Cheese Baguette, 🥞 Berry Crepe, 🥗 Salad & 🥐 Croissant",
+      "Dynamic Stove Cooking Physics with Real-Time Cooking & Burning Thresholds",
+      "Active Customer Ticket Rail with Visual Patience Timers & VIP Critic Bonuses",
+      "Speed Tip System (+50% for fast serving) & Exponential Combo Multipliers",
+      "Procedural Web Audio Bistro Soundscape (Knife Chops, Skillet Sizzles, Brass Bell Rings & Cash Tips)",
+      "5 Progressive Dinner Rush Shifts with 3-Star Rating Gauge & Local Record Tracking",
+      "100% Free Browser Play with Zero Ads, Downloads, or Installs"
+    ],
+    "metaTitle": "Chef Rat Rush 🐭🍲 — Free Online Cooking Game | Pawcade",
+    "metaDescription": "Play Chef Rat Rush free in your browser! Chop ingredients, simmer gourmet ratatouille on the stove, and ring the service bell in this fun French bistro cooking game."
+  },
+  {
+    "id": "pet-candy-crush",
+    "slug": "farm-animal-match",
+    "title": "Farm Animal Match: Barnyard Crush 🍬",
+    "tagline": "Match dynamite, rockets, and barrel bombs with cute farm animals!",
+    "description": "Farm Animal Match is a fun Match-3 game. Swap friendly pets to match three or more cows, pigs, or sheep. Make square dynamite bombs, striped rockets, and golden barn stars. Tap any booster to clear the board and score big combos!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "pets"
+    ],
+    "route": "/games/farm-animal-match/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "24.8K",
+    "badge": "🍬 Match-3",
+    "thumbnailUrl": "/assets/thumbnails/thumb-pet-candy-crush.svg",
+    "tags": [
+      "Match-3",
+      "Puzzle",
+      "Farm",
+      "Animals"
+    ],
+    "controls": {
+      "desktop": [
+        "Click & Click: Tap an animal and an adjacent neighbor to swap",
+        "Double-Click Bomb: Detonate any bomb or rocket immediately",
+        "Mouse Drag / Swipe: Drag any animal in 4 directions to swap",
+        "Shuffle Button: Re-randomize board layout",
+        "R: Quick restart game"
+      ],
+      "mobile": [
+        "Tap to Swap: Tap two adjacent animals",
+        "Double-Tap Bomb: Trigger bomb explosion in-place",
+        "Touch Swipe: Swipe across any animal with your thumb"
+      ]
+    },
+    "features": [
+      "8x8 Match-3 Board with 6 Cute Farm Animals (Cows, Pigs, Sheep, Chickens, Ducks, Horses)",
+      "2×2 Square Dynamite Bomb (🧨): Blasts 3×3 + Cross (+) wave & launches 2 homing strikes",
+      "4-in-a-Line Striped Rocket (⚡), L/T 3×3 Barrel Bomb (💣) & 5-in-a-Line Golden Barn Star (🌟)",
+      "Mega Booster Combinations (Bomb + Bomb = 5×5 Crater, Rocket + Bomb = 3-Row/3-Col Giant Cross)",
+      "Procedural Animal Vocal Synthesizers (Moo, Oink, Baa, Bawk, Quack, Whinny) & Bomb Explosions",
+      "Barnyard Harvest Victory Celebration with 3-Star Rating Gauge",
+      "100% Free Browser Play with Zero Ads or Downloads"
+    ],
+    "metaTitle": "Farm Animal Match — Free Match-3 Game Online | Pawcade",
+    "metaDescription": "Play Farm Animal Match free in your browser! Craft 2x2 Square Dynamite Bombs, 4-in-a-row Striped Rockets, and L/T Barrel Bombs with cute farm animals."
+  },
+  {
+    "id": "flappy-chicken",
+    "slug": "flappy-chicken",
+    "title": "Flappy Chicken: Barnyard Flight 🐔",
+    "tagline": "Flap through rustic farm gates under the sunny sky to reach the Golden Wheat Granary!",
+    "description": "Flappy Chicken is a feather-filled arcade flight game! Help Clucky the Chicken flap and cluck through rustic wooden farm fences and barn pillars. Collect floating golden grains and clear 15 gates to reach the grand Golden Wheat Granary! Features authentic cartoon chicken clucking audio, feather particle effects, wheat distance progress meter, and celebration fanfare.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/flappy-chicken/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "21.4K",
+    "badge": "🐔 Classic Flight",
+    "thumbnailUrl": "/assets/thumbnails/thumb-flappy-chicken.svg",
+    "tags": [
+      "Arcade",
+      "Flight",
+      "Reflex",
+      "Farm",
+      "Animals"
+    ],
+    "controls": {
+      "desktop": [
+        "Spacebar / Up Arrow / W: Flap wings and cluck",
+        "Mouse Click: Flap anywhere on canvas",
+        "P: Pause flight",
+        "R: Quick restart run"
+      ],
+      "mobile": [
+        "Tap Anywhere: Flap wings and cluck",
+        "Big Bottom Tap Button: Easy one-thumb flapping"
+      ]
+    },
+    "features": [
+      "Adorable Clucky the Chicken with 3 Animated Wing Flap Frames & Falling Feathers",
+      "Procedural Cartoon Chicken Vocalizations (\"Cluck-cluck! / Bok-bok-bawk!\") with Formant Synthesis",
+      "Golden Wheat Distance Progress Meter (0% ➔ 100% Granary Goal)",
+      "Rustic Farm Obstacle Gates & Floating Golden Grain Pickups",
+      "Triumphant Golden Wheat Harvest Celebration & Fanfare",
+      "Instant 60 FPS Responsive Play on Mobile & Desktop",
+      "100% Free Browser Play with Zero Ads or Downloads"
+    ],
+    "metaTitle": "Flappy Chicken — Free Tap to Fly Game Online | Pawcade",
+    "metaDescription": "Play Flappy Chicken free in your browser! Help Clucky flap, cluck, and dodge farm fences to feast on the Golden Wheat. 100% free casual arcade game."
+  },
+  {
+    "id": "duck-runner",
+    "slug": "duck-runner",
+    "title": "Duck Runner: Farm Pond Dash 🦆",
+    "tagline": "Leap over hay bales, rustic fences, and duck under flying swallows across the countryside!",
+    "description": "Play Duck Runner free online! Inspired by Google Chrome's iconic offline runner with a cozy countryside twist! Guide Quacky the Duck across the countryside. Jump over wooden hay bales, leap rustic fence posts, and crouch low to slide under swooping swallows! Experience progressive speeds, day-to-night transitions, and retro milestone chimes.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets"
+    ],
+    "route": "/games/duck-runner/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "19.4K",
+    "badge": "🦆 Retro Runner",
+    "thumbnailUrl": "/assets/thumbnails/thumb-duck-runner.svg",
+    "tags": [
+      "Runner",
+      "Arcade",
+      "Reflex",
+      "Animals"
+    ],
+    "controls": {
+      "desktop": [
+        "Space / ↑ / W: Jump over hay bales and fences",
+        "↓ / S: Duck / Crouch under flying birds (Fast fall in air)",
+        "Click: Tap screen to jump",
+        "R: Quick restart game"
+      ],
+      "mobile": [
+        "Tap Screen / JUMP ⬆️: Jump over low obstacles",
+        "DUCK ⬇️: Hold to slide flat under swooping swallows"
+      ]
+    },
+    "features": [
+      "Countryside Duck Adventure with Quacky the Duck and Farm Pasture Scenery",
+      "Rustic Wooden Fences and Farm Obstacles",
+      "Swooping Birds with Fluid Jumping and Fast-Fall Physics",
+      "Dynamic Day & Night Cycle: Shifts to twilight and night every 600 points",
+      "Retro 100-Point Milestone Chimes & High Score Tracking",
+      "Dual Mobile Thumb Controls (Left Duck / Right Jump) & 60 FPS HTML5 Canvas",
+      "100% Free Browser Play with Zero Installs or Ads"
+    ],
+    "metaTitle": "Duck Runner: Farm Pond Dash 🦆 — Free Online Casual Runner | Pawcade",
+    "metaDescription": "Play Duck Runner free in your browser! Jump over farm obstacles, duck under flying birds, and dash across the countryside in this cute duck runner."
+  },
+  {
+    "id": "animal-2048",
+    "slug": "animal-2048",
+    "title": "Animal 2048: Safari Merge 🐘",
+    "tagline": "Slide & merge cute creatures from tiny mouse to the majestic elephant!",
+    "description": "Animal 2048 is an addictive animal evolution puzzle game! Slide the 4x4 grid in four directions to merge matching cute creatures. Watch tiny mice evolve into hamsters, bunnies, friendly cats, pups, foxes, deer, wild boars, grizzly bears, rhinos, and finally the majestic Elephant! Features smooth animations, procedural animal sounds, undo support, and endless mode.",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "pets"
+    ],
+    "route": "/games/animal-2048/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "18.2K",
+    "badge": "🐘 2048 Merge",
+    "thumbnailUrl": "/assets/thumbnails/thumb-animal-2048.svg",
+    "tags": [
+      "Puzzle",
+      "Evolution",
+      "2048",
+      "Animals",
+      "Brain"
+    ],
+    "controls": {
+      "desktop": [
+        "Arrow Keys or W/A/S/D: Slide tiles in 4 directions",
+        "Ctrl + Z or Undo Button: Revert last move",
+        "R: Quick restart board"
+      ],
+      "mobile": [
+        "Touch Swipe: Swipe anywhere on board to slide tiles",
+        "Virtual D-Pad: Tap directional arrow buttons",
+        "Undo Button: Step back one move"
+      ]
+    },
+    "features": [
+      "12-Tier Animal Evolution Ladder (🐭 Mouse ➔ 🐹 Hamster ➔ 🐰 Bunny ➔ ... ➔ 🐘 Elephant ➔ 🐋 Blue Whale)",
+      "Pure Mathematical 2048 Engine with Responsive Sliding & Merging",
+      "Procedural Pitch-Scaled Animal Audio & Brass Elephant Trumpet Fanfare",
+      "1-Step History Undo System & Local High Score Tracking",
+      "Full Mobile Touch Swipe Gestures & On-Screen D-Pad",
+      "Endless Play Mode after Reaching 2048",
+      "100% Free Browser Play with Zero Ads or Downloads"
+    ],
+    "metaTitle": "Animal 2048: Safari Merge 🐘 — Free Online Puzzle Game | Pawcade",
+    "metaDescription": "Play Animal 2048 free in your browser! Slide and merge creatures from mouse to elephant. 100% free casual animal puzzle game."
+  },
+  {
+    "id": "farm-tetris",
+    "slug": "farm-block-drop",
+    "title": "Farm Block Drop: Barnyard Harvest 🧱",
+    "tagline": "Stack fresh harvest crates, fill the glowing silo, and delight the friendly farmer!",
+    "description": "Farm Block Drop brings rustic charm to the classic falling block puzzle! Rotate and place harvest crops and fruit crates to clear rows. Watch golden hay fill up the rustic silo on the right as the smiling farmer cheers with delight when lines pop!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm"
+    ],
+    "route": "/games/farm-block-drop/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "15.6K",
+    "badge": "🧱 Harvest Block",
+    "thumbnailUrl": "/assets/thumbnails/thumb-farm-tetris.svg",
+    "tags": [
+      "Falling Blocks",
+      "Puzzle",
+      "Blocks",
+      "Farm"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D or Left / Right Arrows: Move piece left / right",
+        "W or Up Arrow: Rotate piece 90° clockwise",
+        "S or Down Arrow: Soft drop (faster fall)",
+        "Spacebar: Hard drop (instant drop & lock)",
+        "C or Shift: Hold piece for later",
+        "P: Pause game",
+        "R: Quick restart"
+      ],
+      "mobile": [
+        "Left / Right / Down Touch Buttons: Steer falling crops",
+        "Rotate Button: Clockwise rotation",
+        "SLAM Button: Instant hard drop",
+        "HOLD Button: Swap current piece with hold queue"
+      ]
+    },
+    "features": [
+      "Authentic 7-Bag Randomizer & Wall Kick Falling Block Engine",
+      "Rustic Golden Hay Silo with Progressive Fill Gauge",
+      "Cute Cheering Farmer Avatar with Speech Bubble & Voice Reactions (\"WOW!\")",
+      "Flying Golden Straw Particles Bursting into Silo",
+      "Rich Procedural Web Audio (Banjo Arpeggios, Formant Voice Synthesizer, Harvest Bells)",
+      "Desktop Keyboard DAS & Mobile Touch D-Pad Layout",
+      "Local High Score Tracking & 100% Free Instant Play"
+    ],
+    "metaTitle": "Farm Block Drop — Free Falling Block Puzzle Online | Pawcade",
+    "metaDescription": "Play Farm Block Drop free in your browser! Stack harvest crates, fill the golden hay silo, and delight the farmer. 100% free casual block puzzle game."
+  },
+  {
+    "id": "animal-farm-parking",
+    "slug": "animal-farm-parking",
+    "title": "Animal Farm Parking: Countryside Tractor 🚜",
+    "tagline": "Steer Bessie the Cow and farm equipment into marked bays without crashing into obstacles!",
+    "description": "Animal Farm Parking is an entertaining precision driving puzzle game! Control Bessie the Cow using WASD or arrow keys to maneuver around fences, tractors, hay bales, and sheep into checkered parking bays. Watch your parking percentage accuracy (target >= 80%) and preserve your health!",
+    "category": "farm",
+    "categories": [
+      "farm"
+    ],
+    "route": "/games/animal-farm-parking/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "8.2K",
+    "badge": "🚜 Tractor Drive",
+    "thumbnailUrl": "/assets/thumbnails/thumb-animal-farm-parking.svg",
+    "tags": [
+      "Driving",
+      "Farm",
+      "Casual",
+      "Cow",
+      "Animals"
+    ],
+    "controls": {
+      "desktop": [
+        "W / Up Arrow: Move Up",
+        "S / Down Arrow: Move Down",
+        "A / Left Arrow: Move Left",
+        "D / Right Arrow: Move Right",
+        "Spacebar: Brake / Stop",
+        "R Key: Restart level"
+      ],
+      "mobile": [
+        "Touch D-Pad: 4-way direction buttons (Up, Down, Left, Right)",
+        "Center STOP button: Instant brake",
+        "Level Restart button: Quick level reset"
+      ]
+    },
+    "features": [
+      "8 Handcrafted Challenging Farm Levels",
+      "Smooth WASD Cow Physics with Inertia & Steering",
+      "Continuous Collision Damage System with Health Gauge",
+      "Real-Time Precision Parking Percentage Meter",
+      "Web Audio Cow Moos, Cowbells & Hoof Trots",
+      "100% Free & Instant Browser Play"
+    ],
+    "metaTitle": "Animal Farm Parking — Free Tractor Parking Game Online | Pawcade",
+    "metaDescription": "Play Animal Farm Parking free in your browser! Drive Bessie the Cow with WASD keys into marked farm stalls. Avoid obstacles, maintain health, and aim for 100% accuracy."
+  },
+  {
+    "id": "barnyard-tower",
+    "slug": "barnyard-tower",
+    "title": "Barnyard Tower: Animal Stack 🐮🏗️",
+    "tagline": "Drop cute farm animals from a swinging crane to build the tallest wobbling tower!",
+    "description": "Stack cute farm animals in Barnyard Tower! Drop pigs, chicks, fluffy sheep, and cows from a swinging crane. Land them squarely on the hay cart below. Perfect drops earn star combos and steady the stack. Off-center drops tilt the tower. Reach high altitude milestones and beat your best score!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "puzzle"
+    ],
+    "route": "/games/barnyard-tower/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "11.4K",
+    "badge": "🆕 Daily Drop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-tower.svg",
+    "controls": {
+      "desktop": [
+        "Spacebar / Down Arrow / Mouse Click: Drop current animal from crane",
+        "M Key: Toggle audio sound",
+        "R Key: Restart game on game over"
+      ],
+      "mobile": [
+        "Tap Anywhere on Screen: Release animal to drop",
+        "Audio Button: Toggle sound effects"
+      ]
+    },
+    "features": [
+      "Smooth Sine-Wave Swinging Crane Physics",
+      "5 Adorable Farm Animals (Chick, Piglet, Sheep, Cat, Cow)",
+      "Dynamic Center-of-Mass Wobble & Balance Engine",
+      "Combo Streak Multipliers on Perfect Centered Drops",
+      "Milestone Confetti Celebrations at 5m, 10m, 20m, and 50m",
+      "Zero Download Instant Browser Play on Mobile & Desktop"
+    ],
+    "metaTitle": "Barnyard Tower: Animal Stack 🐮 — Free Stacking Game | Pawcade",
+    "metaDescription": "Play Barnyard Tower free online! Drop cute farm animals from a swinging crane to build the tallest wobbling tower. No download needed in your web browser."
+  },
+  {
+    "id": "gopher-garden",
+    "slug": "gopher-garden",
+    "title": "Gopher Garden: Whack & Harvest 🥕🐾",
+    "tagline": "Protect your farm vegetables by tapping cheeky gophers before they steal your crop!",
+    "description": "Guard your vegetable patch in Gopher Garden! Sneaky gophers pop out of garden mounds to nibble prize carrots and pumpkins. Tap them fast to protect the harvest. Whack golden king gophers to start double-point Harvest Frenzy. Watch out for spiky thistles that cut your score. Score big before the timer expires!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/gopher-garden/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "13.2K",
+    "badge": "🆕 Daily Drop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-gopher-garden.svg",
+    "controls": {
+      "desktop": [
+        "Mouse Click: Whack gopher or vegetable mound",
+        "Keys 1-9: Quick number key tap corresponding to 3x3 grid",
+        "M Key: Toggle sound effects",
+        "R Key: Restart game when time expires"
+      ],
+      "mobile": [
+        "Tap Any Mound: Whack gopher directly with your finger",
+        "Large 80px+ Touch Targets: Built for fast single-screen play"
+      ]
+    },
+    "features": [
+      "Classic 3x3 Garden Dirt Patch Whack-a-Mole Action",
+      "3 Farm Vegetables: Crunchy Carrots, Sweetcorn & Prize Pumpkins",
+      "Golden King Gopher Triggering Double-Point Harvest Frenzy",
+      "Spiky Thistle Hazard Testing Reflex Precision",
+      "60-Second Timed Arcade High Score Challenge",
+      "Instant Mobile Touch Response with Zero Download"
+    ],
+    "metaTitle": "Gopher Garden: Whack & Harvest 🥕 — Free Whack Game | Pawcade",
+    "metaDescription": "Play Gopher Garden free online! Tap sneaky gophers to protect your farm vegetables in this fast arcade whack game. Free browser play with no download."
+  },
+  {
+    "id": "farm-fruit-bubble",
+    "slug": "farm-fruit-bubble",
+    "title": "Farm Fruit Bubble: Orchard Pop 🍎🎈",
+    "tagline": "Aim and pop sweet orchard fruit bubbles in this crisp barnyard puzzle!",
+    "description": "Aim and pop sweet orchard fruit bubbles in Farm Fruit Bubble! Bounce juicy apples, golden pears, and plums off wooden barn walls to match three or more. Drop floating clusters into harvest baskets below for big combo points. Clear every fruit bubble before the branch descends to beat the level!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm"
+    ],
+    "route": "/games/farm-fruit-bubble/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "15.4K",
+    "badge": "🆕 Daily Drop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-farm-fruit-bubble.svg",
+    "controls": {
+      "desktop": [
+        "Mouse Move / Drag: Aim slingshot angle with dotted trajectory line",
+        "Left Click or Space: Release and shoot fruit bubble",
+        "Arrow Keys Left / Right: Fine-tune aiming trajectory",
+        "M Key: Toggle sound effects"
+      ],
+      "mobile": [
+        "Touch & Drag: Pull back and aim trajectory line towards fruit clusters",
+        "Release Finger: Shoot fruit bubble instantly into the orchard"
+      ]
+    },
+    "features": [
+      "5 Crisp Orchard Fruits: Apples, Pears, Plums, Lemons and Berries",
+      "Realistic Wooden Wall Bank Bounces for Trick Cluster Shots",
+      "Gravity Orphan Drops Falling into Woven Harvest Baskets (+120 pts)",
+      "Descent Countdown Adding Tension on Non-Popping Shots",
+      "Full 60 FPS Canvas 2D Engine with Zero Touch Input Delay",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Farm Fruit Bubble: Orchard Pop 🍎 — Free Bubble Shooter | Pawcade",
+    "metaDescription": "Play Farm Fruit Bubble free online! Aim and bounce sweet orchard fruit bubbles to match clusters and harvest crates. Free browser play with no download."
+  },
+  {
+    "id": "pasture-sheep-jump",
+    "slug": "pasture-sheep-jump",
+    "title": "Pasture Sheep Jump: Cloud Leap 🐑☁️",
+    "tagline": "Bounce your fluffy sheep across floating hay bales and reach sunny skies!",
+    "description": "Leap into the clouds with Barnaby the sheep in Pasture Sheep Jump! Bounce across sturdy wooden planks, moving cloud platforms, and spring hay bales. Collect shiny golden bells as you climb into the stratosphere. Steer left and right to keep climbing and set a record altitude!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/pasture-sheep-jump/",
+    "status": "playable",
+    "rating": 4.8,
+    "playCount": "17.1K",
+    "badge": "🆕 Daily Drop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-pasture-sheep-jump.svg",
+    "controls": {
+      "desktop": [
+        "Arrow Keys or A/D: Steer Barnaby left and right in mid-air",
+        "Screen Wraparound: Leap off one edge to reappear on the opposite side",
+        "M Key: Toggle sound effects",
+        "R Key: Restart jump when fallen"
+      ],
+      "mobile": [
+        "Touch & Drag: Steer sheep smoothly towards floating platforms",
+        "Fluid 60 FPS Tilt and Drag Steering with Zero Delay"
+      ]
+    },
+    "features": [
+      "Infinite Vertical Bouncing Climb through Multi-Layer Atmosphere",
+      "Spring-Loaded Hay Bales Launching Barnaby into Super High Leaps",
+      "Drifting Cloud Platforms & Brittle Twigs Testing Precision Footing",
+      "Shiny Golden Wool Bells Awarding Big Altitude Bonus Points",
+      "Dynamic Sky Gradient Changing from Morning Green to Twilight Stars",
+      "Zero Download Instant Browser Play on All Mobile & Desktop Browsers"
+    ],
+    "metaTitle": "Pasture Sheep Jump: Cloud Leap 🐑 — Free Jumping Game | Pawcade",
+    "metaDescription": "Play Pasture Sheep Jump free online! Bounce your fluffy sheep across floating hay bales and clouds into the sky. Free browser play with no download."
+  },
+  {
+    "id": "hungry-piggy",
+    "slug": "hungry-piggy",
+    "title": "Hungry Piggy: Farmyard Chomper 🐷🍎",
+    "tagline": "Chomp farm apples, crates, and tractors to grow into the biggest pig in the pasture!",
+    "description": "Step into the pasture with Barnaby in Hungry Piggy! Steer your cute piglet around the farm and gobble up delicious treats. Start small by munching acorns and juicy apples. As you eat, your piggy grows bigger and bigger! Soon you can swallow wooden crates, hay bales, and giant green tractors. Gobble as much as you can before the 60-second timer runs out and set a personal best score!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/hungry-piggy/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "19.4K",
+    "badge": "🆕 Daily Drop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-hungry-piggy.svg",
+    "controls": {
+      "desktop": [
+        "Arrow Keys or W/A/S/D: Steer Barnaby towards food in the farmyard",
+        "Mouse Pointer: Move cursor to steer piggy in any direction",
+        "Spacebar: Tap to restart after game over",
+        "M Key: Toggle Web Audio effects"
+      ],
+      "mobile": [
+        "Touch & Drag: Steer piggy smoothly across the pasture with instant response",
+        "Dynamic Analog Vector Indicator showing steering angle"
+      ]
+    },
+    "features": [
+      "4 Progressive Growth Tiers: Little Piglet, Chubby Porker, Big Hog, and Mega Boss",
+      "Dynamic Item Scale System: Apples, Pumpkins, Hay Bales, and Full-Sized Tractors",
+      "Rapid Chomp Combo Multipliers rewarding fast feeding streaks up to 4X",
+      "High-Energy 60-Second Timed Rush with Live Countdown and High-Score Record",
+      "Procedural Zero-Latency Web Audio (Crunch Munches, Piggy Oinks, and Fanfare Chimes)",
+      "100% Free Browser Play with Zero Ads, Downloads, or Installs"
+    ],
+    "metaTitle": "Hungry Piggy: Farmyard Chomper 🐷 — Free Online Game | Pawcade",
+    "metaDescription": "Play Hungry Piggy free online! Guide your cute piglet to eat apples, hay bales, and tractors to grow huge in 60 seconds. Free browser play with no download."
+  },
+  {
+    "id": "duck-pond-sort",
+    "slug": "duck-pond-sort",
+    "title": "Duck Pond Sort: Water Lily Float 🦆🌸",
+    "tagline": "Sort adorable rubber duckies by color into calm farm pond docks!",
+    "description": "Relax by the meadow in Duck Pond Sort! Tap wooden docks to lift cute rubber ducks and sort them into matching ponds. Sunny yellows, rosy pinks, and mallard greens are all paddling together. Move matching ducks into empty bays or onto ducks of the same color. Clear each stage to hear a happy duck chorus and unlock new pond levels!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/duck-pond-sort/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "16.7K",
+    "badge": "🆕 Daily Drop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-duck-pond-sort.svg",
+    "controls": {
+      "desktop": [
+        "Left Click: Tap source pond to lift top ducks, then tap target pond to swim over",
+        "U Key: Undo previous duck move",
+        "R Key: Restart current pond level",
+        "M Key: Toggle soothing pond sounds and quacks"
+      ],
+      "mobile": [
+        "Tap Source Pond: Lifts matching top duckies into swimming hover",
+        "Tap Target Pond: Moves ducks smoothly into matching dock bay",
+        "Undo Button: Rewind any accidental moves instantly"
+      ]
+    },
+    "features": [
+      "5 Cute Duck Breeds: Sunny Yellow, Feather White, Rosy Pink, Splash Blue, and Mallard Green",
+      "Peaceful Farm Pond Atmosphere with Ambient Water Ripples and Lotus Flowers",
+      "Progressive Multi-Level Sorting Puzzles with Unlimited Undo Support",
+      "Procedural Zero-Latency Web Audio (Water Splashes, Happy Quacks, and Victory Chimes)",
+      "100% Free Browser Play with Zero Ads, Downloads, or Installs"
+    ],
+    "metaTitle": "Water Sort Puzzle Online Free — Duck Pond Sort | Pawcade",
+    "metaDescription": "Play Duck Pond Sort free online! Sort cute rubber duckies by color into peaceful farm pond bays. Instant browser play with no download or install."
+  },
+  {
+    "id": "hamster-ball-dash",
+    "slug": "hamster-ball-dash",
+    "title": "Hamster Ball Dash: Tube Roll 🐹⚡",
+    "tagline": "Roll your energetic hamster through transparent stunt tubes and collect golden sunflower seeds!",
+    "description": "Roll into high-speed stunts with Pip the hamster in Hamster Ball Dash! Steer your transparent stunt sphere along wooden boardwalks and clear silo tubes. Collect golden sunflower seeds and speed past barnyard obstacles. Hit boost pads for turbo speed and launch off ramps into big jumps. Steer carefully around sharp turns so you do not tumble off the bridge. Beat the target time to set a new course record!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/hamster-ball-dash/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "18.8K",
+    "badge": "🆕 Daily Drop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-hamster-ball-dash.svg",
+    "controls": {
+      "desktop": [
+        "Left / Right Arrows or A / D: Steer Pip left and right across the track",
+        "Up Arrow / W: Roll forward faster into top speed",
+        "Down Arrow / S or Spacebar: Brake to make sharp turns safely",
+        "M Key: Toggle sound effects"
+      ],
+      "mobile": [
+        "Touch & Drag on Screen: Steer Pip smoothly with instant response",
+        "On-Screen Steer Buttons: Tap Left or Right at the bottom of the screen"
+      ]
+    },
+    "features": [
+      "3 Action-Packed Circuits: Barnyard Meadow Dash, Silo Tube Stunt, and Windmill Skyway",
+      "High-Speed Turbo Boost Pads and 3D Ramp Jump Launchers",
+      "Golden Sunflower Seed Pickups with Magnetic Seed Power-Ups",
+      "Checkpoint Respawn System with 3 Lives per Stage",
+      "Procedural Zero-Latency Web Audio (Speed Whistle, Seed Chimes, and Fanfares)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Hamster Ball Dash: Tube Roll 🐹⚡ — Free Online Stunt Game | Pawcade",
+    "metaDescription": "Play Hamster Ball Dash free online! Steer Pip the hamster inside a transparent sphere down tubes and ramps. Free browser play with no download."
+  },
+  {
+    "id": "cat-cafe-rush",
+    "slug": "cat-cafe-rush",
+    "title": "Cat Cafe Rush: Cozy Bakery 🐱🍰",
+    "tagline": "Serve warm fish waffles, strawberry cakes, and matcha tea to visiting cats in your cozy bakery!",
+    "description": "Run your own cozy animal bakery in Cat Cafe Rush! Friendly cats visit your counter with sweet pastry orders. Pour batter into the waffle iron to bake warm fish taiyaki. Layer fresh sponge cake with sweet cream and ripe red strawberries. Froth steaming matcha lattes and grab glazed donuts from the shelf. Serve orders quickly to earn generous tips and build big combo streaks. Clear every daily shift to delight VIP cat critics!",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/cat-cafe-rush/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "19.2K",
+    "badge": "🆕 Daily Drop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-cat-cafe-rush.svg",
+    "controls": {
+      "desktop": [
+        "Left Click: Tap bakery stations to bake waffles, froth milk, and assemble cakes",
+        "Click Serve: Tap customer SERVE button when matching order is on the platter",
+        "M Key: Toggle soothing cafe sounds and purrs"
+      ],
+      "mobile": [
+        "Tap Stations: Quick touch to pour batter, steam matcha, and layer cakes",
+        "Tap SERVE: Deliver prepared pastry to waiting customer cat",
+        "Tap Platter Item: Discard an item if you need an open platter slot"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Cat Pastries: Fish Taiyaki Waffles, Cat Shortcake, Matcha Latte, and Purr Donuts",
+      "3 Progressive Cafe Shifts: Morning Meow, Sweet Afternoon, and VIP Critic Rush",
+      "6 Visiting Cat Breeds: Calico, Tabby, Tuxedo, Siamese, Persian, and King Whiskers",
+      "Speed Tip System rewarding fast service with +50% coin bonuses",
+      "Procedural Zero-Latency Web Audio (Baking Sizzles, Milk Froth, Meows, and Purrs)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Cat Cafe Rush: Cozy Bakery 🐱🍰 — Free Online Bakery Game | Pawcade",
+    "metaDescription": "Play Cat Cafe Rush free online! Bake fish waffles, steam matcha lattes, and serve cute cats in your cozy bakery. Free browser play with no download."
+  },
+  {
+    "id": "save-the-sheep",
+    "slug": "save-the-sheep",
+    "title": "Save the Sheep: Hive Defense 🐝🐑",
+    "tagline": "Draw sturdy fences with ink to shield Barnaby the sheep from buzzing bee swarms!",
+    "description": "Protect cute sheep from angry bee swarms in Save the Sheep! Drag your finger or mouse across the screen to draw custom wooden barrier lines. Guard Barnaby from stinging bees, sharp cliff drops, and spiky brambles. Bees bounce off your drawn fences with elastic physics. Hold your defenses solid for five seconds to win each puzzle stage. Use minimal ink to score three golden stars on every level!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/save-the-sheep/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "21.5K",
+    "badge": "🆕 Daily Drop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-save-the-sheep.svg",
+    "controls": {
+      "desktop": [
+        "Click & Drag: Draw protective barrier lines around Barnaby the sheep",
+        "Release Mouse: Solidify the barrier fence and release the bee swarm",
+        "R Key: Clear ink and restart current puzzle stage",
+        "M Key: Toggle sound effects"
+      ],
+      "mobile": [
+        "Touch & Drag: Draw wooden fence lines with your finger",
+        "Lift Finger: Lock fence in place and begin 5-second swarm test",
+        "Reset Button: Tap to erase lines and redraw with full ink"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Puzzle Stages: Meadow Perch, Dual Hives, The Crevasse, and Spike Canyon",
+      "Dynamic Line Drawing Physics with Real-Time Collision and Deflection",
+      "Elastic Bee Swarm AI Tracking Barnaby with Continuous Proximity Chases",
+      "3-Star Ink Conservation Scoring System (Spend Less Ink for Maximum Rank)",
+      "Procedural Zero-Latency Web Audio (Pencil Sketch, Bee Swarms, Baas, and Fanfares)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Save the Sheep: Hive Defense 🐝🐑 — Draw & Protect Game | Pawcade",
+    "metaDescription": "Play Save the Sheep free online! Draw fence lines to protect Barnaby the sheep from buzzing bee swarms. Free physics puzzle with no download."
+  },
+  {
+    "id": "capybara-spa-rush",
+    "slug": "capybara-spa-rush",
+    "title": "Capybara Spa: Hot Springs 🍊🛁",
+    "tagline": "Run a relaxing cedar onsen bath for visiting capybaras with floating yuzu and herbal tea!",
+    "description": "Run a cozy Japanese hot spring for cute animals in Capybara Spa! Friendly capybaras, ducklings, and turtles visit your wooden cedar tubs. Drop floating yellow yuzu citrus fruits into the warm water. Scrub dirty tubs with soft bamboo sponges to keep baths fresh. Serve hot herbal barley tea to earn generous coin tips. When a capybara reaches full bliss, collect your sparkling golden coins! Reinvest your spa profits to unlock luxury tubs and upgrades.",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/capybara-spa-rush/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "22.4K",
+    "badge": "🆕 Daily Drop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-capybara-spa-rush.svg",
+    "controls": {
+      "desktop": [
+        "Left Click Guest: Select a waiting animal from the bench",
+        "Left Click Open Tub: Seat selected animal into the warm cedar bath",
+        "Action Buttons: Click Yuzu, Tea, or Scrub to fulfill animal requests",
+        "COLLECT COINS: Click glowing coin button when bliss gauge reaches 100%",
+        "U Key: Open Onsen Spa Upgrades drawer",
+        "M Key: Toggle soothing bath sounds and squeaks"
+      ],
+      "mobile": [
+        "Tap Guest: Select waiting capybara, duckling, or turtle",
+        "Tap Open Tub: Seat guest into warm steaming bath",
+        "Tap Yuzu / Tea / Scrub: Service guest requests quickly",
+        "Tap COLLECT COINS: Cash in on full bliss for instant golden coins",
+        "UPGRADES Button: Unlock extra cedar tubs and chamomile baths"
+      ]
+    },
+    "features": [
+      "4 Cedar Hot Spring Tubs with Dynamic Water Steam and Floating Yuzu Citrus",
+      "4 Visiting Cute Animal Species: Capybaras, Ducklings, Turtles, and Snow Monkeys",
+      "Interactive Guest Service Loop: Floating Yuzu Toss, Bamboo Scrubbing, and Barley Tea",
+      "Deep Onsen Progression Tree: Herbal Baths, Deluxe Sponges, and Tea Stations",
+      "Procedural Zero-Latency Web Audio (Warm Splashes, Squeaks, Bubbles, and Zen Chimes)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Capybara Spa: Hot Springs 🍊🛁 — Relaxing Onsen Game | Pawcade",
+    "metaDescription": "Play Capybara Spa free online! Run a cozy Japanese hot spring for cute capybaras and friend critters. Free relaxing game with no download."
+  },
+  {
+    "id": "wood-nuts-farm",
+    "slug": "wood-nuts-farm",
+    "title": "Wood Nuts & Bolts: Barnyard Jam 🔩🚜",
+    "tagline": "Unscrew metallic bolts from farm boards to drop colorful wooden planks in this physics puzzle!",
+    "description": "Test your puzzle logic in Wood Nuts & Bolts Barnyard Jam! Unscrew metallic bolts from wooden farm boards to drop colorful planks. Tap a screw to unfasten it, then tap an open hole to move it. Plan every move carefully so you do not run out of empty holes. Watch heavy cedar beams and pine rails tumble with realistic gravity physics. Clear all four workshop stages to become the ultimate farm craftsman!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/wood-nuts-farm/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "23.8K",
+    "badge": "🆕 Daily Drop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-wood-nuts-farm.svg",
+    "controls": {
+      "desktop": [
+        "Left Click Screw: Select a screw to unscrew from the wooden board",
+        "Left Click Empty Hole: Move selected screw into an open hole",
+        "R Key: Restart current workshop level",
+        "M Key: Toggle ratchet and wood clatter sounds"
+      ],
+      "mobile": [
+        "Tap Screw: Select and loosen a bolt with your finger",
+        "Tap Empty Hole: Move the screw into any open peg slot",
+        "Restart Button: Reset current board if you run out of moves"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Workshop Stages: Garden Gate, Windmill Vane, Silo Ladder, and Barn Truss",
+      "Realistic Wood Plank Gravity Physics with Dynamic Rotations and Drops",
+      "Tactile Screw Selection and Board Pinning Mechanics",
+      "Move Counter and Star Scoring System for Efficient Solutions",
+      "Procedural Zero-Latency Web Audio (Ratchets, Metallic Snaps, and Wood Thuds)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Wood Nuts & Bolts: Barnyard Jam 🔩🚜 — Free Screw Puzzle | Pawcade",
+    "metaDescription": "Play Wood Nuts & Bolts free online! Unscrew bolts from wooden planks to clear barnyard puzzles. Free browser screw game with no download."
+  },
+  {
+    "id": "animal-suika-drop",
+    "slug": "animal-suika-drop",
+    "title": "Animal Drop: Watermelon Merge 🍉🐾",
+    "tagline": "Drop and merge cute farm animals to grow the giant Watermelon Elephant in this juicy physics puzzle!",
+    "description": "Drop and merge cute farm animals in this juicy physics puzzle. Aim your dropper to drop chicks, kittens, and puppies into the wooden box. When two matching animals touch, they merge into a bigger animal. Keep merging to grow the giant Watermelon Elephant. Watch the red danger line closely so your animals do not overflow the basket. Score big combo points and beat your personal record today!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/animal-suika-drop/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "27.4K",
+    "badge": "🍉 Suika Merge",
+    "thumbnailUrl": "/assets/thumbnails/thumb-animal-suika-drop.svg",
+    "controls": {
+      "desktop": [
+        "Mouse Move / Drag: Aim the active animal along the top bar",
+        "Left Click / Release: Drop animal into the puzzle box",
+        "R Key: Quick restart game",
+        "M Key: Toggle bounce and merge sound effects"
+      ],
+      "mobile": [
+        "Touch & Drag: Slide finger left and right to aim drop position",
+        "Release Finger: Drop animal into the wooden basket",
+        "Restart Button: Reset game and try for a higher score"
+      ]
+    },
+    "features": [
+      "10 Cute Animal Evolution Tiers: Chick to Duckling, Kitten, Bunny, Puppy, Piglet, Sheep, Cow, Capybara, and Mega Watermelon Elephant",
+      "Sub-Stepped 60 FPS Physics Engine with Realistic Circle Stacking and Rolling",
+      "Juicy Merge Starburst Effects and Floating Score Badges",
+      "Red Danger Line Overflow Warning System with Countdown Timer",
+      "Procedural Web Audio Chimes Scaled to Merge Evolution Tiers",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Animal Drop: Watermelon Merge 🍉🐾 — No Download | Pawcade",
+    "metaDescription": "Play Animal Drop Watermelon Merge free online! Drop and merge cute farm animals to grow the giant Watermelon Elephant. Free puzzle game with no download."
+  },
+  {
+    "id": "farm-tile-triple",
+    "slug": "farm-tile-triple",
+    "title": "Tile Matching Game: Farm Tile Triple 🍓🧩",
+    "tagline": "Pick and match 3 cute farm crop tiles in your 7-slot tray to clear the board in this cozy puzzle!",
+    "description": "Match cute crop tiles in this relaxing farm puzzle. Tap unblocked tiles from the board to move them into your tray. When you collect three identical tiles, they clear instantly for bonus points. Keep your seven tray slots from filling up as you dig through layered tiles. Clear every crop from the garden table to complete all four handcrafted stages today!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/farm-tile-triple/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "19.8K",
+    "badge": "🧺 Tile Triple",
+    "thumbnailUrl": "/assets/thumbnails/thumb-farm-tile-triple.svg",
+    "controls": {
+      "desktop": [
+        "Left Click Tile: Pick an unblocked crop tile into your 7-slot tray",
+        "U Key: Undo previous tile pick",
+        "S Key: Shuffle unpicked board tiles",
+        "R Key: Quick restart current stage",
+        "M Key: Toggle soothing wooden sound effects"
+      ],
+      "mobile": [
+        "Tap Tile: Send top unblocked crop tile into your tray",
+        "Undo Button: Take back a misstep easily",
+        "Shuffle Button: Reorder tiles if stuck",
+        "Restart Button: Reset level for a fresh attempt"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Puzzle Stages: Garden Gate, Orchard Basket, Harvest Festival, and Barnyard Cornucopia",
+      "8 Charming Farm Crops & Animals: Apples, Corn, Pumpkins, Berries, Eggplants, Honey, Chicks, and Sunflowers",
+      "Layered 3D Tile Blocking System with Real-Time Unblock Updates",
+      "Dynamic 7-Slot Tray Mechanics with 3-Match Particle Burst Celebrations",
+      "Procedural Web Audio Synthesizer (Wooden Taps, Harp Chimes, Shuffle Whooshes, and Victory Fanfare)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Tile Matching Game: Farm Tile Triple 🍓🧩 — Free Online | Pawcade",
+    "metaDescription": "Play Tile Matching Game: Farm Tile Triple free online! Pick and match three cute farm crop tiles in your tray to clear the board. Free cozy puzzle game with no download."
+  },
+  {
+    "id": "farm-pipe-flow",
+    "slug": "farm-pipe-flow",
+    "title": "Farm Pipe Flow: Barnyard Plumber 🚜💧",
+    "tagline": "Rotate water pipes to irrigate thirsty barnyard crops and animal troughs in this cozy plumber puzzle!",
+    "description": "Connect irrigation pipes in this relaxing farm plumber puzzle. Tap pipe joints to rotate them ninety degrees. Direct water from the red pump tank to every thirsty vegetable patch and animal trough. Solve each field with minimal turns to earn the highest score. Complete all four farm stages and master the barnyard water flow today!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/farm-pipe-flow/",
+    "status": "playable",
+    "rating": 4.9,
+    "playCount": "17.3K",
+    "badge": "🚜 Pipe Flow",
+    "thumbnailUrl": "/assets/thumbnails/thumb-farm-pipe-flow.svg",
+    "controls": {
+      "desktop": [
+        "Left Click Pipe: Rotate pipe joint 90 degrees clockwise",
+        "U Key: Undo previous pipe rotation",
+        "R Key: Quick restart current irrigation stage",
+        "M Key: Toggle water bubbling and ratchet sounds"
+      ],
+      "mobile": [
+        "Tap Pipe: Turn pipe section 90 degrees",
+        "Undo Button: Rewind previous turn easily",
+        "Restart Button: Reset stage to try with fewer turns"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Irrigation Stages: Carrot Patch, Strawberry Greenhouse, Apple Orchard, and Barnyard Dairy Trough",
+      "Multiple Pipe Varieties: Straight Sections, 90-Degree Elbows, 3-Way Tees, and 4-Way Cross Junctions",
+      "Real-Time BFS Fluid Simulation with Visual Flow Highlighting",
+      "Crop Blooming Feedback and Sparkling Victory Celebrations",
+      "Procedural Web Audio Synthesizer (Ratchet Turns, Water Gushes, and Garden Chimes)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Pipe Puzzle Game Online Free — Farm Pipe Flow | Pawcade",
+    "metaDescription": "Play Farm Pipe Flow free online! Rotate water pipes to irrigate thirsty barnyard crops and animal troughs. Free casual plumber puzzle with no download."
+  },
+  {
+    "id": "koi-pond-zen",
+    "slug": "koi-pond-zen",
+    "title": "Koi Pond: Zen Water Garden 🎏🌸",
+    "tagline": "Feed graceful Japanese koi fish, bloom pink lotus flowers, and create gentle water ripples in a peaceful zen pond garden.",
+    "description": "Feed graceful Japanese koi fish, bloom pink lotus flowers, and create gentle water ripples in a peaceful zen pond garden. Relax as Kohaku, Yamabuki, Showa, and Tancho koi swim smoothly through crystal clear waters. Ring the singing bowl to call all fish together, drop golden food pellets, and watch delicate lotus blossoms open across four serene sanctuary ponds.",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/koi-pond-zen/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "21.5K",
+    "badge": "🎏 Zen Waters",
+    "thumbnailUrl": "/assets/thumbnails/thumb-koi-pond-zen.svg",
+    "controls": {
+      "desktop": [
+        "Left Click Water: Drop fish food pellets and make gentle ripples",
+        "Spacebar / B Key: Ring Tibetan singing bowl to gather all koi",
+        "S Key: Activate falling sakura petal shower for 2x zen boost",
+        "R Key: Restart zen garden sanctuary",
+        "M Key: Toggle soothing water and chime sounds"
+      ],
+      "mobile": [
+        "Tap Water: Drop food pellets and create expanding ripples",
+        "Food / Gold Toggle: Switch between standard and golden pellets",
+        "Chime Button: Ring singing bowl to guide all fish to center",
+        "Sakura Button: Trigger sakura petal shower for double points"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Zen Sanctuaries: Bamboo Grove Spring, Cherry Blossom Basin, Golden Pavilion Pool, and Moonlit Sanctuary",
+      "5 Japanese Koi Breeds: Kohaku (🔴⚪), Yamabuki (🟡✨), Showa (⚫🔴⚪), Tancho (⚪🔴), and Butterfly Sakura Koi (🌸🎏)",
+      "Autonomous Boid Schooling AI and Scent Tracking Food Navigation",
+      "Interactive 60 FPS Fluid Water Ripple Dynamics and Floating Lotus Lily Pads",
+      "Procedural Web Audio Soundscape (Water Plinks, Bamboo Clacks, Singing Bowl Gongs, and Zen Fanfare)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Koi Pond: Zen Water Garden 🎏🌸 — No Download | Pawcade",
+    "metaDescription": "Play Koi Pond Zen free online! Feed graceful Japanese koi, bloom lotus flowers, and create water ripples in a tranquil pond garden. Free relaxing game with no download."
+  },
+  {
+    "id": "barnyard-pin-pull",
+    "slug": "barnyard-pin-pull",
+    "title": "Barnyard Pin Pull: Rescue & Loot 🚜📌",
+    "tagline": "Pull golden pins to quench burning lava, defeat thieving foxes, and drop fresh carrots to rescue Barnaby!",
+    "description": "Pull golden locking pins in the right order to rescue cute farm animals. Quench burning lava with fresh water to make safe stones. Defeat sneaky foxes and drop golden carrots into Barnaby's bowl across five barnyard puzzle chambers.",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/barnyard-pin-pull/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "23.4K",
+    "badge": "📌 Pin Rescue",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-pin-pull.svg",
+    "controls": {
+      "desktop": [
+        "Left Click Pin Ring: Pull pin smoothly out of socket",
+        "R Key: Quick restart current chamber",
+        "M Key: Toggle pin slide and steam sounds"
+      ],
+      "mobile": [
+        "Tap Pin Ring: Pull pin with your finger",
+        "Restart Button: Reset chamber easily"
+      ]
+    },
+    "features": [
+      "5 Handcrafted Chamber Levels: Granary Gateway, Steam Quencher, Fox in the Hayloft, Treasure Granary, and Barnyard Fortress",
+      "Dynamic Water vs Lava Quenching Physics with Expanding Steam Clouds",
+      "Tactile 60 FPS Particle Gravity Mechanics (Golden Carrots, Coins, Water, Lava, and Stone)",
+      "Sneaky Thief Fox AI and Barnaby the Hungry Puppy Reactions",
+      "Procedural Web Audio Synthesizer (Wooden Pin Slides, Lava Sizzles, Coin Clinks, and Victory Fanfare)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Barnyard Pin Pull: Rescue & Loot 🚜📌 — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Pin Pull free online! Pull golden pins, quench lava with water, defeat sneaky foxes, and rescue cute farm animals. Free puzzle game with no download."
+  },
+  {
+    "id": "hamster-cookie-stack",
+    "slug": "hamster-cookie-stack",
+    "title": "Hamster Cookie Stack: Sweet Bakery 🐹🍪",
+    "tagline": "Catch dropping sweet treats on a golden pastry plate and balance a giant wobbly dessert tower with Mochi!",
+    "description": "Help Mochi the baker hamster stack sweet desserts! Catch warm cookies, glazed donuts, and berry cakes dropped from belts above. Move left and right to keep the wobbly tower balanced. Clear four fun bakery stages without dropping three sweets to the floor.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "puzzle"
+    ],
+    "route": "/games/hamster-cookie-stack/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "24.2K",
+    "badge": "🐹 Sweet Tower",
+    "thumbnailUrl": "/assets/thumbnails/thumb-hamster-cookie-stack.svg",
+    "controls": {
+      "desktop": [
+        "Left & Right Arrow Keys / A & D: Slide pastry plate smoothly",
+        "R Key: Restart bakery stage",
+        "M Key: Toggle dessert pop and chimes"
+      ],
+      "mobile": [
+        "Touch & Slide Anywhere: Steer plate under dropping treats",
+        "Left & Right On-Screen Buttons: Tap to nudge plate",
+        "Restart Button: Reset bakery level"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Bakery Stages: Sugar Shack, Macaron Meadow, Donut Deluxe, and Royal Patisserie",
+      "6 Delectable Sweet Treats: Chocolate Chip Cookies, Strawberry Cupcakes, French Macarons, Glazed Donuts, Belgian Waffles, and Birthday Cakes",
+      "Realistic Center-of-Mass Physics with Spring Damping and Tower Wobble",
+      "Perfect Catch Streak Multipliers (2x, 3x, 4x, 5x) and Star Sparkles",
+      "Procedural Web Audio Synthesizer (Marimba Chords, Sparkle Chimes, Hamster Squeaks, and Bakery Fanfare)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Hamster Cookie Stack: Sweet Bakery 🐹🍪 — No Download | Pawcade",
+    "metaDescription": "Play Hamster Cookie Stack free online! Catch dropping cookies, macarons, and donuts to balance a giant dessert tower with Mochi the hamster. Free no download."
+  },
+  {
+    "id": "barnyard-fruit-slicer",
+    "slug": "barnyard-fruit-slicer",
+    "title": "Barnyard Fruit Slicer: Farm Juice 🍉⚔️",
+    "tagline": "Swipe your blade across flying apples, watermelons, and golden corn in mid-air to make fresh barnyard juice!",
+    "description": "Slice flying orchard fruits in mid-air with Barnaby! Swipe across juicy watermelons, crisp apples, and sweet strawberries. Dodge prickly thistle bombs and build massive slice combos. Clear four harvest stages and become the ultimate barnyard juice master.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "puzzle"
+    ],
+    "route": "/games/barnyard-fruit-slicer/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "25.8K",
+    "badge": "🍉 Fruit Ninja",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-fruit-slicer.svg",
+    "controls": {
+      "desktop": [
+        "Mouse Drag / Swipe: Cut through flying fruits in mid-air",
+        "R Key: Quick restart orchard level",
+        "M Key: Toggle slicing and whoosh sounds"
+      ],
+      "mobile": [
+        "Touch & Swipe Anywhere: Cut cleanly through fruits with your finger",
+        "Multi-Slice: Hit 3+ fruits in one stroke for bonus combos",
+        "Restart Button: Reset level anytime"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Harvest Stages: Orchard Sunrise, Berry Harvest, Pumpkin Festival, and Mega Juice Frenzy",
+      "7 Unique Farm Targets: Barnyard Apples, Sweet Watermelons, Wild Strawberries, Sweetcorn, Eggplants, Golden Pineapples, and Thistle Bombs",
+      "Dynamic 60 FPS Halving Physics with Realistic Angular Velocity and Juice Splatters",
+      "Satisfying Combo Streak System with Sparkling Floating Text Badges",
+      "Procedural Web Audio Synthesizer (Blade Whooshes, Juicy Chops, Bomb Blasts, and Combo Fanfares)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Barnyard Fruit Slicer: Farm Juice 🍉⚔️ — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Fruit Slicer free online! Slice flying apples, watermelons, and berries in mid-air. Dodge thistle bombs and build combo streaks. Free no download."
+  },
+  {
+    "id": "barnyard-peg-pop",
+    "slug": "barnyard-peg-pop",
+    "title": "Barnyard Peg Pop: Acorn Bounce 🌰🎯",
+    "tagline": "Aim your acorn cannon, bounce off colorful farm pegs, and clear all golden targets for rainbow celebrations!",
+    "description": "Help Sammy the squirrel bounce shiny acorns across pegboards! Aim your wooden cannon to hit blue pegs, golden targets, and bonus bells. Land balls in the moving farm cart for extra shots. Clear every golden peg across four orchard stages to trigger rainbow fanfare.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "puzzle",
+      "farm"
+    ],
+    "route": "/games/barnyard-peg-pop/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "27.3K",
+    "badge": "🌰 Peg Pop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-peg-pop.svg",
+    "controls": {
+      "desktop": [
+        "Mouse Move / Pointer: Aim cannon angle smoothly",
+        "Left Click / Spacebar: Fire bouncing acorn nut",
+        "Arrow Keys Left / Right: Fine-tune cannon aiming",
+        "R Key: Restart current pegboard",
+        "M Key: Toggle melodic chime sounds"
+      ],
+      "mobile": [
+        "Touch & Drag: Aim cannon angle anywhere on screen",
+        "FIRE Button: Launch acorn toward pegs",
+        "Restart Button: Reset level anytime"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Pegboard Stages: Acorn Hollow, Orchard Grove, Autumn Ridge, and Golden Sanctuary",
+      "4 Unique Peg Types: Blue Acorns (100 pts), Orange Targets (250 pts), Purple Bonus (500 pts), and Green Magic Launchers (Super Bounce)",
+      "Sub-Stepped 60 FPS Circle Rebounding Physics with Restitution Damping",
+      "Sliding Farm Hay Cart at Bottom for Free Ball Catches (+1 Extra Shot)",
+      "Procedural Web Audio Chimes (Melodic Pentatonic Scale Arpeggios, Cork Pops, Cart Catches, and Beethoven Ode to Joy Fever Fanfare)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Peg Bounce Game Online Free — Barnyard Peg Pop | Pawcade",
+    "metaDescription": "Play Barnyard Peg Pop free online! Aim the acorn cannon, bounce off colorful pegs, and clear golden targets in Peggle style. Free casual game with no download."
+  },
+  {
+    "id": "duck-archery-range",
+    "slug": "duck-archery-range",
+    "title": "Duck Archery: Target Master 🎯🦆",
+    "tagline": "Pull back the bowstring, gauge prairie wind gusts, and shoot bullseyes with Quacky the Robin Duck!",
+    "description": "Help Quacky the Robin Duck master the countryside archery range! Pull back the bowstring, adjust your launch angle, and compensate for shifting wind gusts. Hit bullseyes, pop bonus apples, and ring golden bells across four challenging archery ranges to claim the trophy.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/duck-archery-range/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "21.4K",
+    "badge": "🎯 Target Master",
+    "thumbnailUrl": "/assets/thumbnails/thumb-duck-archery-range.svg",
+    "controls": {
+      "desktop": [
+        "Mouse Drag & Release: Pull back bowstring to aim angle and power",
+        "Trajectory Preview: Follow the dotted guideline to gauge gravity",
+        "R Key: Restart current archery stage",
+        "M Key: Toggle bow and impact sound effects"
+      ],
+      "mobile": [
+        "Touch & Drag: Pull back on the bow to aim and charge power",
+        "Release Finger: Fire arrow toward target field",
+        "Restart Button: Reset current stage anytime"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Archery Ranges: Pasture Warmup, Windmill Breeze, Orchard Trickshot, and Grand Championship",
+      "Realistic Ballistics Physics with Gravity Arc and Dynamic Crosswind Gusts",
+      "Multi-Zone Target Scoring: Bullseyes (100 pts), Red Rings (50 pts), Blue Rings (25 pts), and White Rings (10 pts)",
+      "Bonus Field Targets: Juicy Crisp Apples (+150 pts) and Golden Chime Bells (+1 Extra Arrow)",
+      "Procedural Web Audio Synthesizer (Bow Creaks, Twang Snaps, Wood Thuds, and Bullseye Chimes)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Archery Game Online Free — Duck Archery Range | Pawcade",
+    "metaDescription": "Play Duck Archery: Target Master free online! Pull back the bowstring, gauge wind gusts, and shoot bullseyes across 4 ranges. Free casual game with no download."
+  },
+  {
+    "id": "corgi-mini-golf",
+    "slug": "corgi-mini-golf",
+    "title": "Corgi Mini Golf: Pasture Putt 🐶⛳",
+    "tagline": "Putt, bank off wooden rails, dodge sand traps, and sink hole-in-ones with Sunny the Corgi!",
+    "description": "Help Sunny the Corgi sink putts across four handcrafted countryside mini golf holes! Drag to aim your putter, bank shots off wooden rails, dodge sand and mud hazards, and collect golden bones. Sink putts under par to earn Birdie, Eagle, and Hole-in-One trophies.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets"
+    ],
+    "route": "/games/corgi-mini-golf/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "24.8K",
+    "badge": "🐶 Mini Golf",
+    "thumbnailUrl": "/assets/thumbnails/thumb-corgi-mini-golf.svg",
+    "controls": {
+      "desktop": [
+        "Mouse Drag & Release: Pull back to set putt power and direction",
+        "Aim Line: Dashed guide displays rolling angle and power percentage",
+        "R Key: Restart current golf hole",
+        "M Key: Toggle putter clink and ball cup sounds"
+      ],
+      "mobile": [
+        "Touch & Drag: Pull back from ball to adjust power and direction",
+        "Release Finger: Putt the ball across the green",
+        "Restart Button: Reset current hole anytime"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Countryside Holes: Pasture Fairway, Windmill Dogleg, Mud Trap Chicane, and Barnyard Championship",
+      "Sub-Stepped 60 FPS Physics with Restitution Rail Bounces and Variable Surface Friction",
+      "Realistic Hole Suction Physics and Flagpin Cup Drop Animations",
+      "Bouncy Pinball-Style Wooden Bumpers and Collectible Golden Bones (+100 pts)",
+      "Authentic Golf Scoring: Hole-in-One, Eagle, Birdie, Par, and Bogey Ratings",
+      "Procedural Web Audio Synthesizer (Metallic Putts, Rail Thwacks, Bumper Boings, and Cup Drops)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Mini Golf Game Online Free — Corgi Pasture Putt | Pawcade",
+    "metaDescription": "Play Corgi Mini Golf free online! Aim your putter, bank off wooden rails, dodge sand traps, and sink hole-in-ones. Free casual game with no download."
+  },
+  {
+    "id": "caterpillar-fruit-trail",
+    "slug": "caterpillar-fruit-trail",
+    "title": "Caterpillar Garden: Fruit Trail Snake 🐛🍎",
+    "tagline": "Crawl through garden plots, eat sweet berries, dodge thorny hedges, and grow your fuzzy trail!",
+    "description": "Guide Sammy the friendly garden caterpillar across lush fruit patches! Crawl along garden tiles, munch on sweet cherries, strawberries, and golden apples to grow your wavy body. Dodge stone rocks, thorny brambles, and your own tail across four blooming garden plots.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/caterpillar-fruit-trail/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "29.1K",
+    "badge": "🐛 Fruit Snake",
+    "thumbnailUrl": "/assets/thumbnails/thumb-caterpillar-fruit-trail.svg",
+    "controls": {
+      "desktop": [
+        "Arrow Keys / WASD: Steer Sammy up, down, left, and right",
+        "R Key: Restart current garden plot",
+        "M Key: Toggle fruit crunch and crawl sounds"
+      ],
+      "mobile": [
+        "Touch & Swipe: Swipe anywhere on screen in four directions",
+        "On-Screen D-Pad: Tap directional arrows below the garden",
+        "Restart Button: Reset level anytime"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Garden Plots: Daisy Meadow, Strawberry Patch, Thorn Hedge Maze, and Butterfly Greenhouse",
+      "Smooth 60 FPS Multi-Segment Wavy Caterpillar Crawl Animations with Responsive Turning",
+      "5 Garden Treats: Sweet Cherries (25 pts), Strawberries (40 pts), Crisp Apples (60 pts), Golden Apples (150 pts), and Turbo Leaves",
+      "Dynamic Obstacles: Garden Stones, Wooden Hedges, and Prickly Blackberry Brambles",
+      "Procedural Web Audio Synthesizer (Crunchy Munches, Turbo Sweeps, Rustles, and Victory Fanfare)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Caterpillar Garden: Fruit Trail Snake 🐛🍎 — No Download | Pawcade",
+    "metaDescription": "Play Caterpillar Garden: Fruit Trail Snake free online! Crawl across garden tiles, eat sweet berries, grow your caterpillar body, and dodge thorns. Free no download."
+  },
+  {
+    "id": "carrot-target-throw",
+    "slug": "carrot-target-throw",
+    "title": "Carrot Target Throw: Barnyard Spin 🎯🥕",
+    "tagline": "Throw crunchy carrots into rotating farm targets, slice bonus fruit, and dodge obstacles!",
+    "description": "Test your timing in Carrot Target Throw! Tap to flick crisp carrots into spinning wooden stumps, waterwheel timbers, and windmill rotors. Dodge pre-stuck wood pegs and your own embedded carrots while slicing juicy apples and golden acorns. Master all four spinning stages to win!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/carrot-target-throw/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "31.2K",
+    "badge": "🎯 Target Spin",
+    "thumbnailUrl": "/assets/thumbnails/thumb-carrot-target-throw.svg",
+    "controls": {
+      "desktop": [
+        "Spacebar / Left Click: Flick carrot upward toward the spinning target",
+        "R Key: Restart current target stage",
+        "M Key: Toggle crisp throw and stick sound effects"
+      ],
+      "mobile": [
+        "Tap Screen / Throw Button: Tap anywhere to throw carrot instantly",
+        "Restart Button: Reset stage anytime"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Spinning Stages: Oak Tree Stump, Waterwheel Timber, Windmill Rotor, and Grand Barn Melon",
+      "Dynamic Rotation Patterns with Acceleration, Reversals, and Sudden Stutter Bursts",
+      "Bonus Orbiting Fruits: Sliced Crisp Apples (+250 pts) and Golden Acorns (+500 pts)",
+      "Responsive Sub-Stepped Collision Detection with Deflection Physics and Wood Chip Sparks",
+      "Procedural Web Audio Synthesizer (Whoosh Throws, Woody Thunks, Fruit Slices, and Victory Fanfare)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Carrot Target Throw: Barnyard Spin 🎯🥕 — No Download | Pawcade",
+    "metaDescription": "Play Carrot Target Throw free online! Flick crisp carrots into rotating farm targets, dodge obstacles, and slice bonus fruit across 4 stages. Free no download."
+  },
+  {
+    "id": "animal-tangram-fit",
+    "slug": "animal-tangram-fit",
+    "title": "Animal Tangram: Wooden Block Fit 🧩🐾",
+    "tagline": "Fit rustic wooden blocks into cute animal silhouettes without overlapping!",
+    "description": "Fit polished wooden blocks into cute animal silhouettes in this relaxing brain puzzle! Pick shapes from your tray, rotate pieces to match carved contours, and assemble roosters, puppies, lambs, and cows. Fill every cell without overlap across four handcrafted stages to win!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/animal-tangram-fit/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "33.4K",
+    "badge": "🧩 Wood Fit",
+    "thumbnailUrl": "/assets/thumbnails/thumb-animal-tangram-fit.svg",
+    "controls": {
+      "desktop": [
+        "Left Click Tray Piece: Select a wooden shape",
+        "Left Click Board Cell: Place selected shape onto carved silhouette",
+        "Rotate Button / R Key: Rotate selected shape 90 degrees",
+        "M Key: Toggle soothing wood clack sounds"
+      ],
+      "mobile": [
+        "Tap Tray Piece: Select shape to place",
+        "Tap Board: Place shape into matching outline",
+        "Tap Placed Piece: Return piece back to tray",
+        "ROTATE Button: Turn shape 90 degrees"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Animal Silhouettes: Clucky the Rooster, Buster the Puppy, Daisy the Lamb, and Bessie the Cow",
+      "5 Authentic Polished Wood Grain Tones: Cherry, Walnut, Honey Oak, Pine, and Mahogany",
+      "Tactile Snap-to-Grid Placement with Instant Overlap Prevention",
+      "Full Piece Recall and 90-Degree In-Tray and On-Board Rotation",
+      "Procedural Web Audio Synthesizer (Oak Clacks, Wood Taps, Ratchet Turns, and Marimba Fanfare)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Tangram Puzzle Online Free — Animal Wood Block Fit | Pawcade",
+    "metaDescription": "Play Animal Tangram free online! Fit polished wooden blocks into cute animal silhouettes without overlapping. Relaxing farm brain puzzle with no download."
+  },
+  {
+    "id": "piggy-coin-pusher",
+    "slug": "piggy-coin-pusher",
+    "title": "Piggy Coin Pusher: Barnyard Dozer 🐷🪙",
+    "tagline": "Drop shiny coins, trigger farm quakes, and push big prizes over the ledge!",
+    "description": "Drop shiny golden coins onto the barnyard pusher in this classic arcade dozer! Time your drops to slide moving coins forward. Push clover silvers, prize eggs, and milk bottles over the front ledge to collect bonus points. Trigger the Barn Quake to shake the table or raise Coin Walls to protect your loot from side gutters!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/piggy-coin-pusher/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "34.8K",
+    "badge": "🪙 Coin Dozer",
+    "thumbnailUrl": "/assets/thumbnails/thumb-piggy-coin-pusher.svg",
+    "controls": {
+      "desktop": [
+        "Left Click Anywhere: Drop a coin at the cursor position",
+        "Spacebar / Drop Button: Drop coin down center chute",
+        "Quake Button: Trigger table tremor when power meter is full",
+        "Walls Button: Raise protective side barriers when meter is full"
+      ],
+      "mobile": [
+        "Tap Anywhere: Drop coin at tapped screen position",
+        "DROP COIN Button: Large bottom button to drop coin instantly",
+        "BARN QUAKE Button: Shake table to push coins over edge",
+        "COIN WALLS Button: Shield side gutters from coin loss"
+      ]
+    },
+    "features": [
+      "Sub-Stepped Multi-Coin Physics Engine with Smooth Circle-Circle Relaxation",
+      "Continuous Moving Chrome Pusher Blade with Red Ruby Bumper",
+      "5 Collectible Coin Types: Golden Corn, Clover Silver, Mega Coin, Prize Egg, and Milk Bottle",
+      "Dynamic Table Power-Ups: Barn Quake Tremor and Energy Shield Side Coin Walls",
+      "Procedural Web Audio Synthesizer (Coin Pings, Golden Chimes, Quake Rumbles, and Fanfares)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Piggy Coin Pusher: Barnyard Dozer 🐷🪙 — No Download | Pawcade",
+    "metaDescription": "Play Piggy Coin Pusher free online! Drop shiny coins into the barnyard dozer, trigger quakes, raise walls, and push big prizes over the ledge. Free no download."
+  },
+  {
+    "id": "milk-bottle-plinko",
+    "slug": "milk-bottle-plinko",
+    "title": "Milk Bottle Plinko: Carnival Drop 🥛🎪",
+    "tagline": "Drop farm milk bottles through bouncy wooden pegs into the 100x jackpot bucket!",
+    "description": "Drop glass milk bottles from Bessie the Cow's moving hopper in this carnival plinko arcade! Watch bottles bounce through 10 rows of wooden pegs and rubber bumpers. Time your drops to hit the central 100x Golden Jackpot bucket or score corner multipliers. Charge your meter to trigger the Golden Milk Frenzy and multiply your carnival prize score!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/milk-bottle-plinko/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "36.5K",
+    "badge": "🎪 Carnival Plinko",
+    "thumbnailUrl": "/assets/thumbnails/thumb-milk-bottle-plinko.svg",
+    "controls": {
+      "desktop": [
+        "Left Click: Drop a milk bottle from the moving dispenser",
+        "Spacebar / Drop Button: Drop bottle immediately",
+        "Frenzy Button: Activate Golden Milk Frenzy when meter is full",
+        "M Key: Toggle pentatonic chime and bell sound effects"
+      ],
+      "mobile": [
+        "Tap Anywhere on Board: Drop bottle at tapped X position",
+        "DROP MILK BOTTLE: Large bottom button to drop bottle",
+        "GOLDEN FRENZY Button: Tap to start 5x bottle stream",
+        "Mute & Reset: Compact buttons on top HUD"
+      ]
+    },
+    "features": [
+      "Sub-Stepped Multi-Row Plinko Physics with Elastic Bumper Restitution",
+      "Moving Top Dispenser Hopper with Direct Tap Drop Targeting",
+      "7 Multiplier Catch Buckets from 2x up to the 100x Golden Jackpot Corral",
+      "4 Bottle Varieties: Farm Milk, Strawberry Milk, Chocolate Milk, and Golden Star Milk",
+      "Pentatonic Note Web Audio Synthesizer with Ascending Peg Pings and Fanfares",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Milk Bottle Plinko: Carnival Drop 🥛🎪 — No Download | Pawcade",
+    "metaDescription": "Play Milk Bottle Plinko free online! Drop farm milk bottles through bouncy wooden pegs into the 100x jackpot bucket. Free casual carnival game with no download."
+  },
+  {
+    "id": "farm-tripeaks-solitaire",
+    "slug": "farm-tripeaks-solitaire",
+    "title": "Farm TriPeaks Solitaire: Harvest Peak 🌾🃏",
+    "tagline": "Clear 3 card pyramids, build harvest streak multipliers, and conquer farm peaks!",
+    "description": "Clear three card peaks in this relaxing countryside TriPeaks Solitaire! Tap cards one rank higher or lower than your waste card to clear rows. Uncover hidden cards beneath the peaks, build massive streak combo multipliers, and use lucky Wildcard Clovers to solve tricky boards. Play across four harvest stages with zero downloads!",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm"
+    ],
+    "route": "/games/farm-tripeaks-solitaire/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "38.9K",
+    "badge": "🌾 TriPeaks Cards",
+    "thumbnailUrl": "/assets/thumbnails/thumb-farm-tripeaks-solitaire.svg",
+    "controls": {
+      "desktop": [
+        "Left Click: Select cards on peaks (+/- 1 rank from active card)",
+        "Click Stock Pile: Draw a fresh card to reset waste card",
+        "Wildcard Button / W Key: Clear any card using a lucky clover",
+        "Undo Button / U Key: Step back your last move"
+      ],
+      "mobile": [
+        "Tap Card: Clear valid cards into the waste pile",
+        "DRAW CARD Button: Flip new card from stock pile",
+        "WILD Button: Tap lucky clover to clear any selected card",
+        "Undo & Sound: Fast top header controls"
+      ]
+    },
+    "features": [
+      "Classic 28-Card 3-Peak Pyramid Layout with Wrap-Around Matching (Ace & King)",
+      "4 Scenic Farm Stages: The Orchard Peak, Golden Silo Summit, Lush Pastures, and Barnyard Horizon",
+      "Streak Multipliers with Ascending Pentatonic Marimba & Harp Notes",
+      "Lucky Four-Leaf Wildcard Clovers and Full Move History Undo Support",
+      "Procedural Web Audio Card Slides, Chimes, and Harvest Fanfares",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "TriPeaks Solitaire Online Free — Farm Harvest Peak | Pawcade",
+    "metaDescription": "Play Farm TriPeaks Solitaire free online! Clear 3 card peaks, build streak multipliers, and uncover harvest crop cards. Free casual card game with no download."
+  },
+  {
+    "id": "sheep-sorter-gate",
+    "slug": "sheep-sorter-gate",
+    "title": "Barnyard Sheep Sorter: Pasture Gate 🐑🚪",
+    "tagline": "Flip the pasture gate left or right to sort fluffy sheep into their meadows before time runs out!",
+    "description": "Flip the swinging wooden pasture gate left or right to sort incoming fluffy sheep! Guide white and pink sheep to the left meadow, and send black and golden sheep to the right paddock. Build rapid streak combos to trigger Golden Fever mode and earn double points. Test your quick reflexes across endless waves!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/sheep-sorter-gate/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "19.2K",
+    "badge": "🐑 Gate Reflex",
+    "thumbnailUrl": "/assets/thumbnails/thumb-sheep-sorter-gate.svg",
+    "controls": {
+      "desktop": [
+        "Left Arrow / A Key: Flip pasture gate to the left corral",
+        "Right Arrow / D Key: Flip pasture gate to the right corral",
+        "Spacebar: Toggle gate direction instantly",
+        "M Key: Toggle gate thud and sheep sound effects"
+      ],
+      "mobile": [
+        "Tap Left Screen / LEFT Button: Direct sheep to White & Pink meadow",
+        "Tap Right Screen / RIGHT Button: Direct sheep to Black & Gold paddock",
+        "Top Header: Check remaining hearts and combo multiplier"
+      ]
+    },
+    "features": [
+      "Rapid Two-Way Reflex Sorting: White/Pink to Left, Black/Golden to Right",
+      "Golden Fever Mode with 2x Multiplier Every 15 Streak Combos",
+      "Dynamic Speed Scaling with Increasing Sheep Trot Paces",
+      "Fluffy Cloud Wool Physics with Bouncing Trot Animations",
+      "Procedural Web Audio Latch Snaps, Sheep Baas, and Chimes",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Barnyard Sheep Sorter: Pasture Gate 🐑 — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Sheep Sorter free online! Flip the pasture gate left or right to sort fluffy sheep, build streak combos, and trigger Golden Fever mode."
+  },
+  {
+    "id": "barnyard-pinball",
+    "slug": "barnyard-pinball",
+    "title": "Barnyard Pinball: Flipper Farm 🕹️🌾",
+    "tagline": "Launch chrome pinballs, hit glowing farm bumpers, and keep the ball in play with dual flippers!",
+    "description": "Launch chrome pinballs across a lively farm arcade table! Use dual flippers to deflect the steel ball into illuminated barn and corn bumpers. Light up all four F-A-R-M rollover lanes to boost your score multiplier up to 5x. Hit the red barn three times to trigger exciting multiball action. Test your timing and reflexes with zero downloads!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/barnyard-pinball/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "44.8K",
+    "badge": "🕹️ Pinball Arcade",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-pinball.svg",
+    "controls": {
+      "desktop": [
+        "Left Arrow / A / Z: Engage Left Flipper",
+        "Right Arrow / D / Slash: Engage Right Flipper",
+        "Down Arrow / Spacebar: Pull and release spring plunger to launch ball",
+        "M Key: Toggle mechanical flipper and chime sounds"
+      ],
+      "mobile": [
+        "LEFT FLIPPER Button / Tap Left Screen: Flip left blade upward",
+        "RIGHT FLIPPER Button / Tap Right Screen: Flip right blade upward",
+        "LAUNCH Button: Hold to compress plunger spring and release to fire"
+      ]
+    },
+    "features": [
+      "Sub-Stepped 60 FPS Pinball Physics with Authentic Restitution and Gravity",
+      "3 Illuminated Mushroom Bumpers: Red Barn, Golden Corn, and Fresh Milk",
+      "4 Rollover Lanes (F-A-R-M) with Multiplier Upgrades up to 5x",
+      "High-Speed Multiball Frenzy with Dual Chrome Steel Balls",
+      "Procedural Web Audio Solenoids, Spring Plunger Snaps, and Bumper Pings",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Barnyard Pinball: Flipper Farm 🕹️ — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Pinball free online! Launch chrome balls, hit glowing farm bumpers, light F-A-R-M lanes, and trigger multiball. Free arcade pinball with no download."
+  },
+  {
+    "id": "crop-mower-harvest",
+    "slug": "crop-mower-harvest",
+    "title": "Crop Mower: Harvest Rush 🚜🌾",
+    "tagline": "Drive a nimble red tractor to mow neat rows of tall golden wheat, fill your harvest basket, and clear 100% of the field!",
+    "description": "Drive a nimble red farm tractor to mow neat rows of tall golden wheat, sweet corn, and bright sunflowers! Fill your harvest basket as spinning blades slice clean stripes across the field. Empty your crop load at the red silo chute for bonus points, and steer around boulders and tree stumps. Clear 100% of every paddock across four scenic farm stages with zero downloads!",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/crop-mower-harvest/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "31.2K",
+    "badge": "🚜 ASMR Mower",
+    "thumbnailUrl": "/assets/thumbnails/thumb-crop-mower-harvest.svg",
+    "controls": {
+      "desktop": [
+        "Arrow Keys / WASD: Steer tractor across field rows",
+        "Release Keys: Stop tractor in place",
+        "M Key: Toggle motor and grass slicing sounds"
+      ],
+      "mobile": [
+        "Swipe / Drag on Field: Guide tractor in any direction",
+        "Virtual D-Pad Buttons: Tap directional arrows at bottom of screen",
+        "Top Silo: Drive over red silo chute to empty full basket"
+      ]
+    },
+    "features": [
+      "Satisfying ASMR Lawn Mowing Mechanics with Flying Straw Chaff Particles",
+      "4 Handcrafted Farm Stages: Sunny Wheat Paddock, Maize Maze, Sunflower Valley, and Grand Ranch",
+      "Harvest Basket Capacity and Silo Chute Score Deposit Bonuses",
+      "Smooth 60 FPS Canvas 2D Tractor Driving with Rotating Blade Decks",
+      "Procedural Web Audio Engine Chugs, Grass Snips, and Harvest Fanfares",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Lawn Mower Game Online Free — Crop Mower Harvest | Pawcade",
+    "metaDescription": "Play Crop Mower Harvest Rush free online! Drive your tractor to mow golden wheat, fill your basket, and clear fields. Free casual farm game with no download."
+  },
+  {
+    "id": "hamster-maze-runner",
+    "slug": "hamster-maze-runner",
+    "title": "Hamster Maze: Nut Escape 🐹🌰",
+    "tagline": "Guide Pip the hungry hamster through timber mazes, gather golden acorns, find the brass key, and unlock the exit door!",
+    "description": "Guide Pip the hungry hamster through tricky farmyard mazes to gather golden acorns! Dodge dead ends, find the hidden brass key, and unlock the heavy barn door before dinner. Explore four handcrafted timber labyrinths, munch crispy sunflower seeds, and reach the glowing exit gate with zero downloads or delays.",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "pets"
+    ],
+    "route": "/games/hamster-maze-runner/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "34.8K",
+    "badge": "🐹 Maze Escape",
+    "thumbnailUrl": "/assets/thumbnails/thumb-hamster-maze-runner.svg",
+    "controls": {
+      "desktop": [
+        "Arrow Keys / WASD: Steer Pip through maze corridors",
+        "Spacebar / Enter: Advance to next stage or restart",
+        "R Key: Restart current maze stage",
+        "M Key: Toggle squeak and crunch audio sounds"
+      ],
+      "mobile": [
+        "Swipe Gestures: Swipe anywhere on maze to steer Pip",
+        "Tactile D-Pad: Tap bottom direction buttons (Up, Down, Left, Right)",
+        "Next Stage Button: Advance after reaching the exit gate"
+      ]
+    },
+    "features": [
+      "4 Handcrafted Wooden Labyrinths with Increasing Complexity",
+      "Crisp Grid Path Blocking and Smooth Sub-Pixel Hamster Animation",
+      "Brass Key Hunt and Locked Barn Gate Latch Mechanics",
+      "Golden Acorn Munching with Sparkling Particle FX",
+      "Procedural Web Audio Hamster Chirps, Seed Crunches, and Gate Clinks",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Hamster Maze: Nut Escape 🐹 — No Download | Pawcade",
+    "metaDescription": "Play Hamster Maze Nut Escape free online! Guide Pip the hungry hamster through timber mazes, gather golden acorns, and find the exit. Play free with no download."
+  },
+  {
+    "id": "chicken-egg-catcher",
+    "slug": "chicken-egg-catcher",
+    "title": "Chicken Egg Catcher: Barnyard Rush 🐔🥚",
+    "tagline": "Slide your woven straw basket to catch falling golden eggs, dodge spoiled rotten eggs, and trigger fever mode!",
+    "description": "Catch tumbling farm eggs before they hit the wooden barn floor! Slide your woven straw basket left and right to scoop up white, speckled, and golden eggs. Avoid nasty rotten eggs, build high combo streaks, and trigger glowing golden fever mode with zero downloads.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/chicken-egg-catcher/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "28.6K",
+    "badge": "🐔 Egg Catcher",
+    "thumbnailUrl": "/assets/thumbnails/thumb-chicken-egg-catcher.svg",
+    "controls": {
+      "desktop": [
+        "Left / Right Arrow Keys or A / D: Slide straw basket across barn floor",
+        "Spacebar: Quick restart game on game over",
+        "R Key: Reset and start a fresh run",
+        "M Key: Toggle egg catch and hen clucking audio"
+      ],
+      "mobile": [
+        "Touch & Drag: Slide your thumb across the screen for instant basket tracking",
+        "Slide Left / Right Buttons: Tap large bottom buttons for tactile control"
+      ]
+    },
+    "features": [
+      "Fast-Paced Reflex Egg Catching with Real-Time Physics and Wobble",
+      "4 Egg Types: Regular White, Speckled Brown, Golden Star, and Rotten Green",
+      "6-Second Golden Egg Fever Frenzy with 2x Score Multiplier",
+      "Dynamic Wave Scaling with Accelerating Hen Laying Rhythms",
+      "Procedural Web Audio Basket Thumps, Yolk Splats, and Hen Clucks",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Chicken Egg Catcher: Barnyard Rush 🐔 — No Download | Pawcade",
+    "metaDescription": "Play Chicken Egg Catcher free online! Catch falling farm eggs in your straw basket, dodge rotten eggs, and rack up combo points. Free arcade catch with no download."
+  },
+  {
+    "id": "piggy-mud-wash",
+    "slug": "piggy-mud-wash",
+    "title": "Piggy Mud Wash: County Fair Spa 🐷🧼",
+    "tagline": "Scrub muddy farm pets with soap, rinse them with the hose, towel dry, and win the County Fair 1st prize ribbon!",
+    "description": "Wash dirty farm animals for the County Fair! Use bubbly sponge soap to loosen mud patches, spray water to rinse them away, and towel dry until their coats shine. Clean all four pets to earn the blue ribbon with zero downloads.",
+    "category": "pets",
+    "categories": [
+      "pets",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/piggy-mud-wash/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "29.4K",
+    "badge": "🐷 Mud Wash",
+    "thumbnailUrl": "/assets/thumbnails/thumb-piggy-mud-wash.svg",
+    "controls": {
+      "desktop": [
+        "Mouse Drag: Scrub sponge, spray hose, or wipe towel over muddy patches",
+        "1, 2, 3 Keys: Switch between Soap Sponge, Water Hose, and Fluffy Towel",
+        "Spacebar: Advance to next farm animal upon winning ribbon",
+        "R Key: Reset muddy patches for a fresh wash",
+        "M Key: Toggle bubbly scrub and water splash sounds"
+      ],
+      "mobile": [
+        "Touch & Drag: Slide finger across animal to scrub and wash mud away",
+        "Bottom Tool Dock: Tap large icons to switch Sponge, Hose, and Towel"
+      ]
+    },
+    "features": [
+      "4 Adorable Farm Animals: Penny the Piglet, Barnaby Pup, Daisy Calf, and Woolly Lamb",
+      "Satisfying 3-Step Cleaning: Foaming Soap Sponge, Water Spray Rinse, and Towel Dry",
+      "Sub-Pixel Canvas 2D Physics with Sparkling Star Bursts and Foaming Bubbles",
+      "County Fair 1st Prize Blue Ribbon Awards and Grand Champion Ceremony",
+      "Procedural Web Audio Soap Lather, Water Jet Spray, and Cheerful Animal Vocals",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Piggy Mud Wash: County Fair Spa 🐷 — No Download | Pawcade",
+    "metaDescription": "Play Piggy Mud Wash free online! Scrub muddy farm animals with soap, rinse with water, and dry them for the County Fair. Free casual pet spa with no download."
+  },
+  {
+    "id": "barnyard-brick-breaker",
+    "slug": "barnyard-brick-breaker",
+    "title": "Barnyard Brick Breaker: Apple Bounce 🍎🧱",
+    "tagline": "Steer your farm cart paddle, bounce crisp apples, smash wooden fruit crates, and grab golden honey power-ups!",
+    "description": "Smash through wooden fruit crates and stone barn walls in this retro arcade brick breaker! Steer your red harvester cart, deflect bouncy red apples, and collect golden honey drops. Trigger multi-ball splits and wide paddles across four handcrafted farm stages with zero downloads.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/barnyard-brick-breaker/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "31.2K",
+    "badge": "🍎 Brick Breaker",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-brick-breaker.svg",
+    "controls": {
+      "desktop": [
+        "Mouse Drag or Arrow Keys / A-D: Steer red harvester cart left and right",
+        "Spacebar or Click: Launch apple from cart to begin stage",
+        "R Key: Reset and start a fresh harvest run",
+        "M Key: Toggle bounce thuds and crate smash sound effects"
+      ],
+      "mobile": [
+        "Touch & Drag: Slide thumb across canvas to steer harvester cart smoothly",
+        "Bottom Buttons: Tap Left, Right, or Launch for tactile control"
+      ]
+    },
+    "features": [
+      "Classic Breakout & Arkanoid Action Reimagined in a Sunny Apple Orchard",
+      "3 Unique Brick Varieties: Wooden Fruit Crates, Stone Bricks, and Golden Honey",
+      "Exciting Power-Up Drops: Multi-Ball 3x Apple Splits, Wide Paddle, and Fireball Pierce",
+      "4 Handcrafted Agricultural Stages: Apple Orchard, Red Barn Gable, Windmill Rotor, and Silo Peak",
+      "Procedural Web Audio Synthesizer (Wood Crate Crunches, Paddle Pings, and Chimes)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Barnyard Brick Breaker: Apple Bounce 🍎 — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Brick Breaker free online! Deflect bouncy apples with your harvester cart, smash fruit crates, and grab power-ups. Free arcade game with no download."
+  },
+  {
+    "id": "duck-water-slide",
+    "slug": "duck-water-slide",
+    "title": "Duck Water Slide: Splash Rush 🦆🌊",
+    "tagline": "Steer Quacky down twisting water flumes, grab rubber duckies, catch air on stunt ramps, and plunge into the farm splash pool!",
+    "description": "Ride giant rushing water slides with Quacky the duck! Steer your inflatable swim tube across turquoise flumes, collect yellow rubber duckies, and slice into juicy watermelon slices. Hit turbo water boosters, launch off stunt ramps, and splash into the finish pool with zero downloads.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/duck-water-slide/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "33.8K",
+    "badge": "🦆 Water Slide",
+    "thumbnailUrl": "/assets/thumbnails/thumb-duck-water-slide.svg",
+    "controls": {
+      "desktop": [
+        "Mouse Drag or Arrow Keys / A-D: Steer Quacky across the water flume",
+        "Spacebar: Advance to next flume course on victory",
+        "R Key: Reset and start a fresh flume run",
+        "M Key: Toggle rushing water splashes and squeak sounds"
+      ],
+      "mobile": [
+        "Touch & Drag: Slide thumb across canvas to steer your tube smoothly",
+        "Bottom Buttons: Tap Left or Right for tactile steering"
+      ]
+    },
+    "features": [
+      "Downhill Flume Racing Action with Realistic Water Flow and Rooster-Tail Spray",
+      "Exciting Stunt Jumps: Launch Off Wooden Water Ramps for Mid-Air Flips",
+      "Collectibles & Boosters: Yellow Rubber Duckies, Watermelons, and Turbo Jet Arrows",
+      "4 Handcrafted Water Park Courses: Meadow Creek, Orchard Rapids, Windmill Corkscrew, and Splashdown Canyon",
+      "Procedural Web Audio Synthesizer (Water Torrents, Rubber Squeaks, and Splashdowns)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Duck Water Slide: Splash Rush 🦆 — No Download | Pawcade",
+    "metaDescription": "Play Duck Water Slide free online! Steer Quacky down rushing water flumes, collect rubber ducks, and hit stunt ramps. Free arcade water racer with no download."
+  },
+  {
+    "id": "bunny-hop-cross",
+    "slug": "bunny-hop-cross",
+    "title": "Bunny Hop: Road & River Cross 🐰🥕",
+    "tagline": "Guide Barnaby Bunny across busy farm roads, floating river logs, and railroad tracks in this classic arcade hopper!",
+    "description": "Hop with Barnaby Bunny across country lanes, rushing creeks, and train tracks! Dodge moving tractors, leap onto floating wooden logs, and snap up crunchy carrots before the hawk sweeps down. Clear all four pastoral stages with zero downloads.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/bunny-hop-cross/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "35.2K",
+    "badge": "🐰 Road Cross",
+    "thumbnailUrl": "/assets/thumbnails/thumb-bunny-hop-cross.svg",
+    "controls": {
+      "desktop": [
+        "Arrow Keys or W/A/S/D: Hop forward, back, left, or right",
+        "Spacebar: Quick forward hop",
+        "R Key: Reset current stage",
+        "M Key: Toggle hop sounds and tractor horns"
+      ],
+      "mobile": [
+        "Touch Swipe: Swipe in any direction for instant hopping",
+        "Tap Screen: Tap top half to hop forward, bottom half to hop back",
+        "Bottom D-Pad: On-screen tactile directional arrows"
+      ]
+    },
+    "features": [
+      "Classic Crossy Arcade Mechanics with Smooth Sub-Pixel Animation",
+      "Multi-Hazard Farm World: Tractors, Grain Pickups, Creek Rapids, and Fast Express Trains",
+      "Sub-Stepped Log Floating Physics: Ride Moving Timber Across Deep Waters",
+      "4 Handcrafted Pastoral Stages: Peaceful Pasture, Autumn Orchard, Railroad Junction, and Jubilee",
+      "Procedural Web Audio Synthesizer (Bouncy Hops, Carrot Crunches, and River Splashes)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Bunny Hop: Road & River Cross 🐰 — No Download | Pawcade",
+    "metaDescription": "Play Bunny Hop free online! Hop Barnaby Bunny across farm roads, floating river logs, and train tracks. Free arcade animal hopper game with zero downloads."
+  },
+  {
+    "id": "farm-boba-tea",
+    "slug": "farm-boba-tea",
+    "title": "Farm Boba Tea: Animal Cafe 🧋🐮",
+    "tagline": "Brew delicious boba bubble tea, scoop chewy tapioca pearls, and serve thirsty animal customers in your cozy farm cafe!",
+    "description": "Brew farm-fresh boba milk tea and serve visiting animal guests! Layer chewy tapioca pearls, scoop fruit jellies, pour creamy matcha, and poke colorful straws. Satisfy Daisy Calf, Sunny Corgi, and Whiskers Cat with zero downloads.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/farm-boba-tea/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "38.4K",
+    "badge": "🧋 Boba Cafe",
+    "thumbnailUrl": "/assets/thumbnails/thumb-farm-boba-tea.svg",
+    "controls": {
+      "desktop": [
+        "Left Click: Select teas, toppings, ice, and sweetness levels",
+        "S Key: Seal cup and poke colorful straw",
+        "Spacebar / Enter: Serve finished boba order",
+        "T Key: Trash mistake cup and start fresh",
+        "M Key: Toggle soothing cafe sounds and clinks"
+      ],
+      "mobile": [
+        "Tap Buttons: Instant ingredient selection and boba scoops",
+        "Seal & Straw: Tap to cap drink and punch straw",
+        "Serve Order: Big bottom button for quick delivery"
+      ]
+    },
+    "features": [
+      "Satisfying Drink Mixing Mechanics with Real-Time Fluid Fill and Layering",
+      "4 Farm Tea Bases: Fresh Pasture Milk, Matcha Green, Strawberry, and Thai Tea",
+      "4 Chewy Boba Toppings: Dark Tapioca, Strawberry Jelly, Mango Boba, and Honeycomb",
+      "Visiting Cute Animal Customers: Daisy Calf, Sunny Corgi, Whiskers Cat, and Woolly Lamb",
+      "Procedural Web Audio Synthesizer (Boba Drops, Ice Clinks, Milk Streams, and Straw Pokes)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Farm Boba Tea: Animal Cafe 🧋 — No Download | Pawcade",
+    "metaDescription": "Play Farm Boba Tea free online! Brew fresh milk tea, scoop chewy tapioca pearls, and serve cute animal cafe customers. Free bubble tea game with no download."
+  },
+  {
+    "id": "barnyard-ice-cream",
+    "slug": "barnyard-ice-cream",
+    "title": "Barnyard Ice Cream: Scoop & Stack 🍦🍨",
+    "tagline": "Stack giant ice cream scoops on crispy waffle cones, drizzle hot fudge, and serve hungry farm pets!",
+    "description": "Run the sweetest ice cream cart in the meadow! Stack creamy vanilla, sweet strawberry, chocolate fudge, and mint chip scoops high onto waffle cones. Drizzle warm syrup, scatter rainbow sprinkles, and crown each order with whipped cream and a cherry for zero downloads.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/barnyard-ice-cream/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "41.2K",
+    "badge": "🍦 Ice Cream",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-ice-cream.svg",
+    "controls": {
+      "desktop": [
+        "Left Click: Select cones, scoops, syrups, and toppings",
+        "W Key: Add fluffy whipped cream swirl",
+        "C Key: Crown order with bright red cherry",
+        "Spacebar / Enter: Serve ice cream order to customer",
+        "T Key: Trash mistake cone to start fresh",
+        "M Key: Toggle cheerful ice cream cart sounds"
+      ],
+      "mobile": [
+        "Tap Buttons: Instant scoop stacking and toppings",
+        "Cone / Bowl Switch: Toggle between crispy waffle and sundae",
+        "Serve Button: Deliver finished ice cream to farm pets"
+      ]
+    },
+    "features": [
+      "Satisfying Scoop Stacking Mechanics with Tactile Drop Physics",
+      "5 Farm-Fresh Flavors: Vanilla Cream, Strawberry, Chocolate Fudge, Mint Chip, and Caramel",
+      "Decadent Toppings: Hot Fudge, Strawberry Glaze, Rainbow Sprinkles, and Glazed Cherries",
+      "Visiting Cute Farm Customers: Penny Piglet, Barnaby Pup, Whiskers Cat, and Bessie Cow",
+      "Procedural Web Audio Synthesizer (Scoop Plops, Syrup Squeezes, and Sprinkle Rattles)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Barnyard Ice Cream: Scoop & Stack 🍦 — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Ice Cream free online! Stack giant ice cream scoops on waffle cones, add syrups and sprinkles, and serve cute farm pets. Free arcade game no download."
+  },
+  {
+    "id": "barnyard-kart-drift",
+    "slug": "barnyard-kart-drift",
+    "title": "Barnyard Kart: Tractor Grand Prix 🚜🏁",
+    "tagline": "Steer and drift your farm tractor around muddy championship tracks!",
+    "description": "Race customized farm tractors around four countryside grand prix tracks. Steer around sharp dirt curves, slide through tire smoke drifts, dodge deep mud puddles, and collect turbo corn to grab the checkered flag.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/barnyard-kart-drift/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "44.8K",
+    "badge": "🚜 Tractor Kart",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-kart-drift.svg",
+    "controls": {
+      "desktop": [
+        "A / D or Left / Right Arrows: Steer tractor left and right",
+        "W / Up Arrow: Accelerate gas pedal",
+        "S / Down Arrow: Brake and reverse",
+        "Spacebar / Shift: Hold to drift around curves and charge mini-turbo",
+        "R Key: Quick restart current race",
+        "M Key: Toggle tractor engine and tire squeak audio"
+      ],
+      "mobile": [
+        "Left & Right Arrows: Smooth responsive steering",
+        "GAS Button: Hold to accelerate full throttle",
+        "DRIFT Button: Hold into corners for sliding turns and turbo boosts",
+        "Circuit Pills: Switch between 4 grand prix tracks anytime"
+      ]
+    },
+    "features": [
+      "4 Countryside Grand Prix Circuits: Clover Meadow, Autumn Orchard, Sunset Speedway, and Muddy Mountain",
+      "Realistic Arcade 2D Drift Mechanics with Mini-Turbo Boost Release",
+      "Track Obstacles & Hazards: Slowdown Mud Puddles, Spinning Oil Slicks, and Bouncy Hay Bales",
+      "Collectible Turbo Corn Nitro Pickups for Sudden Bursts of Top Speed",
+      "Procedural Web Audio Engine (Tractor Engine Revs, Tire Squeals, and Victory Brass Fanfare)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Barnyard Kart: Tractor Grand Prix 🚜🏁 — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Kart Tractor Grand Prix free online! Drift tractors around muddy curves, grab turbo corn, and race farm animals for 1st place. Free game no download."
+  },
+  {
+    "id": "piggy-cannon-blast",
+    "slug": "piggy-cannon-blast",
+    "title": "Piggy Cannon Blast: Barnyard Launch 🚀🐷",
+    "tagline": "Aim your circus cannon, blast Penny high into the sky, and upgrade your flight gear!",
+    "description": "Launch Penny the piglet high into the clouds! Set your cannon angle and blast power, bounce off sheep trampolines, collect golden balloons, and glide across four scenic farm zones. Earn coins each flight to buy rocket thrusters and bouncy shoes.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/piggy-cannon-blast/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "47.5K",
+    "badge": "🚀 Cannon Launch",
+    "thumbnailUrl": "/assets/thumbnails/thumb-piggy-cannon-blast.svg",
+    "controls": {
+      "desktop": [
+        "Spacebar / Click: Set launch angle, fire cannon, and activate rocket nitro",
+        "W / Up Arrow: Tilt nose up for air glide lift",
+        "S / Down Arrow: Tilt nose down for diving speed",
+        "U Key: Open flight upgrades shop",
+        "R Key: Quick restart flight",
+        "M Key: Toggle cannon boom and thruster audio"
+      ],
+      "mobile": [
+        "Main Action Button: Tap to lock angle, fire cannon, and trigger rocket nitro",
+        "GLIDE Button: Pull up nose to catch gentle air thermals",
+        "DIVE Button: Point nose down to build forward momentum",
+        "Shop Button: Open flight gear upgrades menu"
+      ]
+    },
+    "features": [
+      "Classic Distance Launch Arcade Loop Inspired by Learn to Fly and Burrito Bison",
+      "Two-Step Skill Launch: Oscillating Trajectory Needle and Pulse Power Meter",
+      "Interactive Air Flight Controls with Glide Thermals and Rocket Soda Nitro Thrusters",
+      "Bouncy Pasture Physics: Sheep Trampolines, Hay Bales, and Star Balloons",
+      "5 Deep Flight Upgrades: Bigger Gunpowder, Aviator Cape, Rocket Nitro, Spring Shoes, and Coin Magnet",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Piggy Cannon Blast: Barnyard Launch 🚀🐷 — No Download | Pawcade",
+    "metaDescription": "Play Piggy Cannon Blast free online! Blast Penny the piglet from circus cannons, grab rocket soda, and bounce across farm clouds. Free arcade game no download."
+  },
+  {
+    "id": "barnyard-rope-cut",
+    "slug": "barnyard-rope-cut",
+    "title": "Barnyard Rope Cut: Feed the Piggy 🍎🐷",
+    "tagline": "Slice swinging ropes, collect golden stars, and feed juicy apples to hungry Penny!",
+    "description": "Cut ropes to swing ripe apples into Penny the piglet's bowl! Solve physics pendulum puzzles, collect three golden stars on each stage, bounce across farm trampolines, and float through milk bubbles. Free brain puzzle with zero downloads.",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/barnyard-rope-cut/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "49.1K",
+    "badge": "✂️ Rope Cut",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-rope-cut.svg",
+    "controls": {
+      "desktop": [
+        "Click & Drag Blade: Swipe smoothly across ropes to cut them",
+        "Left Click Bubble: Tap floating milk bubbles to pop them",
+        "R Key: Quick restart current puzzle",
+        "M Key: Toggle rope slice and bubble audio"
+      ],
+      "mobile": [
+        "Finger Swipe: Slice across ropes with instant responsive blade trail",
+        "Tap Bubble: Pop floating bubble to release apple into downward gravity",
+        "Level Pills: Jump between 4 handcrafted farm stages anytime"
+      ]
+    },
+    "features": [
+      "Realistic Verlet Physics Rope Pendulums and Dynamic Swing Gravity",
+      "4 Handcrafted Farm Puzzle Stages: Barnyard Kitchen, Apple Orchard, Windmill Loft, and Grand Silo",
+      "Interactive Physics Obstacles: Floating Milk Bubbles, Spring Trampolines, and Spiky Thistles",
+      "3-Star Collection Rating System for Mastery and Replayability",
+      "Procedural Web Audio Engine (Blade Slices, Plucked String Snaps, Bubble Pops, and Piggy Chews)",
+      "100% Free Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Barnyard Rope Cut: Feed the Piggy 🍎🐷 — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Rope Cut free online! Slice swinging ropes, collect golden stars, and feed juicy apples to Penny the piglet. Free physics game with no download."
+  },
+  {
+    "id": "barnyard-popcorn-popper",
+    "slug": "barnyard-popcorn-popper",
+    "title": "Barnyard Popcorn Popper: Kernel Burst 🍿🌽",
+    "tagline": "Hold to pour golden corn into the kettle and pop fluffy butter popcorn!",
+    "description": "Pour golden corn kernels into the farm kettle and pop warm buttery popcorn! Fill the bucket right to the target line without spilling kernels past the brim. Time your pour past spinning paddles and narrow chutes. Free browser physics arcade with no download.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "puzzle"
+    ],
+    "route": "/games/barnyard-popcorn-popper/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "51.3K",
+    "badge": "🍿 Kernel Burst",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-popcorn-popper.svg",
+    "controls": {
+      "desktop": [
+        "Mouse Hold / Spacebar: Hold down to pour golden corn kernels",
+        "Release: Stop pouring to start popping and heating phase",
+        "R Key: Quick restart current kettle stage",
+        "M Key: Toggle sound effects and popping snaps"
+      ],
+      "mobile": [
+        "Touch & Hold: Press screen or big bottom button to pour corn",
+        "Release Touch: Stop pouring to let kernels pop and fill the bucket",
+        "Stage Buttons: Tap top pills to switch between 4 handcrafted stages"
+      ]
+    },
+    "features": [
+      "Realistic Granular Physics and Dynamic Heat Popcorn Volume Expansion",
+      "4 Handcrafted Stages: Butter Barn Kettle, Caramel Funnel, Windmill Paddle, and Cinema Tub",
+      "Moving Obstacles: Rotating Wooden Paddles and Chute Funnels",
+      "3-Star Precision Rating and Target Fill Line Accuracy Scoring",
+      "Procedural Web Audio Engine (Seed Drops, Popcorn Snaps, Kettle Sizzle, and Fanfares)",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Barnyard Popcorn Popper: Kernel Burst 🍿🌽 — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Popcorn Popper free online! Pour golden corn kernels into copper kettles and pop buttery popcorn to the fill line. Free arcade game no download."
+  },
+  {
+    "id": "barnyard-word-connect",
+    "slug": "barnyard-word-connect",
+    "title": "Barnyard Word Connect: Corgi Cross 🐶📖",
+    "tagline": "Swipe across wooden letter tiles to connect farm words and solve crosswords!",
+    "description": "Connect letters on the wooden dial to solve barnyard crossword puzzles! Swipe across letter tiles to form words with Sunny Corgi. Discover bonus words to fill the treat jar, unlock hints, and clear harvest levels. Free word search brain puzzle with no download.",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/barnyard-word-connect/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "53.8K",
+    "badge": "📖 Word Cross",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-word-connect.svg",
+    "controls": {
+      "desktop": [
+        "Mouse Click & Drag: Swipe across letter tiles on dial to spell words",
+        "Release: Submit your word guess to the crossword grid",
+        "Shuffle Button: Mix up letter tiles for a fresh angle",
+        "Hint Button: Reveal a hidden letter in the crossword grid"
+      ],
+      "mobile": [
+        "Touch & Swipe: Drag your finger across letter tiles to connect them",
+        "Release: Automatically submit word guess into the grid",
+        "Level Buttons: Tap top pills to switch levels anytime"
+      ]
+    },
+    "features": [
+      "Interactive Circular Letter Dial with Real-Time Glowing Trail Swipe",
+      "4 Handcrafted Farm Crossword Levels: Meadow, Orchard, Windmill, and Harvest",
+      "Hidden Bonus Word Detection and Sunny Corgi Treat Jar Rewards",
+      "Hint System and Letter Tile Shuffle for Smooth Puzzling",
+      "Procedural Web Audio Engine (Ascending Pentatonic Letter Picks, Fanfares, and Chimes)",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Word Connect Online Free — Barnyard Corgi Cross | Pawcade",
+    "metaDescription": "Play Barnyard Word Connect free online! Swipe across letter dials to solve crossword puzzles with Sunny Corgi. Free word connect puzzle game no download."
+  },
+  {
+    "id": "crossy-chicken",
+    "slug": "crossy-chicken",
+    "title": "Crossy Chicken: Farm Highway Run 🐔🛣️",
+    "tagline": "Hop Clucky across busy farm highways, rushing river logs, and railroad tracks!",
+    "description": "Guide Clucky the chicken across speeding farm roads, rushing rivers, and train tracks! Dodge pickup trucks, leap onto floating wooden logs, and collect golden star coins. Keep hopping forward before the circling hawk swoops down. Free infinite arcade hopper with no download.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/crossy-chicken/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "58.4K",
+    "badge": "🐔 Highway Hop",
+    "thumbnailUrl": "/assets/thumbnails/thumb-crossy-chicken.svg",
+    "controls": {
+      "desktop": [
+        "Arrow Keys or W/A/S/D: Hop forward, left, right, or down",
+        "Spacebar: Quick forward hop",
+        "R Key: Quick restart run",
+        "M Key: Toggle sound effects and clucks"
+      ],
+      "mobile": [
+        "Tap Screen: Hop forward immediately",
+        "Swipe Left / Right / Down: Hop in swipe direction",
+        "Bottom D-Pad: Tap dedicated buttons to hop and steer"
+      ]
+    },
+    "features": [
+      "Infinite Procedural Road, River, and Railroad Track Generation",
+      "Floating River Raft Physics with Log Drift Mechanics",
+      "Speeding Freight Trains with Blinking Signal Warnings",
+      "Predatory Hawk Patrol Timer (Keep Moving to Stay Safe!)",
+      "Procedural Web Audio Engine (Chicken Clucks, Horn Beeps, River Splashes, and Train Horns)",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Crossy Chicken: Farm Highway Run 🐔🛣️ — No Download | Pawcade",
+    "metaDescription": "Play Crossy Chicken free online! Hop Clucky across busy farm highways, floating river logs, and train tracks. Free arcade crossy road game with no download."
+  },
+  {
+    "id": "tractor-hill-climb",
+    "slug": "tractor-hill-climb",
+    "title": "Tractor Hill Climb: Barnyard Ridge 🚜⛰️",
+    "tagline": "Drive a bouncy farm tractor over steep hills, perform air flips, and collect diesel!",
+    "description": "Drive a classic farm tractor over rolling pasture hills and steep mountain ridges. Balance your speed with gas and brake pedals to conquer bumpy trails, hay ramps, and wooden bridges. Perform 360-degree air flips to earn bonus points. Collect shiny golden coins and red diesel cans to keep your tank full. Free 2D physics tractor hill climb game with no download.",
+    "category": "farm",
+    "categories": [
+      "farm",
+      "arcade",
+      "pets"
+    ],
+    "route": "/games/tractor-hill-climb/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "63.5K",
+    "badge": "🚜 Hill Climb",
+    "thumbnailUrl": "/assets/thumbnails/thumb-tractor-hill-climb.svg",
+    "controls": {
+      "desktop": [
+        "Right Arrow, D, or Space: Gas and tilt backward",
+        "Left Arrow, A, or S: Brake and tilt forward",
+        "Perform 360-degree flips in the air for +500 bonus points",
+        "R Key: Quick restart run",
+        "M Key: Toggle tractor sound effects"
+      ],
+      "mobile": [
+        "Right Pedal (GAS): Hold to accelerate and tilt backward",
+        "Left Pedal (BRAKE): Hold to slow down, reverse, and tilt forward",
+        "Top Buttons: Refuel at diesel cans and track distance progress"
+      ]
+    },
+    "features": [
+      "2D Vehicle Physics with Realistic Suspension and Knobby Tires",
+      "Air Stunt Detection with 360-Degree Backflips and Frontflips",
+      "4 Pastoral Hill Stages: Clover Pasture, Autumn Orchard, Windmill Ridge, and Muddy Mountain",
+      "Diesel Fuel Gauge Management and Golden Star Coin Pickups",
+      "Procedural Web Audio Engine with Engine Throttle Rumble, Stunts, and Fanfares",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Tractor Hill Climb: Barnyard Ridge 🚜⛰️ — No Download | Pawcade",
+    "metaDescription": "Play Tractor Hill Climb free online! Drive a farm tractor over rolling hills, pull off air flips, and collect diesel cans. Free physics game with no download."
+  }
 ];
-
-
-
-
-
-
-
-
-

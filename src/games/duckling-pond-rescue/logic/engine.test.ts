@@ -45,6 +45,8 @@ describe('Ducklings.io: Duckling Pond Rescue Logic Engine', () => {
     // Position Mama Duck right next to duckling
     state.mama.x = duckling.x;
     state.mama.y = duckling.y;
+    state.mama.vx = 0;
+    state.mama.vy = 0;
 
     const next = stepRescueGame(state, IDLE_INPUT, 0.016);
     expect(next.ducksInLine).toBe(1);
@@ -76,11 +78,14 @@ describe('Ducklings.io: Duckling Pond Rescue Logic Engine', () => {
   it('triggers game over when rowboat hits Mama Duck', () => {
     const state = initRescueGame(1);
     state.status = 'playing';
+    state.boats = [state.boats[0]];
     const boat = state.boats[0];
 
     // Position Mama Duck right in boat path
     state.mama.x = boat.x + 20;
     state.mama.y = boat.y + 10;
+    state.mama.vx = 0;
+    state.mama.vy = 0;
 
     const next = stepRescueGame(state, IDLE_INPUT, 0.016);
     expect(next.status).toBe('game_over');
@@ -93,15 +98,21 @@ describe('Ducklings.io: Duckling Pond Rescue Logic Engine', () => {
     state.ducksInLine = 3;
     state.ducklings[0].isFollowing = true;
     state.ducklings[0].followIndex = 0;
+    state.ducklings[0].x = 100;
+    state.ducklings[0].y = 480;
     state.ducklings[1].isFollowing = true;
     state.ducklings[1].followIndex = 1;
     state.ducklings[2].isFollowing = true;
     state.ducklings[2].followIndex = 2;
+    state.ducklings[2].x = 100;
+    state.ducklings[2].y = 520;
 
     const boat = state.boats[0];
     // Position duckling 1 inside boat, keep Mama safe far away
     state.mama.x = 100;
     state.mama.y = 500;
+    state.mama.vx = 0;
+    state.mama.vy = 0;
     state.ducklings[1].x = boat.x + 10;
     state.ducklings[1].y = boat.y + 10;
 

@@ -605,16 +605,16 @@ const homeSemanticContent = `
             </p>
           </div>
 
-          <!-- Featured Hero LCP Card: Farm Mini Mart -->
-          <a href="/games/farm-mini-mart/" aria-label="Play Farm Mini Mart" class="group relative block aspect-square rounded-[18px] sm:rounded-[22px] overflow-hidden bg-card ring-[3px] sm:ring-4 ring-white shadow-tile col-span-2 row-span-2">
-            <img src="/assets/thumbnails/thumb-farm-mini-mart.svg" alt="Farm Mini Mart" loading="eager" fetchpriority="high" decoding="sync" width="384" height="384" class="w-full h-full object-cover" />
+          <!-- Featured Hero LCP Card: Eggy Car (High-Traffic Search Winner) -->
+          <a href="/games/eggy-car/" aria-label="Play Eggy Car" class="group relative block aspect-square rounded-[18px] sm:rounded-[22px] overflow-hidden bg-card ring-[3px] sm:ring-4 ring-white shadow-tile col-span-2 row-span-2">
+            <img src="/assets/thumbnails/thumb-eggy-car.svg" alt="Eggy Car" loading="eager" fetchpriority="high" decoding="sync" width="384" height="384" class="w-full h-full object-cover" />
             <span class="absolute inset-x-0 bottom-0 px-2.5 pb-2 pt-8 bg-gradient-to-t from-black/75 via-black/35 to-transparent text-white font-display font-semibold leading-tight drop-shadow text-xl sm:text-2xl px-4 pb-3">
-              Farm Mini Mart
+              Eggy Car 🥚🚗
             </span>
           </a>
 
           ${playableGames
-            .slice(1)
+            .filter((g) => g.slug !== 'eggy-car')
             .map((g, idx) => {
               const isEager = idx < 3;
               const titleClean = stripEmoji(g.title);
@@ -727,5 +727,51 @@ ${sitemapEntries
 </urlset>
 `;
 writeFileSync(resolve(DIST_DIR, 'sitemap.xml'), sitemapXml, 'utf-8');
+writeFileSync(resolve(PUBLIC_DIR, 'sitemap.xml'), sitemapXml, 'utf-8');
+
+// 7. Generate backwards-compatible alias redirects for legacy routes
+const REDIRECT_ALIASES: Record<string, string> = {
+  'barnyard-egg-cart': 'eggy-car',
+  'barnyard-connect-four': 'connect-4',
+  'duck-training-champion': 'duck-life',
+  'barnyard-ninja-chick': 'vex-5',
+  'tractor-stunt-trials': 'moto-x3m',
+  'barnyard-stealth-fox': 'bob-the-robber',
+  'barnyard-truck-jumper': 'cluster-rush',
+  'tiny-pig-big-tower': 'big-tower-tiny-square',
+  'frozen-pasture-dash': 'ice-dodo',
+  'duckling-pond-rescue': 'ducklings-io',
+  'sushi-kitty-pachinko': 'sushi-cat',
+  'barnyard-roof-duel': 'rooftop-snipers',
+  'penguin-pasture-diner': 'penguin-diner',
+  'pyramid-solitaire-harvest': 'pyramid-solitaire',
+  'barnyard-spot-difference': 'spot-the-difference',
+  'farm-mahjong-connect': 'mahjong-connect',
+  'barnyard-horse-derby': 'horse-racing',
+  'virtual-puppy-pet': 'virtual-pet',
+  'barnyard-frog-hop': 'frog-games',
+};
+
+for (const [oldSlug, newSlug] of Object.entries(REDIRECT_ALIASES)) {
+  const aliasDir = resolve(DIST_DIR, 'games', oldSlug);
+  if (!existsSync(aliasDir)) {
+    mkdirSync(aliasDir, { recursive: true });
+  }
+  const redirectHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0;url=/games/${newSlug}/" />
+  <link rel="canonical" href="https://pawcadegames.com/games/${newSlug}/" />
+  <title>Redirecting to /games/${newSlug}/...</title>
+  <script>window.location.replace('/games/${newSlug}/');</script>
+</head>
+<body style="font-family:sans-serif;text-align:center;padding:50px;">
+  <p>Redirecting to <a href="/games/${newSlug}/">/games/${newSlug}/</a>...</p>
+</body>
+</html>`;
+  writeFileSync(resolve(aliasDir, 'index.html'), redirectHtml, 'utf-8');
+}
+console.log(`[Pre-render] Successfully generated ${Object.keys(REDIRECT_ALIASES).length} legacy alias redirects.`);
 
 console.log(`[Pre-render] Successfully pre-rendered ${playableGames.length} game routes + ${Object.keys(CATEGORIES).length} hubs + ${INFO_PAGES.length} info pages + root homepage + sitemap (${sitemapEntries.length} URLs)!`);

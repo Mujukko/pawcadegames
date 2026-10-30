@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="feltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#15803D" />
+      <stop offset="70%" stop-color="#166534" />
+      <stop offset="100%" stop-color="#14532D" />
+    </linearGradient>
+    <linearGradient id="goldGleam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Green Baize Felt Table -->
+  <rect width="400" height="300" rx="16" fill="url(#feltGrad)" stroke="#78350F" stroke-width="8" />
+
+  <!-- Gold Inner Border -->
+  <rect x="12" y="12" width="376" height="276" rx="10" fill="none" stroke="#F59E0B" stroke-width="1.5" opacity="0.6" />
+
+  <!-- Pyramid Card Formation -->
+  <!-- Row 1 Top Card (King of Hearts) -->
+  <g transform="translate(182, 45)">
+    <rect width="36" height="50" rx="4" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5" />
+    <text x="5" y="13" fill="#DC2626" font-family="sans-serif" font-size="9" font-weight="900">K</text>
+    <text x="18" y="32" fill="#DC2626" font-family="sans-serif" font-size="16" text-anchor="middle">♥</text>
+    <text x="31" y="44" fill="#DC2626" font-family="sans-serif" font-size="7" font-weight="900">13</text>
+  </g>
+
+  <!-- Row 2 (Queen of Spades & 2 of Diamonds) -->
+  <g transform="translate(156, 75)">
+    <rect width="36" height="50" rx="4" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5" />
+    <text x="5" y="13" fill="#0F172A" font-family="sans-serif" font-size="9" font-weight="900">Q</text>
+    <text x="18" y="32" fill="#0F172A" font-family="sans-serif" font-size="16" text-anchor="middle">♠</text>
+  </g>
+  <g transform="translate(208, 75)">
+    <rect width="36" height="50" rx="4" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5" />
+    <text x="5" y="13" fill="#DC2626" font-family="sans-serif" font-size="9" font-weight="900">2</text>
+    <text x="18" y="32" fill="#DC2626" font-family="sans-serif" font-size="16" text-anchor="middle">♦</text>
+  </g>
+
+  <!-- Row 3 Bottom Row -->
+  <g transform="translate(130, 105)">
+    <rect width="36" height="50" rx="4" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5" />
+    <text x="5" y="13" fill="#0F172A" font-family="sans-serif" font-size="9" font-weight="900">A</text>
+    <text x="18" y="32" fill="#0F172A" font-family="sans-serif" font-size="16" text-anchor="middle">♣</text>
+  </g>
+  <g transform="translate(182, 105)">
+    <rect width="36" height="50" rx="4" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2.5" />
+    <text x="5" y="13" fill="#DC2626" font-family="sans-serif" font-size="9" font-weight="900">7</text>
+    <text x="18" y="32" fill="#DC2626" font-family="sans-serif" font-size="16" text-anchor="middle">♥</text>
+  </g>
+  <g transform="translate(234, 105)">
+    <rect width="36" height="50" rx="4" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2.5" />
+    <text x="5" y="13" fill="#0F172A" font-family="sans-serif" font-size="9" font-weight="900">6</text>
+    <text x="18" y="32" fill="#0F172A" font-family="sans-serif" font-size="16" text-anchor="middle">♠</text>
+  </g>
+
+  <!-- Sparkle Connector (7 + 6 = 13!) -->
+  <path d="M200,165 Q225,180 250,165" fill="none" stroke="#FBBF24" stroke-width="3" stroke-dasharray="3,3" />
+  <circle cx="225" cy="172" r="14" fill="#F59E0B" />
+  <text x="225" y="177" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="900" text-anchor="middle">=13</text>
+
+  <!-- Stock & Waste Pile Bottom -->
+  <g transform="translate(100, 185)">
+    <rect width="36" height="50" rx="4" fill="#B91C1C" stroke="#FEF3C7" stroke-width="1.5" />
+    <rect x="2" y="2" width="32" height="46" rx="2" fill="none" stroke="#FEF3C7" stroke-width="1" />
+  </g>
+  <g transform="translate(145, 185)">
+    <rect width="36" height="50" rx="4" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5" />
+    <text x="5" y="13" fill="#DC2626" font-family="sans-serif" font-size="9" font-weight="900">J</text>
+    <text x="18" y="32" fill="#DC2626" font-family="sans-serif" font-size="16" text-anchor="middle">♦</text>
+  </g>
+
+  <!-- Wheat Stalks on Right -->
+  <g transform="translate(320, 160)">
+    <ellipse cx="0" cy="-30" rx="5" ry="10" fill="#FDE047" transform="rotate(20)" />
+    <ellipse cx="10" cy="-20" rx="5" ry="10" fill="#FDE047" transform="rotate(40)" />
+    <ellipse cx="-10" cy="-20" rx="5" ry="10" fill="#FDE047" transform="rotate(-10)" />
+    <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#F59E0B" />
+    <line x1="0" y1="0" x2="0" y2="50" stroke="#B45309" stroke-width="2.5" />
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="40" y="250" width="320" height="40" rx="20" fill="#0F172A" stroke="#F59E0B" stroke-width="2" />
+  <text x="200" y="276" fill="#FEF3C7" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="900" text-anchor="middle" letter-spacing="1">
+    PYRAMID SOLITAIRE HARVEST
+  </text>
+</svg>

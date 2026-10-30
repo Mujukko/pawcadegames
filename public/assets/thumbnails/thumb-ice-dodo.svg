@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="60%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+    <linearGradient id="ice" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="50%" stop-color="#7DD3FC" />
+      <stop offset="100%" stop-color="#E0F2FE" />
+    </linearGradient>
+    <linearGradient id="cone" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#0369A1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="400" height="130" fill="url(#sky)" />
+
+  <!-- Alpine Mountain Peaks -->
+  <polygon points="0,130 50,45 120,95 200,30 280,90 350,40 400,130" fill="#475569" />
+  <polygon points="200,30 180,60 220,60" fill="#F8FAFC" />
+  <polygon points="50,45 35,70 65,70" fill="#F8FAFC" />
+  <polygon points="350,40 335,65 365,65" fill="#F8FAFC" />
+
+  <!-- Ice Field Ground -->
+  <rect y="130" width="400" height="170" fill="#E0F2FE" />
+
+  <!-- Perspective Ice Track -->
+  <polygon points="175,130 225,130 360,300 40,300" fill="url(#ice)" stroke="#0284C7" stroke-width="3" />
+
+  <!-- Speed Booster Chevron on Track -->
+  <polygon points="170,200 200,175 230,200 215,200 200,187 185,200" fill="#10B981" />
+  <polygon points="155,245 200,210 245,245 225,245 200,225 175,245" fill="#10B981" />
+
+  <!-- Spiky Ice Cones -->
+  <polygon points="100,220 115,160 130,220" fill="url(#cone)" />
+  <polygon points="110,185 115,160 120,185" fill="#F0F9FF" />
+
+  <polygon points="290,240 310,170 330,240" fill="url(#cone)" />
+  <polygon points="304,200 310,170 316,200" fill="#F0F9FF" />
+
+  <!-- Skater Dodo Hero (Center Bottom) -->
+  <g transform="translate(195, 230) rotate(5)">
+    <!-- Skates -->
+    <rect x="-18" y="18" width="14" height="6" fill="#94A3B8" />
+    <rect x="6" y="18" width="14" height="6" fill="#94A3B8" />
+    <rect x="-20" y="23" width="18" height="3" fill="#E2E8F0" />
+    <rect x="4" y="23" width="18" height="3" fill="#E2E8F0" />
+
+    <!-- Plump Dodo Body -->
+    <ellipse cx="0" cy="-6" rx="26" ry="28" fill="#475569" />
+    <ellipse cx="0" cy="-2" rx="17" ry="18" fill="#94A3B8" />
+
+    <!-- Wings Leaning -->
+    <ellipse cx="-24" cy="-8" rx="7" ry="14" transform="rotate(20 -24 -8)" fill="#334155" />
+    <ellipse cx="24" cy="-8" rx="7" ry="14" transform="rotate(-20 24 -8)" fill="#334155" />
+
+    <!-- Dodo Head -->
+    <circle cx="0" cy="-30" r="18" fill="#475569" />
+
+    <!-- Big Hooked Beak -->
+    <polygon points="-8,-30 0,-45 8,-30 0,-20" fill="#F59E0B" />
+
+    <!-- Eyes -->
+    <circle cx="-7" cy="-33" r="3.5" fill="#0F172A" />
+    <circle cx="7" cy="-33" r="3.5" fill="#0F172A" />
+    <circle cx="-6" cy="-34" r="1.2" fill="#FFFFFF" />
+    <circle cx="8" cy="-34" r="1.2" fill="#FFFFFF" />
+
+    <!-- Red Wool Earmuffs -->
+    <circle cx="-18" cy="-30" r="6" fill="#EF4444" />
+    <circle cx="18" cy="-30" r="6" fill="#EF4444" />
+    <path d="M-18,-30 Q0,-44 18,-30" fill="none" stroke="#FCA5A5" stroke-width="3" />
+  </g>
+
+  <!-- Speed Wind Lines -->
+  <line x1="30" y1="210" x2="80" y2="210" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.7" />
+  <line x1="320" y1="230" x2="380" y2="230" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.7" />
+
+  <!-- Title Badge -->
+  <rect x="50" y="250" width="300" height="40" rx="20" fill="#0F172A" stroke="#38BDF8" stroke-width="2" />
+  <text x="200" y="276" fill="#E0F2FE" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="900" text-anchor="middle" letter-spacing="1">
+    FROZEN PASTURE DASH
+  </text>
+</svg>

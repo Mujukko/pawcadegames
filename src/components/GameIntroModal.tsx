@@ -3231,6 +3231,34 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
   },
 };
 
+const ALIAS_INTROS: Record<string, string> = {
+  'eggy-car': 'barnyard-egg-cart',
+  'connect-4': 'barnyard-connect-four',
+  'duck-life': 'duck-training-champion',
+  'vex-5': 'barnyard-ninja-chick',
+  'moto-x3m': 'tractor-stunt-trials',
+  'bob-the-robber': 'barnyard-stealth-fox',
+  'cluster-rush': 'barnyard-truck-jumper',
+  'big-tower-tiny-square': 'tiny-pig-big-tower',
+  'ice-dodo': 'frozen-pasture-dash',
+  'ducklings-io': 'duckling-pond-rescue',
+  'sushi-cat': 'sushi-kitty-pachinko',
+  'rooftop-snipers': 'barnyard-roof-duel',
+  'penguin-diner': 'penguin-pasture-diner',
+  'pyramid-solitaire': 'pyramid-solitaire-harvest',
+  'spot-the-difference': 'barnyard-spot-difference',
+  'mahjong-connect': 'farm-mahjong-connect',
+  'horse-racing': 'barnyard-horse-derby',
+  'virtual-pet': 'virtual-puppy-pet',
+  'frog-games': 'barnyard-frog-hop',
+};
+
+for (const [aliasKey, targetKey] of Object.entries(ALIAS_INTROS)) {
+  if (GAME_INTROS[targetKey] && !GAME_INTROS[aliasKey]) {
+    GAME_INTROS[aliasKey] = GAME_INTROS[targetKey];
+  }
+}
+
 interface GameIntroModalProps {
   gameId: string;
   isOpen: boolean;
