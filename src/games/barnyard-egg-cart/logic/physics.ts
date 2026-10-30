@@ -14,6 +14,7 @@ export const CUP_BASE_DEPTH = 16; // px
 export const CUP_BASE_WIDTH = 26; // px
 export const EGG_RADIUS_X = 12; // px
 export const EGG_RADIUS_Y = 16; // px
+export const START_BARRIER_X = 20; // px - Rear wheel resting boundary at starting line fence
 
 export function createInitialCart(startX: number = 60): CartPhysicsState {
   const groundY = getTerrainHeight(startX);
@@ -174,6 +175,16 @@ export function stepCartPhysics(
     cart.frontWheel.y -= ny * diff;
   }
 
+  // Enforce Start Line Barrier: Neither wheel can pass behind the start wall at START_BARRIER_X
+  if (cart.rearWheel.x < START_BARRIER_X) {
+    cart.rearWheel.x = START_BARRIER_X;
+    if (cart.rearWheel.vx < 0) cart.rearWheel.vx = 0;
+  }
+  if (cart.frontWheel.x < START_BARRIER_X) {
+    cart.frontWheel.x = START_BARRIER_X;
+    if (cart.frontWheel.vx < 0) cart.frontWheel.vx = 0;
+  }
+
   // Rotate wheels visual angle
   cart.rearWheel.angle += (cart.rearWheel.vx / WHEEL_RADIUS) * safeDt;
   cart.frontWheel.angle += (cart.frontWheel.vx / WHEEL_RADIUS) * safeDt;
@@ -267,6 +278,12 @@ export function stepCartPhysics(
     egg.x += egg.vx * safeDt;
     egg.y += egg.vy * safeDt;
     egg.angle += egg.angularVelocity * safeDt;
+
+    // Bounce egg off start barrier if knocked backward
+    if (egg.x < START_BARRIER_X - 10) {
+      egg.x = START_BARRIER_X - 10;
+      if (egg.vx < 0) egg.vx = -egg.vx * 0.3;
+    }
 
     // Check collision with ground
     const eggGroundY = getTerrainHeight(egg.x);

@@ -259,6 +259,71 @@ export const BarnyardEggCartContainer: React.FC = () => {
       ctx.strokeStyle = '#86efac';
       ctx.stroke();
 
+      // B2. Starting Line & Barnyard Barrier (x = 10 to 60)
+      if (cameraX - 100 <= 60 && cameraX + width + 100 >= 10) {
+        const startGroundY = getTerrainHeight(20);
+
+        // Checkered starting grid on track surface
+        const checkStartX = 38;
+        const checkWidth = 24;
+        const checkRows = 2;
+        const checkCols = 6;
+        const cw = checkWidth / checkCols;
+        const ch = 5;
+
+        for (let r = 0; r < checkRows; r++) {
+          for (let c = 0; c < checkCols; c++) {
+            ctx.fillStyle = (r + c) % 2 === 0 ? '#ffffff' : '#1e293b';
+            ctx.fillRect(checkStartX + c * cw, startGroundY - 4 + r * ch, cw, ch);
+          }
+        }
+
+        // Sturdy wooden fence post
+        ctx.fillStyle = '#78350f';
+        ctx.fillRect(10, startGroundY - 65, 8, 70);
+
+        // Horizontal wooden fence rails
+        ctx.fillStyle = '#92400e';
+        ctx.fillRect(0, startGroundY - 50, 22, 10);
+        ctx.fillRect(0, startGroundY - 28, 22, 10);
+
+        // Soft hay bale bumper at x = 16 to 26
+        ctx.fillStyle = '#ca8a04';
+        ctx.strokeStyle = '#a16207';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(16, startGroundY - 26, 12, 26, 4);
+        ctx.fill();
+        ctx.stroke();
+
+        // Hay ties
+        ctx.strokeStyle = '#713f12';
+        ctx.beginPath();
+        ctx.moveTo(16, startGroundY - 18);
+        ctx.lineTo(28, startGroundY - 18);
+        ctx.moveTo(16, startGroundY - 8);
+        ctx.lineTo(28, startGroundY - 8);
+        ctx.stroke();
+
+        // "START" Sign atop post
+        ctx.save();
+        ctx.translate(14, startGroundY - 78);
+        ctx.fillStyle = '#f59e0b';
+        ctx.strokeStyle = '#78350f';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(-22, 0, 44, 18, 4);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 9px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('🏁 START', 0, 9);
+        ctx.restore();
+      }
+
       // C. Coins Pickups
       state.coinsPickups.forEach((coin) => {
         if (coin.collected) return;

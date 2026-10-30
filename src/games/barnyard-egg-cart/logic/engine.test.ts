@@ -60,6 +60,23 @@ describe('Barnyard Egg Cart: Pasture Hill Logic Engine', () => {
     expect(res.state.cart.rearWheel.vx).toBeLessThan(80);
   });
 
+  test('prevents cart from reversing backwards past the starting line barrier', () => {
+    let state = initializeEggCartGame(0);
+    state.brakePressed = true;
+
+    // Simulate 30 frames of continuous reversing at the start
+    for (let i = 0; i < 30; i++) {
+      const res = tickEggCartGame(state, 0.033);
+      state = res.state;
+    }
+
+    // Rear wheel cannot go behind starting barrier (20)
+    expect(state.cart.rearWheel.x).toBeGreaterThanOrEqual(20);
+    expect(state.cart.x).toBeGreaterThanOrEqual(50);
+    expect(state.cart.egg.inCup).toBe(true);
+    expect(state.gameOver).toBe(false);
+  });
+
   test('switches egg distress to nervous when tilted or driving fast', () => {
     const cart = createInitialCart(100);
     // Position wheels with steep tilt angle (0.85 rad > 0.65)
@@ -81,6 +98,7 @@ describe('Barnyard Egg Cart: Pasture Hill Logic Engine', () => {
 
   test('cracks egg and triggers game over when cart overturns', () => {
     let state = initializeEggCartGame(0);
+    state.cart = createInitialCart(150);
     // Invert front and rear wheels to simulate cart flipping upside down (angle ~ 2.6 rad > 2.2)
     const flipAngle = 2.6;
     state.cart.frontWheel.x = state.cart.rearWheel.x + 68 * Math.cos(flipAngle);
