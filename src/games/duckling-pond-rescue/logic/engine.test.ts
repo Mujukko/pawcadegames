@@ -40,11 +40,14 @@ describe('Ducklings.io: Duckling Pond Rescue Logic Engine', () => {
     const state = initRescueGame(1);
     state.status = 'playing';
     state.boats = [];
+    state.turtles = [];
     const duckling = state.ducklings[0];
 
-    // Position Mama Duck right next to duckling
-    state.mama.x = duckling.x;
-    state.mama.y = duckling.y;
+    // Position duckling and Mama Duck safely in open water far from nest
+    duckling.x = 200;
+    duckling.y = 200;
+    state.mama.x = 200;
+    state.mama.y = 200;
     state.mama.vx = 0;
     state.mama.vy = 0;
 
