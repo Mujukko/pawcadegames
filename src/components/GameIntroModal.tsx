@@ -3229,6 +3229,376 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Keep at least one empty buffer dock open as long as possible. It serves as your temporary parking spot while untangling mixed duck columns!',
   },
+  'level-devil': {
+    title: 'Level Devil: Mischief Meadow',
+    subtitle: 'Hilarious Troll Platformer with Surprise Traps',
+    mascot: '🐥🚪',
+    themeColor: 'from-amber-500 via-rose-600 to-slate-900',
+    goal: 'Guide Pip the Chick through trick meadows to reach the barn door without falling for unexpected troll hazards!',
+    steps: [
+      {
+        icon: '🏃',
+        title: '1. Run & Jump Across Platforms',
+        desc: 'Move forward and leap across hay bales and stone ledges toward the door.',
+      },
+      {
+        icon: '👀',
+        title: '2. Expect the Unexpected',
+        desc: 'Floors crumble, spikes drop from above, and doors run away as you approach.',
+      },
+      {
+        icon: '🚪',
+        title: '3. Outsmart the Traps',
+        desc: 'Memorize trick patterns and time your jumps to outwit every meadow trap.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'A / D or Left / Right: Move Pip left and right',
+        'W / Up or Space: Jump over gaps and spikes',
+        'R Key: Quick restart after a funny trap death',
+        'M Key: Mute chirps and troll sound effects',
+      ],
+      mobile: [
+        '⬅️ / ➡️ Buttons: Run left and right',
+        '⬆️ Jump Button: Leap over collapsing ground',
+        'Restart Icon: Instant retry on trap trigger',
+      ],
+    },
+    proTip: 'When a platform looks completely safe, it probably is not! Take slow steps forward to trigger traps early before jumping.',
+  },
+  'basket-random': {
+    title: 'Basket Random: Barnyard Dunkers',
+    subtitle: 'Wobbly 2-on-2 Ragdoll Basketball',
+    mascot: '🏀🐷',
+    themeColor: 'from-orange-500 via-amber-600 to-indigo-900',
+    goal: 'Bounce your floppy barnyard ballers and score five baskets before the rival coop squad!',
+    steps: [
+      {
+        icon: '🤾',
+        title: '1. One-Button Ragdoll Leap',
+        desc: 'Press jump to send your floppy defenders and dunkers tumbling into the air.',
+      },
+      {
+        icon: '🏀',
+        title: '2. Snatch & Release the Ball',
+        desc: 'Snag loose balls on contact and fling them toward the hoop with momentum.',
+      },
+      {
+        icon: '🏆',
+        title: '3. First to Five Baskets Wins',
+        desc: 'Rounds reset with random ball bounciness, court friction, and rim heights.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'W or Up Arrow: Team 1 jump and throw',
+        'Up Arrow: Team 2 jump in two-player mode',
+        'R Key: Reset current match',
+        'M Key: Toggle swish and whistle audio',
+      ],
+      mobile: [
+        'Tap Screen or JUMP Button: Jump and shoot',
+        '2-Player Mode: Dedicated touch buttons on both sides',
+      ],
+    },
+    proTip: 'Timing your leap right as the ball rebounds off the backboard gives you huge dunking leverage over floppy defenders!',
+  },
+  'water-sort': {
+    title: 'Water Sort: Farm Bottle Pour',
+    subtitle: 'Relaxing Color Sorting Logic Puzzle',
+    mascot: '🧪🐮',
+    themeColor: 'from-sky-500 via-emerald-600 to-indigo-950',
+    goal: 'Sort colored farm juices and milk into glass bottles until every flask holds a single matching hue!',
+    steps: [
+      {
+        icon: '👆',
+        title: '1. Select Source Bottle',
+        desc: 'Tap any bottle with liquid to pick up its top colored layer.',
+      },
+      {
+        icon: '🧪',
+        title: '2. Pour into Matching Color',
+        desc: 'Pour into another bottle if the top layer matches and space remains.',
+      },
+      {
+        icon: '✨',
+        title: '3. Complete All Flasks',
+        desc: 'Group all four layers of each color together to cork the bottle and clear the shelf.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Left Click: Tap bottle to select and pour',
+        'U Key: Undo previous liquid transfer',
+        'R Key: Restart current bottle layout',
+        'M Key: Mute trickle and cork sounds',
+      ],
+      mobile: [
+        'Tap Bottles: Quick select and pour liquid',
+        'Undo Button: Step back one pour cleanly',
+      ],
+    },
+    proTip: 'Reserve empty bottles for emergency sorting space. Never fill an empty flask halfway with mixed colors!',
+  },
+  'gold-miner': {
+    title: 'Gold Miner: Barnyard Gem Digger',
+    subtitle: 'Classic Winch Claw Underground Arcade',
+    mascot: '⛏️💎',
+    themeColor: 'from-amber-600 via-yellow-600 to-stone-900',
+    goal: 'Aim your oscillating winch claw, reel in heavy gold nuggets and sparkling gems, and beat the shift quota!',
+    steps: [
+      {
+        icon: '🎯',
+        title: '1. Time the Claw Swing',
+        desc: 'Watch the cable oscillate back and forth above the underground quarry.',
+      },
+      {
+        icon: '🚀',
+        title: '2. Drop the Winch Claw',
+        desc: 'Drop the claw straight into gold veins, diamond geodes, and lucky mystery bags.',
+      },
+      {
+        icon: '🧨',
+        title: '3. Blast Away Heavy Rocks',
+        desc: 'Use dynamite sticks to blow up slow rocks and reel the line back instantly.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Down Arrow or S Key: Shoot winch claw downward',
+        'Up Arrow or W Key: Toss dynamite when holding rock',
+        'R Key: Restart mining shift',
+        'M Key: Mute mechanical winch and coin sounds',
+      ],
+      mobile: [
+        'DROP CLAW Button: Release winch claw downward',
+        '🧨 DYNAMITE Button: Blast unwanted boulder',
+      ],
+    },
+    proTip: 'Small diamonds haul in fast and give massive cash! Prioritize gems early before targeting giant boulders.',
+  },
+  'stickman-hook': {
+    title: 'Stickman Hook: Fluffy Grapple Swing',
+    subtitle: 'Momentum Swing Acrobatics Arcade',
+    mascot: '🪝🐱',
+    themeColor: 'from-sky-500 via-indigo-600 to-slate-900',
+    goal: 'Latch onto barn rafter pegs, gain swinging speed, and fling your acrobat cat across the checkered finish line!',
+    steps: [
+      {
+        icon: '🪝',
+        title: '1. Hold to Grapple Pegs',
+        desc: 'Press and hold to fire your grappling rope at the nearest rafter anchor.',
+      },
+      {
+        icon: '🔄',
+        title: '2. Swing for Momentum',
+        desc: 'Ride the pendulum arc to build forward velocity as you swoop through the barn.',
+      },
+      {
+        icon: '🚀',
+        title: '3. Release to Soar',
+        desc: 'Let go at the peak of your upswing to launch forward and bounce off trampolines.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Space or W Key: Hold to latch hook, release to fly',
+        'R Key: Restart current acrobatic run',
+        'M Key: Mute swing swoosh and bounce audio',
+      ],
+      mobile: [
+        'Tap & Hold Screen: Grapple onto anchor peg',
+        'Release Touch: Fling cat forward into the air',
+      ],
+    },
+    proTip: 'Release your grapple at the bottom or forward rise of the swing circle to carry maximum horizontal speed across gaps!',
+  },
+  'bad-ice-cream': {
+    title: 'Bad Ice Cream: Frosty Barnyard',
+    subtitle: 'Classic Ice-Breaking Fruit Maze Arcade',
+    mascot: '🍦🐧',
+    themeColor: 'from-cyan-500 via-sky-600 to-slate-900',
+    goal: 'Gobble up all fresh fruits in the maze while using frost breath to construct defensive ice barricades against prowling wolves!',
+    steps: [
+      {
+        icon: '🍓',
+        title: '1. Collect Delicious Fruits',
+        desc: 'Scout the maze to collect strawberries, bananas, and watermelons in waves.',
+      },
+      {
+        icon: '❄️',
+        title: '2. Build Ice Walls',
+        desc: 'Breathe frost into empty tiles to erect barriers that trap chasing enemies.',
+      },
+      {
+        icon: '💥',
+        title: '3. Shatter Ice Blocks',
+        desc: 'Breathe directly into ice blocks to smash entire rows and open escape routes.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Arrow Keys or W/A/S/D: Walk through maze corridors',
+        'Space or F Key: Breathe frost to build or smash ice lines',
+        'R Key: Restart maze level',
+        'M Key: Toggle freeze and crunch audio',
+      ],
+      mobile: [
+        'D-Pad Buttons: Steer frosty hero across grid',
+        'FROST BREATH Button: Construct or break ice walls',
+      ],
+    },
+    proTip: 'Trap roaming wolves behind a quick two-block ice barrier so you can collect distant fruits without being pursued!',
+  },
+  'fireboy-and-watergirl': {
+    title: 'Fireboy & Watergirl: Sun Pup & Moon Kitty',
+    subtitle: 'Cooperative Elemental Temple Puzzle',
+    mascot: '🐕🐈',
+    themeColor: 'from-amber-500 via-rose-600 to-sky-700',
+    goal: 'Cooperate between fire and water companions to navigate temple chambers, collect elemental gems, and reach sanctuary doors!',
+    steps: [
+      {
+        icon: '🔥',
+        title: '1. Master Elemental Immunity',
+        desc: 'Sun Pup wades through lava safely. Moon Kitty walks across water pools unscathed.',
+      },
+      {
+        icon: '⚠️',
+        title: '2. Avoid Opposite Hazards',
+        desc: 'Sun Pup perishes in water, Moon Kitty dissolves in lava, and green acid hurts both.',
+      },
+      {
+        icon: '🚪',
+        title: '3. Trigger Pressure Plates',
+        desc: 'Stand on floor switches to lower gates and escort both partners to the exit portals.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'W / A / D Keys: Move and jump with Sun Pup',
+        'Arrow Keys: Move and jump with Moon Kitty',
+        'R Key: Restart temple chamber',
+        'M Key: Mute elemental sound effects',
+      ],
+      mobile: [
+        'Switch Partner Button: Toggle between Pup and Kitty',
+        'Left / Right / Jump Buttons: Maneuver active character',
+      ],
+    },
+    proTip: 'Leave one partner resting safely on a pressure plate so the other can cross through high mechanical gates freely!',
+  },
+  'retro-bowl': {
+    title: 'Retro Bowl: Barnyard Gridiron',
+    subtitle: 'Pixel Gridiron American Football Arcade',
+    mascot: '🏈🐕',
+    themeColor: 'from-emerald-600 via-amber-600 to-slate-900',
+    goal: 'Call plays, aim precision spiral passes to running receivers, juke blitzing defenders, and score touchdowns!',
+    steps: [
+      {
+        icon: '🎯',
+        title: '1. Pull Back & Aim Pass',
+        desc: 'Drag back behind the quarterback to adjust passing arc trajectory and throwing power.',
+      },
+      {
+        icon: '🏈',
+        title: '2. Lead Your Receivers',
+        desc: 'Throw ahead of your receivers on slant and go routes so they catch the ball in stride.',
+      },
+      {
+        icon: '⚡',
+        title: '3. Juke into the End Zone',
+        desc: 'Steer your ball-carrier up and down to shake off charging bull defenders for six points.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'Mouse Drag & Release: Aim trajectory and launch football',
+        'W / S or Up / Down: Juke runner vertically after catch',
+        'Space Bar: Trigger speed burst sprint',
+        'R Key: Reset offensive drive',
+      ],
+      mobile: [
+        'Touch Drag & Release: Aim and throw pass',
+        '⬆️ / ⬇️ Buttons: Dodge incoming tacklers',
+        'SPRINT Button: Burst of runner acceleration',
+      ],
+    },
+    proTip: 'Look for the receiver who beats single coverage off the line of scrimmage. Throw a quick bullet pass before defenders close in!',
+  },
+  'slope': {
+    title: 'Slope: Rolling Acorn Dash',
+    subtitle: 'High-Speed Downhill Perspective 3D Runway',
+    mascot: '🌰⚡',
+    themeColor: 'from-amber-600 via-yellow-600 to-indigo-950',
+    goal: 'Steer your speeding acorn down narrow forest boardwalks, dodge red barricades, and survive as track speed ramps up!',
+    steps: [
+      {
+        icon: '⚡',
+        title: '1. Roll at Breakneck Speed',
+        desc: 'Gravity pulls your acorn downhill with constantly increasing velocity.',
+      },
+      {
+        icon: '↔️',
+        title: '2. Precision Edge Steering',
+        desc: 'Lean left and right to navigate twisting curves without flying off into the void.',
+      },
+      {
+        icon: '🚀',
+        title: '3. Launch off Speed Ramps',
+        desc: 'Hit golden ramps to sail cleanly over red tire barricades and deep runway chasms.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'A / D or Left / Right: Steer acorn laterally across track',
+        'R Key: Instant restart after a runway crash',
+        'M Key: Mute rolling wind and bounce audio',
+      ],
+      mobile: [
+        'Tap Left / Right Screen: Fast lateral steering',
+        'On-Screen Arrow Buttons: Smooth directional control',
+      ],
+    },
+    proTip: 'Keep your acorn close to the center line between jumps. Edge hugging makes recovery nearly impossible at top speed!',
+  },
+  'ragdoll-hit': {
+    title: 'Ragdoll Hit: Barnyard Brawler',
+    subtitle: 'Floppy Ragdoll Arena Combat',
+    mascot: '🥊🦊',
+    themeColor: 'from-amber-500 via-rose-600 to-stone-900',
+    goal: 'Flail your floppy pugilist limbs, swing wooden brooms and pitchforks, and deliver hilarious knockouts in the hayloft ring!',
+    steps: [
+      {
+        icon: '🤼',
+        title: '1. Floppy Physics Movement',
+        desc: 'Tumble forward and leap into the air to build swinging momentum.',
+      },
+      {
+        icon: '🥊',
+        title: '2. Swing Arms & Weapons',
+        desc: 'Trigger rapid arm strikes to land boxing gloves, brooms, and pitchforks on opponents.',
+      },
+      {
+        icon: '💥',
+        title: '3. Ring Out & Knockout',
+        desc: 'Deplete the rival health bar or launch them over the ropes to win the championship.',
+      },
+    ],
+    controls: {
+      desktop: [
+        'A / D or Left / Right: Hop left and right across the mat',
+        'W or Up Arrow: Jump into the air for flying strikes',
+        'Space or F: Swing arm and strike with weapon',
+        'R Key: Quick restart round',
+      ],
+      mobile: [
+        '⬅️ / ➡️ / ⬆️ Buttons: Maneuver floppy fighter',
+        '🥊 PUNCH Button: Swing arm and unleash weapon hit',
+      ],
+    },
+    proTip: 'Jump right before swinging your weapon! Downward jumping strikes deal massive bonus knockback that sends rivals flying across the ring.',
+  },
 };
 
 const ALIAS_INTROS: Record<string, string> = {

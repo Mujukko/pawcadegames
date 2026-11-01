@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="wallBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="60%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <linearGradient id="shelfGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4" />
+    </filter>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Wall Background -->
+  <rect width="600" height="400" fill="url(#wallBg)" />
+
+  <!-- Wooden Pantry Shelf -->
+  <rect x="40" y="290" width="520" height="26" rx="4" fill="url(#shelfGrad)" filter="url(#shadow)" />
+  <rect x="44" y="292" width="512" height="4" rx="2" fill="#d97706" opacity="0.6" />
+
+  <!-- Left Bottle (Full Pure Strawberry Red) -->
+  <g transform="translate(140, 110)" filter="url(#shadow)">
+    <!-- Neck -->
+    <rect x="18" y="0" width="24" height="20" rx="3" fill="#ffffff" opacity="0.25" stroke="#ffffff" stroke-width="2" />
+    <!-- Body -->
+    <rect x="0" y="20" width="60" height="150" rx="16" fill="#ffffff" opacity="0.1" stroke="#ffffff" stroke-width="3" />
+    <!-- Liquid Layers -->
+    <rect x="4" y="24" width="52" height="142" rx="12" fill="#f43f5e" />
+    <!-- Glass Highlight -->
+    <line x1="12" y1="28" x2="12" y2="158" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.5" />
+    <!-- Sparkles -->
+    <circle cx="30" cy="50" r="4" fill="#ffffff" opacity="0.8" />
+  </g>
+
+  <!-- Center Pouring Bottle (Tilted 45 deg, Honey Golden) -->
+  <g transform="translate(260, 60) rotate(42)" filter="url(#shadow)">
+    <!-- Neck -->
+    <rect x="18" y="0" width="24" height="20" rx="3" fill="#ffffff" opacity="0.3" stroke="#ffffff" stroke-width="2" />
+    <!-- Body -->
+    <rect x="0" y="20" width="60" height="150" rx="16" fill="#ffffff" opacity="0.15" stroke="#ffffff" stroke-width="3" />
+    <!-- Liquid -->
+    <path d="M 4 80 L 56 60 L 56 166 A 12 12 0 0 1 4 166 Z" fill="#f59e0b" />
+    <!-- Glass Highlight -->
+    <line x1="12" y1="28" x2="12" y2="158" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.5" />
+  </g>
+
+  <!-- Golden Pouring Stream Arc -->
+  <path d="M 330 115 Q 360 140 375 180" fill="none" stroke="#f59e0b" stroke-width="10" stroke-linecap="round" filter="url(#glow)" />
+
+  <!-- Right Receiving Bottle (Blueberry & Golden Honey) -->
+  <g transform="translate(350, 110)" filter="url(#shadow)">
+    <!-- Neck -->
+    <rect x="18" y="0" width="24" height="20" rx="3" fill="#ffffff" opacity="0.25" stroke="#ffffff" stroke-width="2" />
+    <!-- Body -->
+    <rect x="0" y="20" width="60" height="150" rx="16" fill="#ffffff" opacity="0.1" stroke="#ffffff" stroke-width="3" />
+    <!-- Bottom Blueberry Layer -->
+    <path d="M 4 100 L 56 100 L 56 162 A 12 12 0 0 1 4 162 Z" fill="#3b82f6" />
+    <!-- Top Honey Layer -->
+    <rect x="4" y="65" width="52" height="35" fill="#f59e0b" />
+    <!-- Ripple wave -->
+    <path d="M 4 65 Q 30 60 56 65" fill="none" stroke="#fef08a" stroke-width="3" />
+    <!-- Glass Highlight -->
+    <line x1="12" y1="28" x2="12" y2="158" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.5" />
+  </g>
+
+  <!-- Far Right Empty Bottle -->
+  <g transform="translate(450, 110)" opacity="0.7" filter="url(#shadow)">
+    <rect x="18" y="0" width="24" height="20" rx="3" fill="#ffffff" opacity="0.2" stroke="#ffffff" stroke-width="2" />
+    <rect x="0" y="20" width="60" height="150" rx="16" fill="#ffffff" opacity="0.08" stroke="#ffffff" stroke-width="3" />
+    <line x1="12" y1="28" x2="12" y2="158" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.4" />
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(300, 360)">
+    <rect x="-140" y="-18" width="280" height="36" rx="18" fill="#0f172a" stroke="#f59e0b" stroke-width="3" filter="url(#shadow)" />
+    <text x="0" y="6" font-family="sans-serif" font-weight="900" font-size="16" fill="#fbbf24" text-anchor="middle" letter-spacing="1">
+      WATER SORT 🧪🐮
+    </text>
+  </g>
+</svg>

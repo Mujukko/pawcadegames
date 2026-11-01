@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgBrawl" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1c1917" />
+      <stop offset="60%" stop-color="#292524" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <radialGradient id="houndGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </radialGradient>
+
+    <radialGradient id="gloveGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#f87171" />
+      <stop offset="60%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#991b1b" />
+    </radialGradient>
+
+    <filter id="hitGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#facc15" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bgBrawl)" />
+
+  <!-- Barn Hayloft Ring Platform -->
+  <rect x="50" y="310" width="500" height="90" fill="#78350f" stroke="#b45309" stroke-width="4" />
+  <rect x="40" y="300" width="520" height="15" fill="#f59e0b" rx="4" />
+
+  <!-- Ring Corner Posts & Ropes -->
+  <rect x="70" y="160" width="16" height="150" fill="#dc2626" rx="3" />
+  <rect x="514" y="160" width="16" height="150" fill="#dc2626" rx="3" />
+  <line x1="78" y1="180" x2="522" y2="180" stroke="#ef4444" stroke-width="5" />
+  <line x1="78" y1="230" x2="522" y2="230" stroke="#ef4444" stroke-width="5" />
+  <line x1="78" y1="280" x2="522" y2="280" stroke="#ef4444" stroke-width="5" />
+
+  <!-- Impact Flash Stars in Center -->
+  <polygon points="320,180 335,210 365,215 340,235 348,265 320,248 292,265 300,235 275,215 305,210" fill="#facc15" filter="url(#hitGlow)" />
+  <circle cx="320" cy="225" r="14" fill="#ffffff" />
+
+  <!-- Buster Hound (Hero Boxer on Left) -->
+  <g transform="translate(190, 220)">
+    <!-- Body -->
+    <rect x="-24" y="-10" width="48" height="54" rx="12" fill="url(#houndGrad)" />
+    <!-- Head -->
+    <circle cx="0" cy="-30" r="28" fill="url(#houndGrad)" />
+    <!-- Floppy Ears -->
+    <ellipse cx="-26" cy="-24" rx="8" ry="18" fill="#b45309" transform="rotate(-15 -26 -24)" />
+    <ellipse cx="26" cy="-24" rx="8" ry="18" fill="#b45309" transform="rotate(15 26 -24)" />
+    <!-- Eye & Snout -->
+    <circle cx="12" cy="-30" r="5" fill="#0f172a" />
+    <circle cx="10" cy="-32" r="2" fill="#ffffff" />
+    <ellipse cx="18" cy="-20" rx="10" ry="7" fill="#fef08a" />
+    <circle cx="24" cy="-22" r="3.5" fill="#451a03" />
+
+    <!-- Big Boxing Glove Arm (Punching Forward) -->
+    <path d="M 10 0 L 70 -5" stroke="#f59e0b" stroke-width="14" stroke-linecap="round" />
+    <circle cx="95" cy="-8" r="24" fill="url(#gloveGrad)" filter="url(#hitGlow)" />
+    <!-- Glove laces -->
+    <line x1="84" y1="-18" x2="84" y2="2" stroke="#ffffff" stroke-width="3" />
+  </g>
+
+  <!-- Floppy Knocked Out Fox (Opponent on Right) -->
+  <g transform="translate(420, 210) rotate(35)">
+    <!-- Body -->
+    <rect x="-20" y="-8" width="40" height="46" rx="10" fill="#ea580c" />
+    <!-- Head -->
+    <circle cx="0" cy="-24" r="22" fill="#ea580c" />
+    <!-- Pointed ears -->
+    <polygon points="-16,-34 -10,-52 -2,-34" fill="#9a3412" />
+    <polygon points="2,-34 10,-52 16,-34" fill="#9a3412" />
+    <!-- Dizzy X Eyes -->
+    <line x1="-12" y1="-26" x2="-6" y2="-20" stroke="#0f172a" stroke-width="3" />
+    <line x1="-6" y1="-26" x2="-12" y2="-20" stroke="#0f172a" stroke-width="3" />
+    <line x1="4" y1="-26" x2="10" y2="-20" stroke="#0f172a" stroke-width="3" />
+    <line x1="10" y1="-26" x2="4" y2="-20" stroke="#0f172a" stroke-width="3" />
+    <!-- Snout -->
+    <polygon points="0,-18 18,-14 0,-10" fill="#ea580c" />
+    <circle cx="18" cy="-14" r="3" fill="#0f172a" />
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="25" y="325" width="220" height="50" rx="12" fill="#1c1917" opacity="0.95" stroke="#f59e0b" stroke-width="2" />
+  <text x="135" y="348" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle" font-family="system-ui, sans-serif">RAGDOLL HIT</text>
+  <text x="135" y="365" fill="#f59e0b" font-size="11" font-weight="800" text-anchor="middle" font-family="system-ui, sans-serif">BARNYARD BRAWLER</text>
+</svg>

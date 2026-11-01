@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="courtBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef3c7" />
+      <stop offset="50%" stop-color="#fed7aa" />
+      <stop offset="100%" stop-color="#ea580c" />
+    </linearGradient>
+
+    <linearGradient id="floor" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <radialGradient id="ballShine" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fed7aa" />
+      <stop offset="60%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#9a3412" />
+    </radialGradient>
+
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#courtBg)" />
+
+  <!-- Hardwood Floor -->
+  <rect x="0" y="320" width="600" height="80" fill="url(#floor)" />
+  <line x1="0" y1="322" x2="600" y2="322" stroke="#fde68a" stroke-width="4" />
+  <circle cx="300" cy="320" r="50" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.6" />
+
+  <!-- Basketball Hoop (Right) -->
+  <g transform="translate(460, 100)" filter="url(#shadow)">
+    <!-- Backboard -->
+    <rect x="80" y="20" width="12" height="110" rx="2" fill="#ffffff" stroke="#dc2626" stroke-width="4" />
+    <rect x="82" y="55" width="8" height="40" fill="none" stroke="#dc2626" stroke-width="3" />
+    <!-- Rim -->
+    <rect x="25" y="90" width="60" height="8" rx="3" fill="#ea580c" stroke="#9a3412" stroke-width="2" />
+    <!-- Net -->
+    <path d="M 30 98 L 40 140 L 55 140 L 70 140 L 80 98" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.9" />
+    <line x1="42" y1="98" x2="68" y2="140" stroke="#ffffff" stroke-width="2" opacity="0.8" />
+    <line x1="68" y1="98" x2="42" y2="140" stroke="#ffffff" stroke-width="2" opacity="0.8" />
+  </g>
+
+  <!-- Flying Basketball -->
+  <g transform="translate(460, 160)" filter="url(#shadow)">
+    <circle cx="0" cy="0" r="28" fill="url(#ballShine)" stroke="#0f172a" stroke-width="3" />
+    <!-- Ribs -->
+    <path d="M -28 0 A 28 28 0 0 1 28 0" fill="none" stroke="#0f172a" stroke-width="2.5" />
+    <path d="M 0 -28 A 28 28 0 0 1 0 28" fill="none" stroke="#0f172a" stroke-width="2.5" />
+    <path d="M -20 -20 Q 0 0 -20 20" fill="none" stroke="#0f172a" stroke-width="2" />
+    <path d="M 20 -20 Q 0 0 20 20" fill="none" stroke="#0f172a" stroke-width="2" />
+  </g>
+
+  <!-- Dunker 1 (Yellow Chick in Mid-Air Dunk) -->
+  <g transform="translate(360, 170) rotate(-25)" filter="url(#shadow)">
+    <!-- Legs -->
+    <line x1="-8" y1="20" x2="-20" y2="55" stroke="#0f172a" stroke-width="6" stroke-linecap="round" />
+    <line x1="8" y1="20" x2="16" y2="60" stroke="#0f172a" stroke-width="6" stroke-linecap="round" />
+    <!-- Torso Jersey -->
+    <rect x="-18" y="-20" width="36" height="42" rx="10" fill="#facc15" stroke="#0f172a" stroke-width="3" />
+    <text x="0" y="8" font-family="sans-serif" font-weight="900" font-size="16" fill="#0f172a" text-anchor="middle">7</text>
+    <!-- Head -->
+    <circle cx="0" cy="-36" r="18" fill="#fef08a" stroke="#0f172a" stroke-width="3" />
+    <!-- Eye & Beak -->
+    <circle cx="6" cy="-38" r="3" fill="#0f172a" />
+    <polygon points="12,-36 24,-33 12,-30" fill="#f97316" stroke="#c2410c" stroke-width="1.5" />
+    <!-- Comb -->
+    <circle cx="-2" cy="-52" r="5" fill="#ef4444" />
+    <!-- Stretched Arm -->
+    <line x1="12" y1="-10" x2="45" y2="-40" stroke="#facc15" stroke-width="8" stroke-linecap="round" />
+  </g>
+
+  <!-- Defender 2 (Floppy Pink Piglet Falling Backward) -->
+  <g transform="translate(200, 240) rotate(35)" filter="url(#shadow)">
+    <!-- Legs -->
+    <line x1="-8" y1="20" x2="-24" y2="50" stroke="#0f172a" stroke-width="6" stroke-linecap="round" />
+    <line x1="8" y1="20" x2="20" y2="45" stroke="#0f172a" stroke-width="6" stroke-linecap="round" />
+    <!-- Torso Jersey -->
+    <rect x="-18" y="-20" width="36" height="42" rx="10" fill="#f472b6" stroke="#0f172a" stroke-width="3" />
+    <text x="0" y="8" font-family="sans-serif" font-weight="900" font-size="16" fill="#0f172a" text-anchor="middle">9</text>
+    <!-- Head -->
+    <circle cx="0" cy="-36" r="18" fill="#fbcfe8" stroke="#0f172a" stroke-width="3" />
+    <ellipse cx="-4" cy="-34" rx="7" ry="5" fill="#f472b6" />
+    <circle cx="-6" cy="-34" r="1.5" fill="#0f172a" />
+    <circle cx="-2" cy="-34" r="1.5" fill="#0f172a" />
+    <circle cx="4" cy="-40" r="3" fill="#0f172a" />
+    <!-- Flailing Arms -->
+    <line x1="-12" y1="-10" x2="-35" y2="-30" stroke="#f472b6" stroke-width="8" stroke-linecap="round" />
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(300, 360)">
+    <rect x="-150" y="-18" width="300" height="36" rx="18" fill="#0f172a" stroke="#f59e0b" stroke-width="3" filter="url(#shadow)" />
+    <text x="0" y="6" font-family="sans-serif" font-weight="900" font-size="16" fill="#fbbf24" text-anchor="middle" letter-spacing="1">
+      BASKET RANDOM 🏀🐷
+    </text>
+  </g>
+</svg>

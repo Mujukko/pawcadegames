@@ -4057,5 +4057,500 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     ],
     "metaTitle": "Tractor Hill Climb: Barnyard Ridge 🚜⛰️ — No Download | Pawcade",
     "metaDescription": "Play Tractor Hill Climb free online! Drive a farm tractor over rolling hills, pull off air flips, and collect diesel cans. Free physics game with no download."
+  },
+  {
+    "id": "level-devil",
+    "slug": "level-devil",
+    "title": "Level Devil: Mischief Meadow 🐥🚪",
+    "tagline": "Outsmart troll traps, collapsing hay bales, and runaway doors in this trick platformer!",
+    "description": "Guide Pip the Chick through trick meadows to reach the barn door. Watch out for collapsing floors, falling ceiling spikes, and doors that run away as you approach. Memorize each surprise trap and jump with sharp timing to clear every stage. Free troll platformer with no download.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "puzzle",
+      "pets"
+    ],
+    "route": "/games/level-devil/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "72.4K",
+    "badge": "🐥 Troll Runner",
+    "thumbnailUrl": "/assets/thumbnails/thumb-level-devil.svg",
+    "featured": true,
+    "tags": [
+      "level devil",
+      "level devil unblocked",
+      "troll game",
+      "trap platformer",
+      "unblocked games"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D or Left / Right: Run left and right",
+        "W, Up Arrow, or Space: Jump over gaps and spikes",
+        "R Key: Quick restart level",
+        "M Key: Toggle sound effects"
+      ],
+      "mobile": [
+        "Left / Right Touch Buttons: Run across meadows",
+        "JUMP Button: Leap over collapsing platforms",
+        "Restart Button: Instant retry after a trap"
+      ]
+    },
+    "features": [
+      "6 Handcrafted Troll Levels with Dynamic Surprise Traps",
+      "Collapsing Ground, Shy Doors, Falling Spikes, and Inverted Controls",
+      "Death Counter Tracking Funny Meadow Fails",
+      "Procedural Web Audio Engine with Chirps, Traps, and Fanfares",
+      "Single-Screen Zero-Scroll Layout with 60 FPS Canvas Physics",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Level Devil: Mischief Meadow 🐥🚪 — No Download | Pawcade",
+    "metaDescription": "Play Level Devil free online! Dodge troll traps, collapsing floors, and moving doors as Pip the Chick. Free trick platformer game with no download."
+  },
+  {
+    "id": "basket-random",
+    "slug": "basket-random",
+    "title": "Basket Random: Barnyard Dunkers 🏀🐷",
+    "tagline": "Wobbly 2-on-2 ragdoll basketball with floppy dunks and unpredictable physics!",
+    "description": "Leap and bounce your floppy barnyard ballers to score five baskets before the rival team. One-button controls fling your players into wild leaps, rebounds, and slam dunks. Play solo against the smart AI or challenge a friend in local two-player mode on the same device.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/basket-random/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "68.9K",
+    "badge": "🏀 Ragdoll Hoops",
+    "thumbnailUrl": "/assets/thumbnails/thumb-basket-random.svg",
+    "featured": true,
+    "tags": [
+      "basket random",
+      "basket random unblocked",
+      "ragdoll basketball",
+      "2 player basketball",
+      "unblocked games"
+    ],
+    "controls": {
+      "desktop": [
+        "W Key: Team 1 jump and throw",
+        "Up Arrow: Team 2 jump in 2-player mode",
+        "R Key: Quick match restart",
+        "M Key: Toggle swish and crowd sound effects"
+      ],
+      "mobile": [
+        "Tap Screen or JUMP: Flop, jump, and shoot",
+        "2-Player Touch Mode: Dedicated touch buttons on each side"
+      ]
+    },
+    "features": [
+      "2v2 Floppy Ragdoll Physics with Realistic Momentum and Hoops",
+      "First to 5 Points Match Structure with Dynamic Court Friction",
+      "1-Player VS AI and 2-Player Local Couch Play Modes",
+      "Procedural Web Audio Engine with Swishes, Cheers, and Whistles",
+      "Responsive Single-Screen Arena with Zero Mobile Scrolling",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Basket Random: Barnyard Dunkers 🏀🐷 — No Download | Pawcade",
+    "metaDescription": "Play Basket Random free online! Enjoy floppy 2-on-2 ragdoll basketball with wild bounces and hilarious dunks. Free 2-player sports game with no download."
+  },
+  {
+    "id": "water-sort",
+    "slug": "water-sort",
+    "title": "Water Sort: Farm Bottle Pour 🧪🐮",
+    "tagline": "Sort vibrant milk bottles and juices until every flask holds a single color!",
+    "description": "Pour colored milk and juices between glass bottles until every flask holds a single matching hue. Plan your transfers carefully to avoid running out of empty space. Use the unlimited undo button to test different sorting routes across handcrafted puzzle levels.",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/water-sort/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "54.2K",
+    "badge": "🧪 Color Pour",
+    "thumbnailUrl": "/assets/thumbnails/thumb-water-sort.svg",
+    "featured": true,
+    "tags": [
+      "water sort",
+      "water sort puzzle",
+      "color sort",
+      "bottle pour puzzle",
+      "unblocked games"
+    ],
+    "controls": {
+      "desktop": [
+        "Left Click: Select source bottle and pour target",
+        "U Key: Undo previous liquid transfer",
+        "R Key: Restart current bottle layout",
+        "M Key: Toggle soothing liquid and cork audio"
+      ],
+      "mobile": [
+        "Tap Bottles: Instant touch selection and pour",
+        "UNDO Button: Step back one move cleanly"
+      ]
+    },
+    "features": [
+      "5 Handcrafted Progressive Color Bottle Sorting Levels",
+      "Contiguous Color Liquid Pour Rules and Corking Animations",
+      "Unlimited Undo Stack to Encourage Exploration",
+      "Procedural Web Audio Engine with Gentle Trickles and Cork Pops",
+      "Single-Screen Pantry Shelf Layout with Mobile Touch Optimization",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Water Sort: Farm Bottle Pour 🧪🐮 — No Download | Pawcade",
+    "metaDescription": "Play Water Sort free online! Pour and sort colorful farm milk bottles until each flask matches. Free relaxing color liquid puzzle game with no download."
+  },
+  {
+    "id": "gold-miner",
+    "slug": "gold-miner",
+    "title": "Gold Miner: Barnyard Gem Digger ⛏️💎",
+    "tagline": "Aim your oscillating winch claw, haul in gold nuggets, and beat shift quotas!",
+    "description": "Drop your swinging winch claw deep into underground caverns to reel in heavy gold nuggets and diamonds. Time your releases to avoid slow boulders, or blast them away with sticks of dynamite. Earn cash before the shift clock expires to unlock underground quarry stages.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/gold-miner/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "48.7K",
+    "badge": "⛏️ Gem Digger",
+    "thumbnailUrl": "/assets/thumbnails/thumb-gold-miner.svg",
+    "featured": true,
+    "tags": [
+      "gold miner",
+      "gold miner classic",
+      "digging game",
+      "mining arcade",
+      "unblocked games"
+    ],
+    "controls": {
+      "desktop": [
+        "Down Arrow or S Key: Shoot winch claw downward",
+        "Up Arrow or W Key: Toss dynamite when reeling in rock",
+        "R Key: Restart current mining shift",
+        "M Key: Toggle mechanical reel and explosion sounds"
+      ],
+      "mobile": [
+        "DROP CLAW Button: Release claw toward gold veins",
+        "🧨 DYNAMITE Button: Blow up heavy rocks instantly"
+      ]
+    },
+    "features": [
+      "Continuous Oscillating Claw Physics with Heavy Weight Retrieval",
+      "Golden Nuggets, Sparkling Diamond Geodes, and Lucky Mystery Bags",
+      "Dynamite Sticks for Rapid Rock Demolition",
+      "4 Progressive Mining Shifts with Increasing Target Quotas",
+      "Procedural Web Audio Engine with Winch Gears, Clamps, and Coins",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Gold Miner: Barnyard Gem Digger ⛏️💎 — No Download | Pawcade",
+    "metaDescription": "Play Gold Miner free online! Drop your winch claw to reel in gold nuggets, sparkling diamonds, and bags. Classic arcade digging game with no download."
+  },
+  {
+    "id": "stickman-hook",
+    "slug": "stickman-hook",
+    "title": "Stickman Hook: Fluffy Grapple Swing 🪝🐱",
+    "tagline": "Latch onto barn rafter pegs, gain pendulum speed, and fling across the finish line!",
+    "description": "Fire your grappling hook onto overhead barn pegs and swing with real pendulum physics. Release your grip at the crest of the swing circle to launch forward over chasms. Bounce off golden trampolines and soar across the checkered finish line across four aerial courses.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/stickman-hook/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "62.1K",
+    "badge": "🪝 Grapple Swing",
+    "thumbnailUrl": "/assets/thumbnails/thumb-stickman-hook.svg",
+    "featured": true,
+    "tags": [
+      "stickman hook",
+      "stickman hook unblocked",
+      "grappling game",
+      "swinging platformer",
+      "unblocked games"
+    ],
+    "controls": {
+      "desktop": [
+        "Space, W, or Up Arrow: Hold to latch hook, release to fly",
+        "R Key: Quick restart course",
+        "M Key: Toggle grapple swoosh and bounce sounds"
+      ],
+      "mobile": [
+        "Tap & Hold Screen: Grapple onto nearest rafter peg",
+        "Release Touch: Fling forward with momentum"
+      ]
+    },
+    "features": [
+      "Authentic Pendulum Kinematics with Tangential Velocity Launch",
+      "Elastic Spring Trampolines and Concentric Range Aim Indicators",
+      "4 Acrobatic Rafter Levels with Checkered Goal Banners",
+      "Procedural Web Audio Engine with Ziplines, Snaps, and Fanfares",
+      "Single-Screen Responsive Camera Tracking with Zero Mobile Scroll",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Stickman Hook: Fluffy Grapple Swing 🪝🐱 — No Download | Pawcade",
+    "metaDescription": "Play Stickman Hook free online! Grapple rafter pegs, build swinging momentum, and soar over trampolines. Free acrobatic swing game with no download."
+  },
+  {
+    "id": "bad-ice-cream",
+    "slug": "bad-ice-cream",
+    "title": "Bad Ice Cream: Frosty Barnyard 🍦🐧",
+    "tagline": "Break and create ice blocks to gather fresh farm fruits while dodging hungry predators!",
+    "description": "Maneuver your frosty scoop through frozen barnyard mazes to collect strawberries and bananas. Use your frost breath to create defensive ice barriers or shatter solid ice rows to escape wolves. Clear every fruit wave across three stages to claim the frosty crown.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "puzzle",
+      "farm"
+    ],
+    "route": "/games/bad-ice-cream/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "59.3K",
+    "badge": "🍦 Frost Maze",
+    "thumbnailUrl": "/assets/thumbnails/thumb-bad-ice-cream.svg",
+    "featured": true,
+    "tags": [
+      "bad ice cream",
+      "bad ice cream unblocked",
+      "ice cream game",
+      "fruit maze",
+      "unblocked games"
+    ],
+    "controls": {
+      "desktop": [
+        "Arrow Keys or W/A/S/D: Walk through grid corridors",
+        "Space or F Key: Breathe frost to build or smash ice rows",
+        "R Key: Quick restart maze level",
+        "M Key: Toggle ice shatter and fruit audio"
+      ],
+      "mobile": [
+        "D-Pad Buttons: Steer frosty hero across grid",
+        "FROST BREATH Button: Construct or break ice barriers"
+      ]
+    },
+    "features": [
+      "Grid Maze System with 2-Wave Fruit Spawns per Level",
+      "Dual Frost Breath Mechanic (Build Walls or Smash Ice Lines)",
+      "Smart Enemy Patrol AI with Predator Avoidance Routing",
+      "Procedural Web Audio Engine with Crystal Shatters, Chomps, and Chimes",
+      "Single-Screen 15x11 Viewport with Dedicated Touch Controls",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Bad Ice Cream: Frosty Barnyard 🍦🐧 — No Download | Pawcade",
+    "metaDescription": "Play Bad Ice Cream free online! Create and smash ice walls to collect fresh fruits and dodge wolves. Classic retro maze arcade game with no download."
+  },
+  {
+    "id": "fireboy-and-watergirl",
+    "slug": "fireboy-and-watergirl",
+    "title": "Fireboy & Watergirl: Sun Pup & Moon Kitty 🐕🐈",
+    "tagline": "Cooperative elemental platform puzzle guiding fire and water heroes to temple portals!",
+    "description": "Team up as Sun Pup and Moon Kitty to explore ancient elemental sanctuaries. Sun Pup steps through blazing lava, while Moon Kitty glides across pools of water. Stand on pressure plates to open gates, collect matching elemental gems, and guide both heroes to their exit doors.",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "arcade",
+      "pets"
+    ],
+    "route": "/games/fireboy-and-watergirl/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "84.5K",
+    "badge": "🔥 Elemental Co-op",
+    "thumbnailUrl": "/assets/thumbnails/thumb-fireboy-and-watergirl.svg",
+    "featured": true,
+    "tags": [
+      "fireboy and watergirl",
+      "fireboy and watergirl unblocked",
+      "co-op game",
+      "2 player games",
+      "temple puzzle",
+      "unblocked games"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D Keys: Move Sun Pup left and right",
+        "W Key: Jump with Sun Pup",
+        "Arrow Keys: Move and jump with Moon Kitty",
+        "R Key: Quick restart temple chamber",
+        "M Key: Toggle elemental sound effects"
+      ],
+      "mobile": [
+        "Switch Partner Button: Toggle between Pup and Kitty",
+        "Left / Right / Jump Buttons: Maneuver active character"
+      ]
+    },
+    "features": [
+      "Dual Character Co-op Mechanics (Simultaneous Controls or Solo Toggle)",
+      "Elemental Immunity Physics (Lava, Water, and Acid Hazard Pools)",
+      "Interactive Sanctuary Puzzles (Pressure Plates and Sliding Gates)",
+      "Collectible Sun Gems and Moon Diamonds",
+      "Procedural Web Audio Engine with Jumps, Chimes, and Fanfares",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Fireboy and Watergirl: Sun Pup & Moon Kitty 🐕🐈 — No Download | Pawcade",
+    "metaDescription": "Play Fireboy and Watergirl free online! Guide Sun Pup and Moon Kitty through temple puzzles with fire and water hazards. Free 2-player co-op game with no download."
+  },
+  {
+    "id": "retro-bowl",
+    "slug": "retro-bowl",
+    "title": "Retro Bowl: Barnyard Gridiron 🏈🐕",
+    "tagline": "Aim precision passes, juke charging bull defenders, and score touchdowns on the gridiron!",
+    "description": "Step up as quarterback to call offensive drives on the pixel football field. Drag back to aim parabolic passes to running wide receivers, lead them in stride, and juke past charging bull defenders. Gain ten yards for a first down and punch the ball into the end zone for six.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/retro-bowl/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "77.8K",
+    "badge": "🏈 Touchdown",
+    "thumbnailUrl": "/assets/thumbnails/thumb-retro-bowl.svg",
+    "featured": true,
+    "tags": [
+      "retro bowl",
+      "retro bowl unblocked",
+      "american football",
+      "pixel football",
+      "unblocked games"
+    ],
+    "controls": {
+      "desktop": [
+        "Mouse Drag & Release: Aim trajectory and throw football",
+        "W / S or Up / Down: Juke runner vertically after catch",
+        "Space Bar: Trigger speed burst sprint",
+        "R Key: Reset offensive drive",
+        "M Key: Toggle stadium horn and referee whistle"
+      ],
+      "mobile": [
+        "Touch Drag & Release: Pull back to aim and throw",
+        "Up / Down Buttons: Juke incoming bull defenders",
+        "SPRINT Button: Burst of receiver acceleration"
+      ]
+    },
+    "features": [
+      "Intuitive Drag-to-Aim Passing Trajectory Mechanics",
+      "Running Route Patterns (Slants, Go Routes, and In-Stride Catches)",
+      "Official Down & Distance System (1st & 10 to Touchdowns)",
+      "Bull Defender Tackling and Interception Physics",
+      "Procedural Web Audio Engine with Stadium Horns, Whistles, and Thuds",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Retro Bowl: Barnyard Gridiron 🏈🐕 — No Download | Pawcade",
+    "metaDescription": "Play Retro Bowl free online! Aim spiral passes, juke defenders, and score touchdowns on the pixel football field. Free arcade sports game with no download."
+  },
+  {
+    "id": "slope",
+    "slug": "slope",
+    "title": "Slope: Rolling Acorn Dash 🌰⚡",
+    "tagline": "Steer down high-speed 3D forest boardwalks, dodge barriers, and survive the slope!",
+    "description": "Steer your speeding acorn down a narrow forest boardwalk in continuous 3D perspective. Lean left and right to hug twisting curves and hit golden launch ramps over chasms. Dodge red tractor tire barricades as your downhill rolling velocity accelerates with every meter.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "pets"
+    ],
+    "route": "/games/slope/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "91.2K",
+    "badge": "🌰 3D Speed",
+    "thumbnailUrl": "/assets/thumbnails/thumb-slope.svg",
+    "featured": true,
+    "tags": [
+      "slope",
+      "slope unblocked",
+      "slope game",
+      "3d runner",
+      "rolling ball",
+      "unblocked games"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D or Left / Right: Steer acorn laterally across track",
+        "R Key: Instant restart after a crash",
+        "M Key: Toggle rolling rumble and jump audio"
+      ],
+      "mobile": [
+        "Tap Left / Right Screen: Fast lateral steering",
+        "On-Screen Arrow Buttons: Smooth directional control"
+      ]
+    },
+    "features": [
+      "Pseudo-3D Perspective Projection Engine with Dynamic FOV",
+      "Endless Procedural Runway Generation with Twisting Curves and Chasms",
+      "Acceleration Curve Ramping Velocity from 24 to 55 m/s",
+      "Golden Launch Ramps and Red Tractor Tire Barricades",
+      "Procedural Web Audio Engine with Wind Rumbles, Jumps, and Crashes",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Slope: Rolling Acorn Dash 🌰⚡ — No Download | Pawcade",
+    "metaDescription": "Play Slope free online! Steer a speeding acorn down endless 3D perspective forest runways, dodge red barriers, and beat your high score with no download."
+  },
+  {
+    "id": "ragdoll-hit",
+    "slug": "ragdoll-hit",
+    "title": "Ragdoll Hit: Barnyard Brawler 🥊🦊",
+    "tagline": "Floppy ragdoll fighting physics swinging boxing gloves, brooms, and pitchforks!",
+    "description": "Enter the hayloft ring as Buster Hound and battle floppy barnyard rivals across three rounds. Swing your arms to land heavy punches, broom whacks, and pitchfork strikes with bouncy physics. Knock opponents over the ropes or deplete their health bars to claim the brawler belt.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/ragdoll-hit/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "49.6K",
+    "badge": "🥊 Ragdoll Brawl",
+    "thumbnailUrl": "/assets/thumbnails/thumb-ragdoll-hit.svg",
+    "featured": true,
+    "tags": [
+      "ragdoll hit",
+      "ragdoll hit unblocked",
+      "ragdoll fight",
+      "physics brawler",
+      "unblocked games"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D or Left / Right: Hop left and right across the mat",
+        "W or Up Arrow: Jump for aerial flying strikes",
+        "Space or F: Swing arm and strike with weapon",
+        "R Key: Quick restart round",
+        "M Key: Toggle boxing bell and punch audio"
+      ],
+      "mobile": [
+        "Left / Right / Jump Buttons: Maneuver floppy fighter",
+        "🥊 PUNCH Button: Swing arm and unleash weapon strike"
+      ]
+    },
+    "features": [
+      "Floppy Ragdoll Limb Physics with Dynamic Arm Swing Momentum",
+      "3 Weapon Loadouts: Boxing Gloves, Wooden Brooms, and Pitchforks",
+      "3 Progressive Opponents: Sneaky Fox, Grumpy Badger, and Wild Rooster",
+      "Recoil Knockback, Impact Particles, and Ring Out KOs",
+      "Procedural Web Audio Engine with Boxing Bells, Punches, and Gongs",
+      "100% Free Instant Browser Play with No Download or Install"
+    ],
+    "metaTitle": "Ragdoll Hit: Barnyard Brawler 🥊🦊 — No Download | Pawcade",
+    "metaDescription": "Play Ragdoll Hit free online! Swing floppy arms and farm weapons to deliver hilarious knockouts in the hayloft ring. Free ragdoll brawler game with no download."
   }
 ];

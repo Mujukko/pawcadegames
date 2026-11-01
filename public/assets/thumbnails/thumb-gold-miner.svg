@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="mineBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#451a03" />
+      <stop offset="60%" stop-color="#291002" />
+      <stop offset="100%" stop-color="#0f0501" />
+    </linearGradient>
+
+    <radialGradient id="goldGleam" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#facc15" />
+      <stop offset="90%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </radialGradient>
+
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Mine Background -->
+  <rect width="600" height="400" fill="url(#mineBg)" />
+
+  <!-- Wooden Mine Support Beams -->
+  <rect x="40" y="0" width="30" height="400" fill="#78350f" stroke="#451a03" stroke-width="4" />
+  <rect x="530" y="0" width="30" height="400" fill="#78350f" stroke="#451a03" stroke-width="4" />
+  <rect x="0" y="40" width="600" height="26" fill="#92400e" stroke="#451a03" stroke-width="4" />
+
+  <!-- Background Small Gold & Rocks -->
+  <circle cx="140" cy="310" r="18" fill="url(#goldGleam)" stroke="#ca8a04" stroke-width="2" />
+  <circle cx="160" cy="330" r="14" fill="url(#goldGleam)" stroke="#ca8a04" stroke-width="2" />
+  <circle cx="480" cy="290" r="32" fill="#64748b" stroke="#334155" stroke-width="3" />
+
+  <!-- TNT Barrel -->
+  <g transform="translate(160, 200)" filter="url(#shadow)">
+    <rect x="-20" y="-24" width="40" height="48" rx="6" fill="#dc2626" stroke="#991b1b" stroke-width="3" />
+    <text x="0" y="6" font-family="sans-serif" font-weight="900" font-size="14" fill="#ffffff" text-anchor="middle">TNT</text>
+  </g>
+
+  <!-- Diamond Gem -->
+  <g transform="translate(430, 220)" filter="url(#shadow)">
+    <polygon points="0,-22 18,0 0,26 -18,0" fill="#38bdf8" stroke="#ffffff" stroke-width="2" />
+  </g>
+
+  <!-- Steel Cable from Winch -->
+  <line x1="300" y1="50" x2="330" y2="180" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="8,3" filter="url(#shadow)" />
+
+  <!-- Mechanical Grabber Claw & Giant Gold Nugget -->
+  <g transform="translate(330, 220)" filter="url(#shadow)">
+    <!-- Giant Gold Nugget Held by Claw -->
+    <path d="M -40 -10 Q 0 -45 42 -12 Q 55 35 15 50 Q -35 55 -45 15 Z" fill="url(#goldGleam)" stroke="#ca8a04" stroke-width="4" />
+    <!-- Gold sparkles -->
+    <circle cx="-12" cy="6" r="6" fill="#ffffff" opacity="0.8" />
+    <circle cx="16" cy="-14" r="8" fill="#ffffff" opacity="0.6" />
+
+    <!-- Mechanical Claw Base -->
+    <circle cx="0" cy="-40" r="10" fill="#64748b" stroke="#1e293b" stroke-width="3" />
+    <!-- Left Pincer -->
+    <path d="M -8 -40 L -30 -15 L -20 15" fill="none" stroke="#475569" stroke-width="7" stroke-linecap="round" />
+    <!-- Right Pincer -->
+    <path d="M 8 -40 L 30 -15 L 20 15" fill="none" stroke="#475569" stroke-width="7" stroke-linecap="round" />
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(300, 360)">
+    <rect x="-140" y="-18" width="280" height="36" rx="18" fill="#0f172a" stroke="#f59e0b" stroke-width="3" filter="url(#shadow)" />
+    <text x="0" y="6" font-family="sans-serif" font-weight="900" font-size="16" fill="#fbbf24" text-anchor="middle" letter-spacing="1">
+      GOLD MINER ⛏️💎
+    </text>
+  </g>
+</svg>
