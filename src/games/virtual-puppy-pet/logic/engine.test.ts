@@ -4,6 +4,7 @@ import {
   determinePuppyMood,
   feedPuppy,
   washPuppy,
+  popBubble,
   throwTennisBall,
   retrieveBall,
   restPuppy,
@@ -106,5 +107,48 @@ describe('Virtual Pet: Cozy Puppy Care Logic Engine', () => {
     state = feedPuppy(state, 'bone'); // +25 XP -> 120 >= 100 -> level up!
     expect(state.level).toBe(2);
     expect(state.events.some((e) => e.type === 'level_up')).toBe(true);
+  });
+
+  it('allows popping individual foam bubbles to gain hygiene and happiness', () => {
+    let state = createPuppyGame();
+    state = washPuppy(state, 'soap');
+    expect(state.foamBubbles.length).toBeGreaterThan(0);
+
+    const firstBubbleId = state.foamBubbles[0].id;
+    const initialBubbleCount = state.foamBubbles.length;
+    const prevHygiene = state.stats.hygiene;
+
+    state = popBubble(state, firstBubbleId);
+    expect(state.foamBubbles.length).toBe(initialBubbleCount - 1);
+    expect(state.stats.hygiene).toBeGreaterThanOrEqual(prevHygiene);
+  });
+
+  it('handles feeding gracefully when puppy hunger is already full without freezing', () => {
+    let state = createPuppyGame();
+    state.stats.hunger = 100;
+    const prevXp = state.xp;
+
+    state = feedPuppy(state, 'kibble');
+    expect(state.stats.hunger).toBe(100);
+    expect(state.xp).toBeGreaterThan(prevXp);
+    expect(state.events.some((e) => e.type === 'feed_puppy')).toBe(true);
+  });
+
+  it('caps soap bubbles so they never clump infinitely', () => {
+    let state = createPuppyGame();
+    for (let i = 0; i < 10; i++) {
+      state = washPuppy(state, 'soap');
+    }
+    expect(state.foamBubbles.length).toBeLessThanOrEqual(16);
+  });
+
+  it('automatically returns from washing activity to idle when activityTimer elapses', () => {
+    let state = createPuppyGame();
+    state = washPuppy(state, 'soap');
+    expect(state.currentActivity).toBe('washing');
+
+    // Simulate 5 seconds passing
+    state = updatePuppyGame(state, 5.0);
+    expect(state.currentActivity).toBe('idle');
   });
 });

@@ -7,6 +7,7 @@ import {
   createPuppyGame,
   feedPuppy,
   washPuppy,
+  popBubble,
   throwTennisBall,
   restPuppy,
   buyAndEquipAccessory,
@@ -20,61 +21,114 @@ interface VirtualPuppyPetProps {
   onBack?: () => void;
 }
 
+interface HudState {
+  puppyName: string;
+  level: number;
+  xp: number;
+  maxXp: number;
+  bones: number;
+  stats: {
+    hunger: number;
+    hygiene: number;
+    happiness: number;
+    energy: number;
+  };
+  currentActivity: PuppyGameState['currentActivity'];
+  bubbleCount: number;
+  accessory: PuppyAccessory;
+  unlockedAccessories: PuppyAccessory[];
+}
+
+function extractHud(s: PuppyGameState): HudState {
+  return {
+    puppyName: s.puppyName,
+    level: s.level,
+    xp: s.xp,
+    maxXp: s.maxXp,
+    bones: s.bones,
+    stats: { ...s.stats },
+    currentActivity: s.currentActivity,
+    bubbleCount: s.foamBubbles.length,
+    accessory: s.accessory,
+    unlockedAccessories: [...s.unlockedAccessories],
+  };
+}
+
 export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBack }) => {
-  const [gameState, setGameState] = useState<PuppyGameState>(createPuppyGame);
+  const initial = useRef<PuppyGameState>(createPuppyGame());
+  const stateRef = useRef<PuppyGameState>(initial.current);
+  const [hudState, setHudState] = useState<HudState>(() => extractHud(initial.current));
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [showWardrobe, setShowWardrobe] = useState<boolean>(false);
+  const [toast, setToast] = useState<string | null>(null);
   const [patHearts, setPatHearts] = useState<Array<{ id: number; x: number; y: number }>>([]);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const stateRef = useRef<PuppyGameState>(gameState);
-  stateRef.current = gameState;
-
   const lastTimeRef = useRef<number>(performance.now());
   const animFrameIdRef = useRef<number>(0);
+  const toastTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleFeed = (food: 'kibble' | 'bone') => {
-    setGameState((prev) => {
-      const next = feedPuppy(prev, food);
-      puppySound.playEat();
-      return next;
-    });
+  const showToast = useCallback((msg: string) => {
+    setToast(msg);
+    if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+    toastTimeoutRef.current = setTimeout(() => {
+      setToast(null);
+    }, 2400);
+  }, []);
+
+  const syncHud = useCallback((state: PuppyGameState) => {
+    setHudState(extractHud(state));
+  }, []);
+
+  const handleFeed = (food: 'kibble' | 'bone' = 'kibble') => {
+    const next = feedPuppy(stateRef.current, food);
+    stateRef.current = next;
+    puppySound.playEat();
+    const event = next.events.find((e) => e.type === 'feed_puppy');
+    showToast(event?.text || 'Buster enjoyed his meal! 🍗');
+    syncHud(next);
   };
 
   const handleWashSoap = () => {
-    setGameState((prev) => {
-      const next = washPuppy(prev, 'soap');
-      puppySound.playSplash();
-      return next;
-    });
+    const next = washPuppy(stateRef.current, 'soap');
+    stateRef.current = next;
+    puppySound.playSplash();
+    showToast('Lathered Buster with bubbly soap! Tap Rinse or pop bubbles! 🧼');
+    syncHud(next);
   };
 
   const handleWashRinse = () => {
-    setGameState((prev) => {
-      const next = washPuppy(prev, 'rinse');
-      puppySound.playSplash();
-      return next;
-    });
+    const next = washPuppy(stateRef.current, 'rinse');
+    stateRef.current = next;
+    puppySound.playSplash();
+    showToast('Rinsed clean! Buster is squeaky clean! ✨🛁');
+    syncHud(next);
   };
 
   const handleThrowBall = () => {
-    setGameState((prev) => {
-      const next = throwTennisBall(prev, 620, 160);
+    const next = throwTennisBall(stateRef.current, 620, 160);
+    stateRef.current = next;
+    if (next.ballPosition?.isThrown) {
       puppySound.playBallSqueak();
-      return next;
-    });
+      showToast('Fetch! Go get the tennis ball, Buster! 🎾');
+    } else {
+      const err = next.events.find((e) => e.type === 'too_tired');
+      showToast(err?.text || 'Buster is too sleepy! 💤');
+    }
+    syncHud(next);
   };
 
   const handleSleep = () => {
-    setGameState((prev) => {
-      const next = restPuppy(prev);
-      if (next.currentActivity === 'sleeping') {
-        puppySound.playLullaby();
-      } else {
-        puppySound.playBark();
-      }
-      return next;
-    });
+    const next = restPuppy(stateRef.current);
+    stateRef.current = next;
+    if (next.currentActivity === 'sleeping') {
+      puppySound.playLullaby();
+      showToast('Shh... Buster is taking a cozy nap! 💤');
+    } else {
+      puppySound.playBark();
+      showToast('Good morning, Buster! ☀️ Ready to play!');
+    }
+    syncHud(next);
   };
 
   const handlePat = (clientX: number, clientY: number) => {
@@ -85,13 +139,66 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
       setPatHearts((prev) => prev.filter((h) => h.id !== id));
     }, 1000);
 
-    setGameState((prev) => ({
+    const prev = stateRef.current;
+    const next: PuppyGameState = {
       ...prev,
       stats: {
         ...prev.stats,
         happiness: Math.min(100, prev.stats.happiness + 8),
       },
-    }));
+    };
+    stateRef.current = next;
+    showToast('Buster loved the gentle pat! ❤️');
+    syncHud(next);
+  };
+
+  const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = 800 / rect.width;
+    const scaleY = 500 / rect.height;
+    const clickX = (e.clientX - rect.left) * scaleX;
+    const clickY = (e.clientY - rect.top) * scaleY;
+
+    const current = stateRef.current;
+
+    // Check if clicked any foam bubble
+    if (current.foamBubbles.length > 0) {
+      const bubbleIndex = current.foamBubbles.findIndex((b) => {
+        const dx = clickX - b.x;
+        const dy = clickY - b.y;
+        return Math.sqrt(dx * dx + dy * dy) <= b.size + 16;
+      });
+
+      if (bubbleIndex >= 0) {
+        const popped = current.foamBubbles[bubbleIndex];
+        const next = popBubble(current, popped.id);
+        stateRef.current = next;
+        puppySound.playPop();
+        showToast('Pop! 🫧 +2 Hygiene!');
+        syncHud(next);
+        return;
+      }
+    }
+
+    // Check if clicked on Buster (center 400, 350; radius 95)
+    const distToBuster = Math.hypot(clickX - 400, clickY - 350);
+    if (distToBuster < 95) {
+      handlePat(e.clientX, e.clientY);
+      return;
+    }
+
+    // If clicked elsewhere in room and not sleeping, throw ball to that spot
+    if (current.currentActivity !== 'sleeping') {
+      const next = throwTennisBall(current, clickX, clickY);
+      stateRef.current = next;
+      if (next.ballPosition?.isThrown) {
+        puppySound.playBallSqueak();
+        showToast('Fetch! Go get it, Buster! 🎾');
+      }
+      syncHud(next);
+    }
   };
 
   const toggleSound = useCallback(() => {
@@ -102,30 +209,46 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
     });
   }, []);
 
-  // Main loop
+  // Main 60 FPS animation loop — strictly reads & updates stateRef, decoupled from React setState
   useEffect(() => {
     lastTimeRef.current = performance.now();
+    let hudTimer = 0;
 
     const loop = (now: number) => {
-      const dt = (now - lastTimeRef.current) / 1000;
+      const dt = Math.min((now - lastTimeRef.current) / 1000, 0.1);
       lastTimeRef.current = now;
 
       const current = stateRef.current;
       const next = updatePuppyGame(current, dt);
+      stateRef.current = next;
 
-      if (next.events.some((e) => e.type === 'level_up')) {
-        puppySound.playLevelUp();
+      if (next.events && next.events.length > 0) {
+        for (const evt of next.events) {
+          if (evt.type === 'level_up') {
+            puppySound.playLevelUp();
+            showToast(evt.text || 'Buster Leveled Up! 🎉');
+          }
+        }
       }
 
-      setGameState(next);
       renderCanvas(next);
+
+      // Sync React HUD state at ~4Hz (every 250ms) to eliminate RAF re-render thrashing
+      hudTimer += dt;
+      if (hudTimer >= 0.25) {
+        hudTimer = 0;
+        syncHud(next);
+      }
 
       animFrameIdRef.current = requestAnimationFrame(loop);
     };
 
     animFrameIdRef.current = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(animFrameIdRef.current);
-  }, []);
+    return () => {
+      cancelAnimationFrame(animFrameIdRef.current);
+      if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+    };
+  }, [showToast, syncHud]);
 
   const renderCanvas = (state: PuppyGameState) => {
     const canvas = canvasRef.current;
@@ -346,15 +469,24 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
       ctx.fill();
     }
 
-    // Soapy foam bubbles on body
+    // Soapy foam bubbles on Buster's body and ears (centered, bobbing with breathing)
     state.foamBubbles.forEach((b) => {
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
+      const bubbleRelX = b.x - pupX;
+      const bubbleRelY = b.y - pupY + breathe * 0.4;
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.78)';
       ctx.beginPath();
-      ctx.arc(b.x - pupX, b.y - pupY, b.size, 0, Math.PI * 2);
+      ctx.arc(bubbleRelX, bubbleRelY, b.size, 0, Math.PI * 2);
       ctx.fill();
-      ctx.strokeStyle = 'rgba(125, 211, 252, 0.8)';
+      ctx.strokeStyle = 'rgba(125, 211, 252, 0.85)';
       ctx.lineWidth = 1.5;
       ctx.stroke();
+
+      // Shiny highlight on bubble
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.beginPath();
+      ctx.arc(bubbleRelX - b.size * 0.3, bubbleRelY - b.size * 0.3, b.size * 0.28, 0, Math.PI * 2);
+      ctx.fill();
     });
 
     ctx.restore();
@@ -404,8 +536,8 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
           )}
           <div className="flex items-center gap-1.5 font-bold text-amber-400">
             <span>🐶</span>
-            <span>{gameState.puppyName}</span>
-            <span className="text-slate-400 font-normal">Lv.{gameState.level}</span>
+            <span>{hudState.puppyName}</span>
+            <span className="text-slate-400 font-normal">Lv.{hudState.level}</span>
           </div>
         </div>
 
@@ -413,12 +545,12 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
         <div className="flex-1 max-w-xs mx-4 hidden sm:block">
           <div className="flex justify-between text-[11px] text-slate-300 mb-0.5 font-bold">
             <span>FRIENDSHIP XP</span>
-            <span>{gameState.xp} / {gameState.maxXp}</span>
+            <span>{hudState.xp} / {hudState.maxXp}</span>
           </div>
           <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
             <div
               className="h-full bg-gradient-to-r from-amber-400 to-yellow-300 transition-all duration-150"
-              style={{ width: `${Math.min(100, (gameState.xp / gameState.maxXp) * 100)}%` }}
+              style={{ width: `${Math.min(100, (hudState.xp / hudState.maxXp) * 100)}%` }}
             />
           </div>
         </div>
@@ -427,7 +559,7 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 font-bold text-amber-300">
             <span>🦴</span>
-            <span>{gameState.bones}</span>
+            <span>{hudState.bones}</span>
           </div>
           <button
             onClick={() => setShowWardrobe(!showWardrobe)}
@@ -452,7 +584,7 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
           <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
             <div
               className="h-full bg-orange-500 transition-all duration-200"
-              style={{ width: `${gameState.stats.hunger}%` }}
+              style={{ width: `${hudState.stats.hunger}%` }}
             />
           </div>
         </div>
@@ -462,7 +594,7 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
           <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
             <div
               className="h-full bg-cyan-400 transition-all duration-200"
-              style={{ width: `${gameState.stats.hygiene}%` }}
+              style={{ width: `${hudState.stats.hygiene}%` }}
             />
           </div>
         </div>
@@ -472,7 +604,7 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
           <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
             <div
               className="h-full bg-pink-400 transition-all duration-200"
-              style={{ width: `${gameState.stats.happiness}%` }}
+              style={{ width: `${hudState.stats.happiness}%` }}
             />
           </div>
         </div>
@@ -482,11 +614,18 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
           <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
             <div
               className="h-full bg-purple-400 transition-all duration-200"
-              style={{ width: `${gameState.stats.energy}%` }}
+              style={{ width: `${hudState.stats.energy}%` }}
             />
           </div>
         </div>
       </div>
+
+      {/* Toast Notification Banner */}
+      {toast && (
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-slate-950/90 border border-amber-400/50 text-amber-200 text-xs sm:text-sm font-semibold rounded-full shadow-xl pointer-events-none z-30 backdrop-blur-md animate-bounce">
+          {toast}
+        </div>
+      )}
 
       {/* Main Puppy Canvas Area */}
       <div className="relative flex-1 w-full flex items-center justify-center overflow-hidden bg-slate-950">
@@ -494,7 +633,7 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
           ref={canvasRef}
           width={800}
           height={500}
-          onClick={(e) => handlePat(e.clientX, e.clientY)}
+          onClick={handleCanvasClick}
           className="w-full h-full max-h-[70vh] object-contain block cursor-pointer"
         />
 
@@ -511,20 +650,22 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
 
         {/* Wardrobe Modal */}
         {showWardrobe && (
-          <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center animate-fade-in z-20">
+          <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center z-20">
             <h3 className="text-xl font-bold text-amber-400 mb-4">🎀 Puppy Outfits & Accessories</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-md w-full mb-5">
               {(['none', 'red_bandana', 'bell_collar', 'detective_hat', 'party_bowtie'] as PuppyAccessory[]).map(
                 (acc) => {
-                  const isUnlocked = gameState.unlockedAccessories.includes(acc);
-                  const isEquipped = gameState.accessory === acc;
+                  const isUnlocked = hudState.unlockedAccessories.includes(acc);
+                  const isEquipped = hudState.accessory === acc;
                   const cost = ACCESSORY_COSTS[acc];
 
                   return (
                     <button
                       key={acc}
                       onClick={() => {
-                        setGameState((prev) => buyAndEquipAccessory(prev, acc));
+                        const next = buyAndEquipAccessory(stateRef.current, acc);
+                        stateRef.current = next;
+                        syncHud(next);
                       }}
                       className={`p-3 rounded-xl border flex flex-col items-center gap-1 transition ${
                         isEquipped
@@ -584,9 +725,20 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
 
         <button
           onClick={handleWashRinse}
-          className="py-2.5 bg-sky-600 hover:bg-sky-500 active:bg-sky-700 rounded-xl flex flex-col items-center justify-center gap-1 shadow transition active:scale-95"
+          className={`py-2.5 rounded-xl flex flex-col items-center justify-center gap-1 shadow transition active:scale-95 ${
+            hudState.bubbleCount > 0
+              ? 'bg-sky-500 ring-2 ring-cyan-300 animate-pulse text-white'
+              : 'bg-sky-600 hover:bg-sky-500 active:bg-sky-700 text-white'
+          }`}
         >
-          <span className="text-base">🚿</span>
+          <div className="relative">
+            <span className="text-base">🚿</span>
+            {hudState.bubbleCount > 0 && (
+              <span className="absolute -top-1.5 -right-2.5 bg-cyan-300 text-slate-950 text-[10px] px-1 rounded-full font-black">
+                {hudState.bubbleCount}
+              </span>
+            )}
+          </div>
           <span>Rinse</span>
         </button>
 
@@ -601,13 +753,13 @@ export const VirtualPuppyPetContainer: React.FC<VirtualPuppyPetProps> = ({ onBac
         <button
           onClick={handleSleep}
           className={`py-2.5 rounded-xl flex flex-col items-center justify-center gap-1 shadow transition active:scale-95 ${
-            gameState.currentActivity === 'sleeping'
+            hudState.currentActivity === 'sleeping'
               ? 'bg-amber-600 hover:bg-amber-500'
               : 'bg-purple-600 hover:bg-purple-500'
           }`}
         >
-          <span className="text-base">{gameState.currentActivity === 'sleeping' ? '☀️' : '💤'}</span>
-          <span>{gameState.currentActivity === 'sleeping' ? 'Wake' : 'Sleep'}</span>
+          <span className="text-base">{hudState.currentActivity === 'sleeping' ? '☀️' : '💤'}</span>
+          <span>{hudState.currentActivity === 'sleeping' ? 'Wake' : 'Sleep'}</span>
         </button>
       </footer>
     </div>

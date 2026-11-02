@@ -25,5 +25,6 @@ export interface PuppyGameState {
   tricksKnown: string[];
   ballPosition: { x: number; y: number; vx: number; vy: number; isThrown: boolean } | null;
   foamBubbles: Array<{ id: string; x: number; y: number; size: number }>;
+  activityTimer?: number;
   events: Array<{ type: string; stat?: string; delta?: number; text?: string }>;
 }

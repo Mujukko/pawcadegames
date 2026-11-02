@@ -34,6 +34,7 @@ export function createPuppyGame(): PuppyGameState {
     tricksKnown: ['Sit'],
     ballPosition: null,
     foamBubbles: [],
+    activityTimer: 0,
     events: [],
   };
 }
@@ -47,11 +48,10 @@ export function determinePuppyMood(stats: PuppyStats): PuppyMood {
 }
 
 export function feedPuppy(state: PuppyGameState, food: 'kibble' | 'milk' | 'bone'): PuppyGameState {
-  if (state.stats.hunger >= 100) return state;
-
-  const hungerBoost = food === 'bone' ? 35 : food === 'kibble' ? 25 : 15;
-  const xpBoost = food === 'bone' ? 25 : 15;
-  const boneReward = 5;
+  const isFull = state.stats.hunger >= 100;
+  const hungerBoost = isFull ? 0 : food === 'bone' ? 35 : food === 'kibble' ? 25 : 15;
+  const xpBoost = isFull ? 8 : food === 'bone' ? 25 : 15;
+  const boneReward = isFull ? 2 : 5;
 
   const newHunger = Math.min(100, state.stats.hunger + hungerBoost);
   const nextStats = { ...state.stats, hunger: newHunger };
@@ -62,12 +62,19 @@ export function feedPuppy(state: PuppyGameState, food: 'kibble' | 'milk' | 'bone
     ...state,
     stats: nextStats,
     currentActivity: 'feeding',
+    activityTimer: 2.2,
+    foamBubbles: [], // Shake off any old soap bubbles when eating
     xp: newXp,
     level: newLevel,
     maxXp: newMaxXp,
     bones: state.bones + boneReward,
     events: [
-      { type: 'feed_puppy', stat: 'hunger', delta: hungerBoost },
+      {
+        type: 'feed_puppy',
+        stat: 'hunger',
+        delta: hungerBoost,
+        text: isFull ? 'Buster enjoyed a tasty treat snack! 🍖' : 'Buster munched up his meal happily! 🍗',
+      },
       ...(didLevelUp ? [{ type: 'level_up', text: `Buster reached Level ${newLevel}!` }] : []),
     ],
   };
@@ -75,66 +82,95 @@ export function feedPuppy(state: PuppyGameState, food: 'kibble' | 'milk' | 'bone
 
 export function washPuppy(state: PuppyGameState, tool: 'soap' | 'rinse'): PuppyGameState {
   if (tool === 'soap') {
-    // Generate soapy bubbles on puppy body
+    // Generate bubbles directly on Buster's body and ears (centered at x: 400, y: 335)
+    // Keep max 16 bubbles so it never turns into an overwhelming clump
+    const existing = state.foamBubbles.slice(-10);
     const newBubbles = Array.from({ length: 6 }, (_, i) => ({
-      id: `bubble-${Date.now()}-${i}`,
-      x: 350 + (Math.random() - 0.5) * 140,
-      y: 260 + (Math.random() - 0.5) * 80,
-      size: 10 + Math.random() * 14,
+      id: `bubble-${Date.now()}-${i}-${Math.random()}`,
+      x: 400 + (Math.random() - 0.5) * 85,
+      y: 335 + (Math.random() - 0.5) * 60,
+      size: 11 + Math.random() * 12,
     }));
+
+    const newHygiene = Math.min(85, state.stats.hygiene + 15);
 
     return {
       ...state,
+      stats: { ...state.stats, hygiene: newHygiene },
       currentActivity: 'washing',
-      foamBubbles: [...state.foamBubbles, ...newBubbles],
-      events: [{ type: 'soap_puppy' }],
+      activityTimer: 4.5,
+      foamBubbles: [...existing, ...newBubbles],
+      events: [{ type: 'soap_puppy', text: 'Lathered Buster with bubbly soap! Tap bubbles or Rinse to wash! 🧼' }],
     };
   } else {
     // Rinse cleans bubbles and restores hygiene to 100
-    const hygieneGain = Math.max(10, 100 - state.stats.hygiene);
+    const hygieneGain = Math.max(15, 100 - state.stats.hygiene);
     const { newXp, newLevel, newMaxXp, didLevelUp } = addXp(state.xp + 20, state.level, state.maxXp);
 
     return {
       ...state,
       stats: { ...state.stats, hygiene: 100 },
       currentActivity: 'idle',
+      activityTimer: 0,
       foamBubbles: [],
       xp: newXp,
       level: newLevel,
       maxXp: newMaxXp,
       bones: state.bones + 10,
       events: [
-        { type: 'rinse_puppy', stat: 'hygiene', delta: hygieneGain },
+        { type: 'rinse_puppy', stat: 'hygiene', delta: hygieneGain, text: 'Rinsed clean! Buster is squeaky clean! ✨🛁' },
         ...(didLevelUp ? [{ type: 'level_up', text: `Buster reached Level ${newLevel}!` }] : []),
       ],
     };
   }
 }
 
+export function popBubble(state: PuppyGameState, bubbleId: string): PuppyGameState {
+  const filtered = state.foamBubbles.filter((b) => b.id !== bubbleId);
+  if (filtered.length === state.foamBubbles.length) return state;
+
+  const nextHygiene = Math.min(100, state.stats.hygiene + 2);
+  const nextHappiness = Math.min(100, state.stats.happiness + 1);
+
+  return {
+    ...state,
+    stats: {
+      ...state.stats,
+      hygiene: nextHygiene,
+      happiness: nextHappiness,
+    },
+    foamBubbles: filtered,
+    currentActivity: filtered.length === 0 ? 'idle' : state.currentActivity,
+  };
+}
+
 export function throwTennisBall(state: PuppyGameState, targetX: number, targetY: number): PuppyGameState {
   if (state.stats.energy < 15) {
     return {
       ...state,
-      events: [{ type: 'too_tired', text: 'Buster is too sleepy to chase the ball!' }],
+      events: [{ type: 'too_tired', text: 'Buster is too sleepy to chase the ball! Put him to bed first! 💤' }],
     };
   }
 
-  // Calculate ball impulse
-  const dx = targetX - 400;
+  // Calculate ball impulse within room boundaries
+  const safeTargetX = Math.max(120, Math.min(680, targetX));
+  const dx = safeTargetX - 400;
   const dy = targetY - 260;
-  const dist = Math.sqrt(dx * dx + dy * dy);
+  const dist = Math.max(1, Math.sqrt(dx * dx + dy * dy));
 
   return {
     ...state,
     currentActivity: 'playing_fetch',
+    activityTimer: 3.5, // 3.5s auto-retrieve failsafe
+    foamBubbles: [], // Shake off soap before playing
     ballPosition: {
       x: 400,
       y: 260,
-      vx: (dx / dist) * 280,
-      vy: (dy / dist) * 280 - 120, // upward arc
+      vx: (dx / dist) * 260,
+      vy: (dy / dist) * 260 - 100, // upward arc
       isThrown: true,
     },
-    events: [{ type: 'throw_ball' }],
+    events: [{ type: 'throw_ball', text: 'Fetch! Go get the tennis ball, Buster! 🎾' }],
   };
 }
 
@@ -168,10 +204,13 @@ export function retrieveBall(state: PuppyGameState): PuppyGameState {
 }
 
 export function restPuppy(state: PuppyGameState): PuppyGameState {
+  const isSleeping = state.currentActivity === 'sleeping';
   return {
     ...state,
-    currentActivity: state.currentActivity === 'sleeping' ? 'idle' : 'sleeping',
-    events: [{ type: 'toggle_sleep' }],
+    foamBubbles: [], // Clean off any bubbles when tucking in
+    currentActivity: isSleeping ? 'idle' : 'sleeping',
+    activityTimer: 0,
+    events: [{ type: 'toggle_sleep', text: isSleeping ? 'Good morning, Buster! ☀️' : 'Shh... Buster is taking a nap! 💤' }],
   };
 }
 
@@ -219,30 +258,48 @@ function addXp(totalXp: number, currentLevel: number, maxXp: number) {
 
 export function updatePuppyGame(state: PuppyGameState, rawDt: number): PuppyGameState {
   const dt = Math.min(rawDt, 0.1);
+  const timerDt = Math.min(rawDt, 10.0);
   const events: Array<{ type: string; stat?: string; delta?: number; text?: string }> = [];
 
   const stats = { ...state.stats };
 
   // Sleeping regenerates energy fast
   if (state.currentActivity === 'sleeping') {
-    stats.energy = Math.min(100, stats.energy + dt * 14);
+    stats.energy = Math.min(100, stats.energy + timerDt * 14);
     // Wake up automatically when full
     if (stats.energy >= 100) {
       return {
         ...state,
         stats,
         currentActivity: 'idle',
-        events: [{ type: 'woke_up', text: 'Buster is fully rested and ready to play!' }],
+        activityTimer: 0,
+        events: [{ type: 'woke_up', text: 'Buster is fully rested and ready to play! 🐾' }],
       };
     }
     return { ...state, stats };
   }
 
+  // Activity timer progression (auto-return to idle so state is never stuck)
+  let activityTimer = (state.activityTimer !== undefined ? state.activityTimer : 0) - timerDt;
+  let currentActivity = state.currentActivity;
+  if (activityTimer <= 0) {
+    activityTimer = 0;
+    if (currentActivity === 'feeding' || currentActivity === 'washing') {
+      currentActivity = 'idle';
+    }
+  }
+
+  // Natural gradual bubble dissipation if idle
+  let foamBubbles = state.foamBubbles;
+  if (foamBubbles.length > 0 && currentActivity !== 'washing' && Math.random() < timerDt * 0.75) {
+    foamBubbles = foamBubbles.slice(1);
+  }
+
   // Natural slow stat decay during daytime activities
-  stats.hunger = Math.max(0, stats.hunger - dt * 0.4);
-  stats.hygiene = Math.max(0, stats.hygiene - dt * 0.3);
-  stats.happiness = Math.max(0, stats.happiness - dt * 0.5);
-  stats.energy = Math.max(0, stats.energy - dt * 0.25);
+  stats.hunger = Math.max(0, stats.hunger - timerDt * 0.4);
+  stats.hygiene = Math.max(0, stats.hygiene - timerDt * 0.3);
+  stats.happiness = Math.max(0, stats.happiness - timerDt * 0.5);
+  stats.energy = Math.max(0, stats.energy - timerDt * 0.25);
 
   // Ball physics if currently thrown
   let ballPosition = state.ballPosition ? { ...state.ballPosition } : null;
@@ -251,16 +308,25 @@ export function updatePuppyGame(state: PuppyGameState, rawDt: number): PuppyGame
     ballPosition.y += ballPosition.vy * dt;
     ballPosition.vy += 450 * dt; // gravity
 
+    // Wall bounces inside room
+    if (ballPosition.x <= 100) {
+      ballPosition.x = 100;
+      ballPosition.vx = Math.abs(ballPosition.vx) * 0.7;
+    } else if (ballPosition.x >= 700) {
+      ballPosition.x = 700;
+      ballPosition.vx = -Math.abs(ballPosition.vx) * 0.7;
+    }
+
     // Ground bounce
     if (ballPosition.y >= 380) {
       ballPosition.y = 380;
       ballPosition.vy = -ballPosition.vy * 0.55;
       ballPosition.vx *= 0.75;
-      if (Math.abs(ballPosition.vy) < 40) {
+      if (Math.abs(ballPosition.vy) < 40 || activityTimer <= 0) {
         ballPosition.vy = 0;
         ballPosition.vx = 0;
         // Ball resting; puppy retrieves it!
-        return retrieveBall({ ...state, stats, ballPosition });
+        return retrieveBall({ ...state, stats, ballPosition, foamBubbles, currentActivity, activityTimer: 0 });
       }
     }
   }
@@ -268,6 +334,9 @@ export function updatePuppyGame(state: PuppyGameState, rawDt: number): PuppyGame
   return {
     ...state,
     stats,
+    foamBubbles,
+    currentActivity,
+    activityTimer,
     ballPosition,
     events,
   };
