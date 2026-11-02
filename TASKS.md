@@ -115,8 +115,11 @@
 | TASK-106 | P0 | TODO | Tiny Chick, Big Barn Tower (Game #74) | Inspired by Big Tower Tiny Square (16K US vol, KD 3, 6.4K TP): Precision vertical platformer guiding a tiny chick up a giant barn tower with tricky jumps and timing hazards. Pure TS engine, Web Audio. |
 | TASK-107 | P0 | TODO | Duck Training Champion: Barnyard Olympics (Game #75) | Inspired by Duck Life (60K US vol, KD 38, 24K TP): Pet raising & training mini-games (running, flying, swimming) leveling up stats to enter farm championship races. Pure TS engine, Web Audio. |
 
+| TASK-108 | P0 | DONE | High-Traffic Viral Expansion Batch (Games #88-#97) | Released 10 new high-traffic games: Level Devil, Basket Random, Water Sort, Gold Miner, Stickman Hook, Bad Ice Cream, Fireboy & Watergirl, Retro Bowl, Slope, Ragdoll Hit. 78 new tests, 107 URLs pre-rendered, 100/100 SEO. |
+| TASK-109 | P0 | DONE | Virtual Puppy Pet Freeze & Stuck Bubbles Fix | Decoupled 60 FPS Canvas RAF loop from React state using stateRef synchronous authority; repositioned bubbles directly on Buster's body and ears (y: 335 vs 350); capped bubbles at 16; added tap bubble popping with Web Audio playPop; highlighted Rinse button with badge & animated glow when bubbles exist; handled full hunger treat snack feedback; added activityTimer auto-reset to idle; 12 unit tests passing; 982 project tests passing. |
+
 ## Completed Sprint Summary
-- Definition of Done met for Games 1–66: **66 complete playable games** with pure TypeScript logic engines, Web Audio procedural synthesizers, 687 automated tests passing across 68 test suites (5641 assertions), zero type errors, lightweight code-split bundles, single-screen zero-scroll mobile responsiveness, 100/100 7-pillar Agentic SEO audit with 0/100 slop, Poki/CrazyGames Desktop Theater layout for 1920x1080, and live deployment.
+- Definition of Done met for Games 1–97: **97 complete playable games** with pure TypeScript logic engines, Web Audio procedural synthesizers, 982 automated tests passing across 99 test suites (6708 assertions), zero type errors, lightweight code-split bundles, single-screen zero-scroll mobile responsiveness, 100/100 7-pillar Agentic SEO audit with 0/100 slop, Poki/CrazyGames Desktop Theater layout for 1920x1080, and live deployment.
 
 
 
