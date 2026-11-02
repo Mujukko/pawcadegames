@@ -103,6 +103,40 @@ class SoundSynthesizer {
           gain.gain.setValueAtTime(0.18, now);
           gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
           break;
+
+        case 'duck': // Quacky chirp
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(440 * pitchJitter, now);
+          osc.frequency.exponentialRampToValueAtTime(620 * pitchJitter, now + 0.04);
+          osc.frequency.exponentialRampToValueAtTime(340 * pitchJitter, now + 0.11);
+          gain.gain.setValueAtTime(0.16, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.11);
+          break;
+
+        case 'sheep': // Woolly gentle baa pop
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(310 * pitchJitter, now);
+          osc.frequency.exponentialRampToValueAtTime(280 * pitchJitter, now + 0.12);
+          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+          break;
+
+        case 'llama': // High Andean hum chirp
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(520 * pitchJitter, now);
+          osc.frequency.exponentialRampToValueAtTime(460 * pitchJitter, now + 0.1);
+          gain.gain.setValueAtTime(0.17, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+          break;
+
+        case 'golden_goose': // Shimmering golden fanfare chime
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(659 * pitchJitter, now);
+          osc.frequency.exponentialRampToValueAtTime(987 * pitchJitter, now + 0.06);
+          osc.frequency.exponentialRampToValueAtTime(493 * pitchJitter, now + 0.15);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+          break;
       }
 
       osc.connect(gain);

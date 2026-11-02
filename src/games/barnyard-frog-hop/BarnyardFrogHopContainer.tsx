@@ -17,6 +17,15 @@ interface BarnyardFrogHopProps {
 
 export const BarnyardFrogHopContainer: React.FC<BarnyardFrogHopProps> = ({ onBack }) => {
   const [currentZone, setCurrentZone] = useState<number>(0);
+  const [maxUnlockedZone, setMaxUnlockedZone] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('pawcade_frog_unlocked_level');
+        if (saved) return parseInt(saved, 10) || 0;
+      } catch {}
+    }
+    return 0;
+  });
   const [gameState, setGameState] = useState<FrogGameState>(() => createFrogGame(0));
   const [isMuted, setIsMuted] = useState<boolean>(false);
 
@@ -111,7 +120,16 @@ export const BarnyardFrogHopContainer: React.FC<BarnyardFrogHopProps> = ({ onBac
         next.events.forEach((evt) => {
           if (evt.type === 'splash_water') frogSound.playSplash();
           else if (evt.type === 'land_pad') frogSound.playCroak();
-          else if (evt.type === 'victory_crossing') frogSound.playVictory();
+          else if (evt.type === 'victory_crossing') {
+            frogSound.playVictory();
+            setMaxUnlockedZone((prev) => {
+              const updated = Math.max(prev, Math.min(POND_ZONES.length - 1, currentZone + 1));
+              try {
+                localStorage.setItem('pawcade_frog_unlocked_level', String(updated));
+              } catch {}
+              return updated;
+            });
+          }
         });
       }
 
@@ -400,9 +418,20 @@ export const BarnyardFrogHopContainer: React.FC<BarnyardFrogHopProps> = ({ onBac
               ← Hub
             </button>
           )}
-          <div className="flex items-center gap-1 font-bold text-emerald-400">
+          <div className="flex items-center gap-1.5 font-bold text-emerald-400">
             <span>🐸</span>
-            <span>{POND_ZONES[currentZone]?.name}</span>
+            <select
+              value={currentZone}
+              onChange={(e) => startZone(Number(e.target.value))}
+              aria-label="Select Pond Level"
+              className="bg-slate-800 text-emerald-400 font-bold px-2 py-1 rounded-lg border border-slate-700 text-xs cursor-pointer focus:outline-none"
+            >
+              {POND_ZONES.map((zone, idx) => (
+                <option key={zone.id} value={idx} disabled={idx > maxUnlockedZone}>
+                  {idx <= maxUnlockedZone ? `Lv.${idx + 1}: ${zone.name}` : `🔒 Lv.${idx + 1}: Locked`}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 

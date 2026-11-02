@@ -1,4 +1,13 @@
-export type AnimalSpecies = 'corgi' | 'capybara' | 'cow' | 'chicken' | 'pig';
+export type AnimalSpecies =
+  | 'corgi'
+  | 'capybara'
+  | 'cow'
+  | 'chicken'
+  | 'pig'
+  | 'duck'
+  | 'sheep'
+  | 'llama'
+  | 'golden_goose';
 
 export interface AnimalConfig {
   id: AnimalSpecies;
@@ -139,6 +148,62 @@ export const ANIMALS: Record<AnimalSpecies, AnimalConfig> = {
       glow: '#fb7185',
     },
   },
+  duck: {
+    id: 'duck',
+    name: 'Quacky the Mallard',
+    emoji: '🦆',
+    soundName: 'quack',
+    produceName: 'Rainbow Feathers',
+    produceEmoji: '🪶',
+    unlockThreshold: 2500000,
+    colorScheme: {
+      bg: '#ccfbf1',
+      border: '#0d9488',
+      glow: '#2dd4bf',
+    },
+  },
+  sheep: {
+    id: 'sheep',
+    name: 'Woolly the Merino Sheep',
+    emoji: '🐑',
+    soundName: 'baa',
+    produceName: 'Fluffy Cashmere',
+    produceEmoji: '🧶',
+    unlockThreshold: 15000000,
+    colorScheme: {
+      bg: '#ede9fe',
+      border: '#7c3aed',
+      glow: '#a78bfa',
+    },
+  },
+  llama: {
+    id: 'llama',
+    name: 'Paco the Highland Llama',
+    emoji: '🦙',
+    soundName: 'hum',
+    produceName: 'Mystic Ponchos',
+    produceEmoji: '🧣',
+    unlockThreshold: 80000000,
+    colorScheme: {
+      bg: '#fae8ff',
+      border: '#c026d3',
+      glow: '#e879f9',
+    },
+  },
+  golden_goose: {
+    id: 'golden_goose',
+    name: 'Honk the Mythic Goose',
+    emoji: '🪿',
+    soundName: 'honk',
+    produceName: 'Fabergé Eggs',
+    produceEmoji: '🪺',
+    unlockThreshold: 400000000,
+    colorScheme: {
+      bg: '#fef08a',
+      border: '#b45309',
+      glow: '#facc15',
+    },
+  },
 };
 
 export const INITIAL_CLICK_UPGRADES: ClickUpgrade[] = [
@@ -191,6 +256,36 @@ export const INITIAL_CLICK_UPGRADES: ClickUpgrade[] = [
     powerBonus: 500,
     level: 0,
     emoji: '🧲',
+  },
+  {
+    id: 'crystal_comb',
+    name: 'Crystal Fur Comb',
+    description: '+3,000 per click',
+    baseCost: 1500000,
+    costMultiplier: 1.15,
+    powerBonus: 3000,
+    level: 0,
+    emoji: '💎',
+  },
+  {
+    id: 'quantum_whistle',
+    name: 'Quantum Shepherd Horn',
+    description: '+18,000 per click',
+    baseCost: 16000000,
+    costMultiplier: 1.15,
+    powerBonus: 18000,
+    level: 0,
+    emoji: '📯',
+  },
+  {
+    id: 'celestial_touch',
+    name: 'Celestial Midas Touch',
+    description: '+120,000 per click',
+    baseCost: 180000000,
+    costMultiplier: 1.15,
+    powerBonus: 120000,
+    level: 0,
+    emoji: '✨',
   },
 ];
 
@@ -255,6 +350,36 @@ export const INITIAL_BUILDINGS: IdleBuilding[] = [
     count: 0,
     emoji: '🏰',
   },
+  {
+    id: 'biogas_reactor',
+    name: 'Eco Bio-Gas Plant',
+    description: 'High-tech eco pasture green energy',
+    baseCost: 15000000,
+    costMultiplier: 1.15,
+    basePps: 45000,
+    count: 0,
+    emoji: '⚡',
+  },
+  {
+    id: 'solar_combine',
+    name: 'Autonomous Solar Harvester',
+    description: 'Self-driving solar combine swarm',
+    baseCost: 160000000,
+    costMultiplier: 1.15,
+    basePps: 280000,
+    count: 0,
+    emoji: '🛰️',
+  },
+  {
+    id: 'cosmic_barn_portal',
+    name: 'Cosmic Farm Portal',
+    description: 'Interdimensional portal delivering galactic treats',
+    baseCost: 1800000000,
+    costMultiplier: 1.15,
+    basePps: 1800000,
+    count: 0,
+    emoji: '🌌',
+  },
 ];
 
 export const INITIAL_HATS: HatAccessory[] = [
@@ -288,6 +413,22 @@ export const INITIAL_HATS: HatAccessory[] = [
     emoji: '🧙',
     cost: 500000,
     clickMultiplier: 2.0,
+    unlocked: false,
+  },
+  {
+    id: 'diamond_tiara',
+    name: 'Royal Diamond Tiara',
+    emoji: '💎',
+    cost: 5000000,
+    clickMultiplier: 3.0,
+    unlocked: false,
+  },
+  {
+    id: 'space_helmet',
+    name: 'Cosmic Astro Helmet',
+    emoji: '🧑‍🚀',
+    cost: 50000000,
+    clickMultiplier: 5.0,
     unlocked: false,
   },
 ];

@@ -1,4 +1,12 @@
-export type StageId = 'clover_pasture' | 'autumn_orchard' | 'windmill_ridge' | 'muddy_mountain';
+export type StageId =
+  | 'clover_pasture'
+  | 'autumn_orchard'
+  | 'windmill_ridge'
+  | 'muddy_mountain'
+  | 'desert_dunes'
+  | 'frost_peak'
+  | 'volcano_valley'
+  | 'cosmic_crater';
 
 export interface StageConfig {
   id: StageId;

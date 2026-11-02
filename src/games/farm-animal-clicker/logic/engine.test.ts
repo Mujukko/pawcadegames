@@ -133,6 +133,22 @@ describe('Farm Animal Idle Clicker: Pure Logic Engine', () => {
     // Locked animal cannot be selected
     const sLockedCow = selectAnimal(sWithCapy, 'cow');
     expect(sLockedCow.selectedAnimal).toBe('capybara'); // stays capybara
+
+    // Test new animal tiers
+    state.lifetimeProduce = 2500000;
+    expect(isAnimalUnlocked(state, 'duck')).toBe(true);
+    expect(isAnimalUnlocked(state, 'sheep')).toBe(false);
+
+    state.lifetimeProduce = 15000000;
+    expect(isAnimalUnlocked(state, 'sheep')).toBe(true);
+
+    state.lifetimeProduce = 80000000;
+    expect(isAnimalUnlocked(state, 'llama')).toBe(true);
+
+    state.lifetimeProduce = 400000000;
+    expect(isAnimalUnlocked(state, 'golden_goose')).toBe(true);
+    const sWithGoose = selectAnimal(state, 'golden_goose');
+    expect(sWithGoose.selectedAnimal).toBe('golden_goose');
   });
 
   it('spawns golden event and triggers 7x Golden Frenzy multiplier', () => {

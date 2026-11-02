@@ -4,6 +4,7 @@ import {
   stepRescueGame,
   calculateRescueStars,
   WAVE_TARGETS,
+  WAVE_NAMES,
 } from './logic/engine';
 import { RescueGameState, PondInput, DuckHat } from './logic/types';
 import { ducklingSound } from './systems/sound';
@@ -377,6 +378,29 @@ export const DucklingPondRescueContainer: React.FC = () => {
             ctx.lineTo(20, -11);
             ctx.closePath();
             ctx.fill();
+          } else if (mama.activeHat === 'pirate') {
+            ctx.fillStyle = '#0f172a';
+            ctx.beginPath();
+            ctx.ellipse(14, -12, 10, 4, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(12, -13, 4, 2);
+          } else if (mama.activeHat === 'chef') {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(10, -11, 8, 4);
+            ctx.beginPath();
+            ctx.arc(14, -15, 6, 0, Math.PI * 2);
+            ctx.fill();
+          } else if (mama.activeHat === 'wizard') {
+            ctx.fillStyle = '#7c3aed';
+            ctx.beginPath();
+            ctx.moveTo(8, -11);
+            ctx.lineTo(20, -11);
+            ctx.lineTo(14, -23);
+            ctx.closePath();
+            ctx.fill();
+            ctx.fillStyle = '#fde047';
+            ctx.fillRect(13, -17, 3, 3);
           }
 
           ctx.restore();
@@ -421,7 +445,9 @@ export const DucklingPondRescueContainer: React.FC = () => {
             <h1 className="text-sm font-black tracking-wide text-amber-400">
               Duckling Pond Rescue
             </h1>
-            <p className="text-[11px] text-slate-400">Pond Wave {gameState.wave} of 3</p>
+            <p className="text-[11px] text-slate-400">
+              Wave {gameState.wave}/{WAVE_TARGETS.length}: {WAVE_NAMES[gameState.wave - 1]}
+            </p>
           </div>
         </div>
 
@@ -573,8 +599,8 @@ export const DucklingPondRescueContainer: React.FC = () => {
                   ✕
                 </button>
               </div>
-              <div className="grid grid-cols-2 gap-2">
-                {(['none', 'flower', 'straw', 'sailor', 'crown'] as DuckHat[]).map(hat => {
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {(['none', 'flower', 'straw', 'sailor', 'pirate', 'chef', 'crown', 'wizard'] as DuckHat[]).map(hat => {
                   const unlocked = gameState.unlockedHats.includes(hat);
                   const isCurrent = gameState.mama.activeHat === hat;
 
@@ -583,9 +609,9 @@ export const DucklingPondRescueContainer: React.FC = () => {
                       key={hat}
                       disabled={!unlocked}
                       onClick={() => equipHat(hat)}
-                      className={`p-3 rounded-xl border text-center font-bold text-xs capitalize transition ${
+                      className={`p-2.5 rounded-xl border text-center font-bold text-xs capitalize transition ${
                         isCurrent
-                          ? 'bg-amber-500/20 border-amber-500 text-white'
+                          ? 'bg-amber-500/20 border-amber-500 text-white ring-2 ring-amber-400/50'
                           : !unlocked
                           ? 'bg-slate-800/40 border-slate-800 text-slate-500 cursor-not-allowed'
                           : 'bg-slate-800 hover:bg-slate-700 text-slate-200'
@@ -600,7 +626,13 @@ export const DucklingPondRescueContainer: React.FC = () => {
                           ? '👒'
                           : hat === 'sailor'
                           ? '⚓'
-                          : '👑'}
+                          : hat === 'pirate'
+                          ? '🏴‍☠️'
+                          : hat === 'chef'
+                          ? '👨‍🍳'
+                          : hat === 'crown'
+                          ? '👑'
+                          : '🧙'}
                       </div>
                       <div>{hat}</div>
                     </button>

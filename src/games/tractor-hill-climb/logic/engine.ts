@@ -55,6 +55,46 @@ export const STAGES: Record<StageId, StageConfig> = {
     hillsAmplitude: 120,
     description: 'Challenging steep mountain ridges with slippery mud and rocky steps.',
   },
+  desert_dunes: {
+    id: 'desert_dunes',
+    name: 'Golden Desert Dunes',
+    themeColor: '#eab308',
+    targetMeters: 850,
+    baseFriction: 0.93,
+    hillsFrequency: 0.0048,
+    hillsAmplitude: 110,
+    description: 'Rolling Sahara-style desert dunes with soft sand dips and high air jumps.',
+  },
+  frost_peak: {
+    id: 'frost_peak',
+    name: 'Frostbite Peak',
+    themeColor: '#06b6d4',
+    targetMeters: 1000,
+    baseFriction: 0.96,
+    hillsFrequency: 0.007,
+    hillsAmplitude: 130,
+    description: 'Icy glacial slopes, slippery frozen ravines, and high-altitude jumps.',
+  },
+  volcano_valley: {
+    id: 'volcano_valley',
+    name: 'Volcano Valley Crags',
+    themeColor: '#ef4444',
+    targetMeters: 1200,
+    baseFriction: 0.92,
+    hillsFrequency: 0.0075,
+    hillsAmplitude: 145,
+    description: 'Hazardous basalt ridges and treacherous volcanic incline jumps.',
+  },
+  cosmic_crater: {
+    id: 'cosmic_crater',
+    name: 'Cosmic Lunar Crater',
+    themeColor: '#8b5cf6',
+    targetMeters: 1500,
+    baseFriction: 0.95,
+    hillsFrequency: 0.008,
+    hillsAmplitude: 160,
+    description: 'Low-gravity lunar tractor jumps across glowing cosmic craters.',
+  },
 };
 
 export const STAGE_ORDER: StageId[] = [
@@ -62,6 +102,10 @@ export const STAGE_ORDER: StageId[] = [
   'autumn_orchard',
   'windmill_ridge',
   'muddy_mountain',
+  'desert_dunes',
+  'frost_peak',
+  'volcano_valley',
+  'cosmic_crater',
 ];
 
 /**

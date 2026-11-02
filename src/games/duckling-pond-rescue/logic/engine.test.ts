@@ -142,7 +142,7 @@ describe('Ducklings.io: Duckling Pond Rescue Logic Engine', () => {
     expect(next.mama.activeHat).toBe('flower');
   });
 
-  it('triggers victory when completing wave 3 quota', () => {
+  it('progresses from wave 3 to wave 4 when meeting quota', () => {
     const state = initRescueGame(3);
     state.status = 'playing';
     state.boats = []; // Isolate from boats in test
@@ -157,12 +157,31 @@ describe('Ducklings.io: Duckling Pond Rescue Logic Engine', () => {
     state.mama.y = state.nest.y;
 
     const next = stepRescueGame(state, IDLE_INPUT, 0.016);
+    expect(next.wave).toBe(4);
+  });
+
+  it('triggers victory when completing wave 8 quota', () => {
+    const lastWave = WAVE_TARGETS.length;
+    const state = initRescueGame(lastWave);
+    state.status = 'playing';
+    state.boats = [];
+    state.nest.totalRescued = WAVE_TARGETS[lastWave - 1] - 2;
+    state.ducksInLine = 2;
+    state.ducklings[0].isFollowing = true;
+    state.ducklings[0].followIndex = 0;
+    state.ducklings[1].isFollowing = true;
+    state.ducklings[1].followIndex = 1;
+
+    state.mama.x = state.nest.x;
+    state.mama.y = state.nest.y;
+
+    const next = stepRescueGame(state, IDLE_INPUT, 0.016);
     expect(next.status).toBe('victory');
   });
 
   it('calculates rescue stars accurately', () => {
-    expect(calculateRescueStars(28, 3)).toBe(3);
-    expect(calculateRescueStars(18, 2)).toBe(2);
+    expect(calculateRescueStars(70, 7)).toBe(3);
+    expect(calculateRescueStars(30, 3)).toBe(2);
     expect(calculateRescueStars(8, 1)).toBe(1);
   });
 });

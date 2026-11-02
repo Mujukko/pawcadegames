@@ -1,4 +1,4 @@
-export type DuckHat = 'none' | 'flower' | 'straw' | 'sailor' | 'crown';
+export type DuckHat = 'none' | 'flower' | 'straw' | 'sailor' | 'pirate' | 'chef' | 'crown' | 'wizard';
 
 export interface Position2D {
   x: number;

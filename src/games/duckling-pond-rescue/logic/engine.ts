@@ -16,7 +16,18 @@ export const MAMA_BOOST_SPEED = 230;
 export const TRAIL_STEP_DIST = 6;
 export const DUCKLING_SPACING_POINTS = 5; // Trail points between each duckling in line
 
-export const WAVE_TARGETS = [8, 16, 25];
+export const WAVE_TARGETS = [6, 14, 24, 36, 50, 66, 84, 105];
+
+export const WAVE_NAMES = [
+  'Peaceful Lily Bay',
+  'Cattail Shallows',
+  'Motorboat Rapids',
+  'Snapping Turtle Cove',
+  'Twin Rapids Passage',
+  'Fisherman Harbor',
+  'Stormy Waterway',
+  'Royal Sanctuary Lagoon',
+];
 
 export function spawnPondDucklings(count: number, startId = 1): LostDuckling[] {
   const ducklings: LostDuckling[] = [];
@@ -33,70 +44,131 @@ export function spawnPondDucklings(count: number, startId = 1): LostDuckling[] {
 }
 
 export function spawnRowboats(wave: number): RowboatHazard[] {
+  const baseSpeed = 80 + wave * 12;
   const boats: RowboatHazard[] = [
     {
       id: 'boat_1',
       x: 150,
-      y: 200,
+      y: 190,
       width: 90,
       height: 34,
-      speedX: 90 + wave * 15,
-      minX: 80,
-      maxX: POND_WIDTH - 120,
+      speedX: baseSpeed,
+      minX: 70,
+      maxX: POND_WIDTH - 110,
     },
     {
       id: 'boat_2',
       x: 600,
-      y: 380,
+      y: 360,
       width: 100,
       height: 36,
-      speedX: -(85 + wave * 20),
-      minX: 80,
-      maxX: POND_WIDTH - 120,
+      speedX: -(baseSpeed + 10),
+      minX: 70,
+      maxX: POND_WIDTH - 110,
     },
   ];
+
   if (wave >= 2) {
     boats.push({
       id: 'boat_3',
       x: 350,
-      y: 490,
+      y: 480,
       width: 80,
       height: 32,
-      speedX: 110,
+      speedX: baseSpeed * 0.9,
+      minX: 90,
+      maxX: POND_WIDTH - 90,
+    });
+  }
+
+  if (wave >= 4) {
+    boats.push({
+      id: 'boat_4',
+      x: 200,
+      y: 275,
+      width: 75,
+      height: 30,
+      speedX: -(baseSpeed * 1.15),
       minX: 100,
       maxX: POND_WIDTH - 100,
     });
   }
+
+  if (wave >= 6) {
+    boats.push({
+      id: 'boat_5',
+      x: 520,
+      y: 115,
+      width: 85,
+      height: 32,
+      speedX: baseSpeed * 1.2,
+      minX: 80,
+      maxX: POND_WIDTH - 80,
+    });
+  }
+
   return boats;
 }
 
 export function spawnTurtles(wave: number): SnappingTurtle[] {
+  if (wave <= 1) return [];
+
   const turtles: SnappingTurtle[] = [
     {
       id: 'turtle_1',
-      x: 300,
-      y: 300,
+      x: 280,
+      y: 290,
       radius: 16,
       patrolAngle: 0,
-      orbitCenterX: 300,
-      orbitCenterY: 300,
+      orbitCenterX: 280,
+      orbitCenterY: 290,
       orbitRadius: 45,
-      speed: 1.4,
+      speed: 1.4 + wave * 0.08,
     },
   ];
-  if (wave >= 2) {
+
+  if (wave >= 3) {
     turtles.push({
       id: 'turtle_2',
       x: 700,
-      y: 220,
+      y: 230,
       radius: 16,
       patrolAngle: Math.PI,
       orbitCenterX: 700,
-      orbitCenterY: 220,
+      orbitCenterY: 230,
       orbitRadius: 55,
-      speed: 1.8,
+      speed: 1.6 + wave * 0.08,
     });
   }
+
+  if (wave >= 5) {
+    turtles.push({
+      id: 'turtle_3',
+      x: 450,
+      y: 420,
+      radius: 17,
+      patrolAngle: Math.PI * 0.5,
+      orbitCenterX: 450,
+      orbitCenterY: 420,
+      orbitRadius: 60,
+      speed: 1.8 + wave * 0.08,
+    });
+  }
+
+  if (wave >= 7) {
+    turtles.push({
+      id: 'turtle_4',
+      x: 220,
+      y: 150,
+      radius: 18,
+      patrolAngle: Math.PI * 1.5,
+      orbitCenterX: 220,
+      orbitCenterY: 150,
+      orbitRadius: 65,
+      speed: 2.0 + wave * 0.08,
+    });
+  }
+
   return turtles;
 }
 
@@ -332,10 +404,10 @@ export function stepRescueGame(
     ducklings = ducklings.filter(d => !d.isFollowing);
     ducksInLine = 0;
 
-    // Nest upgrade thresholds
-    nest.nestLevel = Math.min(5, Math.floor(nest.totalRescued / 6) + 1);
+    // Nest upgrade thresholds (up to Level 8)
+    nest.nestLevel = Math.min(8, Math.floor(nest.totalRescued / 12) + 1);
 
-    // Unlock cosmetic hats
+    // Unlock cosmetic hats (7 unlockable hats!)
     if (nest.totalRescued >= 8 && !unlockedHats.includes('flower')) {
       unlockedHats.push('flower');
       mama.activeHat = 'flower';
@@ -348,9 +420,21 @@ export function stepRescueGame(
       unlockedHats.push('sailor');
       mama.activeHat = 'sailor';
     }
-    if (nest.totalRescued >= 32 && !unlockedHats.includes('crown')) {
+    if (nest.totalRescued >= 36 && !unlockedHats.includes('pirate')) {
+      unlockedHats.push('pirate');
+      mama.activeHat = 'pirate';
+    }
+    if (nest.totalRescued >= 50 && !unlockedHats.includes('chef')) {
+      unlockedHats.push('chef');
+      mama.activeHat = 'chef';
+    }
+    if (nest.totalRescued >= 66 && !unlockedHats.includes('crown')) {
       unlockedHats.push('crown');
       mama.activeHat = 'crown';
+    }
+    if (nest.totalRescued >= 84 && !unlockedHats.includes('wizard')) {
+      unlockedHats.push('wizard');
+      mama.activeHat = 'wizard';
     }
 
     // Spawn replacement lost ducklings in the pond
@@ -358,10 +442,10 @@ export function stepRescueGame(
       ducklings.push(...spawnPondDucklings(6, Date.now() % 1000));
     }
 
-    // Wave Progression
-    const target = WAVE_TARGETS[wave - 1] || 25;
+    // Wave Progression (8 progressive waves!)
+    const target = WAVE_TARGETS[wave - 1] || 105;
     if (nest.totalRescued >= target) {
-      if (wave < 3) {
+      if (wave < WAVE_TARGETS.length) {
         wave++;
         // Refresh hazards for next wave
         state.boats = spawnRowboats(wave);
@@ -395,7 +479,7 @@ export function stepRescueGame(
 }
 
 export function calculateRescueStars(totalRescued: number, wave: number): number {
-  if (totalRescued >= 25) return 3;
-  if (totalRescued >= 14) return 2;
+  if (totalRescued >= 66 || wave >= 6) return 3;
+  if (totalRescued >= 24 || wave >= 3) return 2;
   return 1;
 }

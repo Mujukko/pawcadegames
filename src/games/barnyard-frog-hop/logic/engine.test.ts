@@ -4,6 +4,7 @@ import {
   hopFrog,
   flickTongue,
   updateFrogGame,
+  POND_ZONES,
 } from './engine';
 
 describe('Frog Games: Barnyard Pond Hop Logic Engine', () => {
@@ -118,5 +119,20 @@ describe('Frog Games: Barnyard Pond Hop Logic Engine', () => {
     expect(state.status).toBe('won');
     expect(state.score).toBeGreaterThanOrEqual(1000);
     expect(state.events.some((e) => e.type === 'victory_crossing')).toBe(true);
+  });
+
+  it('initializes all 8 handcrafted pond zones with increasing difficulty', () => {
+    expect(POND_ZONES.length).toBe(8);
+
+    for (let i = 0; i < POND_ZONES.length; i++) {
+      const zoneState = createFrogGame(i);
+      expect(zoneState.zone.totalLanes).toBeGreaterThanOrEqual(9);
+      expect(zoneState.pads.length).toBeGreaterThan(15);
+      expect(zoneState.status).toBe('playing');
+    }
+
+    // Verify speed increases from level 1 to level 8
+    expect(POND_ZONES[7].waterSpeed).toBeGreaterThan(POND_ZONES[0].waterSpeed);
+    expect(POND_ZONES[7].totalLanes).toBeGreaterThan(POND_ZONES[0].totalLanes);
   });
 });
