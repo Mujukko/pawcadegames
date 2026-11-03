@@ -3599,6 +3599,176 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Jump right before swinging your weapon! Downward jumping strikes deal massive bonus knockback that sends rivals flying across the ring.',
   },
+  'helix-silo-drop': {
+    title: 'Helix Silo Drop',
+    subtitle: 'Endless Spiral Silo Plunge',
+    mascot: '🌽🌀',
+    themeColor: 'from-amber-500 via-orange-600 to-slate-900',
+    goal: 'Rotate the grain silo spiral tower to drop the bouncing egg through open platform gaps without hitting red hazard tiles!',
+    steps: [
+      { icon: '🔄', title: '1. Twist Silo Tower', desc: 'Drag left and right or use arrow keys to rotate the cylindrical tower.' },
+      { icon: '⬇️', title: '2. Drop Through Gaps', desc: 'Fall through open gaps cleanly to build up blazing speed streaks.' },
+      { icon: '💥', title: '3. Smash Hazard Tiles', desc: 'Streak through 3+ floors consecutively to ignite a comet flame and shatter red hazards.' },
+    ],
+    controls: {
+      desktop: ['A / D or Left / Right Arrows: Rotate cylindrical silo tower', 'Space or Enter: Fast restart'],
+      mobile: ['Touch & Drag Horizontally: Rotate silo tower', 'Tap Screen: Instant retry'],
+    },
+    proTip: 'Line up multiple floor gaps in a single plunge! A 3-floor combo supercharges your egg with comet armor that smashes right through red hazard tiles.',
+  },
+  'pasture-subway-run': {
+    title: 'Pasture Subway Run',
+    subtitle: '3-Lane Infinite Farm Dash',
+    mascot: '🐕🚜',
+    themeColor: 'from-amber-500 via-emerald-600 to-sky-900',
+    goal: 'Dash along three pasture tracks, dodge wooden fences and red tractors, collect golden corn, and outrun the grumpy farmer!',
+    steps: [
+      { icon: '🏃', title: '1. Switch Lanes', desc: 'Swipe or press left/right to switch between 3 pasture tracks.' },
+      { icon: '🦘', title: '2. Leap & Slide', desc: 'Jump over wooden fences and slide under tractor hitches.' },
+      { icon: '🌽', title: '3. Collect Corn', desc: 'Gather shiny golden corn kernels to boost score multipliers.' },
+    ],
+    controls: {
+      desktop: ['A / D or Left / Right: Change lane', 'W or Up Arrow: Jump over fences', 'S or Down Arrow: Roll and slide under obstacles'],
+      mobile: ['Swipe Left / Right: Switch tracks', 'Swipe Up: Jump over barriers', 'Swipe Down: Duck and slide'],
+    },
+    proTip: 'Swipe down while in mid-air to fast-drop back to the ground! This helps you land quickly after a high jump to dodge upcoming hurdles.',
+  },
+  'barnyard-hay-stack': {
+    title: 'Barnyard Hay Stack',
+    subtitle: 'Precision Rhythm Block Stacker',
+    mascot: '🌾📐',
+    themeColor: 'from-emerald-500 via-teal-600 to-slate-900',
+    goal: 'Time each tap to stack moving wooden hay platforms into a skyscraper tower without slicing away the edges!',
+    steps: [
+      { icon: '⏱️', title: '1. Time the Tap', desc: 'Watch the moving hay platform slide across and tap precisely when aligned.' },
+      { icon: '✂️', title: '2. Avoid Slicing', desc: 'Any overhang gets sliced off, shrinking your platform for subsequent tiers.' },
+      { icon: '✨', title: '3. Perfect Stacks', desc: 'Land consecutive perfect stacks to play harmonious notes and expand platform size.' },
+    ],
+    controls: {
+      desktop: ['Space, Up Arrow, or Click: Drop platform onto stack'],
+      mobile: ['Tap Screen Anywhere: Place platform'],
+    },
+    proTip: 'Chain 7 consecutive perfect placements to trigger a rewarding combo chime that widens your next stacked platform!',
+  },
+  'barnyard-doodle-jump': {
+    title: 'Barnyard Doodle Jump',
+    subtitle: 'Vertical Spring Bounce',
+    mascot: '🐥☁️',
+    themeColor: 'from-sky-400 via-amber-400 to-emerald-600',
+    goal: 'Guide Clucky the chick higher and higher into the clouds by bouncing on wooden platforms, springs, and moving rails!',
+    steps: [
+      { icon: '🦘', title: '1. Automatic Bounce', desc: 'Clucky bounces automatically upon touching any solid platform.' },
+      { icon: '↔️', title: '2. Steer Left & Right', desc: 'Use screen wrap to quickly teleport from the left edge to the right edge.' },
+      { icon: '🌀', title: '3. Spring Power-Ups', desc: 'Hit red coil springs to blast high above fragile cracked planks.' },
+    ],
+    controls: {
+      desktop: ['A / D or Left / Right Arrows: Steer Clucky sideways'],
+      mobile: ['Tap Left / Right Screen Halves: Steer Clucky', 'On-screen Left / Right Buttons: Precision movement'],
+    },
+    proTip: 'Use screen wrap edges! When platforms are scarce in the center, leaping off the left screen edge brings you out safely on the right side.',
+  },
+  'barnyard-color-switch': {
+    title: 'Barnyard Color Switch',
+    subtitle: 'Geometric Color Match Arcade',
+    mascot: '🎨⭐',
+    themeColor: 'from-rose-500 via-amber-500 to-sky-600',
+    goal: 'Tap to flap upward through spinning geometric obstacles, passing through segments that match your current ball color!',
+    steps: [
+      { icon: '👆', title: '1. Tap to Flap', desc: 'Tap repeatedly to keep the ball aloft against gravity.' },
+      { icon: '🎯', title: '2. Match Colors', desc: 'Cross obstacles only through matching colored arc segments.' },
+      { icon: '⭐', title: '3. Switcher Orbs', desc: 'Pass through glowing quadrant orbs to shift ball color and grab bonus stars.' },
+    ],
+    controls: {
+      desktop: ['Space, W, or Up Arrow: Flap ball upward'],
+      mobile: ['Tap Screen Anywhere: Jump upward'],
+    },
+    proTip: 'Patience is everything! Wait inside safe obstacle centers until the matching colored arc rotates directly above before tapping to pass.',
+  },
+  'milk-bottle-flip': {
+    title: 'Milk Bottle Flip 3D',
+    subtitle: 'Farmhouse Physics Balance',
+    mascot: '🥛🏡',
+    themeColor: 'from-amber-500 via-orange-500 to-amber-900',
+    goal: 'Flip a fresh glass milk bottle across kitchen counters, dining tables, toasters, and sofas, sticking upright landings!',
+    steps: [
+      { icon: '🍼', title: '1. Single Tap Flip', desc: 'Tap to flip the bottle forward with an authentic 360-degree parabolic arc.' },
+      { icon: '🔄', title: '2. Mid-Air Double Flip', desc: 'Tap again while in mid-air to kick upward with extra rotation.' },
+      { icon: '✨', title: '3. Upright Landing', desc: 'Land balanced upright on furniture surfaces to advance and earn points.' },
+    ],
+    controls: {
+      desktop: ['Space or Enter: Flip bottle / Double flip in mid-air'],
+      mobile: ['Tap Screen: Flip bottle / Tap again for double flip'],
+    },
+    proTip: 'For distant tables, use the double flip! Tapping twice in quick succession gives extra height and distance to clear large gaps.',
+  },
+  'barnyard-pac-chick': {
+    title: 'Barnyard Pac Chick',
+    subtitle: 'Classic Labyrinth Kernel Gobbler',
+    mascot: '🐣🌽',
+    themeColor: 'from-amber-400 via-emerald-600 to-slate-900',
+    goal: 'Gobble up golden corn kernels through the garden hedge maze while outmaneuvering 4 sneaky farm foxes!',
+    steps: [
+      { icon: '🌽', title: '1. Eat All Corn', desc: 'Navigate corridors to gobble every kernel and clear the level.' },
+      { icon: '🌻', title: '2. Sunflower Power', desc: 'Eat corner sunflowers to turn foxes blue and frightened for 8 seconds.' },
+      { icon: '🦊', title: '3. Gobble Foxes', desc: 'Chase down frightened foxes for 200 bonus points each!' },
+    ],
+    controls: {
+      desktop: ['Arrow Keys or W/A/S/D: Turn into maze corridors'],
+      mobile: ['Swipe in any direction: Turn Clucky', 'On-screen D-Pad: Precision directional buttons'],
+    },
+    proTip: 'Corner turn buffering allows you to press your turn early before reaching the intersection, ensuring seamless high-speed cornering.',
+  },
+  'happy-milk-pail': {
+    title: 'Happy Milk Pail',
+    subtitle: 'Physics Water Funnel Puzzles',
+    mascot: '🥛✏️',
+    themeColor: 'from-sky-500 via-blue-600 to-slate-900',
+    goal: 'Draw solid barrier lines to guide flowing milk droplets from the top pipe straight into the sad milk pail to make it smile!',
+    steps: [
+      { icon: '✏️', title: '1. Draw Ramps', desc: 'Draw smooth lines to funnel droplets around obstacles.' },
+      { icon: '💧', title: '2. Pour Milk', desc: 'Press Pour Milk to release 40 bouncy physics droplets.' },
+      { icon: '😄', title: '3. Fill & Smile', desc: 'Fill past the target line to turn the pail into a cheerful smiling face.' },
+    ],
+    controls: {
+      desktop: ['Click & Drag Cursor: Draw solid barrier lines', 'Pour Milk Button: Start flow', 'Clear Button: Reset drawn ink'],
+      mobile: ['Touch & Drag Finger: Draw barrier ramps', 'Tap Pour Milk / Clear buttons'],
+    },
+    proTip: 'Conserve your ink! Using less than 50% of the ink gauge awards a flawless 3-star rating upon level completion.',
+  },
+  'pasture-hole-io': {
+    title: 'Pasture Hole IO',
+    subtitle: 'Void Swallowing Farm Battle',
+    mascot: '🕳️🌾',
+    themeColor: 'from-sky-500 via-emerald-500 to-slate-950',
+    goal: 'Control an expanding black hole vacuum sliding across a 1200x1200 farm pasture, devouring everything in a 60-second frenzy!',
+    steps: [
+      { icon: '🥕', title: '1. Eat Small Items', desc: 'Start small by swallowing carrots, apples, and turnips.' },
+      { icon: '📈', title: '2. Grow Larger', desc: 'As you swallow objects, your hole diameter expands from 18px up to 65px+.' },
+      { icon: '🚜', title: '3. Swallow Barns', desc: 'Devour cows, tractors, red barns, and silos before the timer expires!' },
+    ],
+    controls: {
+      desktop: ['W/A/S/D or Arrow Keys: Slide hole across pasture'],
+      mobile: ['Touch & Drag Finger: Smooth virtual joystick steering'],
+    },
+    proTip: 'Follow clustered vegetable trails in the early seconds! Rapid small swallows quickly trigger your first size upgrade.',
+  },
+  'barnyard-tunnel-runner': {
+    title: 'Barnyard Tunnel Runner',
+    subtitle: '3D Cylindrical Silo Dash',
+    mascot: '🌀🐕',
+    themeColor: 'from-sky-500 via-blue-700 to-slate-950',
+    goal: 'Dash along the interior walls of an endless octagonal grain silo, rotating the world to dodge void gaps and jumping hurdles!',
+    steps: [
+      { icon: '🏃', title: '1. Infinite Run', desc: 'Buster sprints forward through the 3D cylindrical silo tunnel.' },
+      { icon: '🔄', title: '2. Rotate the World', desc: 'Rotate left or right to switch running lanes onto walls and ceiling.' },
+      { icon: '🦘', title: '3. Leap Over Gaps', desc: 'Jump over missing floor tiles and hurdle barriers to stay alive.' },
+    ],
+    controls: {
+      desktop: ['A / D or Left / Right: Rotate cylindrical silo', 'Space, W, or Up: Jump over gaps'],
+      mobile: ['◀ / ▶ Rotate Buttons: Spin the tunnel', 'Jump Button or Swipe Up: Leap over holes'],
+    },
+    proTip: 'Look far ahead into the tunnel! If a floor tile is missing in front of you, pre-rotate one lane to the side to keep running without breaking stride.',
+  },
 };
 
 const ALIAS_INTROS: Record<string, string> = {
@@ -3621,6 +3791,16 @@ const ALIAS_INTROS: Record<string, string> = {
   'horse-racing': 'barnyard-horse-derby',
   'virtual-pet': 'virtual-puppy-pet',
   'frog-games': 'barnyard-frog-hop',
+  'helix-jump': 'helix-silo-drop',
+  'subway-surfers': 'pasture-subway-run',
+  'stack': 'barnyard-hay-stack',
+  'doodle-jump': 'barnyard-doodle-jump',
+  'color-switch': 'barnyard-color-switch',
+  'bottle-flip-3d': 'milk-bottle-flip',
+  'pacman': 'barnyard-pac-chick',
+  'happy-glass': 'happy-milk-pail',
+  'hole-io': 'pasture-hole-io',
+  'run-3': 'barnyard-tunnel-runner',
 };
 
 for (const [aliasKey, targetKey] of Object.entries(ALIAS_INTROS)) {

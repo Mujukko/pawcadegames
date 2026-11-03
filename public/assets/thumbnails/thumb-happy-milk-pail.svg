@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <rect width="600" height="400" fill="#f8fafc" />
+  <!-- Notebook Grid -->
+  <line x1="0" y1="100" x2="600" y2="100" stroke="#e2e8f0" stroke-width="2" />
+  <line x1="0" y1="200" x2="600" y2="200" stroke="#e2e8f0" stroke-width="2" />
+  <line x1="0" y1="300" x2="600" y2="300" stroke="#e2e8f0" stroke-width="2" />
+  <!-- Drawn Blue Ramp -->
+  <path d="M 160,110 Q 260,220 310,240" fill="none" stroke="#2563eb" stroke-width="12" stroke-linecap="round" />
+  <!-- Milk Droplets -->
+  <circle cx="210" cy="140" r="10" fill="#38bdf8" />
+  <circle cx="260" cy="190" r="10" fill="#38bdf8" />
+  <!-- Smiling Milk Pail -->
+  <path d="M 280,240 L 290,320 L 370,320 L 380,240" fill="none" stroke="#334155" stroke-width="8" stroke-linecap="round" />
+  <rect x="292" y="270" width="76" height="46" fill="#bae6fd" />
+  <!-- Smiling Face -->
+  <circle cx="318" cy="275" r="4" fill="#1e293b" />
+  <circle cx="342" cy="275" r="4" fill="#1e293b" />
+  <path d="M 320,290 Q 330,305 340,290" fill="none" stroke="#1e293b" stroke-width="4" stroke-linecap="round" />
+  <text x="300" y="375" fill="#1e293b" font-family="sans-serif" font-size="24" font-weight="900" text-anchor="middle">HAPPY MILK PAIL</text>
+</svg>

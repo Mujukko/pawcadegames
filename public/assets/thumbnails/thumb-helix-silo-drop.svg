@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="helixBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="60%" stop-color="#312e81" />
+      <stop offset="100%" stop-color="#431407" />
+    </linearGradient>
+    <linearGradient id="poleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#94a3b8" />
+      <stop offset="50%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#64748b" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#helixBg)" />
+  <rect x="280" y="20" width="40" height="360" rx="6" fill="url(#poleGrad)" opacity="0.9" />
+  <ellipse cx="300" cy="80" rx="140" ry="24" fill="#0284c7" />
+  <ellipse cx="300" cy="150" rx="140" ry="24" fill="#16a34a" />
+  <ellipse cx="300" cy="220" rx="140" ry="24" fill="#dc2626" />
+  <ellipse cx="300" cy="290" rx="140" ry="24" fill="#eab308" />
+  <circle cx="300" cy="120" r="18" fill="#facc15" stroke="#ca8a04" stroke-width="3" />
+  <text x="300" y="375" fill="#fef08a" font-family="sans-serif" font-size="24" font-weight="900" text-anchor="middle">HELIX SILO DROP</text>
+</svg>

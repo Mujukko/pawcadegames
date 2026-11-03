@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <rect width="600" height="400" fill="#0f172a" />
+  <!-- Maze Hedge Walls -->
+  <rect x="80" y="80" width="440" height="240" rx="16" fill="none" stroke="#15803d" stroke-width="18" />
+  <rect x="220" y="160" width="160" height="80" rx="10" fill="none" stroke="#15803d" stroke-width="14" />
+  <!-- Golden Corn Dots -->
+  <circle cx="150" cy="120" r="7" fill="#facc15" />
+  <circle cx="200" cy="120" r="7" fill="#facc15" />
+  <circle cx="250" cy="120" r="7" fill="#facc15" />
+  <circle cx="300" cy="120" r="7" fill="#facc15" />
+  <circle cx="350" cy="120" r="7" fill="#facc15" />
+  <!-- Clucky the Chick with Mouth Open -->
+  <path d="M 170,200 L 195,185 A 25,25 0 1,1 195,215 Z" fill="#facc15" />
+  <circle cx="180" cy="190" r="3" fill="#1e293b" />
+  <!-- Sneaky Red Fox chasing -->
+  <circle cx="390" cy="200" r="22" fill="#ef4444" />
+  <polygon points="375,185 385,165 395,185" fill="#ef4444" />
+  <polygon points="395,185 405,165 415,185" fill="#ef4444" />
+  <circle cx="382" cy="196" r="4" fill="#ffffff" />
+  <circle cx="398" cy="196" r="4" fill="#ffffff" />
+  <text x="300" y="365" fill="#fef08a" font-family="sans-serif" font-size="24" font-weight="900" text-anchor="middle">BARNYARD PAC CHICK</text>
+</svg>

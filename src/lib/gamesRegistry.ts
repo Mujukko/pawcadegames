@@ -4552,5 +4552,459 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     ],
     "metaTitle": "Ragdoll Hit: Barnyard Brawler 🥊🦊 — No Download | Pawcade",
     "metaDescription": "Play Ragdoll Hit free online! Swing floppy arms and farm weapons to deliver hilarious knockouts in the hayloft ring. Free ragdoll brawler game with no download."
+  },
+  {
+    "id": "helix-silo-drop",
+    "slug": "helix-silo-drop",
+    "title": "Helix Silo Drop: Spiral Jump 🌽🌀",
+    "tagline": "Drop through grain silo spiral platforms and dodge hazard tiles!",
+    "description": "Guide your bouncing egg down a towering farm silo. Spin the cylinder to drop through platform gaps. Build blazing descent streaks to smash hazard tiles and reach the bottom.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/helix-silo-drop/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "38.4K",
+    "badge": "🌽 Helix Jump",
+    "thumbnailUrl": "/assets/thumbnails/thumb-helix-silo-drop.svg",
+    "featured": true,
+    "tags": [
+      "helix jump",
+      "helix jump unblocked",
+      "spiral drop",
+      "silo drop",
+      "ball fall"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D or Left / Right: Rotate silo tower",
+        "Space or Enter: Fast restart round"
+      ],
+      "mobile": [
+        "Touch & Drag Horizontally: Rotate cylindrical silo",
+        "Tap Screen: Restart round"
+      ]
+    },
+    "features": [
+      "Smooth 3D Perspective Cylindrical Silo Tower",
+      "Multi-Floor Smash Streak Combos with Comet Fire",
+      "Procedural Chime and Bass Impact Sound Effects",
+      "Single-Screen Responsive Mobile Touch Viewport",
+      "100% Free Instant Browser Play with No Download"
+    ],
+    "metaTitle": "Helix Silo Drop: Spiral Jump 🌽🌀 — No Download | Pawcade",
+    "metaDescription": "Play Helix Silo Drop free online! Spin the silo tower to drop through platform gaps. Fast spiral bouncing arcade game with no download needed."
+  },
+  {
+    "id": "pasture-subway-run",
+    "slug": "pasture-subway-run",
+    "title": "Pasture Subway Run: Farm Dash 🐕🚜",
+    "tagline": "Dodge tractors, leap over fences, and dash across pasture tracks!",
+    "description": "Sprint along three busy farm tracks as Buster the puppy. Jump over wooden fences and slide under tractor hitches. Collect golden corn kernels to set new distance records.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/pasture-subway-run/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "54.2K",
+    "badge": "🐕 Subway Dash",
+    "thumbnailUrl": "/assets/thumbnails/thumb-pasture-subway-run.svg",
+    "featured": true,
+    "tags": [
+      "subway surfers",
+      "subway surfers unblocked",
+      "endless runner",
+      "farm run",
+      "pasture dash"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D or Left / Right: Switch between 3 tracks",
+        "W or Up Arrow: Leap over fences and hay bales",
+        "S or Down Arrow: Duck and slide under tractor hitches"
+      ],
+      "mobile": [
+        "Swipe Left / Right: Change pasture track",
+        "Swipe Up: Jump over fences",
+        "Swipe Down: Duck and slide"
+      ]
+    },
+    "features": [
+      "Classic 3-Lane Infinite Farm Runner Layout",
+      "Dynamic 3D Parabolic Jump and Duck Physics",
+      "Golden Corn Kernel Collection and Score Multipliers",
+      "Retro Arcade Web Audio Chimes and Whooshes",
+      "100% Free Instant Browser Play with No Download"
+    ],
+    "metaTitle": "Pasture Subway Run: Farm Dash 🐕🚜 — No Download | Pawcade",
+    "metaDescription": "Play Pasture Subway Run free online! Dash along three tracks, dodge tractors, and jump fences. Free endless runner game with no download needed."
+  },
+  {
+    "id": "barnyard-hay-stack",
+    "slug": "barnyard-hay-stack",
+    "title": "Barnyard Hay Stack: Tower Block 🌾📐",
+    "tagline": "Stack moving hay blocks with rhythm and build a giant tower!",
+    "description": "Stack moving wooden hay platforms as high as you can. Tap when the sliding block aligns with the tower below. Slice-free perfect drops expand your platform size.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "puzzle"
+    ],
+    "route": "/games/barnyard-hay-stack/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "41.8K",
+    "badge": "🌾 Hay Stack",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-hay-stack.svg",
+    "featured": true,
+    "tags": [
+      "stack",
+      "stack game",
+      "stack unblocked",
+      "block tower",
+      "hay stack"
+    ],
+    "controls": {
+      "desktop": [
+        "Space, Up Arrow, or Click: Drop platform onto stack"
+      ],
+      "mobile": [
+        "Tap Screen Anywhere: Place moving platform"
+      ]
+    },
+    "features": [
+      "Isometric 3D Hay and Wooden Block Construction",
+      "Dynamic Slicing Physics for Overhanging Edges",
+      "Ascending Musical Scale Chimes for Perfect Placements",
+      "Clean Minimalist Zen Aesthetics with Zero Lag",
+      "100% Free Instant Browser Play with No Download"
+    ],
+    "metaTitle": "Barnyard Hay Stack: Tower Block 🌾📐 — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Hay Stack free online! Time your taps to stack moving hay blocks into a giant sky tower. Free tower builder game with no download."
+  },
+  {
+    "id": "barnyard-doodle-jump",
+    "slug": "barnyard-doodle-jump",
+    "title": "Barnyard Doodle Jump: Cloud Hop 🐥☁️",
+    "tagline": "Bounce Clucky high into the clouds on moving platforms and springs!",
+    "description": "Bounce Clucky the chick into the sky. Steer across moving platforms, red bounce springs, and fragile wooden planks. Climb past the clouds to earn high altitude scores.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/barnyard-doodle-jump/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "47.3K",
+    "badge": "🐥 Doodle Jump",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-doodle-jump.svg",
+    "featured": true,
+    "tags": [
+      "doodle jump",
+      "doodle jump unblocked",
+      "vertical bounce",
+      "chicken jump",
+      "cloud jump"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D or Left / Right Arrows: Steer Clucky sideways",
+        "Space or Enter: Restart when fallen"
+      ],
+      "mobile": [
+        "Tap Left / Right Screen: Steer Clucky",
+        "Bottom Buttons: Left and Right navigation"
+      ]
+    },
+    "features": [
+      "Infinite Procedural Vertical Platform Generator",
+      "Moving Rails, Fragile Planks, and Super Bouncy Springs",
+      "Screen Wrap Boundary Wrap for Edge Surfing",
+      "Authentic Cartoon Sound Synthesizer",
+      "100% Free Instant Browser Play with No Download"
+    ],
+    "metaTitle": "Barnyard Doodle Jump: Cloud Hop 🐥☁️ — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Doodle Jump free online! Bounce Clucky high into the sky on springs and moving platforms. Free jumping arcade game with no download."
+  },
+  {
+    "id": "barnyard-color-switch",
+    "slug": "barnyard-color-switch",
+    "title": "Barnyard Color Switch: Match Tap 🎨⭐",
+    "tagline": "Tap to flap upward and pass only through matching obstacle colors!",
+    "description": "Tap the screen to propel your bouncing ball upward. Pass through spinning rings and crosses matching your current color. Collect shiny stars and color switcher orbs.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "puzzle"
+    ],
+    "route": "/games/barnyard-color-switch/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "39.5K",
+    "badge": "🎨 Color Switch",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-color-switch.svg",
+    "featured": true,
+    "tags": [
+      "color switch",
+      "color switch unblocked",
+      "color match",
+      "tap jump",
+      "arcade switch"
+    ],
+    "controls": {
+      "desktop": [
+        "Space, W, or Up Arrow: Flap ball upward",
+        "Click Screen: Jump"
+      ],
+      "mobile": [
+        "Tap Screen Anywhere: Jump upward"
+      ]
+    },
+    "features": [
+      "Rotating Color-Matched Obstacle Geometries",
+      "Multi-Color Shifting Orbs and Bonus Stars",
+      "Fluid Flapping Physics and Screen Tracking Camera",
+      "Procedural Chimes for Jumps, Stars, and Shifts",
+      "100% Free Instant Browser Play with No Download"
+    ],
+    "metaTitle": "Barnyard Color Switch: Match Tap 🎨⭐ — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Color Switch free online! Tap to jump through spinning obstacles with matching colors. Free color matching arcade game with no download."
+  },
+  {
+    "id": "milk-bottle-flip",
+    "slug": "milk-bottle-flip",
+    "title": "Milk Bottle Flip 3D: Farm Rooms 🥛🏡",
+    "tagline": "Flip fresh milk bottles across farmhouse furniture and land upright!",
+    "description": "Flip a glass milk bottle through farmhouse rooms. Tap once for a single flip or tap in mid-air for a double flip. Stick balanced upright landings on counters and tables.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm",
+      "puzzle"
+    ],
+    "route": "/games/milk-bottle-flip/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "43.1K",
+    "badge": "🥛 Bottle Flip",
+    "thumbnailUrl": "/assets/thumbnails/thumb-milk-bottle-flip.svg",
+    "featured": true,
+    "tags": [
+      "bottle flip 3d",
+      "bottle flip",
+      "bottle flip unblocked",
+      "milk bottle",
+      "physics flip"
+    ],
+    "controls": {
+      "desktop": [
+        "Space or Enter: Flip bottle / Mid-air double flip"
+      ],
+      "mobile": [
+        "Tap Screen: Flip bottle / Tap again for double flip"
+      ]
+    },
+    "features": [
+      "Rigid Body Angular Momentum and Rotation Physics",
+      "Mid-Air Double Flip Maneuver for High Furniture",
+      "Satisfying Glass Clink Sound Synthesizers",
+      "Single-Screen Zero-Scroll Responsive Viewport",
+      "100% Free Instant Browser Play with No Download"
+    ],
+    "metaTitle": "Milk Bottle Flip 3D: Farm Rooms 🥛🏡 — No Download | Pawcade",
+    "metaDescription": "Play Milk Bottle Flip 3D free online! Flip glass milk bottles across tables and counters. Land balanced upright in this free game with no download."
+  },
+  {
+    "id": "barnyard-pac-chick",
+    "slug": "barnyard-pac-chick",
+    "title": "Barnyard Pac Chick: Corn Gobbler 🐣🌽",
+    "tagline": "Gobble corn in the garden hedge maze and chase blue frightened foxes!",
+    "description": "Guide Clucky through garden hedge corridors gobbling sweet golden corn. Dodge four patrolling foxes. Eat power sunflowers to turn foxes blue and chase them down for bonus points.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/barnyard-pac-chick/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "52.8K",
+    "badge": "🐣 Pac-Man Classic",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-pac-chick.svg",
+    "featured": true,
+    "tags": [
+      "pacman",
+      "pacman unblocked",
+      "tomb of the mask",
+      "maze runner",
+      "corn gobbler"
+    ],
+    "controls": {
+      "desktop": [
+        "W/A/S/D or Arrow Keys: Steer Clucky into corridors",
+        "Space: Restart round"
+      ],
+      "mobile": [
+        "Swipe Gestures: Turn in four directions",
+        "On-Screen D-Pad: Direction buttons"
+      ]
+    },
+    "features": [
+      "Symmetrical 19x21 Garden Hedge Maze Layout",
+      "4 Distinct Fox AI Personalities with Frightened States",
+      "Sunflower Power Pellets and Bonus Fruit Pickups",
+      "Retro 8-Bit Web Audio Gobble and Fanfare Synthesizers",
+      "100% Free Instant Browser Play with No Download"
+    ],
+    "metaTitle": "Barnyard Pac Chick: Corn Gobbler 🐣🌽 — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Pac Chick free online! Gobble corn in the hedge maze, dodge foxes, and eat sunflowers to chase them. Free maze arcade game with no download."
+  },
+  {
+    "id": "happy-milk-pail",
+    "slug": "happy-milk-pail",
+    "title": "Happy Milk Pail: Draw Physics 🥛✏️",
+    "tagline": "Draw barrier ramps to guide milk droplets into the thirsty pail!",
+    "description": "Draw barrier lines on notebook paper to funnel falling milk droplets. Guide the stream around obstacles into the pail. Fill past the line to turn sad frowns into happy smiles.",
+    "category": "puzzle",
+    "categories": [
+      "puzzle",
+      "farm",
+      "arcade"
+    ],
+    "route": "/games/happy-milk-pail/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "36.2K",
+    "badge": "🥛 Happy Glass",
+    "thumbnailUrl": "/assets/thumbnails/thumb-happy-milk-pail.svg",
+    "featured": true,
+    "tags": [
+      "happy glass",
+      "happy glass unblocked",
+      "draw lines",
+      "physics funnel",
+      "milk puzzle"
+    ],
+    "controls": {
+      "desktop": [
+        "Click & Drag Cursor: Draw solid barrier lines",
+        "Pour Button: Release milk droplets",
+        "Clear Button: Reset drawn ink"
+      ],
+      "mobile": [
+        "Touch & Drag Finger: Draw barrier ramps",
+        "Tap Pour Milk / Clear buttons"
+      ]
+    },
+    "features": [
+      "Freeform Physics Line Drawing Engine",
+      "40 Bouncy Milk Droplets with Fluid Simulation",
+      "Star Conservation Rating Based on Ink Usage",
+      "Gentle Web Audio Plink and Celebration Melodies",
+      "100% Free Instant Browser Play with No Download"
+    ],
+    "metaTitle": "Happy Milk Pail: Draw Physics 🥛✏️ — No Download | Pawcade",
+    "metaDescription": "Play Happy Milk Pail free online! Draw smooth ramps to guide milk droplets into the pail to make it smile. Free drawing physics game with no download."
+  },
+  {
+    "id": "pasture-hole-io",
+    "slug": "pasture-hole-io",
+    "title": "Pasture Hole IO: Farm Vacuum 🕳️🌾",
+    "tagline": "Slide an expanding black void across the farm and swallow everything!",
+    "description": "Slide an appetite void hole across an open pasture. Swallow carrots and apples to grow bigger. Expand in diameter to devour sheep, tractors, silos, and big red barns in 60 seconds.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "farm"
+    ],
+    "route": "/games/pasture-hole-io/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "48.9K",
+    "badge": "🕳️ Hole.io Farm",
+    "thumbnailUrl": "/assets/thumbnails/thumb-pasture-hole-io.svg",
+    "featured": true,
+    "tags": [
+      "hole io",
+      "hole io unblocked",
+      "swallow farm",
+      "void hole",
+      "io games"
+    ],
+    "controls": {
+      "desktop": [
+        "W/A/S/D or Arrow Keys: Slide hole across pasture",
+        "Mouse Drag: Directional steering"
+      ],
+      "mobile": [
+        "Touch & Drag: Smooth virtual joystick steering"
+      ]
+    },
+    "features": [
+      "1200x1200 Isometric Farm World with 5 Object Tiers",
+      "Progressive Void Diameter Expansion from 18px to 65px+",
+      "60-Second Timed Feast with High Score Records",
+      "Deep Bass Void Rumble and Gulp Sound Synthesizers",
+      "100% Free Instant Browser Play with No Download"
+    ],
+    "metaTitle": "Pasture Hole IO: Farm Vacuum 🕳️🌾 — No Download | Pawcade",
+    "metaDescription": "Play Pasture Hole IO free online! Slide an expanding void hole across the farm, swallow crops and tractors, and grow huge. Free IO game with no download."
+  },
+  {
+    "id": "barnyard-tunnel-runner",
+    "slug": "barnyard-tunnel-runner",
+    "title": "Barnyard Tunnel Runner: Run 3D 🌀🐕",
+    "tagline": "Sprint through an 8-sided silo tunnel and rotate the world to survive!",
+    "description": "Run through a 3D cylindrical silo tunnel as Buster. Rotate left and right to run on walls and ceilings. Leap over missing floor tiles and hurdle obstacles to set distance records.",
+    "category": "arcade",
+    "categories": [
+      "arcade",
+      "pets",
+      "farm"
+    ],
+    "route": "/games/barnyard-tunnel-runner/",
+    "status": "playable",
+    "rating": 5,
+    "playCount": "51.4K",
+    "badge": "🌀 Run 3 Silo",
+    "thumbnailUrl": "/assets/thumbnails/thumb-barnyard-tunnel-runner.svg",
+    "featured": true,
+    "tags": [
+      "run 3",
+      "run 3 unblocked",
+      "tunnel runner",
+      "silo dash",
+      "3d runner"
+    ],
+    "controls": {
+      "desktop": [
+        "A / D or Left / Right: Rotate cylindrical silo tunnel",
+        "Space, W, or Up: Jump over void gaps"
+      ],
+      "mobile": [
+        "◀ / ▶ Rotate Buttons: Spin the tunnel",
+        "Jump Button or Swipe Up: Leap over holes"
+      ]
+    },
+    "features": [
+      "Octagonal 3D Perspective Wireframe Silo Tunnel",
+      "Wall and Ceiling Gravity Rotation Mechanics",
+      "Increasing Speed and Procedural Gap Formations",
+      "Atmospheric Procedural Web Audio Wind and Rotation Sound",
+      "100% Free Instant Browser Play with No Download"
+    ],
+    "metaTitle": "Barnyard Tunnel Runner: Run 3D 🌀🐕 — No Download | Pawcade",
+    "metaDescription": "Play Barnyard Tunnel Runner free online! Sprint through a 3D cylindrical silo and rotate the world to avoid void gaps. Free runner game with no download."
   }
 ];

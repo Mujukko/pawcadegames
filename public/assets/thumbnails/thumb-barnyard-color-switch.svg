@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <rect width="600" height="400" fill="#0f172a" />
+  <!-- 4-Color Obstacle Ring -->
+  <path d="M 300,100 A 90,90 0 0,1 390,190" fill="none" stroke="#f59e0b" stroke-width="22" stroke-linecap="round" />
+  <path d="M 390,190 A 90,90 0 0,1 300,280" fill="none" stroke="#10b981" stroke-width="22" stroke-linecap="round" />
+  <path d="M 300,280 A 90,90 0 0,1 210,190" fill="none" stroke="#0284c7" stroke-width="22" stroke-linecap="round" />
+  <path d="M 210,190 A 90,90 0 0,1 300,100" fill="none" stroke="#f43f5e" stroke-width="22" stroke-linecap="round" />
+  <!-- Matching Ball -->
+  <circle cx="300" cy="190" r="16" fill="#f59e0b" stroke="#ffffff" stroke-width="3" />
+  <text x="300" y="350" fill="#fef08a" font-family="sans-serif" font-size="24" font-weight="900" text-anchor="middle">BARNYARD COLOR SWITCH</text>
+</svg>

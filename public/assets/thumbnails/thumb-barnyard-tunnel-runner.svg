@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <rect width="600" height="400" fill="#020617" />
+  <!-- 3D Perspective Cylindrical Tunnel -->
+  <polygon points="120,40 480,40 560,180 560,260 480,360 120,360 40,260 40,180" fill="none" stroke="#0284c7" stroke-width="4" />
+  <polygon points="220,120 380,120 420,180 420,220 380,280 220,280 180,220 180,180" fill="none" stroke="#38bdf8" stroke-width="3" />
+  <!-- Tunnel Octagonal Ribs -->
+  <line x1="40" y1="180" x2="180" y2="180" stroke="#0284c7" stroke-width="2" />
+  <line x1="560" y1="180" x2="420" y2="180" stroke="#0284c7" stroke-width="2" />
+  <line x1="120" y1="360" x2="220" y2="280" stroke="#0284c7" stroke-width="3" />
+  <line x1="480" y1="360" x2="380" y2="280" stroke="#0284c7" stroke-width="3" />
+  <!-- Floor Tile in Bottom Lane -->
+  <polygon points="120,360 480,360 380,280 220,280" fill="#1e3a8a" stroke="#60a5fa" stroke-width="2" opacity="0.8" />
+  <!-- Runner jumping in 3D -->
+  <ellipse cx="300" cy="275" rx="16" ry="18" fill="#f59e0b" />
+  <circle cx="300" cy="255" r="10" fill="#f59e0b" />
+  <text x="300" y="385" fill="#7dd3fc" font-family="sans-serif" font-size="24" font-weight="900" text-anchor="middle">BARNYARD TUNNEL RUNNER</text>
+</svg>

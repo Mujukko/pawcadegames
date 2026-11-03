@@ -42,6 +42,7 @@ describe('Ducklings.io: Duckling Pond Rescue Logic Engine', () => {
     state.boats = [];
     state.turtles = [];
     const duckling = state.ducklings[0];
+    state.ducklings = [duckling];
 
     // Position duckling and Mama Duck safely in open water far from nest
     duckling.x = 200;
