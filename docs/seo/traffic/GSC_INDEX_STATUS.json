@@ -1,0 +1,313 @@
+[
+  {
+    "path": "/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-03T14:56:47Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/",
+    "userCanonical": "https://pawcadegames.com/",
+    "referringUrls": [
+      "http://pawcadegames.com/",
+      "https://www.pawcadegames.com/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/popular/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-02T00:54:32Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/popular/",
+    "userCanonical": "https://pawcadegames.com/popular/",
+    "referringUrls": [
+      "https://pawcadegames.com/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/category/arcade/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-03T14:18:28Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/category/arcade/",
+    "userCanonical": "https://pawcadegames.com/category/arcade/",
+    "referringUrls": [
+      "https://pawcadegames.com/sitemap.xml"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/category/pets/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-07T19:05:30Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/category/pets/",
+    "userCanonical": "https://pawcadegames.com/category/pets/",
+    "sitemap": [
+      "https://pawcadegames.com/sitemap.xml"
+    ],
+    "referringUrls": [
+      "https://www.pawcadegames.com/category/pets/",
+      "https://pawcadegames.com/sitemap.xml"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/gopher-garden/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-10-30T20:44:29Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/gopher-garden/",
+    "userCanonical": "https://pawcadegames.com/games/gopher-garden/",
+    "referringUrls": [
+      "https://pawcadegames.com/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/animal-2048/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-10-30T16:22:30Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/animal-2048/",
+    "userCanonical": "https://pawcadegames.com/games/animal-2048/",
+    "referringUrls": [
+      "https://pawcadegames.com/category/pets/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/duck-hunt-classic/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-05T01:22:56Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/duck-hunt-classic/",
+    "userCanonical": "https://pawcadegames.com/games/duck-hunt-classic/",
+    "referringUrls": [
+      "https://www.pawcadegames.com/games/duck-hunt-classic/",
+      "http://www.pawcadegames.com/games/duck-hunt-classic/",
+      "https://pawcadegames.com/games/farm-block-blast/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/ducklings-io/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-05T15:07:19Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/ducklings-io/",
+    "userCanonical": "https://pawcadegames.com/games/ducklings-io/",
+    "referringUrls": [
+      "https://pawcadegames.com/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/cluster-rush/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-10-30T15:16:21Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/cluster-rush/",
+    "userCanonical": "https://pawcadegames.com/games/cluster-rush/",
+    "referringUrls": [
+      "https://pawcadegames.com/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/eggy-car/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-10-30T15:07:31Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/eggy-car/",
+    "userCanonical": "https://pawcadegames.com/games/eggy-car/",
+    "referringUrls": [
+      "https://pawcadegames.com/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/capybara-clicker/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-10-30T17:49:25Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/capybara-clicker/",
+    "userCanonical": "https://pawcadegames.com/games/capybara-clicker/",
+    "referringUrls": [
+      "https://pawcadegames.com/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/virtual-pet/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-10-31T13:23:38Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/virtual-pet/",
+    "userCanonical": "https://pawcadegames.com/games/virtual-pet/",
+    "referringUrls": [
+      "http://www.pawcadegames.com/games/virtual-pet/",
+      "https://pawcadegames.com/games/virtual-puppy-pet/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/retro-bowl/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-06T05:51:12Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/retro-bowl/",
+    "userCanonical": "https://pawcadegames.com/games/retro-bowl/",
+    "referringUrls": [
+      "http://pawcadegames.com/games/retro-bowl/",
+      "https://pawcadegames.com/category/arcade/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/slope/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-01T22:18:44Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/slope/",
+    "userCanonical": "https://pawcadegames.com/games/slope/",
+    "referringUrls": [
+      "https://pawcadegames.com/category/arcade/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/level-devil/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-01T22:59:07Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/level-devil/",
+    "userCanonical": "https://pawcadegames.com/games/level-devil/",
+    "referringUrls": [
+      "https://pawcadegames.com/games/barnyard-popcorn-popper/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/helix-silo-drop/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-04T14:22:21Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/helix-silo-drop/",
+    "userCanonical": "https://pawcadegames.com/games/helix-silo-drop/",
+    "referringUrls": [
+      "https://pawcadegames.com/games/retro-bowl/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/pasture-subway-run/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-08T00:26:21Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/pasture-subway-run/",
+    "userCanonical": "https://pawcadegames.com/games/pasture-subway-run/",
+    "referringUrls": [
+      "https://www.pawcadegames.com/games/pasture-subway-run/",
+      "https://pawcadegames.com/games/retro-bowl/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/barnyard-pac-chick/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-03T12:14:16Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/barnyard-pac-chick/",
+    "userCanonical": "https://pawcadegames.com/games/barnyard-pac-chick/",
+    "referringUrls": [
+      "https://pawcadegames.com/games/retro-bowl/"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/farm-block-blast/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-10-30T21:13:20Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/farm-block-blast/",
+    "userCanonical": "https://pawcadegames.com/games/farm-block-blast/",
+    "referringUrls": [
+      "https://pawcadegames.com/sitemap.xml"
+    ],
+    "crawledAs": "MOBILE"
+  },
+  {
+    "path": "/games/dog-parking/",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "robotsTxtState": "ALLOWED",
+    "indexingState": "INDEXING_ALLOWED",
+    "lastCrawlTime": "2026-11-05T00:07:39Z",
+    "pageFetchState": "SUCCESSFUL",
+    "googleCanonical": "https://pawcadegames.com/games/dog-parking/",
+    "userCanonical": "https://pawcadegames.com/games/dog-parking/",
+    "referringUrls": [
+      "https://www.pawcadegames.com/games/dog-parking/",
+      "https://pawcadegames.com/category/pets/"
+    ],
+    "crawledAs": "MOBILE"
+  }
+]

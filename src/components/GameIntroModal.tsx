@@ -2830,22 +2830,22 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     subtitle: 'Creature Merge & Logic Puzzle',
     mascot: '🐘',
     themeColor: 'from-indigo-500 via-purple-600 to-violet-800',
-    goal: 'Slide the 4x4 grid to merge matching animals and evolve from a tiny Mouse all the way to the 2048 Elephant!',
+    goal: 'Slide the 4x4 grid to merge matching pets. Grow from a tiny mouse up to the big 2048 tile!',
     steps: [
       {
         icon: '➡️',
-        title: '1. Slide All 4 Directions',
-        desc: 'Swipe up, down, left, or right to slide all animal tiles across the board simultaneously.',
+        title: '1. Slide in 4 ways',
+        desc: 'Swipe up, down, left, or right. All tiles slide across the board at once.',
       },
       {
         icon: '🐭',
-        title: '2. Collide Matching Animals',
-        desc: 'When two identical creatures touch, they merge into the next evolution tier (Mouse ➔ Hamster ➔ Bunny...).',
+        title: '2. Merge twin pets',
+        desc: 'When two twin pets touch, they join into the next tier (Mouse to Bunny to Bear).',
       },
       {
         icon: '👑',
-        title: '3. Reach the Crowned Elephant',
-        desc: 'Climb through 11 animal evolution tiers without getting gridlocked to crown the majestic 2048 Elephant!',
+        title: '3. Hit the 2048 crown',
+        desc: 'Climb 11 pet tiers without filling the grid to win the 2048 crown!',
       },
     ],
     controls: {
@@ -3769,6 +3769,91 @@ export const GAME_INTROS: Record<string, GameIntroContent> = {
     },
     proTip: 'Look far ahead into the tunnel! If a floor tile is missing in front of you, pre-rotate one lane to the side to keep running without breaking stride.',
   },
+  'barnyard-snake': {
+    title: 'Barnyard Snake',
+    subtitle: 'Classic Worm Munch',
+    mascot: '🐛🍎',
+    themeColor: 'from-lime-500 via-emerald-600 to-emerald-950',
+    goal: 'Guide a hungry garden worm across the lawn. Eat apples to grow, and never touch a wall, a rock, or your own tail.',
+    steps: [
+      { icon: '🍎', title: '1. Eat apples', desc: 'Each red apple makes the worm longer and a little faster.' },
+      { icon: '🪨', title: '2. Dodge rocks', desc: 'A new rock appears every 5 apples. Plan your path early.' },
+      { icon: '🌟', title: '3. Chase golden apples', desc: 'Golden apples are worth 50 points, but they vanish fast.' },
+    ],
+    controls: {
+      desktop: ['Arrow keys or W/A/S/D: Steer the worm', 'Space or Enter: Play again after a crash'],
+      mobile: ['Swipe on the lawn: Turn instantly', 'Arrow pad: Precise turns'],
+    },
+    proTip: 'Queue two turns in a row. The game remembers your next two swipes, so tight corners stay smooth.',
+  },
+  'barnyard-word-guess': {
+    title: 'Barnyard Word Guess',
+    subtitle: 'Daily Five-Letter Farm Word',
+    mascot: '🌾🔤',
+    themeColor: 'from-amber-400 via-orange-500 to-emerald-700',
+    goal: 'Find the secret five-letter farm word in six tries. A new word arrives every day.',
+    steps: [
+      { icon: '⌨️', title: '1. Type a word', desc: 'Enter any five letters and press Enter to check them.' },
+      { icon: '🟩', title: '2. Read the colors', desc: 'Green is the right spot. Yellow is the wrong spot. Grey is not in the word.' },
+      { icon: '🔥', title: '3. Build a streak', desc: 'Solve the daily word to grow your streak, or play unlimited new words.' },
+    ],
+    controls: {
+      desktop: ['Type with your keyboard', 'Enter: Submit', 'Backspace: Delete'],
+      mobile: ['Tap the on-screen keys', 'ENTER: Submit', '⌫: Delete'],
+    },
+    proTip: 'Open with a word full of common letters like A, E, R, and S. Then use the keyboard colors to rule letters out.',
+  },
+  'pasture-paper-io': {
+    title: 'Pasture Paper.io: Turf Claim',
+    subtitle: 'Meadow Territory IO Battle',
+    mascot: '🐑🟩',
+    themeColor: 'from-lime-500 via-emerald-600 to-green-900',
+    goal: 'Ride outside your green grass to draw a loop and return home to claim the land inside.',
+    steps: [
+      { icon: '🟩', title: '1. Draw a loop', desc: 'Step off your turf to paint a bright trail across the meadow.' },
+      { icon: '🏡', title: '2. Return to safety', desc: 'Touch your own grass to close the loop and fill every cell inside.' },
+      { icon: '✂️', title: '3. Cut rival trails', desc: 'Cross a rival trail to knock them out, and guard your own ribbon!' },
+    ],
+    controls: {
+      desktop: ['Arrow keys or W/A/S/D: Turn in 4 ways', 'Space or Enter: Play again'],
+      mobile: ['Swipe on the meadow: Turn fast', 'Arrow pad: Sharp turns'],
+    },
+    proTip: 'Take small loops when rivals are close. Big loops grab huge land, but leave your ribbon open longer.',
+  },
+  'slither-pasture-io': {
+    title: 'Barnyard Slither.io',
+    subtitle: 'Glow Worm Arena IO',
+    mascot: '🐛✨',
+    themeColor: 'from-emerald-500 via-teal-700 to-slate-900',
+    goal: 'Eat glowing orbs to grow giant and cut in front of rival worms so they crash into your side.',
+    steps: [
+      { icon: '✨', title: '1. Eat glow orbs', desc: 'Glide over bright orbs across the orchard to grow longer and wider.' },
+      { icon: '⚡', title: '2. Boost ahead', desc: 'Hold Space or the Boost button to sprint ahead of bigger worms.' },
+      { icon: '💥', title: '3. Cut rivals off', desc: 'If a rival head hits your body, it bursts into huge bonus orbs!' },
+    ],
+    controls: {
+      desktop: ['Mouse or Left/Right keys: Steer smoothly', 'Hold Space or Shift: Sprint boost'],
+      mobile: ['Touch & drag on arena: Steer in 360°', 'Hold ⚡ BOOST button: Sprint ahead'],
+    },
+    proTip: 'You can cross your own body safely! Coil around a fresh pile of big orbs so rivals cannot steal them.',
+  },
+  'barnyard-geometry-dash': {
+    title: 'Barnyard Dash: Rhythm Jump',
+    subtitle: 'One-Tap Spike & Ship Courses',
+    mascot: '⚡🎵',
+    themeColor: 'from-lime-400 via-cyan-600 to-indigo-900',
+    goal: 'Jump spikes, climb neon blocks, and fly through ship gates to reach 100% on three courses.',
+    steps: [
+      { icon: '🟧', title: '1. Time your jumps', desc: 'Tap or hold to leap over spikes and hop up block stairs.' },
+      { icon: '🟡', title: '2. Hit pads & orbs', desc: 'Yellow pads bounce you high. Hold on mid-air rings for a second jump.' },
+      { icon: '🚀', title: '3. Fly the ship', desc: 'Pass pink portals to fly! Hold to rise and let go to dive.' },
+    ],
+    controls: {
+      desktop: ['Space, Up, W, or Click: Jump / Fly up', 'R Key: Instant restart'],
+      mobile: ['Tap or hold canvas or big bottom bar: Jump / Fly up'],
+    },
+    proTip: 'Hold the jump button on stair steps to chain clean hops right on the beat without mistiming.',
+  },
 };
 
 const ALIAS_INTROS: Record<string, string> = {
@@ -3801,6 +3886,11 @@ const ALIAS_INTROS: Record<string, string> = {
   'happy-glass': 'happy-milk-pail',
   'hole-io': 'pasture-hole-io',
   'run-3': 'barnyard-tunnel-runner',
+  'snake-game': 'barnyard-snake',
+  'word-guess': 'barnyard-word-guess',
+  'paper-io': 'pasture-paper-io',
+  'slither-io': 'slither-pasture-io',
+  'geometry-dash': 'barnyard-geometry-dash',
 };
 
 for (const [aliasKey, targetKey] of Object.entries(ALIAS_INTROS)) {

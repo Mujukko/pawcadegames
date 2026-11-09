@@ -7,6 +7,8 @@ const KEY_LOCATION = `https://${HOST}/${INDEXNOW_KEY}.txt`;
 async function submitIndexNow() {
   const urlList = [
     `https://${HOST}/`,
+    `https://${HOST}/popular/`,
+    `https://${HOST}/llms.txt`,
     `https://${HOST}/category/puzzle/`,
     `https://${HOST}/category/farm/`,
     `https://${HOST}/category/arcade/`,

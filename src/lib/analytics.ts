@@ -57,12 +57,23 @@ class AnalyticsService {
   }
 
   public track(event: AnalyticsEventName, payload?: Partial<AnalyticsEventPayload>): void {
+    // GA4 treats `source`, `medium`, `campaign`, `term` and `content` event parameters as
+    // traffic-source overrides. Sending `source: 'intro_modal'` hijacked session attribution
+    // (it showed up as "intro_modal / (not set)"), so these keys are namespaced here.
+    const safePayload: Record<string, unknown> = { ...payload };
+    for (const reserved of ['source', 'medium', 'campaign', 'term', 'content']) {
+      if (reserved in safePayload) {
+        safePayload[`event_${reserved}`] = safePayload[reserved];
+        delete safePayload[reserved];
+      }
+    }
+
     const data = {
       event,
       timestamp: new Date().toISOString(),
       sessionId: this.sessionId,
       sessionElapsedSeconds: Math.floor((Date.now() - this.sessionStartTime) / 1000),
-      ...payload,
+      ...safePayload,
     };
 
     // Log in development

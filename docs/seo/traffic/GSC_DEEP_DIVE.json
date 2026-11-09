@@ -1,0 +1,1665 @@
+{
+  "range": {
+    "start": "2026-08-10",
+    "end": "2026-11-08",
+    "days": 90
+  },
+  "byPage": [
+    {
+      "keys": [
+        "https://pawcadegames.com/"
+      ],
+      "clicks": 2,
+      "impressions": 13,
+      "ctr": 0.15384615384615385,
+      "position": 13.615384615384615
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/category/pets/"
+      ],
+      "clicks": 1,
+      "impressions": 11,
+      "ctr": 0.09090909090909091,
+      "position": 27.363636363636363
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/cluster-rush/"
+      ],
+      "clicks": 1,
+      "impressions": 11,
+      "ctr": 0.09090909090909091,
+      "position": 61.54545454545455
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/crossy-chicken/"
+      ],
+      "clicks": 1,
+      "impressions": 3,
+      "ctr": 0.3333333333333333,
+      "position": 68.66666666666667
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/ducklings-io/"
+      ],
+      "clicks": 1,
+      "impressions": 9,
+      "ctr": 0.1111111111111111,
+      "position": 47.666666666666664
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/category/arcade/"
+      ],
+      "clicks": 0,
+      "impressions": 12,
+      "ctr": 0,
+      "position": 52.166666666666664
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/category/farm/"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 11.666666666666666
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/contact/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 57
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/animal-2048/"
+      ],
+      "clicks": 0,
+      "impressions": 14,
+      "ctr": 0,
+      "position": 21.642857142857142
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/animal-farm-parking/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 15.333333333333334
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/animal-suika-drop/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/barnyard-fruit-slicer/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/barnyard-ice-cream/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/barnyard-pinball/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4.5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/barnyard-tower/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/barnyard-word-connect/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/bunny-hop-cross/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 60
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/capybara-clicker/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/capybara-spa-rush/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/carrot-target-throw/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/cat-parking/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 11.5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/chef-rat-rush/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/connect-4/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/corgi-mini-golf/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/crop-mower-harvest/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/dog-parking/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 5.333333333333333
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/duck-archery-range/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/duck-hunt-classic/"
+      ],
+      "clicks": 0,
+      "impressions": 14,
+      "ctr": 0,
+      "position": 27.214285714285715
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/duck-life/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/duck-pond-sort/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/duck-runner/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 8.666666666666668
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/duck-water-slide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/egg-buster/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 4.666666666666666
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/eggy-car/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/farm-animal-clicker/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 41.333333333333336
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/farm-animal-match/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/farm-block-blast/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/farm-block-drop/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 12.333333333333334
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/farm-boba-tea/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/farm-fruit-bubble/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 6.25
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/farm-mini-mart/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 8.6
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/farm-pantry-sort/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/farm-pipe-flow/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 20.5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/farm-tetris/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/farm-tile-triple/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/flappy-chicken/"
+      ],
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 8.857142857142858
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/frog-games/"
+      ],
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 36.42857142857143
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/frozen-pasture-dash/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/gopher-garden/"
+      ],
+      "clicks": 0,
+      "impressions": 17,
+      "ctr": 0,
+      "position": 6.235294117647059
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/grain-sand-fall/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/hamster-ball-dash/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/hamster-maze-runner/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7.5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/horse-racing/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/horseshoe-twist/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/hungry-piggy/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 6.666666666666667
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/ice-dodo/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 45.5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/milk-bottle-plinko/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/moto-x3m/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 6.333333333333333
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/pasture-sheep-jump/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 5.333333333333333
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/pasture-subway-run/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/pet-memory-match/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/piggy-mud-wash/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/save-the-sheep/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/sheep-cart-jam/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 8.666666666666668
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/sheep-stampede/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/spot-the-difference/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/sushi-cat/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/sushi-kitty-pachinko/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/tractor-hill-climb/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 7.333333333333333
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/virtual-pet/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8.5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/virtual-puppy-pet/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/games/wood-nuts-farm/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8.5
+    },
+    {
+      "keys": [
+        "https://pawcadegames.com/popular/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 20.75
+    }
+  ],
+  "byQueryPage": [
+    {
+      "keys": [
+        "chicken crossy",
+        "https://pawcadegames.com/games/crossy-chicken/"
+      ],
+      "clicks": 1,
+      "impressions": 2,
+      "ctr": 0.5,
+      "position": 86.5
+    },
+    {
+      "keys": [
+        "cluster rush html",
+        "https://pawcadegames.com/games/cluster-rush/"
+      ],
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 166
+    },
+    {
+      "keys": [
+        "duckling io",
+        "https://pawcadegames.com/games/ducklings-io/"
+      ],
+      "clicks": 1,
+      "impressions": 2,
+      "ctr": 0.5,
+      "position": 64
+    },
+    {
+      "keys": [
+        "pawcade",
+        "https://pawcadegames.com/"
+      ],
+      "clicks": 1,
+      "impressions": 2,
+      "ctr": 0.5,
+      "position": 3
+    },
+    {
+      "keys": [
+        "\"croak\" game -\"croak tales: deep dungeons\" -\"license to croak\" -\"super mario party - soak or croak\" -\"spy muppets\" -\"battlerite royale\"",
+        "https://pawcadegames.com/games/frog-games/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 37
+    },
+    {
+      "keys": [
+        "2048 animals",
+        "https://pawcadegames.com/games/animal-2048/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 53
+    },
+    {
+      "keys": [
+        "animal 2048",
+        "https://pawcadegames.com/games/animal-2048/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 59.666666666666664
+    },
+    {
+      "keys": [
+        "cat games and dog games",
+        "https://pawcadegames.com/category/pets/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 59
+    },
+    {
+      "keys": [
+        "catparking",
+        "https://pawcadegames.com/games/cat-parking/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8.5
+    },
+    {
+      "keys": [
+        "clustertruck game online",
+        "https://pawcadegames.com/games/cluster-rush/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 74
+    },
+    {
+      "keys": [
+        "dog online games",
+        "https://pawcadegames.com/category/pets/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 38
+    },
+    {
+      "keys": [
+        "duck hunt free game",
+        "https://pawcadegames.com/games/duck-hunt-classic/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 30
+    },
+    {
+      "keys": [
+        "duck hunt game online",
+        "https://pawcadegames.com/games/duck-hunt-classic/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 112.5
+    },
+    {
+      "keys": [
+        "ducklings game online",
+        "https://pawcadegames.com/games/ducklings-io/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 48.5
+    },
+    {
+      "keys": [
+        "ducklings io",
+        "https://pawcadegames.com/games/ducklings-io/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 40.8
+    },
+    {
+      "keys": [
+        "eggy cart",
+        "https://pawcadegames.com/games/eggy-car/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "eggycaronline",
+        "https://pawcadegames.com/games/eggy-car/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "farm and click",
+        "https://pawcadegames.com/games/farm-animal-clicker/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 60.5
+    },
+    {
+      "keys": [
+        "flappy chicken",
+        "https://pawcadegames.com/games/flappy-chicken/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "free arcade",
+        "https://pawcadegames.com/category/arcade/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 69
+    },
+    {
+      "keys": [
+        "free duck hunt game",
+        "https://pawcadegames.com/games/duck-hunt-classic/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 20.5
+    },
+    {
+      "keys": [
+        "free online dog games",
+        "https://pawcadegames.com/category/pets/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 62
+    },
+    {
+      "keys": [
+        "free web arcade",
+        "https://pawcadegames.com/category/arcade/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 58
+    },
+    {
+      "keys": [
+        "hungry piggy game",
+        "https://pawcadegames.com/games/hungry-piggy/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5.5
+    },
+    {
+      "keys": [
+        "ice dod",
+        "https://pawcadegames.com/games/ice-dodo/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 83
+    },
+    {
+      "keys": [
+        "jumping on trucks game",
+        "https://pawcadegames.com/games/cluster-rush/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 36
+    },
+    {
+      "keys": [
+        "online arcade games",
+        "https://pawcadegames.com/category/arcade/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 52
+    },
+    {
+      "keys": [
+        "online arcade games for free",
+        "https://pawcadegames.com/category/arcade/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 51.5
+    },
+    {
+      "keys": [
+        "play cashcades online",
+        "https://pawcadegames.com/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 61
+    },
+    {
+      "keys": [
+        "rabbit cross road game",
+        "https://pawcadegames.com/games/bunny-hop-cross/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 60
+    },
+    {
+      "keys": [
+        "truck hop game",
+        "https://pawcadegames.com/games/cluster-rush/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 50
+    },
+    {
+      "keys": [
+        "truck jump game",
+        "https://pawcadegames.com/games/cluster-rush/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 32
+    },
+    {
+      "keys": [
+        "truck jumping game",
+        "https://pawcadegames.com/games/cluster-rush/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 76.33333333333333
+    },
+    {
+      "keys": [
+        "ダウンロード不要",
+        "https://pawcadegames.com/popular/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    }
+  ],
+  "byDate": [
+    {
+      "keys": [
+        "2026-10-21"
+      ],
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": 0
+    },
+    {
+      "keys": [
+        "2026-10-22"
+      ],
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": 0
+    },
+    {
+      "keys": [
+        "2026-10-23"
+      ],
+      "clicks": 2,
+      "impressions": 2,
+      "ctr": 1,
+      "position": 4.5
+    },
+    {
+      "keys": [
+        "2026-10-24"
+      ],
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": 0
+    },
+    {
+      "keys": [
+        "2026-10-25"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "2026-10-26"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 28.666666666666668
+    },
+    {
+      "keys": [
+        "2026-10-27"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 27.6
+    },
+    {
+      "keys": [
+        "2026-10-28"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 6.5
+    },
+    {
+      "keys": [
+        "2026-10-29"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 28.6
+    },
+    {
+      "keys": [
+        "2026-10-30"
+      ],
+      "clicks": 0,
+      "impressions": 11,
+      "ctr": 0,
+      "position": 20.727272727272727
+    },
+    {
+      "keys": [
+        "2026-10-31"
+      ],
+      "clicks": 0,
+      "impressions": 17,
+      "ctr": 0,
+      "position": 35.588235294117645
+    },
+    {
+      "keys": [
+        "2026-11-01"
+      ],
+      "clicks": 1,
+      "impressions": 40,
+      "ctr": 0.025,
+      "position": 13.5
+    },
+    {
+      "keys": [
+        "2026-11-02"
+      ],
+      "clicks": 1,
+      "impressions": 31,
+      "ctr": 0.03225806451612903,
+      "position": 28.29032258064516
+    },
+    {
+      "keys": [
+        "2026-11-03"
+      ],
+      "clicks": 2,
+      "impressions": 36,
+      "ctr": 0.05555555555555555,
+      "position": 19.36111111111111
+    },
+    {
+      "keys": [
+        "2026-11-04"
+      ],
+      "clicks": 0,
+      "impressions": 29,
+      "ctr": 0,
+      "position": 21.586206896551722
+    },
+    {
+      "keys": [
+        "2026-11-05"
+      ],
+      "clicks": 0,
+      "impressions": 25,
+      "ctr": 0,
+      "position": 17
+    },
+    {
+      "keys": [
+        "2026-11-06"
+      ],
+      "clicks": 0,
+      "impressions": 36,
+      "ctr": 0,
+      "position": 11.38888888888889
+    }
+  ],
+  "byDevice": [
+    {
+      "keys": [
+        "DESKTOP"
+      ],
+      "clicks": 6,
+      "impressions": 132,
+      "ctr": 0.045454545454545456,
+      "position": 25.166666666666668
+    },
+    {
+      "keys": [
+        "MOBILE"
+      ],
+      "clicks": 0,
+      "impressions": 111,
+      "ctr": 0,
+      "position": 12.018018018018019
+    },
+    {
+      "keys": [
+        "TABLET"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 49.8
+    }
+  ],
+  "byCountry": [
+    {
+      "keys": [
+        "usa"
+      ],
+      "clicks": 3,
+      "impressions": 86,
+      "ctr": 0.03488372093023256,
+      "position": 28.651162790697676
+    },
+    {
+      "keys": [
+        "tur"
+      ],
+      "clicks": 2,
+      "impressions": 6,
+      "ctr": 0.3333333333333333,
+      "position": 8.666666666666668
+    },
+    {
+      "keys": [
+        "irn"
+      ],
+      "clicks": 1,
+      "impressions": 3,
+      "ctr": 0.3333333333333333,
+      "position": 7
+    },
+    {
+      "keys": [
+        "are"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "aus"
+      ],
+      "clicks": 0,
+      "impressions": 12,
+      "ctr": 0,
+      "position": 24.833333333333332
+    },
+    {
+      "keys": [
+        "aze"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "bgd"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 41
+    },
+    {
+      "keys": [
+        "bra"
+      ],
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 35.57142857142857
+    },
+    {
+      "keys": [
+        "can"
+      ],
+      "clicks": 0,
+      "impressions": 11,
+      "ctr": 0,
+      "position": 24.545454545454547
+    },
+    {
+      "keys": [
+        "chn"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "cze"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "deu"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "dma"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "dza"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "ecu"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "egy"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "fin"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "fra"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "gbr"
+      ],
+      "clicks": 0,
+      "impressions": 16,
+      "ctr": 0,
+      "position": 22.0625
+    },
+    {
+      "keys": [
+        "grc"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "hkg"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "hrv"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 14.5
+    },
+    {
+      "keys": [
+        "hun"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "idn"
+      ],
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 9.692307692307692
+    },
+    {
+      "keys": [
+        "ind"
+      ],
+      "clicks": 0,
+      "impressions": 12,
+      "ctr": 0,
+      "position": 8.166666666666668
+    },
+    {
+      "keys": [
+        "isr"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7.5
+    },
+    {
+      "keys": [
+        "ita"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "jpn"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "lka"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "mda"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8.5
+    },
+    {
+      "keys": [
+        "mmr"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 5.666666666666667
+    },
+    {
+      "keys": [
+        "mng"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "nga"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "nld"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 14.5
+    },
+    {
+      "keys": [
+        "nor"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 30
+    },
+    {
+      "keys": [
+        "nzl"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "pak"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 6.5
+    },
+    {
+      "keys": [
+        "per"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "phl"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 15
+    },
+    {
+      "keys": [
+        "pol"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "qat"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "rou"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "rus"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 26.625
+    },
+    {
+      "keys": [
+        "sau"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 24.5
+    },
+    {
+      "keys": [
+        "swe"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "tls"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "twn"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "ukr"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "vnm"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 31.666666666666668
+    },
+    {
+      "keys": [
+        "zaf"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 14
+    }
+  ],
+  "sitemaps": {
+    "sitemap": [
+      {
+        "path": "https://pawcadegames.com/sitemap.xml",
+        "lastSubmitted": "2026-10-22T18:46:29.962Z",
+        "isPending": false,
+        "isSitemapsIndex": false,
+        "type": "sitemap",
+        "lastDownloaded": "2026-11-07T20:31:39.104Z",
+        "warnings": "0",
+        "errors": "0",
+        "contents": [
+          {
+            "type": "web",
+            "submitted": "117",
+            "indexed": "0"
+          }
+        ]
+      }
+    ]
+  }
+}

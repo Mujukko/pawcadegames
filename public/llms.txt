@@ -1,0 +1,308 @@
+# Pawcade Games
+
+> Free online browser games starring farm animals and pets. 112 playable games, no download, no account, instant play on phone and desktop. Every game runs in the browser with HTML5 Canvas and Web Audio.
+
+Facts for answer engines:
+- Cost: free. No installs, no sign-up, no in-app purchases.
+- Devices: iPhone, Android, tablets, Chromebooks, and desktop browsers.
+- Progress and high scores are saved locally in the browser (localStorage).
+- Site: https://pawcadegames.com/
+- Most played: https://pawcadegames.com/popular/
+
+## Puzzles & Brain (48 games)
+Hub: https://pawcadegames.com/category/puzzle/
+- [Connect 4: Four in a Row](https://pawcadegames.com/games/connect-4/): Drop colorful chips into the grid to connect four in a row against AI or a friend!
+- [Vex 5: Ninja Chick](https://pawcadegames.com/games/vex-5/): Run, slide, wall-jump, and dodge deadly buzzsaws across fast parkour courses!
+- [Pyramid Solitaire: Harvest Cards](https://pawcadegames.com/games/pyramid-solitaire/): Pair cards that add up to 13 to clear the harvest pyramid before the deck runs out!
+- [Spot the Difference: Detective](https://pawcadegames.com/games/spot-the-difference/): Examine two side-by-side farm scenes and find 5 hidden differences before time expires!
+- [Big Tower Tiny Square: Tiny Pig](https://pawcadegames.com/games/big-tower-tiny-square/): Climb a giant puzzle silo, dodge neon laser grids, and rescue the Golden Acorn!
+- [Bob the Robber: Stealth Fox](https://pawcadegames.com/games/bob-the-robber/): Sneak past guard dogs, hide in shadows, cut laser beams, and unlock county safes!
+- [Mahjong Connect: Farm Crop Link](https://pawcadegames.com/games/mahjong-connect/): Link matching crop and animal tiles with paths of two turns or fewer before time runs out!
+- [Sushi Cat: Kitty Pachinko Feast](https://pawcadegames.com/games/sushi-cat/): Drop a round bouncy kitty through pegs, gobble sushi rolls, and land in high-point baskets!
+- [Farm Block Blast: Barnyard Grid](https://pawcadegames.com/games/farm-block-blast/): Place wooden crop blocks on an 8x8 grid, blast full lines, and build massive combo streaks with Barnaby the pup!
+- [Sheep Cart Jam: Meadow Escape](https://pawcadegames.com/games/sheep-cart-jam/): Untangle the farm parking maze, dock matching carts, and board waiting fluffy sheep to escape to the meadow!
+- [Horseshoe Twist: Barn Unlock](https://pawcadegames.com/games/horseshoe-twist/): Rotate concentric wooden and iron rings to align escape notches and unlock Clover's Lucky Golden Horseshoe!
+- [Farm Mahjong Solitaire: Barnyard Tiles](https://pawcadegames.com/games/farm-mahjong/): Match pairs of free wooden farm tiles to clear the pyramid stack in this cozy puzzle!
+- [Pet Memory Match: Barnyard Cards](https://pawcadegames.com/games/pet-memory-match/): Flip cards, remember pet faces, and match adorable animal pairs before the timer ticks down!
+- [Critter Tap Away: Barn Escape](https://pawcadegames.com/games/critter-tap-away/): Tap trapped farm animals whose paths are clear to untangle the pen and help them escape into the clover pasture!
+- [Dog Parking: Barnyard Escape](https://pawcadegames.com/games/dog-parking/): Guide adorable pups and Sunny the Corgi through crowded barnyard puzzle lanes!
+- [Cat Parking: Kitty Meadow Escape](https://pawcadegames.com/games/cat-parking/): Slide sleepy kitties and guide Luna the Star Cat through cozy meadow mazes!
+- [Farm Pantry Sort: Triple Pick](https://pawcadegames.com/games/farm-pantry-sort/): Organize Grandma's farm cupboard, slide honey jars, milk bottles, and fresh pies to match 3 and clear the shelves!
+- [Grain Sand Fall: Farm Physics](https://pawcadegames.com/games/grain-sand-fall/): Melt falling crop tetrominoes into realistic grains of sand, connecting matching colors wall-to-wall to clear the silo!
+- [Farm Animal Match: Barnyard Crush](https://pawcadegames.com/games/farm-animal-match/): Match dynamite, rockets, and barrel bombs with cute farm animals!
+- [Animal 2048: Safari Merge](https://pawcadegames.com/games/animal-2048/): Slide and merge cute pets from a tiny mouse up to the 2048 crown!
+- [Farm Block Drop: Barnyard Harvest](https://pawcadegames.com/games/farm-block-drop/): Stack fresh harvest crates, fill the glowing silo, and delight the friendly farmer!
+- [Barnyard Tower: Animal Stack](https://pawcadegames.com/games/barnyard-tower/): Drop cute farm animals from a swinging crane to build the tallest wobbling tower!
+- [Farm Fruit Bubble: Orchard Pop](https://pawcadegames.com/games/farm-fruit-bubble/): Aim and pop sweet orchard fruit bubbles in this crisp barnyard puzzle!
+- [Duck Pond Sort: Water Lily Float](https://pawcadegames.com/games/duck-pond-sort/): Sort adorable rubber duckies by color into calm farm pond docks!
+- [Save the Sheep: Hive Defense](https://pawcadegames.com/games/save-the-sheep/): Draw sturdy fences with ink to shield Barnaby the sheep from buzzing bee swarms!
+- [Wood Nuts & Bolts: Barnyard Jam](https://pawcadegames.com/games/wood-nuts-farm/): Unscrew metallic bolts from farm boards to drop colorful wooden planks in this physics puzzle!
+- [Animal Drop: Watermelon Merge](https://pawcadegames.com/games/animal-suika-drop/): Drop and merge cute farm animals to grow the giant Watermelon Elephant in this juicy physics puzzle!
+- [Tile Matching Game: Farm Tile Triple](https://pawcadegames.com/games/farm-tile-triple/): Pick and match 3 cute farm crop tiles in your 7-slot tray to clear the board in this cozy puzzle!
+- [Farm Pipe Flow: Barnyard Plumber](https://pawcadegames.com/games/farm-pipe-flow/): Rotate water pipes to irrigate thirsty barnyard crops and animal troughs in this cozy plumber puzzle!
+- [Barnyard Pin Pull: Rescue & Loot](https://pawcadegames.com/games/barnyard-pin-pull/): Pull golden pins to quench burning lava, defeat thieving foxes, and drop fresh carrots to rescue Barnaby!
+- [Hamster Cookie Stack: Sweet Bakery](https://pawcadegames.com/games/hamster-cookie-stack/): Catch dropping sweet treats on a golden pastry plate and balance a giant wobbly dessert tower with Mochi!
+- [Barnyard Fruit Slicer: Farm Juice](https://pawcadegames.com/games/barnyard-fruit-slicer/): Swipe your blade across flying apples, watermelons, and golden corn in mid-air to make fresh barnyard juice!
+- [Barnyard Peg Pop: Acorn Bounce](https://pawcadegames.com/games/barnyard-peg-pop/): Aim your acorn cannon, bounce off colorful farm pegs, and clear all golden targets for rainbow celebrations!
+- [Animal Tangram: Wooden Block Fit](https://pawcadegames.com/games/animal-tangram-fit/): Fit rustic wooden blocks into cute animal silhouettes without overlapping!
+- [Farm TriPeaks Solitaire: Harvest Peak](https://pawcadegames.com/games/farm-tripeaks-solitaire/): Clear 3 card pyramids, build harvest streak multipliers, and conquer farm peaks!
+- [Hamster Maze: Nut Escape](https://pawcadegames.com/games/hamster-maze-runner/): Guide Pip the hungry hamster through timber mazes, gather golden acorns, find the brass key, and unlock the exit door!
+- [Barnyard Rope Cut: Feed the Piggy](https://pawcadegames.com/games/barnyard-rope-cut/): Slice swinging ropes, collect golden stars, and feed juicy apples to hungry Penny!
+- [Barnyard Popcorn Popper: Kernel Burst](https://pawcadegames.com/games/barnyard-popcorn-popper/): Hold to pour golden corn into the kettle and pop fluffy butter popcorn!
+- [Barnyard Word Connect: Corgi Cross](https://pawcadegames.com/games/barnyard-word-connect/): Swipe across wooden letter tiles to connect farm words and solve crosswords!
+- [Level Devil: Mischief Meadow](https://pawcadegames.com/games/level-devil/): Outsmart troll traps, collapsing hay bales, and runaway doors in this trick platformer!
+- [Water Sort: Farm Bottle Pour](https://pawcadegames.com/games/water-sort/): Sort vibrant milk bottles and juices until every flask holds a single color!
+- [Bad Ice Cream: Frosty Barnyard](https://pawcadegames.com/games/bad-ice-cream/): Break and create ice blocks to gather fresh farm fruits while dodging hungry predators!
+- [Fireboy & Watergirl: Sun Pup & Moon Kitty](https://pawcadegames.com/games/fireboy-and-watergirl/): Cooperative elemental platform puzzle guiding fire and water heroes to temple portals!
+- [Barnyard Hay Stack: Tower Block](https://pawcadegames.com/games/barnyard-hay-stack/): Stack moving hay blocks with rhythm and build a giant tower!
+- [Barnyard Color Switch: Match Tap](https://pawcadegames.com/games/barnyard-color-switch/): Tap to flap upward and pass only through matching obstacle colors!
+- [Milk Bottle Flip 3D: Farm Rooms](https://pawcadegames.com/games/milk-bottle-flip/): Flip fresh milk bottles across farmhouse furniture and land upright!
+- [Happy Milk Pail: Draw Physics](https://pawcadegames.com/games/happy-milk-pail/): Draw barrier ramps to guide milk droplets into the thirsty pail!
+- [Barnyard Word Guess: Daily Farm Words](https://pawcadegames.com/games/barnyard-word-guess/): Guess the secret five-letter farm word in six tries. A new word every day!
+
+## Farm & Barnyard (89 games)
+Hub: https://pawcadegames.com/category/farm/
+- [Eggy Car](https://pawcadegames.com/games/eggy-car/): Balance a fragile egg in your hill-climbing car across steep country hills!
+- [Capybara Clicker](https://pawcadegames.com/games/capybara-clicker/): Tap the chill capybara, brew warm yuzu baths, and grow a happy rodent colony!
+- [Duck Life: Train & Race](https://pawcadegames.com/games/duck-life/): Train your duckling in running, flying, and swimming to win championship races!
+- [Pyramid Solitaire: Harvest Cards](https://pawcadegames.com/games/pyramid-solitaire/): Pair cards that add up to 13 to clear the harvest pyramid before the deck runs out!
+- [Ice Dodo: Frozen Pasture Dash](https://pawcadegames.com/games/ice-dodo/): Carve across narrow ice tracks, hit turbo boost pads, and dodge winter barriers!
+- [Spot the Difference: Detective](https://pawcadegames.com/games/spot-the-difference/): Examine two side-by-side farm scenes and find 5 hidden differences before time expires!
+- [Cluster Rush: Truck Jumper](https://pawcadegames.com/games/cluster-rush/): Leap across speeding truck roofs, slide under road signs, and survive the convoy!
+- [Rooftop Snipers: Roof Duel](https://pawcadegames.com/games/rooftop-snipers/): Floppy two-button ragdoll duel! Jump and fire your rifle to knock rivals off the roof!
+- [Moto X3M: Stunt Trials](https://pawcadegames.com/games/moto-x3m/): Perform 360-degree backflips, blast over ramps, and beat the clock on wild stunt tracks!
+- [Horse Racing: Barnyard Derby](https://pawcadegames.com/games/horse-racing/): Gallop down the racetrack, time steeplechase jumps, and win the championship cup!
+- [Mahjong Connect: Farm Crop Link](https://pawcadegames.com/games/mahjong-connect/): Link matching crop and animal tiles with paths of two turns or fewer before time runs out!
+- [Penguin Diner: Arctic Cafe](https://pawcadegames.com/games/penguin-diner/): Seat hungry penguin guests, take orders, serve fish dishes, and upgrade your diner!
+- [Virtual Pet: Puppy Care](https://pawcadegames.com/games/virtual-pet/): Feed, bathe, play fetch, and care for an adorable corgi puppy in your browser!
+- [Ducklings.io: Pond Rescue](https://pawcadegames.com/games/ducklings-io/): Rescue lost yellow ducklings, dodge speeding motorboats, and lead your brood home!
+- [Frog Games: Barnyard Pond Hop](https://pawcadegames.com/games/frog-games/): Leap across drifting lily pads, snatch buzzing flies with your tongue, and cross the pond!
+- [Farm Animal Idle Clicker](https://pawcadegames.com/games/farm-animal-clicker/): Tap cute farm animals, automate barns, catch golden butterflies, and earn millions of coins!
+- [Farm Mini Mart: Animal Market](https://pawcadegames.com/games/farm-mini-mart/): Harvest fresh crops, stock market shelves, and serve cute animal customers in your own farm mart!
+- [Farm Block Blast: Barnyard Grid](https://pawcadegames.com/games/farm-block-blast/): Place wooden crop blocks on an 8x8 grid, blast full lines, and build massive combo streaks with Barnaby the pup!
+- [Farm Mahjong Solitaire: Barnyard Tiles](https://pawcadegames.com/games/farm-mahjong/): Match pairs of free wooden farm tiles to clear the pyramid stack in this cozy puzzle!
+- [Egg Buster: Barnyard Smash](https://pawcadegames.com/games/egg-buster/): Pull back Pippin's slingshot, bounce eggs off milk churns, and topple wooden crates to smash sneaky foxes!
+- [Farm Pantry Sort: Triple Pick](https://pawcadegames.com/games/farm-pantry-sort/): Organize Grandma's farm cupboard, slide honey jars, milk bottles, and fresh pies to match 3 and clear the shelves!
+- [Grain Sand Fall: Farm Physics](https://pawcadegames.com/games/grain-sand-fall/): Melt falling crop tetrominoes into realistic grains of sand, connecting matching colors wall-to-wall to clear the silo!
+- [Chef Rat Rush: Ratatouille Bistro](https://pawcadegames.com/games/chef-rat-rush/): Chop fresh produce, simmer gourmet ratatouille on stove, and ring the service bell for Paris food critics!
+- [Flappy Chicken: Barnyard Flight](https://pawcadegames.com/games/flappy-chicken/): Flap through rustic farm gates under the sunny sky to reach the Golden Wheat Granary!
+- [Farm Block Drop: Barnyard Harvest](https://pawcadegames.com/games/farm-block-drop/): Stack fresh harvest crates, fill the glowing silo, and delight the friendly farmer!
+- [Animal Farm Parking: Countryside Tractor](https://pawcadegames.com/games/animal-farm-parking/): Steer Bessie the Cow and farm equipment into marked bays without crashing into obstacles!
+- [Gopher Garden: Whack & Harvest](https://pawcadegames.com/games/gopher-garden/): Protect your farm vegetables by tapping cheeky gophers before they steal your crop!
+- [Farm Fruit Bubble: Orchard Pop](https://pawcadegames.com/games/farm-fruit-bubble/): Aim and pop sweet orchard fruit bubbles in this crisp barnyard puzzle!
+- [Pasture Sheep Jump: Cloud Leap](https://pawcadegames.com/games/pasture-sheep-jump/): Bounce your fluffy sheep across floating hay bales and reach sunny skies!
+- [Hungry Piggy: Farmyard Chomper](https://pawcadegames.com/games/hungry-piggy/): Chomp farm apples, crates, and tractors to grow into the biggest pig in the pasture!
+- [Duck Pond Sort: Water Lily Float](https://pawcadegames.com/games/duck-pond-sort/): Sort adorable rubber duckies by color into calm farm pond docks!
+- [Hamster Ball Dash: Tube Roll](https://pawcadegames.com/games/hamster-ball-dash/): Roll your energetic hamster through transparent stunt tubes and collect golden sunflower seeds!
+- [Cat Cafe Rush: Cozy Bakery](https://pawcadegames.com/games/cat-cafe-rush/): Serve warm fish waffles, strawberry cakes, and matcha tea to visiting cats in your cozy bakery!
+- [Save the Sheep: Hive Defense](https://pawcadegames.com/games/save-the-sheep/): Draw sturdy fences with ink to shield Barnaby the sheep from buzzing bee swarms!
+- [Capybara Spa: Hot Springs](https://pawcadegames.com/games/capybara-spa-rush/): Run a relaxing cedar onsen bath for visiting capybaras with floating yuzu and herbal tea!
+- [Wood Nuts & Bolts: Barnyard Jam](https://pawcadegames.com/games/wood-nuts-farm/): Unscrew metallic bolts from farm boards to drop colorful wooden planks in this physics puzzle!
+- [Animal Drop: Watermelon Merge](https://pawcadegames.com/games/animal-suika-drop/): Drop and merge cute farm animals to grow the giant Watermelon Elephant in this juicy physics puzzle!
+- [Tile Matching Game: Farm Tile Triple](https://pawcadegames.com/games/farm-tile-triple/): Pick and match 3 cute farm crop tiles in your 7-slot tray to clear the board in this cozy puzzle!
+- [Farm Pipe Flow: Barnyard Plumber](https://pawcadegames.com/games/farm-pipe-flow/): Rotate water pipes to irrigate thirsty barnyard crops and animal troughs in this cozy plumber puzzle!
+- [Koi Pond: Zen Water Garden](https://pawcadegames.com/games/koi-pond-zen/): Feed graceful Japanese koi fish, bloom pink lotus flowers, and create gentle water ripples in a peaceful zen pond garden.
+- [Barnyard Pin Pull: Rescue & Loot](https://pawcadegames.com/games/barnyard-pin-pull/): Pull golden pins to quench burning lava, defeat thieving foxes, and drop fresh carrots to rescue Barnaby!
+- [Barnyard Fruit Slicer: Farm Juice](https://pawcadegames.com/games/barnyard-fruit-slicer/): Swipe your blade across flying apples, watermelons, and golden corn in mid-air to make fresh barnyard juice!
+- [Barnyard Peg Pop: Acorn Bounce](https://pawcadegames.com/games/barnyard-peg-pop/): Aim your acorn cannon, bounce off colorful farm pegs, and clear all golden targets for rainbow celebrations!
+- [Duck Archery: Target Master](https://pawcadegames.com/games/duck-archery-range/): Pull back the bowstring, gauge prairie wind gusts, and shoot bullseyes with Quacky the Robin Duck!
+- [Caterpillar Garden: Fruit Trail Snake](https://pawcadegames.com/games/caterpillar-fruit-trail/): Crawl through garden plots, eat sweet berries, dodge thorny hedges, and grow your fuzzy trail!
+- [Carrot Target Throw: Barnyard Spin](https://pawcadegames.com/games/carrot-target-throw/): Throw crunchy carrots into rotating farm targets, slice bonus fruit, and dodge obstacles!
+- [Animal Tangram: Wooden Block Fit](https://pawcadegames.com/games/animal-tangram-fit/): Fit rustic wooden blocks into cute animal silhouettes without overlapping!
+- [Piggy Coin Pusher: Barnyard Dozer](https://pawcadegames.com/games/piggy-coin-pusher/): Drop shiny coins, trigger farm quakes, and push big prizes over the ledge!
+- [Milk Bottle Plinko: Carnival Drop](https://pawcadegames.com/games/milk-bottle-plinko/): Drop farm milk bottles through bouncy wooden pegs into the 100x jackpot bucket!
+- [Farm TriPeaks Solitaire: Harvest Peak](https://pawcadegames.com/games/farm-tripeaks-solitaire/): Clear 3 card pyramids, build harvest streak multipliers, and conquer farm peaks!
+- [Barnyard Sheep Sorter: Pasture Gate](https://pawcadegames.com/games/sheep-sorter-gate/): Flip the pasture gate left or right to sort fluffy sheep into their meadows before time runs out!
+- [Barnyard Pinball: Flipper Farm](https://pawcadegames.com/games/barnyard-pinball/): Launch chrome pinballs, hit glowing farm bumpers, and keep the ball in play with dual flippers!
+- [Crop Mower: Harvest Rush](https://pawcadegames.com/games/crop-mower-harvest/): Drive a nimble red tractor to mow neat rows of tall golden wheat, fill your harvest basket, and clear 100% of the field!
+- [Chicken Egg Catcher: Barnyard Rush](https://pawcadegames.com/games/chicken-egg-catcher/): Slide your woven straw basket to catch falling golden eggs, dodge spoiled rotten eggs, and trigger fever mode!
+- [Piggy Mud Wash: County Fair Spa](https://pawcadegames.com/games/piggy-mud-wash/): Scrub muddy farm pets with soap, rinse them with the hose, towel dry, and win the County Fair 1st prize ribbon!
+- [Barnyard Brick Breaker: Apple Bounce](https://pawcadegames.com/games/barnyard-brick-breaker/): Steer your farm cart paddle, bounce crisp apples, smash wooden fruit crates, and grab golden honey power-ups!
+- [Duck Water Slide: Splash Rush](https://pawcadegames.com/games/duck-water-slide/): Steer Quacky down twisting water flumes, grab rubber duckies, catch air on stunt ramps, and plunge into the farm splash pool!
+- [Bunny Hop: Road & River Cross](https://pawcadegames.com/games/bunny-hop-cross/): Guide Barnaby Bunny across busy farm roads, floating river logs, and railroad tracks in this classic arcade hopper!
+- [Farm Boba Tea: Animal Cafe](https://pawcadegames.com/games/farm-boba-tea/): Brew delicious boba bubble tea, scoop chewy tapioca pearls, and serve thirsty animal customers in your cozy farm cafe!
+- [Barnyard Ice Cream: Scoop & Stack](https://pawcadegames.com/games/barnyard-ice-cream/): Stack giant ice cream scoops on crispy waffle cones, drizzle hot fudge, and serve hungry farm pets!
+- [Barnyard Kart: Tractor Grand Prix](https://pawcadegames.com/games/barnyard-kart-drift/): Steer and drift your farm tractor around muddy championship tracks!
+- [Piggy Cannon Blast: Barnyard Launch](https://pawcadegames.com/games/piggy-cannon-blast/): Aim your circus cannon, blast Penny high into the sky, and upgrade your flight gear!
+- [Barnyard Rope Cut: Feed the Piggy](https://pawcadegames.com/games/barnyard-rope-cut/): Slice swinging ropes, collect golden stars, and feed juicy apples to hungry Penny!
+- [Barnyard Popcorn Popper: Kernel Burst](https://pawcadegames.com/games/barnyard-popcorn-popper/): Hold to pour golden corn into the kettle and pop fluffy butter popcorn!
+- [Barnyard Word Connect: Corgi Cross](https://pawcadegames.com/games/barnyard-word-connect/): Swipe across wooden letter tiles to connect farm words and solve crosswords!
+- [Crossy Chicken: Farm Highway Run](https://pawcadegames.com/games/crossy-chicken/): Hop Clucky across busy farm highways, rushing river logs, and railroad tracks!
+- [Tractor Hill Climb: Barnyard Ridge](https://pawcadegames.com/games/tractor-hill-climb/): Drive a bouncy farm tractor over steep hills, perform air flips, and collect diesel!
+- [Basket Random: Barnyard Dunkers](https://pawcadegames.com/games/basket-random/): Wobbly 2-on-2 ragdoll basketball with floppy dunks and unpredictable physics!
+- [Water Sort: Farm Bottle Pour](https://pawcadegames.com/games/water-sort/): Sort vibrant milk bottles and juices until every flask holds a single color!
+- [Gold Miner: Barnyard Gem Digger](https://pawcadegames.com/games/gold-miner/): Aim your oscillating winch claw, haul in gold nuggets, and beat shift quotas!
+- [Stickman Hook: Fluffy Grapple Swing](https://pawcadegames.com/games/stickman-hook/): Latch onto barn rafter pegs, gain pendulum speed, and fling across the finish line!
+- [Bad Ice Cream: Frosty Barnyard](https://pawcadegames.com/games/bad-ice-cream/): Break and create ice blocks to gather fresh farm fruits while dodging hungry predators!
+- [Retro Bowl: Barnyard Gridiron](https://pawcadegames.com/games/retro-bowl/): Aim precision passes, juke charging bull defenders, and score touchdowns on the gridiron!
+- [Slope: Rolling Acorn Dash](https://pawcadegames.com/games/slope/): Steer down high-speed 3D forest boardwalks, dodge barriers, and survive the slope!
+- [Ragdoll Hit: Barnyard Brawler](https://pawcadegames.com/games/ragdoll-hit/): Floppy ragdoll fighting physics swinging boxing gloves, brooms, and pitchforks!
+- [Helix Silo Drop: Spiral Jump](https://pawcadegames.com/games/helix-silo-drop/): Drop through grain silo spiral platforms and dodge hazard tiles!
+- [Pasture Subway Run: Farm Dash](https://pawcadegames.com/games/pasture-subway-run/): Dodge tractors, leap over fences, and dash across pasture tracks!
+- [Barnyard Hay Stack: Tower Block](https://pawcadegames.com/games/barnyard-hay-stack/): Stack moving hay blocks with rhythm and build a giant tower!
+- [Barnyard Doodle Jump: Cloud Hop](https://pawcadegames.com/games/barnyard-doodle-jump/): Bounce Clucky high into the clouds on moving platforms and springs!
+- [Milk Bottle Flip 3D: Farm Rooms](https://pawcadegames.com/games/milk-bottle-flip/): Flip fresh milk bottles across farmhouse furniture and land upright!
+- [Barnyard Pac Chick: Corn Gobbler](https://pawcadegames.com/games/barnyard-pac-chick/): Gobble corn in the garden hedge maze and chase blue frightened foxes!
+- [Happy Milk Pail: Draw Physics](https://pawcadegames.com/games/happy-milk-pail/): Draw barrier ramps to guide milk droplets into the thirsty pail!
+- [Pasture Hole IO: Farm Vacuum](https://pawcadegames.com/games/pasture-hole-io/): Slide an expanding black void across the farm and swallow everything!
+- [Barnyard Tunnel Runner: Run 3D](https://pawcadegames.com/games/barnyard-tunnel-runner/): Sprint through an 8-sided silo tunnel and rotate the world to survive!
+- [Barnyard Snake: Worm Munch](https://pawcadegames.com/games/barnyard-snake/): Guide a hungry garden worm, eat apples, and dodge rocks and your own tail!
+- [Barnyard Word Guess: Daily Farm Words](https://pawcadegames.com/games/barnyard-word-guess/): Guess the secret five-letter farm word in six tries. A new word every day!
+- [Pasture Paper.io: Turf Claim](https://pawcadegames.com/games/paper-io/): Draw loops across the meadow to claim green turf and cut rival trails!
+- [Barnyard Slither.io: Glow Worm Arena](https://pawcadegames.com/games/slither-io/): Eat glowing orbs to grow giant and boost ahead to cut off rival worms!
+- [Barnyard Dash: Rhythm Spike Jump](https://pawcadegames.com/games/geometry-dash/): Tap to the beat to leap spikes, hit bounce pads, and fly through ship portals!
+
+## Arcade & Action (86 games)
+Hub: https://pawcadegames.com/category/arcade/
+- [Eggy Car](https://pawcadegames.com/games/eggy-car/): Balance a fragile egg in your hill-climbing car across steep country hills!
+- [Connect 4: Four in a Row](https://pawcadegames.com/games/connect-4/): Drop colorful chips into the grid to connect four in a row against AI or a friend!
+- [Capybara Clicker](https://pawcadegames.com/games/capybara-clicker/): Tap the chill capybara, brew warm yuzu baths, and grow a happy rodent colony!
+- [Duck Life: Train & Race](https://pawcadegames.com/games/duck-life/): Train your duckling in running, flying, and swimming to win championship races!
+- [Vex 5: Ninja Chick](https://pawcadegames.com/games/vex-5/): Run, slide, wall-jump, and dodge deadly buzzsaws across fast parkour courses!
+- [Pyramid Solitaire: Harvest Cards](https://pawcadegames.com/games/pyramid-solitaire/): Pair cards that add up to 13 to clear the harvest pyramid before the deck runs out!
+- [Ice Dodo: Frozen Pasture Dash](https://pawcadegames.com/games/ice-dodo/): Carve across narrow ice tracks, hit turbo boost pads, and dodge winter barriers!
+- [Cluster Rush: Truck Jumper](https://pawcadegames.com/games/cluster-rush/): Leap across speeding truck roofs, slide under road signs, and survive the convoy!
+- [Rooftop Snipers: Roof Duel](https://pawcadegames.com/games/rooftop-snipers/): Floppy two-button ragdoll duel! Jump and fire your rifle to knock rivals off the roof!
+- [Big Tower Tiny Square: Tiny Pig](https://pawcadegames.com/games/big-tower-tiny-square/): Climb a giant puzzle silo, dodge neon laser grids, and rescue the Golden Acorn!
+- [Bob the Robber: Stealth Fox](https://pawcadegames.com/games/bob-the-robber/): Sneak past guard dogs, hide in shadows, cut laser beams, and unlock county safes!
+- [Moto X3M: Stunt Trials](https://pawcadegames.com/games/moto-x3m/): Perform 360-degree backflips, blast over ramps, and beat the clock on wild stunt tracks!
+- [Horse Racing: Barnyard Derby](https://pawcadegames.com/games/horse-racing/): Gallop down the racetrack, time steeplechase jumps, and win the championship cup!
+- [Mahjong Connect: Farm Crop Link](https://pawcadegames.com/games/mahjong-connect/): Link matching crop and animal tiles with paths of two turns or fewer before time runs out!
+- [Sushi Cat: Kitty Pachinko Feast](https://pawcadegames.com/games/sushi-cat/): Drop a round bouncy kitty through pegs, gobble sushi rolls, and land in high-point baskets!
+- [Penguin Diner: Arctic Cafe](https://pawcadegames.com/games/penguin-diner/): Seat hungry penguin guests, take orders, serve fish dishes, and upgrade your diner!
+- [Virtual Pet: Puppy Care](https://pawcadegames.com/games/virtual-pet/): Feed, bathe, play fetch, and care for an adorable corgi puppy in your browser!
+- [Ducklings.io: Pond Rescue](https://pawcadegames.com/games/ducklings-io/): Rescue lost yellow ducklings, dodge speeding motorboats, and lead your brood home!
+- [Frog Games: Barnyard Pond Hop](https://pawcadegames.com/games/frog-games/): Leap across drifting lily pads, snatch buzzing flies with your tongue, and cross the pond!
+- [Farm Animal Idle Clicker](https://pawcadegames.com/games/farm-animal-clicker/): Tap cute farm animals, automate barns, catch golden butterflies, and earn millions of coins!
+- [Sheep Stampede: Pasture Rush](https://pawcadegames.com/games/sheep-stampede/): Steer Buster and your fluffy flock through math multiplier gates, dodge hazards, and stampede into the barn corral!
+- [Duck Hunt Classic: Barnyard Shoot](https://pawcadegames.com/games/duck-hunt-classic/): Aim your arcade light gun, blast flying mallards across the reed marsh, and test your quick-draw reflexes with Buster the pup!
+- [Egg Buster: Barnyard Smash](https://pawcadegames.com/games/egg-buster/): Pull back Pippin's slingshot, bounce eggs off milk churns, and topple wooden crates to smash sneaky foxes!
+- [Flappy Chicken: Barnyard Flight](https://pawcadegames.com/games/flappy-chicken/): Flap through rustic farm gates under the sunny sky to reach the Golden Wheat Granary!
+- [Duck Runner: Farm Pond Dash](https://pawcadegames.com/games/duck-runner/): Leap over hay bales, rustic fences, and duck under flying swallows across the countryside!
+- [Barnyard Tower: Animal Stack](https://pawcadegames.com/games/barnyard-tower/): Drop cute farm animals from a swinging crane to build the tallest wobbling tower!
+- [Gopher Garden: Whack & Harvest](https://pawcadegames.com/games/gopher-garden/): Protect your farm vegetables by tapping cheeky gophers before they steal your crop!
+- [Pasture Sheep Jump: Cloud Leap](https://pawcadegames.com/games/pasture-sheep-jump/): Bounce your fluffy sheep across floating hay bales and reach sunny skies!
+- [Hungry Piggy: Farmyard Chomper](https://pawcadegames.com/games/hungry-piggy/): Chomp farm apples, crates, and tractors to grow into the biggest pig in the pasture!
+- [Hamster Ball Dash: Tube Roll](https://pawcadegames.com/games/hamster-ball-dash/): Roll your energetic hamster through transparent stunt tubes and collect golden sunflower seeds!
+- [Cat Cafe Rush: Cozy Bakery](https://pawcadegames.com/games/cat-cafe-rush/): Serve warm fish waffles, strawberry cakes, and matcha tea to visiting cats in your cozy bakery!
+- [Save the Sheep: Hive Defense](https://pawcadegames.com/games/save-the-sheep/): Draw sturdy fences with ink to shield Barnaby the sheep from buzzing bee swarms!
+- [Capybara Spa: Hot Springs](https://pawcadegames.com/games/capybara-spa-rush/): Run a relaxing cedar onsen bath for visiting capybaras with floating yuzu and herbal tea!
+- [Wood Nuts & Bolts: Barnyard Jam](https://pawcadegames.com/games/wood-nuts-farm/): Unscrew metallic bolts from farm boards to drop colorful wooden planks in this physics puzzle!
+- [Animal Drop: Watermelon Merge](https://pawcadegames.com/games/animal-suika-drop/): Drop and merge cute farm animals to grow the giant Watermelon Elephant in this juicy physics puzzle!
+- [Tile Matching Game: Farm Tile Triple](https://pawcadegames.com/games/farm-tile-triple/): Pick and match 3 cute farm crop tiles in your 7-slot tray to clear the board in this cozy puzzle!
+- [Farm Pipe Flow: Barnyard Plumber](https://pawcadegames.com/games/farm-pipe-flow/): Rotate water pipes to irrigate thirsty barnyard crops and animal troughs in this cozy plumber puzzle!
+- [Koi Pond: Zen Water Garden](https://pawcadegames.com/games/koi-pond-zen/): Feed graceful Japanese koi fish, bloom pink lotus flowers, and create gentle water ripples in a peaceful zen pond garden.
+- [Barnyard Pin Pull: Rescue & Loot](https://pawcadegames.com/games/barnyard-pin-pull/): Pull golden pins to quench burning lava, defeat thieving foxes, and drop fresh carrots to rescue Barnaby!
+- [Hamster Cookie Stack: Sweet Bakery](https://pawcadegames.com/games/hamster-cookie-stack/): Catch dropping sweet treats on a golden pastry plate and balance a giant wobbly dessert tower with Mochi!
+- [Barnyard Fruit Slicer: Farm Juice](https://pawcadegames.com/games/barnyard-fruit-slicer/): Swipe your blade across flying apples, watermelons, and golden corn in mid-air to make fresh barnyard juice!
+- [Barnyard Peg Pop: Acorn Bounce](https://pawcadegames.com/games/barnyard-peg-pop/): Aim your acorn cannon, bounce off colorful farm pegs, and clear all golden targets for rainbow celebrations!
+- [Duck Archery: Target Master](https://pawcadegames.com/games/duck-archery-range/): Pull back the bowstring, gauge prairie wind gusts, and shoot bullseyes with Quacky the Robin Duck!
+- [Corgi Mini Golf: Pasture Putt](https://pawcadegames.com/games/corgi-mini-golf/): Putt, bank off wooden rails, dodge sand traps, and sink hole-in-ones with Sunny the Corgi!
+- [Caterpillar Garden: Fruit Trail Snake](https://pawcadegames.com/games/caterpillar-fruit-trail/): Crawl through garden plots, eat sweet berries, dodge thorny hedges, and grow your fuzzy trail!
+- [Carrot Target Throw: Barnyard Spin](https://pawcadegames.com/games/carrot-target-throw/): Throw crunchy carrots into rotating farm targets, slice bonus fruit, and dodge obstacles!
+- [Piggy Coin Pusher: Barnyard Dozer](https://pawcadegames.com/games/piggy-coin-pusher/): Drop shiny coins, trigger farm quakes, and push big prizes over the ledge!
+- [Milk Bottle Plinko: Carnival Drop](https://pawcadegames.com/games/milk-bottle-plinko/): Drop farm milk bottles through bouncy wooden pegs into the 100x jackpot bucket!
+- [Barnyard Sheep Sorter: Pasture Gate](https://pawcadegames.com/games/sheep-sorter-gate/): Flip the pasture gate left or right to sort fluffy sheep into their meadows before time runs out!
+- [Barnyard Pinball: Flipper Farm](https://pawcadegames.com/games/barnyard-pinball/): Launch chrome pinballs, hit glowing farm bumpers, and keep the ball in play with dual flippers!
+- [Crop Mower: Harvest Rush](https://pawcadegames.com/games/crop-mower-harvest/): Drive a nimble red tractor to mow neat rows of tall golden wheat, fill your harvest basket, and clear 100% of the field!
+- [Chicken Egg Catcher: Barnyard Rush](https://pawcadegames.com/games/chicken-egg-catcher/): Slide your woven straw basket to catch falling golden eggs, dodge spoiled rotten eggs, and trigger fever mode!
+- [Piggy Mud Wash: County Fair Spa](https://pawcadegames.com/games/piggy-mud-wash/): Scrub muddy farm pets with soap, rinse them with the hose, towel dry, and win the County Fair 1st prize ribbon!
+- [Barnyard Brick Breaker: Apple Bounce](https://pawcadegames.com/games/barnyard-brick-breaker/): Steer your farm cart paddle, bounce crisp apples, smash wooden fruit crates, and grab golden honey power-ups!
+- [Duck Water Slide: Splash Rush](https://pawcadegames.com/games/duck-water-slide/): Steer Quacky down twisting water flumes, grab rubber duckies, catch air on stunt ramps, and plunge into the farm splash pool!
+- [Bunny Hop: Road & River Cross](https://pawcadegames.com/games/bunny-hop-cross/): Guide Barnaby Bunny across busy farm roads, floating river logs, and railroad tracks in this classic arcade hopper!
+- [Farm Boba Tea: Animal Cafe](https://pawcadegames.com/games/farm-boba-tea/): Brew delicious boba bubble tea, scoop chewy tapioca pearls, and serve thirsty animal customers in your cozy farm cafe!
+- [Barnyard Ice Cream: Scoop & Stack](https://pawcadegames.com/games/barnyard-ice-cream/): Stack giant ice cream scoops on crispy waffle cones, drizzle hot fudge, and serve hungry farm pets!
+- [Barnyard Kart: Tractor Grand Prix](https://pawcadegames.com/games/barnyard-kart-drift/): Steer and drift your farm tractor around muddy championship tracks!
+- [Piggy Cannon Blast: Barnyard Launch](https://pawcadegames.com/games/piggy-cannon-blast/): Aim your circus cannon, blast Penny high into the sky, and upgrade your flight gear!
+- [Barnyard Popcorn Popper: Kernel Burst](https://pawcadegames.com/games/barnyard-popcorn-popper/): Hold to pour golden corn into the kettle and pop fluffy butter popcorn!
+- [Crossy Chicken: Farm Highway Run](https://pawcadegames.com/games/crossy-chicken/): Hop Clucky across busy farm highways, rushing river logs, and railroad tracks!
+- [Tractor Hill Climb: Barnyard Ridge](https://pawcadegames.com/games/tractor-hill-climb/): Drive a bouncy farm tractor over steep hills, perform air flips, and collect diesel!
+- [Level Devil: Mischief Meadow](https://pawcadegames.com/games/level-devil/): Outsmart troll traps, collapsing hay bales, and runaway doors in this trick platformer!
+- [Basket Random: Barnyard Dunkers](https://pawcadegames.com/games/basket-random/): Wobbly 2-on-2 ragdoll basketball with floppy dunks and unpredictable physics!
+- [Gold Miner: Barnyard Gem Digger](https://pawcadegames.com/games/gold-miner/): Aim your oscillating winch claw, haul in gold nuggets, and beat shift quotas!
+- [Stickman Hook: Fluffy Grapple Swing](https://pawcadegames.com/games/stickman-hook/): Latch onto barn rafter pegs, gain pendulum speed, and fling across the finish line!
+- [Bad Ice Cream: Frosty Barnyard](https://pawcadegames.com/games/bad-ice-cream/): Break and create ice blocks to gather fresh farm fruits while dodging hungry predators!
+- [Fireboy & Watergirl: Sun Pup & Moon Kitty](https://pawcadegames.com/games/fireboy-and-watergirl/): Cooperative elemental platform puzzle guiding fire and water heroes to temple portals!
+- [Retro Bowl: Barnyard Gridiron](https://pawcadegames.com/games/retro-bowl/): Aim precision passes, juke charging bull defenders, and score touchdowns on the gridiron!
+- [Slope: Rolling Acorn Dash](https://pawcadegames.com/games/slope/): Steer down high-speed 3D forest boardwalks, dodge barriers, and survive the slope!
+- [Ragdoll Hit: Barnyard Brawler](https://pawcadegames.com/games/ragdoll-hit/): Floppy ragdoll fighting physics swinging boxing gloves, brooms, and pitchforks!
+- [Helix Silo Drop: Spiral Jump](https://pawcadegames.com/games/helix-silo-drop/): Drop through grain silo spiral platforms and dodge hazard tiles!
+- [Pasture Subway Run: Farm Dash](https://pawcadegames.com/games/pasture-subway-run/): Dodge tractors, leap over fences, and dash across pasture tracks!
+- [Barnyard Hay Stack: Tower Block](https://pawcadegames.com/games/barnyard-hay-stack/): Stack moving hay blocks with rhythm and build a giant tower!
+- [Barnyard Doodle Jump: Cloud Hop](https://pawcadegames.com/games/barnyard-doodle-jump/): Bounce Clucky high into the clouds on moving platforms and springs!
+- [Barnyard Color Switch: Match Tap](https://pawcadegames.com/games/barnyard-color-switch/): Tap to flap upward and pass only through matching obstacle colors!
+- [Milk Bottle Flip 3D: Farm Rooms](https://pawcadegames.com/games/milk-bottle-flip/): Flip fresh milk bottles across farmhouse furniture and land upright!
+- [Barnyard Pac Chick: Corn Gobbler](https://pawcadegames.com/games/barnyard-pac-chick/): Gobble corn in the garden hedge maze and chase blue frightened foxes!
+- [Happy Milk Pail: Draw Physics](https://pawcadegames.com/games/happy-milk-pail/): Draw barrier ramps to guide milk droplets into the thirsty pail!
+- [Pasture Hole IO: Farm Vacuum](https://pawcadegames.com/games/pasture-hole-io/): Slide an expanding black void across the farm and swallow everything!
+- [Barnyard Tunnel Runner: Run 3D](https://pawcadegames.com/games/barnyard-tunnel-runner/): Sprint through an 8-sided silo tunnel and rotate the world to survive!
+- [Barnyard Snake: Worm Munch](https://pawcadegames.com/games/barnyard-snake/): Guide a hungry garden worm, eat apples, and dodge rocks and your own tail!
+- [Pasture Paper.io: Turf Claim](https://pawcadegames.com/games/paper-io/): Draw loops across the meadow to claim green turf and cut rival trails!
+- [Barnyard Slither.io: Glow Worm Arena](https://pawcadegames.com/games/slither-io/): Eat glowing orbs to grow giant and boost ahead to cut off rival worms!
+- [Barnyard Dash: Rhythm Spike Jump](https://pawcadegames.com/games/geometry-dash/): Tap to the beat to leap spikes, hit bounce pads, and fly through ship portals!
+
+## Pets & Animals (63 games)
+Hub: https://pawcadegames.com/category/pets/
+- [Eggy Car](https://pawcadegames.com/games/eggy-car/): Balance a fragile egg in your hill-climbing car across steep country hills!
+- [Capybara Clicker](https://pawcadegames.com/games/capybara-clicker/): Tap the chill capybara, brew warm yuzu baths, and grow a happy rodent colony!
+- [Duck Life: Train & Race](https://pawcadegames.com/games/duck-life/): Train your duckling in running, flying, and swimming to win championship races!
+- [Vex 5: Ninja Chick](https://pawcadegames.com/games/vex-5/): Run, slide, wall-jump, and dodge deadly buzzsaws across fast parkour courses!
+- [Ice Dodo: Frozen Pasture Dash](https://pawcadegames.com/games/ice-dodo/): Carve across narrow ice tracks, hit turbo boost pads, and dodge winter barriers!
+- [Spot the Difference: Detective](https://pawcadegames.com/games/spot-the-difference/): Examine two side-by-side farm scenes and find 5 hidden differences before time expires!
+- [Rooftop Snipers: Roof Duel](https://pawcadegames.com/games/rooftop-snipers/): Floppy two-button ragdoll duel! Jump and fire your rifle to knock rivals off the roof!
+- [Big Tower Tiny Square: Tiny Pig](https://pawcadegames.com/games/big-tower-tiny-square/): Climb a giant puzzle silo, dodge neon laser grids, and rescue the Golden Acorn!
+- [Bob the Robber: Stealth Fox](https://pawcadegames.com/games/bob-the-robber/): Sneak past guard dogs, hide in shadows, cut laser beams, and unlock county safes!
+- [Horse Racing: Barnyard Derby](https://pawcadegames.com/games/horse-racing/): Gallop down the racetrack, time steeplechase jumps, and win the championship cup!
+- [Sushi Cat: Kitty Pachinko Feast](https://pawcadegames.com/games/sushi-cat/): Drop a round bouncy kitty through pegs, gobble sushi rolls, and land in high-point baskets!
+- [Penguin Diner: Arctic Cafe](https://pawcadegames.com/games/penguin-diner/): Seat hungry penguin guests, take orders, serve fish dishes, and upgrade your diner!
+- [Virtual Pet: Puppy Care](https://pawcadegames.com/games/virtual-pet/): Feed, bathe, play fetch, and care for an adorable corgi puppy in your browser!
+- [Ducklings.io: Pond Rescue](https://pawcadegames.com/games/ducklings-io/): Rescue lost yellow ducklings, dodge speeding motorboats, and lead your brood home!
+- [Frog Games: Barnyard Pond Hop](https://pawcadegames.com/games/frog-games/): Leap across drifting lily pads, snatch buzzing flies with your tongue, and cross the pond!
+- [Farm Animal Idle Clicker](https://pawcadegames.com/games/farm-animal-clicker/): Tap cute farm animals, automate barns, catch golden butterflies, and earn millions of coins!
+- [Sheep Cart Jam: Meadow Escape](https://pawcadegames.com/games/sheep-cart-jam/): Untangle the farm parking maze, dock matching carts, and board waiting fluffy sheep to escape to the meadow!
+- [Sheep Stampede: Pasture Rush](https://pawcadegames.com/games/sheep-stampede/): Steer Buster and your fluffy flock through math multiplier gates, dodge hazards, and stampede into the barn corral!
+- [Duck Hunt Classic: Barnyard Shoot](https://pawcadegames.com/games/duck-hunt-classic/): Aim your arcade light gun, blast flying mallards across the reed marsh, and test your quick-draw reflexes with Buster the pup!
+- [Pet Memory Match: Barnyard Cards](https://pawcadegames.com/games/pet-memory-match/): Flip cards, remember pet faces, and match adorable animal pairs before the timer ticks down!
+- [Critter Tap Away: Barn Escape](https://pawcadegames.com/games/critter-tap-away/): Tap trapped farm animals whose paths are clear to untangle the pen and help them escape into the clover pasture!
+- [Dog Parking: Barnyard Escape](https://pawcadegames.com/games/dog-parking/): Guide adorable pups and Sunny the Corgi through crowded barnyard puzzle lanes!
+- [Cat Parking: Kitty Meadow Escape](https://pawcadegames.com/games/cat-parking/): Slide sleepy kitties and guide Luna the Star Cat through cozy meadow mazes!
+- [Chef Rat Rush: Ratatouille Bistro](https://pawcadegames.com/games/chef-rat-rush/): Chop fresh produce, simmer gourmet ratatouille on stove, and ring the service bell for Paris food critics!
+- [Farm Animal Match: Barnyard Crush](https://pawcadegames.com/games/farm-animal-match/): Match dynamite, rockets, and barrel bombs with cute farm animals!
+- [Duck Runner: Farm Pond Dash](https://pawcadegames.com/games/duck-runner/): Leap over hay bales, rustic fences, and duck under flying swallows across the countryside!
+- [Animal 2048: Safari Merge](https://pawcadegames.com/games/animal-2048/): Slide and merge cute pets from a tiny mouse up to the 2048 crown!
+- [Pasture Sheep Jump: Cloud Leap](https://pawcadegames.com/games/pasture-sheep-jump/): Bounce your fluffy sheep across floating hay bales and reach sunny skies!
+- [Hungry Piggy: Farmyard Chomper](https://pawcadegames.com/games/hungry-piggy/): Chomp farm apples, crates, and tractors to grow into the biggest pig in the pasture!
+- [Duck Pond Sort: Water Lily Float](https://pawcadegames.com/games/duck-pond-sort/): Sort adorable rubber duckies by color into calm farm pond docks!
+- [Hamster Ball Dash: Tube Roll](https://pawcadegames.com/games/hamster-ball-dash/): Roll your energetic hamster through transparent stunt tubes and collect golden sunflower seeds!
+- [Cat Cafe Rush: Cozy Bakery](https://pawcadegames.com/games/cat-cafe-rush/): Serve warm fish waffles, strawberry cakes, and matcha tea to visiting cats in your cozy bakery!
+- [Capybara Spa: Hot Springs](https://pawcadegames.com/games/capybara-spa-rush/): Run a relaxing cedar onsen bath for visiting capybaras with floating yuzu and herbal tea!
+- [Koi Pond: Zen Water Garden](https://pawcadegames.com/games/koi-pond-zen/): Feed graceful Japanese koi fish, bloom pink lotus flowers, and create gentle water ripples in a peaceful zen pond garden.
+- [Hamster Cookie Stack: Sweet Bakery](https://pawcadegames.com/games/hamster-cookie-stack/): Catch dropping sweet treats on a golden pastry plate and balance a giant wobbly dessert tower with Mochi!
+- [Corgi Mini Golf: Pasture Putt](https://pawcadegames.com/games/corgi-mini-golf/): Putt, bank off wooden rails, dodge sand traps, and sink hole-in-ones with Sunny the Corgi!
+- [Animal Tangram: Wooden Block Fit](https://pawcadegames.com/games/animal-tangram-fit/): Fit rustic wooden blocks into cute animal silhouettes without overlapping!
+- [Hamster Maze: Nut Escape](https://pawcadegames.com/games/hamster-maze-runner/): Guide Pip the hungry hamster through timber mazes, gather golden acorns, find the brass key, and unlock the exit door!
+- [Piggy Mud Wash: County Fair Spa](https://pawcadegames.com/games/piggy-mud-wash/): Scrub muddy farm pets with soap, rinse them with the hose, towel dry, and win the County Fair 1st prize ribbon!
+- [Duck Water Slide: Splash Rush](https://pawcadegames.com/games/duck-water-slide/): Steer Quacky down twisting water flumes, grab rubber duckies, catch air on stunt ramps, and plunge into the farm splash pool!
+- [Bunny Hop: Road & River Cross](https://pawcadegames.com/games/bunny-hop-cross/): Guide Barnaby Bunny across busy farm roads, floating river logs, and railroad tracks in this classic arcade hopper!
+- [Farm Boba Tea: Animal Cafe](https://pawcadegames.com/games/farm-boba-tea/): Brew delicious boba bubble tea, scoop chewy tapioca pearls, and serve thirsty animal customers in your cozy farm cafe!
+- [Barnyard Ice Cream: Scoop & Stack](https://pawcadegames.com/games/barnyard-ice-cream/): Stack giant ice cream scoops on crispy waffle cones, drizzle hot fudge, and serve hungry farm pets!
+- [Barnyard Kart: Tractor Grand Prix](https://pawcadegames.com/games/barnyard-kart-drift/): Steer and drift your farm tractor around muddy championship tracks!
+- [Piggy Cannon Blast: Barnyard Launch](https://pawcadegames.com/games/piggy-cannon-blast/): Aim your circus cannon, blast Penny high into the sky, and upgrade your flight gear!
+- [Barnyard Rope Cut: Feed the Piggy](https://pawcadegames.com/games/barnyard-rope-cut/): Slice swinging ropes, collect golden stars, and feed juicy apples to hungry Penny!
+- [Barnyard Word Connect: Corgi Cross](https://pawcadegames.com/games/barnyard-word-connect/): Swipe across wooden letter tiles to connect farm words and solve crosswords!
+- [Crossy Chicken: Farm Highway Run](https://pawcadegames.com/games/crossy-chicken/): Hop Clucky across busy farm highways, rushing river logs, and railroad tracks!
+- [Tractor Hill Climb: Barnyard Ridge](https://pawcadegames.com/games/tractor-hill-climb/): Drive a bouncy farm tractor over steep hills, perform air flips, and collect diesel!
+- [Level Devil: Mischief Meadow](https://pawcadegames.com/games/level-devil/): Outsmart troll traps, collapsing hay bales, and runaway doors in this trick platformer!
+- [Basket Random: Barnyard Dunkers](https://pawcadegames.com/games/basket-random/): Wobbly 2-on-2 ragdoll basketball with floppy dunks and unpredictable physics!
+- [Water Sort: Farm Bottle Pour](https://pawcadegames.com/games/water-sort/): Sort vibrant milk bottles and juices until every flask holds a single color!
+- [Gold Miner: Barnyard Gem Digger](https://pawcadegames.com/games/gold-miner/): Aim your oscillating winch claw, haul in gold nuggets, and beat shift quotas!
+- [Stickman Hook: Fluffy Grapple Swing](https://pawcadegames.com/games/stickman-hook/): Latch onto barn rafter pegs, gain pendulum speed, and fling across the finish line!
+- [Fireboy & Watergirl: Sun Pup & Moon Kitty](https://pawcadegames.com/games/fireboy-and-watergirl/): Cooperative elemental platform puzzle guiding fire and water heroes to temple portals!
+- [Retro Bowl: Barnyard Gridiron](https://pawcadegames.com/games/retro-bowl/): Aim precision passes, juke charging bull defenders, and score touchdowns on the gridiron!
+- [Slope: Rolling Acorn Dash](https://pawcadegames.com/games/slope/): Steer down high-speed 3D forest boardwalks, dodge barriers, and survive the slope!
+- [Ragdoll Hit: Barnyard Brawler](https://pawcadegames.com/games/ragdoll-hit/): Floppy ragdoll fighting physics swinging boxing gloves, brooms, and pitchforks!
+- [Pasture Subway Run: Farm Dash](https://pawcadegames.com/games/pasture-subway-run/): Dodge tractors, leap over fences, and dash across pasture tracks!
+- [Barnyard Doodle Jump: Cloud Hop](https://pawcadegames.com/games/barnyard-doodle-jump/): Bounce Clucky high into the clouds on moving platforms and springs!
+- [Barnyard Pac Chick: Corn Gobbler](https://pawcadegames.com/games/barnyard-pac-chick/): Gobble corn in the garden hedge maze and chase blue frightened foxes!
+- [Barnyard Tunnel Runner: Run 3D](https://pawcadegames.com/games/barnyard-tunnel-runner/): Sprint through an 8-sided silo tunnel and rotate the world to survive!
+- [Pasture Paper.io: Turf Claim](https://pawcadegames.com/games/paper-io/): Draw loops across the meadow to claim green turf and cut rival trails!

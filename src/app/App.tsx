@@ -438,23 +438,23 @@ export const App: React.FC = () => {
       activeTitle = farmParkingGame.metaTitle;
       activeDesc = farmParkingGame.metaDescription;
     } else if (currentRoute.startsWith('/category/popular') || currentRoute.startsWith('/popular')) {
-      activeTitle = 'Most Popular Free Online Games — Top Browser Hits | Pawcade';
-      activeDesc = 'Play the most popular free online browser games on Pawcade! Enjoy top trending hits like Farm Mini Mart, Farm Block Blast, Dog Parking, and Duck Hunt with zero downloads.';
+      activeTitle = 'Most Popular Free Online Games — Play Instantly | Pawcade';
+      activeDesc = 'Play the most popular free online games on Pawcade! Enjoy Farm Mini Mart, Farm Block Blast, Sheep Cart Jam, and Duck Hunt instantly with no download.';
     } else if (currentRoute.startsWith('/category/puzzle')) {
-      activeTitle = 'Free Online Puzzle Games — Brain Teasers, No Download | Pawcade';
-      activeDesc = 'Play free online puzzle games with zero downloads on Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, Critter Tap Away, and more.';
+      activeTitle = 'Free Online Puzzle Games — Brain Teasers | No Download';
+      activeDesc = 'Play free online puzzle games with no download! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, and Word Guess instantly on mobile and desktop.';
     } else if (currentRoute.startsWith('/category/farm')) {
-      activeTitle = 'Free Online Farm Games — Barnyard Puzzles & Tycoons | Pawcade';
-      activeDesc = 'Play free casual farm games online at Pawcade! Manage farm markets, drive tractors, herd sheep, and harvest crops directly in your browser.';
+      activeTitle = 'Free Online Farm Games — Tycoons & Puzzles | Pawcade';
+      activeDesc = 'Play free farm games online on Pawcade! Run markets, drive tractors, herd sheep, and harvest crops right in your browser with no download needed.';
     } else if (currentRoute.startsWith('/category/arcade')) {
-      activeTitle = 'Free Online Arcade Games — Quick Reflex & Tap Games | Pawcade';
-      activeDesc = 'Enjoy free retro-style casual arcade web games on Pawcade! Tap, dodge, flap, and jump in Duck Runner, Flappy Chicken, Egg Buster, and more.';
+      activeTitle = 'Online Arcade Games for Free — Play Instantly | Pawcade';
+      activeDesc = 'Play online arcade games for free on Pawcade! Jump, dodge, and aim in Duck Hunt, Cluster Rush, Snake, and Flappy Chicken with no download needed.';
     } else if (currentRoute.startsWith('/category/pets')) {
       activeTitle = 'Pet Games Online — Free Cute Cat & Dog Games | Pawcade';
-      activeDesc = 'Play free pet games online in your browser on Pawcade! Slide corgis in Dog Parking, save cats in Cat Parking, feed cute critters, and solve cozy puzzles with no downloads.';
+      activeDesc = 'Play free cat games, dog games, and cute pet puzzles online! Slide corgis in Dog Parking, rescue kittens in Cat Parking, and care for pets—no download.';
     } else if (currentRoute === '/' || currentRoute === '' || currentRoute === '/games' || currentRoute === '/games/') {
       activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games | No Download';
-      activeDesc = 'Play free casual browser games online at Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, Duck Runner, Farm Animal Match, and more. Zero downloads, mobile & desktop compatible.';
+      activeDesc = 'Play 110+ free online browser games on Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, and Duck Hunt on phone or PC with no download.';
     } else {
       activeTitle = 'Page Not Found (404) | Pawcade Games';
     }

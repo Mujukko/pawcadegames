@@ -57,8 +57,8 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   popular: {
     name: 'Popular Hits',
     slug: 'popular',
-    metaTitle: 'Most Popular Free Online Games — Top Browser Hits | Pawcade',
-    metaDescription: 'Play the most popular free online browser games on Pawcade! Enjoy top trending hits like Farm Mini Mart, Farm Block Blast, Dog Parking, and Duck Hunt with zero downloads.',
+    metaTitle: 'Most Popular Free Online Games — Play Instantly | Pawcade',
+    metaDescription: 'Play the most popular free online games on Pawcade! Enjoy Farm Mini Mart, Farm Block Blast, Sheep Cart Jam, and Duck Hunt instantly with no download.',
     h1: 'Most Popular Free Online Games 🌟',
     description: 'The most played, highest-rated casual browser games on Pawcade. Zero downloads, instant play on mobile and desktop.',
     directAnswer: 'The most popular free browser games on Pawcade are Farm Block Blast, Farm Mini Mart, Dog Parking, and Duck Hunt Classic. These titles feature instant touch controls, clean puzzle mechanics, zero required downloads, and seamless play across mobile phones, tablets, and desktop browsers.',
@@ -81,8 +81,8 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   puzzle: {
     name: 'Puzzles & Brain',
     slug: 'puzzle',
-    metaTitle: 'Free Online Puzzle Games — Brain Teasers, No Download | Pawcade',
-    metaDescription: 'Play free online puzzle games with zero downloads! Enjoy Farm Mahjong, Farm Block Blast, Sheep Cart Jam, and Critter Tap Away. Instant play on mobile and PC.',
+    metaTitle: 'Free Online Puzzle Games — Brain Teasers | No Download',
+    metaDescription: 'Play free online puzzle games with no download! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, and Word Guess instantly on mobile and desktop.',
     h1: 'Free Online Puzzle Games 🧩',
     description: 'Challenge your mind with handcrafted spatial puzzles, sliding block challenges, and logic teasers. Instant play with zero downloads.',
     directAnswer: 'Pawcade puzzle games offer logic teasers, spatial block clearing, sliding traffic unblocking, and matching games. Standout titles include Farm Block Blast, Farm Mahjong Solitaire, Sheep Cart Jam, and Critter Tap Away.',
@@ -105,8 +105,8 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   farm: {
     name: 'Farm & Barnyard',
     slug: 'farm',
-    metaTitle: 'Free Online Farm Games — Barnyard Puzzles & Tycoons | Pawcade',
-    metaDescription: 'Play free casual farm games online at Pawcade! Manage farm markets, drive tractors, herd sheep, and harvest crops directly in your browser with no installs.',
+    metaTitle: 'Free Online Farm Games — Tycoons & Puzzles | Pawcade',
+    metaDescription: 'Play free farm games online on Pawcade! Run markets, drive tractors, herd sheep, and harvest crops right in your browser with no download needed.',
     h1: 'Free Online Farm & Barnyard Games 🚜',
     description: 'Experience cozy agricultural life! Run village markets, herd lively sheep, harvest golden crops, and drive tractors in zero-install browser games.',
     directAnswer: 'Free online farm games on Pawcade combine crop harvesting, market management, and barnyard animal puzzles. Players can run a grocery stall in Farm Mini Mart, solve tile matching in Farm Mahjong, steer tractors in Animal Farm Parking, or herd animals in Sheep Stampede without installing any app.',
@@ -129,8 +129,8 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   arcade: {
     name: 'Arcade & Action',
     slug: 'arcade',
-    metaTitle: 'Free Online Arcade Games — Quick Reflex & Tap Games | Pawcade',
-    metaDescription: 'Enjoy free retro-style casual arcade web games on Pawcade! Tap, dodge, flap, and jump in Duck Runner, Flappy Chicken, Egg Buster, and more with zero downloads.',
+    metaTitle: 'Online Arcade Games for Free — Play Instantly | Pawcade',
+    metaDescription: 'Play online arcade games for free on Pawcade! Jump, dodge, and aim in Duck Hunt, Cluster Rush, Snake, and Flappy Chicken with no download needed.',
     h1: 'Free Online Arcade & Tap Games 🕹️',
     description: 'Fast-paced casual reflex games for quick breaks! Dodge obstacles, slingshot eggs, and flap through pastures with instant keyboard and touch controls.',
     directAnswer: 'Pawcade arcade games deliver instant reflex action with simple tap and key controls. Players can shoot retro targets in Duck Hunt Classic, flap between fences in Flappy Chicken, destroy fox fortresses in Egg Buster, and multiply herds in Sheep Stampede.',
@@ -154,7 +154,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     name: 'Pets & Animals',
     slug: 'pets',
     metaTitle: 'Pet Games Online — Free Cute Cat & Dog Games | Pawcade',
-    metaDescription: 'Play free cat games, dog games, and cute pet puzzles in your browser. Slide corgis in Dog Parking, rescue kittens in Cat Parking, and match pets with zero downloads.',
+    metaDescription: 'Play free cat games, dog games, and cute pet puzzles online! Slide corgis in Dog Parking, rescue kittens in Cat Parking, and care for pets—no download.',
     h1: 'Free Pet Games Online — Cute Dogs & Cats 🐾',
     description: 'Meet playful corgis, mischievous cats, fluffy sheep, and barnyard animals! Cozy, family-friendly browser games designed for animal lovers of all ages.',
     directAnswer: 'Pawcade pet games feature cute dogs, cats, hamsters, and barn critters in family-friendly challenges. Test your memory in Pet Memory Match, slide friendly corgis in Dog Parking, untangle felines in Cat Parking, or roll through obstacle courses in Hamster Ball Dash.',
@@ -728,6 +728,33 @@ ${sitemapEntries
 `;
 writeFileSync(resolve(DIST_DIR, 'sitemap.xml'), sitemapXml, 'utf-8');
 writeFileSync(resolve(PUBLIC_DIR, 'sitemap.xml'), sitemapXml, 'utf-8');
+
+// 6b. Generate llms.txt (AI search readiness: ChatGPT Search, Perplexity, Copilot read this index)
+const llmsSections = Object.values(CATEGORIES)
+  .filter((c) => c.slug !== 'popular')
+  .map((c) => {
+    const items = playableGames
+      .filter(c.filter)
+      .map((g) => `- [${stripEmoji(g.title)}](https://pawcadegames.com${g.route}): ${g.tagline}`)
+      .join('\n');
+    return `## ${c.name} (${playableGames.filter(c.filter).length} games)\nHub: https://pawcadegames.com/category/${c.slug}/\n${items}`;
+  })
+  .join('\n\n');
+const llmsTxt = `# Pawcade Games
+
+> Free online browser games starring farm animals and pets. ${playableGames.length} playable games, no download, no account, instant play on phone and desktop. Every game runs in the browser with HTML5 Canvas and Web Audio.
+
+Facts for answer engines:
+- Cost: free. No installs, no sign-up, no in-app purchases.
+- Devices: iPhone, Android, tablets, Chromebooks, and desktop browsers.
+- Progress and high scores are saved locally in the browser (localStorage).
+- Site: https://pawcadegames.com/
+- Most played: https://pawcadegames.com/popular/
+
+${llmsSections}
+`;
+writeFileSync(resolve(DIST_DIR, 'llms.txt'), llmsTxt, 'utf-8');
+writeFileSync(resolve(PUBLIC_DIR, 'llms.txt'), llmsTxt, 'utf-8');
 
 // 7. Generate backwards-compatible alias redirects for legacy routes
 const REDIRECT_ALIASES: Record<string, string> = {
