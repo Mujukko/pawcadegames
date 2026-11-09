@@ -172,3 +172,14 @@
     2. **Daily Freshness via `ai-trends-scout`:** Releasing 2 new games daily gives returning players a daily reason to revisit the portal.
     3. **Zero Cognitive Fatigue:** Keep game mechanics immediately intuitive with 1-click/1-tap controls and high-contrast, juicy Web Audio reward sounds.
 
+## [2026-11-09] Cloudflare Workers Static Assets Precedence & GSC `wnc_20237597` Redirect Hygiene
+- **What happened:** Google Search Console sent a `wnc_20237597` Page Indexing notification showing `118 Indexed` and `22 Not indexed` (`21 Page with redirect` + `1 Not found (404)` on `/category/casual/`). Live `curl -sI` inspection revealed that 3 rules in `public/_redirects` (`/games/farm-tetris/`, `/games/pet-candy-crush/`, `/category/popular/`) returned clean `HTTP/2 301`, whereas 19 legacy aliases in `scripts/prerender.ts` (`REDIRECT_ALIASES`) returned `HTTP/2 200` with `<meta http-equiv="refresh">`.
+- **Root cause:**
+  1. In Cloudflare Workers Static Assets (`wrangler.json` `"assets": { "directory": "./dist" }`), static files in `./dist` take precedence over `_redirects`. Writing `dist/games/<oldSlug>/index.html` forced Cloudflare to serve `HTTP 200` HTML instead of evaluating `_redirects`.
+  2. Pre-Oct-29 game breadcrumbs briefly linked `/category/casual/` before categories were standardized to `['farm', 'puzzle', 'pets', 'arcade']`, leaving 1 crawled `404` URL in GSC.
+- **Resolution:**
+  1. Replaced static `<meta http-equiv="refresh">` file generation in `scripts/prerender.ts` with single-source-of-truth generation of `public/_redirects` and `dist/_redirects` covering all `g.id !== g.slug` routes plus `/category/popular/`, `/category/casual/`, and `/games/farm-animal-crush/` (both trailing-slash and non-trailing-slash `301` rules).
+  2. Tightened `scripts/seo-audit.ts` to assert strictly canonical `<loc>https://pawcadegames.com${game.route}</loc>` entries in `sitemap.xml`.
+- **Preventive Rule:** Never generate static `index.html` meta-refresh files when deploying on Cloudflare Workers Static Assets; always emit edge `301` rules into `_redirects` from `GAMES_REGISTRY` (`g.id !== g.slug`) so no static asset shadows the edge redirect.
+
+

@@ -110,11 +110,11 @@ export function runUnifiedAudit(): { passed: boolean; results: UnifiedAuditResul
       schemaObj.offers.price === '0'
     );
 
-    // 3. Sitemap Sync
-    const expectedUrl = `https://pawcadegames.com/games/${game.id}/`;
-    const sitemapPresent = sitemapContent.includes(expectedUrl) || sitemapContent.includes(`https://pawcadegames.com/games/${game.slug}/`);
+    // 3. Sitemap Sync (strictly canonical game.route only)
+    const canonicalUrl = `https://pawcadegames.com${game.route}`;
+    const sitemapPresent = sitemapContent.includes(`<loc>${canonicalUrl}</loc>`);
     if (!sitemapPresent) {
-      issues.push(`Missing in sitemap.xml: ${expectedUrl}`);
+      issues.push(`Missing in sitemap.xml: ${canonicalUrl}`);
       totalFailures++;
     }
 
