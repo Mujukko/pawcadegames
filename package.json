@@ -16,7 +16,8 @@
     "seo:traffic": "bun scripts/fetch-traffic.ts",
     "seo:indexnow": "bun scripts/indexnow.ts",
     "ai:scout": "bun scripts/ai-game-scout.ts",
-    "speedgrapher": "bun scripts/speedgrapher-lint.ts"
+    "speedgrapher": "bun scripts/speedgrapher-lint.ts",
+    "playability:audit": "bun scripts/audit-playability.ts"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",

@@ -56,6 +56,7 @@ export const FarmMiniMartContainer: React.FC = () => {
   const [showUpgradeModal, setShowUpgradeModal] = useState<boolean>(false);
   const [showHelpModal, setShowHelpModal] = useState<boolean>(false);
   const [showTouchDpad, setShowTouchDpad] = useState<boolean>(false);
+  const [confirmReset, setConfirmReset] = useState<boolean>(false);
 
   // Input state
   const inputRef = useRef<{ dx: number; dy: number }>({ dx: 0, dy: 0 });
@@ -95,13 +96,17 @@ export const FarmMiniMartContainer: React.FC = () => {
 
   // Restart / Reset market
   const handleReset = useCallback(() => {
-    if (window.confirm('Reset your farm mini mart and restart from scratch?')) {
-      analytics.gameRestarted('farm-mini-mart', { coins: 0 });
-      const fresh = createInitialMartState();
-      setGameState(fresh);
-      saveMartState(fresh);
+    if (!confirmReset) {
+      setConfirmReset(true);
+      setTimeout(() => setConfirmReset(false), 3500);
+      return;
     }
-  }, []);
+    analytics.gameRestarted('farm-mini-mart', { coins: 0 });
+    const fresh = createInitialMartState();
+    setGameState(fresh);
+    saveMartState(fresh);
+    setConfirmReset(false);
+  }, [confirmReset]);
 
   // Keyboard controls
   useEffect(() => {
@@ -375,11 +380,16 @@ export const FarmMiniMartContainer: React.FC = () => {
 
           <button
             onClick={handleReset}
-            className="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-rose-400 border border-slate-700 rounded-xl transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center active:scale-95"
+            className={`p-2.5 border rounded-xl transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center gap-1 active:scale-95 text-xs font-bold ${
+              confirmReset
+                ? 'bg-rose-600 text-white border-rose-500'
+                : 'bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-rose-400 border-slate-700'
+            }`}
             title="Reset Game"
             aria-label="Reset Game"
           >
             <RotateCcw className="w-4 h-4" />
+            {confirmReset && <span>Sure?</span>}
           </button>
         </div>
       </div>

@@ -43,6 +43,15 @@ export const BarnyardConnectFourContainer: React.FC = () => {
   } | null>(null);
 
   const isDroppingRef = useRef(false);
+  const dropRafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (dropRafRef.current !== null) {
+        cancelAnimationFrame(dropRafRef.current);
+      }
+    };
+  }, []);
 
   const handleMuteToggle = () => {
     const next = connectFourAudio.toggleMute();
@@ -107,7 +116,7 @@ export const BarnyardConnectFourContainer: React.FC = () => {
             player,
             progress,
           });
-          requestAnimationFrame(animate);
+          dropRafRef.current = requestAnimationFrame(animate);
         } else {
           setDroppingToken(null);
           isDroppingRef.current = false;
@@ -135,7 +144,7 @@ export const BarnyardConnectFourContainer: React.FC = () => {
         }
       };
 
-      requestAnimationFrame(animate);
+      dropRafRef.current = requestAnimationFrame(animate);
     },
     [gameState]
   );

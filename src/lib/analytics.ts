@@ -1,6 +1,7 @@
 export type AnalyticsEventName =
   | 'game_loaded'
   | 'game_started'
+  | 'gameplay_ping'
   | 'level_started'
   | 'level_completed'
   | 'level_failed'

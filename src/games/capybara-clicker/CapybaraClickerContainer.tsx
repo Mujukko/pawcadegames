@@ -28,6 +28,9 @@ interface Floater {
 }
 
 export const CapybaraClickerContainer: React.FC = () => {
+  const [offlineNotice, setOfflineNotice] = useState<string | null>(null);
+  const [confirmReset, setConfirmReset] = useState(false);
+
   const [state, setState] = useState<CapybaraClickerState>(() => {
     try {
       const saved = localStorage.getItem(SAVE_KEY);
@@ -35,10 +38,9 @@ export const CapybaraClickerContainer: React.FC = () => {
         const parsed = JSON.parse(saved);
         const { state: resumed, earned, offlineSeconds } = calculateOfflineEarnings(parsed);
         if (earned > 0) {
-          // offline bonus welcomed
           setTimeout(() => {
-            alert(`Welcome back! While you were away for ${Math.round(offlineSeconds / 60)} minutes, your capybaras collected ${formatNumber(earned)} more friends! 🍊`);
-          }, 400);
+            setOfflineNotice(`Welcome back! +${formatNumber(earned)} capybaras collected while away (${Math.max(1, Math.round(offlineSeconds / 60))}m) 🍊`);
+          }, 200);
         }
         return resumed;
       }
@@ -165,10 +167,14 @@ export const CapybaraClickerContainer: React.FC = () => {
   };
 
   const resetGame = () => {
-    if (confirm('Start fresh from 0 capybaras? This resets current progress.')) {
-      localStorage.removeItem(SAVE_KEY);
-      setState(createInitialState());
+    if (!confirmReset) {
+      setConfirmReset(true);
+      setTimeout(() => setConfirmReset(false), 3500);
+      return;
     }
+    localStorage.removeItem(SAVE_KEY);
+    setState(createInitialState());
+    setConfirmReset(false);
   };
 
   const cps = calculateCps(state.producers);
@@ -205,12 +211,22 @@ export const CapybaraClickerContainer: React.FC = () => {
               onClick={resetGame}
               aria-label="Reset Game"
               title="Reset progress"
-              className="p-2 rounded-full bg-white/80 backdrop-blur-md border border-white shadow-sm text-slate-700 hover:text-red-500"
+              className={`px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white shadow-sm text-xs font-bold flex items-center gap-1 ${
+                confirmReset ? 'bg-red-600 text-white' : 'bg-white/80 text-slate-700 hover:text-red-500'
+              }`}
             >
               <RefreshCw className="w-4 h-4" />
+              {confirmReset && <span>Confirm?</span>}
             </button>
           </div>
         </div>
+
+        {offlineNotice && (
+          <div className="w-full bg-amber-100/95 border border-amber-300 text-amber-950 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center justify-between gap-2 z-10">
+            <span>{offlineNotice}</span>
+            <button onClick={() => setOfflineNotice(null)} className="text-amber-800 hover:text-amber-950 font-black">✕</button>
+          </div>
+        )}
 
         {/* Counter Display */}
         <div className="text-center my-2 z-10">

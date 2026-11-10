@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, useRef, useCallback, Suspense } from 'react';
 import { ChevronRight, HelpCircle, Lightbulb, Monitor, Smartphone } from 'lucide-react';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
 import { GameCard } from '../components/GameCard';
@@ -31,7 +31,7 @@ interface GamePageProps {
 }
 
 export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-parking' }) => {
-  const game = GAMES_REGISTRY.find((g) => g.id === gameId) || GAMES_REGISTRY[0]!;
+  const game = GAMES_REGISTRY.find((g) => g.id === gameId || g.slug === gameId) || GAMES_REGISTRY[0]!;
   const GameComponent = GAME_COMPONENTS[game.id] ?? GAME_COMPONENTS['dog-parking']!;
   const intro = GAME_INTROS[game.id];
   const name = shortTitle(game);
@@ -41,27 +41,34 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   const gameHubs = getHubsForGame(game);
   const categoryHref = `/category/${game.category}/`;
 
-  // How-to-play dialog opens on first visit to each game until the player opts out
-  const [isIntroOpen, setIsIntroOpen] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem(`pawcade_intro_seen_${gameId}`) !== 'true';
-    } catch {
-      return true;
+  // Instant-play UX: load directly into the playable canvas without a blocking popup.
+  // Players can open the How-to-Play modal anytime via the "How to play" button.
+  const [isIntroOpen, setIsIntroOpen] = useState<boolean>(false);
+  const hasStartedRef = useRef<boolean>(false);
+  const playStartTimeRef = useRef<number | null>(null);
+  const lastInputTimeRef = useRef<number>(0);
+
+  const markGameplayInteraction = useCallback(() => {
+    const now = Date.now();
+    lastInputTimeRef.current = now;
+    if (!hasStartedRef.current) {
+      hasStartedRef.current = true;
+      playStartTimeRef.current = now;
+      analytics.track('game_started', { gameId: game.id, trigger: 'gameplay_input' });
     }
-  });
+  }, [game.id]);
 
   useEffect(() => {
-    try {
-      setIsIntroOpen(localStorage.getItem(`pawcade_intro_seen_${gameId}`) !== 'true');
-    } catch {
-      setIsIntroOpen(true);
-    }
-  }, [gameId]);
+    setIsIntroOpen(false);
+    hasStartedRef.current = false;
+    playStartTimeRef.current = null;
+    lastInputTimeRef.current = 0;
+  }, [game.id]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    recordRecentGame(gameId);
-    analytics.track('game_loaded', { gameId });
+    recordRecentGame(game.id);
+    analytics.track('game_loaded', { gameId: game.id });
 
     // On short viewports, bring the game frame into view so it is not hidden below the title
     if (typeof window !== 'undefined' && window.innerHeight <= 760) {
@@ -69,7 +76,58 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
         document.getElementById('playable-game-frame')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 120);
     }
-  }, [gameId]);
+
+    const onWindowKeyDown = (e: KeyboardEvent) => {
+      if (
+        ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'KeyW', 'KeyA', 'KeyS', 'KeyD', 'Enter'].includes(
+          e.code
+        )
+      ) {
+        markGameplayInteraction();
+      }
+    };
+
+    const pingInterval = setInterval(() => {
+      if (
+        hasStartedRef.current &&
+        playStartTimeRef.current &&
+        Date.now() - lastInputTimeRef.current < 30000 &&
+        (typeof document === 'undefined' || document.visibilityState === 'visible')
+      ) {
+        analytics.track('gameplay_ping', {
+          gameId: game.id,
+          durationMs: Date.now() - playStartTimeRef.current,
+        });
+      }
+    }, 25000);
+
+    const flushSessionEnd = () => {
+      if (hasStartedRef.current && playStartTimeRef.current) {
+        const durationMs = Date.now() - playStartTimeRef.current;
+        if (durationMs >= 1000) {
+          analytics.track('session_ended', { gameId: game.id, durationMs });
+        }
+      }
+    };
+
+    const onVisibilityChange = () => {
+      if (typeof document !== 'undefined' && document.visibilityState === 'hidden') {
+        flushSessionEnd();
+      }
+    };
+
+    window.addEventListener('keydown', onWindowKeyDown, { passive: true });
+    window.addEventListener('pagehide', flushSessionEnd);
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    return () => {
+      clearInterval(pingInterval);
+      window.removeEventListener('keydown', onWindowKeyDown);
+      window.removeEventListener('pagehide', flushSessionEnd);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      flushSessionEnd();
+    };
+  }, [game.id, markGameplayInteraction]);
 
   return (
     <div className="max-w-7xl mx-auto w-full px-2 sm:px-6 lg:px-8 pt-3 sm:pt-6 pb-safe">
@@ -108,6 +166,9 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-6 mb-8 sm:mb-10">
         <div
           id="playable-game-frame"
+          onPointerDownCapture={markGameplayInteraction}
+          onTouchStartCapture={markGameplayInteraction}
+          onKeyDownCapture={markGameplayInteraction}
           className="bg-stage rounded-[22px] sm:rounded-[28px] ring-4 ring-white shadow-tile p-1 sm:p-5 flex justify-center overflow-hidden short-screen-game-frame"
         >
           <Suspense fallback={<GameLoadingFallback name={name} />}>
