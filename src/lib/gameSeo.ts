@@ -50,6 +50,64 @@ export interface FaqItem {
 const lowerFirst = (s: string) => (s ? s.charAt(0).toLowerCase() + s.slice(1) : s);
 const trimPeriod = (s: string) => s.replace(/[.!\s]+$/, '');
 
+const CUSTOM_QUERY_FAQS: Record<string, FaqItem> = {
+  'barnyard-truck-jumper': {
+    question: 'Can I play this jumping on trucks game (Cluster Rush) free in my browser?',
+    answer:
+      'Yes. Cluster Rush: Truck Jumper is a free HTML5 truck jumping game where you hop from roof to roof across a moving highway convoy with no download.',
+  },
+  'duck-hunt-classic': {
+    question: 'Is this a free Duck Hunt game online with no download?',
+    answer:
+      'Yes. Duck Hunt Classic plays right in your browser on phone or computer—tap or click to aim your light gun at flying mallards across 10 retro rounds.',
+  },
+  'gopher-garden': {
+    question: 'How does the Gopher Garden whack a mole game work?',
+    answer:
+      'Sneaky gophers pop up from garden burrows to steal carrots; tap or click each gopher fast to chain combo streaks while avoiding friendly bunnies.',
+  },
+  'animal-2048': {
+    question: 'How do you merge tiles in 2048 Animals (Animal 2048)?',
+    answer:
+      'Slide the 4x4 board with Arrow keys or touch swipes so matching animal tiles combine into the next species tier until you reach the 2048 Elephant.',
+  },
+  'duckling-pond-rescue': {
+    question: 'How do you play the Ducklings.io game online?',
+    answer:
+      'Steer your mama duck across the lake to rescue stray yellow ducklings, dodge motorboats, and bring your flock home to upgrade your nest and unlock hats.',
+  },
+  'crossy-chicken': {
+    question: 'How do you play Chicken Crossy (Crossy Chicken) online?',
+    answer:
+      'Tap or press Arrow keys to hop Clucky across busy farm roads, drifting river logs, and train tracks without getting caught by traffic or the patrol hawk.',
+  },
+  'hungry-piggy-feast': {
+    question: 'How do you score points in the Hungry Piggy game?',
+    answer:
+      'Slide the hungry piglet left and right under the orchard to catch falling apples, corn, and golden truffles while dodging rotten cores.',
+  },
+  'cat-parking': {
+    question: 'How do you unblock Luna in CatParking (Cat Parking)?',
+    answer:
+      'Drag horizontal and vertical sleeping cats along their lanes on the 6x6 meadow grid until the path to the right-side exit gate is clear for Luna.',
+  },
+  'farm-fruit-bubble': {
+    question: 'How do you aim in Farm Fruit Pop (Farm Fruit Bubble)?',
+    answer:
+      'Move your mouse or drag your finger to aim the dotted trajectory line, then release to fire and pop clusters of 3 or more matching orchard fruits.',
+  },
+  'barnyard-egg-cart': {
+    question: 'How do you keep the egg safe in Eggy Car online?',
+    answer:
+      'Balance throttle and brakes smoothly over steep hills, collect coins to upgrade your cart, and grab Freeze power-ups to lock the egg in place.',
+  },
+  'barnyard-frog-hop': {
+    question: 'How do you cross the river in Frog Games: Pond Hop?',
+    answer:
+      'Time your hops across moving lily pads, logs, and turtles to reach the home reeds at the top of each pond zone without falling into the water.',
+  },
+};
+
 export const buildGameFaqs = (
   game: GameMetadata,
   intro: GameIntroContent | undefined,
@@ -67,7 +125,10 @@ export const buildGameFaqs = (
       : game.description,
   });
 
-  if (genre.length > 0) {
+  const customFaq = CUSTOM_QUERY_FAQS[game.id];
+  if (customFaq) {
+    faqs.push(customFaq);
+  } else if (genre.length > 0) {
     faqs.push({
       question: `What kind of game is ${name}?`,
       answer: `${name} is a ${genre.join(', ')} game${intro ? ` (${lowerFirst(intro.subtitle)})` : ''}. ${game.tagline}`,

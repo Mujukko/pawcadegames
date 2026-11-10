@@ -28,14 +28,13 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onClick, size = 'defau
     <a
       href={game.route}
       onClick={(e) => handleNavClick(e, onClick)}
-      aria-label={`Play ${name}`}
       className={`group relative block aspect-square rounded-[18px] sm:rounded-[22px] overflow-hidden bg-card ring-[3px] sm:ring-4 ring-white shadow-tile transition-transform duration-200 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:shadow-lift hover:z-10 focus:outline-none focus-visible:ring-brand ${
         large ? 'col-span-2 row-span-2' : ''
       }`}
     >
       <img
         src={game.thumbnailUrl}
-        alt=""
+        alt={name}
         loading={priority ? 'eager' : 'lazy'}
         fetchPriority={priority ? 'high' : 'auto'}
         decoding={priority ? 'sync' : 'async'}
@@ -44,6 +43,7 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onClick, size = 'defau
         className="w-full h-full object-cover"
       />
       <span
+        aria-hidden="true"
         className={`absolute inset-x-0 bottom-0 px-2.5 pb-2 pt-8 bg-gradient-to-t from-black/75 via-black/35 to-transparent text-white font-display font-semibold leading-tight drop-shadow translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0 [@media(hover:none)]:translate-y-0 transition-transform duration-200 ${
           large ? 'text-xl sm:text-2xl px-4 pb-3' : 'text-[13px] sm:text-sm'
         }`}

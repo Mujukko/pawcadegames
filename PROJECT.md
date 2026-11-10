@@ -26,9 +26,9 @@ Build a high-retention, delightful browser puzzle game called **Dog Parking** an
 
 ## 5. Current Implementation Status
 - **Total Playable Catalog:** 112 fully playable, mathematically verified games.
-- **Test Suite:** 1,091 automated unit tests passing across 114 test suites (7,231 assertions).
-- **SEO, GEO & Readability:** 112/112 games scored 100/100 on the unified 7-pillar Agentic SEO audit with 0/100 AI slop, 0 truncated SERP titles/descriptions (`<=60` / `<=160` chars), and `/llms.txt` deployed for ChatGPT / AI Search discovery.
-- **Build & Pre-rendering:** Vite production bundle passes cleanly with static HTML pre-rendered for all 112 games, 5 category hubs, 4 info pages, homepage, `llms.txt`, and `sitemap.xml` (122 URLs).
+- **Test Suite:** 1,095 automated unit tests passing across 115 test suites (7,390+ assertions).
+- **SEO, GEO & Readability:** 112/112 games scored 100/100 on the unified 7-pillar Agentic SEO audit with 0/100 AI slop, 0 truncated SERP titles/descriptions (`<=60` / `<=160` chars), 14 programmatic topic hubs (`/category/dog-games/`, `/category/cat-games/`, `/category/duck-games/`, `/category/io-games/`, `/category/merge-games/`, `/category/idle-games/`, `/category/parking-games/`, `/category/runner-games/`, `/category/solitaire-games/`, `/category/word-games/`, `/category/physics-games/`, `/category/cooking-games/`, `/category/bubble-shooter/`, `/category/retro-arcade/`), and `/llms.txt` deployed for ChatGPT / AI Search discovery.
+- **Build & Pre-rendering:** Vite production bundle passes cleanly with static HTML pre-rendered for all 112 games, 19 category/topic hubs, 4 info pages, homepage, `llms.txt`, and `sitemap.xml` (136 URLs).
 - **Continuous Deployment:** All code committed and pushed to `main` (`Mujukko/pawcadegames`).
 
 ## 6. Strategic Game Production Roadmap (Ahrefs US Verified Data)

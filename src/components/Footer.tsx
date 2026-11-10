@@ -14,8 +14,8 @@ const COLUMNS: Array<{ heading: string; links: Array<{ href: string; label: stri
       { href: '/games/dog-parking/', label: 'Dog Parking' },
       { href: '/games/farm-mini-mart/', label: 'Farm Mini Mart' },
       { href: '/games/farm-block-blast/', label: 'Farm Block Blast' },
-      { href: '/games/farm-animal-match/', label: 'Farm Animal Match' },
-      { href: '/games/farm-tripeaks-solitaire/', label: 'TriPeaks Solitaire' },
+      { href: '/games/cluster-rush/', label: 'Cluster Rush' },
+      { href: '/games/duck-hunt-classic/', label: 'Duck Hunt Classic' },
       { href: '/games/animal-2048/', label: 'Animal 2048' },
     ],
   },
@@ -27,6 +27,22 @@ const COLUMNS: Array<{ heading: string; links: Array<{ href: string; label: stri
       { href: '/category/farm/', label: 'Farm games' },
       { href: '/category/arcade/', label: 'Arcade games' },
       { href: '/category/pets/', label: 'Cat & dog games' },
+      { href: '/category/dog-games/', label: 'Dog games' },
+      { href: '/category/cat-games/', label: 'Cat games' },
+      { href: '/category/duck-games/', label: 'Duck games' },
+    ],
+  },
+  {
+    heading: 'Game topics',
+    links: [
+      { href: '/category/io-games/', label: '.io games' },
+      { href: '/category/merge-games/', label: 'Merge & 2048 games' },
+      { href: '/category/runner-games/', label: 'Runner & jump games' },
+      { href: '/category/parking-games/', label: 'Parking & driving' },
+      { href: '/category/idle-games/', label: 'Idle & tycoon games' },
+      { href: '/category/solitaire-games/', label: 'Solitaire & mahjong' },
+      { href: '/category/word-games/', label: 'Word & brain games' },
+      { href: '/category/physics-games/', label: 'Physics & skill' },
     ],
   },
   {
@@ -39,7 +55,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
   return (
     <footer className="mt-16 bg-paper-deep border-t border-line text-ink-soft">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           <div className="col-span-2 md:col-span-1 space-y-3">
             <a href="/" onClick={(e) => handleNavClick(e, () => navigate('/'))} aria-label="Pawcade Games home">
               <Logo />

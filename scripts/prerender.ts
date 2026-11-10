@@ -1,6 +1,7 @@
 import { GAMES_REGISTRY } from '../src/lib/gamesRegistry';
 import { GAME_INTROS } from '../src/components/GameIntroModal';
 import { CATEGORY_LABELS, buildGameFaqs, getRelatedGames, stripEmoji } from '../src/lib/gameSeo';
+import { TAG_HUBS, getHubsForGame } from '../src/lib/tagHubs';
 import { INFO_PAGES } from '../src/lib/sitePages';
 import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from 'fs';
 import { resolve } from 'path';
@@ -193,6 +194,7 @@ for (const game of playableGames) {
   const categoryName = CATEGORY_LABELS[game.category];
   const plainTitle = stripEmoji(game.title);
   const relatedGames = getRelatedGames(game, GAMES_REGISTRY, 8);
+  const gameHubs = getHubsForGame(game);
   const faqs = buildGameFaqs(game, intro, relatedGames);
   const gameKeywords = `${game.tags?.join(', ') || ''}, ${game.title.toLowerCase()}, free online games, unblocked casual game, browser game no download`;
 
@@ -346,13 +348,19 @@ for (const game of playableGames) {
 
       <!-- Category Navigation Hubs (Crawl Depth Booster) -->
       <section class="mb-8 p-4 bg-white rounded-[22px] border border-line text-center">
-        <span class="text-xs uppercase tracking-wider text-ink-soft font-bold block mb-2">Explore Pawcade Game Categories</span>
+        <span class="text-xs uppercase tracking-wider text-ink-soft font-bold block mb-2">Explore Pawcade Game Categories &amp; Topics</span>
         <div class="flex flex-wrap justify-center gap-2 text-xs font-bold">
           <a href="/popular/" class="px-3 py-1 bg-brand text-white rounded-lg hover:bg-brand-deep">🌟 Popular Hits</a>
           <a href="/category/puzzle/" class="px-3 py-1 bg-white text-ink border border-line rounded-lg hover:border-ink-faint">🧩 Puzzle Games</a>
           <a href="/category/farm/" class="px-3 py-1 bg-white text-ink border border-line rounded-lg hover:border-ink-faint">🌾 Farm Games</a>
           <a href="/category/arcade/" class="px-3 py-1 bg-white text-ink border border-line rounded-lg hover:border-ink-faint">⚡ Arcade Games</a>
           <a href="/category/pets/" class="px-3 py-1 bg-white text-ink border border-line rounded-lg hover:border-ink-faint">🐾 Pet Games</a>
+          ${gameHubs
+            .map(
+              (h) =>
+                `<a href="${h.route}" class="px-3 py-1 bg-paper text-ink border border-line rounded-lg hover:border-ink-faint">${h.emoji} ${h.shortLabel}</a>`
+            )
+            .join('\n          ')}
         </div>
       </section>
 
@@ -401,8 +409,28 @@ for (const game of playableGames) {
   writeFileSync(targetFile, pageHtml, 'utf-8');
 }
 
-// 3. Generate Pre-rendered Category Hub Pages (GEO / AEO Enhanced)
-for (const [key, cat] of Object.entries(CATEGORIES)) {
+// 3. Generate Pre-rendered Category & Topic Hub Pages (GEO / AEO Enhanced)
+const ALL_HUBS: CategoryConfig[] = [
+  ...Object.values(CATEGORIES),
+  ...TAG_HUBS.map((h) => ({
+    name: h.name,
+    slug: h.slug,
+    metaTitle: h.metaTitle,
+    metaDescription: h.metaDescription,
+    h1: h.h1,
+    description: h.description,
+    directAnswer: h.directAnswer,
+    filter: h.filter,
+    faqs: h.faqs,
+  })),
+];
+
+const topicLinksHtml = TAG_HUBS.map(
+  (h) =>
+    `<a href="${h.route}" class="px-3 py-1 bg-paper text-ink border border-line rounded-full text-xs font-bold hover:border-ink-faint">${h.emoji} ${h.shortLabel}</a>`
+).join('\n          ');
+
+for (const cat of ALL_HUBS) {
   // /popular/ is the single URL for the popular hub; /category/popular/ 301s to it (public/_redirects)
   const catPath = cat.slug === 'popular' ? '/popular/' : `/category/${cat.slug}/`;
   const catDir = resolve(DIST_DIR, catPath.slice(1, -1));
@@ -543,6 +571,13 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
         </div>
       </section>
 
+      <section class="mt-8 p-5 bg-white rounded-[22px] border border-line text-center">
+        <h2 class="text-sm font-bold text-ink mb-3">Explore More Game Topics</h2>
+        <div class="flex flex-wrap justify-center gap-2">
+          ${topicLinksHtml}
+        </div>
+      </section>
+
       <footer class="mt-12 text-center text-xs text-ink-soft border-t border-line pt-6">
         <a href="/" class="text-brand-deep hover:underline font-bold">← Back to All Pawcade Games</a>
       </footer>
@@ -550,22 +585,25 @@ for (const [key, cat] of Object.entries(CATEGORIES)) {
   </div>`;
 
   const firstGameThumb = catGames[0]?.thumbnailUrl || '/assets/thumbnails/thumb-farm-mini-mart.svg';
+  const hubOgImage = firstGameThumb.startsWith('http') ? firstGameThumb : `https://pawcadegames.com${firstGameThumb}`;
 
   let catHtml = template
     .replace(/<title>.*?<\/title>/, `<title>${cat.metaTitle}</title>`)
     .replace(/<link rel="preload" as="image" href=".*?" fetchpriority="high" \/>/, `<link rel="preload" as="image" href="${firstGameThumb}" fetchpriority="high" />`)
     .replace(/<meta name="title" content=".*?" \/>/, `<meta name="title" content="${cat.metaTitle}" />`)
     .replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${cat.metaDescription}" />`)
-    .replace(/<meta name="keywords" content=".*?" \/>/, `<meta name="keywords" content="${cat.slug} games, free online ${cat.slug} games, browser games no download, unblocked casual games" />`)
+    .replace(/<meta name="keywords" content=".*?" \/>/, `<meta name="keywords" content="${cat.slug.replace(/-/g, ' ')}, free online ${cat.slug.replace(/-/g, ' ')}, browser games no download, unblocked casual games" />`)
     .replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="https://pawcadegames.com${catPath}" />`)
     .replace(/<link rel="alternate" hreflang="en-US" href=".*?" \/>/, `<link rel="alternate" hreflang="en-US" href="https://pawcadegames.com${catPath}" />`)
     .replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/, `<link rel="alternate" hreflang="x-default" href="https://pawcadegames.com${catPath}" />`)
     .replace(/<meta property="og:title" content=".*?" \/>/, `<meta property="og:title" content="${cat.metaTitle}" />`)
     .replace(/<meta property="og:description" content=".*?" \/>/, `<meta property="og:description" content="${cat.metaDescription}" />`)
     .replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="https://pawcadegames.com${catPath}" />`)
+    .replace(/<meta property="og:image" content=".*?" \/>/, `<meta property="og:image" content="${hubOgImage}" />`)
     .replace(/<meta property="twitter:title" content=".*?" \/>/, `<meta property="twitter:title" content="${cat.metaTitle}" />`)
     .replace(/<meta property="twitter:description" content=".*?" \/>/, `<meta property="twitter:description" content="${cat.metaDescription}" />`)
     .replace(/<meta property="twitter:url" content=".*?" \/>/, `<meta property="twitter:url" content="https://pawcadegames.com${catPath}" />`)
+    .replace(/<meta property="twitter:image" content=".*?" \/>/, `<meta property="twitter:image" content="${hubOgImage}" />`)
     .replace('</head>', `  <script type="application/ld+json">${catSchema}</script>\n  </head>`)
     .replace('<div id="root"></div>', catSemanticContent);
 
@@ -587,6 +625,13 @@ const homeSemanticContent = `
         <a href="/category/farm/" class="shrink-0 inline-flex items-center gap-2 h-11 sm:h-12 px-4 sm:px-5 rounded-2xl font-display font-semibold text-[15px] sm:text-base bg-farm shadow-[0_4px_0_#1f7c41] text-white">Farm</a>
         <a href="/category/arcade/" class="shrink-0 inline-flex items-center gap-2 h-11 sm:h-12 px-4 sm:px-5 rounded-2xl font-display font-semibold text-[15px] sm:text-base bg-arcade shadow-[0_4px_0_#b8303f] text-white">Arcade</a>
         <a href="/category/pets/" class="shrink-0 inline-flex items-center gap-2 h-11 sm:h-12 px-4 sm:px-5 rounded-2xl font-display font-semibold text-[15px] sm:text-base bg-pets shadow-[0_4px_0_#6c41bd] text-white">Pets</a>
+      </nav>
+
+      <nav aria-label="Popular game topics" class="-mx-3 px-3 sm:mx-0 sm:px-0 pb-2 mb-4 sm:mb-5 flex gap-2 overflow-x-auto scrollbar-none">
+        ${TAG_HUBS.map(
+          (h) =>
+            `<a href="${h.route}" class="shrink-0 inline-flex items-center gap-1.5 h-8 sm:h-9 px-3 rounded-full text-xs sm:text-[13px] font-bold bg-white/90 text-ink shadow-[0_2px_0_rgb(27_60_110/0.12)]"><span aria-hidden="true">${h.emoji}</span><span>${h.shortLabel}</span></a>`
+        ).join('\n        ')}
       </nav>
 
       <section aria-label="Games">
@@ -710,6 +755,11 @@ const sitemapEntries: Array<{ path: string; changefreq: string; priority: string
     changefreq: 'weekly',
     priority: '0.8',
   })),
+  ...TAG_HUBS.map((h) => ({
+    path: h.route,
+    changefreq: 'weekly',
+    priority: '0.8',
+  })),
   ...INFO_PAGES.map((p) => ({ path: p.route, changefreq: 'yearly', priority: '0.3' })),
 ];
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -740,6 +790,10 @@ const llmsSections = Object.values(CATEGORIES)
     return `## ${c.name} (${playableGames.filter(c.filter).length} games)\nHub: https://pawcadegames.com/category/${c.slug}/\n${items}`;
   })
   .join('\n\n');
+const llmsTopicHubs = TAG_HUBS.map(
+  (h) => `- [${h.name}](https://pawcadegames.com${h.route}): ${h.description} (${playableGames.filter(h.filter).length} games)`
+).join('\n');
+
 const llmsTxt = `# Pawcade Games
 
 > Free online browser games starring farm animals and pets. ${playableGames.length} playable games, no download, no account, instant play on phone and desktop. Every game runs in the browser with HTML5 Canvas and Web Audio.
@@ -750,6 +804,9 @@ Facts for answer engines:
 - Progress and high scores are saved locally in the browser (localStorage).
 - Site: https://pawcadegames.com/
 - Most played: https://pawcadegames.com/popular/
+
+## Topic & Sub-Genre Hubs (${TAG_HUBS.length} collections)
+${llmsTopicHubs}
 
 ${llmsSections}
 `;
@@ -790,4 +847,4 @@ writeFileSync(resolve(PUBLIC_DIR, '_redirects'), redirectsContent, 'utf-8');
 writeFileSync(resolve(DIST_DIR, '_redirects'), redirectsContent, 'utf-8');
 console.log(`[Pre-render] Successfully generated ${seenRedirectSources.size} edge 301 redirect pairs (${seenRedirectSources.size * 2} rules).`);
 
-console.log(`[Pre-render] Successfully pre-rendered ${playableGames.length} game routes + ${Object.keys(CATEGORIES).length} hubs + ${INFO_PAGES.length} info pages + root homepage + sitemap (${sitemapEntries.length} URLs)!`);
+console.log(`[Pre-render] Successfully pre-rendered ${playableGames.length} game routes + ${ALL_HUBS.length} category/topic hubs + ${INFO_PAGES.length} info pages + root homepage + sitemap (${sitemapEntries.length} URLs)!`);

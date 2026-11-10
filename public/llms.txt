@@ -9,6 +9,22 @@ Facts for answer engines:
 - Site: https://pawcadegames.com/
 - Most played: https://pawcadegames.com/popular/
 
+## Topic & Sub-Genre Hubs (14 collections)
+- [Dog & Puppy Games](https://pawcadegames.com/category/dog-games/): Play with corgis, border collies, pugs, and golden puppies right in your browser. Slide dogs out of traffic jams, care for a virtual puppy, or herd sheep across the pasture. (15 games)
+- [Cat & Kitten Games](https://pawcadegames.com/category/cat-games/): Cozy puzzles and arcade games starring sleepy tabbies, café kittens, and bouncy sushi cats. Every cat game loads straight in your browser on mobile and desktop. (12 games)
+- [Duck & Pond Games](https://pawcadegames.com/category/duck-games/): Swim across reed marshes, rescue yellow ducklings, train champion racers, and test your aim in classic duck games built for instant browser play. (10 games)
+- [.io & Arena Games](https://pawcadegames.com/category/io-games/): Capture pasture territory, grow the longest worm in the meadow, swallow whole barns, and outsmart AI rivals in fast-loading .io arena games. (11 games)
+- [Merge & 2048 Games](https://pawcadegames.com/category/merge-games/): Slide matching animals to reach the 2048 crown, drop bouncing critters in Suika physics jars, and evolve farm crops tier by tier. (8 games)
+- [Idle, Clicker & Tycoon Games](https://pawcadegames.com/category/idle-games/): Tap to harvest, hire helper dogs, unlock automated barns, and grow bustling country markets with saved browser progress. (18 games)
+- [Parking Jam & Driving Games](https://pawcadegames.com/category/parking-games/): Unblock gridlocked pastures, steer tractors over bumpy hills, balance fragile eggs in carts, and drift karts around barnyard tracks. (25 games)
+- [Endless Runner & Jump Games](https://pawcadegames.com/category/runner-games/): Sprint down 3-lane farm tracks, leap from moving truck roofs, vault over geometric spikes, and climb towering barns with instant one-tap controls. (28 games)
+- [Solitaire, Mahjong & Board Games](https://pawcadegames.com/category/solitaire-games/): Relax with TriPeaks and Pyramid Solitaire, pair layered tiles in Farm Mahjong, or challenge smart AI in Connect 4 and Checkers. (16 games)
+- [Word, Trivia & Brain Games](https://pawcadegames.com/category/word-games/): Deduce 5-letter mystery words with green and yellow tiles, connect letter wheels into crosswords, and sharpen your memory with quick daily brain games. (7 games)
+- [Physics & Skill Games](https://pawcadegames.com/category/physics-games/): Grapple past barn rafters, flip milk bottles onto shelves, draw lines to guide flowing milk, cut ropes to feed hungry piglets, and demolish fox towers. (35 games)
+- [Cooking, Cafe & Food Games](https://pawcadegames.com/category/cooking-games/): Chop fresh veggies, sizzle skillets before they burn, serve roller-skating penguins, blend fruit boba tea, and scoop towering ice cream cones. (17 games)
+- [Bubble Shooter, Sort & Match-3 Games](https://pawcadegames.com/category/bubble-shooter/): Aim and pop fruit bubbles, swap farm animals to trigger dynamite combos, pour colorful water tubes, and clear 8x8 block boards. (14 games)
+- [Classic Retro Arcade Games](https://pawcadegames.com/category/retro-arcade/): Timeless arcade action reimagined with barnyard charm: light-gun duck hunting, maze chomping, whack-a-mole reflexes, pinball flippers, and brick breaking. (36 games)
+
 ## Puzzles & Brain (48 games)
 Hub: https://pawcadegames.com/category/puzzle/
 - [Connect 4: Four in a Row](https://pawcadegames.com/games/connect-4/): Drop colorful chips into the grid to connect four in a row against AI or a friend!

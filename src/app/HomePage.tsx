@@ -1,14 +1,17 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Blocks, Flame, Gamepad2, PawPrint, Tractor, Zap, type LucideIcon } from 'lucide-react';
+import { Blocks, Clock, Flame, Gamepad2, PawPrint, Tractor, Zap, type LucideIcon } from 'lucide-react';
 import { GAMES_REGISTRY, GameMetadata } from '../lib/gamesRegistry';
 import { GameCard } from '../components/GameCard';
 import { handleNavClick } from '../lib/navClick';
+import { TAG_HUBS, TAG_HUB_BY_SLUG, getRecentGameIds } from '../lib/tagHubs';
+import { shortTitle } from '../lib/gameSeo';
 
 interface HomePageProps {
   navigate: (path: string) => void;
   searchQuery?: string;
   setSearchQuery?: (query: string) => void;
   initialCategory?: CategoryTab;
+  initialTagHub?: string;
 }
 
 export type CategoryTab = 'all' | 'popular' | 'puzzle' | 'farm' | 'arcade' | 'pets';
@@ -99,12 +102,23 @@ export const HomePage: React.FC<HomePageProps> = ({
   searchQuery = '',
   setSearchQuery,
   initialCategory = 'all',
+  initialTagHub,
 }) => {
   const [activeCategory, setActiveCategory] = useState<CategoryTab>(initialCategory);
+  const [activeTagHub, setActiveTagHub] = useState<string | undefined>(initialTagHub);
 
   useEffect(() => {
-    if (initialCategory) setActiveCategory(initialCategory);
-  }, [initialCategory]);
+    setActiveCategory(initialCategory);
+    setActiveTagHub(initialTagHub);
+  }, [initialCategory, initialTagHub]);
+
+  const recentGames = useMemo(() => {
+    const ids = getRecentGameIds();
+    return ids
+      .map((id) => GAMES_REGISTRY.find((g) => g.id === id && g.status === 'playable'))
+      .filter((g): g is GameMetadata => Boolean(g))
+      .slice(0, 6);
+  }, [activeCategory, activeTagHub]);
 
   const categoryCounts = useMemo(() => {
     const playable = GAMES_REGISTRY.filter((g) => g.status === 'playable');
@@ -114,23 +128,29 @@ export const HomePage: React.FC<HomePageProps> = ({
   }, []);
 
   const isSearching = searchQuery.trim().length > 0;
+  const currentHub = !isSearching && activeTagHub ? TAG_HUB_BY_SLUG[activeTagHub] : undefined;
 
   const displayedGames = useMemo(() => {
+    const playable = GAMES_REGISTRY.filter((g) => g.status === 'playable');
     const q = searchQuery.toLowerCase().trim();
-    const list = q
-      ? GAMES_REGISTRY.filter(
-          (g) =>
-            g.title.toLowerCase().includes(q) ||
-            g.description.toLowerCase().includes(q) ||
-            g.category.toLowerCase().includes(q) ||
-            (g.tags && g.tags.some((t) => t.toLowerCase().includes(q)))
-        )
-      : GAMES_REGISTRY.filter((g) => matchCategory(g, activeCategory));
-
-    return list;
-  }, [activeCategory, searchQuery]);
+    if (q) {
+      return playable.filter(
+        (g) =>
+          g.title.toLowerCase().includes(q) ||
+          g.description.toLowerCase().includes(q) ||
+          g.category.toLowerCase().includes(q) ||
+          (g.tags && g.tags.some((t) => t.toLowerCase().includes(q)))
+      );
+    }
+    if (currentHub) {
+      return playable.filter(currentHub.filter);
+    }
+    return playable.filter((g) => matchCategory(g, activeCategory));
+  }, [activeCategory, currentHub, searchQuery]);
 
   const info = CATEGORY_INFOS.find((c) => c.id === activeCategory) || CATEGORY_INFOS[0]!;
+  const headingTitle = currentHub ? currentHub.name : info.title;
+  const headingTagline = currentHub ? currentHub.description : info.tagline;
   // A few 2x2 spotlight tiles keep the mosaic lively without crowding it
   const largeIds = new Set(isSearching ? [] : displayedGames.filter((g) => g.featured).slice(0, 4).map((g) => g.id));
   const quickPicks = displayedGames.slice(0, 5);
@@ -138,9 +158,9 @@ export const HomePage: React.FC<HomePageProps> = ({
   return (
     <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
       {/* Category buttons */}
-      <nav aria-label="Game categories" className="-mx-3 px-3 sm:mx-0 sm:px-0 pb-2 mb-4 sm:mb-6 flex gap-2.5 sm:gap-3 overflow-x-auto scrollbar-none">
+      <nav aria-label="Game categories" className="-mx-3 px-3 sm:mx-0 sm:px-0 pb-2 mb-2.5 flex gap-2.5 sm:gap-3 overflow-x-auto scrollbar-none">
         {CATEGORY_INFOS.map((tab) => {
-          const isActive = !isSearching && activeCategory === tab.id;
+          const isActive = !isSearching && !currentHub && activeCategory === tab.id;
           const Icon = tab.icon;
           return (
             <a
@@ -149,6 +169,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               aria-current={isActive ? 'page' : undefined}
               onClick={(e) =>
                 handleNavClick(e, () => {
+                  setActiveTagHub(undefined);
                   setActiveCategory(tab.id);
                   if (setSearchQuery) setSearchQuery('');
                   navigate(tab.href);
@@ -167,6 +188,61 @@ export const HomePage: React.FC<HomePageProps> = ({
           );
         })}
       </nav>
+
+      {/* Sub-category / Topic Tag Hubs strip */}
+      <nav aria-label="Popular game topics" className="-mx-3 px-3 sm:mx-0 sm:px-0 pb-2 mb-4 sm:mb-5 flex gap-2 overflow-x-auto scrollbar-none">
+        {TAG_HUBS.map((hub) => {
+          const isHubActive = !isSearching && currentHub?.slug === hub.slug;
+          return (
+            <a
+              key={hub.slug}
+              href={hub.route}
+              aria-current={isHubActive ? 'page' : undefined}
+              onClick={(e) =>
+                handleNavClick(e, () => {
+                  setActiveTagHub(hub.slug);
+                  if (setSearchQuery) setSearchQuery('');
+                  navigate(hub.route);
+                })
+              }
+              className={`shrink-0 inline-flex items-center gap-1.5 h-8 sm:h-9 px-3 rounded-full text-xs sm:text-[13px] font-bold transition-all ${
+                isHubActive
+                  ? 'bg-ink text-white shadow-sm ring-2 ring-white'
+                  : 'bg-white/90 hover:bg-white text-ink shadow-[0_2px_0_rgb(27_60_110/0.12)]'
+              }`}
+            >
+              <span aria-hidden="true">{hub.emoji}</span>
+              <span>{hub.shortLabel}</span>
+            </a>
+          );
+        })}
+      </nav>
+
+      {/* Continue Playing strip for returning players */}
+      {!isSearching && !currentHub && activeCategory === 'all' && recentGames.length > 0 && (
+        <section aria-label="Continue playing" className="mb-4 sm:mb-5 bg-white/85 rounded-[20px] p-3 sm:p-4 shadow-sm">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-display font-semibold text-ink mb-2.5">
+            <Clock className="w-4 h-4 text-brand-deep" />
+            <span>Continue playing</span>
+          </div>
+          <div className="flex gap-2.5 sm:gap-3 overflow-x-auto scrollbar-none pb-1">
+            {recentGames.map((g) => {
+              const name = shortTitle(g);
+              return (
+                <a
+                  key={g.id}
+                  href={g.route}
+                  onClick={(e) => handleNavClick(e, () => navigate(g.route))}
+                  className="shrink-0 flex items-center gap-2.5 bg-paper hover:bg-white rounded-2xl p-1.5 pr-3.5 ring-1 ring-line transition-transform hover:-translate-y-0.5"
+                >
+                  <img src={g.thumbnailUrl} alt={name} width={40} height={40} className="w-10 h-10 rounded-xl object-cover" />
+                  <span className="text-xs sm:text-sm font-display font-semibold text-ink whitespace-nowrap">{name}</span>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {displayedGames.length > 0 ? (
         <section aria-label="Games">
@@ -190,9 +266,9 @@ export const HomePage: React.FC<HomePageProps> = ({
               ) : (
                 <>
                   <h1 className="font-display text-2xl sm:text-[2rem] lg:text-4xl font-semibold text-ink leading-[1.1] tracking-tight">
-                    {info.title}
+                    {headingTitle}
                   </h1>
-                  <p className="mt-2 sm:mt-3 text-sm sm:text-[15px] text-ink-soft leading-relaxed">{info.tagline}</p>
+                  <p className="mt-2 sm:mt-3 text-sm sm:text-[15px] text-ink-soft leading-relaxed">{headingTagline}</p>
                   <p className="mt-3 sm:mt-4 flex flex-wrap gap-2 text-xs font-bold">
                     <span className="px-2.5 py-1 rounded-full bg-farm-tint text-farm-deep">Free</span>
                     <span className="px-2.5 py-1 rounded-full bg-puzzle-tint text-puzzle-deep">No download</span>
@@ -205,11 +281,11 @@ export const HomePage: React.FC<HomePageProps> = ({
                         <a
                           key={g.id}
                           href={g.route}
-                          title={g.title}
+                          title={shortTitle(g)}
                           onClick={(e) => handleNavClick(e, () => navigate(g.route))}
                           className="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-white shadow-[0_3px_0_rgb(27_60_110/0.16)] hover:-translate-y-0.5 transition-transform"
                         >
-                          <img src={g.thumbnailUrl} alt="" width={48} height={48} className="w-full h-full object-cover" />
+                          <img src={g.thumbnailUrl} alt={shortTitle(g)} width={48} height={48} className="w-full h-full object-cover" />
                         </a>
                       ))}
                     </div>
@@ -228,6 +304,21 @@ export const HomePage: React.FC<HomePageProps> = ({
               />
             ))}
           </div>
+
+          {currentHub && (
+            <div className="mt-8 bg-card rounded-[22px] shadow-card p-5 sm:p-6 space-y-4">
+              <h2 className="font-display text-xl font-semibold text-ink">About {currentHub.name}</h2>
+              <p className="text-sm text-ink-soft leading-relaxed">{currentHub.directAnswer}</p>
+              <div className="divide-y divide-line pt-2">
+                {currentHub.faqs.map((f) => (
+                  <div key={f.question} className="py-3 first:pt-0 last:pb-0">
+                    <h3 className="font-bold text-ink text-sm mb-1">{f.question}</h3>
+                    <p className="text-sm text-ink-soft leading-relaxed">{f.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
       ) : (
         <div className="text-center py-16 bg-white rounded-[22px] shadow-tile">

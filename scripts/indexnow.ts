@@ -1,4 +1,5 @@
 import { GAMES_REGISTRY } from '../src/lib/gamesRegistry';
+import { TAG_HUBS } from '../src/lib/tagHubs';
 
 const INDEXNOW_KEY = '4a9b2c8d7e1f4095a123bc456def789a';
 const HOST = 'pawcadegames.com';
@@ -13,6 +14,7 @@ async function submitIndexNow() {
     `https://${HOST}/category/farm/`,
     `https://${HOST}/category/arcade/`,
     `https://${HOST}/category/pets/`,
+    ...TAG_HUBS.map((h) => `https://${HOST}${h.route}`),
     ...GAMES_REGISTRY.filter((g) => g.status === 'playable').map(
       (g) => `https://${HOST}${g.route}`
     ),

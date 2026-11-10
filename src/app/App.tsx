@@ -7,6 +7,7 @@ import { NotFoundPage } from './NotFoundPage';
 import { InfoPage } from './InfoPage';
 import { INFO_PAGES } from '../lib/sitePages';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
+import { TAG_HUBS } from '../lib/tagHubs';
 import { analytics } from '../lib/analytics';
 
 export const App: React.FC = () => {
@@ -452,6 +453,14 @@ export const App: React.FC = () => {
     } else if (currentRoute.startsWith('/category/pets')) {
       activeTitle = 'Pet Games Online — Free Cute Cat & Dog Games | Pawcade';
       activeDesc = 'Play free cat games, dog games, and cute pet puzzles online! Slide corgis in Dog Parking, rescue kittens in Cat Parking, and care for pets—no download.';
+    } else if (currentRoute.startsWith('/category/')) {
+      const matchedHub = TAG_HUBS.find((h) => currentRoute.startsWith(`/category/${h.slug}`));
+      if (matchedHub) {
+        activeTitle = matchedHub.metaTitle;
+        activeDesc = matchedHub.metaDescription;
+      } else {
+        activeTitle = 'Page Not Found (404) | Pawcade Games';
+      }
     } else if (currentRoute === '/' || currentRoute === '' || currentRoute === '/games' || currentRoute === '/games/') {
       activeTitle = 'Pawcade Games 🎮 — Free Online Browser Games | No Download';
       activeDesc = 'Play 110+ free online browser games on Pawcade! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, and Duck Hunt on phone or PC with no download.';
@@ -510,6 +519,20 @@ export const App: React.FC = () => {
     }
     if (currentRoute.startsWith('/category/pets')) {
       return <HomePage navigate={navigate} searchQuery={searchQuery} setSearchQuery={setSearchQuery} initialCategory="pets" />;
+    }
+    if (currentRoute.startsWith('/category/')) {
+      const matchedHub = TAG_HUBS.find((h) => currentRoute.startsWith(`/category/${h.slug}`));
+      if (matchedHub) {
+        return (
+          <HomePage
+            navigate={navigate}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            initialCategory="all"
+            initialTagHub={matchedHub.slug}
+          />
+        );
+      }
     }
     const cleanRoute = currentRoute.replace(/\/$/, '');
     const matchedGame = GAMES_REGISTRY.find(

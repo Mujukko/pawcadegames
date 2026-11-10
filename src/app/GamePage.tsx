@@ -5,6 +5,7 @@ import { GameCard } from '../components/GameCard';
 import { GameIntroModal, GAME_INTROS } from '../components/GameIntroModal';
 import { analytics } from '../lib/analytics';
 import { CATEGORY_LABELS, buildGameFaqs, getRelatedGames, shortTitle, stripEmoji } from '../lib/gameSeo';
+import { getHubsForGame, recordRecentGame } from '../lib/tagHubs';
 import { handleNavClick } from '../lib/navClick';
 import { GAME_COMPONENTS } from './gameComponents';
 
@@ -37,6 +38,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
   const relatedGames = getRelatedGames(game, GAMES_REGISTRY, 8);
   const sidebarGames = relatedGames.slice(0, 6);
   const faqs = buildGameFaqs(game, intro, relatedGames);
+  const gameHubs = getHubsForGame(game);
   const categoryHref = `/category/${game.category}/`;
 
   // How-to-play dialog opens on first visit to each game until the player opts out
@@ -58,6 +60,7 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    recordRecentGame(gameId);
     analytics.track('game_loaded', { gameId });
 
     // On short viewports, bring the game frame into view so it is not hidden below the title
@@ -192,6 +195,27 @@ export const GamePage: React.FC<GamePageProps> = ({ navigate, gameId = 'dog-park
               <li key={f}>{f}</li>
             ))}
           </ul>
+          <div className="mt-5 pt-4 border-t border-line flex flex-wrap items-center gap-2">
+            <span className="text-xs font-bold text-ink-faint mr-1">Topics:</span>
+            <a
+              href={categoryHref}
+              onClick={(e) => handleNavClick(e, () => navigate(categoryHref))}
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-paper hover:bg-brand-tint text-xs font-bold text-ink hover:text-brand-deep transition-colors"
+            >
+              {CATEGORY_LABELS[game.category]}
+            </a>
+            {gameHubs.map((hub) => (
+              <a
+                key={hub.slug}
+                href={hub.route}
+                onClick={(e) => handleNavClick(e, () => navigate(hub.route))}
+                className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-paper hover:bg-brand-tint text-xs font-bold text-ink hover:text-brand-deep transition-colors"
+              >
+                <span aria-hidden="true">{hub.emoji}</span>
+                <span>{hub.shortLabel}</span>
+              </a>
+            ))}
+          </div>
         </SectionCard>
 
         {faqs.length > 0 && (
