@@ -48,6 +48,50 @@ export function detectTrafficChannel(): { channel: TrafficChannel; source: strin
   return { channel: 'referral', source: 'referral' };
 }
 
+export const ANALYTICS_EXCLUDE_KEY = 'pawcade_exclude_analytics';
+export const GA_MEASUREMENT_ID = 'G-6QENGPZ73F';
+
+export function setAnalyticsExcluded(excluded: boolean): void {
+  if (typeof window === 'undefined') return;
+  try {
+    const w = window as unknown as Record<string, unknown>;
+    if (excluded) {
+      localStorage.setItem(ANALYTICS_EXCLUDE_KEY, 'true');
+      document.cookie = `${ANALYTICS_EXCLUDE_KEY}=true; max-age=315360000; path=/; SameSite=Lax`;
+      w[`ga-disable-${GA_MEASUREMENT_ID}`] = true;
+      w.__PAWCADE_ANALYTICS_EXCLUDED__ = true;
+    } else {
+      localStorage.removeItem(ANALYTICS_EXCLUDE_KEY);
+      document.cookie = `${ANALYTICS_EXCLUDE_KEY}=; max-age=0; path=/; SameSite=Lax`;
+      w[`ga-disable-${GA_MEASUREMENT_ID}`] = false;
+      w.__PAWCADE_ANALYTICS_EXCLUDED__ = false;
+    }
+  } catch {}
+}
+
+export function isAnalyticsExcluded(): boolean {
+  if (typeof window === 'undefined') return false;
+  try {
+    const w = window as unknown as Record<string, unknown>;
+    if (w.__PAWCADE_ANALYTICS_EXCLUDED__ === true || w[`ga-disable-${GA_MEASUREMENT_ID}`] === true) {
+      return true;
+    }
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1' || host.endsWith('.local') || navigator.webdriver) {
+      w[`ga-disable-${GA_MEASUREMENT_ID}`] = true;
+      return true;
+    }
+    if (
+      localStorage.getItem(ANALYTICS_EXCLUDE_KEY) === 'true' ||
+      (typeof document !== 'undefined' && document.cookie.includes(`${ANALYTICS_EXCLUDE_KEY}=true`))
+    ) {
+      w[`ga-disable-${GA_MEASUREMENT_ID}`] = true;
+      return true;
+    }
+  } catch {}
+  return false;
+}
+
 class AnalyticsService {
   private sessionId: string;
   private sessionStartTime: number;
@@ -58,6 +102,10 @@ class AnalyticsService {
   }
 
   public track(event: AnalyticsEventName, payload?: Partial<AnalyticsEventPayload>): void {
+    if (isAnalyticsExcluded()) {
+      return;
+    }
+
     // GA4 treats `source`, `medium`, `campaign`, `term` and `content` event parameters as
     // traffic-source overrides. Sending `source: 'intro_modal'` hijacked session attribution
     // (it showed up as "intro_modal / (not set)"), so these keys are namespaced here.
@@ -120,6 +168,10 @@ class AnalyticsService {
   }
 
   public trackPageView(path: string, title?: string): void {
+    if (isAnalyticsExcluded()) {
+      return;
+    }
+
     const pageTitle = title || (typeof document !== 'undefined' ? document.title : '');
     const pageLocation = typeof window !== 'undefined' ? window.location.href : '';
     const trafficInfo = detectTrafficChannel();

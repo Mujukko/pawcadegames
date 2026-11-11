@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'bun:test';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
 import { GAME_INTROS } from '../components/GameIntroModal';
+import { ANALYTICS_EXCLUDE_KEY, GA_MEASUREMENT_ID } from '../lib/analytics';
 import { GAME_COMPONENTS } from './gameComponents';
 
 describe('112-Game Playability & Instant-Play UX Audit', () => {
@@ -23,5 +24,10 @@ describe('112-Game Playability & Instant-Play UX Audit', () => {
       expect(game.controls.desktop.length).toBeGreaterThanOrEqual(1);
       expect(game.controls.mobile.length).toBeGreaterThanOrEqual(1);
     }
+  });
+
+  it('defines owner analytics exclusion constants for G-6QENGPZ73F', () => {
+    expect(ANALYTICS_EXCLUDE_KEY).toBe('pawcade_exclude_analytics');
+    expect(GA_MEASUREMENT_ID).toBe('G-6QENGPZ73F');
   });
 });

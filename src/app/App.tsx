@@ -8,7 +8,7 @@ import { InfoPage } from './InfoPage';
 import { INFO_PAGES } from '../lib/sitePages';
 import { GAMES_REGISTRY } from '../lib/gamesRegistry';
 import { TAG_HUBS } from '../lib/tagHubs';
-import { analytics } from '../lib/analytics';
+import { analytics, setAnalyticsExcluded } from '../lib/analytics';
 
 export const App: React.FC = () => {
   // Normalize current path from browser URL or hash
@@ -23,6 +23,24 @@ export const App: React.FC = () => {
 
   const [currentRoute, setCurrentRoute] = useState<string>(getInitialPath);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [ownerToast, setOwnerToast] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const ignoreParam = params.get('ignore_me') ?? params.get('exclude_analytics');
+      if (ignoreParam === '1') {
+        setAnalyticsExcluded(true);
+        setOwnerToast('🛡️ Owner Mode Active: Your visits on this browser are now permanently excluded from Google Analytics.');
+        window.history.replaceState({}, '', window.location.pathname + window.location.hash);
+      } else if (ignoreParam === '0') {
+        setAnalyticsExcluded(false);
+        setOwnerToast('📊 Analytics Re-enabled: Your visits on this browser will be counted in Google Analytics.');
+        window.history.replaceState({}, '', window.location.pathname + window.location.hash);
+      }
+    } catch {}
+  }, []);
 
   // Sync state on back/forward browser button
   useEffect(() => {
@@ -747,6 +765,17 @@ export const App: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen text-ink">
+      {ownerToast && (
+        <div className="bg-emerald-900 text-white px-4 py-2.5 text-xs sm:text-sm font-bold flex items-center justify-between gap-3 z-50">
+          <span>{ownerToast}</span>
+          <button
+            onClick={() => setOwnerToast(null)}
+            className="px-2 py-0.5 rounded bg-white/15 hover:bg-white/25 text-white cursor-pointer"
+          >
+            OK
+          </button>
+        </div>
+      )}
       <Header
         currentRoute={currentRoute}
         navigate={navigate}

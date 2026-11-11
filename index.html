@@ -12,26 +12,53 @@
     <link rel="preload" href="/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Google tag (gtag.js) - Buffered & Interaction-Deferred for 95+ PageSpeed -->
+    <!-- Google tag (gtag.js) - Buffered, Interaction-Deferred & Owner-Excluded -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){window.dataLayer.push(arguments);}
-      window.gtag = gtag;
-      gtag('js', new Date());
-
-      gtag('config', 'G-6QENGPZ73F', {
-        send_page_view: false
-      });
-
-      // Defer external gtag.js network request until window load or first user gesture
       (function() {
+        var GA_ID = 'G-6QENGPZ73F';
+        var STORAGE_KEY = 'pawcade_exclude_analytics';
+        var excluded = false;
+
+        try {
+          var params = new URLSearchParams(window.location.search);
+          if (params.get('ignore_me') === '1' || params.get('exclude_analytics') === '1') {
+            localStorage.setItem(STORAGE_KEY, 'true');
+            document.cookie = STORAGE_KEY + '=true; max-age=315360000; path=/; SameSite=Lax';
+          } else if (params.get('ignore_me') === '0' || params.get('exclude_analytics') === '0') {
+            localStorage.removeItem(STORAGE_KEY);
+            document.cookie = STORAGE_KEY + '=; max-age=0; path=/; SameSite=Lax';
+          }
+
+          var host = window.location.hostname;
+          var isLocal = host === 'localhost' || host === '127.0.0.1' || host.endsWith('.local');
+          var hasCookie = document.cookie.indexOf(STORAGE_KEY + '=true') !== -1;
+          var hasStorage = localStorage.getItem(STORAGE_KEY) === 'true';
+          excluded = Boolean(isLocal || hasCookie || hasStorage || navigator.webdriver);
+        } catch (e) {}
+
+        if (excluded) {
+          window['ga-disable-' + GA_ID] = true;
+          window.__PAWCADE_ANALYTICS_EXCLUDED__ = true;
+          return;
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+
+        gtag('config', GA_ID, {
+          send_page_view: false
+        });
+
+        // Defer external gtag.js network request until window load or first user gesture
         var loaded = false;
         function loadGtag() {
-          if (loaded) return;
+          if (loaded || window['ga-disable-' + GA_ID]) return;
           loaded = true;
           var s = document.createElement('script');
           s.async = true;
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-6QENGPZ73F';
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
           document.head.appendChild(s);
         }
         if (document.readyState === 'complete') {
