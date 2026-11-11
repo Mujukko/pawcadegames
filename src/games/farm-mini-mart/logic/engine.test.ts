@@ -197,8 +197,39 @@ describe('Farm Mini Mart Core Engine', () => {
 
       expect(updatedCust.basket).toContain('tomato');
       expect(updatedCust.state).toBe('in_queue');
+      expect(updatedCust.queueIndex).toBe(0);
       expect(events).toContain('customer_pick');
       expect(nextState.shelves.find((s) => s.id === 'shelf-tomato')!.currentStock).toBe(4);
+    });
+
+    it('completes full shopping-to-checkout-to-wallet cycle automatically', () => {
+      let state = createInitialMartState();
+      const initialCoins = state.player.coins;
+      const shelf = state.shelves.find((s) => s.id === 'shelf-tomato')!;
+      shelf.currentStock = 5;
+
+      state = spawnCustomer(state);
+      const cust = state.customers[0]!;
+      cust.wants[0]!.amount = 1;
+      cust.x = shelf.x + shelf.width / 2;
+      cust.y = shelf.y + shelf.height + 25;
+
+      // Position player on Cashier Mat behind register
+      state.player.x = 410;
+      state.player.y = 365;
+
+      // Step 1: Customer picks item from shelf and enters queue at slot 0
+      state = updateMartGame(state, 50, { dx: 0, dy: 0 }).nextState;
+      expect(state.customers[0]!.state).toBe('in_queue');
+      expect(state.customers[0]!.queueIndex).toBe(0);
+
+      // Step 2: Run checkout ticks (600ms) -> customer pays & player collects coins automatically
+      for (let i = 0; i < 15; i++) {
+        state = updateMartGame(state, 50, { dx: 0, dy: 0 }).nextState;
+      }
+
+      expect(state.player.coins).toBe(initialCoins + PRODUCTS.tomato.sellPrice);
+      expect(state.player.customersServed).toBe(1);
     });
 
     it('processes checkout when player stands at cash register', () => {

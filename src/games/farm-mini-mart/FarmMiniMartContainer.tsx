@@ -262,12 +262,14 @@ export const FarmMiniMartContainer: React.FC = () => {
         }
       }
 
-      // Periodic state sync to React & LocalStorage every 1.5 seconds
+      // Immediate HUD sync on gameplay events + periodic sync every 250ms
       saveTimer += dt;
-      if (saveTimer > 1500) {
-        saveTimer = 0;
+      if (events.length > 0 || saveTimer > 250) {
         setGameState(nextState);
-        saveMartState(nextState);
+        if (saveTimer > 1200 || events.includes('kaching') || events.includes('unlock_station')) {
+          saveTimer = 0;
+          saveMartState(nextState);
+        }
       }
 
       // Render onto 2D Canvas

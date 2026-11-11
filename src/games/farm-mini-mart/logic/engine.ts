@@ -873,8 +873,19 @@ export function updateMartGame(
   const isPlayerAtRegister = isBehindCounter || isNearRegister;
   const isCashierActive = register.hasCashier;
 
+  // Normalize queue indices so the frontmost waiting customer is always at queueIndex 0
+  const queuedCustomers = customers
+    .filter((c) => c.state === 'in_queue')
+    .sort((a, b) => a.queueIndex - b.queueIndex);
+  queuedCustomers.forEach((c, idx) => {
+    c.queueIndex = idx;
+    const spot = WORLD_BOUNDS.checkoutSpots[Math.min(idx, WORLD_BOUNDS.checkoutSpots.length - 1)]!;
+    c.targetX = spot.x;
+    c.targetY = spot.y;
+  });
+
   // Serve the customer at index 0 of the checkout queue
-  const queueLeader = customers.find((c) => c.state === 'in_queue' && c.queueIndex === 0);
+  const queueLeader = queuedCustomers[0];
   if (queueLeader && (isPlayerAtRegister || isCashierActive)) {
     register.serveTimer += dt;
     // Serve customer every 600ms (faster, responsive checkout)
@@ -975,10 +986,9 @@ export function updateMartGame(
         // All wants satisfied or has at least 1 item and shelf is empty
         const isComplete = cust.wants.every((w) => w.collected >= w.amount);
         if (isComplete || (cust.basket.length > 0 && targetShelf.currentStock === 0)) {
-          // Head to register queue!
+          // Count how many other customers are already in queue BEFORE marking this customer in_queue
+          const queueLength = customers.filter((c) => c.state === 'in_queue' && c.id !== cust.id).length;
           cust.state = 'in_queue';
-          // Count how many are already in queue
-          const queueLength = customers.filter((c) => c.state === 'in_queue').length;
           cust.queueIndex = Math.min(queueLength, WORLD_BOUNDS.checkoutSpots.length - 1);
           const spot = WORLD_BOUNDS.checkoutSpots[cust.queueIndex] || WORLD_BOUNDS.checkoutSpots[3]!;
           cust.targetX = spot.x;
