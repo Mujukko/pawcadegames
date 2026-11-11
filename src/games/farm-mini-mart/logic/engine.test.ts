@@ -300,6 +300,55 @@ describe('Farm Mini Mart Core Engine', () => {
       expect(nextState.helper.stack.length).toBe(1);
       expect(nextState.helper.stack[0]).toBe('tomato');
     });
+
+    it('switches to harvesting corn when tomato shelf is full even if previously holding tomatoes', () => {
+      const state = createInitialMartState();
+      state.helper.unlocked = true;
+
+      // Tomato shelf is completely full (8/8), and helper was previously holding 2 excess tomatoes
+      const tomatoShelf = state.shelves.find((s) => s.id === 'shelf-tomato')!;
+      tomatoShelf.currentStock = tomatoShelf.maxStock;
+      state.helper.stack = ['tomato', 'tomato'];
+
+      // Corn plot and corn shelf are unlocked and need stock
+      const cornPlot = state.plots.find((p) => p.id === 'plot-corn')!;
+      cornPlot.unlocked = true;
+      cornPlot.readyCount = 3;
+
+      const cornShelf = state.shelves.find((s) => s.id === 'shelf-corn')!;
+      cornShelf.unlocked = true;
+      cornShelf.currentStock = 0;
+
+      // Place helper at corn plot
+      state.helper.x = cornPlot.x + cornPlot.width / 2;
+      state.helper.y = cornPlot.y + cornPlot.height / 2;
+
+      const { nextState } = updateMartGame(state, 50, { dx: 0, dy: 0 });
+      expect(nextState.helper.stack).not.toContain('tomato');
+      expect(nextState.helper.stack).toContain('corn');
+      expect(nextState.helper.targetX).toBe(cornPlot.x + cornPlot.width / 2);
+    });
+
+    it('stocks partial stack immediately when plot only needed 1 item to fill shelf', () => {
+      const state = createInitialMartState();
+      state.helper.unlocked = true;
+
+      // Tomato shelf has 7/8 (only needs 1 tomato)
+      const tomatoShelf = state.shelves.find((s) => s.id === 'shelf-tomato')!;
+      tomatoShelf.currentStock = tomatoShelf.maxStock - 1;
+
+      // Helper already picked 1 tomato (matching remaining need)
+      state.helper.stack = ['tomato'];
+      state.helper.x = tomatoShelf.x + tomatoShelf.width / 2;
+      state.helper.y = tomatoShelf.y + tomatoShelf.height / 2;
+
+      const { nextState } = updateMartGame(state, 50, { dx: 0, dy: 0 });
+      expect(nextState.helper.state).toBe('stocking');
+      expect(nextState.shelves.find((s) => s.id === 'shelf-tomato')!.currentStock).toBe(
+        tomatoShelf.maxStock
+      );
+      expect(nextState.helper.stack.length).toBe(0);
+    });
   });
 
   describe('Shop Upgrades & Persistence', () => {

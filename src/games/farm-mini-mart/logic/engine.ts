@@ -761,48 +761,112 @@ export function updateMartGame(
 
   // 4. Helper Worker AI (if unlocked)
   if (helper.unlocked) {
-    // If empty stack, find an unlocked plot with ready crops
-    if (helper.stack.length < helper.capacity) {
-      helper.state = 'harvesting';
-      // Find best plot with ready crops that has an unlocked shelf needing stock
-      const candidatePlot = plots.find((p) => {
-        if (!p.unlocked || p.readyCount === 0) return false;
-        const matchingShelf = shelves.find((s) => s.unlocked && s.product === p.product);
-        return matchingShelf && matchingShelf.currentStock < matchingShelf.maxStock;
+    // Helper utility: how many more items of `product` can its unlocked shelf accept beyond what helper already carries?
+    const getRemainingShelfNeed = (product: ProductType): number => {
+      const matchingShelf = shelves.find((s) => s.unlocked && s.product === product);
+      if (!matchingShelf) return 0;
+      const spaceOnShelf = Math.max(0, matchingShelf.maxStock - matchingShelf.currentStock);
+      const alreadyCarried = helper.stack.filter((item) => item === product).length;
+      return Math.max(0, spaceOnShelf - alreadyCarried);
+    };
+
+    // Purge any carried items whose shelf is already full (or over-collected) so helper never deadlocks holding tomatoes
+    if (helper.stack.length > 0) {
+      const keptStack: ProductType[] = [];
+      const countByProduct: Partial<Record<ProductType, number>> = {};
+      for (const item of helper.stack) {
+        const matchingShelf = shelves.find((s) => s.unlocked && s.product === item);
+        const spaceOnShelf = matchingShelf
+          ? Math.max(0, matchingShelf.maxStock - matchingShelf.currentStock)
+          : 0;
+        const used = countByProduct[item] ?? 0;
+        if (used < spaceOnShelf) {
+          keptStack.push(item);
+          countByProduct[item] = used + 1;
+        } else {
+          // Return excess item back to its plot ready pool if not full
+          const originPlot = plots.find((p) => p.unlocked && p.product === item);
+          if (originPlot && originPlot.readyCount < originPlot.maxCapacity) {
+            originPlot.readyCount++;
+          }
+        }
+      }
+      helper.stack = keptStack;
+    }
+
+    // Find unlocked plots with ready crops whose shelf still needs stock,
+    // prioritized by most empty shelf (lowest fill ratio)
+    const candidatePlots = plots
+      .filter((p) => p.unlocked && p.readyCount > 0 && getRemainingShelfNeed(p.product) > 0)
+      .sort((a, b) => {
+        const carryingA = helper.stack.includes(a.product) ? 0 : 1;
+        const carryingB = helper.stack.includes(b.product) ? 0 : 1;
+        if (carryingA !== carryingB) return carryingA - carryingB;
+
+        const shelfA = shelves.find((s) => s.unlocked && s.product === a.product)!;
+        const shelfB = shelves.find((s) => s.unlocked && s.product === b.product)!;
+        const ratioA = shelfA.currentStock / shelfA.maxStock;
+        const ratioB = shelfB.currentStock / shelfB.maxStock;
+        return ratioA - ratioB;
       });
 
-      if (candidatePlot) {
-        helper.targetX = candidatePlot.x + candidatePlot.width / 2;
-        helper.targetY = candidatePlot.y + candidatePlot.height / 2;
+    const candidatePlot = candidatePlots[0];
+    const hasStockableCarriedItem = helper.stack.some((item) => {
+      const s = shelves.find((sh) => sh.unlocked && sh.product === item);
+      return Boolean(s && s.currentStock < s.maxStock);
+    });
 
-        const distPlot = distance(helper.x, helper.y, helper.targetX, helper.targetY);
-        if (distPlot < 55 && candidatePlot.readyCount > 0) {
-          candidatePlot.readyCount--;
-          helper.stack.push(candidatePlot.product);
-          events.push('harvest');
-        }
-      } else {
-        // Idle near center
-        helper.targetX = 450;
-        helper.targetY = 720;
+    if (helper.stack.length < helper.capacity && candidatePlot) {
+      helper.state = 'harvesting';
+      helper.targetX = candidatePlot.x + candidatePlot.width / 2;
+      helper.targetY = candidatePlot.y + candidatePlot.height / 2;
+
+      const distPlot = distance(helper.x, helper.y, helper.targetX, helper.targetY);
+      if (
+        distPlot < 55 &&
+        candidatePlot.readyCount > 0 &&
+        getRemainingShelfNeed(candidatePlot.product) > 0
+      ) {
+        candidatePlot.readyCount--;
+        helper.stack.push(candidatePlot.product);
+        events.push('harvest');
       }
-    } else {
-      // Stack is full -> go to matching shelf to restock
+    } else if (hasStockableCarriedItem) {
+      // Restock any carried item whose shelf has room (even if helper stack isn't completely full)
       helper.state = 'stocking';
-      const carriedProduct = helper.stack[helper.stack.length - 1];
-      const targetShelf = shelves.find((s) => s.unlocked && s.product === carriedProduct);
+      let stockItemIndex = -1;
+      let targetShelf: Shelf | undefined;
+      for (let i = helper.stack.length - 1; i >= 0; i--) {
+        const prod = helper.stack[i]!;
+        const s = shelves.find(
+          (sh) => sh.unlocked && sh.product === prod && sh.currentStock < sh.maxStock
+        );
+        if (s) {
+          stockItemIndex = i;
+          targetShelf = s;
+          break;
+        }
+      }
 
-      if (targetShelf) {
+      if (targetShelf && stockItemIndex !== -1) {
         helper.targetX = targetShelf.x + targetShelf.width / 2;
         helper.targetY = targetShelf.y + targetShelf.height / 2;
 
         const distShelf = distance(helper.x, helper.y, helper.targetX, helper.targetY);
         if (distShelf < 55 && targetShelf.currentStock < targetShelf.maxStock) {
-          helper.stack.pop();
+          helper.stack = [
+            ...helper.stack.slice(0, stockItemIndex),
+            ...helper.stack.slice(stockItemIndex + 1),
+          ];
           targetShelf.currentStock++;
           events.push('stock');
         }
       }
+    } else {
+      // Idle near center when all unlocked shelves are full
+      helper.state = 'idle';
+      helper.targetX = 450;
+      helper.targetY = 720;
     }
 
     // Move helper towards target
