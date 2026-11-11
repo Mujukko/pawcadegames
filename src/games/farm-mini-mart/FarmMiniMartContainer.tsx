@@ -403,7 +403,7 @@ export const FarmMiniMartContainer: React.FC = () => {
       </div>
 
       {/* 2. MAIN CANVAS VIEWPORT (800x600 coordinate world) */}
-      <div className="relative w-full bg-[#92e434] border border-emerald-500/30 shadow-2xl overflow-hidden aspect-[4/3] rounded-b-2xl touch-none overscroll-none select-none">
+      <div className="relative w-full bg-[#65a30d] border border-emerald-500/30 shadow-2xl overflow-hidden aspect-[4/3] rounded-b-2xl touch-none overscroll-none select-none">
         <canvas
           ref={canvasRef}
           width={800}
@@ -767,9 +767,13 @@ function getActiveObjective(state: MartGameState): { icon: string; text: string 
 }
 
 /**
- * Procedural Canvas 2D scene renderer for Farm Mini Mart (Spacious Scrolling World 1500x1100)
- * Includes smooth follow camera, expansive multi-zone layout, mini-map radar,
- * turquoise checkout counter, separated produce aisles, raised planter beds, cash stacks, and capsule dummies!
+ * Procedural 2.5D Canvas Scene Renderer for Farm Mini Mart (1500x1100 Scrolling World)
+ * Handcrafted Cozy Country Store & Lush Pasture Aesthetics:
+ * - Warm timber & brick store architecture with rooftop sign, hanging lanterns, and bakery nook
+ * - Cobblestone walkways, split-rail fences, flower beds, and orchard trees
+ * - Chibi Farmer hero with straw sunhat, denim overalls, face, and wooden harvest crate
+ * - Chibi Animal Shoppers (Bunny, Cat, Dog, Bear, Pig) with ears, faces, shopping baskets, and non-overlapping side thought bubbles
+ * - 3D slanted wooden market stalls & furrowed garden beds with live growth progress
  */
 function renderMartScene(
   ctx: CanvasRenderingContext2D,
@@ -787,68 +791,33 @@ function renderMartScene(
   const camX = Math.round(camera.x);
   const camY = Math.round(camera.y);
 
-  // Apply camera translation for all world elements
   ctx.save();
   ctx.translate(-camX, -camY);
 
-  // 1. EXPANSIVE OUTDOOR SUNNY LIME GREEN PASTURE (covers full 1500x1100 world)
-  ctx.fillStyle = '#92e434'; // Bright sunny lime green lawn
-  ctx.fillRect(0, 0, WORLD_BOUNDS.width, WORLD_BOUNDS.height);
+  // 1. LUSH COUNTRY MEADOW LAWN & COBBLESTONE PATHS
+  renderOutdoorMeadowAndPaths(ctx, time);
 
-  // Subtle checkered lawn stripes
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.07)';
-  for (let x = 0; x < WORLD_BOUNDS.width; x += 50) {
-    for (let y = 0; y < WORLD_BOUNDS.height; y += 50) {
-      if ((x / 50 + y / 50) % 2 === 0) {
-        ctx.fillRect(x, y, 50, 50);
-      }
-    }
-  }
+  // 2. COZY COUNTRY MARKET ARCHITECTURE (Walls, Warm Tile Floor, Rugs, Decor)
+  renderCozyStoreArchitecture(ctx, state, time);
 
-  // Outdoor main paved walkway (Heading from entrance 450, 530 straight south into farm)
-  ctx.fillStyle = '#e2e8f0';
-  ctx.beginPath();
-  ctx.roundRect(415, 520, 70, 480, 8);
-  ctx.fill();
-  ctx.strokeStyle = '#cbd5e1';
-  ctx.lineWidth = 2;
-  ctx.stroke();
+  // 3. CASHIER MAT (Behind Register — clean, never overlaps player text when occupied)
+  const playerOnMat =
+    Math.hypot(
+      state.player.x - (state.register.x + state.register.width / 2),
+      state.player.y - (state.register.y - 26)
+    ) < 42;
+  renderCashierMat(ctx, state.register, time, playerOnMat || state.register.hasCashier);
 
-  // Paved path horizontal joints
-  ctx.strokeStyle = '#94a3b8';
-  ctx.lineWidth = 1.5;
-  for (let py = 545; py < 990; py += 25) {
-    ctx.beginPath();
-    ctx.moveTo(418, py);
-    ctx.lineTo(482, py);
-    ctx.stroke();
-  }
+  // 4. 2.5D CHECKOUT COUNTER, CONVEYOR BELT & POS REGISTER
+  renderCheckoutCounter(ctx, state.register, time);
 
-  // Cross walkway connecting chicken coop (west) and tomato bed (east)
-  ctx.fillStyle = '#e2e8f0';
-  ctx.beginPath();
-  ctx.roundRect(330, 655, 320, 40, 6);
-  ctx.fill();
-  ctx.strokeStyle = '#cbd5e1';
-  ctx.lineWidth = 1.5;
-  ctx.stroke();
-
-  // 2. INDOOR STORE AREA (Spacious 1040x470 peach tile floor, glass walls, office, awning)
-  renderModernStoreArchitecture(ctx, time);
-
-  // 3. CASHIER MAT (Dedicated Zone Behind Register Counter)
-  renderCashierMat(ctx, state.register, time);
-
-  // 4. TURQUOISE CHECKOUT COUNTER & CASH REGISTER
-  renderTurquoiseCounter(ctx, state.register, time);
-
-  // 5. PRODUCTION PLOTS (Raised wooden planter beds & Chicken coop)
+  // 5. PRODUCTION PLOTS (3D Timber Planter Beds, Chicken Coop, Dairy Pasture)
   for (const plot of state.plots) {
     if (!plot.unlocked) continue;
     renderProductionPlot(ctx, plot, time);
   }
 
-  // 6. DISPLAY TABLES (Market shelves with floating deposit arrows)
+  // 6. DISPLAY TABLES (3D Slanted Wooden Market Stalls with Canopies)
   for (const shelf of state.shelves) {
     if (!shelf.unlocked) continue;
     renderDisplayTable(ctx, shelf, time);
@@ -860,298 +829,657 @@ function renderMartScene(
     renderUnlockPad(ctx, pad, time);
   }
 
-  // 8. DUST PUFF PARTICLES (From running capsule characters)
+  // 8. FOOTSTEP DUST PUFFS
   for (const p of dustParticles) {
     ctx.save();
-    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+    ctx.fillStyle = `rgba(254, 243, 199, ${p.alpha * 0.85})`;
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
   }
 
-  // 9. HELPER WORKER (Barnaby Dog)
-  if (state.helper.unlocked) {
-    renderHelperWorker(ctx, state.helper, time);
-  }
+  // 9. DEPTH-SORTED CHARACTERS (Y-sorted so characters in front naturally overlap characters behind!)
+  type RenderEntity =
+    | { kind: 'customer'; y: number; cust: Customer }
+    | { kind: 'helper'; y: number; helper: HelperWorker }
+    | { kind: 'player'; y: number; player: PlayerState };
 
-  // 10. ANIMAL CUSTOMERS (Pastel Capsule Dummies)
+  const entities: RenderEntity[] = [];
   for (const cust of state.customers) {
-    renderCustomerDummy(ctx, cust, time);
+    entities.push({ kind: 'customer', y: cust.y, cust });
+  }
+  if (state.helper.unlocked) {
+    entities.push({ kind: 'helper', y: state.helper.y, helper: state.helper });
+  }
+  entities.push({ kind: 'player', y: state.player.y, player: state.player });
+
+  entities.sort((a, b) => a.y - b.y);
+
+  for (const ent of entities) {
+    if (ent.kind === 'customer') {
+      renderAnimalCustomer(ctx, ent.cust, time);
+    } else if (ent.kind === 'helper') {
+      renderHelperDog(ctx, ent.helper, time);
+    } else {
+      renderFarmerHero(ctx, ent.player, time, isMoving);
+    }
   }
 
-  // 11. THE HERO PLAYER (Blue Capsule Dummy with dynamic tilt and carried stack)
-  renderPlayerDummy(ctx, state.player, time, isMoving);
-
-  // 12. FLOATING NOTIFICATIONS (Cash popups & unlocks)
+  // 10. FLOATING NOTIFICATIONS (Cash popups & unlocks)
   for (const note of state.floatingNotes) {
     renderFloatingNote(ctx, note);
   }
 
   ctx.restore(); // Restore world translation
 
-  // Screen-Space Overlays (Fixed to screen viewport):
-  // 1. Floating Analog Joystick (On touch drag)
+  // Screen-Space Overlays:
   if (touchOrigin && touchCurrent) {
     renderFloatingJoystick(ctx, touchOrigin, touchCurrent);
   }
 
-  // 2. World Mini-Map Radar (Top-Right HUD overview)
   renderWorldMinimap(ctx, state, camX, camY);
 
   ctx.restore();
 }
 
 /**
- * 2. Modern Store Architecture: Spacious 1040x470 Peach Tile Floor, Glass Walls, Office Suite, Entrance Awning
+ * 1. Lush Country Meadow Lawn, Cobblestone Walkways, Fences & Trees
  */
-function renderModernStoreArchitecture(ctx: CanvasRenderingContext2D, time: number) {
+function renderOutdoorMeadowAndPaths(ctx: CanvasRenderingContext2D, time: number) {
+  ctx.save();
+
+  // Soft pastoral mowed grass bands
+  ctx.fillStyle = '#65a30d';
+  ctx.fillRect(0, 0, WORLD_BOUNDS.width, WORLD_BOUNDS.height);
+
+  const stripeH = 64;
+  for (let y = 0; y < WORLD_BOUNDS.height; y += stripeH * 2) {
+    ctx.fillStyle = '#6fb010';
+    ctx.fillRect(0, y, WORLD_BOUNDS.width, stripeH);
+  }
+
+  // Subtle grass tufts & wildflowers in the meadow
+  const tufts = [
+    { x: 110, y: 580, flower: '#fef08a' },
+    { x: 135, y: 740, flower: '#fbcfe8' },
+    { x: 540, y: 600, flower: '#fef08a' },
+    { x: 575, y: 780, flower: '#bfdbfe' },
+    { x: 840, y: 590, flower: '#fef08a' },
+    { x: 870, y: 770, flower: '#fbcfe8' },
+    { x: 610, y: 890, flower: '#fef08a' },
+    { x: 1090, y: 585, flower: '#fbcfe8' },
+    { x: 1290, y: 570, flower: '#fef08a' },
+    { x: 350, y: 880, flower: '#bfdbfe' },
+  ];
+  for (const t of tufts) {
+    ctx.fillStyle = '#4d7c0f';
+    ctx.beginPath();
+    ctx.arc(t.x, t.y, 6, Math.PI, 0);
+    ctx.fill();
+    ctx.fillStyle = t.flower;
+    ctx.beginPath();
+    ctx.arc(t.x - 2, t.y - 3, 2.5, 0, Math.PI * 2);
+    ctx.arc(t.x + 3, t.y - 2, 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Warm sandstone/cobblestone main avenue (from store entrance 450,530 down to 980)
+  ctx.fillStyle = '#d6d3d1';
+  ctx.beginPath();
+  ctx.roundRect(382, 526, 136, 460, 14);
+  ctx.fill();
+  ctx.strokeStyle = '#a8a29e';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  // Cross avenue connecting West (Chicken Coop) & East (Tomato/Corn/Dairy Beds)
+  ctx.fillStyle = '#d6d3d1';
+  ctx.beginPath();
+  ctx.roundRect(310, 650, 900, 48, 12);
+  ctx.fill();
+  ctx.strokeStyle = '#a8a29e';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Individual cobblestone pavers along main avenue
+  for (let py = 542; py < 965; py += 28) {
+    ctx.fillStyle = py % 56 === 0 ? '#e7e5e4' : '#f5f5f4';
+    ctx.beginPath();
+    ctx.roundRect(392, py, 54, 20, 6);
+    ctx.roundRect(454, py, 54, 20, 6);
+    ctx.fill();
+  }
+
+  // Dedicated Queue Stepping Stones on the left side of the entrance avenue (for slot 2 & 3)
+  for (let i = 0; i < WORLD_BOUNDS.checkoutSpots.length; i++) {
+    const spot = WORLD_BOUNDS.checkoutSpots[i]!;
+    if (spot.y >= 525) {
+      ctx.fillStyle = '#fef3c7';
+      ctx.strokeStyle = '#d97706';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.ellipse(spot.x, spot.y + 8, 16, 8, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    }
+  }
+
+  // Rustic wooden split-rail fence flanking the store front yard
+  const drawFenceSegment = (fx: number, fy: number, fw: number) => {
+    ctx.fillStyle = 'rgba(0,0,0,0.16)';
+    ctx.fillRect(fx, fy + 10, fw, 6);
+    // Rails
+    ctx.fillStyle = '#92400e';
+    ctx.fillRect(fx, fy, fw, 5);
+    ctx.fillRect(fx, fy + 7, fw, 4);
+    // Posts
+    ctx.fillStyle = '#78350f';
+    for (let px = fx; px <= fx + fw; px += 45) {
+      ctx.beginPath();
+      ctx.roundRect(px - 4, fy - 5, 8, 18, 2);
+      ctx.fill();
+      ctx.fillStyle = '#b45309';
+      ctx.fillRect(px - 3, fy - 4, 6, 3);
+      ctx.fillStyle = '#78350f';
+    }
+  };
+  drawFenceSegment(60, 548, 280);
+  drawFenceSegment(555, 548, 660);
+
+  // Decorative Orchard Trees flanking the store
+  const trees = [
+    { x: 115, y: 120 },
+    { x: 115, y: 310 },
+    { x: 115, y: 480 },
+    { x: 1295, y: 140 },
+    { x: 1295, y: 340 },
+    { x: 1295, y: 500 },
+  ];
+  const treeSway = Math.sin(time * 0.002) * 1.5;
+  for (const tr of trees) {
+    // Shadow
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+    ctx.beginPath();
+    ctx.ellipse(tr.x, tr.y + 26, 28, 11, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // Trunk
+    ctx.fillStyle = '#78350f';
+    ctx.beginPath();
+    ctx.roundRect(tr.x - 7, tr.y, 14, 26, 3);
+    ctx.fill();
+    // Layered canopy
+    ctx.fillStyle = '#15803d';
+    ctx.beginPath();
+    ctx.arc(tr.x + treeSway, tr.y - 6, 26, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#22c55e';
+    ctx.beginPath();
+    ctx.arc(tr.x - 10 + treeSway, tr.y - 2, 18, 0, Math.PI * 2);
+    ctx.arc(tr.x + 10 + treeSway, tr.y - 2, 18, 0, Math.PI * 2);
+    ctx.arc(tr.x + treeSway, tr.y - 14, 20, 0, Math.PI * 2);
+    ctx.fill();
+    // Red apples on tree
+    ctx.fillStyle = '#ef4444';
+    ctx.beginPath();
+    ctx.arc(tr.x - 8 + treeSway, tr.y - 8, 3, 0, Math.PI * 2);
+    ctx.arc(tr.x + 9 + treeSway, tr.y - 4, 3, 0, Math.PI * 2);
+    ctx.arc(tr.x + 2 + treeSway, tr.y - 18, 3, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.restore();
+}
+
+/**
+ * 2. Cozy Country Market Architecture (Timber Walls, Checkerboard Floor, Entrance Mat, Roof Sign)
+ */
+function renderCozyStoreArchitecture(ctx: CanvasRenderingContext2D, state: MartGameState, time: number) {
   ctx.save();
   const storeX = 180;
   const storeY = 60;
   const storeW = 1040;
   const storeH = 470;
 
-  // Store floor shadow
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
+  // Exterior building drop shadow
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.22)';
   ctx.beginPath();
-  ctx.roundRect(storeX - 3, storeY - 3, storeW + 6, storeH + 6, 12);
+  ctx.roundRect(storeX - 6, storeY - 4, storeW + 12, storeH + 12, 16);
   ctx.fill();
 
-  // Peach / Sand Warm Tiled Floor Base
-  ctx.fillStyle = '#fed7aa';
+  // Warm Country Cream & Honey Checkerboard Tile Floor
+  ctx.save();
   ctx.beginPath();
-  ctx.roundRect(storeX, storeY, storeW, storeH, 10);
-  ctx.fill();
+  ctx.roundRect(storeX, storeY, storeW, storeH, 12);
+  ctx.clip();
 
-  // Floor grid tiles (30px grid)
-  ctx.strokeStyle = 'rgba(217, 119, 6, 0.15)';
+  ctx.fillStyle = '#fef3c7';
+  ctx.fillRect(storeX, storeY, storeW, storeH);
+
+  const tileSize = 40;
+  for (let x = storeX; x < storeX + storeW; x += tileSize) {
+    for (let y = storeY; y < storeY + storeH; y += tileSize) {
+      const isAlt = ((x - storeX) / tileSize + (y - storeY) / tileSize) % 2 === 0;
+      if (isAlt) {
+        ctx.fillStyle = '#fde68a';
+        ctx.fillRect(x, y, tileSize, tileSize);
+      }
+    }
+  }
+
+  // Subtle tile grout lines
+  ctx.strokeStyle = 'rgba(217, 119, 6, 0.14)';
   ctx.lineWidth = 1;
-  for (let x = storeX; x <= storeX + storeW; x += 30) {
+  for (let x = storeX; x <= storeX + storeW; x += tileSize) {
     ctx.beginPath();
     ctx.moveTo(x, storeY);
     ctx.lineTo(x, storeY + storeH);
     ctx.stroke();
   }
-  for (let y = storeY; y <= storeY + storeH; y += 30) {
+  for (let y = storeY; y <= storeY + storeH; y += tileSize) {
     ctx.beginPath();
     ctx.moveTo(storeX, y);
     ctx.lineTo(storeX + storeW, y);
     ctx.stroke();
   }
 
-  // TOP-LEFT OFFICE ROOM PARTITION
-  const officeW = 140;
-  const officeH = 200;
-  ctx.fillStyle = 'rgba(254, 215, 170, 0.55)';
-  ctx.fillRect(storeX, storeY, officeW, officeH);
-
-  // Office interior desk & computer
-  ctx.fillStyle = '#92400e'; // Desk
-  ctx.fillRect(storeX + 25, storeY + 50, 75, 30);
-  ctx.fillStyle = '#0f172a'; // Monitor base
-  ctx.fillRect(storeX + 50, storeY + 53, 24, 16);
-  ctx.fillStyle = '#38bdf8'; // Glowing PC screen
-  ctx.fillRect(storeX + 53, storeY + 55, 18, 10);
-  // Swivel Chair
-  ctx.fillStyle = '#475569';
+  // Cozy Red Country Woven Runner Rug along the shopping aisle
+  ctx.fillStyle = '#dc2626';
   ctx.beginPath();
-  ctx.arc(storeX + 62, storeY + 95, 10, 0, Math.PI * 2);
+  ctx.roundRect(510, 320, 22, 180, 6);
   ctx.fill();
-  // Indoor potted plant
-  ctx.font = '20px sans-serif';
-  ctx.fillText('🪴', storeX + 30, storeY + 160);
 
-  // Office Glass Divider Wall
-  ctx.strokeStyle = '#38bdf8';
+  // TOP-LEFT FARMHOUSE LOUNGE & MANAGER OFFICE (x: 180..325, y: 60..260)
+  const officeW = 148;
+  const officeH = 195;
+  // Warm oak wood plank floor in office
+  ctx.fillStyle = '#d97706';
+  ctx.fillRect(storeX, storeY, officeW, officeH);
+  ctx.strokeStyle = 'rgba(120, 53, 15, 0.28)';
+  ctx.lineWidth = 1.5;
+  for (let py = storeY + 20; py < storeY + officeH; py += 20) {
+    ctx.beginPath();
+    ctx.moveTo(storeX, py);
+    ctx.lineTo(storeX + officeW, py);
+    ctx.stroke();
+  }
+
+  // Braided circular rug inside office
+  ctx.fillStyle = '#fef3c7';
+  ctx.strokeStyle = '#dc2626';
   ctx.lineWidth = 3;
   ctx.beginPath();
-  ctx.moveTo(storeX + officeW, storeY);
-  ctx.lineTo(storeX + officeW, storeY + officeH);
+  ctx.ellipse(storeX + 74, storeY + 122, 42, 28, 0, 0, Math.PI * 2);
+  ctx.fill();
   ctx.stroke();
-  // Horizontal office wall with door opening
+
+  // Executive Oak Desk with Ledger & Monitor
+  ctx.fillStyle = 'rgba(0,0,0,0.2)';
   ctx.beginPath();
-  ctx.moveTo(storeX, storeY + officeH);
-  ctx.lineTo(storeX + 80, storeY + officeH);
-  ctx.stroke();
-
-  // EXTERIOR STORE GLASS WALLS (Translucent with white/cyan trim)
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
-  ctx.lineWidth = 4;
-  // Top glass wall
+  ctx.roundRect(storeX + 26, storeY + 46, 92, 36, 6);
+  ctx.fill();
+  ctx.fillStyle = '#78350f';
   ctx.beginPath();
-  ctx.moveTo(storeX, storeY);
-  ctx.lineTo(storeX + storeW, storeY);
-  ctx.stroke();
-  // Left glass wall
+  ctx.roundRect(storeX + 26, storeY + 42, 92, 34, 6);
+  ctx.fill();
+  ctx.fillStyle = '#92400e';
   ctx.beginPath();
-  ctx.moveTo(storeX, storeY);
-  ctx.lineTo(storeX, storeY + storeH);
-  ctx.stroke();
-  // Right glass wall
+  ctx.roundRect(storeX + 30, storeY + 45, 84, 26, 4);
+  ctx.fill();
+
+  // Laptop / Monitor on desk
+  ctx.fillStyle = '#1e293b';
   ctx.beginPath();
-  ctx.moveTo(storeX + storeW, storeY);
-  ctx.lineTo(storeX + storeW, storeY + storeH);
-  ctx.stroke();
-
-  // Front glass wall left section
+  ctx.roundRect(storeX + 42, storeY + 48, 28, 18, 3);
+  ctx.fill();
+  ctx.fillStyle = '#38bdf8';
+  ctx.fillRect(storeX + 45, storeY + 51, 22, 12);
+  // Accounting Ledger Book & Coffee Mug
+  ctx.fillStyle = '#fef08a';
+  ctx.fillRect(storeX + 80, storeY + 50, 16, 14);
+  ctx.fillStyle = '#ef4444';
+  ctx.fillRect(storeX + 80, storeY + 50, 4, 14);
+  // Cozy Plush Chair
+  ctx.fillStyle = '#b91c1c';
   ctx.beginPath();
-  ctx.moveTo(storeX, storeY + storeH);
-  ctx.lineTo(370, storeY + storeH);
+  ctx.arc(storeX + 58, storeY + 92, 11, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = '#7f1d1d';
+  ctx.lineWidth = 2;
   ctx.stroke();
 
-  // Front glass wall right section
+  // Lush Potted Monstera Plant in Office Corner
+  ctx.fillStyle = '#b45309';
   ctx.beginPath();
-  ctx.moveTo(530, storeY + storeH);
-  ctx.lineTo(storeX + storeW, storeY + storeH);
-  ctx.stroke();
-
-  // Cyan glass base accent
-  ctx.strokeStyle = '#0284c7';
-  ctx.lineWidth = 1.5;
-  ctx.strokeRect(storeX, storeY, storeW, storeH);
-
-  // ENTRANCE AWNING (Red & White Striped Canopy over entrance)
-  const canopyX = 360;
-  const canopyY = 520;
-  const canopyW = 180;
-  const canopyH = 22;
-
-  // Shadow under awning
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
-  ctx.fillRect(canopyX, canopyY + canopyH, canopyW, 6);
-
-  // Awning stripes
-  const stripeW = 15;
-  const stripeCount = Math.floor(canopyW / stripeW);
-  for (let s = 0; s < stripeCount; s++) {
-    ctx.fillStyle = s % 2 === 0 ? '#ef4444' : '#ffffff';
+  ctx.arc(storeX + 30, storeY + 165, 11, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#16a34a';
+  for (let a = 0; a < 5; a++) {
+    const ang = (a * Math.PI * 2) / 5;
     ctx.beginPath();
-    ctx.roundRect(canopyX + s * stripeW, canopyY, stripeW, canopyH, [3, 3, 5, 5]);
+    ctx.ellipse(storeX + 30 + Math.cos(ang) * 8, storeY + 162 + Math.sin(ang) * 8, 7, 4, ang, 0, Math.PI * 2);
     ctx.fill();
   }
 
-  // Welcome banner text
-  ctx.fillStyle = '#ffffff';
-  ctx.strokeStyle = '#b91c1c';
-  ctx.lineWidth = 2;
-  ctx.font = 'black 10px sans-serif';
+  // Office Timber Partition Walls (with warm doorway opening)
+  ctx.fillStyle = '#78350f';
+  ctx.fillRect(storeX + officeW - 6, storeY, 8, officeH);
+  ctx.fillRect(storeX, storeY + officeH - 6, 86, 8);
+  ctx.fillStyle = '#b45309';
+  ctx.fillRect(storeX + officeW - 4, storeY, 4, officeH);
+  ctx.fillRect(storeX, storeY + officeH - 4, 86, 4);
+
+  // Reserved Floor Blueprint Mats for Locked Shelves (keeps spacious interior visually structured)
+  for (const shelf of state.shelves) {
+    if (shelf.unlocked) continue;
+    ctx.save();
+    ctx.fillStyle = 'rgba(217, 119, 6, 0.08)';
+    ctx.strokeStyle = 'rgba(180, 83, 9, 0.25)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 4]);
+    ctx.beginPath();
+    ctx.roundRect(shelf.x - 4, shelf.y - 4, shelf.width + 8, shelf.height + 8, 10);
+    ctx.fill();
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(146, 64, 14, 0.45)';
+    ctx.font = 'bold 9px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${PRODUCTS[shelf.product].emoji} ${shelf.name}`, shelf.x + shelf.width / 2, shelf.y + shelf.height / 2 + 3);
+    ctx.restore();
+  }
+
+  // North Wall Decorative Country Market Shelving & Banner (y: 60..92)
+  ctx.fillStyle = '#fef3c7';
+  ctx.fillRect(storeX + officeW + 2, storeY, storeW - officeW - 2, 26);
+  ctx.strokeStyle = '#d97706';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(storeX + officeW, storeY + 26);
+  ctx.lineTo(storeX + storeW, storeY + 26);
+  ctx.stroke();
+
+  // Decorative wall crates & chalkboard sign on North Wall
+  ctx.fillStyle = '#1e293b';
+  ctx.strokeStyle = '#92400e';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.roundRect(450, storeY + 4, 210, 20, 4);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = '#fef08a';
+  ctx.font = 'bold 9px sans-serif';
   ctx.textAlign = 'center';
-  ctx.strokeText('MINI MART 🛒', canopyX + canopyW / 2, canopyY + 15);
-  ctx.fillText('MINI MART 🛒', canopyX + canopyW / 2, canopyY + 15);
+  ctx.fillText('🌾 FRESH FARM PRODUCE • DAILY HARVEST 🌾', 555, storeY + 17);
+
+  // Welcome Entrance Floor Mat (Inside the doorway threshold x: 380..520, y: 500..528)
+  // Placed flat on the floor so characters walk *over* it naturally without text colliding!
+  ctx.fillStyle = '#991b1b';
+  ctx.strokeStyle = '#fef08a';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(415, 502, 90, 24, 5);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = '#fef08a';
+  ctx.font = 'bold 8px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('WELCOME', 460, 517);
+
+  // Customer Queue Floor Stepping Circles (Slots 0, 1, 2 inside store)
+  for (let i = 0; i < WORLD_BOUNDS.checkoutSpots.length; i++) {
+    const spot = WORLD_BOUNDS.checkoutSpots[i]!;
+    if (spot.y < 525) {
+      ctx.fillStyle = 'rgba(217, 119, 6, 0.16)';
+      ctx.strokeStyle = 'rgba(180, 83, 9, 0.35)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.ellipse(spot.x, spot.y + 8, 15, 7, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    }
+  }
+
+  ctx.restore(); // End floor clip
+
+  // 3D TIMBER EXTERIOR WALLS (10px thick oak walls with highlight trim)
+  const drawWallBar = (wx: number, wy: number, ww: number, wh: number) => {
+    ctx.fillStyle = '#5c2d0c';
+    ctx.beginPath();
+    ctx.roundRect(wx, wy, ww, wh, 4);
+    ctx.fill();
+    ctx.fillStyle = '#92400e';
+    ctx.beginPath();
+    ctx.roundRect(wx + 2, wy + 2, ww - 4, wh - 4, 3);
+    ctx.fill();
+  };
+
+  // Top, Left, Right walls
+  drawWallBar(storeX - 4, storeY - 6, storeW + 8, 12);
+  drawWallBar(storeX - 6, storeY - 6, 12, storeH + 12);
+  drawWallBar(storeX + storeW - 6, storeY - 6, 12, storeH + 12);
+
+  // Bottom wall left of doorway (180..372) and right of doorway (528..1220)
+  drawWallBar(storeX - 6, storeY + storeH - 6, 198, 12);
+  drawWallBar(528, storeY + storeH - 6, storeX + storeW - 522, 12);
+
+  // Storefront Striped Window Awnings (placed along the LEFT and RIGHT walls, NEVER across the doorway!)
+  const drawWindowAwning = (ax: number, ay: number, aw: number) => {
+    const sw = 18;
+    const count = Math.floor(aw / sw);
+    ctx.fillStyle = 'rgba(0,0,0,0.18)';
+    ctx.fillRect(ax, ay + 14, aw, 5);
+    for (let i = 0; i < count; i++) {
+      ctx.fillStyle = i % 2 === 0 ? '#ef4444' : '#ffffff';
+      ctx.beginPath();
+      ctx.roundRect(ax + i * sw, ay, sw, 15, [2, 2, 5, 5]);
+      ctx.fill();
+      ctx.strokeStyle = '#b91c1c';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    }
+  };
+  drawWindowAwning(storeX + 10, storeY + storeH - 8, 162);
+  drawWindowAwning(540, storeY + storeH - 8, 252);
+  drawWindowAwning(820, storeY + storeH - 8, 252);
+
+  // Decorative Flower Planter Boxes flanking the entrance doorway (at x: 354 and x: 536)
+  const drawEntrancePlanter = (px: number, py: number) => {
+    ctx.fillStyle = '#78350f';
+    ctx.beginPath();
+    ctx.roundRect(px - 14, py - 10, 28, 22, 5);
+    ctx.fill();
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.fillStyle = '#16a34a';
+    ctx.beginPath();
+    ctx.arc(px, py - 4, 10, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#fbbf24';
+    ctx.beginPath();
+    ctx.arc(px - 3, py - 6, 3, 0, Math.PI * 2);
+    ctx.arc(px + 4, py - 3, 3, 0, Math.PI * 2);
+    ctx.fill();
+  };
+  drawEntrancePlanter(362, storeY + storeH + 2);
+  drawEntrancePlanter(538, storeY + storeH + 2);
+
+  // GRAND ROOFTOP SIGNBOARD (Above North Wall: y = 26..58)
+  ctx.fillStyle = '#78350f';
+  ctx.strokeStyle = '#facc15';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.roundRect(455, 26, 200, 28, 8);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'black 12px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('🏪 PAWCADE MINI MART', 555, 44);
 
   ctx.restore();
 }
 
 /**
- * 3. Cashier Mat behind the register counter
+ * 3. Ergonomic Cashier Floor Mat behind the register counter
+ * Never draws overlapping text across the player's feet when the player is standing on it!
  */
-function renderCashierMat(ctx: CanvasRenderingContext2D, reg: CashRegister, time: number) {
+function renderCashierMat(
+  ctx: CanvasRenderingContext2D,
+  reg: CashRegister,
+  time: number,
+  isOccupied: boolean
+) {
   ctx.save();
-  const matX = reg.x;
-  const matY = reg.y - 56;
-  const matW = reg.width;
-  const matH = 52;
+  const matX = reg.x + 8;
+  const matY = reg.y - 50;
+  const matW = reg.width - 16;
+  const matH = 44;
 
-  const matPulse = Math.sin(time * 0.006) * 0.15 + 0.85;
-  ctx.fillStyle = `rgba(234, 179, 8, ${0.18 * matPulse})`;
-  ctx.strokeStyle = '#facc15';
-  ctx.lineWidth = 2.5;
-  ctx.setLineDash([6, 4]);
+  // Mat drop shadow
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
   ctx.beginPath();
-  ctx.roundRect(matX, matY, matW, matH, 8);
+  ctx.roundRect(matX - 1, matY + 2, matW + 2, matH, 10);
   ctx.fill();
+
+  // Warm woven mat surface
+  const pulse = Math.sin(time * 0.006) * 0.12 + 0.88;
+  ctx.fillStyle = isOccupied ? '#dcfce7' : `rgba(254, 240, 138, ${pulse})`;
+  ctx.strokeStyle = isOccupied ? '#16a34a' : '#eab308';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.roundRect(matX, matY, matW, matH, 9);
+  ctx.fill();
+  ctx.stroke();
+
+  // Inner woven border
+  ctx.strokeStyle = isOccupied ? 'rgba(22, 163, 74, 0.35)' : 'rgba(202, 138, 4, 0.4)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 3]);
+  ctx.beginPath();
+  ctx.roundRect(matX + 5, matY + 5, matW - 10, matH - 10, 6);
   ctx.stroke();
   ctx.setLineDash([]);
 
-  // Footprints on the mat
-  ctx.fillStyle = '#ca8a04';
-  ctx.font = 'bold 9px sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('👟 STAND HERE 👟', matX + matW / 2, matY + 22);
-  ctx.fillStyle = '#713f12';
-  ctx.font = 'bold 8px sans-serif';
-  ctx.fillText('CASHIER DESK', matX + matW / 2, matY + 38);
+  // Only show the "CASHIER SPOT" prompt when the player/cashier is NOT standing on the mat
+  if (!isOccupied) {
+    ctx.fillStyle = '#854d0e';
+    ctx.font = 'bold 9px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('👟 CASHIER SPOT', matX + matW / 2, matY + 25);
+  }
+
   ctx.restore();
 }
 
 /**
- * 4. Turquoise Checkout Counter & Cash Register (My Mini Mart Curved Turquoise Design)
+ * 4. 2.5D Checkout Counter, Conveyor Belt & POS Register
  */
-function renderTurquoiseCounter(ctx: CanvasRenderingContext2D, reg: CashRegister, time: number) {
+function renderCheckoutCounter(ctx: CanvasRenderingContext2D, reg: CashRegister, time: number) {
   ctx.save();
   // Counter drop shadow
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.26)';
   ctx.beginPath();
-  ctx.roundRect(reg.x - 2, reg.y + 4, reg.width + 4, reg.height, 10);
+  ctx.roundRect(reg.x - 3, reg.y + 6, reg.width + 6, reg.height, 10);
   ctx.fill();
 
-  // Dark Cyan Base
-  ctx.fillStyle = '#0891b2';
+  // 3D Front Apron Panel (Deep Teal-Blue Wood)
+  ctx.fillStyle = '#0e7490';
   ctx.beginPath();
-  ctx.roundRect(reg.x, reg.y, reg.width, reg.height, 10);
+  ctx.roundRect(reg.x, reg.y + 10, reg.width, reg.height - 6, 8);
   ctx.fill();
 
-  // Modern Curved Turquoise Top Counter Surface
-  ctx.fillStyle = '#22d3ee';
+  // Front Apron Recessed Sign Pill (Clean, never collides with POS screen)
+  ctx.fillStyle = '#164e63';
   ctx.beginPath();
-  ctx.roundRect(reg.x, reg.y, reg.width, reg.height - 8, [10, 10, 4, 4]);
+  ctx.roundRect(reg.x + 26, reg.y + reg.height - 12, reg.width - 52, 12, 4);
   ctx.fill();
-
-  // Specular top highlight strip
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
-  ctx.fillRect(reg.x + 8, reg.y + 3, reg.width - 16, 3);
-
-  // Black POS Touchscreen Terminal
-  const posX = reg.x + reg.width / 2 - 14;
-  const posY = reg.y + 6;
-  ctx.fillStyle = '#0f172a';
-  ctx.beginPath();
-  ctx.roundRect(posX, posY, 28, 20, 4);
-  ctx.fill();
-  // Glowing POS Screen
-  ctx.fillStyle = '#10b981';
-  ctx.fillRect(posX + 3, posY + 3, 22, 10);
-  ctx.fillStyle = '#ffffff';
-  ctx.font = 'black 7px sans-serif';
+  ctx.fillStyle = '#67e8f9';
+  ctx.font = 'bold 8px sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('$ PAY', posX + 14, posY + 10);
+  ctx.fillText('CHECKOUT', reg.x + reg.width / 2, reg.y + reg.height - 3);
 
-  // Barcode scanner
-  ctx.fillStyle = '#ef4444';
-  ctx.fillRect(posX - 12, posY + 8, 8, 4);
+  // Top Counter Surface (Bright Turquoise with Oak Edge Trim)
+  ctx.fillStyle = '#22d3ee';
+  ctx.strokeStyle = '#0891b2';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(reg.x, reg.y, reg.width, reg.height - 12, 8);
+  ctx.fill();
+  ctx.stroke();
 
-  // Counter Front Badge
+  // Top specular gloss highlight
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+  ctx.fillRect(reg.x + 6, reg.y + 3, reg.width - 12, 3);
+
+  // Left Conveyor Belt Strip
+  ctx.fillStyle = '#334155';
+  ctx.beginPath();
+  ctx.roundRect(reg.x + 8, reg.y + 7, 42, 16, 3);
+  ctx.fill();
+  ctx.strokeStyle = '#64748b';
+  ctx.lineWidth = 1;
+  for (let bx = reg.x + 15; bx < reg.x + 46; bx += 9) {
+    ctx.beginPath();
+    ctx.moveTo(bx, reg.y + 8);
+    ctx.lineTo(bx, reg.y + 22);
+    ctx.stroke();
+  }
+
+  // Right POS Cash Register Terminal (Raised 3D Monitor)
+  const posX = reg.x + 62;
+  const posY = reg.y + 3;
+  // Base stand
   ctx.fillStyle = '#0f172a';
-  ctx.font = 'bold 9px sans-serif';
-  ctx.fillText('CHECKOUT', reg.x + reg.width / 2, reg.y + reg.height - 2);
+  ctx.beginPath();
+  ctx.roundRect(posX, posY, 44, 22, 4);
+  ctx.fill();
+  // Glowing Emerald Screen
+  ctx.fillStyle = '#10b981';
+  ctx.beginPath();
+  ctx.roundRect(posX + 3, posY + 3, 38, 13, 2);
+  ctx.fill();
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'black 8px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('$ PAY', posX + 22, posY + 12);
 
-  // Auto-Cashier Capsule Dummy (when hired)
+  // Auto-Cashier Character (when hired)
   if (reg.hasCashier) {
-    renderMiniMartDummy(ctx, reg.x + reg.width / 2, reg.y - 12, {
-      color: '#a855f7', // Purple cashier uniform
+    renderChibiCharacter(ctx, reg.x + reg.width / 2, reg.y - 18, {
+      shirtColor: '#9333ea',
+      overallsColor: '#581c87',
+      hatColor: '#facc15',
+      skinColor: '#fde68a',
       tilt: 0,
       walkPhase: 0,
       isMoving: false,
+      label: 'CASHIER',
+      labelColor: '#9333ea',
     });
-    // Cashier visor/nametag
-    ctx.fillStyle = '#22d3ee';
-    ctx.font = 'bold 8px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText('CASHIER', reg.x + reg.width / 2, reg.y - 32);
   }
 
-  // GREEN 3D CASH BANKNOTE STACKS ON COUNTER
+  // GREEN 3D CASH BANKNOTE STACKS ON COUNTER TRAY
   if (reg.coinsOnCounter > 0) {
-    const cashPileX = reg.x + reg.width + 24;
-    const cashPileY = reg.y + 20;
+    const cashPileX = reg.x + reg.width + 26;
+    const cashPileY = reg.y + 18;
 
     // Glowing collection ring
     const coinPulse = Math.sin(time * 0.008) * 3;
     ctx.fillStyle = 'rgba(34, 197, 94, 0.25)';
     ctx.beginPath();
-    ctx.arc(cashPileX, cashPileY, 28 + coinPulse, 0, Math.PI * 2);
+    ctx.arc(cashPileX, cashPileY, 26 + coinPulse, 0, Math.PI * 2);
     ctx.fill();
+
+    // Wooden cash tray base
+    ctx.fillStyle = '#78350f';
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.roundRect(cashPileX - 20, cashPileY - 6, 40, 24, 5);
+    ctx.fill();
+    ctx.stroke();
 
     // 3D Banknote Stacks
     renderBanknoteStack(ctx, cashPileX, cashPileY, reg.coinsOnCounter);
@@ -1161,26 +1489,14 @@ function renderTurquoiseCounter(ctx: CanvasRenderingContext2D, reg: CashRegister
     ctx.strokeStyle = '#22c55e';
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.roundRect(cashPileX - 32, cashPileY - 32, 64, 20, 8);
+    ctx.roundRect(cashPileX - 30, cashPileY - 34, 60, 19, 7);
     ctx.fill();
     ctx.stroke();
 
-    ctx.fillStyle = '#22c55e';
-    ctx.font = 'bold 11px sans-serif';
-    ctx.fillText(`+$${reg.coinsOnCounter} 💵`, cashPileX, cashPileY - 18);
-  }
-
-  // Customer queue footprints on floor heading south
-  for (let i = 0; i < WORLD_BOUNDS.checkoutSpots.length; i++) {
-    const spot = WORLD_BOUNDS.checkoutSpots[i]!;
-    ctx.fillStyle = 'rgba(217, 119, 6, 0.2)';
-    ctx.beginPath();
-    ctx.arc(spot.x, spot.y, 11, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = 'rgba(120, 53, 15, 0.6)';
-    ctx.font = 'bold 9px sans-serif';
+    ctx.fillStyle = '#4ade80';
+    ctx.font = 'bold 10px sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(`${i + 1}`, spot.x, spot.y + 3);
+    ctx.fillText(`+$${reg.coinsOnCounter}`, cashPileX, cashPileY - 21);
   }
 
   ctx.restore();
@@ -1191,29 +1507,24 @@ function renderTurquoiseCounter(ctx: CanvasRenderingContext2D, reg: CashRegister
  */
 function renderBanknoteStack(ctx: CanvasRenderingContext2D, x: number, y: number, count: number) {
   ctx.save();
-  const stackLayers = Math.min(5, Math.max(1, Math.floor(count / 5)));
+  const stackLayers = Math.min(5, Math.max(1, Math.ceil(count / 10)));
   for (let s = 0; s < stackLayers; s++) {
-    const sy = y + 8 - s * 5;
-    // Banknote drop shadow
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
-    ctx.fillRect(x - 15, sy - 5, 30, 14);
+    const sy = y + 6 - s * 4;
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.18)';
+    ctx.fillRect(x - 14, sy - 4, 28, 12);
 
-    // Green banknote bill
-    ctx.fillStyle = '#15803d'; // Rich dollar green
+    ctx.fillStyle = '#15803d';
     ctx.beginPath();
-    ctx.roundRect(x - 14, sy - 7, 28, 12, 2);
+    ctx.roundRect(x - 13, sy - 6, 26, 11, 2);
     ctx.fill();
 
-    // Inner green border
     ctx.strokeStyle = '#4ade80';
     ctx.lineWidth = 1;
     ctx.stroke();
 
-    // White paper currency belly band
-    ctx.fillStyle = '#f8fafc';
-    ctx.fillRect(x - 4, sy - 7, 8, 12);
+    ctx.fillStyle = '#fef3c7';
+    ctx.fillRect(x - 4, sy - 6, 8, 11);
 
-    // Dollar symbol on band
     ctx.fillStyle = '#15803d';
     ctx.font = 'bold 7px sans-serif';
     ctx.textAlign = 'center';
@@ -1223,90 +1534,173 @@ function renderBanknoteStack(ctx: CanvasRenderingContext2D, x: number, y: number
 }
 
 /**
- * 5. Production Plots: Raised Planter Beds, Chicken Coop, Dairy Pasture
+ * Draws a crisp custom 2D vector produce icon (used on tables, beds, and carried stacks)
+ */
+function drawProduceIcon(ctx: CanvasRenderingContext2D, product: ProductType, x: number, y: number, radius = 7) {
+  ctx.save();
+  if (product === 'tomato') {
+    // Glossy Red Tomato with green calyx
+    ctx.fillStyle = '#dc2626';
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#fca5a5';
+    ctx.beginPath();
+    ctx.arc(x - radius * 0.3, y - radius * 0.3, radius * 0.28, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#16a34a';
+    ctx.beginPath();
+    ctx.arc(x, y - radius * 0.75, radius * 0.35, 0, Math.PI * 2);
+    ctx.fill();
+  } else if (product === 'corn') {
+    // Golden Corn Cob with green husk
+    ctx.fillStyle = '#16a34a';
+    ctx.beginPath();
+    ctx.ellipse(x, y + 1, radius * 0.9, radius * 0.65, -0.3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#facc15';
+    ctx.beginPath();
+    ctx.ellipse(x, y - 1, radius * 0.65, radius * 0.95, 0.2, 0, Math.PI * 2);
+    ctx.fill();
+  } else if (product === 'egg') {
+    // Warm White & Cream Farm Egg
+    ctx.fillStyle = '#fffbeb';
+    ctx.strokeStyle = '#d97706';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.ellipse(x, y, radius * 0.72, radius * 0.95, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+  } else if (product === 'milk') {
+    // Glass Milk Bottle with blue cap
+    ctx.fillStyle = '#f8fafc';
+    ctx.strokeStyle = '#38bdf8';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.roundRect(x - radius * 0.6, y - radius * 0.7, radius * 1.2, radius * 1.5, 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#0284c7';
+    ctx.fillRect(x - radius * 0.45, y - radius * 0.95, radius * 0.9, radius * 0.35);
+  } else {
+    // Ribbed Orange Pumpkin
+    ctx.fillStyle = '#ea580c';
+    ctx.beginPath();
+    ctx.ellipse(x, y + 1, radius * 1.05, radius * 0.85, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#f97316';
+    ctx.beginPath();
+    ctx.ellipse(x, y + 1, radius * 0.6, radius * 0.85, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#15803d';
+    ctx.fillRect(x - 1.5, y - radius, 3, 4);
+  }
+  ctx.restore();
+}
+
+/**
+ * 5. Production Plots: Raised Timber Planter Beds, Chicken Coop, Dairy Pasture
  */
 function renderProductionPlot(ctx: CanvasRenderingContext2D, plot: ProductionPlot, time: number) {
   ctx.save();
 
   if (plot.product === 'egg') {
-    // CHICKEN COOP (Split-Rail Fence, Golden Straw, Hens)
     renderChickenCoop(ctx, plot, time);
     ctx.restore();
     return;
   }
 
   if (plot.product === 'milk') {
-    // DAIRY PASTURE (Fenced pasture with cow)
     renderDairyPasture(ctx, plot, time);
     ctx.restore();
     return;
   }
 
-  // RAISED WOODEN PLANTER BEDS (Tomatoes, Corn, Pumpkins)
-  // Bed drop shadow
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+  // 3D RAISED TIMBER GARDEN BED (Tomatoes, Corn, Pumpkins)
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.24)';
   ctx.beginPath();
-  ctx.roundRect(plot.x - 2, plot.y + 4, plot.width + 4, plot.height, 10);
+  ctx.roundRect(plot.x - 3, plot.y + 6, plot.width + 6, plot.height + 2, 12);
   ctx.fill();
 
-  // Dark wooden planter box frame
+  // Outer timber frame (3D front wall + top rim)
   ctx.fillStyle = '#78350f';
   ctx.beginPath();
-  ctx.roundRect(plot.x, plot.y, plot.width, plot.height, 8);
+  ctx.roundRect(plot.x, plot.y, plot.width, plot.height + 4, 10);
   ctx.fill();
 
-  // Rich dark tilled potting soil inside
-  ctx.fillStyle = '#3f200e';
-  ctx.fillRect(plot.x + 4, plot.y + 4, plot.width - 8, plot.height - 8);
-
-  // Wooden corner timber posts
   ctx.fillStyle = '#92400e';
-  ctx.fillRect(plot.x, plot.y, 8, plot.height);
-  ctx.fillRect(plot.x + plot.width - 8, plot.y, 8, plot.height);
-
-  // Bed Title Header
-  ctx.fillStyle = '#facc15';
-  ctx.font = 'bold 10px sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText(`${PRODUCTS[plot.product].emoji} ${plot.name}`, plot.x + plot.width / 2, plot.y + 14);
-
-  // Green climbing vines & foliage
-  ctx.strokeStyle = '#22c55e';
-  ctx.lineWidth = 2.5;
   ctx.beginPath();
-  ctx.moveTo(plot.x + 12, plot.y + plot.height / 2 + 5);
-  ctx.bezierCurveTo(
-    plot.x + plot.width * 0.3, plot.y + 20,
-    plot.x + plot.width * 0.7, plot.y + plot.height - 10,
-    plot.x + plot.width - 12, plot.y + plot.height / 2 + 5
-  );
-  ctx.stroke();
+  ctx.roundRect(plot.x + 2, plot.y, plot.width - 4, plot.height - 2, 8);
+  ctx.fill();
 
-  // Render ripe crops on vines with gentle bob
-  const maxCols = 4;
-  for (let i = 0; i < plot.readyCount; i++) {
-    const col = i % maxCols;
-    const row = Math.floor(i / maxCols);
-    const itemX = plot.x + 22 + col * 26;
-    const itemY = plot.y + 28 + row * 18;
-    const itemBob = Math.sin(time * 0.005 + i) * 2;
+  // Rich dark furrowed soil bed inside
+  ctx.fillStyle = '#3b1d0a';
+  ctx.beginPath();
+  ctx.roundRect(plot.x + 8, plot.y + 18, plot.width - 16, plot.height - 26, 6);
+  ctx.fill();
 
-    ctx.font = '16px sans-serif';
-    ctx.fillText(PRODUCTS[plot.product].emoji, itemX, itemY + itemBob);
+  // Soil furrow ridges
+  ctx.fillStyle = '#4e270e';
+  for (let r = 0; r < 2; r++) {
+    ctx.beginPath();
+    ctx.roundRect(plot.x + 14, plot.y + 23 + r * 18, plot.width - 28, 11, 4);
+    ctx.fill();
   }
 
-  // Capacity pill
-  ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
-  ctx.strokeStyle = plot.readyCount === plot.maxCapacity ? '#22c55e' : 'rgba(255, 255, 255, 0.3)';
+  // Wooden Header Signpost at top of bed
+  ctx.fillStyle = '#451a03';
+  ctx.strokeStyle = '#f59e0b';
   ctx.lineWidth = 1.5;
   ctx.beginPath();
-  ctx.roundRect(plot.x + plot.width / 2 - 24, plot.y + plot.height - 15, 48, 14, 5);
+  ctx.roundRect(plot.x + 18, plot.y - 8, plot.width - 36, 20, 6);
   ctx.fill();
   ctx.stroke();
 
-  ctx.fillStyle = plot.readyCount === plot.maxCapacity ? '#22c55e' : '#ffffff';
+  ctx.fillStyle = '#fef3c7';
+  ctx.font = 'bold 10px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(plot.name.replace(' 🎃', ''), plot.x + plot.width / 2, plot.y + 5);
+
+  // Leafy crop bushes across the 8 slots (always shows green plants; ripe slots show bobbing produce)
+  const maxCols = 4;
+  for (let i = 0; i < plot.maxCapacity; i++) {
+    const col = i % maxCols;
+    const row = Math.floor(i / maxCols);
+    const itemX = plot.x + 26 + col * 29;
+    const itemY = plot.y + 28 + row * 18;
+
+    // Green leafy bush base
+    ctx.fillStyle = '#15803d';
+    ctx.beginPath();
+    ctx.arc(itemX, itemY + 2, 8, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#22c55e';
+    ctx.beginPath();
+    ctx.arc(itemX - 3, itemY, 5.5, 0, Math.PI * 2);
+    ctx.arc(itemX + 3, itemY, 5.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    if (i < plot.readyCount) {
+      const itemBob = Math.sin(time * 0.006 + i) * 1.8;
+      drawProduceIcon(ctx, plot.product, itemX, itemY - 1 + itemBob, 6.5);
+    }
+  }
+
+  // Bottom Status Pill (Ready Count + Live Growth Bar)
+  const pillX = plot.x + plot.width / 2 - 28;
+  const pillY = plot.y + plot.height - 8;
+  ctx.fillStyle = '#0f172a';
+  ctx.strokeStyle = plot.readyCount === plot.maxCapacity ? '#22c55e' : '#f59e0b';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(pillX, pillY, 56, 16, 6);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = plot.readyCount === plot.maxCapacity ? '#4ade80' : '#ffffff';
   ctx.font = 'bold 9px sans-serif';
-  ctx.fillText(`${plot.readyCount}/${plot.maxCapacity}`, plot.x + plot.width / 2, plot.y + plot.height - 5);
+  ctx.textAlign = 'center';
+  ctx.fillText(`${plot.readyCount}/${plot.maxCapacity}`, plot.x + plot.width / 2, pillY + 11);
 
   ctx.restore();
 }
@@ -1315,184 +1709,256 @@ function renderProductionPlot(ctx: CanvasRenderingContext2D, plot: ProductionPlo
  * Chicken Coop (plot-egg)
  */
 function renderChickenCoop(ctx: CanvasRenderingContext2D, plot: ProductionPlot, time: number) {
-  // Rustic split-rail wooden fence
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.22)';
   ctx.beginPath();
-  ctx.roundRect(plot.x - 2, plot.y + 4, plot.width + 4, plot.height, 10);
+  ctx.roundRect(plot.x - 3, plot.y + 5, plot.width + 6, plot.height + 2, 12);
   ctx.fill();
 
-  // Golden straw ground
+  // Warm straw paddock with timber fence
   ctx.fillStyle = '#fef08a';
+  ctx.strokeStyle = '#92400e';
+  ctx.lineWidth = 4;
   ctx.beginPath();
-  ctx.roundRect(plot.x, plot.y, plot.width, plot.height, 8);
+  ctx.roundRect(plot.x, plot.y, plot.width, plot.height, 10);
   ctx.fill();
-  ctx.strokeStyle = '#ca8a04';
-  ctx.lineWidth = 2.5;
   ctx.stroke();
 
-  // Fence posts
-  ctx.fillStyle = '#854d0e';
-  ctx.fillRect(plot.x, plot.y, 6, plot.height);
-  ctx.fillRect(plot.x + plot.width - 6, plot.y, 6, plot.height);
+  // Little red hen house roof on top left
+  ctx.fillStyle = '#dc2626';
+  ctx.strokeStyle = '#7f1d1d';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(plot.x + 6, plot.y - 10, plot.width - 12, 22, 6);
+  ctx.fill();
+  ctx.stroke();
 
-  // Coop Title
-  ctx.fillStyle = '#713f12';
+  ctx.fillStyle = '#ffffff';
   ctx.font = 'bold 10px sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('🐔 Chicken Coop', plot.x + plot.width / 2, plot.y + 14);
+  ctx.fillText('🐔 Chicken Coop', plot.x + plot.width / 2, plot.y + 5);
 
-  // Straw nests with eggs & hens
   for (let i = 0; i < plot.maxCapacity; i++) {
     const col = i % 3;
     const row = Math.floor(i / 3);
-    const nx = plot.x + 24 + col * 38;
-    const ny = plot.y + 32 + row * 24;
+    const nx = plot.x + 30 + col * 44;
+    const ny = plot.y + 34 + row * 26;
 
-    // Oval straw nest
-    ctx.fillStyle = '#eab308';
+    // Woven straw nest
+    ctx.fillStyle = '#d97706';
     ctx.beginPath();
-    ctx.ellipse(nx, ny + 4, 14, 8, 0, 0, Math.PI * 2);
+    ctx.ellipse(nx, ny + 4, 14, 7, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#facc15';
+    ctx.beginPath();
+    ctx.ellipse(nx, ny + 3, 11, 5, 0, 0, Math.PI * 2);
     ctx.fill();
 
     if (i < plot.readyCount) {
-      // White egg ready to collect
-      ctx.font = '16px sans-serif';
-      ctx.fillText('🥚', nx, ny + 4);
+      const bob = Math.sin(time * 0.006 + i) * 1.5;
+      drawProduceIcon(ctx, 'egg', nx, ny + bob, 6.5);
     } else {
-      // Brooding White Hen
-      ctx.font = '16px sans-serif';
-      ctx.fillText('🐔', nx, ny + 4);
+      // Cute white hen sitting on nest
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(nx, ny, 7, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#ef4444';
+      ctx.beginPath();
+      ctx.arc(nx, ny - 7, 2.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#f59e0b';
+      ctx.beginPath();
+      ctx.arc(nx + 6, ny, 2, 0, Math.PI * 2);
+      ctx.fill();
     }
   }
 
-  // Capacity pill
-  ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
-  ctx.strokeStyle = plot.readyCount === plot.maxCapacity ? '#22c55e' : 'rgba(255, 255, 255, 0.3)';
+  ctx.fillStyle = '#0f172a';
+  ctx.strokeStyle = plot.readyCount === plot.maxCapacity ? '#22c55e' : '#f59e0b';
   ctx.lineWidth = 1.5;
   ctx.beginPath();
-  ctx.roundRect(plot.x + plot.width / 2 - 24, plot.y + plot.height - 15, 48, 14, 5);
+  ctx.roundRect(plot.x + plot.width / 2 - 26, plot.y + plot.height - 8, 52, 16, 6);
   ctx.fill();
   ctx.stroke();
-
-  ctx.fillStyle = plot.readyCount === plot.maxCapacity ? '#22c55e' : '#ffffff';
+  ctx.fillStyle = '#ffffff';
   ctx.font = 'bold 9px sans-serif';
-  ctx.fillText(`${plot.readyCount}/${plot.maxCapacity}`, plot.x + plot.width / 2, plot.y + plot.height - 5);
+  ctx.fillText(`${plot.readyCount}/${plot.maxCapacity}`, plot.x + plot.width / 2, plot.y + plot.height + 3);
 }
 
 /**
  * Dairy Pasture (plot-milk)
  */
 function renderDairyPasture(ctx: CanvasRenderingContext2D, plot: ProductionPlot, time: number) {
-  ctx.fillStyle = '#86efac';
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.22)';
   ctx.beginPath();
-  ctx.roundRect(plot.x, plot.y, plot.width, plot.height, 8);
+  ctx.roundRect(plot.x - 3, plot.y + 5, plot.width + 6, plot.height + 2, 12);
   ctx.fill();
+
+  ctx.fillStyle = '#bbf7d0';
   ctx.strokeStyle = '#15803d';
-  ctx.lineWidth = 2.5;
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.roundRect(plot.x, plot.y, plot.width, plot.height, 10);
+  ctx.fill();
   ctx.stroke();
 
   ctx.fillStyle = '#14532d';
+  ctx.strokeStyle = '#4ade80';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(plot.x + 14, plot.y - 10, plot.width - 28, 22, 6);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#ffffff';
   ctx.font = 'bold 10px sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('🐮 Dairy Pasture', plot.x + plot.width / 2, plot.y + 14);
+  ctx.fillText('🐮 Dairy Pasture', plot.x + plot.width / 2, plot.y + 5);
 
-  // Spotted Cow
-  ctx.font = '24px sans-serif';
-  ctx.fillText('🐄', plot.x + 35, plot.y + 45);
+  // Cute Dairy Cow on left
+  const cowX = plot.x + 36;
+  const cowY = plot.y + 48;
+  ctx.fillStyle = '#ffffff';
+  ctx.strokeStyle = '#1e293b';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(cowX - 16, cowY - 12, 32, 22, 8);
+  ctx.fill();
+  ctx.stroke();
+  // Cow spots
+  ctx.fillStyle = '#1e293b';
+  ctx.beginPath();
+  ctx.arc(cowX - 6, cowY - 4, 5, 0, Math.PI * 2);
+  ctx.arc(cowX + 7, cowY + 2, 4, 0, Math.PI * 2);
+  ctx.fill();
+  // Pink snout
+  ctx.fillStyle = '#fbcfe8';
+  ctx.beginPath();
+  ctx.ellipse(cowX, cowY + 6, 8, 5, 0, 0, Math.PI * 2);
+  ctx.fill();
 
-  // Milk churns
+  // Milk bottles on right rack
   for (let i = 0; i < plot.readyCount; i++) {
-    ctx.font = '16px sans-serif';
-    ctx.fillText('🥛', plot.x + 75 + (i % 2) * 20, plot.y + 35 + Math.floor(i / 2) * 18);
+    const col = i % 3;
+    const row = Math.floor(i / 3);
+    const bob = Math.sin(time * 0.006 + i) * 1.5;
+    drawProduceIcon(ctx, 'milk', plot.x + 76 + col * 22, plot.y + 34 + row * 24 + bob, 6.5);
   }
 
-  // Capacity pill
-  ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+  ctx.fillStyle = '#0f172a';
+  ctx.strokeStyle = plot.readyCount === plot.maxCapacity ? '#22c55e' : '#38bdf8';
+  ctx.lineWidth = 1.5;
   ctx.beginPath();
-  ctx.roundRect(plot.x + plot.width / 2 - 24, plot.y + plot.height - 15, 48, 14, 5);
+  ctx.roundRect(plot.x + plot.width / 2 - 26, plot.y + plot.height - 8, 52, 16, 6);
   ctx.fill();
+  ctx.stroke();
   ctx.fillStyle = '#ffffff';
   ctx.font = 'bold 9px sans-serif';
-  ctx.fillText(`${plot.readyCount}/${plot.maxCapacity}`, plot.x + plot.width / 2, plot.y + plot.height - 5);
+  ctx.fillText(`${plot.readyCount}/${plot.maxCapacity}`, plot.x + plot.width / 2, plot.y + plot.height + 3);
 }
 
 /**
- * 6. Display Tables (Market Shelves with Floating Deposit Arrow ⬇️)
+ * 6. 3D Wooden Country Market Stalls (Display Tables)
  */
 function renderDisplayTable(ctx: CanvasRenderingContext2D, shelf: Shelf, time: number) {
   ctx.save();
-  // Table shadow
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+
+  // Floor shadow
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.24)';
   ctx.beginPath();
-  ctx.roundRect(shelf.x - 2, shelf.y + 4, shelf.width + 4, shelf.height, 10);
+  ctx.roundRect(shelf.x - 4, shelf.y + 6, shelf.width + 8, shelf.height + 6, 10);
   ctx.fill();
 
-  // 4 Wooden Legs
+  // 3D Wooden Stand Base / Front Apron
   ctx.fillStyle = '#78350f';
-  ctx.fillRect(shelf.x + 4, shelf.y + shelf.height - 6, 6, 8);
-  ctx.fillRect(shelf.x + shelf.width - 10, shelf.y + shelf.height - 6, 6, 8);
-
-  // Table Top Surface (Honey Wood)
-  ctx.fillStyle = '#b45309';
   ctx.beginPath();
-  ctx.roundRect(shelf.x, shelf.y, shelf.width, shelf.height - 4, 8);
+  ctx.roundRect(shelf.x, shelf.y + 8, shelf.width, shelf.height, 8);
   ctx.fill();
 
-  // Table top lip
-  ctx.fillStyle = '#d97706';
-  ctx.fillRect(shelf.x + 3, shelf.y + 2, shelf.width - 6, 12);
+  // Slanted Honey-Oak Crate Top
+  ctx.fillStyle = '#b45309';
+  ctx.strokeStyle = '#451a03';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(shelf.x, shelf.y, shelf.width, shelf.height - 6, 8);
+  ctx.fill();
+  ctx.stroke();
 
-  // Title & Icon
+  // Recessed Dark Crate Interior Tray (where produce sits)
+  ctx.fillStyle = '#451a03';
+  ctx.beginPath();
+  ctx.roundRect(shelf.x + 6, shelf.y + 15, shelf.width - 12, shelf.height - 27, 5);
+  ctx.fill();
+
+  // Striped Market Valence Header across top of stall
+  const headerColors: Record<ProductType, string> = {
+    tomato: '#ef4444',
+    corn: '#eab308',
+    egg: '#f59e0b',
+    milk: '#0284c7',
+    pumpkin: '#ea580c',
+  };
+  const accent = headerColors[shelf.product];
+  ctx.fillStyle = accent;
+  ctx.beginPath();
+  ctx.roundRect(shelf.x + 2, shelf.y + 2, shelf.width - 4, 13, [6, 6, 2, 2]);
+  ctx.fill();
+
+  // Clean Stall Title
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 10px sans-serif';
+  ctx.font = 'bold 9px sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(`${PRODUCTS[shelf.product].emoji} ${shelf.name}`, shelf.x + shelf.width / 2, shelf.y + 12);
+  ctx.fillText(shelf.name.replace(' 🎃', ''), shelf.x + shelf.width / 2, shelf.y + 11.5);
 
-  // Stocked produce displayed neatly on table
+  // Stocked produce items drawn as crisp glossy vector icons inside the crate
   const stockCols = 4;
   for (let i = 0; i < shelf.currentStock; i++) {
     const col = i % stockCols;
     const row = Math.floor(i / stockCols);
-    const sx = shelf.x + 16 + col * 18;
-    const sy = shelf.y + 28 + row * 14;
-    ctx.font = '14px sans-serif';
-    ctx.fillText(PRODUCTS[shelf.product].emoji, sx, sy);
+    const sx = shelf.x + 16 + col * 19;
+    const sy = shelf.y + 24 + row * 13;
+    drawProduceIcon(ctx, shelf.product, sx, sy, 5.8);
   }
 
-  // FLOATING YELLOW DEPOSIT ARROW ⬇️ (Signature My Mini Mart Visual Guide)
-  const arrowBob = Math.sin(time * 0.007) * 4;
-  const arrowX = shelf.x + shelf.width / 2;
-  const arrowY = shelf.y - 12 + arrowBob;
-
-  // Golden glow around deposit arrow
-  ctx.fillStyle = 'rgba(250, 204, 21, 0.35)';
+  // Front Apron Progress Bar + Stock Pill (Clean, never floating in raw text)
+  const barX = shelf.x + 10;
+  const barY = shelf.y + shelf.height - 4;
+  const barW = shelf.width - 20;
+  ctx.fillStyle = '#1e293b';
   ctx.beginPath();
-  ctx.arc(arrowX, arrowY, 12, 0, Math.PI * 2);
+  ctx.roundRect(barX, barY, barW, 13, 5);
   ctx.fill();
 
-  // Bright yellow downward pointer arrow
-  ctx.fillStyle = '#facc15';
-  ctx.strokeStyle = '#854d0e';
-  ctx.lineWidth = 1.5;
-  ctx.beginPath();
-  ctx.moveTo(arrowX - 8, arrowY - 4);
-  ctx.lineTo(arrowX + 8, arrowY - 4);
-  ctx.lineTo(arrowX, arrowY + 6);
-  ctx.closePath();
-  ctx.fill();
-  ctx.stroke();
+  const fillW = Math.max(0, ((barW - 2) * shelf.currentStock) / shelf.maxStock);
+  if (fillW > 0) {
+    ctx.fillStyle = shelf.currentStock === shelf.maxStock ? '#16a34a' : '#d97706';
+    ctx.beginPath();
+    ctx.roundRect(barX + 1, barY + 1, fillW, 11, 4);
+    ctx.fill();
+  }
 
-  // Stock progress gauge bar
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
-  ctx.fillRect(shelf.x + 8, shelf.y + shelf.height - 11, shelf.width - 16, 6);
-  const fillW = ((shelf.width - 16) * shelf.currentStock) / shelf.maxStock;
-  ctx.fillStyle = shelf.currentStock === 0 ? '#ef4444' : shelf.currentStock === shelf.maxStock ? '#22c55e' : '#f59e0b';
-  ctx.fillRect(shelf.x + 8, shelf.y + shelf.height - 11, fillW, 6);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 8px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(`${shelf.currentStock}/${shelf.maxStock} ($${PRODUCTS[shelf.product].sellPrice})`, shelf.x + shelf.width / 2, barY + 9.5);
 
-  // Stock count pill
-  ctx.fillStyle = '#0f172a';
-  ctx.font = 'bold 9px sans-serif';
-  ctx.fillText(`${shelf.currentStock}/${shelf.maxStock}`, shelf.x + shelf.width / 2, shelf.y + shelf.height + 11);
+  // Floating Deposit Indicator (Only bounces gently above when not full)
+  if (shelf.currentStock < shelf.maxStock) {
+    const arrowBob = Math.sin(time * 0.007) * 3;
+    const arrowX = shelf.x + shelf.width / 2;
+    const arrowY = shelf.y - 11 + arrowBob;
+
+    ctx.fillStyle = '#facc15';
+    ctx.strokeStyle = '#78350f';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(arrowX - 6, arrowY - 4);
+    ctx.lineTo(arrowX + 6, arrowY - 4);
+    ctx.lineTo(arrowX, arrowY + 4);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+  }
 
   ctx.restore();
 }
@@ -1503,18 +1969,18 @@ function renderDisplayTable(ctx: CanvasRenderingContext2D, shelf: Shelf, time: n
 function renderUnlockPad(ctx: CanvasRenderingContext2D, pad: UnlockPad, time: number) {
   ctx.save();
   const pulse = Math.sin(time * 0.005) * 2;
+
+  // Outer glow
+  ctx.fillStyle = 'rgba(234, 179, 8, 0.22)';
   ctx.strokeStyle = '#facc15';
   ctx.lineWidth = 3;
   ctx.setLineDash([6, 4]);
-
   ctx.beginPath();
   ctx.arc(pad.x, pad.y, pad.radius + pulse, 0, Math.PI * 2);
-  ctx.fillStyle = 'rgba(234, 179, 8, 0.24)';
   ctx.fill();
   ctx.stroke();
   ctx.setLineDash([]);
 
-  // Progress circular arc fill
   if (pad.paid > 0) {
     const startAngle = -Math.PI / 2;
     const endAngle = startAngle + (pad.paid / pad.cost) * Math.PI * 2;
@@ -1525,93 +1991,170 @@ function renderUnlockPad(ctx: CanvasRenderingContext2D, pad: UnlockPad, time: nu
     ctx.stroke();
   }
 
-  // Pad label badge
+  // Pad Header Pill
   ctx.fillStyle = '#0f172a';
   ctx.strokeStyle = '#facc15';
   ctx.lineWidth = 1.5;
   ctx.beginPath();
-  ctx.roundRect(pad.x - 55, pad.y - 24, 110, 18, 6);
+  ctx.roundRect(pad.x - 56, pad.y - 26, 112, 18, 6);
   ctx.fill();
   ctx.stroke();
 
   ctx.fillStyle = '#ffffff';
   ctx.font = 'bold 9px sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(pad.title, pad.x, pad.y - 12);
+  ctx.fillText(pad.title, pad.x, pad.y - 14);
 
-  ctx.fillStyle = '#22c55e';
-  ctx.font = 'bold 12px sans-serif';
-  ctx.fillText(`$${pad.paid}/${pad.cost} 💵`, pad.x, pad.y + 12);
+  // Price Pill
+  ctx.fillStyle = '#064e3b';
+  ctx.strokeStyle = '#22c55e';
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  ctx.roundRect(pad.x - 32, pad.y - 2, 64, 16, 5);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#4ade80';
+  ctx.font = 'bold 10px sans-serif';
+  ctx.fillText(`$${pad.paid}/${pad.cost}`, pad.x, pad.y + 9);
   ctx.restore();
 }
 
 /**
- * 8. Capsule Dummy Character Anatomy (My Mini Mart Style)
+ * Shared 2.5D Chibi Human Character Renderer (Used for Farmer Hero & Cashier)
  */
-function renderMiniMartDummy(
+function renderChibiCharacter(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
-  options: {
-    color: string;
-    tilt?: number;
-    walkPhase?: number;
-    isMoving?: boolean;
+  opts: {
+    shirtColor: string;
+    overallsColor: string;
+    hatColor: string;
+    skinColor: string;
+    tilt: number;
+    walkPhase: number;
+    isMoving: boolean;
+    label?: string;
+    labelColor?: string;
   }
 ) {
   ctx.save();
-  const tilt = options.tilt ?? 0;
-  const walkPhase = options.walkPhase ?? 0;
-  const isMoving = options.isMoving ?? false;
-  const bob = isMoving ? Math.abs(Math.sin(walkPhase)) * 2 : 0;
+  const bob = opts.isMoving ? Math.abs(Math.sin(opts.walkPhase)) * 2.5 : 0;
+  const footSwing = opts.isMoving ? Math.sin(opts.walkPhase) * 4.5 : 0;
 
-  // Character shadow on ground
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.28)';
+  // Ground shadow
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.26)';
   ctx.beginPath();
-  ctx.ellipse(x, y + 13, 13, 5, 0, 0, Math.PI * 2);
+  ctx.ellipse(x, y + 14, 13, 5.5, 0, 0, Math.PI * 2);
   ctx.fill();
 
-  // Apply movement tilt around center of mass
   ctx.translate(x, y - bob);
-  ctx.rotate(tilt);
+  ctx.rotate(opts.tilt);
 
-  // Animated Feet swinging in walk cycle
-  const footSwing = isMoving ? Math.sin(walkPhase) * 4 : 0;
-  ctx.fillStyle = '#1e293b'; // Dark feet
+  // Boots
+  ctx.fillStyle = '#451a03';
   ctx.beginPath();
-  ctx.ellipse(-5, 10 + footSwing, 4, 3, 0, 0, Math.PI * 2);
-  ctx.ellipse(5, 10 - footSwing, 4, 3, 0, 0, Math.PI * 2);
+  ctx.ellipse(-5, 11 + footSwing, 4.5, 3.2, 0, 0, Math.PI * 2);
+  ctx.ellipse(5, 11 - footSwing, 4.5, 3.2, 0, 0, Math.PI * 2);
   ctx.fill();
 
-  // Capsule Torso (Smooth Pill Shape)
-  ctx.fillStyle = options.color;
+  // Shirt & Overalls Torso
+  ctx.fillStyle = opts.shirtColor;
+  ctx.strokeStyle = '#1e293b';
+  ctx.lineWidth = 1.4;
   ctx.beginPath();
-  ctx.roundRect(-9, -8, 18, 20, 8);
+  ctx.roundRect(-10, -6, 20, 17, 7);
   ctx.fill();
-  ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+  ctx.stroke();
+
+  // Denim Overalls Apron & Straps
+  ctx.fillStyle = opts.overallsColor;
+  ctx.beginPath();
+  ctx.roundRect(-8, -1, 16, 12, [2, 2, 6, 6]);
+  ctx.fill();
+  ctx.fillRect(-7, -6, 3.5, 6);
+  ctx.fillRect(3.5, -6, 3.5, 6);
+
+  // Brass overall buttons
+  ctx.fillStyle = '#facc15';
+  ctx.beginPath();
+  ctx.arc(-5.2, -1, 1.3, 0, Math.PI * 2);
+  ctx.arc(5.2, -1, 1.3, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Swinging Hands
+  ctx.fillStyle = opts.skinColor;
+  ctx.strokeStyle = '#78350f';
   ctx.lineWidth = 1;
-  ctx.stroke();
-
-  // Spherical Head
-  ctx.fillStyle = options.color;
   ctx.beginPath();
-  ctx.arc(0, -14, 10, 0, Math.PI * 2);
+  ctx.arc(-11, 2 - footSwing * 0.5, 3.5, 0, Math.PI * 2);
+  ctx.arc(11, 2 + footSwing * 0.5, 3.5, 0, Math.PI * 2);
   ctx.fill();
   ctx.stroke();
 
-  // Specular Gloss Highlight on Head (3D arcade look)
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
+  // Chibi Head
+  ctx.fillStyle = opts.skinColor;
+  ctx.strokeStyle = '#78350f';
+  ctx.lineWidth = 1.4;
   ctx.beginPath();
-  ctx.arc(-3, -17, 3.2, 0, Math.PI * 2);
+  ctx.arc(0, -14, 10.5, 0, Math.PI * 2);
   ctx.fill();
+  ctx.stroke();
+
+  // Rosy Cheeks, Eyes & Smile
+  ctx.fillStyle = '#fda4af';
+  ctx.beginPath();
+  ctx.arc(-5.5, -12, 2.2, 0, Math.PI * 2);
+  ctx.arc(5.5, -12, 2.2, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = '#0f172a';
+  ctx.beginPath();
+  ctx.arc(-3.5, -14.5, 1.6, 0, Math.PI * 2);
+  ctx.arc(3.5, -14.5, 1.6, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Straw Farmer Hat (Brim + Crown + Red Ribbon)
+  ctx.fillStyle = opts.hatColor;
+  ctx.strokeStyle = '#854d0e';
+  ctx.lineWidth = 1.3;
+  ctx.beginPath();
+  ctx.ellipse(0, -21, 14, 4.5, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.roundRect(-8, -28, 16, 7.5, [5, 5, 1, 1]);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#ef4444';
+  ctx.fillRect(-8, -22.5, 16, 2.2);
 
   ctx.restore();
+
+  if (opts.label) {
+    ctx.save();
+    ctx.fillStyle = opts.labelColor || '#0284c7';
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.roundRect(x - 18, y - 43, 36, 13, 5);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'black 8px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(opts.label, x, y - 34);
+    ctx.restore();
+  }
 }
 
 /**
- * 9. The Hero Player (Blue Capsule Dummy with run tilt & carried produce stack)
+ * 9. The Hero Farmer Player (With Straw Sunhat, Overalls & Wooden Harvest Crate Stack)
  */
-function renderPlayerDummy(
+function renderFarmerHero(
   ctx: CanvasRenderingContext2D,
   p: PlayerState,
   time: number,
@@ -1620,129 +2163,242 @@ function renderPlayerDummy(
   ctx.save();
   const walkPhase = isMoving ? time * 0.015 : 0;
 
-  // Running tilt angle
   let tilt = 0;
   if (isMoving) {
-    if (p.facing === 'left') tilt = -0.14;
-    else if (p.facing === 'right') tilt = 0.14;
-    else if (p.facing === 'up') tilt = -0.05;
-    else if (p.facing === 'down') tilt = 0.05;
+    if (p.facing === 'left') tilt = -0.11;
+    else if (p.facing === 'right') tilt = 0.11;
+    else if (p.facing === 'up') tilt = -0.04;
+    else if (p.facing === 'down') tilt = 0.04;
   }
 
-  // Beacon Floor Ring (Highlights player position at all times)
-  const beaconPulse = Math.sin(time * 0.008) * 3;
-  ctx.fillStyle = 'rgba(2, 132, 199, 0.2)';
+  // Subtle floor ring under player
+  const beaconPulse = Math.sin(time * 0.008) * 2;
+  ctx.fillStyle = 'rgba(2, 132, 199, 0.16)';
+  ctx.strokeStyle = 'rgba(56, 189, 248, 0.75)';
+  ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.arc(p.x, p.y + 12, 24 + beaconPulse, 0, Math.PI * 2);
+  ctx.ellipse(p.x, p.y + 13, 18 + beaconPulse, 8 + beaconPulse * 0.4, 0, 0, Math.PI * 2);
   ctx.fill();
-  ctx.strokeStyle = '#0284c7';
-  ctx.lineWidth = 2.5;
   ctx.stroke();
 
-  // Blue Capsule Dummy
-  renderMiniMartDummy(ctx, p.x, p.y, {
-    color: '#0284c7', // My Mini Mart Blue
+  renderChibiCharacter(ctx, p.x, p.y, {
+    shirtColor: '#ef4444',
+    overallsColor: '#1d4ed8',
+    hatColor: '#fde047',
+    skinColor: '#fde68a',
     tilt,
     walkPhase,
     isMoving,
+    label: p.stack.length === 0 ? 'YOU' : undefined,
+    labelColor: '#0284c7',
   });
 
-  // Floating "YOU" Pill Badge
-  ctx.fillStyle = '#0284c7';
-  ctx.strokeStyle = '#ffffff';
-  ctx.lineWidth = 1.5;
-  ctx.beginPath();
-  ctx.roundRect(p.x - 16, p.y - 34, 32, 14, 5);
-  ctx.fill();
-  ctx.stroke();
-  ctx.fillStyle = '#ffffff';
-  ctx.font = 'black 8px sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('YOU', p.x, p.y - 24);
-
-  // Carried produce stack neatly stacked above head
+  // Carried produce stack in a 3D wooden crate above head
   if (p.stack.length > 0) {
     const sway = isMoving ? Math.sin(walkPhase) * 2 : 0;
-    renderCarriedStack(ctx, p.x + sway, p.y - 42, p.stack);
+    renderCarriedStack(ctx, p.x + sway, p.y - 38, p.stack);
 
-    // Capacity Badge
-    const stackTopY = p.y - 42 - p.stack.length * 16;
-    ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+    const stackTopY = p.y - 38 - p.stack.length * 13;
+    ctx.fillStyle = '#0f172a';
     ctx.strokeStyle = p.stack.length >= p.capacity ? '#ef4444' : '#22c55e';
     ctx.lineWidth = 1.5;
     ctx.beginPath();
-    ctx.roundRect(p.x - 18, stackTopY - 14, 36, 14, 5);
+    ctx.roundRect(p.x - 18, stackTopY - 16, 36, 14, 5);
     ctx.fill();
     ctx.stroke();
 
-    ctx.fillStyle = p.stack.length >= p.capacity ? '#ef4444' : '#22c55e';
-    ctx.font = 'bold 9px sans-serif';
-    ctx.fillText(`${p.stack.length}/${p.capacity}`, p.x, stackTopY - 4);
+    ctx.fillStyle = p.stack.length >= p.capacity ? '#fca5a5' : '#4ade80';
+    ctx.font = 'bold 8.5px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${p.stack.length}/${p.capacity}`, p.x, stackTopY - 6);
   }
 
   ctx.restore();
 }
 
 /**
- * 10. Animal Customers (Pastel Capsule Dummies with Wishlist Speech Bubble)
+ * 10. Cute Chibi Animal Customers (Bunny, Cat, Dog, Bear, Pig)
+ * Features distinct animal ears, snouts, eyes, shopping baskets, and non-overlapping compact side badges!
  */
-function renderCustomerDummy(ctx: CanvasRenderingContext2D, cust: Customer, time: number) {
+function renderAnimalCustomer(ctx: CanvasRenderingContext2D, cust: Customer, time: number) {
   ctx.save();
-  // Species pastel colors
-  const palette: Record<string, string> = {
-    bunny: '#f472b6', // Pastel Pink
-    bear: '#eab308',  // Pastel Yellow
-    cat: '#10b981',   // Pastel Mint Green
-    dog: '#a855f7',   // Pastel Purple
-    pig: '#fb7185',   // Pastel Coral
-    ghost: '#94a3b8', // Pastel Slate
+  const speciesThemes: Record<
+    string,
+    { fur: string; innerEar: string; shirt: string; snout: string }
+  > = {
+    bunny: { fur: '#fdf2f8', innerEar: '#f472b6', shirt: '#ec4899', snout: '#fbcfe8' },
+    cat: { fur: '#fdba74', innerEar: '#fb7185', shirt: '#0d9488', snout: '#ffedd5' },
+    dog: { fur: '#fcd34d', innerEar: '#92400e', shirt: '#2563eb', snout: '#fef3c7' },
+    bear: { fur: '#b45309', innerEar: '#fde68a', shirt: '#16a34a', snout: '#fde68a' },
+    pig: { fur: '#fda4af', innerEar: '#f43f5e', shirt: '#7c3aed', snout: '#fb7185' },
+    ghost: { fur: '#e2e8f0', innerEar: '#94a3b8', shirt: '#475569', snout: '#f8fafc' },
   };
-  const dummyColor = palette[cust.species] ?? '#38bdf8';
+  const theme = speciesThemes[cust.species] ?? speciesThemes.bunny!;
 
   const isWalking = cust.state === 'shopping' || cust.state === 'to_register' || cust.state === 'leaving';
   const walkPhase = isWalking ? time * 0.012 : 0;
-  const tilt = isWalking ? (cust.facing === 'left' ? -0.12 : 0.12) : 0;
+  const bob = isWalking ? Math.abs(Math.sin(walkPhase)) * 2 : 0;
+  const footSwing = isWalking ? Math.sin(walkPhase) * 3.5 : 0;
+  const tilt = isWalking ? (cust.facing === 'left' ? -0.09 : 0.09) : 0;
 
-  // Render Capsule Dummy
-  renderMiniMartDummy(ctx, cust.x, cust.y, {
-    color: dummyColor,
-    tilt,
-    walkPhase,
-    isMoving: isWalking,
-  });
-
-  // Customer Thought / Wishlist Speech Bubble
-  ctx.fillStyle = '#ffffff';
-  ctx.strokeStyle = '#0f172a';
-  ctx.lineWidth = 2;
+  // Ground shadow
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.24)';
   ctx.beginPath();
-  ctx.roundRect(cust.x - 24, cust.y - 42, 48, 22, 7);
+  ctx.ellipse(cust.x, cust.y + 13, 12, 5, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.save();
+  ctx.translate(cust.x, cust.y - bob);
+  ctx.rotate(tilt);
+
+  // Paws / Feet
+  ctx.fillStyle = '#334155';
+  ctx.beginPath();
+  ctx.ellipse(-4.5, 10 + footSwing, 3.8, 2.8, 0, 0, Math.PI * 2);
+  ctx.ellipse(4.5, 10 - footSwing, 3.8, 2.8, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Cute Shopper Sweater/Apron Torso
+  ctx.fillStyle = theme.shirt;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.45)';
+  ctx.lineWidth = 1.3;
+  ctx.beginPath();
+  ctx.roundRect(-9, -6, 18, 16, 7);
   ctx.fill();
   ctx.stroke();
 
-  // Speech bubble pointer
+  // White collar trim
+  ctx.fillStyle = '#ffffff';
   ctx.beginPath();
-  ctx.moveTo(cust.x - 4, cust.y - 20);
-  ctx.lineTo(cust.x, cust.y - 15);
-  ctx.lineTo(cust.x + 4, cust.y - 20);
+  ctx.ellipse(0, -5, 5, 2, 0, 0, Math.PI);
   ctx.fill();
 
+  // Animal Ears (behind/top of head)
+  ctx.fillStyle = theme.fur;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.45)';
+  ctx.lineWidth = 1.2;
+  if (cust.species === 'bunny') {
+    // Tall bunny ears
+    ctx.beginPath();
+    ctx.ellipse(-4.5, -25, 3.2, 7.5, -0.1, 0, Math.PI * 2);
+    ctx.ellipse(4.5, -25, 3.2, 7.5, 0.1, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = theme.innerEar;
+    ctx.beginPath();
+    ctx.ellipse(-4.5, -25, 1.6, 5, -0.1, 0, Math.PI * 2);
+    ctx.ellipse(4.5, -25, 1.6, 5, 0.1, 0, Math.PI * 2);
+    ctx.fill();
+  } else if (cust.species === 'cat') {
+    // Pointed cat ears
+    ctx.beginPath();
+    ctx.moveTo(-9, -18);
+    ctx.lineTo(-6, -26);
+    ctx.lineTo(-1, -21);
+    ctx.closePath();
+    ctx.moveTo(9, -18);
+    ctx.lineTo(6, -26);
+    ctx.lineTo(1, -21);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+  } else {
+    // Round bear / dog / pig ears
+    ctx.beginPath();
+    ctx.arc(-7.5, -21, 4.2, 0, Math.PI * 2);
+    ctx.arc(7.5, -21, 4.2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = theme.innerEar;
+    ctx.beginPath();
+    ctx.arc(-7.5, -21, 2.2, 0, Math.PI * 2);
+    ctx.arc(7.5, -21, 2.2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Animal Head
+  ctx.fillStyle = theme.fur;
+  ctx.strokeStyle = 'rgba(15, 23, 42, 0.5)';
+  ctx.lineWidth = 1.3;
+  ctx.beginPath();
+  ctx.arc(0, -13.5, 9.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  // Cute Snout & Nose
+  ctx.fillStyle = theme.snout;
+  ctx.beginPath();
+  ctx.ellipse(0, -11.5, 4.2, 3, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = cust.species === 'pig' ? '#e11d48' : '#1e293b';
+  ctx.beginPath();
+  ctx.arc(0, -12.3, 1.4, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Expressive Eyes
+  ctx.fillStyle = '#0f172a';
+  ctx.beginPath();
+  ctx.arc(-3.6, -15, 1.5, 0, Math.PI * 2);
+  ctx.arc(3.6, -15, 1.5, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Little Wicker Shopping Basket held in front when carrying items
+  if (cust.basket.length > 0) {
+    ctx.fillStyle = '#d97706';
+    ctx.strokeStyle = '#78350f';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.roundRect(-8, -1, 16, 9, 3);
+    ctx.fill();
+    ctx.stroke();
+    drawProduceIcon(ctx, cust.basket[0]!, 0, 2, 4.2);
+  }
+
+  ctx.restore();
+
+  // COMPACT NON-OVERLAPPING SPEECH BUBBLE:
+  // - When in_queue: placed neatly to the RIGHT side (cust.x + 16) so vertically stacked customers NEVER cover each other!
+  // - When shopping: placed cleanly above head.
   if (cust.state === 'in_queue') {
-    ctx.font = 'bold 9px sans-serif';
-    ctx.fillStyle = '#b45309';
+    const isFront = cust.queueIndex === 0;
+    const bx = cust.x + 15;
+    const by = cust.y - 20;
+    ctx.fillStyle = isFront ? '#dcfce7' : '#ffffff';
+    ctx.strokeStyle = isFront ? '#16a34a' : '#64748b';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.roundRect(bx, by, isFront ? 38 : 26, 17, 6);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = isFront ? '#15803d' : '#475569';
+    ctx.font = 'bold 8.5px sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('WAITING ⏳', cust.x, cust.y - 27);
+    ctx.fillText(isFront ? '💵 PAY' : `#${cust.queueIndex + 1}`, bx + (isFront ? 19 : 13), by + 11.5);
   } else if (cust.state === 'leaving') {
-    ctx.font = '14px sans-serif';
+    ctx.font = '12px sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('❤️', cust.x, cust.y - 27);
+    ctx.fillText('💚', cust.x, cust.y - 27);
   } else {
     const want = cust.wants[0];
     if (want) {
-      ctx.font = 'bold 10px sans-serif';
+      const rem = Math.max(1, want.amount - want.collected);
+      const bx = cust.x - 20;
+      const by = cust.y - 43;
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = '#0f172a';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.roundRect(bx, by, 40, 18, 6);
+      ctx.fill();
+      ctx.stroke();
+
+      drawProduceIcon(ctx, want.product, cust.x - 7, by + 9, 4.8);
       ctx.fillStyle = '#0f172a';
-      ctx.textAlign = 'center';
-      ctx.fillText(`${PRODUCTS[want.product].emoji} x${want.amount}`, cust.x, cust.y - 27);
+      ctx.font = 'bold 9.5px sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(`x${rem}`, cust.x, by + 12.5);
     }
   }
 
@@ -1750,24 +2406,65 @@ function renderCustomerDummy(ctx: CanvasRenderingContext2D, cust: Customer, time
 }
 
 /**
- * 11. Helper Worker (Barnaby Dog)
+ * 11. Helper Worker (Barnaby the Farmhand Dog)
  */
-function renderHelperWorker(ctx: CanvasRenderingContext2D, h: HelperWorker, time: number) {
+function renderHelperDog(ctx: CanvasRenderingContext2D, h: HelperWorker, time: number) {
   ctx.save();
   const isWalking = h.state !== 'idle';
   const walkPhase = isWalking ? time * 0.014 : 0;
+  const bob = isWalking ? Math.abs(Math.sin(walkPhase)) * 2 : 0;
 
-  renderMiniMartDummy(ctx, h.x, h.y, {
-    color: '#f59e0b', // Golden Dog Fur
-    tilt: isWalking ? 0.1 : 0,
-    walkPhase,
-    isMoving: isWalking,
-  });
+  // Shadow
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+  ctx.beginPath();
+  ctx.ellipse(h.x, h.y + 13, 12, 5, 0, 0, Math.PI * 2);
+  ctx.fill();
 
-  // Puppy Bandana Badge
-  ctx.font = '14px sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('🐶', h.x, h.y - 26);
+  ctx.save();
+  ctx.translate(h.x, h.y - bob);
+
+  // Golden Retriever / Corgi Body
+  ctx.fillStyle = '#f59e0b';
+  ctx.strokeStyle = '#78350f';
+  ctx.lineWidth = 1.3;
+  ctx.beginPath();
+  ctx.roundRect(-9, -6, 18, 16, 7);
+  ctx.fill();
+  ctx.stroke();
+
+  // Red Farm Bandana
+  ctx.fillStyle = '#ef4444';
+  ctx.beginPath();
+  ctx.moveTo(-7, -5);
+  ctx.lineTo(7, -5);
+  ctx.lineTo(0, 2);
+  ctx.closePath();
+  ctx.fill();
+
+  // Floppy Brown Ears & Head
+  ctx.fillStyle = '#92400e';
+  ctx.beginPath();
+  ctx.ellipse(-8.5, -14, 3.5, 6, 0.2, 0, Math.PI * 2);
+  ctx.ellipse(8.5, -14, 3.5, 6, -0.2, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = '#fbbf24';
+  ctx.strokeStyle = '#78350f';
+  ctx.lineWidth = 1.3;
+  ctx.beginPath();
+  ctx.arc(0, -14, 9.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  // Eyes & Nose
+  ctx.fillStyle = '#0f172a';
+  ctx.beginPath();
+  ctx.arc(-3.5, -15, 1.5, 0, Math.PI * 2);
+  ctx.arc(3.5, -15, 1.5, 0, Math.PI * 2);
+  ctx.arc(0, -12, 2, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
 
   if (h.stack.length > 0) {
     renderCarriedStack(ctx, h.x, h.y - 34, h.stack);
@@ -1776,7 +2473,7 @@ function renderHelperWorker(ctx: CanvasRenderingContext2D, h: HelperWorker, time
 }
 
 /**
- * Helper to render vertical stack of carried produce items
+ * Helper to render vertical stack of carried produce items inside mini wooden trays
  */
 function renderCarriedStack(
   ctx: CanvasRenderingContext2D,
@@ -1786,11 +2483,18 @@ function renderCarriedStack(
 ) {
   for (let i = 0; i < stack.length; i++) {
     const item = stack[i]!;
-    const itemY = baseY - i * 16;
+    const itemY = baseY - i * 13;
     ctx.save();
-    ctx.font = '16px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(PRODUCTS[item].emoji, baseX, itemY);
+    // Mini wooden crate tray
+    ctx.fillStyle = '#92400e';
+    ctx.strokeStyle = '#451a03';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.roundRect(baseX - 11, itemY - 5, 22, 11, 3);
+    ctx.fill();
+    ctx.stroke();
+
+    drawProduceIcon(ctx, item, baseX, itemY - 1, 5.5);
     ctx.restore();
   }
 }
