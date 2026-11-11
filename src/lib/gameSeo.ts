@@ -77,14 +77,39 @@ const CUSTOM_QUERY_FAQS: Record<string, FaqItem> = {
       'Steer your mama duck across the lake to rescue stray yellow ducklings, dodge motorboats, and bring your flock home to upgrade your nest and unlock hats.',
   },
   'crossy-chicken': {
-    question: 'How do you play Chicken Crossy (Crossy Chicken) online?',
+    question: 'How do you play Crossy Road Chicken (Crossy Chicken) online?',
     answer:
       'Tap or press Arrow keys to hop Clucky across busy farm roads, drifting river logs, and train tracks without getting caught by traffic or the patrol hawk.',
   },
+  'hungry-piggy': {
+    question: 'How do you grow bigger in Hungry Piggy Game (Hungry Pig Game)?',
+    answer:
+      'Steer your hungry pig around the pasture to eat acorns and apples first, then grow big enough to swallow wooden crates, hay bales, and farm tractors in 60 seconds.',
+  },
   'hungry-piggy-feast': {
-    question: 'How do you score points in the Hungry Piggy game?',
+    question: 'How do you score points in Hungry Piggy Feast?',
     answer:
       'Slide the hungry piglet left and right under the orchard to catch falling apples, corn, and golden truffles while dodging rotten cores.',
+  },
+  'flappy-chicken': {
+    question: 'How do you play the Flappy Chicken game online?',
+    answer:
+      'Tap the screen, click your mouse, or press Spacebar to flap Clucky through 15 wooden farm fence gates and collect golden wheat grains with no download.',
+  },
+  'egg-buster': {
+    question: 'How do you play Egg Buster online?',
+    answer:
+      'Pull back Pippin the Chick’s slingshot, aim the dotted trajectory line at wooden crates or metal milk cans, and release to bounce eggs and knock out every sneaky fox.',
+  },
+  'farm-pipe-flow': {
+    question: 'How do you connect pipes in Pipe Farm (Farm Pipe Flow)?',
+    answer:
+      'Tap or click each pipe joint to rotate it 90 degrees until water flows continuously from the red pump tank to every crop patch and animal trough.',
+  },
+  'frozen-pasture-dash': {
+    question: 'How do you steer and jump in Ice Dodo online?',
+    answer:
+      'Use Left and Right Arrow keys or touch drag to carve across floating ice tracks, hit green boost pads, and press Spacebar or Up to jump over glacial gaps.',
   },
   'cat-parking': {
     question: 'How do you unblock Luna in CatParking (Cat Parking)?',

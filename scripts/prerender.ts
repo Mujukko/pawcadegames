@@ -58,16 +58,16 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   popular: {
     name: 'Popular Hits',
     slug: 'popular',
-    metaTitle: 'Most Popular Free Online Games — Play Instantly | Pawcade',
-    metaDescription: 'Play the most popular free online games on Pawcade! Enjoy Farm Mini Mart, Farm Block Blast, Sheep Cart Jam, and Duck Hunt instantly with no download.',
+    metaTitle: 'Most Popular Free Online Games — Play Instantly | No Download',
+    metaDescription: 'Play the most popular free online games on Pawcade! Enjoy Flappy Chicken, Egg Buster, Hungry Piggy, and Dog Parking instantly with no download.',
     h1: 'Most Popular Free Online Games 🌟',
     description: 'The most played, highest-rated casual browser games on Pawcade. Zero downloads, instant play on mobile and desktop.',
-    directAnswer: 'The most popular free browser games on Pawcade are Farm Block Blast, Farm Mini Mart, Dog Parking, and Duck Hunt Classic. These titles feature instant touch controls, clean puzzle mechanics, zero required downloads, and seamless play across mobile phones, tablets, and desktop browsers.',
+    directAnswer: 'The most popular free browser games on Pawcade include Flappy Chicken, Egg Buster, Hungry Piggy, Crossy Chicken, Dog Parking, and Duck Hunt Classic. These titles feature instant touch controls, clean mechanics, zero required downloads, and seamless play across mobile phones, tablets, and desktop browsers.',
     filter: (g) => Boolean(g.featured),
     faqs: [
       {
         question: 'What are the top games on Pawcade?',
-        answer: 'The highest rated titles include Farm Block Blast (puzzle), Farm Mini Mart (tycoon), Dog Parking (sliding puzzle), and Duck Hunt Classic (arcade reflex). All run instantly in modern web browsers.',
+        answer: 'The highest rated titles include Flappy Chicken (arcade flight), Egg Buster (slingshot physics), Hungry Piggy (eat and grow), Dog Parking (sliding puzzle), and Duck Hunt Classic (retro shooter). All run instantly in modern web browsers.',
       },
       {
         question: 'Do I need to download or install apps to play popular games on Pawcade?',
@@ -83,10 +83,10 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     name: 'Puzzles & Brain',
     slug: 'puzzle',
     metaTitle: 'Free Online Puzzle Games — Brain Teasers | No Download',
-    metaDescription: 'Play free online puzzle games with no download! Enjoy Farm Block Blast, Sheep Cart Jam, Dog Parking, and Word Guess instantly on mobile and desktop.',
+    metaDescription: 'Play free online puzzle games with no download! Enjoy Pipe Farm, Farm Block Blast, Dog Parking, Cat Parking, and Animal 2048 on mobile and desktop.',
     h1: 'Free Online Puzzle Games 🧩',
     description: 'Challenge your mind with handcrafted spatial puzzles, sliding block challenges, and logic teasers. Instant play with zero downloads.',
-    directAnswer: 'Pawcade puzzle games offer logic teasers, spatial block clearing, sliding traffic unblocking, and matching games. Standout titles include Farm Block Blast, Farm Mahjong Solitaire, Sheep Cart Jam, and Critter Tap Away.',
+    directAnswer: 'Pawcade puzzle games offer logic teasers, plumber pipe puzzles, spatial block clearing, sliding traffic unblocking, and number merging games. Standout titles include Pipe Farm (Farm Pipe Flow), Farm Block Blast, Dog Parking, Cat Parking, and Animal 2048.',
     filter: (g) => g.category === 'puzzle' || Boolean(g.categories?.includes('puzzle')),
     faqs: [
       {
@@ -94,23 +94,23 @@ const CATEGORIES: Record<string, CategoryConfig> = {
         answer: 'Farm Block Blast features an 8x8 grid where you place polyomino crop shapes to clear full rows and columns for combo streak points.',
       },
       {
-        question: 'What is Sheep Cart Jam?',
-        answer: 'Sheep Cart Jam is a spatial parking puzzle inspired by Bus Jam. Players guide color-coded sheep onto matching farm trailers while avoiding gridlocks.',
+        question: 'What is Pipe Farm (Farm Pipe Flow)?',
+        answer: 'Pipe Farm is a relaxing plumber puzzle where you rotate water pipes 90 degrees to irrigate thirsty barnyard crops and animal troughs from the pump tank.',
       },
       {
         question: 'Can I undo moves in Pawcade puzzle games?',
-        answer: 'Yes. Games like Farm Mahjong and Animal 2048 include built-in undo actions and shuffle tools to assist puzzle solving.',
+        answer: 'Yes. Games like Farm Mahjong, Animal 2048, and Farm Pipe Flow include built-in undo actions to assist puzzle solving.',
       },
     ],
   },
   farm: {
     name: 'Farm & Barnyard',
     slug: 'farm',
-    metaTitle: 'Free Online Farm Games — Tycoons & Puzzles | Pawcade',
-    metaDescription: 'Play free farm games online on Pawcade! Run markets, drive tractors, herd sheep, and harvest crops right in your browser with no download needed.',
+    metaTitle: 'Free Online Farm Games — Tycoons & Puzzles | No Download',
+    metaDescription: 'Play free farm games online on Pawcade! Run markets, connect water pipes, herd sheep, and harvest crops right in your browser with no download needed.',
     h1: 'Free Online Farm & Barnyard Games 🚜',
     description: 'Experience cozy agricultural life! Run village markets, herd lively sheep, harvest golden crops, and drive tractors in zero-install browser games.',
-    directAnswer: 'Free online farm games on Pawcade combine crop harvesting, market management, and barnyard animal puzzles. Players can run a grocery stall in Farm Mini Mart, solve tile matching in Farm Mahjong, steer tractors in Animal Farm Parking, or herd animals in Sheep Stampede without installing any app.',
+    directAnswer: 'Free online farm games on Pawcade combine crop harvesting, market management, and barnyard animal puzzles. Players can run a grocery stall in Farm Mini Mart, connect irrigation lines in Pipe Farm, solve tile matching in Farm Mahjong, or gobble crops in Hungry Piggy without installing any app.',
     filter: (g) => g.category === 'farm' || Boolean(g.categories?.includes('farm')),
     faqs: [
       {
@@ -119,7 +119,7 @@ const CATEGORIES: Record<string, CategoryConfig> = {
       },
       {
         question: 'Are there farm puzzle games available?',
-        answer: 'Yes. Pawcade offers Farm Mahjong Solitaire, Farm Block Blast, Farm Pantry Sort, and Grain Sand Fall with agricultural crop and barnyard themes.',
+        answer: 'Yes. Pawcade offers Pipe Farm (Farm Pipe Flow), Farm Mahjong Solitaire, Farm Block Blast, and Farm Pantry Sort with agricultural crop and barnyard themes.',
       },
       {
         question: 'Are Pawcade farm games safe and free for kids?',
@@ -130,31 +130,31 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   arcade: {
     name: 'Arcade & Action',
     slug: 'arcade',
-    metaTitle: 'Online Arcade Games for Free — Play Instantly | Pawcade',
-    metaDescription: 'Play online arcade games for free on Pawcade! Jump, dodge, and aim in Duck Hunt, Cluster Rush, Snake, and Flappy Chicken with no download needed.',
-    h1: 'Free Online Arcade & Tap Games 🕹️',
-    description: 'Fast-paced casual reflex games for quick breaks! Dodge obstacles, slingshot eggs, and flap through pastures with instant keyboard and touch controls.',
-    directAnswer: 'Pawcade arcade games deliver instant reflex action with simple tap and key controls. Players can shoot retro targets in Duck Hunt Classic, flap between fences in Flappy Chicken, destroy fox fortresses in Egg Buster, and multiply herds in Sheep Stampede.',
+    metaTitle: 'Free Web Arcade Games Online — Play Instantly | No Download',
+    metaDescription: 'Play free web arcade games online! Jump, flap, and aim in Flappy Chicken, Egg Buster, Hungry Piggy, Crossy Chicken, and Duck Hunt with no download.',
+    h1: 'Free Web Arcade & Action Games Online 🕹️',
+    description: 'Fast-paced web free arcade reflex games for quick breaks! Flap through gates, slingshot eggs, and hop across roads with instant keyboard and touch controls.',
+    directAnswer: 'Pawcade is a free web arcade delivering instant reflex action with simple tap and key controls. Players can flap between fences in Flappy Chicken, smash fox forts in Egg Buster, gobble farm treats in Hungry Piggy, hop highways in Crossy Chicken, and shoot targets in Duck Hunt Classic.',
     filter: (g) => g.category === 'arcade' || Boolean(g.categories?.includes('arcade')),
     faqs: [
       {
-        question: 'Is Duck Hunt Classic playable on mobile touchscreens?',
-        answer: 'Yes. Tap anywhere on the sky to fire your virtual light gun, hit flying ducks before they escape, and rack up high scores across 10 rounds.',
+        question: 'What games are in the Pawcade free web arcade?',
+        answer: 'Top web free arcade hits include Flappy Chicken, Egg Buster, Hungry Piggy Game, Crossy Chicken, Duck Hunt Classic, Ice Dodo, and Gopher Garden.',
       },
       {
         question: 'What is Egg Buster?',
         answer: 'Egg Buster is a physics slingshot demolition game where you launch bouncy barnyard eggs to smash wooden crates and defeat sneaky foxes.',
       },
       {
-        question: 'Do Pawcade arcade games support keyboard shortcuts?',
-        answer: 'Yes. Desktop players can use Space, Arrow keys, or Mouse Clicks for reflex jumping, aiming, and navigation.',
+        question: 'Do Pawcade arcade games work on phones and computers?',
+        answer: 'Yes. All web arcade games support desktop keyboard/mouse controls and mobile touchscreen taps with zero downloads.',
       },
     ],
   },
   pets: {
     name: 'Pets & Animals',
     slug: 'pets',
-    metaTitle: 'Pet Games Online — Free Cute Cat & Dog Games | Pawcade',
+    metaTitle: 'Pet Games Online: Free Cute Cat & Dog Games | No Download',
     metaDescription: 'Play free cat games, dog games, and cute pet puzzles online! Slide corgis in Dog Parking, rescue kittens in Cat Parking, and care for pets—no download.',
     h1: 'Free Pet Games Online — Cute Dogs & Cats 🐾',
     description: 'Meet playful corgis, mischievous cats, fluffy sheep, and barnyard animals! Cozy, family-friendly browser games designed for animal lovers of all ages.',
@@ -211,12 +211,21 @@ for (const game of playableGames) {
         applicationCategory: 'Game',
         operatingSystem: 'Web Browser',
         browserRequirements: 'Requires JavaScript. Requires HTML5.',
+        playMode: 'SinglePlayer',
         inLanguage: 'en-US',
-        image: ogImage,
+        thumbnailUrl: ogImage,
+        image: {
+          '@type': 'ImageObject',
+          url: ogImage,
+          width: 768,
+          height: 432,
+          caption: `${plainTitle} — Free Online Browser Game`,
+        },
         offers: {
           '@type': 'Offer',
           price: '0',
           priceCurrency: 'USD',
+          availability: 'https://schema.org/InStock',
         },
       },
       {

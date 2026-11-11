@@ -1270,7 +1270,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Multiple Progressive Challenge Levels & Single-Screen Responsive Layout",
       "100% Free Browser Play with Zero Installs or Ads"
     ],
-    "metaTitle": "Sheep Cart Jam — Free Bus Jam Style Puzzle Online | Pawcade",
+    "metaTitle": "Sheep Cart Jam: Free Bus Jam Puzzle Online | No Download",
     "metaDescription": "Play Sheep Cart Jam free in your browser! Guide colored tractor carts out of the farm maze and board waiting sheep in this fun Bus Jam puzzle."
   },
   {
@@ -1371,7 +1371,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Handcrafted Meadow Tracks with Dynamic Obstacles & Big Red Barn Finish",
       "100% Free Browser Play with Zero Downloads or Ads"
     ],
-    "metaTitle": "Mob Control Style Crowd Runner — Sheep Stampede | Pawcade",
+    "metaTitle": "Sheep Stampede: Free Mob Control Runner Game | No Download",
     "metaDescription": "Play Sheep Stampede free in your browser! Steer Buster and your sheep flock through math multiplier gates in this addictive Colony Flow style meadow runner."
   },
   {
@@ -1529,7 +1529,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio (Whooshes, Bell Chimes, Fanfares, Zero Delay)",
       "Zero Installs or Downloads — 100% Free Instant Play on All Devices"
     ],
-    "metaTitle": "Memory Match Game Online Free — Cute Pet Cards | Pawcade",
+    "metaTitle": "Pet Memory Match: Free Card Matching Game | No Download",
     "metaDescription": "Play Pet Memory Match free in your browser! Flip barnyard cards, match cute pets and farm animals, and beat the clock in this fun free memory puzzle game."
   },
   {
@@ -1646,6 +1646,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     "playCount": "9.8K",
     "badge": "🐈‍⬛ Top Rated",
     "thumbnailUrl": "/assets/thumbnails/thumb-cat-parking.svg",
+    "featured": true,
     "tags": [
       "Puzzle",
       "Cats",
@@ -1722,8 +1723,8 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Handcrafted Slingshot Trajectory Levels with Progressive Demolition Challenges",
       "100% Free Browser Play with Zero Downloads or Ads"
     ],
-    "metaTitle": "Egg Buster — Free Slingshot Physics Game Online | Pawcade",
-    "metaDescription": "Play Egg Buster free in your browser! Pull back Pippin's slingshot, bounce eggs off milk cans, and smash sneaky foxes in this fun Smash Fest physics puzzle."
+    "metaTitle": "Egg Buster Game Online: Free Physics Slingshot | No Download",
+    "metaDescription": "Play Egg Buster free online! Aim Pippin's slingshot, bounce eggs off milk cans, and smash sneaky foxes. Free slingshot physics game with no download."
   },
   {
     "id": "farm-pantry-sort",
@@ -1933,7 +1934,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Barnyard Harvest Victory Celebration with 3-Star Rating Gauge",
       "100% Free Browser Play with Zero Ads or Downloads"
     ],
-    "metaTitle": "Farm Animal Match — Free Match-3 Game Online | Pawcade",
+    "metaTitle": "Farm Animal Match: Free Match-3 Puzzle Online | No Download",
     "metaDescription": "Play Farm Animal Match free in your browser! Craft 2x2 Square Dynamite Bombs, 4-in-a-row Striped Rockets, and L/T Barrel Bombs with cute farm animals."
   },
   {
@@ -1953,6 +1954,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     "playCount": "21.4K",
     "badge": "🐔 Classic Flight",
     "thumbnailUrl": "/assets/thumbnails/thumb-flappy-chicken.svg",
+    "featured": true,
     "tags": [
       "Arcade",
       "Flight",
@@ -1981,8 +1983,8 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Instant 60 FPS Responsive Play on Mobile & Desktop",
       "100% Free Browser Play with Zero Ads or Downloads"
     ],
-    "metaTitle": "Flappy Chicken — Free Tap to Fly Game Online | Pawcade",
-    "metaDescription": "Play Flappy Chicken free in your browser! Help Clucky flap, cluck, and dodge farm fences to feast on the Golden Wheat. 100% free casual arcade game."
+    "metaTitle": "Flappy Chicken Game Online: Free Tap to Fly | No Download",
+    "metaDescription": "Play Flappy Chicken (Flappy Chicken Game) free online! Tap to flap Clucky past farm fences and reach the Golden Wheat. Free browser game, no download."
   },
   {
     "id": "duck-runner",
@@ -2048,6 +2050,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     "playCount": "18.2K",
     "badge": "🐘 2048 Merge",
     "thumbnailUrl": "/assets/thumbnails/thumb-animal-2048.svg",
+    "featured": true,
     "tags": [
       "Puzzle",
       "Evolution",
@@ -2128,7 +2131,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Desktop Keyboard DAS & Mobile Touch D-Pad Layout",
       "Local High Score Tracking & 100% Free Instant Play"
     ],
-    "metaTitle": "Farm Block Drop — Free Falling Block Puzzle Online | Pawcade",
+    "metaTitle": "Farm Block Drop: Free Falling Block Puzzle | No Download",
     "metaDescription": "Play Farm Block Drop free in your browser! Stack harvest crates, fill the golden hay silo, and delight the farmer. 100% free casual block puzzle game."
   },
   {
@@ -2236,6 +2239,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     "playCount": "13.2K",
     "badge": "🆕 Daily Drop",
     "thumbnailUrl": "/assets/thumbnails/thumb-gopher-garden.svg",
+    "featured": true,
     "controls": {
       "desktop": [
         "Mouse Click: Whack gopher or vegetable mound",
@@ -2276,6 +2280,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     "playCount": "15.4K",
     "badge": "🆕 Daily Drop",
     "thumbnailUrl": "/assets/thumbnails/thumb-farm-fruit-bubble.svg",
+    "featured": true,
     "controls": {
       "desktop": [
         "Mouse Move / Drag: Aim slingshot angle with dotted trajectory line",
@@ -2358,6 +2363,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     "playCount": "19.4K",
     "badge": "🆕 Daily Drop",
     "thumbnailUrl": "/assets/thumbnails/thumb-hungry-piggy.svg",
+    "featured": true,
     "controls": {
       "desktop": [
         "Arrow Keys or W/A/S/D: Steer Barnaby towards food in the farmyard",
@@ -2378,8 +2384,8 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Zero-Latency Web Audio (Crunch Munches, Piggy Oinks, and Fanfare Chimes)",
       "100% Free Browser Play with Zero Ads, Downloads, or Installs"
     ],
-    "metaTitle": "Hungry Piggy Game Online: Eat & Grow Free | No Download",
-    "metaDescription": "Play Hungry Piggy Game free online! Steer your hungry pig around the farm to eat apples, hay bales, and tractors in 60 seconds. Play now, no download."
+    "metaTitle": "Hungry Piggy Game: Free Hungry Pig IO Online | No Download",
+    "metaDescription": "Play Hungry Piggy Game (Hungry Pig Game) free online! Steer your piglet around the farm to eat apples, crates, and tractors in 60s with no download."
   },
   {
     "id": "duck-pond-sort",
@@ -2419,7 +2425,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Zero-Latency Web Audio (Water Splashes, Happy Quacks, and Victory Chimes)",
       "100% Free Browser Play with Zero Ads, Downloads, or Installs"
     ],
-    "metaTitle": "Water Sort Puzzle Online Free — Duck Pond Sort | Pawcade",
+    "metaTitle": "Duck Pond Sort: Free Water Sort Puzzle Online | No Download",
     "metaDescription": "Play Duck Pond Sort free online! Sort cute rubber duckies by color into peaceful farm pond bays. Instant browser play with no download or install."
   },
   {
@@ -2673,7 +2679,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Chimes Scaled to Merge Evolution Tiers",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Animal Drop: Watermelon Merge 🍉🐾 — No Download | Pawcade",
+    "metaTitle": "Suika Watermelon Game Online: Animal Drop | No Download",
     "metaDescription": "Play Animal Drop Watermelon Merge free online! Drop and merge cute farm animals to grow the giant Watermelon Elephant. Free puzzle game with no download."
   },
   {
@@ -2738,6 +2744,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     "playCount": "17.3K",
     "badge": "🚜 Pipe Flow",
     "thumbnailUrl": "/assets/thumbnails/thumb-farm-pipe-flow.svg",
+    "featured": true,
     "controls": {
       "desktop": [
         "Left Click Pipe: Rotate pipe joint 90 degrees clockwise",
@@ -2759,8 +2766,8 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Synthesizer (Ratchet Turns, Water Gushes, and Garden Chimes)",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Pipe Puzzle Game Online Free — Farm Pipe Flow | Pawcade",
-    "metaDescription": "Play Farm Pipe Flow free online! Rotate water pipes to irrigate thirsty barnyard crops and animal troughs. Free casual plumber puzzle with no download."
+    "metaTitle": "Pipe Farm Game Online: Free Plumber Puzzle | No Download",
+    "metaDescription": "Play Pipe Farm (Farm Pipe Flow) free online! Rotate water pipes to irrigate thirsty barnyard crops and animal troughs. Plumber puzzle, no download."
   },
   {
     "id": "koi-pond-zen",
@@ -2803,7 +2810,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Soundscape (Water Plinks, Bamboo Clacks, Singing Bowl Gongs, and Zen Fanfare)",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Koi Pond: Zen Water Garden 🎏🌸 — No Download | Pawcade",
+    "metaTitle": "Koi Pond Game Online: Free Zen Water Garden | No Download",
     "metaDescription": "Play Koi Pond Zen free online! Feed graceful koi fish, bloom lotus flowers, and make calm water ripples in a peaceful pond garden with no download."
   },
   {
@@ -2968,7 +2975,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Chimes (Melodic Pentatonic Scale Arpeggios, Cork Pops, Cart Catches, and Beethoven Ode to Joy Fever Fanfare)",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Peg Bounce Game Online Free — Barnyard Peg Pop | Pawcade",
+    "metaTitle": "Barnyard Peg Pop: Free Peg Bounce Game Online | No Download",
     "metaDescription": "Play Barnyard Peg Pop free online! Aim the acorn cannon, bounce off colorful pegs, and clear golden targets in Peggle style. Free casual game with no download."
   },
   {
@@ -3009,7 +3016,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Synthesizer (Bow Creaks, Twang Snaps, Wood Thuds, and Bullseye Chimes)",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Archery Game Online Free — Duck Archery Range | Pawcade",
+    "metaTitle": "Duck Archery Game Online: Free Bow & Target | No Download",
     "metaDescription": "Play Duck Archery: Target Master free online! Pull back the bowstring, gauge wind gusts, and shoot bullseyes across 4 ranges. Free casual game with no download."
   },
   {
@@ -3051,7 +3058,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Synthesizer (Metallic Putts, Rail Thwacks, Bumper Boings, and Cup Drops)",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Mini Golf Game Online Free — Corgi Pasture Putt | Pawcade",
+    "metaTitle": "Corgi Mini Golf: Free 2D Putting Game Online | No Download",
     "metaDescription": "Play Corgi Mini Golf free online! Aim your putter, bank off wooden rails, dodge sand traps, and sink hole-in-ones. Free casual game with no download."
   },
   {
@@ -3173,7 +3180,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Synthesizer (Oak Clacks, Wood Taps, Ratchet Turns, and Marimba Fanfare)",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Tangram Puzzle Online Free — Animal Wood Block Fit | Pawcade",
+    "metaTitle": "Animal Tangram Online: Free Wood Block Puzzle | No Download",
     "metaDescription": "Play Animal Tangram free online! Fit polished wooden blocks into cute animal silhouettes without overlapping. Relaxing farm brain puzzle with no download."
   },
   {
@@ -3299,7 +3306,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Card Slides, Chimes, and Harvest Fanfares",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "TriPeaks Solitaire Online Free — Farm Harvest Peak | Pawcade",
+    "metaTitle": "TriPeaks Solitaire Online: Free Farm Card Game | No Download",
     "metaDescription": "Play Farm TriPeaks Solitaire free online! Clear 3 card peaks, build streak multipliers, and uncover harvest crop cards. Free casual card game with no download."
   },
   {
@@ -3381,7 +3388,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Solenoids, Spring Plunger Snaps, and Bumper Pings",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Barnyard Pinball: Flipper Farm 🕹️ — No Download | Pawcade",
+    "metaTitle": "Pinball Game Online Free: Barnyard Flipper | No Download",
     "metaDescription": "Play Barnyard Pinball free online! Launch chrome balls, hit glowing farm bumpers, light F-A-R-M lanes, and trigger multiball with no download."
   },
   {
@@ -3421,7 +3428,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Engine Chugs, Grass Snips, and Harvest Fanfares",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Lawn Mower Game Online Free — Crop Mower Harvest | Pawcade",
+    "metaTitle": "Lawn Mower Game Online: Free Crop Harvest | No Download",
     "metaDescription": "Play Crop Mower Harvest Rush free online! Drive your tractor to mow golden wheat, fill your basket, and clear fields. Free casual farm game with no download."
   },
   {
@@ -3462,7 +3469,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Hamster Chirps, Seed Crunches, and Gate Clinks",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Hamster Maze: Nut Escape 🐹 — No Download | Pawcade",
+    "metaTitle": "Hamster Maze Game Online: Free Nut Escape | No Download",
     "metaDescription": "Play Hamster Maze Nut Escape free online! Guide Pip the hamster through timber mazes, collect golden acorns, and find the exit with no download."
   },
   {
@@ -3544,7 +3551,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Soap Lather, Water Jet Spray, and Cheerful Animal Vocals",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Piggy Mud Wash: County Fair Spa 🐷 — No Download | Pawcade",
+    "metaTitle": "Piggy Mud Wash: Free Pet Spa Cleaning Game | No Download",
     "metaDescription": "Play Piggy Mud Wash free online! Scrub muddy farm animals with soap, rinse with water, and dry them for the County Fair. Free casual pet spa with no download."
   },
   {
@@ -3625,7 +3632,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Synthesizer (Water Torrents, Rubber Squeaks, and Splashdowns)",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Duck Water Slide: Splash Rush 🦆 — No Download | Pawcade",
+    "metaTitle": "Duck Water Slide: Free Park Racing Game Online | No Download",
     "metaDescription": "Play Duck Water Slide free online! Steer Quacky down rushing water flumes, collect rubber ducks, and hit stunt ramps. Free arcade water racer with no download."
   },
   {
@@ -3667,7 +3674,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Synthesizer (Bouncy Hops, Carrot Crunches, and River Splashes)",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Bunny Hop: Road & River Cross 🐰 — No Download | Pawcade",
+    "metaTitle": "Bunny Hop Online: Free Road & River Crossing | No Download",
     "metaDescription": "Play Bunny Hop free online! Hop Barnaby Bunny across farm roads, floating river logs, and train tracks. Free arcade animal hopper game with zero downloads."
   },
   {
@@ -3710,7 +3717,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Synthesizer (Boba Drops, Ice Clinks, Milk Streams, and Straw Pokes)",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Farm Boba Tea: Animal Cafe 🧋 — No Download | Pawcade",
+    "metaTitle": "Boba Tea Game Online: Free Animal Cafe Sim | No Download",
     "metaDescription": "Play Farm Boba Tea free online! Brew fresh milk tea, scoop chewy tapioca pearls, and serve cute animal cafe customers. Free bubble tea game with no download."
   },
   {
@@ -3754,7 +3761,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Synthesizer (Scoop Plops, Syrup Squeezes, and Sprinkle Rattles)",
       "100% Free Browser Play with No Download or Install"
     ],
-    "metaTitle": "Barnyard Ice Cream: Scoop & Stack 🍦 — No Download | Pawcade",
+    "metaTitle": "Ice Cream Game Online: Free Scoop & Stack | No Download",
     "metaDescription": "Play Barnyard Ice Cream free online! Stack tall ice cream scoops on waffle cones, add syrups, and serve cute farm pets. Free arcade game, no download."
   },
   {
@@ -3970,7 +3977,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Engine (Ascending Pentatonic Letter Picks, Fanfares, and Chimes)",
       "100% Free Instant Browser Play with No Download or Install"
     ],
-    "metaTitle": "Word Connect Online Free — Barnyard Corgi Cross | Pawcade",
+    "metaTitle": "Word Connect Online: Free Corgi Crossword Game | No Download",
     "metaDescription": "Play Barnyard Word Connect free online! Swipe across letter dials to solve crossword puzzles with Sunny Corgi. Free word connect puzzle game no download."
   },
   {
@@ -3991,6 +3998,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
     "playCount": "58.4K",
     "badge": "🐔 Highway Hop",
     "thumbnailUrl": "/assets/thumbnails/thumb-crossy-chicken.svg",
+    "featured": true,
     "controls": {
       "desktop": [
         "Arrow Keys or W/A/S/D: Hop forward, left, right, or down",
@@ -4012,8 +4020,8 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Engine (Chicken Clucks, Horn Beeps, River Splashes, and Train Horns)",
       "100% Free Instant Browser Play with No Download or Install"
     ],
-    "metaTitle": "Crossy Chicken Online: Farm Road Hopper | No Download",
-    "metaDescription": "Play Crossy Chicken free online! Hop Clucky across busy farm highways, floating river logs, and train tracks. Free arcade crossy road game with no download."
+    "metaTitle": "Crossy Chicken: Free Crossy Road Chicken Game | No Download",
+    "metaDescription": "Play Crossy Chicken (Crossy Road Chicken) free online! Hop Clucky across busy farm roads, floating river logs, and train tracks with no download."
   },
   {
     "id": "tractor-hill-climb",
@@ -4105,7 +4113,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Single-Screen Zero-Scroll Layout with 60 FPS Canvas Physics",
       "100% Free Instant Browser Play with No Download or Install"
     ],
-    "metaTitle": "Level Devil: Mischief Meadow 🐥🚪 — No Download | Pawcade",
+    "metaTitle": "Level Devil Online: Free Troll Platformer Game | No Download",
     "metaDescription": "Play Level Devil free online! Dodge troll traps, collapsing floors, and moving doors as Pip the Chick. Free trick platformer game with no download."
   },
   {
@@ -4154,7 +4162,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Responsive Single-Screen Arena with Zero Mobile Scrolling",
       "100% Free Instant Browser Play with No Download or Install"
     ],
-    "metaTitle": "Basket Random: Barnyard Dunkers 🏀🐷 — No Download | Pawcade",
+    "metaTitle": "Basket Random Online: Free 2-Player Hoops Game | No Download",
     "metaDescription": "Play Basket Random free online! Enjoy floppy 2-on-2 ragdoll basketball with wild bounces and hilarious dunks. Free 2-player sports game with no download."
   },
   {
@@ -4203,7 +4211,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Single-Screen Pantry Shelf Layout with Mobile Touch Optimization",
       "100% Free Instant Browser Play with No Download or Install"
     ],
-    "metaTitle": "Water Sort: Farm Bottle Pour 🧪🐮 — No Download | Pawcade",
+    "metaTitle": "Water Sort Online: Free Bottle Pour Puzzle | No Download",
     "metaDescription": "Play Water Sort free online! Pour and sort colorful farm milk bottles until each flask matches. Free relaxing color liquid puzzle game with no download."
   },
   {
@@ -4252,7 +4260,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Engine with Winch Gears, Clamps, and Coins",
       "100% Free Instant Browser Play with No Download or Install"
     ],
-    "metaTitle": "Gold Miner: Barnyard Gem Digger ⛏️💎 — No Download | Pawcade",
+    "metaTitle": "Gold Miner Online: Free Gem Digging Game | No Download",
     "metaDescription": "Play Gold Miner free online! Drop your winch claw to reel in gold nuggets, sparkling diamonds, and bags. Classic arcade digging game with no download."
   },
   {
@@ -4349,7 +4357,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Single-Screen 15x11 Viewport with Dedicated Touch Controls",
       "100% Free Instant Browser Play with No Download or Install"
     ],
-    "metaTitle": "Bad Ice Cream: Frosty Barnyard 🍦🐧 — No Download | Pawcade",
+    "metaTitle": "Bad Ice Cream Online: Free Frosty Maze Game | No Download",
     "metaDescription": "Play Bad Ice Cream free online! Create and smash ice walls to collect fresh fruits and dodge wolves. Classic retro maze arcade game with no download."
   },
   {
@@ -4451,7 +4459,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Engine with Stadium Horns, Whistles, and Thuds",
       "100% Free Instant Browser Play with No Download or Install"
     ],
-    "metaTitle": "Retro Bowl: Barnyard Gridiron 🏈🐕 — No Download | Pawcade",
+    "metaTitle": "Retro Bowl Online: Free Pixel Football Game | No Download",
     "metaDescription": "Play Retro Bowl free online! Aim spiral passes, juke defenders, and score touchdowns on the pixel football field. Free arcade sports game with no download."
   },
   {
@@ -4500,7 +4508,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Engine with Wind Rumbles, Jumps, and Crashes",
       "100% Free Instant Browser Play with No Download or Install"
     ],
-    "metaTitle": "Slope: Rolling Acorn Dash 🌰⚡ — No Download | Pawcade",
+    "metaTitle": "Slope Game Online: Free 3D Rolling Ball Run | No Download",
     "metaDescription": "Play Slope free online! Steer a speeding acorn down endless 3D perspective forest runways, dodge red barriers, and beat your high score with no download."
   },
   {
@@ -4550,7 +4558,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Web Audio Engine with Boxing Bells, Punches, and Gongs",
       "100% Free Instant Browser Play with No Download or Install"
     ],
-    "metaTitle": "Ragdoll Hit: Barnyard Brawler 🥊🦊 — No Download | Pawcade",
+    "metaTitle": "Ragdoll Hit Online: Free Physics Brawler Game | No Download",
     "metaDescription": "Play Ragdoll Hit free online! Swing floppy arms and farm weapons to deliver hilarious knockouts in the hayloft ring. Free ragdoll brawler game with no download."
   },
   {
@@ -4595,7 +4603,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Single-Screen Responsive Mobile Touch Viewport",
       "100% Free Instant Browser Play with No Download"
     ],
-    "metaTitle": "Helix Silo Drop: Spiral Jump 🌽🌀 — No Download | Pawcade",
+    "metaTitle": "Helix Jump Online: Free Spiral Silo Drop Game | No Download",
     "metaDescription": "Play Helix Silo Drop free online! Spin the silo tower to drop through platform gaps. Fast spiral bouncing arcade game with no download needed."
   },
   {
@@ -4643,7 +4651,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Retro Arcade Web Audio Chimes and Whooshes",
       "100% Free Instant Browser Play with No Download"
     ],
-    "metaTitle": "Pasture Subway Run: Farm Dash 🐕🚜 — No Download | Pawcade",
+    "metaTitle": "Subway Runner Online: Free Pasture Farm Dash | No Download",
     "metaDescription": "Play Pasture Subway Run free online! Dash along three tracks, dodge tractors, and jump fences. Free endless runner game with no download needed."
   },
   {
@@ -4687,7 +4695,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Clean Minimalist Zen Aesthetics with Zero Lag",
       "100% Free Instant Browser Play with No Download"
     ],
-    "metaTitle": "Barnyard Hay Stack: Tower Block 🌾📐 — No Download | Pawcade",
+    "metaTitle": "Stack Game Online: Free Hay Block Tower | No Download",
     "metaDescription": "Play Barnyard Hay Stack free online! Time your taps to stack moving hay blocks into a giant sky tower. Free tower builder game with no download."
   },
   {
@@ -4733,7 +4741,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Authentic Cartoon Sound Synthesizer",
       "100% Free Instant Browser Play with No Download"
     ],
-    "metaTitle": "Barnyard Doodle Jump: Cloud Hop 🐥☁️ — No Download | Pawcade",
+    "metaTitle": "Doodle Jump Online: Free Cloud Hop Game | No Download",
     "metaDescription": "Play Barnyard Doodle Jump free online! Bounce Clucky high into the sky on springs and moving platforms. Free jumping arcade game with no download."
   },
   {
@@ -4777,7 +4785,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Procedural Chimes for Jumps, Stars, and Shifts",
       "100% Free Instant Browser Play with No Download"
     ],
-    "metaTitle": "Barnyard Color Switch: Match Tap 🎨⭐ — No Download | Pawcade",
+    "metaTitle": "Color Switch Online: Free Color Match Tap Game | No Download",
     "metaDescription": "Play Barnyard Color Switch free online! Tap to jump through spinning obstacles with matching colors. Free color matching arcade game with no download."
   },
   {
@@ -4821,7 +4829,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Single-Screen Zero-Scroll Responsive Viewport",
       "100% Free Instant Browser Play with No Download"
     ],
-    "metaTitle": "Milk Bottle Flip 3D: Farm Rooms 🥛🏡 — No Download | Pawcade",
+    "metaTitle": "Bottle Flip 3D Online: Free Milk Flip Game | No Download",
     "metaDescription": "Play Milk Bottle Flip 3D free online! Flip glass milk bottles across tables and counters. Land balanced upright in this free game with no download."
   },
   {
@@ -4914,7 +4922,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Gentle Web Audio Plink and Celebration Melodies",
       "100% Free Instant Browser Play with No Download"
     ],
-    "metaTitle": "Happy Milk Pail: Draw Physics 🥛✏️ — No Download | Pawcade",
+    "metaTitle": "Happy Glass Style Game: Free Milk Pail Draw | No Download",
     "metaDescription": "Play Happy Milk Pail free online! Draw smooth ramps to guide milk droplets into the pail to make it smile. Free drawing physics game with no download."
   },
   {
@@ -4958,7 +4966,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Deep Bass Void Rumble and Gulp Sound Synthesizers",
       "100% Free Instant Browser Play with No Download"
     ],
-    "metaTitle": "Pasture Hole IO: Farm Vacuum 🕳️🌾 — No Download | Pawcade",
+    "metaTitle": "Hole.io Style Game Online: Pasture Farm Vacuum | No Download",
     "metaDescription": "Play Pasture Hole IO free online! Slide an expanding void hole across the farm, swallow crops and tractors, and grow huge. Free IO game with no download."
   },
   {
@@ -5004,7 +5012,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Atmospheric Procedural Web Audio Wind and Rotation Sound",
       "100% Free Instant Browser Play with No Download"
     ],
-    "metaTitle": "Barnyard Tunnel Runner: Run 3D 🌀🐕 — No Download | Pawcade",
+    "metaTitle": "Run 3 Style Tunnel Runner Online: Free 3D Game | No Download",
     "metaDescription": "Play Barnyard Tunnel Runner free online! Sprint through a 3D cylindrical silo and rotate the world to avoid void gaps. Free runner game with no download."
   },
   {
@@ -5096,7 +5104,7 @@ export const GAMES_REGISTRY: GameMetadata[] = [
       "Spoiler-free share card for friends",
       "100% free instant browser play with no download"
     ],
-    "metaTitle": "Word Guessing Game Online: Barnyard Word Guess | Free",
+    "metaTitle": "Word Guessing Game Online: Daily Farm Wordle | No Download",
     "metaDescription": "Play a free word guessing game online! Solve a new five-letter farm word each day in six tries. Green, yellow, grey clues. No download, no sign-up."
   },
   {
