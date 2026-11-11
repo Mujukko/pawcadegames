@@ -231,10 +231,11 @@ export const FarmMiniMartContainer: React.FC = () => {
       cameraRef.current.y += (targetCamY - cameraRef.current.y) * 0.12;
 
       // Trigger audio events
+      const didUnlockStation = events.includes('unlock_station');
       for (const ev of events) {
         if (ev === 'harvest') farmMartAudio.playHarvestSound();
         else if (ev === 'stock') farmMartAudio.playStockSound();
-        else if (ev === 'coin_deposit') farmMartAudio.playCoinDepositSound();
+        else if (ev === 'coin_deposit' && !didUnlockStation) farmMartAudio.playCoinDepositSound();
         else if (ev === 'unlock_station') {
           farmMartAudio.playUnlockSound();
           analytics.scoreMilestone('farm-mini-mart', nextState.player.coins, 'unlock_station');
